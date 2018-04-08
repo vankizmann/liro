@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'name'      => 'Package component',
+    'name'      => 'Package',
     'version'   => '0.0.1',
-    'type'      => 'system/component',
-    'namespace' => 'Liro\\Package\\'
+    'type'      => 'cms.package.backend.component',
 ];

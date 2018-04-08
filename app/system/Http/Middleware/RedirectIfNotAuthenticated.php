@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Application;
 
-class RedirectIfAuthenticated
+class RedirectIfNotAuthenticated
 {
     protected $app;
 
@@ -15,8 +15,10 @@ class RedirectIfAuthenticated
 
     public function handle($request, $next)
     {
-        if ( $request->user() ) {
-            return redirect()->route('menus.index');
+        if ( ! $request->user() ) {
+            return redirect()->route('login', [
+                'redirect' => $request->path()
+            ]);
         }
 
         return $next($request);

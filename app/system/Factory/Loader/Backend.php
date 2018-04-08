@@ -16,11 +16,11 @@ class Backend
         $packages = $this->app['cms.package.loader']->all()->where('state', 1)->each(function($package) {
 
             if ($package->get('type') == 'cms.package.backend.component') {
-                $package->loadNamespace()->callRegister()->loadRoute();
+                $package->loadNamespace()->loadLanguages()->callRegister()->loadRoute();
             }
 
             if ($package->get('type') == 'cms.package.backend.theme') {
-                $package->loadNamespace()->callRegister()->setTemplate();
+                $package->loadNamespace()->loadLanguages()->callRegister()->setTemplate();
             }
 
         });

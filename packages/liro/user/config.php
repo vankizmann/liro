@@ -20,6 +20,16 @@ return [
             ->get('logout', 'Liro\User\Controller\AuthenticateController@logout')
             ->middleware(['web', 'auth'])->name('logout');
 
+    },
+
+    'boot' => function($app) {
+
+        $messages = [
+            'user' =>  $app['translator']->getFromJson('*.user', [])
+        ];
+
+        $app['cms.asset']->plainJs('cms.user.lang', "liro.setMessages('".$app->getLocale()."',".json_encode($messages).");", ['cms.bootstrap']);
+
     }
 
 ];

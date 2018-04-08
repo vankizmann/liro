@@ -45,6 +45,13 @@ class Package
         return $default;
     }
 
+    public function loadLanguages()
+    {
+        $this->app['translator']->addJsonPath($this->directory.'/language');
+
+        return $this;
+    }
+
     public function loadNamespace()
     {
         $loader = $this->app['cms.loader'];

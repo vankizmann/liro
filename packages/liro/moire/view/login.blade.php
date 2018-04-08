@@ -3,7 +3,7 @@
         <title>Liro Backend</title>
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/fontawesome.css">
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/solid.css">
-        {!! Asset::getCss() !!}
+        {!! Asset::css() !!}
     </head>
     <body class="login">
 
@@ -16,6 +16,6 @@
             </div>
         </div>
         
-        {!! Asset::getJs() !!}
+        {!! Asset::js() !!}
     </body>
 </html>

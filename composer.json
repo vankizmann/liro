@@ -28,9 +28,6 @@
         "symfony/thanks": "^1.0"
     },
     "autoload": {
-        "classmap": [
-            "lirox/database/seeds"
-        ],
         "files": [
             "app/system/Helper.php"
         ],

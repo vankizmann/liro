@@ -14,8 +14,8 @@ $schema->create('languages', function ($table) {
 });
 
 $db->table('languages')->insert([
-    'state'         => 0,
-    'default'       => 0,
+    'state'         => 1,
+    'default'       => 1,
     'name'          => 'Deutsch',
     'locale'        => 'de'
 ]);
@@ -28,8 +28,8 @@ $db->table('languages')->insert([
 ]);
 
 $db->table('languages')->insert([
-    'state'         => 1,
-    'default'       => 1,
+    'state'         => 0,
+    'default'       => 0,
     'name'          => 'русский',
     'locale'        => 'ru'
 ]);

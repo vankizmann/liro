@@ -1,0 +1,133 @@
+/**
+ * Theme
+ **/
+
+@import 'color.scss';
+@import 'mixin.scss';
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: 16px;
+}
+
+div, form, input {
+    box-sizing: border-box;
+}
+
+a, a:hover, a:active, a:visited {
+    text-decoration: none;
+}
+
+.main {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.login {
+    background-image: url('/packages/liro/backend/resource/dist/img/background.svg');
+    background-size: cover;
+    background-position: center center;
+}
+
+.login-body {
+    padding: 2rem;
+    background-color: $--color-white;
+}
+
+.input-message {
+    display: inline-block;
+    font-size: 0.825rem;
+    line-height: 1.3;
+    padding: 0.25rem 0;
+    color: mix($--color-black, $--color-primary, 50%);
+}
+
+.input-message--error {
+    color: $--color-red;
+}
+
+.header {
+    width: 100%;
+    height: 65px;
+    color: $--color-white;
+    background-color: $--color-black;
+}
+
+.header a, .header a:hover, .header a:active, .header a:visited {
+    color: $--color-white;
+}
+
+.header--logo {
+    width: 65px;
+    height: 65px;
+    padding: 15px;
+    background-color: $--color-primary;
+}
+
+.header--logo:hover {
+    background-color: mix($--color-white, $--color-primary, 10%)
+}
+
+.header--logo img {
+    display: block;
+}
+
+.header--nav ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.header--nav ul li {
+    font-size: 1.1rem;
+}
+
+.header--nav ul li a {
+    padding: 0 1.8rem;
+}
+
+.header--nav ul li.is-active a {
+    color: $--color-primary;
+}
+
+.header--nav ul li a:hover {
+    background-color: mix($--color-white, $--color-black, 5%)
+}
+
+.header--nav ul li a > i {
+    margin-right: 0.8rem;
+}
+
+.toolbar {
+    width: 100%;
+    height: 65px;
+    color: $--color-black;
+    background-color: mix($--color-white, $--color-black, 95%);
+    border-bottom: 1px solid mix($--color-white, $--color-black, 90%);
+}
+
+.body {
+    width: 100%;
+    position: relative;
+}
+
+.body--content {
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: $--color-white;
+}
+
+.body--sidebar {
+    background-color: mix($--color-white, $--color-black, 95%);
+}
+
+.body--space {
+    padding: 1.8rem;
+}

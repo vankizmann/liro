@@ -1,0 +1,12 @@
+{
+    "cms.name":                 "Lirox CMS",
+    "table.id":                 "ID",
+    "table.lang":               "Sprache",
+    "table.state":              "Status",
+    "table.name":               "Name",
+    "table.default":            "Standard",
+    "table.alias":              "Alias",
+    "table.route":              "Route",
+    "select.publish":           "Freigeben",
+    "select.unpublish":         "Verbergen"
+}

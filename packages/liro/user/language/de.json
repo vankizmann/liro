@@ -1,0 +1,10 @@
+{
+    "user": {
+        "email": "E-Mail",
+        "email_placeholder": "E-Mail eingeben",
+        "password": "Password",
+        "password_placeholder": "Password eingeben",
+        "login": "Anmelden",
+        "logout": "Abmelden"
+    }
+}

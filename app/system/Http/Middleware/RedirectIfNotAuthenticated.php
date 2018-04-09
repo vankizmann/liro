@@ -16,9 +16,7 @@ class RedirectIfNotAuthenticated
     public function handle($request, $next)
     {
         if ( ! $request->user() ) {
-            return redirect()->route('login', [
-                'redirect' => $request->path()
-            ]);
+            return redirect()->route('login');
         }
 
         return $next($request);

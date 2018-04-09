@@ -10,7 +10,7 @@
         <div id="app" class="main row-flex flex-column align-stretch">
             <div class="header row-flex flex-0">
                 <div class="header--logo">
-                    <a href="/">
+                    <a href="{{ route('home.index') }}">
                         <img src="{{ url('/packages/liro/moire/resource/dist/img/liro.svg') }}" alt="Liro CMS">
                     </a>
                 </div>

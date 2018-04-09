@@ -16,7 +16,7 @@ class RedirectIfAuthenticated
     public function handle($request, $next)
     {
         if ( $request->user() ) {
-            return redirect()->route('menus.index');
+            return redirect()->route('home.index');
         }
 
         return $next($request);

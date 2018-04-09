@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Symfony\Component\ClassLoader\Psr4ClassLoader;
 use App\Package\PackageServiceProvider;
 use App\Services\Asset;
+use App\Services\Router;
 
 
 class FactoryServiceProvider extends ServiceProvider

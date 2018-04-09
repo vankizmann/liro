@@ -5,6 +5,7 @@ namespace Liro\User\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 class AuthenticateController
 {
@@ -14,7 +15,6 @@ class AuthenticateController
         return view('liro.user.view.login');
     }
 
-
     public function login(Request $request)
     {
         $attempt = Auth::attempt([
@@ -22,8 +22,8 @@ class AuthenticateController
             'password'  => $request->get('password'), 
         ]);
 
-        if ($attempt) {
-            return redirect()->route('menus.index');
+        if ( $attempt ) {
+            return redirect()->route('home.index');
         }
 
         return redirect()->route('login')->with('error', 'asdadsads');

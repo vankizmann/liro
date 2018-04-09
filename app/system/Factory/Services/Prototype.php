@@ -6,9 +6,7 @@ use Exception;
 
 class Prototype
 {
-
     protected $datatypes = [];
-
     protected $prototypes = []; 
 
     public function __construct()

@@ -8,6 +8,12 @@ return [
 
     'register' => function($app) {
 
+        $messages = [
+            'user' =>  $app['translator']->getFromJson('*.user', [])
+        ];
+
+        $app['cms.asset']->plainJs('cms.user.lang', "liro.setMessages(liro.getLocale(), ".json_encode($messages).");", ['cms.bootstrap']);
+
         $app['router']
             ->get('login', 'Liro\User\Controller\AuthenticateController@form')
             ->middleware(['web', 'guest'])->name('login');
@@ -19,16 +25,6 @@ return [
         $app['router']
             ->get('logout', 'Liro\User\Controller\AuthenticateController@logout')
             ->middleware(['web', 'auth'])->name('logout');
-
-    },
-
-    'boot' => function($app) {
-
-        $messages = [
-            'user' =>  $app['translator']->getFromJson('*.user', [])
-        ];
-
-        $app['cms.asset']->plainJs('cms.user.lang', "liro.setMessages('".$app->getLocale()."',".json_encode($messages).");", ['cms.bootstrap']);
 
     }
 

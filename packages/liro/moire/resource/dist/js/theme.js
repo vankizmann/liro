@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
@@ -68,8 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-__webpack_require__(2);
-module.exports = __webpack_require__(3);
+module.exports = __webpack_require__(2);
 
 
 /***/ }),
@@ -77,20 +76,14 @@ module.exports = __webpack_require__(3);
 /***/ (function(module, exports) {
 
 
-(function ($) {
-    $(document).ready(function () {
-        console.log('#jquery');
-    });
-})(jQuery);
+liro.listen('app.mounted', function () {
+    $('#app').animate({
+        'opacity': 1
+    }, 600);
+});
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

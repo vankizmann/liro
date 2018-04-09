@@ -19,33 +19,34 @@ class Factory
 
     public function boot()
     {
+        $this->app['translator']->addJsonPath('app/language');
         $this->app['db']->getSchemaBuilder()->defaultStringLength(191);
 
-        if ($this->app['request']->segment(1) == 'installer') {
+        if ($this->app['request']->segment(2) == 'installer') {
 
-            $this->app['router']->prefix('installer/{locale?}')->middleware([
+            $this->app['router']->prefix('{locale?}/installer')->middleware([
                 Locale::class, Javascript::class
             ])->group(function() {
                 $this->useInstallerLoader();
             });
 
             $this->app['router']->any('installer', function() {
-            return redirect('installer/'.$this->app->getLocale());
-        });
+                return redirect($this->app->getLocale().'/installer');
+            });
 
             return;
         }
 
-        if ( $this->app['request']->segment(1) == 'backend' ) {
+        if ( $this->app['request']->segment(2) == 'backend' ) {
 
-            $this->app['router']->prefix('backend/{locale}')->middleware([
+            $this->app['router']->prefix('{locale}/backend')->middleware([
                 Locale::class, Javascript::class
             ])->group(function() {
                 $this->useBackendLoader();
             });
 
             $this->app['router']->any('backend', function() {
-                return redirect('backend/'.$this->app->getLocale());
+                return redirect($this->app->getLocale().'/backend');
             });
 
             return;
@@ -66,6 +67,7 @@ class Factory
 
     protected function useInstallerLoader()
     {
+        $this->app['cms.locale']->boot();
         $this->app['cms.package.loader']->setPath('app/installer/packages')->boot();
 
         $loader = new Installer($this->app);
@@ -74,6 +76,7 @@ class Factory
 
     protected function useBackendLoader()
     {
+        $this->app['cms.locale']->boot();
         $this->app['cms.package.registry']->setTable('packages')->boot();
         $this->app['cms.package.loader']->setPath('packages')->boot();
 
@@ -83,6 +86,7 @@ class Factory
 
     protected function useFrontendLoader()
     {
+        $this->app['cms.locale']->boot();
         $this->app['cms.package.registry']->setTable('packages')->boot();
         $this->app['cms.package.loader']->setPath('packages')->boot();
 

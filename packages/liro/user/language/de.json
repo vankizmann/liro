@@ -1,5 +1,9 @@
 {
     "user": {
+        "user": "Benutzer",
+        "users": "Benutzer",
+        "name": "Name",
+        "name_placeholder": "Name eingeben",
         "email": "E-Mail",
         "email_placeholder": "E-Mail eingeben",
         "password": "Password",

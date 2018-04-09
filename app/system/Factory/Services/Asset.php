@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Factory\Services;
 
 use Illuminate\Support\Collection;
 use MJS\TopSort\Implementations\StringSort;

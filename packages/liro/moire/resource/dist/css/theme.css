@@ -3462,6 +3462,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 400;
   font-size: 16px;
 }
 
@@ -3495,7 +3496,7 @@ a, a:hover, a:active, a:visited {
   font-size: 0.825rem;
   line-height: 1.3;
   padding: 0.25rem 0;
-  color: #8c2f45;
+  color: #2d4788;
 }
 
 .input-message--error {
@@ -3504,9 +3505,8 @@ a, a:hover, a:active, a:visited {
 
 .header {
   width: 100%;
-  height: 65px;
   color: #ffffff;
-  background-color: #191c20;
+  background-color: #0f131b;
 }
 
 .header a, .header a:hover, .header a:active, .header a:visited {
@@ -3514,52 +3514,94 @@ a, a:hover, a:active, a:visited {
 }
 
 .header--logo {
-  width: 65px;
-  height: 65px;
-  padding: 15px;
-  background-color: #ff4169;
+  width: 70px;
+  height: 70px;
+  background-color: #4a7bf5;
 }
 
 .header--logo:hover {
-  background-color: #ff5478;
+  background-color: #5c88f6;
 }
 
 .header--logo img {
   display: block;
+  max-width: 40px;
 }
 
 .header--nav ul {
-  padding: 0;
+  padding: 0 1.1rem;
   margin: 0;
   list-style-type: none;
 }
 
 .header--nav ul li {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .header--nav ul li a {
-  padding: 0 1.8rem;
+  padding: 0 1.1rem;
 }
 
 .header--nav ul li.is-active a {
-  color: #ff4169;
-}
-
-.header--nav ul li a:hover {
-  background-color: #25272b;
+  color: #4a7bf5;
+  font-weight: 600;
 }
 
 .header--nav ul li a > i {
   margin-right: 0.8rem;
 }
 
+.header--user {
+  padding: 0 1.1rem;
+}
+
 .toolbar {
   width: 100%;
-  height: 65px;
-  color: #191c20;
-  background-color: #f4f4f4;
-  border-bottom: 1px solid #e8e8e9;
+  height: 70px;
+  color: #0f131b;
+  background-color: #f3f3f4;
+}
+
+.toolbar--action {
+  font-size: 0.9rem;
+  line-height: 70px;
+  height: 70px;
+}
+
+.toolbar--action a {
+  display: block;
+  color: #0f131b;
+  padding: 0 1.1rem;
+}
+
+.toolbar--action-disabled a {
+  color: #b7b8bb;
+}
+
+.toolbar--action a:hover {
+  background-color: #e7e7e8;
+}
+
+.toolbar--action a i {
+  color: #b7b8bb;
+  margin-right: 6px;
+}
+
+.toolbar--action-disabled a i {
+  color: #cfd0d1;
+}
+
+.toolbar--spacer {
+  line-height: 70px;
+  height: 70px;
+  padding: 15px 0.55rem;
+}
+
+.toolbar--spacer span {
+  display: block;
+  height: 40px;
+  width: 1px;
+  background-color: #e7e7e8;
 }
 
 .body {
@@ -3574,7 +3616,7 @@ a, a:hover, a:active, a:visited {
 }
 
 .body--sidebar {
-  background-color: #f4f4f4;
+  background-color: #f3f3f4;
 }
 
 .body--space {

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Package\PackageServiceProvider;
 use App\Factory\FactoryServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app->register(PackageServiceProvider::class);
         $this->app->register(FactoryServiceProvider::class);
         $this->app->get('cms.factory')->boot();
     }

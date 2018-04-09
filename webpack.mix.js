@@ -35,21 +35,19 @@ mix.setResourceRoot(
 );
 
 /**
- * Setup browser sync
- */
-mix.browserSync({
-    proxy: typeof process.env.APP_URL == 'undefined' ? 'localhost:80' : process.env.MIX_PROXY,
-    files: [
-        'app/resource/dist/**/*.js', 'app/resource/dist/**/*.css'
-    ]
-});
-
-/**
  * Compile files
  */
 
-mix.js(
-    'app/resource/src/js/bootstrap.js', 'app/resource/dist/js'
-).js(
-    'app/resource/src/js/app.js', 'app/resource/dist/js'
-);
+var bootstrap = [
+    'app/resource/src/js/bootstrap.js'
+];
+
+mix.js(bootstrap, 'app/resource/dist/js/bootstrap.js')
+
+var application = [
+    'app/resource/src/js/toolbar/action.vue',
+    'app/resource/src/js/toolbar/spacer.vue',
+    'app/resource/src/js/app.js',
+];
+
+mix.js(application, 'app/resource/dist/js/app.js');

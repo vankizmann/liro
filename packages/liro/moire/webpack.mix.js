@@ -35,16 +35,6 @@ mix.setResourceRoot(
 );
 
 /**
- * Setup browser sync
- */
-mix.browserSync({
-    proxy: typeof process.env.APP_URL == 'undefined' ? 'localhost:80' : process.env.MIX_PROXY,
-    files: [
-        'resource/dist/**/*.js', 'resource/dist/**/*.css', 'view/**/*.blade.php'
-    ]
-});
-
-/**
  * Compile files
  */
 
@@ -54,7 +44,7 @@ mix.js(
     'resource/src/scss/theme.scss', 'resource/dist/css'
 );
 
-// return;
+return;
 
 mix.sass(
     'resource/src/scss/vendor.scss', 'resource/dist/css'

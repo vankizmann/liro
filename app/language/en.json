@@ -1,0 +1,14 @@
+{
+    "cms": {
+        "create": "Create",
+        "update": "Update",
+        "store": "Store",
+        "clone": "Clone",
+        "close": "Close",
+        "undo": "Undo",
+        "redo": "Redo",
+        "discard": "Discard",
+        "trash": "Trash",
+        "state": "State"
+    }
+}

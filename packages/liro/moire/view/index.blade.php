@@ -1,29 +1,30 @@
 <html lang="{{ $locale }}">
     <head>
         <title>Liro Backend</title>
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700">
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/fontawesome.css">
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/solid.css">
         {!! Asset::css() !!}
     </head>
     <body>
 
-        <div id="app" class="main row-flex flex-column align-stretch">
+        <div id="app" class="main row-flex flex-column align-stretch" style="opacity: 0;">
             <div class="header row-flex flex-0">
-                <div class="header--logo">
-                    <a href="{{ route('home.index') }}">
+                <div class="header--logo row-flex">
+                    <a class="col-12-12 row-flex align-center align-middle" href="{{ route('home.index') }}">
                         <img src="{{ url('/packages/liro/moire/resource/dist/img/liro.svg') }}" alt="Liro CMS">
                     </a>
                 </div>
                 <div class="header--nav row-flex">
                     <ul class="row-flex">
                         <li class="row-flex">
-                            <a href="{{ route('menus.index') }}" class="row-flex align-middle"><i class="fas fa-bars"></i></i>{{ __('*.menu.menus') }}</a>
-                        </li>
-                        <li class="row-flex">
-                            <a href="{{ locale_route(null, 'de') }}" class="row-flex align-middle"><i class="fas fa-copy"></i>Pages</a>
+                            <a href="{{ route('menus.index') }}" class="row-flex align-middle">{{ __('*.menu.menus') }}</a>
                         </li>
                         <li class="row-flex is-active">
-                            <a href="{{ route('languages.index') }}" class="row-flex align-middle"><i class="fas fa-language"></i></i>{{ __('*.language.languages') }}</a>
+                            <a href="{{ route('languages.index') }}" class="row-flex align-middle">{{ __('*.language.languages') }}</a>
+                        </li>
+                        <li class="row-flex">
+                            <a href="{{ route('users.index') }}" class="row-flex align-middle">{{ __('*.user.users') }}</a>
                         </li>
                     </ul>
                 </div>

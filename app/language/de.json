@@ -1,0 +1,14 @@
+{
+    "cms": {
+        "create": "Erstellen",
+        "update": "Bearbeiten",
+        "store": "Speichern",
+        "clone": "Kopieren",
+        "close": "Schliessen",
+        "undo": "Rückgängig",
+        "redo": "Wiederholen",
+        "discard": "Verwerfen",
+        "trash": "Löschen",
+        "state": "Status"
+    }
+}

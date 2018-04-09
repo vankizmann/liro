@@ -1,6 +1,6 @@
 
-(function($) {
-    $(document).ready(function() {
-        console.log('#jquery');
-    });
-})(jQuery)
+liro.listen('app.mounted', function() {
+    $('#app').animate({
+        'opacity': 1
+    }, 600);
+});

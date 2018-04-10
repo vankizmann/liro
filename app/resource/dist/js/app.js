@@ -15473,7 +15473,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "app\\resource\\src\\js\\toolbar\\action.vue"
+Component.options.__file = "app/resource/src/js/toolbar/action.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -15482,9 +15482,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6cfa19e6", Component.options)
+    hotAPI.createRecord("data-v-698d38e0", Component.options)
   } else {
-    hotAPI.reload("data-v-6cfa19e6", Component.options)
+    hotAPI.reload("data-v-698d38e0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -15524,6 +15524,11 @@ module.exports = {
     },
     methods: {
         submitAction: function submitAction(event) {
+
+            if (this.disabled == true) {
+                return event.preventDefault();
+            }
+
             this.$emit('action', event);
         }
     }
@@ -15566,7 +15571,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6cfa19e6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-698d38e0", module.exports)
   }
 }
 
@@ -15596,7 +15601,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "app\\resource\\src\\js\\toolbar\\spacer.vue"
+Component.options.__file = "app/resource/src/js/toolbar/spacer.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -15605,9 +15610,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7a32ba03", Component.options)
+    hotAPI.createRecord("data-v-1a3cffd6", Component.options)
   } else {
-    hotAPI.reload("data-v-7a32ba03", Component.options)
+    hotAPI.reload("data-v-1a3cffd6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -15655,7 +15660,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7a32ba03", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1a3cffd6", module.exports)
   }
 }
 

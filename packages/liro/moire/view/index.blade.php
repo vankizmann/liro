@@ -8,7 +8,7 @@
     </head>
     <body>
 
-        <div id="app" class="main row-flex flex-column align-stretch" style="opacity: 0;">
+        <div id="app" class="main row-flex flex-column align-stretch" v-cloak>
             <div class="header row-flex flex-0">
                 <div class="header--logo row-flex">
                     <a class="col-12-12 row-flex align-center align-middle" href="{{ route('home.index') }}">

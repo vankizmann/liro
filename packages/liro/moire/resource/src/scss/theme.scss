@@ -5,6 +5,10 @@
 @import 'color.scss';
 @import 'mixin.scss';
 
+[v-cloak] {
+    display: none
+}
+
 html, body {
     padding: 0;
     margin: 0;

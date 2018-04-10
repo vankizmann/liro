@@ -24,6 +24,11 @@
         },
         methods: {
             submitAction(event) {
+
+                if ( this.disabled == true ) {
+                    return event.preventDefault();
+                }
+                
                 this.$emit('action', event);
             }
         }

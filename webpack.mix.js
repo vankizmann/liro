@@ -45,6 +45,8 @@ var bootstrap = [
 mix.js(bootstrap, 'app/resource/dist/js/bootstrap.js');
 
 var application = [
+    'app/resource/src/js/form/app-form-input.vue',
+    'app/resource/src/js/form/app-form-password.vue',
     'app/resource/src/js/toolbar/action.vue',
     'app/resource/src/js/toolbar/spacer.vue',
     'app/resource/src/js/app.js',

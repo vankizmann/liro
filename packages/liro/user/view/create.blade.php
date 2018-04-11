@@ -1,9 +1,14 @@
 @extends('theme::index')
 
+@php
+    $app['cms.asset']->linkJs('cms.app.user.create', '/packages/liro/user/resource/dist/app-user-create.js', ['cms.app']);
+    $app['cms.asset']->plainJs('cms.app.data.user', 'liro.data.user = {};', ['cms.bootstrap']);
+@endphp
+
 @section('toolbar')
     <div class="uk-navbar-left">
-        <ul class="uk-navbar-nav" v-cloak>
-            <app-toolbar-action icon="fa fa-check" href="{{ route('users.store') }}">
+        <ul class="uk-navbar-nav">
+            <app-toolbar-action icon="fa fa-check" action="user.store">
                 {{ trans('*.cms.store') }}
             </app-toolbar-action>
             <app-toolbar-action icon="fa fa-times" href="{{ route('users.index') }}">
@@ -21,7 +26,7 @@
         </ul>
     </div>
     <div class="uk-navbar-right">
-        <ul class="uk-navbar-nav" v-cloak>
+        <ul class="uk-navbar-nav">
             <app-toolbar-action icon="fa fa-ban" href="#" :disabled="true">
                 {{ trans('*.cms.discard') }}
             </app-toolbar-action>
@@ -33,5 +38,6 @@
 @endsection
 
 @section('content')
-    USers :))
+    <app-user-create></app-user-create>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 @endsection

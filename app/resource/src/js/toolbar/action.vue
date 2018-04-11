@@ -17,6 +17,10 @@
                 default: '',
                 type: String
             },
+            action: {
+                default: '',
+                type: String
+            },
             disabled: {
                 default: false,
                 type: Boolean
@@ -26,10 +30,13 @@
             submitAction(event) {
 
                 if ( this.disabled == true ) {
-                    return event.preventDefault();
+                    event.preventDefault();
                 }
-                
-                this.$emit('action', event);
+
+                if ( this.action != '' ) {
+                    this.$root.$emit(this.action, event);
+                }
+
             }
         }
     }

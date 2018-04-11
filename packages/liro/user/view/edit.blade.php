@@ -6,7 +6,7 @@
 
 @section('toolbar')
     <div class="uk-navbar-left">
-        <ul class="uk-navbar-nav" v-cloak>
+        <ul class="uk-navbar-nav">
             <app-toolbar-action icon="fa fa-check" href="{{ route('users.update', $user->id) }}">
                 {{ trans('*.cms.update') }}
             </app-toolbar-action>
@@ -25,7 +25,7 @@
         </ul>
     </div>
     <div class="uk-navbar-right">
-        <ul class="uk-navbar-nav" v-cloak>
+        <ul class="uk-navbar-nav">
             <app-toolbar-action icon="fa fa-ban" href="#" :disabled="true">
                 {{ trans('*.cms.discard') }}
             </app-toolbar-action>

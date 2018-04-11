@@ -2,7 +2,7 @@
 
 @section('toolbar')
     <div class="uk-navbar-left">
-        <ul class="uk-navbar-nav" v-cloak>
+        <ul class="uk-navbar-nav">
             <app-toolbar-action icon="fa fa-plus" href="{{ route('users.create') }}">
                 {{ trans('*.cms.create') }}
             </app-toolbar-action>

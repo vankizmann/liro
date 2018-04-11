@@ -1,14 +1,27 @@
 {
     "user": {
+
         "user": "User",
         "users": "Users",
-        "name": "Name",
-        "name_placeholder": "Enter your name",
-        "email": "E-Mail",
-        "email_placeholder": "Enter your E-Mail",
-        "password": "Password",
-        "password_placeholder": "Enter your password",
+        
         "login": "Log in",
-        "logout": "Log out"
+        "logout": "Log out",
+
+        "label": {
+            "name": "Name",
+            "email": "E-Mail",
+            "password": "Password"
+        },
+
+        "placeholder": {
+            "name": "Enter name",
+            "email": "Enter e-mail",
+            "password": "Enter password"
+        },
+
+        "form": {
+            "generate": "Generate password"
+        }
+
     }
 }

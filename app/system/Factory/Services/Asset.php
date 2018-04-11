@@ -44,23 +44,21 @@ class Asset
         return implode("\n", $result->toArray());
     }
 
-    public function linkJs($name, $link, $deps = [], $sync = false)
+    public function linkJs($name, $link, $deps = [], $attrs = [])
     {
         $this->sortJs->add($name, $deps);
 
         $this->dataJs->put($name, [
-            'body' => "<script src=\"$link\"></script>",
-            'sync' => $sync
+            'body' => "<script src=\"$link\"". ($attrs ? ' ' : '') . implode(' ', $attrs) ."></script>"
         ]);
     }
 
-    public function plainJs($name, $content, $deps = [], $sync = false)
+    public function plainJs($name, $content, $deps = [])
     {
         $this->sortJs->add($name, $deps);
 
         $this->dataJs->put($name, [
-            'body' => "<script>$content</script>",
-            'sync' => $sync
+            'body' => "<script>$content</script>"
         ]);
     }
 
@@ -72,7 +70,7 @@ class Asset
             return array_search($key, $order, true);
         });
 
-        return implode("\n", $result->where('sync', $sync)->pluck('body')->toArray());
+        return implode("\n", $result->pluck('body')->toArray());
     }
 
 }

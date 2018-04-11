@@ -1,14 +1,27 @@
 {
     "user": {
+
         "user": "Benutzer",
         "users": "Benutzer",
-        "name": "Name",
-        "name_placeholder": "Name eingeben",
-        "email": "E-Mail",
-        "email_placeholder": "E-Mail eingeben",
-        "password": "Password",
-        "password_placeholder": "Password eingeben",
+
         "login": "Anmelden",
-        "logout": "Abmelden"
+        "logout": "Abmelden",
+
+        "label": {
+            "name": "Name",
+            "email": "E-Mail",
+            "password": "Password"
+        },
+
+        "placeholder": {
+            "name": "Name eingeben",
+            "email": "E-Mail eingeben",
+            "password": "Password eingeben"
+        },
+
+        "form": {
+            "generate": "Password generieren"
+        }
+
     }
 }

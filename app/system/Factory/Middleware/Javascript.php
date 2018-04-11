@@ -19,7 +19,7 @@ class Javascript
          * Import bootstrap js
          */
         $this->app['cms.asset']->linkJs(
-            'cms.bootstrap', "/app/resource/dist/js/bootstrap.js", [], true
+            'cms.bootstrap', "/app/resource/dist/js/bootstrap.js", []
         );
 
         /**

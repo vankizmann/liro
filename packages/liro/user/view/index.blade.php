@@ -1,10 +1,12 @@
 @extends('theme::index')
 
 @section('toolbar')
-    <div class="row-flex">
-        <app-toolbar-action class="col-auto" icon="fa fa-check-circle" href="{{ route('users.create') }}">
-            {{ trans('*.cms.create') }}
-        </app-toolbar-action>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav" v-cloak>
+            <app-toolbar-action icon="fa fa-plus" href="{{ route('users.create') }}">
+                {{ trans('*.cms.create') }}
+            </app-toolbar-action>
+        </ul>
     </div>
 @endsection
 

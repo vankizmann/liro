@@ -42,7 +42,7 @@ var bootstrap = [
     'app/resource/src/js/bootstrap.js'
 ];
 
-mix.js(bootstrap, 'app/resource/dist/js/bootstrap.js')
+mix.js(bootstrap, 'app/resource/dist/js/bootstrap.js');
 
 var application = [
     'app/resource/src/js/toolbar/action.vue',

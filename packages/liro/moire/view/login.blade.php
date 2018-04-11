@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/fontawesome.css">
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/solid.css">
         {!! Asset::css() !!}
+        {!! Asset::js(true) !!}
     </head>
     <body class="login">
 

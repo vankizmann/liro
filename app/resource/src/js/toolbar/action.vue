@@ -1,9 +1,9 @@
 <template>
-    <div :class="{ 'toolbar--action': true, 'toolbar--action-disabled': disabled }">
+    <li :class="{ 'uk-toolbar--action': true, 'uk-disabled': disabled }">
         <a :href="href" @click="submitAction">
-            <i v-if="icon" :class="icon"></i> <slot></slot>
+            <i v-if="icon" :class="icon+' uk-margin-small-right'"></i> <slot></slot>
         </a>
-    </div>
+    </li>
 </template>
 <script>
     module.exports = {

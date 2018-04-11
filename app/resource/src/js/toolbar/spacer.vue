@@ -1,7 +1,7 @@
 <template>
-    <div class="toolbar--spacer">
-        <span></span>
-    </div>
+    <li class="uk-toolbar--spacer">
+        <div></div>
+    </li>
 </template>
 <script>
     module.exports = {

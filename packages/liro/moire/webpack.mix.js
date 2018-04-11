@@ -40,16 +40,12 @@ mix.setResourceRoot(
 
 mix.js(
     'resource/src/js/theme.js', 'resource/dist/js'
-).sass(
+);
+
+mix.sass(
     'resource/src/scss/theme.scss', 'resource/dist/css'
 );
 
-return;
-
-mix.sass(
-    'resource/src/scss/vendor.scss', 'resource/dist/css'
-).copyDirectory(
+mix.copyDirectory(
     'resource/src/img', 'resource/dist/img'
-).copyDirectory(
-    'node_modules/element-theme-chalk/src/fonts', 'resource/dist/fonts'
 );

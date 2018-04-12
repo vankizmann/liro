@@ -11,7 +11,7 @@
             ></app-form-input>
             <app-form-password 
                 :label="$t('user.label.password')" :generate="$t('user.form.generate')" 
-                type="text" id="password" name="password" rules="required|min:6" v-model="user.password"
+                type="text" id="password" name="password" rules="min:6" v-model="user.password"
             >
             </app-form-password>
         </fieldset>
@@ -19,9 +19,9 @@
 </template>
 <script>
     module.exports = {
-        name: 'app-user-create',
+        name: 'app-user-edit',
         props: {
-            store: {
+            update: {
                 default: '',
                 type: String
             },
@@ -36,9 +36,9 @@
             };
         },
         mounted() {
-            this.$root.$on('user.store', (event) => {
+            this.$root.$on('user.update', (event) => {
                 event.preventDefault();
-                this.$http.post(this.store, this.user).then(this.$root.httpSuccess).catch(this.$root.httpError);
+                this.$http.post(this.update, this.user).then(this.$root.httpSuccess).catch(this.$root.httpError);
             });
         }
     }

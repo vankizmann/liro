@@ -35,7 +35,7 @@ mix.setResourceRoot(
 );
 
 /**
- * Compile files
+ * Compile boostrtap
  */
 
 var bootstrap = [
@@ -43,6 +43,10 @@ var bootstrap = [
 ];
 
 mix.js(bootstrap, 'app/resource/dist/js/bootstrap.js');
+
+/**
+ * Compile application
+ */
 
 var application = [
     'app/resource/src/js/form/app-form-input.vue',

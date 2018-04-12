@@ -1,5 +1,6 @@
 <html lang="{{ $locale }}">
     <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Liro Backend</title>
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700">
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/fontawesome.css">
@@ -9,7 +10,7 @@
     </head>
     <body>
 
-        <div class="uk-offcanvas-content" id="app">
+        <div id="app" class="uk-offcanvas-content">
 
             <header id="uk-header">
                 <div class="uk-navigation uk-background-primary uk-light">
@@ -40,20 +41,20 @@
                                     <a href="{{ 'test' }}">{{ auth()->user()->name }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('logout') }}"></i>@lang('*.user.logout')</a>
+                                    <a href="{{ route('logout') }}"></i>@lang('*.user.form.logout')</a>
                                 </li>
                             </ul>
                         </div>
                     </nav>
                 </div>
-                <div class="uk-toolbar" uk-sticky="show-on-up: true; animation: uk-animation-slide-top" v-cloak>
+                <div class="uk-toolbar" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'" v-cloak>
                     <div class="uk-navbar-container uk-container uk-container-expand" uk-navbar>
                         @yield('toolbar')
                     </div>
                 </div>
             </header>
 
-            <main id="main" v-cloak>
+            <main id="uk-main" style="padding: 30px 0;" v-cloak>
                 <div class="uk-container uk-container-expand">
                     <div class="body--content @hasSection('sidebar') col-6-12 col-lg-9-12 @else col-12-12 @endif">
                         <div class="body--space">

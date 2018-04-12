@@ -2,21 +2,16 @@
 
 namespace Liro\User\Controller;
 
+use App\Http\Controller;
+use Illuminate\Http\Request;
 use Liro\User\Model\User;
 
-class UserController
+class UserController extends Controller
 {
     public function index()
     {
         return view('liro.user.view.index', [
             'users' => User::all()
-        ]);
-    }
-
-    public function create()
-    {
-        return view('liro.user.view.create', [
-            'user' => new User
         ]);
     }
 
@@ -27,6 +22,27 @@ class UserController
         ]);
     }
 
+    public function create()
+    {
+        return view('liro.user.view.create', [
+            'user' => new User
+        ]);
+    }
+
+    public function store()
+    {
+        // Get response from request
+        $form = request()->all();
+
+        // Create new user
+        $user = User::create($form);
+
+        return response()->json([
+            'message' => trans('*.user.message.stored'),
+            'redirect' => route('users.edit', $user->id)
+        ]);
+    }
+
     public function edit($id)
     {
         return view('liro.user.view.edit', [
@@ -34,14 +50,21 @@ class UserController
         ]);
     }
 
-    public function store($id)
+    public function update(Request $request, $id)
     {
-        dd('store');
-    }
+        if ( ! $request->password ) {
+            $request->offsetUnset('password');
+        }
 
-    public function update()
-    {
-        dd('update');
+        // Get response from request
+        $form = $request->all();
+
+        // Update user
+        $user = User::find($id)->fill($form)->save();
+
+        return response()->json([
+            'message' => trans('*.user.message.updated')
+        ]);
     }
 
     public function delete($id)

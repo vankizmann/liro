@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -177,22 +177,26 @@ module.exports = function normalizeComponent (
 /* 2 */,
 /* 3 */,
 /* 4 */,
-/* 5 */
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(10);
 
 
 /***/ }),
-/* 6 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(7)
+var __vue_script__ = __webpack_require__(11)
 /* template */
-var __vue_template__ = __webpack_require__(8)
+var __vue_template__ = __webpack_require__(12)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -209,7 +213,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resource\\src\\app-user-create.vue"
+Component.options.__file = "resource\\src\\app-user-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -218,9 +222,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ce64754c", Component.options)
+    hotAPI.createRecord("data-v-2f28d630", Component.options)
   } else {
-    hotAPI.reload("data-v-ce64754c", Component.options)
+    hotAPI.reload("data-v-2f28d630", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -231,7 +235,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 7 */
+/* 11 */
 /***/ (function(module, exports) {
 
 //
@@ -255,9 +259,9 @@ module.exports = Component.exports
 //
 
 module.exports = {
-    name: 'app-user-create',
+    name: 'app-user-edit',
     props: {
-        store: {
+        update: {
             default: '',
             type: String
         },
@@ -274,16 +278,16 @@ module.exports = {
     mounted: function mounted() {
         var _this = this;
 
-        this.$root.$on('user.store', function (event) {
+        this.$root.$on('user.update', function (event) {
             event.preventDefault();
-            _this.$http.post(_this.store, _this.user).then(_this.$root.httpSuccess).catch(_this.$root.httpError);
+            _this.$http.post(_this.update, _this.user).then(_this.$root.httpSuccess).catch(_this.$root.httpError);
         });
     }
 };
 liro.component(module.exports);
 
 /***/ }),
-/* 8 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -336,7 +340,7 @@ var render = function() {
             type: "text",
             id: "password",
             name: "password",
-            rules: "required|min:6"
+            rules: "min:6"
           },
           model: {
             value: _vm.user.password,
@@ -357,7 +361,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-ce64754c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-2f28d630", module.exports)
   }
 }
 

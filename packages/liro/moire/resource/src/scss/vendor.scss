@@ -4,4 +4,23 @@
 
 @import '~uikit/src/scss/variables-theme.scss';
 @import '~uikit/src/scss/mixins-theme.scss';
+
+/**
+ * Global vars
+ */
+
+$global-primary-background: $--color-primary;
+
+/**
+ * Notification
+ */
+
+$notification-close-top: $notification-message-padding + 3px;
+
+@mixin hook-notification-message {
+    font-size: $global-small-font-size;
+    box-shadow: $global-medium-box-shadow;
+}
+
+
 @import '~uikit/src/scss/uikit-theme.scss';

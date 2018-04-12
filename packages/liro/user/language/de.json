@@ -4,9 +4,6 @@
         "user": "Benutzer",
         "users": "Benutzer",
 
-        "login": "Anmelden",
-        "logout": "Abmelden",
-
         "label": {
             "name": "Name",
             "email": "E-Mail",
@@ -20,6 +17,8 @@
         },
 
         "form": {
+            "login": "Anmelden",
+            "logout": "Abmelden",
             "generate": "Password generieren"
         }
 

@@ -205,7 +205,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resource/src/app-login.vue"
+Component.options.__file = "resource\\src\\app-login.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -214,9 +214,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-fabe56c2", Component.options)
+    hotAPI.createRecord("data-v-777bf5f6", Component.options)
   } else {
-    hotAPI.reload("data-v-fabe56c2", Component.options)
+    hotAPI.reload("data-v-777bf5f6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -253,12 +253,6 @@ module.exports = Component.exports
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 module.exports = {
     name: 'app-login',
@@ -266,29 +260,6 @@ module.exports = {
         action: {
             default: '',
             type: String
-        },
-        method: {
-            default: 'post',
-            type: String
-        }
-    },
-    data: function data() {
-        return {
-            form: {
-                email: '',
-                password: ''
-            }
-        };
-    },
-
-    methods: {
-        validateForm: function validateForm(event) {
-            this.$validator.validateAll().then(function (result) {
-                if (!result) {
-                    return;
-                }
-                $(event.target).submit();
-            });
         }
     }
 };
@@ -302,146 +273,58 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "app-login" },
-    [
-      _c(
-        "el-form",
-        {
-          attrs: { method: _vm.method, action: _vm.action, model: _vm.form },
-          nativeOn: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.validateForm($event)
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "form-group" }, [
-            _c("h2", { staticClass: "display-2" }, [_vm._v("Login")])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [
-              _c("el-input", {
-                directives: [
-                  {
-                    name: "validate",
-                    rawName: "v-validate",
-                    value: "required|email",
-                    expression: "'required|email'"
-                  }
-                ],
-                attrs: {
-                  type: "email",
-                  name: "email",
-                  placeholder: _vm.$t("user.email_placeholder")
-                },
-                model: {
-                  value: _vm.form.email,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "email", $$v)
-                  },
-                  expression: "form.email"
-                }
-              }),
-              _vm._v(" "),
+  return _c("div", { staticClass: "uk-form uk-form-stacked" }, [
+    _c(
+      "form",
+      {
+        staticStyle: { margin: "0" },
+        attrs: { action: _vm.action, method: "post" }
+      },
+      [
+        _c(
+          "fieldset",
+          { staticClass: "uk-fieldset" },
+          [
+            _c("app-form-input", {
+              attrs: {
+                label: _vm.$t("user.label.email"),
+                type: "email",
+                id: "email",
+                name: "email",
+                rules: "required|email",
+                value: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-password", {
+              attrs: {
+                label: _vm.$t("user.label.password"),
+                type: "text",
+                id: "password",
+                name: "password",
+                rules: "required|min:6",
+                value: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "uk-margin-top" }, [
               _c(
-                "small",
+                "button",
                 {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.errors.has("email"),
-                      expression: "errors.has('email')"
-                    }
-                  ],
-                  staticClass: "form-text text-danger"
+                  staticClass: "uk-button uk-button-primary uk-width-1-1",
+                  attrs: { type: "submit" }
                 },
-                [
-                  _vm._v(
-                    _vm._s(_vm._f("capitalize")(_vm.errors.first("email")))
-                  )
-                ]
+                [_vm._v(_vm._s(_vm.$t("user.form.login")))]
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [
-              _c("el-input", {
-                directives: [
-                  {
-                    name: "validate",
-                    rawName: "v-validate",
-                    value: "required|min:6",
-                    expression: "'required|min:6'"
-                  }
-                ],
-                attrs: {
-                  type: "password",
-                  name: "password",
-                  placeholder: _vm.$t("user.password_placeholder")
-                },
-                model: {
-                  value: _vm.form.password,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "password", $$v)
-                  },
-                  expression: "form.password"
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "small",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.errors.has("password"),
-                      expression: "errors.has('password')"
-                    }
-                  ],
-                  staticClass: "form-text text-danger"
-                },
-                [
-                  _vm._v(
-                    _vm._s(_vm._f("capitalize")(_vm.errors.first("password")))
-                  )
-                ]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _vm._t("default"),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-group text-right" },
-            [
-              _c(
-                "el-button",
-                { attrs: { type: "primary", "native-type": "submit" } },
-                [_vm._v(_vm._s(_vm.$t("user.login")))]
-              )
-            ],
-            1
-          )
-        ],
-        2
-      )
-    ],
-    1
-  )
+            ]),
+            _vm._v(" "),
+            _vm._t("default")
+          ],
+          2
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -449,7 +332,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-fabe56c2", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-777bf5f6", module.exports)
   }
 }
 

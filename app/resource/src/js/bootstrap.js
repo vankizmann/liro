@@ -31,7 +31,13 @@ window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
 
-window.UIkit = require('uikit');
+/**
+ * 
+ */
+
+import UIkit from 'uikit';
+window.UIkit = UIkit;
+
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -39,5 +45,10 @@ window.UIkit = require('uikit');
  * and simple, leaving you to focus on building your next great project.
  */
 
+import Undo from './undo.js';
+window.Undo = Undo;
+
 import LiroFactory from './liro.js';
 window.liro = new LiroFactory;
+
+

@@ -3,9 +3,6 @@
 
         "user": "User",
         "users": "Users",
-        
-        "login": "Log in",
-        "logout": "Log out",
 
         "label": {
             "name": "Name",
@@ -20,6 +17,8 @@
         },
 
         "form": {
+            "login": "Log in",
+            "logout": "Log out",
             "generate": "Generate password"
         }
 

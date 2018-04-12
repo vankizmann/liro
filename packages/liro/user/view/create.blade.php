@@ -2,7 +2,7 @@
 
 @php
     $app['cms.asset']->linkJs('cms.app.user.create', '/packages/liro/user/resource/dist/app-user-create.js', ['cms.app']);
-    $app['cms.asset']->plainJs('cms.app.data.user', 'liro.data.user = {};', ['cms.bootstrap']);
+    $app['cms.asset']->plainJs('cms.data.user', 'liro.data.user = {};', ['cms.bootstrap']);
 @endphp
 
 @section('toolbar')
@@ -30,14 +30,12 @@
             <app-toolbar-action icon="fa fa-ban" href="#" :disabled="true">
                 {{ trans('*.cms.discard') }}
             </app-toolbar-action>
-            <app-toolbar-action icon="fa fa-trash" href="#">
-                {{ trans('*.cms.trash') }}
-            </app-toolbar-action>
         </ul>
     </div>
 @endsection
 
 @section('content')
-    <app-user-create></app-user-create>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <app-user-create
+        store="{{ route('users.store') }}" value="liro.data.user"
+    ></app-user-create>
 @endsection

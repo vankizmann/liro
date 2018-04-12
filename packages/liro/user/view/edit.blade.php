@@ -1,13 +1,14 @@
 @extends('theme::index')
 
 @php
-    $app['cms.asset']->plainJs('cms.user.data', 'liro.data.user = '.$user->toJson(), ['cms.bootstrap']);
+    $app['cms.asset']->linkJs('cms.app.user.edit', '/packages/liro/user/resource/dist/app-user-edit.js', ['cms.app']);
+    $app['cms.asset']->plainJs('cms.data.user', 'liro.data.user = '.$user->toJson().';', ['cms.bootstrap']);
 @endphp
 
 @section('toolbar')
     <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
-            <app-toolbar-action icon="fa fa-check" href="{{ route('users.update', $user->id) }}">
+            <app-toolbar-action icon="fa fa-check" action="user.update">
                 {{ trans('*.cms.update') }}
             </app-toolbar-action>
             <app-toolbar-action icon="fa fa-times" href="{{ route('users.index') }}">
@@ -37,22 +38,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('users.update', $user->id) }}">
-        <div class="form-group">
-            <label>{{ trans('*.cms.state') }}</label>
-            <el-input type="state" value="{{ $user->state }}"></el-input>
-        </div>
-        <div class="form-group">
-            <label>{{ trans('*.user.name') }}</label>
-            <el-input value="{{ $user->name }}"></el-input>
-        </div>
-        <div class="form-group">
-            <label>{{ trans('*.user.email') }}</label>
-            <el-input value="{{ $user->email }}"></el-input>
-        </div>
-        <div class="form-group">
-            <label>{{ trans('*.user.password') }}</label>
-            <el-input type="password" value=""></el-input>
-        </div>
-    </form>
+    <app-user-edit
+        update="{{ route('users.update', $user->id) }}" value="liro.data.user"
+    ></app-user-edit>
 @endsection

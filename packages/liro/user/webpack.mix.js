@@ -40,3 +40,4 @@ mix.setResourceRoot(
 
 mix.js('resource/src/app-login.vue', 'resource/dist');
 mix.js('resource/src/app-user-create.vue', 'resource/dist');
+mix.js('resource/src/app-user-edit.vue', 'resource/dist');

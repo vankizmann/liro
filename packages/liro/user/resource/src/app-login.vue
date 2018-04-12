@@ -1,30 +1,24 @@
 <template>
-    <div class="app-login">
-        <el-form :method="method" :action="action" :model="form" @submit.native.prevent="validateForm">
-
-            <div class="form-group">
-                <h2 class="display-2">Login</h2>
-            </div>
-
-            <div class="form-group">
-                <el-input type="email" name="email" 
-                    :placeholder="$t('user.email_placeholder')" v-model="form.email" v-validate="'required|email'"></el-input>
-                <small class="form-text text-danger" v-show="errors.has('email')">{{ errors.first('email') | capitalize }}</small>
-            </div>
-
-            <div class="form-group">
-                <el-input type="password" name="password" 
-                    :placeholder="$t('user.password_placeholder')" v-model="form.password" v-validate="'required|min:6'"></el-input>
-                <small class="form-text text-danger" v-show="errors.has('password')">{{ errors.first('password') | capitalize }}</small>
-            </div>
-
-            <slot></slot>
-
-            <div class="form-group text-right">
-                <el-button type="primary" native-type="submit">{{ $t('user.login') }}</el-button>
-            </div>
-
-        </el-form>
+    <div class="uk-form uk-form-stacked">
+        <form :action="action" method="post" style="margin: 0;">
+            <fieldset class="uk-fieldset">
+                <app-form-input 
+                    :label="$t('user.label.email')" type="email" id="email" name="email" 
+                    rules="required|email" value=""
+                ></app-form-input>
+                <app-form-password 
+                    :label="$t('user.label.password')" type="text" id="password" name="password" 
+                    rules="required|min:6" value=""
+                >
+                </app-form-password>
+                <div class="uk-margin-top">
+                    <button type="submit" class="uk-button uk-button-primary uk-width-1-1">{{ $t('user.form.login') }}</button>
+                </div>
+                <slot>
+                    <!-- Slot -->
+                </slot>
+            </fieldset>
+        </form>
     </div>
 </template>
 <script>
@@ -34,28 +28,6 @@
             action: {
                 default: '',
                 type: String
-            },
-            method: {
-                default: 'post',
-                type: String
-            }
-        },
-        data() {
-            return {
-                form: {
-                    email:      '',
-                    password:   ''
-                }
-            }
-        },
-        methods: {
-            validateForm(event) {
-                this.$validator.validateAll().then((result) => {
-                    if (!result) {
-                        return;
-                    }
-                    $(event.target).submit();
-                });
             }
         }
     }

@@ -1,30 +1,53 @@
-import Vue from 'vue';
-import Vue2Filters from 'vue2-filters'
-import ElementUI from 'element-ui';
-import VeeValidate, { Validator } from 'vee-validate';
-import i18n from 'vue-i18n';
+/**
+ * Vue is a modern JavaScript library for building interactive web interfaces
+ * using reactive data binding and reusable components. Vue's API is clean
+ * and simple, leaving you to focus on building your next great project.
+ */
 
+import Vue from 'vue';
 window.Vue = Vue;
+
+/**
+ * 
+ */
+
+import i18n from 'vue-i18n';
 window.i18n = i18n;
 
-import ElementEN from 'element-ui/lib/locale/lang/en';
-import ElementDE from 'element-ui/lib/locale/lang/de';
+/**
+ * 
+ */
 
-liro.setMessages('en', ElementEN);
-liro.setMessages('de', ElementDE);
+import Vue2Filters from 'vue2-filters'
+import VeeValidate from 'vee-validate';
+
+/**
+ * 
+ */
 
 import VeeValidateDE from 'vee-validate/dist/locale/de';
-
-Validator.localize('de', VeeValidateDE);
+import VeeValidateEN from 'vee-validate/dist/locale/en';
+import VeeValidateFR from 'vee-validate/dist/locale/fr';
+import VeeValidateRU from 'vee-validate/dist/locale/ru';
 
 liro.listen('document.ready', function() {
 
-    liro.trigger('app.beforeInit', this);
+    // Trigger before init via liro listiner
+    liro.trigger('app.beforeInit');
+
+    // Set default http class
+    Vue.prototype.$http = window.axios;
 
     const App = new Vue({
 
         i18n: liro.getTranslator(),
-        locale: liro.getLocale(),
+
+        data() {
+            return {
+                locale: liro.getLocale(),
+                notificationDelay: 5000
+            }
+        },
 
         beforeCreate() {
             liro.trigger('app.beforeCreate', this);
@@ -39,30 +62,54 @@ liro.listen('document.ready', function() {
         },
 
         mounted() {
+
+            switch(this.locale) {
+                case 'en':
+                this.$validator.localize(this.locale, VeeValidateEN);
+                break;
+                case 'de':
+                this.$validator.localize(this.locale, VeeValidateDE);
+                break;
+                case 'fr':
+                this.$validator.localize(this.locale, VeeValidateFR);
+                break;
+                case 'ru':
+                this.$validator.localize(this.locale, VeeValidateRU);
+                break;
+            }
+
             liro.trigger('app.mounted', this);
+        },
+
+        methods: {
+
+            httpSuccess(success) {
+
+                if ( success.data.redirect ) {
+                    setTimeout(() => {
+                        window.location.replace(success.data.redirect)
+                    }, 2500);
+                }
+
+                UIkit.notification(success.data.message, 'success');
+            },
+
+            httpError(error) {
+                UIkit.notification(error.message, 'danger');
+            }
+
         }
 
     }).$mount('#app');
 
-    liro.trigger('app.afterInit', this);
+    // Trigger after init via liro listiner
+    liro.trigger('app.afterInit');
 
 });
 
-liro.listen('app.beforeInit', function(App) {
-
-    Vue.use(Vue2Filters, {
-        // 
-    });
-
-    Vue.use(ElementUI, {
-        i18n: (key, value) => liro.getTranslator().t(key, value)
-    });
-
-    Vue.use(VeeValidate, {
-        fieldsBagName: 'veeFields',
-        locale: liro.getLocale()
-    });
-
+liro.listen('app.beforeInit', function() {
+    Vue.use(Vue2Filters);
+    Vue.use(VeeValidate);
 });
 
 $(document).ready(function() {

@@ -5,6 +5,12 @@
 /**
  * Vendor
  **/
+/**
+ * Global vars
+ */
+/**
+ * Notification
+ */
 /* ========================================================================
    Component: Base
  ========================================================================== */
@@ -6667,6 +6673,9 @@ ul.uk-nav-sub {
   font-size: 1.25rem;
   line-height: 1.4;
   cursor: pointer;
+  font-size: 0.875rem;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 /* Close
@@ -6675,7 +6684,7 @@ ul.uk-nav-sub {
 .uk-notification-close {
   display: none;
   position: absolute;
-  top: 20px;
+  top: 18px;
   right: 15px;
 }
 
@@ -12230,5 +12239,3 @@ body {
   height: 35px;
   background-color: #e7e7e8;
 }
-
-.uk-icon>svg:nth-child(2) {display: none;}

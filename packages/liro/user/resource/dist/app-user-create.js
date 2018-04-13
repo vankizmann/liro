@@ -192,7 +192,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(7)
 /* template */
-var __vue_template__ = __webpack_require__(8)
+var __vue_template__ = __webpack_require__(9)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -253,37 +253,63 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
 
 module.exports = {
     name: 'app-user-create',
-    props: {
-        store: {
-            default: '',
-            type: String
+    computed: {
+        canUndo: function canUndo() {
+            return this.history.canUndo;
         },
+        canRedo: function canRedo() {
+            return this.history.canRedo;
+        }
+    },
+    props: {
         value: {
-            default: '',
-            type: String
+            type: Object
         }
     },
     data: function data() {
         return {
-            user: _.get(window, this.value)
+            history: new Undo(this.value),
+            user: this.value
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.$root.$on('user.store', function (event) {
-            event.preventDefault();
-            _this.$http.post(_this.store, _this.user).then(_this.$root.httpSuccess).catch(_this.$root.httpError);
+        this.$watch('user', _.debounce(this.save, 600), {
+            deep: true
         });
+
+        this.$liro.listen('user.undo', function () {
+            _this.user = _this.history.undo();
+        });
+
+        this.$liro.listen('user.redo', function () {
+            _this.user = _this.history.redo();
+        });
+
+        this.$liro.listen('user.store', function () {
+            _this.$http.post('/', _this.user).then(_this.$root.httpSuccess).catch(_this.$root.httpError);
+        });
+    },
+
+    methods: {
+        save: function save() {
+            if (this.history.preventer()) {
+                this.history.save(this.user);
+            }
+        }
     }
 };
 liro.component(module.exports);
 
 /***/ }),
-/* 8 */
+/* 8 */,
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -345,7 +371,35 @@ var render = function() {
             },
             expression: "user.password"
           }
-        })
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "uk-button uk-button-primary",
+            attrs: { disabled: !_vm.canUndo },
+            on: {
+              click: function($event) {
+                _vm.$liro.trigger("user.undo")
+              }
+            }
+          },
+          [_vm._v("Undo")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "uk-button uk-button-primary",
+            attrs: { disabled: !_vm.canRedo },
+            on: {
+              click: function($event) {
+                _vm.$liro.trigger("user.redo")
+              }
+            }
+          },
+          [_vm._v("Redo")]
+        )
       ],
       1
     )

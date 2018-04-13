@@ -96,7 +96,18 @@ export default function() {
         });
     }.bind(this);
 
+    /**
+     * Store function
+     */
+
+    const store = function(namespace, config) {
+        this.events.push({
+            name: 'app.beforeInit', callback: () => Store.registerModule(namespace, config)
+        });
+    }.bind(this);
+
     return {
-        data: {}, listen, trigger, component, setLocale, getLocale, setMessages, getMessages, getTranslator
+        data: {}, listen, trigger, component, store, setLocale, getLocale, setMessages, getMessages, getTranslator
     }
+
 }

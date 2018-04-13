@@ -1,37 +1,72 @@
-export default function(change) {
+export default (firstState) => {
 
-    this.index = 0;
-    this.storage = [];
+    this.prevent = false;
 
-    var save = function(data) {
-        console.log(this.storage);
-        this.storage[this.index++] = data;
+    this.preventer = () => {
+        var buffer = this.prevent;
+        this.prevent = false;
+        return !buffer;
     }
 
-    var canUndo = function() {
-        console.log('undo!', this.index, 0, this.index != 0);
-        return this.index != 0;
-    }.bind(this);
-
-    var undo = function() {
-        if ( this.index != 0 ) {
-            change.call(this.storage[this.index-1]);
-        }
-    }.bind(this);
-
-    var canRedo = function() {
-        console.log('redo!', this.index, this.storage.length, this.index != this.storage.length)
-        return this.index != this.storage.length;
-    }.bind(this);
-
-    var redo = function() {
-        console.log('redo!', this.index, this.storage.length);
-        if ( this.index != this.storage.length ) {
-            change.call(this.storage[this.index+1]);
-        }
-    }.bind(this);
-
-    return {
-        index: this.index, storage: this.storage, save, undo, canUndo, redo, canRedo
+    this.activatePrevent = () => {
+        this.prevent = true;
     }
+
+    this.pointer = 0;
+
+    this.increasePointer = () => {
+        return this.pointer++;
+    }
+
+    this.decreasePointer = () => {
+        return this.pointer--;
+    }
+
+    this.history = [Object.assign({}, firstState)];
+
+    this.getHistory = (value) => {
+        return Object.assign({}, this.history[this.pointer]);
+    }
+
+    this.pushHistory = (value) => {
+        this.history[this.pointer] = Object.assign({}, value);
+    }
+
+    this.resetHistory = () => {
+        this.history = this.history.slice(0, this.pointer + 1);
+        this.pointer = this.history.length - 1;
+        console.log(this.pointer, this.history.length, this.history);
+    }
+
+    this.canUndo = false;
+    this.canRedo = false;
+
+    this.defineUndoRedo = () => {
+        this.canUndo = this.pointer > 0;
+        this.canRedo = this.pointer < this.history.length - 1;
+    }
+
+    this.save = (value) => {
+        this.resetHistory();
+        this.defineUndoRedo();
+        this.increasePointer();
+        this.pushHistory(value);
+        this.defineUndoRedo();
+    }
+
+    this.undo = () => {
+        this.decreasePointer();
+        this.defineUndoRedo();
+        this.activatePrevent();
+        return this.getHistory();
+    }
+
+    this.redo = () => {
+        this.increasePointer();
+        this.defineUndoRedo();
+        this.activatePrevent();
+        return this.getHistory();
+    }
+
+    return this;
 }

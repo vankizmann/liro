@@ -5,10 +5,10 @@ namespace App\Package\Backend;
 class Package
 {
     protected $app;
-    protected $index;
-    protected $directory;
     protected $config;
 
+    public $index;
+    public $directory;
     public $state;
     public $hidden;
 
@@ -71,6 +71,17 @@ class Package
 
         if ( ! is_null($registerFunction) && is_callable($registerFunction) ) {
             call_user_func($registerFunction, $this->app);
+        }
+
+        return $this;
+    }
+
+    public function loadRoute()
+    {
+        $routePath = $this->directory.'/route.php';
+
+        if ( file_exists($routePath) ) {
+            require $routePath;
         }
 
         return $this;

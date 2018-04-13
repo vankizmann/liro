@@ -1307,9 +1307,9 @@ module.exports = __webpack_require__(16);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uikit__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uikit__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_uikit__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__undo_js__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__undo_js__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__liro_js__ = __webpack_require__(134);
 /**
  * Global data storage
@@ -32159,8 +32159,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 132 */,
-/* 133 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {/*! UIkit 3.0.0-beta.42 | http://www.getuikit.com | (c) 2014 - 2017 YOOtheme | MIT License */
@@ -43581,6 +43580,86 @@ return UIkit$2;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7).setImmediate))
 
 /***/ }),
+/* 133 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _this = this;
+
+/* harmony default export */ __webpack_exports__["a"] = (function (firstState) {
+
+    _this.prevent = false;
+
+    _this.preventer = function () {
+        var buffer = _this.prevent;
+        _this.prevent = false;
+        return !buffer;
+    };
+
+    _this.activatePrevent = function () {
+        _this.prevent = true;
+    };
+
+    _this.pointer = 0;
+
+    _this.increasePointer = function () {
+        return _this.pointer++;
+    };
+
+    _this.decreasePointer = function () {
+        return _this.pointer--;
+    };
+
+    _this.history = [Object.assign({}, firstState)];
+
+    _this.getHistory = function (value) {
+        return Object.assign({}, _this.history[_this.pointer]);
+    };
+
+    _this.pushHistory = function (value) {
+        _this.history[_this.pointer] = Object.assign({}, value);
+    };
+
+    _this.resetHistory = function () {
+        _this.history = _this.history.slice(0, _this.pointer + 1);
+        _this.pointer = _this.history.length - 1;
+        console.log(_this.pointer, _this.history.length, _this.history);
+    };
+
+    _this.canUndo = false;
+    _this.canRedo = false;
+
+    _this.defineUndoRedo = function () {
+        _this.canUndo = _this.pointer > 0;
+        _this.canRedo = _this.pointer < _this.history.length - 1;
+    };
+
+    _this.save = function (value) {
+        _this.resetHistory();
+        _this.defineUndoRedo();
+        _this.increasePointer();
+        _this.pushHistory(value);
+        _this.defineUndoRedo();
+    };
+
+    _this.undo = function () {
+        _this.decreasePointer();
+        _this.defineUndoRedo();
+        _this.activatePrevent();
+        return _this.getHistory();
+    };
+
+    _this.redo = function () {
+        _this.increasePointer();
+        _this.defineUndoRedo();
+        _this.activatePrevent();
+        return _this.getHistory();
+    };
+
+    return _this;
+});
+
+/***/ }),
 /* 134 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -43688,73 +43767,20 @@ return UIkit$2;
         });
     }.bind(this);
 
-    return {
-        data: {}, listen: listen, trigger: trigger, component: component, setLocale: setLocale, getLocale: getLocale, setMessages: setMessages, getMessages: getMessages, getTranslator: getTranslator
-    };
-});
+    /**
+     * Store function
+     */
 
-/***/ }),
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */,
-/* 140 */,
-/* 141 */,
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */,
-/* 152 */,
-/* 153 */,
-/* 154 */,
-/* 155 */,
-/* 156 */,
-/* 157 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = (function (change) {
-
-    this.index = 0;
-    this.storage = [];
-
-    var save = function save(data) {
-        console.log(this.storage);
-        this.storage[this.index++] = data;
-    };
-
-    var canUndo = function () {
-        console.log('undo!', this.index, 0, this.index != 0);
-        return this.index != 0;
-    }.bind(this);
-
-    var undo = function () {
-        if (this.index != 0) {
-            change.call(this.storage[this.index - 1]);
-        }
-    }.bind(this);
-
-    var canRedo = function () {
-        console.log('redo!', this.index, this.storage.length, this.index != this.storage.length);
-        return this.index != this.storage.length;
-    }.bind(this);
-
-    var redo = function () {
-        console.log('redo!', this.index, this.storage.length);
-        if (this.index != this.storage.length) {
-            change.call(this.storage[this.index + 1]);
-        }
+    var store = function (namespace, config) {
+        this.events.push({
+            name: 'app.beforeInit', callback: function callback() {
+                return Store.registerModule(namespace, config);
+            }
+        });
     }.bind(this);
 
     return {
-        index: this.index, storage: this.storage, save: save, undo: undo, canUndo: canUndo, redo: redo, canRedo: canRedo
+        data: {}, listen: listen, trigger: trigger, component: component, store: store, setLocale: setLocale, getLocale: getLocale, setMessages: setMessages, getMessages: getMessages, getTranslator: getTranslator
     };
 });
 

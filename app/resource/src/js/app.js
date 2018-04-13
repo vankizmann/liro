@@ -18,6 +18,7 @@ window.i18n = i18n;
  * 
  */
 
+import Vuex from 'vuex';
 import Vue2Filters from 'vue2-filters'
 import VeeValidate from 'vee-validate';
 
@@ -32,14 +33,24 @@ import VeeValidateRU from 'vee-validate/dist/locale/ru';
 
 liro.listen('document.ready', function() {
 
+    Vue.use(Vuex);
+    Vue.use(Vue2Filters);
+    Vue.use(VeeValidate);
+
+    window.Store = new Vuex.Store({
+        // Vuex configuration
+    });
+
     // Trigger before init via liro listiner
     liro.trigger('app.beforeInit');
 
     // Set default http class
     Vue.prototype.$http = window.axios;
+    Vue.prototype.$liro = window.liro;
 
     const App = new Vue({
 
+        store: Store,
         i18n: liro.getTranslator(),
 
         data() {
@@ -105,11 +116,6 @@ liro.listen('document.ready', function() {
     // Trigger after init via liro listiner
     liro.trigger('app.afterInit');
 
-});
-
-liro.listen('app.beforeInit', function() {
-    Vue.use(Vue2Filters);
-    Vue.use(VeeValidate);
 });
 
 $(document).ready(function() {

@@ -10,7 +10,7 @@
     </head>
     <body class="login">
 
-        <div id="app" class="uk-offcanvas-content uk-background-muted">
+        <div id="app" class="uk-offcanvas-content uk-background-primary">
             <div class="uk-container uk-container-expand uk-flex uk-flex-center uk-flex-middle" style="min-height: 100vh;">
                     <div class="uk-padding uk-background-default" style="width: 100%; max-width: 400px;">
                         @if (session('error'))

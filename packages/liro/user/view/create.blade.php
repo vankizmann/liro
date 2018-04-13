@@ -17,12 +17,12 @@
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>
-            <app-toolbar-action icon="fa fa-undo" href="#" :disabled="true">
+            <app-toolbar-history icon="fa fa-undo" getter="user/canUndo" commit="user/undo">
                 {{ trans('*.cms.undo') }}
-            </app-toolbar-action>
-            <app-toolbar-action icon="fa fa-redo" href="#" :disabled="true">
+            </app-toolbar-history>
+            <app-toolbar-history icon="fa fa-redo" getter="user/canRedo" commit="user/redo">
                 {{ trans('*.cms.redo') }}
-            </app-toolbar-action>
+            </app-toolbar-history>
         </ul>
     </div>
     <div class="uk-navbar-right">
@@ -35,7 +35,5 @@
 @endsection
 
 @section('content')
-    <app-user-create
-        store="{{ route('users.store') }}" value="liro.data.user"
-    ></app-user-create>
+    <app-user-create store="{{ route('users.store') }}" :value="$liro.data.user"></app-user-create>
 @endsection

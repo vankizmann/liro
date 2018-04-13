@@ -43623,7 +43623,6 @@ var _this = this;
     _this.resetHistory = function () {
         _this.history = _this.history.slice(0, _this.pointer + 1);
         _this.pointer = _this.history.length - 1;
-        console.log(_this.pointer, _this.history.length, _this.history);
     };
 
     _this.canUndo = false;

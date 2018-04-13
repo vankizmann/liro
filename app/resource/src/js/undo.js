@@ -35,7 +35,6 @@ export default (firstState) => {
     this.resetHistory = () => {
         this.history = this.history.slice(0, this.pointer + 1);
         this.pointer = this.history.length - 1;
-        console.log(this.pointer, this.history.length, this.history);
     }
 
     this.canUndo = false;

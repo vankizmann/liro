@@ -1,23 +1,19 @@
 <template>
-    <li :class="{ 'uk-toolbar--action': true, 'uk-disabled': disabled }">
-        <a :href="href" @click="submitAction">
+    <li class="uk-toolbar-item uk-flex uk-flex-middle">
+        <button class="uk-button uk-button-primary" @click.prevent="clickEvent" :disabled="disabled">
             <i v-if="icon" :class="icon+' uk-margin-small-right'"></i> <slot></slot>
-        </a>
+        </button>
     </li>
 </template>
 <script>
     module.exports = {
-        name: 'app-toolbar-action',
+        name: 'app-toolbar-event',
         props: {
-            href: {
-                default: '',
-                type: String
-            },
             icon: {
                 default: '',
                 type: String
             },
-            action: {
+            event: {
                 default: '',
                 type: String
             },
@@ -27,16 +23,10 @@
             }
         },
         methods: {
-            submitAction(event) {
-
-                if ( this.disabled == true ) {
-                    event.preventDefault();
+            clickEvent() {
+                if ( ! this.diabled && this.event ) {
+                    this.$liro.trigger(this.event);
                 }
-
-                if ( this.action != '' ) {
-                    this.$root.$emit(this.action, event);
-                }
-
             }
         }
     }

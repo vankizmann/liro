@@ -192,7 +192,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(7)
 /* template */
-var __vue_template__ = __webpack_require__(9)
+var __vue_template__ = __webpack_require__(8)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -209,7 +209,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resource\\src\\app-user-create.vue"
+Component.options.__file = "resource/src/app-user-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -218,9 +218,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ce64754c", Component.options)
+    hotAPI.createRecord("data-v-d5d60d18", Component.options)
   } else {
-    hotAPI.reload("data-v-ce64754c", Component.options)
+    hotAPI.reload("data-v-d5d60d18", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -255,15 +255,44 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 module.exports = {
     name: 'app-user-create',
     computed: {
         canUndo: function canUndo() {
-            return this.history.canUndo;
+            return this.$store.getters['history/canUndo'];
         },
         canRedo: function canRedo() {
-            return this.history.canRedo;
+            return this.$store.getters['history/canRedo'];
         }
     },
     props: {
@@ -273,23 +302,24 @@ module.exports = {
     },
     data: function data() {
         return {
-            history: new Undo(this.value),
             user: this.value
         };
     },
     mounted: function mounted() {
         var _this = this;
 
+        this.$store.commit('history/init', this.user);
+
         this.$watch('user', _.debounce(this.save, 600), {
             deep: true
         });
 
         this.$liro.listen('user.undo', function () {
-            _this.user = _this.history.undo();
+            _this.user = _this.$store.state.history.undo();
         });
 
         this.$liro.listen('user.redo', function () {
-            _this.user = _this.history.redo();
+            _this.user = _this.$store.state.history.redo();
         });
 
         this.$liro.listen('user.store', function () {
@@ -299,8 +329,8 @@ module.exports = {
 
     methods: {
         save: function save() {
-            if (this.history.preventer()) {
-                this.history.save(this.user);
+            if (this.$store.state.history.preventer()) {
+                this.$store.commit('history/save', this.user);
             }
         }
     }
@@ -308,102 +338,184 @@ module.exports = {
 liro.component(module.exports);
 
 /***/ }),
-/* 8 */,
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "uk-form uk-form-stacked" }, [
-    _c(
-      "fieldset",
-      { staticClass: "uk-fieldset" },
-      [
-        _c("app-form-input", {
-          attrs: {
-            label: _vm.$t("user.label.name"),
-            type: "text",
-            id: "name",
-            name: "name",
-            rules: "required|min:4"
-          },
-          model: {
-            value: _vm.user.name,
-            callback: function($$v) {
-              _vm.$set(_vm.user, "name", $$v)
-            },
-            expression: "user.name"
-          }
-        }),
+  return _c(
+    "div",
+    { staticClass: "uk-form uk-form-stacked" },
+    [
+      _c("portal", { attrs: { "target-el": "#uk-toolbar" } }, [
+        _c("div", { staticClass: "uk-navbar-left" }, [
+          _c(
+            "ul",
+            { staticClass: "uk-navbar-nav" },
+            [
+              _c(
+                "app-toolbar-event",
+                { attrs: { icon: "fa fa-check", event: "user.update" } },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.$t("cms.update")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "app-toolbar-link",
+                { attrs: { icon: "fa fa-times", href: "#" } },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.$t("cms.close")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("app-toolbar-spacer"),
+              _vm._v(" "),
+              _c(
+                "app-toolbar-event",
+                {
+                  attrs: {
+                    icon: "fa fa-undo",
+                    event: "user.undo",
+                    disabled: !_vm.canUndo
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.$t("cms.undo")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "app-toolbar-event",
+                {
+                  attrs: {
+                    icon: "fa fa-redo",
+                    event: "user.redo",
+                    disabled: !_vm.canRedo
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.$t("cms.redo")) +
+                      "\n                "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ]),
         _vm._v(" "),
-        _c("app-form-input", {
-          attrs: {
-            label: _vm.$t("user.label.email"),
-            type: "email",
-            id: "email",
-            name: "email",
-            rules: "required|email"
-          },
-          model: {
-            value: _vm.user.email,
-            callback: function($$v) {
-              _vm.$set(_vm.user, "email", $$v)
+        _c("div", { staticClass: "uk-navbar-right" }, [
+          _c(
+            "ul",
+            { staticClass: "uk-navbar-nav" },
+            [
+              _c(
+                "app-toolbar-link",
+                { attrs: { icon: "fa fa-ban", href: "#", disabled: true } },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.$t("cms.discard")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "app-toolbar-link",
+                { attrs: { icon: "fa fa-trash", href: "#" } },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.$t("cms.trash")) +
+                      "\n                "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "fieldset",
+        { staticClass: "uk-fieldset" },
+        [
+          _c("app-form-input", {
+            attrs: {
+              label: _vm.$t("user.label.name"),
+              type: "text",
+              id: "name",
+              name: "name",
+              rules: "required|min:4"
             },
-            expression: "user.email"
-          }
-        }),
-        _vm._v(" "),
-        _c("app-form-password", {
-          attrs: {
-            label: _vm.$t("user.label.password"),
-            generate: _vm.$t("user.form.generate"),
-            type: "text",
-            id: "password",
-            name: "password",
-            rules: "required|min:6"
-          },
-          model: {
-            value: _vm.user.password,
-            callback: function($$v) {
-              _vm.$set(_vm.user, "password", $$v)
-            },
-            expression: "user.password"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "uk-button uk-button-primary",
-            attrs: { disabled: !_vm.canUndo },
-            on: {
-              click: function($event) {
-                _vm.$liro.trigger("user.undo")
-              }
+            model: {
+              value: _vm.user.name,
+              callback: function($$v) {
+                _vm.$set(_vm.user, "name", $$v)
+              },
+              expression: "user.name"
             }
-          },
-          [_vm._v("Undo")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "uk-button uk-button-primary",
-            attrs: { disabled: !_vm.canRedo },
-            on: {
-              click: function($event) {
-                _vm.$liro.trigger("user.redo")
-              }
+          }),
+          _vm._v(" "),
+          _c("app-form-input", {
+            attrs: {
+              label: _vm.$t("user.label.email"),
+              type: "email",
+              id: "email",
+              name: "email",
+              rules: "required|email"
+            },
+            model: {
+              value: _vm.user.email,
+              callback: function($$v) {
+                _vm.$set(_vm.user, "email", $$v)
+              },
+              expression: "user.email"
             }
-          },
-          [_vm._v("Redo")]
-        )
-      ],
-      1
-    )
-  ])
+          }),
+          _vm._v(" "),
+          _c("app-form-password", {
+            attrs: {
+              label: _vm.$t("user.label.password"),
+              generate: _vm.$t("user.form.generate"),
+              type: "text",
+              id: "password",
+              name: "password",
+              rules: "required|min:6"
+            },
+            model: {
+              value: _vm.user.password,
+              callback: function($$v) {
+                _vm.$set(_vm.user, "password", $$v)
+              },
+              expression: "user.password"
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -411,7 +523,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-ce64754c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-d5d60d18", module.exports)
   }
 }
 

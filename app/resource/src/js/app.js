@@ -19,8 +19,9 @@ window.i18n = i18n;
  */
 
 import Vuex from 'vuex';
-import Vue2Filters from 'vue2-filters'
 import VeeValidate from 'vee-validate';
+import PortalVue from 'portal-vue';
+import Vue2Filters from 'vue2-filters'
 
 /**
  * 
@@ -34,11 +35,12 @@ import VeeValidateRU from 'vee-validate/dist/locale/ru';
 liro.listen('document.ready', function() {
 
     Vue.use(Vuex);
-    Vue.use(Vue2Filters);
     Vue.use(VeeValidate);
+    Vue.use(PortalVue);
+    Vue.use(Vue2Filters);
 
     window.Store = new Vuex.Store({
-        // Vuex configuration
+        // Vuex
     });
 
     // Trigger before init via liro listiner

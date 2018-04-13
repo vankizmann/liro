@@ -1,4 +1,4 @@
-export default (firstState) => {
+export default () => {
 
     this.prevent = false;
 
@@ -22,7 +22,7 @@ export default (firstState) => {
         return this.pointer--;
     }
 
-    this.history = [Object.assign({}, firstState)];
+    this.history = [];
 
     this.getHistory = (value) => {
         return Object.assign({}, this.history[this.pointer]);
@@ -43,6 +43,12 @@ export default (firstState) => {
     this.defineUndoRedo = () => {
         this.canUndo = this.pointer > 0;
         this.canRedo = this.pointer < this.history.length - 1;
+    }
+
+    this.init = (value) => {
+        this.defineUndoRedo();
+        this.pushHistory(value);
+        this.defineUndoRedo();
     }
 
     this.save = (value) => {

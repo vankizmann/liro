@@ -100,9 +100,9 @@ export default function() {
      * Store function
      */
 
-    const store = function(namespace, config) {
+    const store = function(config) {
         this.events.push({
-            name: 'app.beforeInit', callback: () => Store.registerModule(namespace, config)
+            name: 'app.beforeInit', callback: () => Store.registerModule(config.name, config)
         });
     }.bind(this);
 

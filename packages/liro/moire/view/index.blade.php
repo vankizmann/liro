@@ -48,7 +48,7 @@
                     </nav>
                 </div>
                 <div class="uk-toolbar" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'" v-cloak>
-                    <div class="uk-navbar-container uk-container uk-container-expand" uk-navbar>
+                    <div id="uk-toolbar" class="uk-navbar-container uk-container uk-container-expand" uk-navbar>
                         @yield('toolbar')
                     </div>
                 </div>

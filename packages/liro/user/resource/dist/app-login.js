@@ -205,7 +205,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resource\\src\\app-login.vue"
+Component.options.__file = "resource/src/app-login.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -214,9 +214,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-777bf5f6", Component.options)
+    hotAPI.createRecord("data-v-fabe56c2", Component.options)
   } else {
-    hotAPI.reload("data-v-777bf5f6", Component.options)
+    hotAPI.reload("data-v-fabe56c2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -332,7 +332,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-777bf5f6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-fabe56c2", module.exports)
   }
 }
 

@@ -8,28 +8,28 @@
 @section('toolbar')
     <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
-            <app-toolbar-action icon="fa fa-check" action="user.store">
+            <app-toolbar-event icon="fa fa-check" event="user.store">
                 {{ trans('*.cms.store') }}
-            </app-toolbar-action>
-            <app-toolbar-action icon="fa fa-times" href="{{ route('users.index') }}">
+            </app-toolbar-event>
+            <app-toolbar-link icon="fa fa-times" href="{{ route('users.index') }}">
                 {{ trans('*.cms.close') }}
-            </app-toolbar-action>
+            </app-toolbar-link>
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>
-            <app-toolbar-history icon="fa fa-undo" getter="user/canUndo" commit="user/undo">
+            <app-toolbar-history icon="fa fa-undo" getter="history/canUndo" event="user.undo">
                 {{ trans('*.cms.undo') }}
             </app-toolbar-history>
-            <app-toolbar-history icon="fa fa-redo" getter="user/canRedo" commit="user/redo">
+            <app-toolbar-history icon="fa fa-redo" getter="history/canRedo" event="user.redo">
                 {{ trans('*.cms.redo') }}
             </app-toolbar-history>
         </ul>
     </div>
     <div class="uk-navbar-right">
         <ul class="uk-navbar-nav">
-            <app-toolbar-action icon="fa fa-ban" href="#" :disabled="true">
+            <app-toolbar-link icon="fa fa-ban" href="#" :disabled="true">
                 {{ trans('*.cms.discard') }}
-            </app-toolbar-action>
+            </app-toolbar-link>
         </ul>
     </div>
 @endsection

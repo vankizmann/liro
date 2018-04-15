@@ -1,5 +1,5 @@
 <template>
-    <li class="uk-toolbar--spacer">
+    <li class="uk-toolbar-spacer">
         <div></div>
     </li>
 </template>

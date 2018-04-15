@@ -15,19 +15,13 @@ class Backend
     {
         $this->app['cms.package.loader']->all()->where('state', 1)->each(function($package) {
 
-            // dd($package->directory);
-
             if ($package->get('type') == 'cms.package.backend.component') {
-                $package->loadNamespace()->loadLanguages()->callRegister()->loadRoute();
+                $package->loadNamespace()->loadLanguages()->callRegister();
             }
 
             if ($package->get('type') == 'cms.package.backend.theme') {
                 $package->loadNamespace()->loadLanguages()->callRegister()->setTemplate();
             }
-
-            $this->app['router']->prefix($package->directory)->middleware(['web', 'auth'])->group(function() use ($package) {
-                $package->loadRoute();
-            });
 
         });
 

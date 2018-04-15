@@ -1,6 +1,6 @@
 <template>
-    <li :class="{ 'uk-toolbar--action': true, 'uk-disabled': disabled }">
-        <a :href="href">
+    <li class="uk-toolbar-item">
+        <a class="uk-button uk-button-primary" :href="href">
             <i v-if="icon" :class="icon+' uk-margin-small-right'"></i> <slot></slot>
         </a>
     </li>

@@ -2,14 +2,18 @@
  * Vendor
  **/
 
+$global-font-family:                    'Roboto', 'Helvetica', 'Arial', sans-serif;
+$global-emphasis-color:                 #090e15;
+$global-color:                          #353a41;
+$global-muted-background:               #f2f3f5;
+$global-muted-color:                    #7a828d;
+$global-primary-background:             #5577e7;
+$global-success-background:             #55e777;
+$global-warning-background:             #e77e55;
+$global-danger-background:              #e7556a;
+
 @import '~uikit/src/scss/variables-theme.scss';
 @import '~uikit/src/scss/mixins-theme.scss';
-
-/**
- * Global vars
- */
-
-$global-primary-background: $--color-primary;
 
 /**
  * Notification

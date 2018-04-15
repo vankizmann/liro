@@ -1,5 +1,5 @@
 <template>
-    <li class="uk-toolbar-item uk-flex uk-flex-middle">
+    <li class="uk-toolbar-item">
         <button class="uk-button uk-button-primary" @click.prevent="clickEvent" :disabled="disabled">
             <i v-if="icon" :class="icon+' uk-margin-small-right'"></i> <slot></slot>
         </button>

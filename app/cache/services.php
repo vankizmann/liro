@@ -29,6 +29,7 @@
     25 => 'App\\Providers\\RouteServiceProvider',
     26 => 'App\\Providers\\ViewServiceProvider',
     27 => 'App\\Providers\\AppServiceProvider',
+    28 => 'App\\Support\\FactoryServiceProvider',
   ),
   'eager' => 
   array (
@@ -46,6 +47,7 @@
     11 => 'App\\Providers\\RouteServiceProvider',
     12 => 'App\\Providers\\ViewServiceProvider',
     13 => 'App\\Providers\\AppServiceProvider',
+    14 => 'App\\Support\\FactoryServiceProvider',
   ),
   'deferred' => 
   array (

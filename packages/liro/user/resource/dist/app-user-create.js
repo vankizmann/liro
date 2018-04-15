@@ -209,7 +209,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resource/src/app-user-create.vue"
+Component.options.__file = "resource\\src\\app-user-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -218,9 +218,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d5d60d18", Component.options)
+    hotAPI.createRecord("data-v-ce64754c", Component.options)
   } else {
-    hotAPI.reload("data-v-d5d60d18", Component.options)
+    hotAPI.reload("data-v-ce64754c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -275,15 +275,6 @@ module.exports = Component.exports
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 module.exports = {
     name: 'app-user-create',
@@ -296,6 +287,12 @@ module.exports = {
         }
     },
     props: {
+        baseRoute: {
+            type: String
+        },
+        createRoute: {
+            type: String
+        },
         value: {
             type: Object
         }
@@ -322,8 +319,12 @@ module.exports = {
             _this.user = _this.$store.state.history.redo();
         });
 
-        this.$liro.listen('user.store', function () {
-            _this.$http.post('/', _this.user).then(_this.$root.httpSuccess).catch(_this.$root.httpError);
+        this.$liro.listen('user.reset', function () {
+            _this.user = _this.$store.state.history.reset();
+        });
+
+        this.$liro.listen('user.create', function () {
+            _this.$http.post(_this.createRoute, _this.user).then(_this.$root.httpSuccess).catch(_this.$root.httpError);
         });
     },
 
@@ -349,111 +350,89 @@ var render = function() {
     "div",
     { staticClass: "uk-form uk-form-stacked" },
     [
-      _c("portal", { attrs: { "target-el": "#uk-toolbar" } }, [
-        _c("div", { staticClass: "uk-navbar-left" }, [
+      _c(
+        "portal",
+        { attrs: { to: "app-toolbar-left" } },
+        [
           _c(
-            "ul",
-            { staticClass: "uk-navbar-nav" },
+            "app-toolbar-event",
+            { attrs: { icon: "fa fa-check", event: "user.create" } },
             [
-              _c(
-                "app-toolbar-event",
-                { attrs: { icon: "fa fa-check", event: "user.update" } },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.$t("cms.update")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "app-toolbar-link",
-                { attrs: { icon: "fa fa-times", href: "#" } },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.$t("cms.close")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("app-toolbar-spacer"),
-              _vm._v(" "),
-              _c(
-                "app-toolbar-event",
-                {
-                  attrs: {
-                    icon: "fa fa-undo",
-                    event: "user.undo",
-                    disabled: !_vm.canUndo
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.$t("cms.undo")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "app-toolbar-event",
-                {
-                  attrs: {
-                    icon: "fa fa-redo",
-                    event: "user.redo",
-                    disabled: !_vm.canRedo
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.$t("cms.redo")) +
-                      "\n                "
-                  )
-                ]
+              _vm._v(
+                "\n            " + _vm._s(_vm.$t("cms.create")) + "\n        "
               )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "uk-navbar-right" }, [
+            ]
+          ),
+          _vm._v(" "),
           _c(
-            "ul",
-            { staticClass: "uk-navbar-nav" },
+            "app-toolbar-link",
+            { attrs: { icon: "fa fa-times", href: _vm.baseRoute } },
             [
-              _c(
-                "app-toolbar-link",
-                { attrs: { icon: "fa fa-ban", href: "#", disabled: true } },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.$t("cms.discard")) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "app-toolbar-link",
-                { attrs: { icon: "fa fa-trash", href: "#" } },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.$t("cms.trash")) +
-                      "\n                "
-                  )
-                ]
+              _vm._v(
+                "\n            " + _vm._s(_vm.$t("cms.close")) + "\n        "
               )
-            ],
-            1
+            ]
+          ),
+          _vm._v(" "),
+          _c("app-toolbar-spacer"),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-event",
+            {
+              attrs: {
+                icon: "fa fa-undo",
+                event: "user.undo",
+                disabled: !_vm.canUndo
+              }
+            },
+            [
+              _vm._v(
+                "\n            " + _vm._s(_vm.$t("cms.undo")) + "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-event",
+            {
+              attrs: {
+                icon: "fa fa-redo",
+                event: "user.redo",
+                disabled: !_vm.canRedo
+              }
+            },
+            [
+              _vm._v(
+                "\n            " + _vm._s(_vm.$t("cms.redo")) + "\n        "
+              )
+            ]
           )
-        ])
-      ]),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "portal",
+        { attrs: { to: "app-toolbar-right" } },
+        [
+          _c(
+            "app-toolbar-event",
+            {
+              attrs: {
+                icon: "fa fa-ban",
+                event: "user.reset",
+                disabled: !_vm.canUndo
+              }
+            },
+            [
+              _vm._v(
+                "\n            " + _vm._s(_vm.$t("cms.discard")) + "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "fieldset",
@@ -523,7 +502,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d5d60d18", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-ce64754c", module.exports)
   }
 }
 

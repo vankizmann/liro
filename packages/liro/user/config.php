@@ -6,7 +6,23 @@ return [
     'version'   => '0.0.1',
     'type'      => 'cms.package.backend.component',
 
-    'register' => function($app) {
+    '@route/element' => function($app) {
+        include 'elements/register.php';
+    },
+
+    '@route/backend' => function($app) {
+        include 'routes/backend.php';
+    },
+
+    '@route/frontend' => function($app) {
+        include 'routes/frontend.php';
+    },
+
+    '@factory/route' => function($app) {
+        // Register anything before routing
+    },
+
+    '@register' => function($app) {
 
         $messages = [
             'user' =>  $app['translator']->getFromJson('*.user', [])

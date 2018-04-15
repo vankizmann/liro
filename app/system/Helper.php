@@ -1,14 +1,36 @@
 <?php
 
-if( ! function_exists('locale_route') ) {
+if( ! function_exists('menu') ) {
 
-    function locale_route($route = null, $locale = null, $options = [])
+    function menu($package, $route, $query)
     {
-        if( $route === null) {
-            $route = Request::route()->getName();
+        $query = DB::table('menus')->where('state', 1)->where('package', $package);
+
+        if ( $callback && is_callable($callback) ) {
+            $query = call_user_func($callback, [$query]);
         }
 
-        if( $locale != null) {
+        $menu = $query->get()->pluck('name')->first();
+
+        if ( ! $menu ) {
+            return URL::current();
+        }
+
+        return URL::route($menu.$route, $options);
+    }
+
+}
+
+if( ! function_exists('routeLang') ) {
+
+    function routeLang($route = null, $locale = null, $options = [])
+    {
+        if ( $route == null) {
+            $route = Request::route()->getName();
+            $options = Request::route()->parameters();
+        }
+
+        if ( $locale != null) {
             $options['locale'] = $locale;
         }
 

@@ -1,35 +1,26 @@
 <template>
     <div class="uk-form uk-form-stacked">
-        <portal target-el="#uk-toolbar">
-            <div class="uk-navbar-left">
-                <ul class="uk-navbar-nav">
-                    <app-toolbar-event icon="fa fa-check" event="user.update">
-                        {{ $t('cms.update') }}
-                    </app-toolbar-event>
-                    <app-toolbar-link icon="fa fa-times" href="#">
-                        {{ $t('cms.close') }}
-                    </app-toolbar-link>
-                    <app-toolbar-spacer>
-                        <!-- Spacer -->
-                    </app-toolbar-spacer>
-                    <app-toolbar-event icon="fa fa-undo" event="user.undo" :disabled="!canUndo">
-                        {{ $t('cms.undo') }}
-                    </app-toolbar-event>
-                    <app-toolbar-event icon="fa fa-redo" event="user.redo" :disabled="!canRedo">
-                        {{ $t('cms.redo') }}
-                    </app-toolbar-event>
-                </ul>
-            </div>
-            <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
-                    <app-toolbar-link icon="fa fa-ban" href="#" :disabled="true">
-                        {{ $t('cms.discard') }}
-                    </app-toolbar-link>
-                    <app-toolbar-link icon="fa fa-trash" href="#">
-                        {{ $t('cms.trash') }}
-                    </app-toolbar-link>
-                </ul>
-            </div>
+        <portal to="app-toolbar-left">
+            <app-toolbar-event icon="fa fa-check" event="user.create">
+                {{ $t('cms.create') }}
+            </app-toolbar-event>
+            <app-toolbar-link icon="fa fa-times" :href="baseRoute">
+                {{ $t('cms.close') }}
+            </app-toolbar-link>
+            <app-toolbar-spacer>
+                <!-- Spacer -->
+            </app-toolbar-spacer>
+            <app-toolbar-event icon="fa fa-undo" event="user.undo" :disabled="!canUndo">
+                {{ $t('cms.undo') }}
+            </app-toolbar-event>
+            <app-toolbar-event icon="fa fa-redo" event="user.redo" :disabled="!canRedo">
+                {{ $t('cms.redo') }}
+            </app-toolbar-event>
+        </portal>
+        <portal to="app-toolbar-right">
+            <app-toolbar-event icon="fa fa-ban" event="user.reset" :disabled="!canUndo">
+                {{ $t('cms.discard') }}
+            </app-toolbar-event>
         </portal>
         <fieldset class="uk-fieldset">
             <app-form-input
@@ -60,6 +51,12 @@ module.exports = {
         }
     },
     props: {
+        baseRoute: {
+            type: String
+        },
+        createRoute: {
+            type: String
+        },
         value: {
             type: Object
         }
@@ -85,8 +82,12 @@ module.exports = {
             this.user = this.$store.state.history.redo();
         });
 
-        this.$liro.listen('user.store', () => {
-            this.$http.post('/', this.user).then(this.$root.httpSuccess).catch(this.$root.httpError);
+        this.$liro.listen('user.reset', () => {
+            this.user = this.$store.state.history.reset();
+        });
+
+        this.$liro.listen('user.create', () => {
+            this.$http.post(this.createRoute, this.user).then(this.$root.httpSuccess).catch(this.$root.httpError);
         });
     },
     methods: {

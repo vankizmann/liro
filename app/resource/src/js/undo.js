@@ -14,6 +14,10 @@ export default () => {
 
     this.pointer = 0;
 
+    this.resetPointer = () => {
+        return this.pointer = 0
+    }
+
     this.increasePointer = () => {
         return this.pointer++;
     }
@@ -57,6 +61,14 @@ export default () => {
         this.increasePointer();
         this.pushHistory(value);
         this.defineUndoRedo();
+    }
+
+    this.reset = () => {
+        this.resetPointer();
+        this.resetHistory();
+        this.defineUndoRedo();
+        this.activatePrevent();
+        return this.getHistory();
     }
 
     this.undo = () => {

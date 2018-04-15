@@ -18,6 +18,7 @@ class Javascript
         /**
          * Import bootstrap js
          */
+
         $this->app['cms.asset']->linkJs(
             'cms.bootstrap', "/app/resource/dist/js/bootstrap.js", []
         );
@@ -25,9 +26,20 @@ class Javascript
         /**
          * Create vue application
          */
+
         $this->app['cms.asset']->linkJs(
             'cms.app', '/app/resource/dist/js/app.js', ['cms.bootstrap']
         );
+
+        /**
+         * 
+         */
+
+        $messages = [
+            'cms' =>  $this->app['translator']->getFromJson('*.cms', [])
+        ];
+
+        $this->app['cms.asset']->plainJs('cms.lang', "liro.setMessages(liro.getLocale(), ".json_encode($messages).");", ['cms.bootstrap']);
 
         return $next($request);
     }

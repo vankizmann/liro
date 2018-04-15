@@ -52,7 +52,6 @@ var application = [
     'app/resource/src/js/store/app-history.js',
     'app/resource/src/js/toolbar/app-toolbar-event',
     'app/resource/src/js/toolbar/app-toolbar-link',
-    'app/resource/src/js/toolbar/app-toolbar-history',
     'app/resource/src/js/toolbar/app-toolbar-spacer',
     'app/resource/src/js/form/app-form-input.vue',
     'app/resource/src/js/form/app-form-password.vue',

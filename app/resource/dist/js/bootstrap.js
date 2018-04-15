@@ -435,8 +435,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -626,6 +625,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
+/* 4 */,
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -749,7 +749,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 7 */
@@ -1009,7 +1009,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3)))
 
 /***/ }),
 /* 9 */
@@ -1754,7 +1754,7 @@ module.exports = function dd() {
     process.exit(1);
   }
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 29 */
@@ -43603,6 +43603,10 @@ var _this = this;
 
     _this.pointer = 0;
 
+    _this.resetPointer = function () {
+        return _this.pointer = 0;
+    };
+
     _this.increasePointer = function () {
         return _this.pointer++;
     };
@@ -43646,6 +43650,14 @@ var _this = this;
         _this.increasePointer();
         _this.pushHistory(value);
         _this.defineUndoRedo();
+    };
+
+    _this.reset = function () {
+        _this.resetPointer();
+        _this.resetHistory();
+        _this.defineUndoRedo();
+        _this.activatePrevent();
+        return _this.getHistory();
     };
 
     _this.undo = function () {

@@ -15,9 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->register(PackageServiceProvider::class);
-        $this->app->register(FactoryServiceProvider::class);
-        $this->app->get('cms.factory')->boot();
+        // $this->app->register(PackageServiceProvider::class);
+        // $this->app->register(FactoryServiceProvider::class);
+        // $this->app->get('cms.factory')->boot();
     }
 
     /**

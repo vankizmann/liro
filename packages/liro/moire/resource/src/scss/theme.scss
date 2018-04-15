@@ -2,29 +2,65 @@
  * Theme
  **/
 
-@import 'color.scss';
 @import 'vendor.scss';
 
 [v-cloak] {
     display: none
 }
 
-body {
-    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
+.uk-toolbar {
+    background-color: $global-muted-background;
 }
 
-.uk-toolbar .uk-navbar-nav > li > a {
+.uk-toolbar-item {
+    @extend .uk-navbar-item;
+    @extend .uk-flex;
+    @extend .uk-flex-stretch;
+    padding: 0;
+    height: 70px;
+}
+
+.uk-toolbar-item .uk-button {
+    height: auto;
+    border: 0;
+    padding: 0 20px;
     text-transform: none;
 }
 
-.uk-toolbar--spacer {
-    @extend .uk-navbar-item;
+.uk-toolbar-item .uk-button,
+.uk-toolbar-item .uk-button:active,
+.uk-toolbar-item .uk-button:visited {
+    color: $global-color;
+    background-color: transparent;
 }
 
-.uk-toolbar--spacer div {
-    width: 1px;
+.uk-toolbar-item .uk-button:hover {
+    color :$button-default-hover-color;
+    background-color: darken($global-muted-background, 5%);
+}
+
+.uk-toolbar-item.uk-disabled .uk-button,
+.uk-toolbar-item.uk-disabled .uk-button:active,
+.uk-toolbar-item.uk-disabled .uk-button:visited,
+.uk-toolbar-item .uk-button.uk-disabled,
+.uk-toolbar-item .uk-button.uk-disabled:active,
+.uk-toolbar-item .uk-button.uk-disabled:visited,
+.uk-toolbar-item .uk-button[disabled="disabled"],
+.uk-toolbar-item .uk-button[disabled="disabled"]:active,
+.uk-toolbar-item .uk-button[disabled="disabled"]:visited {
+    color: $global-muted-color;
+    background-color: transparent;
+}
+
+.uk-toolbar-spacer {
+    @extend .uk-navbar-item;
+    @extend .uk-flex;
+    @extend .uk-flex-middle;
+    height: 70px;
+}
+
+.uk-toolbar-spacer div {
+    width: $global-border-width;
+    background-color: darken($global-muted-background, 5%);
     height: 35px;
-    background-color: mix($--color-white, $--color-black, 90%);
 }

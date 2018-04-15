@@ -41,15 +41,24 @@
                                     <a href="{{ 'test' }}">{{ auth()->user()->name }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('logout') }}"></i>@lang('*.user.form.logout')</a>
+                                    <a href="{{ routeLang(null, 'de') }}"></i>@lang('*.user.form.logout')</a>
                                 </li>
                             </ul>
                         </div>
                     </nav>
                 </div>
                 <div class="uk-toolbar" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'" v-cloak>
-                    <div id="uk-toolbar" class="uk-navbar-container uk-container uk-container-expand" uk-navbar>
-                        @yield('toolbar')
+                    <div class="uk-navbar-container uk-container uk-container-expand" uk-navbar>
+                        @hasSection('toolbar')
+                            @yield('toolbar')
+                        @else
+                            <div class="uk-navbar-left">
+                                <portal-target class="uk-navbar-nav" name="app-toolbar-left" multiple></portal-target>
+                            </div>
+                            <div class="uk-navbar-right">
+                                <portal-target class="uk-navbar-nav" name="app-toolbar-right" multiple></portal-target>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </header>

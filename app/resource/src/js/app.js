@@ -104,11 +104,11 @@ liro.listen('document.ready', function() {
                     }, 2500);
                 }
 
-                UIkit.notification(success.data.message, 'success');
+                UIkit.notification('<i class="fa fa-check"></i><span class="uk-margin-small-left">' + success.data.message + '</span>', 'success');
             },
 
             httpError(error) {
-                UIkit.notification(error.message, 'danger');
+                UIkit.notification('<i class="fa fa-times"></i><span class="uk-margin-small-left">' + error.message + '</span>', 'danger');
             }
 
         }

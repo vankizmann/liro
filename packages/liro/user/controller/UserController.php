@@ -10,21 +10,21 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('liro.user.view.index', [
+        return view('liro.user::index', [
             'users' => User::all()
         ]);
     }
 
     public function show($id)
     {
-        return view('liro.user.view.show', [
+        return view('user::show', [
             'user' => User::find($id)
         ]);
     }
 
     public function create()
     {
-        return view('liro.user.view.create', [
+        return view('user::create', [
             'user' => new User
         ]);
     }
@@ -45,7 +45,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        return view('liro.user.view.edit', [
+        return view('user::edit', [
             'user' => User::find($id)
         ]);
     }

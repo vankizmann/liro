@@ -13,16 +13,12 @@ return [
 
     'events' => [
 
-        'frontend/route' => function($router) {
-            // Route frontend
+        'frontend/route' => function($app) {
+            // dd('route frontend!');
         },
 
-        'backend/route' => function($router) {
-            // Route backend
-        },
-
-        'element/register' => function($element) {
-            // Route frontend
+        'backend/route' => function($app) {
+            // dd('route backend!');
         }
 
     ]

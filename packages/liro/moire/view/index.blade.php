@@ -1,4 +1,4 @@
-<html lang="{{ $locale }}">
+<html lang="{{ App::getLocale() }}">
     <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Liro Backend</title>
@@ -18,7 +18,7 @@
                         <div class="uk-navbar-left">
                             <!--
                             <div class="uk-navbar-item uk-logo">
-                                <a href="{{ route('home.index') }}">
+                                <a href="/">
                                     <img src="/packages/liro/moire/resource/dist/img/liro.svg" alt="{{ env('APP_NAME') }}" width="37" height="37">
                                 </a>
                             </div>

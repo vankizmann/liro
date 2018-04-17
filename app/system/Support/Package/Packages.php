@@ -15,12 +15,26 @@ class Packages
 
     public function load($paths)
     {
-        $this->packages = array_map([$this, 'make'], $paths);
+        $this->packages = array_reduce($paths, [$this, 'make'], []);
+        return $this;
     }
 
-    public function make($path)
+    public function make($packages, $path)
     {
-        return new Package($this->app, $path);
+        return array_merge($packages, [
+            $path => new Package($this->app, $path)
+        ]);
+    }
+
+    public function all()
+    {
+        return $this->packages;
+    }
+
+    public function get($path)
+    {
+        return isset($this->packages[$path]) ? 
+            $this->packages[$path] : null;
     }
 
 }

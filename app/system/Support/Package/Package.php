@@ -2,6 +2,8 @@
 
 namespace App\Support\Package;
 
+use Illuminate\Support\Collection;
+
 class Package
 {
     protected $app;
@@ -28,13 +30,18 @@ class Package
 
     public function config()
     {
-        return $this->config;
+        return Collection::make($this->config);
     }
 
     public function loadScripts()
     {
         !$this->app->files->exists("{$this->path}/scripts.php") ?: 
             $this->scripts = require("{$this->path}/scripts.php");
+    }
+
+    public function scripts()
+    {
+        return Collection::make($this->scripts);
     }
 
 }

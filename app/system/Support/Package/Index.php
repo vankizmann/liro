@@ -4,6 +4,9 @@ namespace App\Support\Package;
 
 class Index
 {
+
+    protected $app;
+    
     /**
      * Base config path.
      *
@@ -30,7 +33,7 @@ class Index
      *
      * @var array
      */
-    public $added = [];
+    public $install = [];
 
     /**
      * Store application in class.
@@ -93,7 +96,7 @@ class Index
      */
     public function writeIndex()
     {
-        count($this->added) == 0 ?: $this->app->files->put($this->config, 
+        count($this->install) == 0 ?: $this->app->files->put($this->config, 
             "<?php\nreturn " . var_export($this->index, true) . ";");
     }
 
@@ -151,11 +154,21 @@ class Index
         return $this->index;
     }
 
+    /**
+     * Return all enabled indexes
+     *
+     * @return array
+     */
     public function enabled()
     {
         return array_keys(array_intersect($this->index, [true]));
     }
 
+    /**
+     * Return all disabled indexes
+     *
+     * @return array
+     */
     public function disabled()
     {
         return array_keys(array_intersect($this->index, [false]));
@@ -163,28 +176,28 @@ class Index
 
 
     /**
-     * Filter new packages and save in added.
+     * Filter new packages and save in install.
      *
      * @return void
      */
     public function initAdded()
     {
-        $this->added = array_diff($this->paths, 
+        $this->install = array_diff($this->paths, 
             array_intersect(array_keys($this->index), $this->paths));
     }
 
     /**
-     * Return added.
+     * Return install.
      *
      * @return array
      */
-    public function added()
+    public function install()
     {
-        return $this->added;
+        return $this->install;
     }
 
     /**
-     * Boot paths, indexing and get added.
+     * Boot paths, indexing and get install.
      *
      * @return void
      */
@@ -193,7 +206,17 @@ class Index
         $this->loadIndex();
         $this->initAdded();
         $this->initIndex();
+    }
+
+    /**
+     * Close function
+     *
+     * @return void
+     */
+    public function close()
+    {
         $this->writeIndex();
     }
+
 
 }

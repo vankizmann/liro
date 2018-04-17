@@ -9,7 +9,7 @@ class Asset extends Facade
 
      protected static function getFacadeAccessor()
      {
-         return 'cms.asset';
+         return 'asset';
     }
     
 }

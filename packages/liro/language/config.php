@@ -4,7 +4,7 @@ return [
     
     'name'      => 'Language',
     'version'   => '0.0.1',
-    'view'      => 'liro.language',
+    'alias'     => 'liro.language',
 
     'autoload' => [
         'Liro\\Language\\' => ''
@@ -12,11 +12,11 @@ return [
 
     'events' => [
 
-        'frontend/route' => function($app) {
+        'frontend.route' => function($app) {
             dd('route frontend!');
         },
 
-        'backend/route' => function($app) {
+        'backend.route' => function($app) {
             require('route.php');
         }
 

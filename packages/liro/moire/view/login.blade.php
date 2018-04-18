@@ -1,4 +1,4 @@
-<html lang="{{ $locale }}">
+<html lang="{{ App::getLocale() }}">
     <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Liro Backend</title>

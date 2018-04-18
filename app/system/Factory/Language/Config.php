@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Support\Language;
+namespace App\Factory\Language;
 
-class Index
+class Config
 {
 
     protected $app;
@@ -113,6 +113,7 @@ class Index
     public function boot()
     {
         $this->loadIndex();
+        return $this;
     }
 
     /**
@@ -123,6 +124,7 @@ class Index
     public function close()
     {
         $this->writeIndex();
+        return $this;
     }
 
 }

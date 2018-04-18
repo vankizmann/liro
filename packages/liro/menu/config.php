@@ -4,7 +4,7 @@ return [
 
     'name'      => 'Menu',
     'version'   => '0.0.1',
-    'view'      => 'liro.menu',
+    'alias'     => 'liro.menu',
 
     'autoload' => [
         'Liro\\Menu\\' => ''
@@ -12,11 +12,11 @@ return [
 
     'events' => [
 
-        'frontend/route' => function($app) {
+        'frontend.route' => function($app) {
             dd('route frontend!');
         },
 
-        'backend/route' => function($app) {
+        'backend.route' => function($app) {
             require('route.php');
         }
 

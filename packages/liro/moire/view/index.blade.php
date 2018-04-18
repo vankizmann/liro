@@ -41,7 +41,7 @@
                                     <a href="{{ 'test' }}">{{ auth()->user()->name }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ routeLang(null, 'de') }}"></i>@lang('*.user.form.logout')</a>
+                                    <a href="{{ route('logout') }}"></i>@lang('*.user.form.logout')</a>
                                 </li>
                             </ul>
                         </div>

@@ -1,8 +1,8 @@
 @extends('theme::index')
 
 @php
-    $app['cms.asset']->linkJs('cms.app.user.edit', '/packages/liro/user/resource/dist/app-user-edit.js', ['cms.app']);
-    $app['cms.asset']->plainJs('cms.data.user', 'liro.data.user = '.$user->toJson().';', ['cms.bootstrap']);
+    $app['asset']->linkJs('cms.app.user.edit', '/packages/liro/user/resource/dist/app-user-edit.js', ['cms.app']);
+    $app['asset']->plainJs('cms.data.user', 'liro.data.user = '.$user->toJson().';', ['cms.bootstrap']);
 @endphp
 
 @section('content')

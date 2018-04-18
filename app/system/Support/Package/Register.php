@@ -2,7 +2,6 @@
 
 namespace App\Support\Package;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class Register
@@ -36,21 +35,36 @@ class Register
     public function makePackage($package)
     {
         $config = $package->config();
+        $alias = $config->get('alias');
 
-        if ( $view = $config->get('view') ) {
-            $this->app->get('view')->addNamespace($view, $package->path.'/view');
-        }
-        
+        $this->app->get('view')->addNamespace($alias, $package->path.'/view');
+        $this->app->get('translator')->addJsonPath($package->path.'/language');
 
-        foreach ($config->get('autoload', []) as $key => $value) {
+        $autoload = isset($package->config['autoload']) ? 
+            $package->config['autoload'] : [];
+
+        foreach ($autoload as $key => $value) {
             $this->app->get('autoload')->addPrefix($key, $package->path.'/'.$value);
         }
 
-        foreach ($config->get('events', []) as $key => $value) {
-            $this->app->get('events')->listen($package->path.'/'.$key, $value);
+        $events = isset($package->config['events']) ? 
+            $package->config['events'] : [];
+
+        if ( $value = isset($events['factory.boot']) ? $events['factory.boot'] : null ) {
+            $this->app->get('events')->listen('factory.boot', $value);
         }
 
-        
+        if ( $value = isset($events['factory.route']) ? $events['factory.route'] : null ) {
+            $this->app->get('events')->listen('factory.route', $value);
+        }
+
+        if ( $value = isset($events['frontend.route']) ? $events['frontend.route'] : null ) {
+            $this->app->get('events')->listen($alias.'.frontend.route', $value);
+        }
+
+        if ( $value = isset($events['backend.route']) ? $events['backend.route'] : null ) {
+            $this->app->get('events')->listen($alias.'.backend.route', $value);
+        }
 
         // array_walk(, Arr::get($config, 'autoload', []));
     }

@@ -17,14 +17,14 @@ class UserController extends Controller
 
     public function show($id)
     {
-        return view('user::show', [
+        return view('liro.user::show', [
             'user' => User::find($id)
         ]);
     }
 
     public function create()
     {
-        return view('user::create', [
+        return view('liro.user::create', [
             'user' => new User
         ]);
     }
@@ -45,7 +45,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        return view('user::edit', [
+        return view('liro.user::edit', [
             'user' => User::find($id)
         ]);
     }

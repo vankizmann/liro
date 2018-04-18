@@ -28,7 +28,7 @@ return [
             'user' =>  $app['translator']->getFromJson('*.user', [])
         ];
 
-        $app['cms.asset']->plainJs('cms.user.lang', "liro.setMessages(liro.getLocale(), ".json_encode($messages).");", ['cms.bootstrap']);
+        $app['asset']->plainJs('cms.user.lang', "liro.setMessages(liro.getLocale(), ".json_encode($messages).");", ['cms.bootstrap']);
 
         $app['router']
             ->get('login', 'Liro\User\Controller\AuthenticateController@form')

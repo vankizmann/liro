@@ -1,10 +1,21 @@
 <?php
 
+/**
+ * MARK AS UNUSED
+ */
+
 namespace App\Factory\Language;
 
-class Config
+use Illuminate\Contracts\Foundation\Application;
+
+class LanguageConfig
 {
 
+    /**
+     * Application instance.
+     *
+     * @var \Illuminate\Contracts\Foundation\Application
+     */
     protected $app;
     
     /**
@@ -26,7 +37,7 @@ class Config
      *
      * @param \Illuminate\Contracts\Foundation\Application $app
      */
-    public function __construct($app)
+    public function __construct(Application $app)
     {
         $this->app = $app;
     }

@@ -1,10 +1,21 @@
 <?php
 
-namespace App\Support\Package;
+/**
+ * MARK AS UNUSED
+ */
 
-class Index
+namespace App\Factory\Package;
+
+use Illuminate\Contracts\Foundation\Application;
+
+class PackageConfig
 {
 
+    /**
+     * Application instance.
+     *
+     * @var \Illuminate\Contracts\Foundation\Application
+     */
     protected $app;
     
     /**
@@ -40,7 +51,7 @@ class Index
      *
      * @param \Illuminate\Contracts\Foundation\Application $app
      */
-    public function __construct($app)
+    public function __construct(Application $app)
     {
         $this->app = $app;
     }

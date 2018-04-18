@@ -33,8 +33,8 @@ class Factory
         $events = $this->app->get('events');
         $router = $this->app->get('router');
 
-        $router->get('{locale}', function() use ($events) {
-            dd($this->app->getLocale());
+        $router->middleware('web')->get('{locale}', function() use ($events) {
+            dd($this->app->events);
         });
         
         return;

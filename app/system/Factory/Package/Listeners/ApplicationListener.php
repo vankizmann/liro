@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Factory\Language\Listeners;
+namespace App\Factory\Package\Listeners;
 
 use Illuminate\Contracts\Foundation\Application;
 
@@ -30,8 +30,8 @@ class ApplicationListener
      */
     public function handle()
     {
-        $this->app->make('App\Factory\Language\LanguageFactory');
+        $this->app->singleton('package', 'App\Factory\Package\PackageConfig');
+        $this->app->make('App\Factory\Package\PackageFactory');
     }
 
 }
-

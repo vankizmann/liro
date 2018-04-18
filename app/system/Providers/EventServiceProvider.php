@@ -13,10 +13,8 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'bootstrapped: Illuminate\Foundation\Bootstrap\BootProviders' => [
-            'App\Factory\Language\Listeners\ApplicationListener'
-        ],
-        'Illuminate\Routing\Events\RouteMatched' => [
-            'App\Factory\Language\Listeners\RouterListener'
+            'App\Factory\Language\Listeners\ApplicationListener',
+            'App\Factory\Package\Listeners\ApplicationListener'
         ]
     ];
 

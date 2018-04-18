@@ -4,7 +4,6 @@ namespace App\Factory\Language\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Session;
 
 class Language extends Model
 {
@@ -31,9 +30,4 @@ class Language extends Model
         return $this->where('locale', $locale);
     }
 
-    public function session()
-    {
-        $locale = Session::get('locale', null);
-        return $this->where('locale', $locale);
-    }
 }

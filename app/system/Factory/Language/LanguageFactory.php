@@ -8,67 +8,135 @@ use App\Factory\Language\Models\Language;
 class LanguageFactory
 {
 
+    /**
+     * Application instance.
+     *
+     * @var \Illuminate\Contracts\Foundation\Application
+     */
+    protected $app;
+
+    /**
+     * Language model.
+     *
+     * @var \App\Factory\Language\Models\Language
+     */
+    protected $language;
+
+    /**
+     * Languages matching with route.
+     *
+     * @var \App\Factory\Language\Models\Language
+     */
     protected $request;
-    protected $session;
+
+    /**
+     * Languages which are marked as defrault.
+     *
+     * @var \App\Factory\Language\Models\Language
+     */
     protected $default;
 
+    /**
+     * Locale store.
+     *
+     * @var string
+     */
     public $locale;
 
-    public function __construct(Language $language)
+    /**
+     * Initialize app and language and run thru all options.
+     *
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param \App\Factory\Language\Models\Language $language
+     */
+    public function __construct(Application $app, Language $language)
     {
-        // Get language by request segement.
-        $this->request = $language->request();
+        $this->app = $app;
+        $this->language = $language;
 
-        // Get language by session segement.
-        $this->session = $language->session();
+        $this->getLocale();
+        $this->getRequest();
+        $this->getDefault();
 
-        // Get default language from db.
-        $this->default = $language->default();
+        $this->resolveDefault();
+        $this->resolveRequest();
+
+        $this->setLocale();
+        $this->fireEvent();
     }
 
-    public function getLocale()
+    /**
+     * Get default locale from config.
+     *
+     * @return void
+     */
+    protected function getLocale()
+    {
+        $this->locale = $this->app->getLocale();
+    }
+
+    /**
+     * Get languages matching with request.
+     *
+     * @return void
+     */
+    protected function getRequest()
+    {
+        $this->request = $this->language->request();
+    }
+
+    /**
+     * Get languages marked as default.
+     *
+     * @return void
+     */
+    protected function getDefault()
+    {
+        $this->default = $this->language->default();
+    }
+
+    /**
+     * Set locale to request if possible.
+     *
+     * @return void
+     */
+    protected function resolveRequest()
     {
         if ( $this->request->count() ) {
-            // Set app locale to request locale.
-            return $this->locale = $this->request->pluck('locale')->first();
+            $this->locale = $this->request->pluck('locale')->first();
         }
-        
-        if ( $this->session->count() ) {
-            // Set app locale to session locale.
-            return $this->locale = $this->session->pluck('locale')->first();
+    }
+
+    /**
+     * Set locale to default if possible.
+     *
+     * @return void
+     */
+    protected function resolveDefault()
+    {
+        if ( $this->default->count() ) {
+            $this->locale = $this->default->pluck('locale')->first();
         }
-
-        // Set app locale to default locale.
-        return $this->locale = $this->default->pluck('locale')->first();
     }
 
-    public function setLocale($locale)
+    /**
+     * Set locale inside app.
+     *
+     * @return void
+     */
+    protected function setLocale()
     {
-        $this->locale = $locale;
+        $this->app->setLocale($this->locale);
     }
 
-    public function setLocaleInApplication(Application $app)
+    /**
+     * Fire event
+     *
+     * @return void
+     */
+    protected function fireEvent()
     {
-        $app->setLocale($this->locale);
-    }
-
-    public function setLocaleInTranslator(Application $app)
-    {
-        $app->get('translator')->setLocale($this->locale);
-    }
-
-    public function setLocaleInUrl(Application $app)
-    {
-        $app->get('url')->defaults([
-            'locale' => $this->locale
-        ]);
-    }
-
-    public function setLocaleInView(Application $app)
-    {
-        $app->get('view')->share([
-            'locale' => $this->locale
-        ]);
+        $this->app->get('events')->fire('set: liro.locale');
     }
 
 }

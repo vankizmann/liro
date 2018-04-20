@@ -52,7 +52,7 @@ class Liro
 
     public function getThemePath()
     {
-        return $this->mode == 'installer' ? 'app/installer/themes/*' : 'themes/*/*';
+        return $this->mode == 'installer' ? 'app/installer/themes/*' : 'themes/*';
     }
 
 }

@@ -28,21 +28,15 @@ class Module
 
     public function init()
     {
-        $moduleFolder = $this->app['liro']
-            ->getModulePath();
-
-        $modulePaths = $this->app['files']
-            ->glob($moduleFolder, GLOB_ONLYDIR);
-        
-        $configPath = $this->app
-            ->storagePath('cache/modules.php');
-
-        $this->store = new Store($configPath, $modulePaths);
+        $this->store = new Store(
+            $this->app->storagePath('cache/modules.php'),
+            $this->app->get('files')->glob($this->app->get('liro')->getModulePath(), GLOB_ONLYDIR)
+        );
     }
 
     public function boot()
     {
-        dd($this->store->store);
+        
     }
 
 }

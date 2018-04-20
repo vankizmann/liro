@@ -30,20 +30,18 @@ class LiroSubscriber
      */
     public function subscribe($events)
     {
-        $events->listen('init: Liro\System\Factory\Liro', function() {
+        $events->listen('init: Liro\System\Factory\Liro', function() use ($events) {
             $this->app->singleton('module', 'Liro\System\Module\Module');
         });
 
-        $events->listen('mode: Liro\System\Factory\Liro', function() {
+        $events->listen('mode: Liro\System\Factory\Liro', function() use ($events) {
             $this->app->get('module')->init();
+            $events->fire('init: Liro\System\Module\Module');
         });
 
-        $events->listen('load: Liro\System\Factory\Liro', function() {
+        $events->listen('load: Liro\System\Factory\Liro', function() use ($events) {
             $this->app->get('module')->boot();
-        });
-
-        $events->listen('init: Liro\System\Module\Module', function() {
-            dd('test');
+            $events->fire('boot: Liro\System\Module\Module');
         });
     }
 

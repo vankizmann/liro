@@ -30,12 +30,18 @@ class LiroSubscriber
      */
     public function subscribe($events)
     {
-        $events->listen('init: Liro\System\Factory\Liro', function() {
-            $this->app->make('Liro\System\Theme\ThemeLoader')->init();
+        $events->listen('init: Liro\System\Factory\Liro', function() use ($events) {
+            $this->app->singleton('theme', 'Liro\System\Theme\Theme');
         });
 
-        $events->listen('load: Liro\System\Factory\Liro', function() {
-            $this->app->make('Liro\System\Theme\ThemeRegistrar')->init();
+        $events->listen('mode: Liro\System\Factory\Liro', function() use ($events) {
+            $this->app->get('theme')->init();
+            $events->fire('init: Liro\System\Theme\Theme');
+        });
+
+        $events->listen('load: Liro\System\Factory\Liro', function() use ($events) {
+            $this->app->get('theme')->boot();
+            $events->fire('boot: Liro\System\Theme\Theme');
         });
     }
 

@@ -153,7 +153,7 @@ return [
         Liro\App\Providers\AppServiceProvider::class,
         Liro\App\Providers\EventServiceProvider::class,
 
-        Barryvdh\Debugbar\ServiceProvider::class,
+        Liro\System\Factory\FactoryServiceProvider::class,
     ],
 
     /*
@@ -203,6 +203,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Asset' => Liro\System\Factory\Facade\Asset::class,
+        'Style' => Liro\System\Factory\Facade\Style::class,
+        'Script' => Liro\System\Factory\Facade\Script::class,
     ],
 
 ];

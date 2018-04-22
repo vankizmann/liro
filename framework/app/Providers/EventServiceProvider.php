@@ -13,7 +13,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'bootstrapped: Illuminate\Foundation\Bootstrap\BootProviders' => [
-            'Liro\System\Factory\Listeners\ApplicationListener'
+            'Liro\System\Factory\FactoryListener'
         ]
     ];
 
@@ -23,9 +23,6 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $subscribe = [
-        'Liro\System\Theme\Listeners\LiroSubscriber',
-        'Liro\System\Module\Listeners\LiroSubscriber',
-        'Liro\System\Language\Listeners\LiroSubscriber',
-        'Liro\System\Menu\Listeners\LiroSubscriber'
+        // 
     ];
 }

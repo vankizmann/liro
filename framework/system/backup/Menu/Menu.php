@@ -66,6 +66,11 @@ class Menu
         $this->app->get('liro.factory')->setMode('frontend');
     }
 
+    public function getFrontendRoute()
+    {
+        return $this->frontendRoute;
+    }
+
     public function addFrontendRoute($name, $callback)
     {
         $this->frontendRoutes[$name] = $callback;
@@ -99,6 +104,11 @@ class Menu
         }
 
         $this->app->get('liro.factory')->setMode('backend');
+    }
+
+    public function getBackendRoute()
+    {
+        return $this->backendRoute;
     }
 
     public function addBackendRoute($name, $callback)

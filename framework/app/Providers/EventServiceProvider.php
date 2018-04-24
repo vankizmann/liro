@@ -12,9 +12,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'bootstrapped: Illuminate\Foundation\Bootstrap\BootProviders' => [
-            'Liro\System\Factory\FactoryListener'
-        ]
+        // 
     ];
 
     /**

@@ -5,6 +5,7 @@ namespace Framework\Module;
 use Illuminate\Contracts\Foundation\Application;
 use Framework\Module\Loader\ModuleLoader;
 use Framework\Module\Loader\ClassLoader;
+use Framework\Module\Loader\EventLoader;
 
 class ModuleManager implements \IteratorAggregate
 {
@@ -24,8 +25,8 @@ class ModuleManager implements \IteratorAggregate
     public function __construct(Application $app)
     {
         $this->loaders = [
-            $app->make(ModuleLoader::class),
-            $app->make(ClassLoader::class)
+            $app->make(ClassLoader::class),
+            $app->make(EventLoader::class)
         ];
 
         $this->app = $app;

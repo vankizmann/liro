@@ -4,7 +4,7 @@ namespace Framework\Module\Loader;
 
 use Illuminate\Contracts\Foundation\Application;
 
-class ModuleLoader implements LoaderInterface
+class EventLoader implements LoaderInterface
 {
     protected $app;
 
@@ -15,7 +15,9 @@ class ModuleLoader implements LoaderInterface
 
     public function load($module)
     {
-        call_user_func($module['boot'], $this->app);
+        foreach ($module['events'] as $event => $handler) {
+            $this->app['events']->listen($event, $handler);
+        }
 
         return $module;
     }

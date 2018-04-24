@@ -3,9 +3,7 @@
 namespace Liro\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Framework\System\Module\ModuleInstance;
-use Framework\System\Module\FileLoader;
-use Framework\System\Module\ConfigLoader;
+use Framework\Module\ModuleManager;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -45,16 +43,14 @@ class AppServiceProvider extends ServiceProvider
         // });
 
         $this->app->singleton('module', function() {
-            return $this->app->make('Framework\Module\ModuleManager');
+            return $this->app->make(ModuleManager::class);
         });
 
-        $this->app['module']->register('framework/system/*/config.php')->load([
+        $this->app['module']->register('framework/modules/*/index.php')->load([
             'factory'
         ]);
 
-        $test = new \Factory\Test;
-
-        dd($this->app['module']);
+        $this->app['events']->fire('app.boot', $this->app);
     }
 
     /**

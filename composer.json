@@ -28,7 +28,7 @@
         ],
         "psr-4": {
             "Liro\\": "framework/",
-            "Framework\\": "framework/"
+            "Framework\\": "framework/system"
         }
     },
     "extra": {

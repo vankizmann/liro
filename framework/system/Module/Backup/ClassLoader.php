@@ -4,7 +4,7 @@ namespace Framework\System\Module;
 
 use Symfony\Component\ClassLoader\Psr4ClassLoader;
 
-class ClassLoader extends Psr4ClassLoader
+class ClassLoader
 {
     /**
      * Add prefix.

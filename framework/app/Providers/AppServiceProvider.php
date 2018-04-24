@@ -16,35 +16,45 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton('classloader', function() {
-            return $this->app->make('Framework\System\Module\ClassLoader');
-        });
+        // $this->app->singleton('classloader', function() {
+        //     return $this->app->make('Framework\System\Module\ClassLoader');
+        // });
 
-        $this->app->singleton('fileloader', function() {
-            return $this->app->make('Framework\System\Module\FileLoader');
-        });
+        // $this->app->singleton('fileloader', function() {
+        //     return $this->app->make('Framework\System\Module\FileLoader');
+        // });
 
-        $this->app->singleton('configloader', function() {
-            return $this->app->make('Framework\System\Module\ConfigLoader');
-        });
+        // $this->app->singleton('configloader', function() {
+        //     return $this->app->make('Framework\System\Module\ConfigLoader');
+        // });
+
+        // $this->app->singleton('module', function() {
+        //     return $this->app->make('Framework\System\Module\ModuleInstance');
+        // });
+
+        // $this->app['configloader']->extend('autoload', function($app, $value) {
+        //     foreach ($value['autoload'] as $prefix => $path) {
+        //         $app['classloader']->addPrefixAndRegister($prefix, $path, $value['_folder']);
+        //     }
+        // });
+
+        // $this->app['configloader']->extend('events', function($app, $value) {
+        //     foreach ($value['events'] as $event => $handler) {
+        //         $app['events']->listen($event, $handler);
+        //     }
+        // });
 
         $this->app->singleton('module', function() {
-            return $this->app->make('Framework\System\Module\ModuleInstance');
+            return $this->app->make('Framework\Module\ModuleManager');
         });
 
-        $this->app['configloader']->extend('autoload', function($app, $value) {
-            foreach ($value['autoload'] as $prefix => $path) {
-                $app['classloader']->addPrefixAndRegister($prefix, $path, $value['_folder']);
-            }
-        });
+        $this->app['module']->register('framework/system/*/config.php')->load([
+            'factory'
+        ]);
 
-        $this->app['configloader']->extend('events', function($app, $value) {
-            foreach ($value['events'] as $event => $handler) {
-                $app['events']->listen($event, $handler);
-            }
-        });
+        $test = new \Factory\Test;
 
-        $this->app['module']->make('framework/system/*');
+        dd($this->app['module']);
     }
 
     /**

@@ -53,12 +53,8 @@ class ModuleManager implements \IteratorAggregate
 
         foreach ($names as $name) {
 
-            if ( isset($this->modules[$name]) ) {
+            if ( isset($this->modules[$name]) || ! isset($this->registered[$name]) ) {
                 continue;
-            }
-
-            if ( ! isset($this->registered[$name]) ) {
-                throw new \RuntimeException("Module not defined: {$name}");
             }
 
             $module = $this->registered[$name];

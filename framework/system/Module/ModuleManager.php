@@ -17,11 +17,6 @@ class ModuleManager implements \IteratorAggregate
 
     protected $loaders = [];
 
-    public function getIterator()
-    {
-        return new \ArrayIterator($this->modules);
-    }
-
     public function __construct(Application $app)
     {
         $this->loaders = [
@@ -32,9 +27,9 @@ class ModuleManager implements \IteratorAggregate
         $this->app = $app;
     }
 
-    public function __invoke($name)
+    public function getIterator()
     {
-        return $this->get($name);
+        return new \ArrayIterator($this->modules);
     }
 
     public function get($name)

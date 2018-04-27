@@ -2,11 +2,7 @@
 
 return [
     
-    'unique'        => 'liro.users',
-    'version'       => '1.0.0',
-
-    'name'          => '*.liro.user.module.name',
-    'description'   => '*.liro.user.module.descirpiton',
+    'name'        => 'users',
 
     'autoload' => [
         'System\\Users\\' => ''

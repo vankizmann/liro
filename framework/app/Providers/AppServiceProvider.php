@@ -14,9 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('factory', function() {
-            return $this->app->make(FactoryManager::class);
-        });
+        // 
     }
 
     /**
@@ -26,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app['factory']->boot();
+        // 
     }
     
 }

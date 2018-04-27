@@ -27,8 +27,8 @@
             
         ],
         "psr-4": {
-            "Liro\\": "framework/",
-            "Framework\\": "framework/system"
+            "Liro\\App\\": "framework/app/",
+            "Liro\\System\\Module\\": "framework/modules/module/src/"
         }
     },
     "extra": {

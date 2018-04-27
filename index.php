@@ -25,17 +25,39 @@ require __DIR__.'/vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
-| Turn On The Lights
+| Create The Application
 |--------------------------------------------------------------------------
 |
-| We need to illuminate PHP development, so let us turn on the lights.
-| This bootstraps the framework and gets it ready for use, then it
-| will load up this application so that we can run it and send
-| the responses back to the browser and delight our users.
+| The first thing we will do is create a new Laravel application instance
+| which serves as the "glue" for all the components of Laravel, and is
+| the IoC container for the system binding all of the various parts.
 |
 */
 
-$app = require_once __DIR__.'/framework/bootstrap.php';
+$app = new Liro\App\Application(
+    realpath(__DIR__)
+);
+
+/*
+|--------------------------------------------------------------------------
+| Bind Important Interfaces
+|--------------------------------------------------------------------------
+|
+| Next, we need to bind some important interfaces into the container so
+| we will be able to resolve them when needed. The kernels serve the
+| incoming requests to this application from both the web and CLI.
+|
+*/
+
+$app->singleton(
+    Illuminate\Contracts\Http\Kernel::class,
+    Liro\App\Http\Kernel::class
+);
+
+$app->singleton(
+    Illuminate\Contracts\Debug\ExceptionHandler::class,
+    Liro\App\Exceptions\Handler::class
+);
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +76,10 @@ $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
+
+require_once realpath(__DIR__) . '/framework/installer/index.php';
+require_once realpath(__DIR__) . '/framework/backend/index.php';
+require_once realpath(__DIR__) . '/framework/frontend/index.php';
 
 $response->send();
 

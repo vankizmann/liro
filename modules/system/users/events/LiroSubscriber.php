@@ -30,14 +30,16 @@ class LiroSubscriber
      */
     public function subscribe()
     {
-        $backendRoute = $this->app['liro.menu']->getBackendRoute();
+        // dd('wohoo');
 
-        $this->app['router']->prefix("{locale}/{$backendRoute}")->group(function() {
-            $this->app['router']->get('login', [
-                'as' => 'backend.user.login',
-                'use' => 'System\User\Controllers\Backend\AuthController@form'
-            ]);
-        });
+        // $backendRoute = $this->app['liro.menu']->getBackendRoute();
+
+        // $this->app['router']->prefix("{locale}/{$backendRoute}")->group(function() {
+        //     $this->app['router']->get('login', [
+        //         'as' => 'backend.user.login',
+        //         'use' => 'System\User\Controllers\Backend\AuthController@form'
+        //     ]);
+        // });
 
         // $frontendRoute = $this->app['liro.menu']->getBackendRoute();
 

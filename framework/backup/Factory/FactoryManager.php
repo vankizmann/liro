@@ -3,9 +3,6 @@
 namespace Framework\Factory;
 
 use Illuminate\Contracts\Foundation\Application;
-use Framework\Module\ModuleManager;
-use Framework\Language\LanguageManager;
-use Framework\Route\RouteManager;
 
 class FactoryManager implements \ArrayAccess
 {
@@ -39,18 +36,6 @@ class FactoryManager implements \ArrayAccess
     public function get($name)
     {
         return property_exists($this, $name) ? $this->$name : null;
-    }
-
-    public function set($name, $value)
-    {
-        $this->$name = $value;
-    }
-
-    public function boot()
-    {
-        $this->module = $this->app->make(ModuleManager::class);
-        $this->language = $this->app->make(LanguageManager::class);
-        $this->route = $this->app->make(RouteManager::class);
     }
 
 }

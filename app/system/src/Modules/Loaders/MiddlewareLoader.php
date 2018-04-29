@@ -1,11 +1,10 @@
 <?php
 
-namespace Liro\System\Languages\Loaders;
+namespace Liro\System\Modules\Loaders;
 
 use Illuminate\Contracts\Foundation\Application;
-use Liro\System\Modules\Loaders\LoaderInterface;
 
-class TranslatorLoader implements LoaderInterface
+class MiddlewareLoader implements LoaderInterface
 {
     protected $app;
 
@@ -16,8 +15,10 @@ class TranslatorLoader implements LoaderInterface
 
     public function load($module)
     {
-        $this->app['translator']->addJsonPath($module->path.'/languages');
-        
+        foreach ($module->config('middleware', []) as $name => $handler) {
+            $this->app['router']->aliasMiddleware($name, $handler);
+        }
+
         return $module;
     }
 }

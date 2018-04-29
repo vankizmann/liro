@@ -63,7 +63,7 @@ class MenuManager implements \IteratorAggregate
 
         $walker->run(function($menu, $next) {
 
-            $this->app['router']->prefix($menu->prefixRoute)->group(function() use ($menu, $next) {
+            $this->app['router']->middleware('web')->prefix($menu->prefixRoute)->group(function() use ($menu, $next) {
                 $this->getHandler($menu->package);
                 $next();
             });

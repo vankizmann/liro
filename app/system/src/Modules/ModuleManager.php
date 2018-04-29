@@ -135,10 +135,12 @@ class ModuleManager implements \IteratorAggregate
                 throw new \Exception("Module name missing in: {$file}");
             }
 
-            // Add module into register
-            $this->registered[$module['name']] = array_merge([
+            $module = array_merge([
                 'path' => dirname($file)
             ], $module);
+
+            // Add module into register
+            $this->registered[$module['name']] = $module;
 
         }
 

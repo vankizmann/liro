@@ -15,7 +15,7 @@ class EventLoader implements LoaderInterface
 
     public function load($module)
     {
-        foreach (@$module['events'] ?: [] as $event => $handler) {
+        foreach ($module->config('events', []) as $event => $handler) {
             $this->app['events']->listen($event, $handler);
         }
 

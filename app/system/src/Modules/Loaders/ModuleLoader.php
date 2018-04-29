@@ -3,6 +3,7 @@
 namespace Liro\System\Modules\Loaders;
 
 use Illuminate\Contracts\Foundation\Application;
+use Liro\System\Modules\Module;
 
 class ModuleLoader implements LoaderInterface
 {
@@ -15,14 +16,8 @@ class ModuleLoader implements LoaderInterface
 
     public function load($module)
     {
-        if ( isset($module['loader']) && is_array($module['loader']) ) {
-            $this->app['modules']->append($module['loader']);
-        }
+        $module = $this->app->make(Module::class)->init($module);
 
-        if ( isset($module['boot']) && is_callable($module['boot']) ) {
-            call_user_func($module['boot'], $this->app);
-        }
-        
         return $module;
     }
 }

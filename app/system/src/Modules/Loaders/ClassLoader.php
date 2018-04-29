@@ -15,8 +15,8 @@ class ClassLoader implements LoaderInterface
 
     public function load($module)
     {
-        foreach (@$module['autoload'] ?: [] as $namespace => $hint) {
-            $this->loader->addPsr4($namespace, $module['path'].'/'.$hint);
+        foreach ($module->config('autoload', []) as $namespace => $hint) {
+            $this->loader->addPsr4($namespace, $module->path.'/'.$hint);
         }
 
         $this->loader->register();

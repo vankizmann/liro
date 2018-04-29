@@ -15,7 +15,7 @@ class AliasLoader implements LoaderInterface
 
     public function load($module)
     {
-        foreach (@$module['alias'] ?: [] as $name => $handler) {
+        foreach ($module->config('alias', []) as $name => $handler) {
             $this->app->singleton($name, $handler);
         }
 

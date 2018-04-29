@@ -21,6 +21,6 @@ class Language extends Model
 
     public function getActiveAttribute()
     {
-        return isset($this->attributes['locale']) && $this->attributes['locale'] == app('request')->segment(1) ? 1 : 0;
+        return isset($this->locale) && $this->locale == app('request')->segment(1) ? 1 : 0;
     }
 }

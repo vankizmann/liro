@@ -43,10 +43,13 @@ $app->singleton(
 */
 
 $app['modules']->append([
+    Liro\System\Modules\Loaders\ModuleLoader::class,
     Liro\System\Modules\Loaders\ClassLoader::class,
     Liro\System\Modules\Loaders\AliasLoader::class,
+    Liro\System\Modules\Loaders\ViewLoader::class,
     Liro\System\Modules\Loaders\EventLoader::class,
-    Liro\System\Modules\Loaders\ModuleLoader::class,
+    Liro\System\Modules\Loaders\MiddlewareLoader::class,
+    Liro\System\Modules\Loaders\DefaultLoader::class,
 ]);
 
 $app['modules']->register([

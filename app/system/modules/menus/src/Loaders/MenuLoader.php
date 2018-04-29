@@ -16,8 +16,8 @@ class MenuLoader implements LoaderInterface
 
     public function load($module)
     {
-        foreach (@$module['routes'] ?: [] as $name => $handler) {
-            $this->app['menus']->append($name, $handler, $module['name']);
+        foreach ($module->config('routes', []) as $name => $handler) {
+            $this->app['menus']->append($name, $handler, $module->name);
         }
         
         return $module;

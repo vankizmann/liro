@@ -2,8 +2,6 @@
 
 return [
 
-    'model' => 'Liro\User\Model\User',
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -69,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Liro\User\Model\User::class,
+            'model' => Liro\System\Users\Models\User::class,
         ],
 
         // 'users' => [

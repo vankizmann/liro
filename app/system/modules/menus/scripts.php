@@ -21,7 +21,12 @@ return [
             });
 
             $app['db']->table('menu_types')->insert([
-                'title' => 'Backend Menu',
+                'title' => 'Backend Main Menu',
+                'route' => 'backend'
+            ]);
+
+            $app['db']->table('menu_types')->insert([
+                'title' => 'Backend User Menu',
                 'route' => 'backend'
             ]);
 
@@ -60,13 +65,13 @@ return [
             $app['db']->table('menus')->insert([
                 'state'             => 1,
                 'lang'              => '*',
-                'title'             => 'Login',
-                'route'             => 'login',
+                'title'             => 'Users',
+                'route'             => 'users',
                 'query'             => '',
-                'package'           => 'liro.users.backend.login',
+                'package'           => 'liro.users.backend.users',
                 'menu_type_id'      => 1
             ]);
-            
+
             $app['db']->table('menus')->insert([
                 'state'             => 1,
                 'lang'              => '*',
@@ -80,11 +85,31 @@ return [
             $app['db']->table('menus')->insert([
                 'state'             => 1,
                 'lang'              => '*',
+                'title'             => 'Login',
+                'route'             => 'login',
+                'query'             => '',
+                'package'           => 'liro.users.backend.login',
+                'menu_type_id'      => 2
+            ]);
+
+            $app['db']->table('menus')->insert([
+                'state'             => 1,
+                'lang'              => '*',
+                'title'             => 'Logout',
+                'route'             => 'logout',
+                'query'             => '',
+                'package'           => 'liro.users.backend.logout',
+                'menu_type_id'      => 2
+            ]);
+
+            $app['db']->table('menus')->insert([
+                'state'             => 1,
+                'lang'              => '*',
                 'title'             => 'Home',
                 'route'             => '',
                 'query'             => '',
                 'package'           => 'system.test.backend.home',
-                'menu_type_id'      => 2
+                'menu_type_id'      => 3
             ]);
         
         return;

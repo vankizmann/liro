@@ -57,7 +57,7 @@ $app['modules']->register([
 ]);
 
 $app->booted(function($app) {
-    $app['modules']->load(['system.bootstrapper']);
+    $app['modules']->load(['system.bootstrap']);
 });
 
 /*

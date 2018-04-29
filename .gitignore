@@ -1,6 +1,3 @@
 .DS_Store
 /.env
-/npm-error.log
-/yarn-error.log
-/node_modules
 /vendor

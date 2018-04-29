@@ -17,7 +17,7 @@ class CheckUserRole
     public function handle(Request $request, $next, $role)
     {
         if ( ! $request->user() || ! $request->user()->hasRole($role) ) {
-            return redirect()->route('backend.login')->with('message', 'This action is unauthorized.');
+            return redirect()->route('backend.users.login')->with('message', 'This action is unauthorized.');
         }
 
         return $next($request);

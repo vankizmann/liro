@@ -4,5 +4,5 @@ namespace Liro\Menus\Models;
 
 class Menu extends \Liro\System\Menus\Models\Menu
 {
-    
+    // Menu model
 }

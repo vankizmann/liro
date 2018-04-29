@@ -50,6 +50,11 @@ class MenuManager implements \IteratorAggregate
         return $this->menus->where('route', $name) ?: null;
     }
 
+    public function all()
+    {
+        return $this->menus;
+    }
+
     public function register()
     {
         $this->menus = Menu::enabled()->get()->toTree();

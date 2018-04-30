@@ -39,8 +39,10 @@
 
                             <!-- Main menu start -->
                             <ul class="uk-navbar-nav">
-                                @foreach( app('menus')->all()->where('menu_type_id', 1) as $menu )
-                                    <li><a href="{{ url($menu->prefixRoute) }}">{{ $menu->title }}</a></li>
+                                @foreach( app('menus')->getTypeById(1)->menus as $menu )
+                                    @if ( auth()->user()->hasRoute($menu->package) )
+                                        <li><a href="{{ url($menu->prefixRoute) }}">{{ $menu->title }}</a></li>
+                                    @endif
                                 @endforeach
                             </ul>
                             <!-- Main menu end -->
@@ -50,8 +52,10 @@
 
                             <!-- User menu start -->
                             <ul class="uk-navbar-nav">
-                                @foreach( app('menus')->all()->where('menu_type_id', 2) as $menu )
-                                    <li><a href="{{ url($menu->prefixRoute) }}">{{ $menu->title }}</a></li>
+                                @foreach( app('menus')->getTypeById(2)->menus as $menu )
+                                    @if ( auth()->user()->hasRoute($menu->package) )
+                                        <li><a href="{{ url($menu->prefixRoute) }}">{{ $menu->title }}</a></li>
+                                    @endif
                                 @endforeach
                             </ul>
                             <!-- User menu end -->

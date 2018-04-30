@@ -10,8 +10,16 @@ return [
 
     'routes' => [
 
-        'backend.index' => function($app) {
-            $app['router']->middleware('role:admin')->get('/', 'Liro\Menus\Controllers\BackendMenuController@index');
+        'backend.menus' => function($app) {
+
+            $app['router']
+                ->middleware('role:admin')->name('backend.menus.index')
+                ->get('/', 'Liro\Menus\Controllers\BackendMenuController@index');
+
+            $app['router']
+                ->middleware('role:admin')->name('backend.menus.create')
+                ->get('create', 'Liro\Menus\Controllers\BackendMenuController@create');
+    
         }
 
     ]

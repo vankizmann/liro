@@ -36,8 +36,12 @@ class Menu extends Model
     {
         $route = [$this->route];
 
-        if ( $this->isRoot() ) {
-            array_unshift($route, $this->langRoute, $this->menuType->route);
+        if ( $this->isRoot() && $this->menuType && $this->menuType->route ) {
+            array_unshift($route, $this->menuType->route);
+        }
+
+        if ( $this->isRoot() && $this->langRoute ) {
+            array_unshift($route, $this->langRoute);
         }
 
         return implode('/', $route);

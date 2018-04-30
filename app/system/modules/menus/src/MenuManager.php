@@ -4,6 +4,7 @@ namespace Liro\System\Menus;
 
 use Illuminate\Contracts\Foundation\Application;
 use Liro\System\Menus\Models\Menu;
+use Liro\System\Menus\Models\MenuType;
 use Liro\System\Menus\Helpers\Walker;
 
 class MenuManager implements \IteratorAggregate
@@ -20,6 +21,8 @@ class MenuManager implements \IteratorAggregate
     protected $registerd = [];
 
     protected $menus = [];
+
+    protected $types = [];
 
     /**
      * Initialize application
@@ -50,6 +53,11 @@ class MenuManager implements \IteratorAggregate
         return $this->menus->where('route', $name) ?: null;
     }
 
+    public function getTypeById($id)
+    {
+        return $this->types->find($id) ?: null;
+    }
+
     public function all()
     {
         return $this->menus;
@@ -58,6 +66,7 @@ class MenuManager implements \IteratorAggregate
     public function register()
     {
         $this->menus = Menu::enabled()->get()->toTree();
+        $this->types = MenuType::all();
 
         return $this;
     }

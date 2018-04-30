@@ -34,6 +34,11 @@ return [
                 'title' => 'Main Menu',
                 'route' => ''
             ]);
+
+            $app['db']->table('menu_types')->insert([
+                'title' => 'User Menu',
+                'route' => ''
+            ]);
         
         $schema->dropIfExists('menus');
 
@@ -78,7 +83,7 @@ return [
                 'title'             => 'Menus',
                 'route'             => 'menus',
                 'query'             => '',
-                'package'           => 'liro.menus.backend.index',
+                'package'           => 'liro.menus.backend.menus',
                 'menu_type_id'      => 1
             ]);
 
@@ -110,6 +115,26 @@ return [
                 'query'             => '',
                 'package'           => 'system.test.backend.home',
                 'menu_type_id'      => 3
+            ]);
+
+            $app['db']->table('menus')->insert([
+                'state'             => 1,
+                'lang'              => '*',
+                'title'             => 'Login',
+                'route'             => 'login',
+                'query'             => '',
+                'package'           => 'liro.users.frontend.login',
+                'menu_type_id'      => 4
+            ]);
+
+            $app['db']->table('menus')->insert([
+                'state'             => 1,
+                'lang'              => '*',
+                'title'             => 'Logout',
+                'route'             => 'logout',
+                'query'             => '',
+                'package'           => 'liro.users.frontend.logout',
+                'menu_type_id'      => 4
             ]);
         
         return;

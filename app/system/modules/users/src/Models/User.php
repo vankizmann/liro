@@ -4,6 +4,7 @@ namespace Liro\System\Users\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Liro\System\Users\Models\UserRole;
+use Liro\System\Users\Models\UserRoleRoute;
 
 class User extends \Illuminate\Foundation\Auth\User
 {
@@ -42,6 +43,11 @@ class User extends \Illuminate\Foundation\Auth\User
     public function hasRole($roles = [])
     {
         return $this->roles()->where('access', $roles)->count();
+    }
+
+    public function hasRoute($route)
+    {
+        return $this->roles()->getCollectionRoutes()->intersect($route)->count();
     }
 
     public function setPasswordAttribute($password)

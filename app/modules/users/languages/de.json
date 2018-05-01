@@ -1,0 +1,13 @@
+{
+    "users": {
+
+        "module": {
+            "auth-login":       "Anmelden",
+            "auth-logout":      "Abmelden",
+            "users-index":      "Benutzer",
+            "users-create":     "Benutzer erstellen",
+            "users-edit":       "Benutzer bearbeiten"
+        }
+
+    }
+}

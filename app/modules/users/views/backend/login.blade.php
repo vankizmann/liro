@@ -6,6 +6,6 @@
 
 @section('content')
     <div class="liro-users">
-        <app-login action="{{ route('backend.users.login') }}">@csrf</app-login>
+        <app-login action="{{ route('liro.users.backend.auth.login') }}">@csrf</app-login>
     </div>
 @endsection

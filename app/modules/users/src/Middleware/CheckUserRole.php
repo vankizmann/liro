@@ -21,10 +21,10 @@ class CheckUserRole
         if ( ! $request->user() || ! $request->user()->hasRoles($roles) ) {
 
             if ( array_intersect(['admin', 'editor', 'author'], $roles) ) {
-                return redirect()->route('backend.users.login')->with('error', 'This action is unauthorized.');
+                return redirect()->route('liro.users.backend.auth.login')->with('error', 'This action is unauthorized.');
             }
 
-            return redirect()->route('frontend.users.login')->with('error', 'This action is unauthorized.');
+            return redirect()->route('liro.users.frontend.auth.login')->with('error', 'This action is unauthorized.');
         }
 
         return $next($request);

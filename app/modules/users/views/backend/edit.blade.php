@@ -6,6 +6,6 @@
 
 @section('content')
     <app-user-edit
-        update="{{ route('backend.users.edit', $user->id) }}" :value="{{ $user->toJson() }}"
+        update="{{ $user->editRoute }}" :value="{{ $user->toJson() }}"
     ></app-user-edit>
 @endsection

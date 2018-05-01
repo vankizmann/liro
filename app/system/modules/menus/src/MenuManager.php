@@ -39,23 +39,9 @@ class MenuManager implements \IteratorAggregate
         return new \ArrayIterator($this->menus);
     }
 
-    protected function getHandler($name)
+    public function type($id)
     {
-        if ( isset($this->handlers[$name]) ) {
-            $this->handlers[$name]($this->app);
-        }
-
-        return $this;
-    }
-
-    public function get($name)
-    {
-        return $this->menus->where('route', $name) ?: null;
-    }
-
-    public function getTypeById($id)
-    {
-        return $this->types->find($id) ?: null;
+        return Menu::getType($id)->get();
     }
 
     public function all()
@@ -65,7 +51,7 @@ class MenuManager implements \IteratorAggregate
 
     public function register()
     {
-        $this->menus = Menu::enabled()->get()->toTree();
+        $this->menus = Menu::getEnabled()->get();
         $this->types = MenuType::all();
 
         return $this;
@@ -73,16 +59,24 @@ class MenuManager implements \IteratorAggregate
 
     public function load()
     {
-        $walker = new Walker($this->menus);
+        foreach ( $this->handlers as $name => $handler ) {
+            $handler(
+                $this->app['router']->prefix("_{$name}")->name($name)
+            );
+        }
 
-        $walker->run(function($menu, $next) {
+        foreach ($this->menus as $menu) {
 
-            $this->app['router']->middleware('web')->prefix($menu->prefixRoute)->group(function() use ($menu, $next) {
-                $this->getHandler($menu->package);
-                $next();
-            });
+            if ( ! isset($this->handlers[$menu->package]) ) {
+                continue;
+            }
 
-        });
+            $this->handlers[$menu->package](
+                $this->app['router']->prefix($menu->prefixRoute)->name($menu->package)
+            );
+        }
+
+        // dd($this->app['router']);
 
         return $this;
     }

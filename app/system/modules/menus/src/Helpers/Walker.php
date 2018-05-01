@@ -8,43 +8,56 @@ class Walker
 {
     protected $app;
 
-    protected $store = [];
-
-    protected $key = 'children';
-
-    public function __construct($store, $key = 'children')
+    public function single($store, $key, $callback, $result = [])
     {
-        $this->store = $store;
-        $this->key = $key;
+        return $this->loopSingle($store, $key, $callback)($result);
     }
 
-    public function run($callback)
+    protected function loopSingle($store, $key, $callback)
     {
-        $this->make($callback, [$this->key => $this->store])();
+        return function($result = []) use ($store, $key, $callback) {
+
+            $item = null;
+
+            if ( isset($store->{$key}) ) {
+                $item = $store->{$key};
+            }
+
+            if ( isset($store[$key]) ) {
+                $item = $store[$key];
+            }
+
+            if ( $item ) {
+                return $callback($result, $item, $this->loopSingle($item, $key, $callback));
+            }
+
+            return $result;
+        };
+    }
+
+    public function multiple($store, $key, $callback)
+    {
+        $this->loopMultiple($store, $key, $callback)();
         
         return $this;
     }
 
-    protected function make($callback, $store = null)
+    protected function loopMultiple($store, $key, $callback)
     {
-        return function() use ($callback, $store) {
+        return function() use ($store, $key, $callback) {
 
-            if ( ! $store ) {
-                $store = $this->store;
+            $items = [];
+
+            if ( isset($store->{$key}) ) {
+                $items = $store->{$key};
             }
 
-            $children = [];
-
-            if ( is_object($store) && isset($store->{$this->key}) ) {
-                $children = $store->{$this->key};
+            if ( isset($store[$key]) ) {
+                $items = $store[$key];
             }
 
-            if ( is_array($store) && isset($store[$this->key]) ) {
-                $children = $store[$this->key];
-            }
-
-            foreach ( $children as $value ) {
-                $callback($value, $this->make($callback, $value));
+            foreach ( $items as $item ) {
+                $callback($item, $this->loopMultiple($item, $key, $callback));
             }
         };
     }

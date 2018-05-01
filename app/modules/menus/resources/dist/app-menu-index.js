@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -179,22 +179,25 @@ module.exports = function normalizeComponent (
 /* 4 */,
 /* 5 */,
 /* 6 */,
-/* 7 */
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(8);
+module.exports = __webpack_require__(11);
 
 
 /***/ }),
-/* 8 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(9)
+var __vue_script__ = __webpack_require__(12)
 /* template */
-var __vue_template__ = __webpack_require__(10)
+var __vue_template__ = __webpack_require__(13)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -233,25 +236,9 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, exports) {
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -271,7 +258,15 @@ module.exports = Component.exports
 module.exports = {
     name: 'app-menu-index',
     props: {
+        baseRoute: {
+            default: '',
+            type: String
+        },
         createRoute: {
+            default: '',
+            type: String
+        },
+        orderRoute: {
             default: '',
             type: String
         },
@@ -286,16 +281,20 @@ module.exports = {
             handle: 'div',
             items: 'li',
             toleranceElement: '> div',
-            listType: 'ul'
+            relocate: this.relocate
         });
+    },
 
-        console.log($(this.$refs.sortable.$el).nestedSortable('toArray', { startDepthCount: 0 }));
+    methods: {
+        relocate: function relocate() {
+            this.$http.post(this.orderRoute, { order: $(this.$refs.sortable.$el).nestedSortable('toArray') });
+        }
     }
 };
 liro.component(module.exports);
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -311,7 +310,7 @@ var render = function() {
         { attrs: { to: "app-toolbar-left" } },
         [
           _c(
-            "app-toolbar-event",
+            "app-toolbar-link",
             { attrs: { icon: "fa fa-plus", href: _vm.createRoute } },
             [
               _vm._v(
@@ -325,58 +324,23 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "app-menu-index" }, [
-        _c("div", { staticClass: "uk-flex uk-text-muted" }, [
-          _c("div", { staticClass: "uk-width-1-10" }, [
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.$t("menus.id")) +
-                "\n            "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "uk-width-1-10" }, [
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.$t("menus.state")) +
-                "\n            "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "uk-width-3-10" }, [
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.$t("menus.title")) +
-                "\n            "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "uk-width-3-10" }, [
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.$t("menus.package")) +
-                "\n            "
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          [
-            _c("app-menu-index-item", {
-              ref: "sortable",
-              model: {
-                value: _vm.value,
-                callback: function($$v) {
-                  _vm.value = $$v
-                },
-                expression: "value"
-              }
-            })
-          ],
-          1
-        )
-      ])
+      _c(
+        "div",
+        { staticClass: "app-menu-index" },
+        [
+          _c("app-menu-index-item", {
+            ref: "sortable",
+            model: {
+              value: _vm.value,
+              callback: function($$v) {
+                _vm.value = $$v
+              },
+              expression: "value"
+            }
+          })
+        ],
+        1
+      )
     ],
     1
   )

@@ -1,0 +1,18 @@
+{
+    "menus": {
+
+        "module": {
+            "menus-index":      "Menüs",
+            "menus-create":     "Menü erstellen",
+            "menus-edit":       "Menü bearbeiten",
+            "types-index":      "Menütyp",
+            "types-create":     "Menütyp erstellen",
+            "types-edit":       "Menütyp bearbeiten"
+        },
+
+        "label": {
+            "menus-title":      "Titel"
+        }
+
+    }
+}

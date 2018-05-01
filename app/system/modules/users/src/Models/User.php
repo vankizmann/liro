@@ -35,6 +35,13 @@ class User extends \Illuminate\Foundation\Auth\User
         return $this->belongsToMany(UserRole::class, 'user_role_link', 'user_id', 'user_role_id');
     }
 
+    public function scopeGetRolesRoutes()
+    {
+        return $this->roles->map(function($role) {
+            return $role->routes->pluck('route');
+        })->flatten();
+    }
+
     public function hasRoles($roles = [])
     {
         return $this->roles()->whereIn('access', $roles)->count();
@@ -47,7 +54,12 @@ class User extends \Illuminate\Foundation\Auth\User
 
     public function hasRoute($route)
     {
-        return $this->roles()->getCollectionRoutes()->intersect($route)->count();
+        return $this->getRolesRoutes()->intersect($route)->count();
+    }
+
+    public function hasRoutes($routes)
+    {
+        return $this->getRolesRoutes()->intersect($routes)->count();
     }
 
     public function setPasswordAttribute($password)

@@ -10,16 +10,16 @@ return [
 
     'routes' => [
 
-        'backend.menus' => function($app) {
+        'backend.menus.index' => function($router) {
+            return $router->middleware(['web', 'route'])->get('/', 'Liro\Menus\Controllers\BackendMenuController@index');
+        },
 
-            $app['router']
-                ->middleware('role:admin')->name('backend.menus.index')
-                ->get('/', 'Liro\Menus\Controllers\BackendMenuController@index');
+        'backend.menus.order' => function($router) {
+            return $router->middleware(['web', 'route:liro.menus.backend.menus.index'])->post('/', 'Liro\Menus\Controllers\BackendMenuController@order');
+        },
 
-            $app['router']
-                ->middleware('role:admin')->name('backend.menus.create')
-                ->get('create', 'Liro\Menus\Controllers\BackendMenuController@create');
-    
+        'backend.menus.create' => function($router) {
+            return $router->middleware(['web', 'route'])->get('/', 'Liro\Menus\Controllers\BackendMenuController@create');
         }
 
     ]

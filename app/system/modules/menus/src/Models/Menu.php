@@ -5,6 +5,7 @@ namespace Liro\System\Menus\Models;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
 use Liro\System\Menus\Models\MenuType;
+use Liro\System\Menus\Helpers\Walker;
 
 class Menu extends Model
 {
@@ -12,39 +13,57 @@ class Menu extends Model
 
     protected $table = 'menus';
 
-    public function menuType()
+    protected $appends = [
+        'title_fix', 'lang_fix'
+    ];
+
+    public function parent()
+    {
+        return $this->hasOne(Menu::class, 'id', 'parent_id');
+    }
+
+    public function type()
     {
         return $this->hasOne(MenuType::class, 'id', 'menu_type_id');
     }
 
-    public function scopeEnabled()
+    public function scopeGetEnabled($query)
     {
-        return $this->where('state', 1);
+        return $query->where('state', 1)->defaultOrder();
     }
 
-    public function scopeDisabled()
+    public function scopeGetDisabled($query)
     {
-        return $this->where('state', 0);
+        return $query->where('state', 0)->defaultOrder();
     }
 
-    public function getLangRouteAttribute()
+    public function scopeGetType($query, $type)
     {
-        return $this->lang == '*' ? app()->getLocale() : $this->lang;
+        return $query->where('menu_type_id', $type)->defaultOrder();
+    }
+
+    protected function getScopeAttributes()
+    {
+        return ['menu_type_id'];
+    }
+
+    public function getTitleFixAttribute()
+    {
+        return trans($this->attributes['title']);
+    }
+
+    public function getLangFixAttribute()
+    {
+        return $this->attributes['lang'] ?: app()->getLocale();
     }
 
     public function getPrefixRouteAttribute()
     {
-        $route = [$this->route];
+        $routes = (new Walker)->single($this, 'parent', function($result, $menu, $next) {
+            return $next(array_merge($result, [$menu->route]));
+        });
 
-        if ( $this->isRoot() && $this->menuType && $this->menuType->route ) {
-            array_unshift($route, $this->menuType->route);
-        }
-
-        if ( $this->isRoot() && $this->langRoute ) {
-            array_unshift($route, $this->langRoute);
-        }
-
-        return implode('/', $route);
+        return implode('/', array_filter(array_merge([$this->lang_fix, $this->type->route], $routes, [$this->route])));
     }
 
 }

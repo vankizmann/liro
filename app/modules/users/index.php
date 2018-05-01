@@ -9,64 +9,54 @@ return [
     ],
 
     'middleware' => [
-        'role' => Liro\Users\Middleware\CheckUserRole::class
+        'role' => Liro\Users\Middleware\CheckUserRole::class,
+        'route' => Liro\Users\Middleware\CheckUserRoute::class
     ],
 
     'routes' => [
 
-        'backend.login' => function($app) {
+        'backend.auth.login' => function($router) {
 
-            $app['router']
-                ->name('backend.users.login')
-                ->get('/', 'Liro\Users\Controllers\Backend\AuthController@login');
-
-            $app['router']
-                ->post('/', 'Liro\Users\Controllers\Backend\AuthController@submit');
+            return $router->middleware(['web'])->group(function($router) {
+                $router->get('/', 'Liro\Users\Controllers\Backend\AuthController@login');
+                $router->post('/', 'Liro\Users\Controllers\Backend\AuthController@submit');
+            });
 
         },
 
-        'backend.logout' => function($app) {
+        'backend.auth.logout' => function($router) {
 
-            $app['router']
-                ->name('backend.users.logout')
-                ->get('/', 'Liro\Users\Controllers\Backend\AuthController@logout');
-
-        },
-
-        'backend.users' => function($app) {
-
-            $app['router']
-                ->middleware('role:admin')->name('backend.users.index')
-                ->get('/', 'Liro\Users\Controllers\Backend\UserController@index');
-
-            $app['router']
-                ->middleware('role:admin')->name('backend.users.create')
-                ->get('create', 'Liro\Users\Controllers\Backend\UserController@create');
-
-            $app['router']
-                ->middleware('role:admin')->name('backend.users.edit')
-                ->get('{id}/edit', 'Liro\Users\Controllers\Backend\UserController@edit');
-    
-        },
-
-        'frontend.login' => function($app) {
-
-            $app['router']
-                ->name('frontend.users.login')
-                ->get('/', 'Liro\Users\Controllers\Frontend\AuthController@login');
-
-            $app['router']
-                ->post('/', 'Liro\Users\Controllers\Frontend\AuthController@submit');
+            return $router->middleware(['web'])->group(function($router) {
+                $router->get('/', 'Liro\Users\Controllers\Backend\AuthController@logout');
+            });
 
         },
 
-        'frontend.logout' => function($app) {
+        'backend.users.index' => function($router) {
 
-            $app['router']
-                ->name('frontend.users.logout')
-                ->get('/', 'Liro\Users\Controllers\Frontend\AuthController@logout');
+            return $router->middleware(['web', 'route'])->group(function($router) {
+                $router->get('/', 'Liro\Users\Controllers\Backend\UserController@index');
+            });
 
         },
+
+        'backend.users.create' => function($router) {
+
+            return $router->middleware(['web', 'route'])->group(function($router) {
+                $router->get('/', 'Liro\Users\Controllers\Backend\UserController@create');
+                $router->post('/', 'Liro\Users\Controllers\Backend\UserController@store');
+            });
+
+        },
+
+        'backend.users.edit' => function($router) {
+
+            return $router->middleware(['web', 'route'])->group(function($router) {
+                $router->get('/{id}', 'Liro\Users\Controllers\Backend\UserController@edit');
+                $router->post('/{id}', 'Liro\Users\Controllers\Backend\UserController@update');
+            });
+
+        }
 
     ]
 

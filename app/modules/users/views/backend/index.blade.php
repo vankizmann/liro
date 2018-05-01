@@ -3,7 +3,7 @@
 @section('toolbar')
     <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
-            <app-toolbar-link icon="fa fa-plus" href="{{ route('backend.users.create') }}">
+            <app-toolbar-link icon="fa fa-plus" href="{{ route('liro.users.backend.users.create') }}">
                 {{ trans('*.cms.create') }}
             </app-toolbar-link>
         </ul>
@@ -12,6 +12,6 @@
 
 @section('content')
     @foreach($users as $user)
-        <a href="{{ route('backend.users.edit', $user->id) }}">{{ $user->name }}</a>
+        <a href="{{ $user->editRoute }}">{{ $user->name }}</a>
     @endforeach
 @endsection

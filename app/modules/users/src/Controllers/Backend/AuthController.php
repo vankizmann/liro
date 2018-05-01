@@ -28,14 +28,14 @@ class AuthController extends Controller
             return redirect('/de/backend/menus');
         }
 
-        return redirect()->route('backend.users.login')->with('error', 'User with given credentials does not exists.');
+        return redirect()->route('liro.users.backend.auth.login')->with('error', 'User with given credentials does not exists.');
     }
 
     public function logout(Request $request)
     {
         auth()->logout();
 
-        return redirect()->route('backend.users.login');
+        return redirect()->route('liro.users.backend.auth.login');
     }
 
 }

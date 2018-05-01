@@ -5,5 +5,5 @@
 @endphp
 
 @section('content')
-    <app-user-create base-route="{{ route('backend.users.index') }}" create-route="{{  route('backend.users.create') }}" :value="{}"></app-user-create>
+    <app-user-create base-route="{{ route('liro.users.backend.users.index') }}" create-route="{{  route('liro.users.backend.users.create') }}" :value="{}"></app-user-create>
 @endsection

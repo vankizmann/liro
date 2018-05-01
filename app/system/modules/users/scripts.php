@@ -21,17 +21,82 @@ return [
 
             $app['db']->table('user_role_routes')->insert([
                 'user_role_id'  => 1,
-                'route'         => 'liro.users.backend.logout'
+                'route'         => 'liro.dashboard.backend.dashboard.index'
             ]);
 
             $app['db']->table('user_role_routes')->insert([
                 'user_role_id'  => 1,
-                'route'         => 'liro.users.backend.users'
+                'route'         => 'liro.users.backend.auth.logout'
             ]);
 
             $app['db']->table('user_role_routes')->insert([
                 'user_role_id'  => 1,
-                'route'         => 'liro.menus.backend.menus'
+                'route'         => 'liro.users.backend.users.index'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.users.backend.users.create'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.users.backend.users.edit'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.menus.backend.menus.index'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.menus.backend.menus.create'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.menus.backend.menus.edit'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.menus.backend.types.index'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.menus.backend.types.create'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.menus.backend.types.edit'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 2,
+                'route'         => 'liro.dashboard.backend.dashboard.index'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 2,
+                'route'         => 'liro.users.backend.auth.logout'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 2,
+                'route'         => 'liro.menus.backend.menus.index'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 2,
+                'route'         => 'liro.menus.backend.menus.create'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 3,
+                'route'         => 'liro.users.backend.auth.logout'
             ]);
 
         $schema->dropIfExists('user_role_link');
@@ -51,13 +116,18 @@ return [
             ]);
 
             $app['db']->table('user_role_link')->insert([
-                'user_id'       => 1,
+                'user_id'       => 2,
                 'user_role_id'  => 2
             ]);
 
             $app['db']->table('user_role_link')->insert([
-                'user_id'       => 2,
-                'user_role_id'  => 2
+                'user_id'       => 3,
+                'user_role_id'  => 3
+            ]);
+
+            $app['db']->table('user_role_link')->insert([
+                'user_id'       => 4,
+                'user_role_id'  => 4
             ]);
 
         $schema->dropIfExists('user_roles');
@@ -76,6 +146,18 @@ return [
                 'title'         => 'Admin',
                 'access'        => 'admin',
                 'description'   => 'A admin user with backend access.'
+            ]);
+
+            $app['db']->table('user_roles')->insert([
+                'title'         => 'Editor',
+                'access'        => 'editor',
+                'description'   => 'A editor user with limited backend access.'
+            ]);
+
+            $app['db']->table('user_roles')->insert([
+                'title'         => 'Author',
+                'access'        => 'author',
+                'description'   => 'A author user with limited backend access.'
             ]);
 
             $app['db']->table('user_roles')->insert([
@@ -102,6 +184,20 @@ return [
                 'state'         => 1,
                 'name'          => 'admin',
                 'email'         => 'admin@gmail.com',
+                'password'      => bcrypt('password'),
+            ]);
+
+            $app['db']->table('users')->insert([
+                'state'         => 1,
+                'name'          => 'editor',
+                'email'         => 'editor@gmail.com',
+                'password'      => bcrypt('password'),
+            ]);
+
+            $app['db']->table('users')->insert([
+                'state'         => 1,
+                'name'          => 'author',
+                'email'         => 'author@gmail.com',
                 'password'      => bcrypt('password'),
             ]);
 

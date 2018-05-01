@@ -9,6 +9,10 @@
 
 @section('content')
 <div class="liro-menus">
-    <app-menu-index create-route="{{ route('backend.menus.create') }}" :value="{{ $menus->toTree()->toJson() }}"></app-menu-index>
+    <app-menu-index
+        create-route="{{ route('liro.menus.backend.menus.create') }}" 
+        order-route="{{ route('liro.menus.backend.menus.order') }}" 
+        :value="{{ $menus->toTree()->toJson() }}"
+    ></app-menu-index>
 </div>
 @endsection

@@ -33,7 +33,7 @@ class LanguageManager implements \IteratorAggregate
 
     public function get($name)
     {
-        return $this->languages->where('locale', $name) ?: null;
+        return $this->languages->where('locale', $name)->first() ?: null;
     }
 
     public function register()

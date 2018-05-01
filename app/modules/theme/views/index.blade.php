@@ -1,10 +1,12 @@
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ isset($title) ? $title . ' | Liro CMS' : 'Liro CMS'}}</title>
+        
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700">
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/fontawesome.css">
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/solid.css">
+
+        <title>{{ isset($title) ? $title . ' | ' .  env('APP_NAME') :  env('APP_NAME') }}</title>
 
         @php
             app('styles')->link('theme', 'liro.theme:resources/dist/css/theme.css');
@@ -39,10 +41,8 @@
 
                             <!-- Main menu start -->
                             <ul class="uk-navbar-nav">
-                                @foreach( app('menus')->getTypeById(1)->menus as $menu )
-                                    @if ( auth()->user()->hasRoute($menu->package) )
-                                        <li><a href="{{ url($menu->prefixRoute) }}">{{ $menu->title }}</a></li>
-                                    @endif
+                                @foreach( app('menus')->type(1)->toTree() as $menu )
+                                    @include('backend::partials.menu', $menu)
                                 @endforeach
                             </ul>
                             <!-- Main menu end -->
@@ -52,10 +52,8 @@
 
                             <!-- User menu start -->
                             <ul class="uk-navbar-nav">
-                                @foreach( app('menus')->getTypeById(2)->menus as $menu )
-                                    @if ( auth()->user()->hasRoute($menu->package) )
-                                        <li><a href="{{ url($menu->prefixRoute) }}">{{ $menu->title }}</a></li>
-                                    @endif
+                                @foreach( app('menus')->type(2)->toTree() as $menu )
+                                    @include('backend::partials.menu', $menu)
                                 @endforeach
                             </ul>
                             <!-- User menu end -->

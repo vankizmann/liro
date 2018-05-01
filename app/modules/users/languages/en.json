@@ -1,0 +1,13 @@
+{
+    "users": {
+
+        "module": {
+            "auth-login":       "Login",
+            "auth-logout":      "Logout",
+            "users-index":      "Users",
+            "users-create":     "Create user",
+            "users-edit":       "Edit user"
+        }
+
+    }
+}

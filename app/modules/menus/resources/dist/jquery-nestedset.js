@@ -40,7 +40,7 @@
 			expandOnHover: 700,
 			isAllowed: function() { return true; },
 			isTree: false,
-			listType: "ol",
+			listType: "ul",
 			maxLevels: 0,
 			protectRoot: false,
 			rootID: null,
@@ -738,13 +738,13 @@
 				ret = [],
 				left = 1;
 
-			if (!o.excludeRoot) {
+			if (o.includeRoot) {
 				ret.push({
-					"item_id": o.rootID,
+					"id": o.rootID,
 					"parent_id": null,
 					"depth": sDepth,
-					"left": left,
-					"right": ($(o.items, this.element).length + 1) * 2
+					"_lft": left,
+					"_rgt": ($(o.items, this.element).length + 1) * 2
 				});
 				left++;
 			}
@@ -790,8 +790,8 @@
 						"id":id[2],
 						"parent_id":pid,
 						"depth":depth,
-						"left":_left,
-						"right":right
+						"_lft":_left,
+						"_rgt":right
 						} );
 					ret.push( itemObj );
 				}

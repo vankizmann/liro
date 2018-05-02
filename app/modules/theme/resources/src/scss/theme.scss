@@ -8,8 +8,49 @@
     display: none
 }
 
-.uk-toolbar {
-    background-color: $global-muted-background;
+.uk-container {
+    padding: 0;
+}
+
+.uk-gradient {
+    background-color: #090e15;
+}
+
+.uk-navigation .uk-logo {
+    width: 90px;
+    margin-right: 20px;
+    background-color: rgba(#fff, 0.1);
+}
+
+.uk-navigation .uk-navbar-item,
+.uk-navigation .uk-navbar-nav > li > a {
+    height: 90px;
+}
+
+.uk-navigation .uk-navbar-nav > li > a {
+    text-transform: none;
+    color: $global-muted-color;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 300ms ease;
+}
+
+.uk-navigation .uk-navbar-nav > li.uk-active > a {
+    color: $global-muted-background;
+}
+
+.uk-navigation .uk-navbar-nav > li > a.uk-open,
+.uk-navigation .uk-navbar-nav > li > a:hover {
+    // background-color: rgba(#fff, 0.1);
+}
+
+.uk-navigation .uk-navbar-dropdown {
+    margin-top: 0;
+}
+
+.uk-toolbar .uk-navbar-container {
+    background-color: #fff;
+    box-shadow: 0 3px 10px rgba(#000, 0.1);
 }
 
 .uk-toolbar-item {

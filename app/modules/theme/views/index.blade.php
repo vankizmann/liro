@@ -27,7 +27,7 @@
             <header id="uk-header">
 
                 <!-- Navigation start -->
-                <div class="uk-navigation uk-background-primary uk-light">
+                <div class="uk-navigation uk-gradient">
                     <nav class="uk-navbar-container uk-container uk-container-expand uk-navbar-transparent" uk-navbar>
                         <div class="uk-navbar-left">
 

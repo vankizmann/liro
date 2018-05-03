@@ -13,21 +13,21 @@
         <portal to="app-module-help">
             <h1>Help</h1>
         </portal>
-        <div class="app-menu-index">
-            <div class="uk-menu-title uk-flex uk-flex-middle">
-                <div class="uk-menu-title-collapse">
+        <div class="uk-table-list">
+            <div class="uk-table-list-head">
+                <div class="uk-table-list-td uk-table-list-td-xs uk-text-center">
                     {{ $t('theme.hash') }}
                 </div>
-                <div class="uk-menu-title-title uk-flex-1">
+                <div class="uk-table-list-td uk-table-list-td-auto">
                     {{ $t('theme.title') }}
                 </div>
-                <div class="uk-menu-title-hidden">
+                <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                     {{ $t('theme.hidden') }}
                 </div>
-                <div class="uk-menu-title-state">
+                <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                     {{ $t('theme.state') }}
                 </div>
-                <div class="uk-menu-title-id uk-width-auto">
+                <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                     {{ $t('theme.id') }}
                 </div>
             </div>

@@ -3549,7 +3549,7 @@ select.uk-form-width-xsmall {
  * Primary
  */
 .uk-alert-primary {
-  background: #dff2fe;
+  background: #c0e5fc;
   color: #28a5f5;
 }
 
@@ -3557,7 +3557,7 @@ select.uk-form-width-xsmall {
  * Success
  */
 .uk-alert-success {
-  background: white;
+  background: #e1fcf3;
   color: #5CEDBF;
 }
 
@@ -3565,7 +3565,7 @@ select.uk-form-width-xsmall {
  * Warning
  */
 .uk-alert-warning {
-  background: #ffecda;
+  background: #ffe4ca;
   color: #FF9430;
 }
 
@@ -3573,7 +3573,7 @@ select.uk-form-width-xsmall {
  * Danger
  */
 .uk-alert-danger {
-  background: white;
+  background: #ffedee;
   color: #ff5f67;
 }
 
@@ -9633,7 +9633,7 @@ iframe.uk-cover {
 /* ========================================================================
    Component: Flex
  ========================================================================== */
-.uk-flex, #uk-header .uk-toolbar .uk-toolbar-item, #uk-header .uk-toolbar .uk-toolbar-spacer {
+.uk-flex, #uk-header .uk-toolbar .uk-toolbar-item, #uk-header .uk-toolbar .uk-toolbar-spacer, .uk-table-list .uk-table-list-head, .uk-table-list .uk-table-list-row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9648,10 +9648,12 @@ iframe.uk-cover {
 /*
  * Remove pseudo elements created by micro clearfix as precaution
  */
-.uk-flex::before, #uk-header .uk-toolbar .uk-toolbar-item::before, #uk-header .uk-toolbar .uk-toolbar-spacer::before,
+.uk-flex::before, #uk-header .uk-toolbar .uk-toolbar-item::before, #uk-header .uk-toolbar .uk-toolbar-spacer::before, .uk-table-list .uk-table-list-head::before, .uk-table-list .uk-table-list-row::before,
 .uk-flex::after,
 #uk-header .uk-toolbar .uk-toolbar-item::after,
 #uk-header .uk-toolbar .uk-toolbar-spacer::after,
+.uk-table-list .uk-table-list-head::after,
+.uk-table-list .uk-table-list-row::after,
 .uk-flex-inline::before,
 .uk-flex-inline::after {
   display: none;
@@ -9820,7 +9822,7 @@ iframe.uk-cover {
           align-items: flex-start;
 }
 
-.uk-flex-middle, #uk-header .uk-toolbar .uk-toolbar-spacer {
+.uk-flex-middle, #uk-header .uk-toolbar .uk-toolbar-spacer, .uk-table-list .uk-table-list-head, .uk-table-list .uk-table-list-row {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -12168,6 +12170,47 @@ iframe.uk-cover {
   }
 }
 
+/**
+ * App list collapse
+ */
+.app-list-collapse.uk-disabled a {
+  color: #c9cfd4;
+}
+
+.app-list-collapse a {
+  color: #5f6269;
+}
+
+/**
+ * App list state
+ */
+.app-list-state a,
+.app-list-state span {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: #ff5f67;
+  border-radius: 999px;
+}
+
+.app-list-state.uk-active a,
+.app-list-state.uk-active span {
+  background-color: #5CEDBF;
+}
+
+/**
+ * App list hidden
+ */
+.app-list-hidden a,
+.app-list-hidden span {
+  color: #c9cfd4;
+}
+
+.app-list-hidden.uk-active a,
+.app-list-hidden.uk-active span {
+  color: #5f6269;
+}
+
 [v-cloak] {
   display: none;
 }
@@ -12221,7 +12264,7 @@ a, button {
 
 #uk-header .uk-toolbar .uk-navbar-container {
   padding: 0 20px;
-  background-color: #f2f4f4;
+  background-color: #ebedef;
 }
 
 #uk-header .uk-toolbar .uk-toolbar-item {
@@ -12247,7 +12290,7 @@ a, button {
 
 #uk-header .uk-toolbar .uk-toolbar-item:not(.uk-disabled) a:hover,
 #uk-header .uk-toolbar .uk-toolbar-item:not(.uk-disabled) button:hover {
-  background-color: #ebedef;
+  background-color: #dde0e4;
 }
 
 #uk-header .uk-toolbar .uk-toolbar-spacer {
@@ -12269,41 +12312,27 @@ a, button {
 }
 
 #uk-header .uk-toolbar .uk-toolbar-item.uk-icon-primary:not(.uk-disabled) .fa {
-  color: #28a5f5;
+  color: #0a8ce0;
 }
 
 #uk-header .uk-toolbar .uk-toolbar-item.uk-icon-success:not(.uk-disabled) .fa {
-  color: #5CEDBF;
+  color: #2ee8ad;
 }
 
 #uk-header .uk-toolbar .uk-toolbar-item.uk-icon-warning:not(.uk-disabled) .fa {
-  color: #FF9430;
+  color: #fc7a00;
 }
 
 #uk-header .uk-toolbar .uk-toolbar-item.uk-icon-danger:not(.uk-disabled) .fa {
-  color: #ff5f67;
+  color: #ff2c37;
 }
 
 #uk-header .uk-toolbar .uk-toolbar-item.uk-icon-info:not(.uk-disabled) .fa {
-  color: #28a5f5;
+  color: #0a8ce0;
 }
 
 #uk-main .uk-container {
   padding: 0 30px;
-}
-
-.uk-list, .uk-list li {
-  margin: 0 !important;
-}
-
-.uk-menu-item {
-  border-radius: 3px;
-  padding: 15px 10px;
-  background-color: #ffffff;
-}
-
-.uk-menu-item {
-  border-bottom: 1px solid #f9fafa;
 }
 
 .ui-sortable-helper {
@@ -12312,87 +12341,60 @@ a, button {
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.app-menu-index {
-  width: calc(100% + 40px);
+.uk-table-list {
   margin: 0 -20px;
+  width: calc(100% + 40px);
 }
 
-.uk-menu-title {
+.uk-table-list .uk-list, .uk-table-list .uk-list li {
+  margin: 0 !important;
+}
+
+.uk-table-list .uk-table-list-head {
   padding: 15px 10px;
-}
-
-.uk-menu-title-title {
-  padding: 0 10px;
-}
-
-.uk-menu-title-collapse {
-  width: 20px;
-  padding: 0 10px;
-  text-align: center;
-}
-
-.uk-menu-title-id,
-.uk-menu-title-state,
-.uk-menu-title-hidden {
-  width: 80px;
-  padding: 0 10px;
-  text-align: center;
-}
-
-.uk-menu-item-collapse {
-  width: 20px;
-  padding: 0 10px;
-  text-align: center;
-}
-
-.uk-menu-item-collapse a {
-  color: #c9cfd4;
-}
-
-.uk-menu-item-collapse.uk-active a {
-  color: #5f6269;
-}
-
-.uk-menu-item-id,
-.uk-menu-item-state,
-.uk-menu-item-hidden {
-  width: 80px;
-  padding: 0 10px;
-  text-align: center;
-}
-
-.uk-menu-item-id span {
   color: #a9afb8;
+  border-bottom: 1px solid #ebedef;
 }
 
-.uk-menu-item-state span {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  background-color: #ff5f67;
-  border-radius: 999px;
+.uk-table-list .uk-table-list-head a {
+  color: #090e15;
 }
 
-.uk-menu-item-state.uk-active span {
-  background-color: #5CEDBF;
+.uk-table-list .uk-table-list-row {
+  padding: 15px 10px;
+  border-bottom: 1px solid #ebedef;
 }
 
-.uk-menu-item-hidden span {
-  color: #c9cfd4;
-}
-
-.uk-menu-item-hidden.uk-active span {
-  color: #a9afb8;
-}
-
-.uk-menu-item-title {
+.uk-table-list .uk-table-list-td {
   padding: 0 10px;
 }
 
-.uk-menu-item-title a {
-  font-weight: 500;
+.uk-table-list .uk-table-list-td-auto {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
-.uk-menu-item-title span {
-  font-size: 0.8rem;
+.uk-table-list .uk-table-list-td-xs {
+  width: 30px;
+}
+
+.uk-table-list .uk-table-list-td-s {
+  width: 60px;
+}
+
+.uk-table-list .uk-table-list-td-m {
+  width: 90px;
+}
+
+.uk-table-list .uk-table-list-td-m {
+  width: 120px;
+}
+
+.uk-table-list .uk-table-list-td-l {
+  width: 160px;
+}
+
+.uk-table-list .uk-table-list-td-xl {
+  width: 200px;
 }

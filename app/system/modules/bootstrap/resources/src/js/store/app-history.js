@@ -19,10 +19,10 @@ module.exports = {
 
     mutations: {
         init(state, data) {
-            return state.init(data)
+            state.init(data)
         },
         save(state, data) {
-            return state.save(data)
+            state.save(data)
         }
     }
 

@@ -32,6 +32,21 @@ import VeeValidateEN from 'vee-validate/dist/locale/en';
 import VeeValidateFR from 'vee-validate/dist/locale/fr';
 import VeeValidateRU from 'vee-validate/dist/locale/ru';
 
+/**
+ * 
+ */
+require('./store/app-history.js');
+require('./store/app-list.js');
+require('./toolbar/app-toolbar-event.vue');
+require('./toolbar/app-toolbar-link.vue');
+require('./toolbar/app-toolbar-spacer.vue');
+require('./list/app-list-filter.vue');
+require('./list/app-list-collapse.vue');
+require('./list/app-list-state.vue');
+require('./list/app-list-hidden.vue');
+require('./form/app-form-input.vue');
+require('./form/app-form-password.vue');
+
 liro.listen('document.ready', function() {
 
     Vue.use(Vuex);

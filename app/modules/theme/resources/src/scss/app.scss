@@ -1,0 +1,45 @@
+
+
+/**
+ * App list collapse
+ */
+
+.app-list-collapse.uk-disabled a {
+    color: $color-gray-40;
+}
+
+.app-list-collapse a {
+    color: $color-gray-80;
+}
+
+/**
+ * App list state
+ */
+
+.app-list-state a,
+.app-list-state span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: $color-red;
+    border-radius: 999px;
+}
+
+.app-list-state.uk-active a,
+.app-list-state.uk-active span {
+    background-color: $color-green;
+}
+
+/**
+ * App list hidden
+ */
+
+.app-list-hidden a,
+.app-list-hidden span {
+    color: $color-gray-40;
+}
+
+.app-list-hidden.uk-active a,
+.app-list-hidden.uk-active span {
+    color: $color-gray-80;
+}

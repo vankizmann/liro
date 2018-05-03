@@ -31,5 +31,6 @@ mix.setResourceRoot(
  */
 
 mix.js('resources/src/app-login.vue', 'resources/dist');
+mix.js('resources/src/app-users-index.vue', 'resources/dist');
 mix.js('resources/src/app-user-create.vue', 'resources/dist');
 mix.js('resources/src/app-user-edit.vue', 'resources/dist');

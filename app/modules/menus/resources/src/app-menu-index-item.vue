@@ -1,20 +1,20 @@
 <template>
     <li :id="'menuItem_' + value.id">
-        <div class="uk-menu-item uk-flex uk-flex-middle">
-            <div :class="{ 'uk-menu-item-collapse': true, 'uk-active': value.children.length }">
-                <a :class="{ 'fa': true, 'fa-angle-right': collapse, 'fa-angle-down': !collapse }" href="#" @click="collapse = !collapse"></a>
+        <div class="uk-table-list-row">
+            <div class="uk-table-list-td uk-table-list-td-xs uk-text-center">
+                <app-list-collapse :disabled="value.children.length == 0" :active="!collapse" @click="collapse = !collapse"></app-list-collapse>
             </div>
-            <div class="uk-menu-item-title uk-flex-1">
+            <div class="uk-table-list-td uk-table-list-td-auto">
                 <a :href="value.edit_route">{{ value.title_fix }}</a><br>
                 <span>{{ value.package }}</span>
             </div>
-            <div :class="{ 'uk-menu-item-hidden': true, 'uk-active': value.hidden == 1 }">
-                <span class="fa fa-eye-slash"></span>
+            <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+                <app-list-hidden :active="value.hidden == 1" href="#"></app-list-hidden>
             </div>
-            <div :class="{ 'uk-menu-item-state': true, 'uk-active': value.state == 1 }">
-                <span></span>
+            <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+                <app-list-state :active="value.state == 1" href="#"></app-list-state>
             </div>
-            <div class="uk-menu-item-id uk-width-auto">
+            <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                 <span>{{ value.id }}</span>
             </div>
         </div>

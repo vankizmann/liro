@@ -26,6 +26,10 @@ $offcanvas-bar-background:              $color-white;
 $offcanvas-bar-color-mode:              dark;
 $global-link-color:                     $color-primary;
 $global-link-hover-color:               darken($global-link-color, 10%);
+$alert-primary-background:              lighten(mix(white, $global-primary-background, 25%), 20%);
+$alert-success-background:              lighten(mix(white, $global-success-background, 25%), 20%);
+$alert-warning-background:              lighten(mix(white, $global-warning-background, 25%), 20%);
+$alert-danger-background:               lighten(mix(white, $global-danger-background, 25%), 20%);
 
 @import '~uikit/src/scss/variables-theme.scss';
 @import '~uikit/src/scss/mixins-theme.scss';

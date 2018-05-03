@@ -1,17 +1,22 @@
 @extends('backend::index')
 
-@section('toolbar')
-    <div class="uk-navbar-left">
-        <ul class="uk-navbar-nav">
-            <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" href="{{ route('liro.users.backend.users.create') }}">
-                {{ trans('*.users.module.users-create') }}
-            </app-toolbar-link>
-        </ul>
-    </div>
-@endsection
+@php
+    app('scripts')->link('app-users-index', 'liro.users:resources/dist/app-users-index.js');
+@endphp
 
 @section('content')
-    @foreach($users as $user)
-        <a href="{{ $user->editRoute }}">{{ $user->name }}</a>
-    @endforeach
+<div class="liro-users-index">
+
+    <!-- Title start -->
+    <h1 class="uk-text-lead">{{ trans('*.users.module.users-index') }}</h1>
+    <!-- Title end -->
+
+    <!-- Component start -->
+    <app-users-index
+        create-route="{{ route('liro.users.backend.users.create') }}" 
+        :value="{{ $users->toJson() }}"
+    ></app-users-index>
+    <!-- Compenent end -->
+
+</div>
 @endsection

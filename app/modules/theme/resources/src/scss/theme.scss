@@ -22,6 +22,7 @@ $color-primary:             $color-blue;
 $color-secondary:           $color-black;
 
 @import 'vendor.scss';
+@import 'app.scss';
 
 [v-cloak] {
     display: none
@@ -77,7 +78,7 @@ a, button {
 
     .uk-toolbar .uk-navbar-container {
         padding: 0 20px;
-        background-color: darken($color-gray-10, 2.5%);
+        background-color: $color-gray-20;
     }
 
     .uk-toolbar .uk-toolbar-item {
@@ -104,7 +105,7 @@ a, button {
 
     .uk-toolbar .uk-toolbar-item:not(.uk-disabled) a:hover,
     .uk-toolbar .uk-toolbar-item:not(.uk-disabled) button:hover {
-        background-color: $color-gray-20;
+        background-color: darken($color-gray-20, 5%);
     }
 
     .uk-toolbar .uk-toolbar-spacer {
@@ -127,43 +128,33 @@ a, button {
     }
 
     .uk-toolbar .uk-toolbar-item.uk-icon-primary:not(.uk-disabled) .fa {
-        color: $color-primary;
+        color: darken($color-primary, 10%);
     }
 
     .uk-toolbar .uk-toolbar-item.uk-icon-success:not(.uk-disabled) .fa {
-        color: $color-green;
+        color: darken($color-green, 10%);
     }
 
     .uk-toolbar .uk-toolbar-item.uk-icon-warning:not(.uk-disabled) .fa {
-        color: $color-orange;
+        color: darken($color-orange, 10%);
     }
 
     .uk-toolbar .uk-toolbar-item.uk-icon-danger:not(.uk-disabled) .fa {
-        color: $color-red;
+        color: darken($color-red, 10%);
     }
 
     .uk-toolbar .uk-toolbar-item.uk-icon-info:not(.uk-disabled) .fa {
-        color: $color-blue;
+        color: darken($color-blue, 10%);
     }
 
 }
 
-#uk-main .uk-container {
-    padding: 0 30px;
-}
+#uk-main {
+    
+    .uk-container {
+        padding: 0 30px;
+    }
 
-.uk-list, .uk-list li {
-    margin: 0 !important;
-}
-
-.uk-menu-item {
-    border-radius: 3px;
-    padding: 15px 10px;
-    background-color: $color-white;
-}
-
-.uk-menu-item {
-    border-bottom: 1px solid $color-gray-10;
 }
 
 .ui-sortable-helper {
@@ -171,88 +162,64 @@ a, button {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.app-menu-index {
-    width: calc(100% + 40px);
-    margin: 0 -20px;
-}
+.uk-table-list {
 
+    & {
+        margin: 0 -20px;
+        width: calc(100% + 40px);
+    }
 
-.uk-menu-title {
-    padding: 15px 10px;
-}
+    .uk-list, .uk-list li {
+        margin: 0 !important;
+    }
 
-.uk-menu-title-title {
-    padding: 0 10px;
-}
+    .uk-table-list-head {
+        @extend .uk-flex, .uk-flex-middle ;
+        padding: 15px 10px;
+        color: $color-gray-60;
+        border-bottom: 1px solid $color-gray-20;
+    }
 
-.uk-menu-title-collapse {
-    width: 20px;
-    padding: 0 10px;
-    text-align: center;
-}
+    .uk-table-list-head a {
+        color: $color-black;
+    }
 
-.uk-menu-title-id,
-.uk-menu-title-state,
-.uk-menu-title-hidden {
-    width: 80px;
-    padding: 0 10px;
-    text-align: center;
-}
+    .uk-table-list-row {
+        @extend .uk-flex, .uk-flex-middle ;
+        padding: 15px 10px;
+        border-bottom: 1px solid $color-gray-20;
+    }
 
-.uk-menu-item-collapse {
-    width: 20px;
-    padding: 0 10px;
-    text-align: center;
-}
+    .uk-table-list-td {
+        padding: 0 10px;
+    }
 
-.uk-menu-item-collapse a {
-    color: $color-gray-40;
-}
+    .uk-table-list-td-auto {
+        flex: 1;
+    }
 
-.uk-menu-item-collapse.uk-active a {
-    color: $color-gray-80;
-}
+    .uk-table-list-td-xs {
+        width: 30px;
+    }
 
-.uk-menu-item-id,
-.uk-menu-item-state,
-.uk-menu-item-hidden {
-    width: 80px;
-    padding: 0 10px;
-    text-align: center;
-}
+    .uk-table-list-td-s {
+        width: 60px;
+    }
 
-.uk-menu-item-id span {
-    color: $color-gray-60;
-}
+    .uk-table-list-td-m {
+        width: 90px;
+    }
 
-.uk-menu-item-state span {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    background-color: $color-red;
-    border-radius: 999px;
-}
+    .uk-table-list-td-m {
+        width: 120px;
+    }
 
-.uk-menu-item-state.uk-active span {
-    background-color: $color-green;
-}
+    .uk-table-list-td-l {
+        width: 160px;
+    }
 
-.uk-menu-item-hidden span {
-    color: $color-gray-40;
-}
+    .uk-table-list-td-xl {
+        width: 200px;
+    }
 
-.uk-menu-item-hidden.uk-active span {
-    color: $color-gray-60;
-}
-
-.uk-menu-item-title {
-    padding: 0 10px;
-}
-
-.uk-menu-item-title a {
-    font-weight: 500;
-}
-
-.uk-menu-item-title span {
-    font-size: 0.8rem;
 }

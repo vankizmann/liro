@@ -11,9 +11,6 @@ return [
             'liro.dashboard', 'liro.menus', 'liro.users', 'liro.theme'
         ]);
 
-        $app['scripts']->link('bootstrap', '/app/system/modules/bootstrap/resources/dist/js/bootstrap.js');
-        $app['scripts']->link('app', '/app/system/modules/bootstrap/resources/dist/js/app.js');
-
         $app['router']->get('/', function() use ($app) {
             return redirect($app->getLocale());
         });
@@ -32,6 +29,12 @@ return [
         });
 
         $app['events']->fire('boot', $app);
+
+        $app['scripts']->link('bootstrap', '/app/system/modules/bootstrap/resources/dist/js/bootstrap.js');
+        $app['scripts']->link('app', '/app/system/modules/bootstrap/resources/dist/js/app.js');
+
+        $messages = $app['translator']->getFromJson('*', []);
+        $app['scripts']->plain('messages', 'liro.setMessages(liro.getLocale(), ' . json_encode($messages) . ');'); 
 
         // dd($app['router']);
     }

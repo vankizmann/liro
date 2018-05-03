@@ -2,15 +2,30 @@
  * Vendor
  **/
 
-$global-font-family:                    'Roboto', 'Helvetica', 'Arial', sans-serif;
-$global-emphasis-color:                 #090e15;
-$global-color:                          #353a41;
-$global-muted-background:               #f2f3f5;
-$global-muted-color:                    #7a828d;
-$global-primary-background:             #1ec0ff;
-$global-success-background:             #55e777;
-$global-warning-background:             #e77e55;
-$global-danger-background:              #e7556a;
+$global-font-family:                    'Open Sans', 'Helvetica', 'Arial', sans-serif;
+$global-font-size:                      15px;
+$transition-duration:                   0.15s;
+$transition-slow-duration:              0.30s;
+$global-emphasis-color:                 $color-black;
+$global-color:                          $color-black;
+$global-muted-background:               $color-gray-20;
+$global-muted-color:                    $color-gray-60;
+$global-primary-background:             $color-primary;
+$global-secondary-background:           $color-secondary;
+$global-success-background:             $color-green;
+$global-warning-background:             $color-orange;
+$global-danger-background:              $color-red;
+$base-body-color:                       $color-gray-70;
+$button-primary-color:                  $color-black;
+$button-primary-hover-color:            $color-black;
+$button-primary-active-color:           $color-black;
+$button-secondary-color:                $color-primary;
+$button-secondary-hover-color:          $color-primary;
+$button-secondary-active-color:         $color-primary;
+$offcanvas-bar-background:              $color-white;
+$offcanvas-bar-color-mode:              dark;
+$global-link-color:                     $color-primary;
+$global-link-hover-color:               darken($global-link-color, 10%);
 
 @import '~uikit/src/scss/variables-theme.scss';
 @import '~uikit/src/scss/mixins-theme.scss';

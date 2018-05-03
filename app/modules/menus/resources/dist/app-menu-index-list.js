@@ -363,12 +363,11 @@ module.exports = {
     props: {
         value: {
             type: Object
+        },
+        collapse: {
+            default: false,
+            type: Boolean
         }
-    },
-    data: function data() {
-        return {
-            collapse: true
-        };
     }
 };
 liro.component(module.exports);
@@ -387,25 +386,25 @@ var render = function() {
     [
       _c("div", { staticClass: "uk-menu-item uk-flex uk-flex-middle" }, [
         _c(
-          "div",
+          "a",
           {
             class: {
               "uk-menu-item-collapse": true,
-              "uk-active": _vm.value.children.length
+              "uk-disabled": !_vm.value.children.length
+            },
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.collapse = !_vm.collapse
+              }
             }
           },
           [
-            _c("a", {
+            _c("span", {
               class: {
                 fa: true,
                 "fa-angle-right": _vm.collapse,
                 "fa-angle-down": !_vm.collapse
-              },
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  _vm.collapse = !_vm.collapse
-                }
               }
             })
           ]
@@ -447,7 +446,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("app-menu-index-list", {
+      _c("app-menu-index-item", {
         directives: [
           {
             name: "show",
@@ -529,6 +528,9 @@ module.exports = Component.exports
 /* 9 */
 /***/ (function(module, exports) {
 
+//
+//
+//
 //
 //
 //
@@ -649,7 +651,7 @@ var render = function() {
               attrs: {
                 icon: "fa fa-info-circle",
                 href: "#",
-                "uk-toggle": "target: #app-module-help"
+                "uk-toggle": "target: #offcanvas-slide"
               }
             },
             [
@@ -662,9 +664,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("portal", { attrs: { to: "app-module-help" } }, [
-        _c("h1", [_vm._v("Help")])
-      ]),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "div",
@@ -729,7 +729,33 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        attrs: {
+          id: "offcanvas-slide",
+          "uk-offcanvas": "overlay: true; mode: push;"
+        }
+      },
+      [
+        _c("div", { staticClass: "uk-offcanvas-bar" }, [
+          _c("h3", { staticClass: "uk-text-primary" }, [_vm._v("Title")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            )
+          ])
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

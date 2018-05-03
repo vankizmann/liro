@@ -1,15 +1,37 @@
 <template>
     <div class="uk-form uk-form-stacked">
         <portal to="app-toolbar-left">
-            <app-toolbar-link icon="fa fa-plus" :href="createRoute">
-                {{ $t('cms.create') }}
+            <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" :href="createRoute">
+                {{ $t('menus.module.menus-create') }}
             </app-toolbar-link>
-            <app-toolbar-spacer>
-                <!-- Spacer -->
-            </app-toolbar-spacer>
+        </portal>
+        <portal to="app-toolbar-right">
+            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
+                {{ $t('theme.help') }}
+            </app-toolbar-link>
+        </portal>
+        <portal to="app-module-help">
+            <h1>Help</h1>
         </portal>
         <div class="app-menu-index">
-            <app-menu-index-item ref="sortable" v-model="value"></app-menu-index-item>
+            <div class="uk-menu-title uk-flex uk-flex-middle">
+                <div class="uk-menu-title-collapse">
+                    {{ $t('theme.hash') }}
+                </div>
+                <div class="uk-menu-title-title uk-flex-1">
+                    {{ $t('theme.title') }}
+                </div>
+                <div class="uk-menu-title-hidden">
+                    {{ $t('theme.hidden') }}
+                </div>
+                <div class="uk-menu-title-state">
+                    {{ $t('theme.state') }}
+                </div>
+                <div class="uk-menu-title-id uk-width-auto">
+                    {{ $t('theme.id') }}
+                </div>
+            </div>
+            <app-menu-index-list ref="sortable" v-model="value"></app-menu-index-list>
         </div>
     </div>
 </template>

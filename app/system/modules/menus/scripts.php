@@ -99,7 +99,7 @@ return [
             ]);
 
             $app['db']->table('menus')->insert([
-                'state'             => 1,
+                'state'             => 0,
                 'hidden'            => 1,
                 'lang'              => '',
                 'title'             => '*.users.module.users-edit',
@@ -144,9 +144,9 @@ return [
                 'hidden'            => 1,
                 'lang'              => '',
                 'title'             => '*.menus.module.menus-edit',
-                'route'             => 'create',
+                'route'             => 'edit',
                 'query'             => '',
-                'package'           => 'liro.menus.backend.menus.create',
+                'package'           => 'liro.menus.backend.menus.edit',
                 'menu_type_id'      => 1,
                 'parent_id'         => 5,
                 '_lft'              => 12,

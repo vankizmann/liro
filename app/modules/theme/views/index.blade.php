@@ -23,12 +23,18 @@
 
         <div id="app" class="uk-offcanvas-content">
 
+            <div id="app-module-help" uk-offcanvas="overlay: true; mode: push;">
+                <div class="uk-offcanvas-bar">
+                    <portal-target name="app-module-help" multiple></portal-target>
+                </div>
+            </div>
+
             <!-- Header start -->
             <header id="uk-header">
 
                 <!-- Navigation start -->
                 <div class="uk-navigation uk-gradient">
-                    <nav class="uk-navbar-container uk-container uk-container-expand uk-navbar-transparent" uk-navbar>
+                    <nav class="uk-navbar-container uk-container uk-container-expand" uk-navbar>
                         <div class="uk-navbar-left">
 
                             <!-- App logo start -->

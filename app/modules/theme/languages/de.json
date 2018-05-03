@@ -1,0 +1,19 @@
+{
+    "theme": {
+        "hash":         "#",
+        "id":           "ID",
+        "title":        "Titel",
+        "visible":      "Sichtbar",
+        "hidden":       "Vesteckt",
+        "help":         "Hilfe",
+        "state":        "Status",
+        "save":         "Speichern",
+        "close":        "Schliessen",
+        "create":       "Erstellen",
+        "edit":         "Bearbeiten",
+        "delete":       "Löschen",
+        "undo":         "Rückgängig",
+        "redo":         "Wiederholen",
+        "discard":      "Verwerfen"
+    }
+}

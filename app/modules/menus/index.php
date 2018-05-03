@@ -20,6 +20,10 @@ return [
 
         'backend.menus.create' => function($router) {
             return $router->middleware(['web', 'route'])->get('/', 'Liro\Menus\Controllers\BackendMenuController@create');
+        },
+
+        'backend.menus.edit' => function($router) {
+            return $router->middleware(['web', 'route'])->get('{id}', 'Liro\Menus\Controllers\BackendMenuController@edit');
         }
 
     ]

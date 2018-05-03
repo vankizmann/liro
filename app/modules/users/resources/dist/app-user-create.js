@@ -209,7 +209,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-user-create.vue"
+Component.options.__file = "resources/src/app-user-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -218,9 +218,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-08e87d76", Component.options)
+    hotAPI.createRecord("data-v-105a1542", Component.options)
   } else {
-    hotAPI.reload("data-v-08e87d76", Component.options)
+    hotAPI.reload("data-v-105a1542", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -234,6 +234,15 @@ module.exports = Component.exports
 /* 7 */
 /***/ (function(module, exports) {
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -356,20 +365,26 @@ var render = function() {
         [
           _c(
             "app-toolbar-event",
-            { attrs: { icon: "fa fa-check", event: "user.create" } },
+            {
+              staticClass: "uk-icon-success",
+              attrs: { icon: "fa fa-check", event: "user.create" }
+            },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("cms.create")) + "\n        "
+                "\n            " + _vm._s(_vm.$t("theme.create")) + "\n        "
               )
             ]
           ),
           _vm._v(" "),
           _c(
             "app-toolbar-link",
-            { attrs: { icon: "fa fa-times", href: _vm.baseRoute } },
+            {
+              staticClass: "uk-icon-danger",
+              attrs: { icon: "fa fa-times", href: _vm.baseRoute }
+            },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("cms.close")) + "\n        "
+                "\n            " + _vm._s(_vm.$t("theme.close")) + "\n        "
               )
             ]
           ),
@@ -387,7 +402,7 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("cms.undo")) + "\n        "
+                "\n            " + _vm._s(_vm.$t("theme.undo")) + "\n        "
               )
             ]
           ),
@@ -403,7 +418,7 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("cms.redo")) + "\n        "
+                "\n            " + _vm._s(_vm.$t("theme.redo")) + "\n        "
               )
             ]
           )
@@ -418,6 +433,7 @@ var render = function() {
           _c(
             "app-toolbar-event",
             {
+              staticClass: "uk-icon-danger",
               attrs: {
                 icon: "fa fa-ban",
                 event: "user.reset",
@@ -426,13 +442,37 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("cms.discard")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("theme.discard")) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("app-toolbar-spacer"),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-link",
+            {
+              attrs: {
+                icon: "fa fa-info-circle",
+                href: "#",
+                "uk-toggle": "target: #app-module-help"
+              }
+            },
+            [
+              _vm._v(
+                "\n            " + _vm._s(_vm.$t("theme.help")) + "\n        "
               )
             ]
           )
         ],
         1
       ),
+      _vm._v(" "),
+      _c("portal", { attrs: { to: "app-module-help" } }, [
+        _c("h1", [_vm._v("Help")])
+      ]),
       _vm._v(" "),
       _c(
         "fieldset",
@@ -502,7 +542,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-08e87d76", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-105a1542", module.exports)
   }
 }
 

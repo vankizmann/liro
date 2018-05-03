@@ -35,16 +35,14 @@ class Walker
         };
     }
 
-    public function multiple($store, $key, $callback)
+    public function multiple($store, $key, $callback, $result= [])
     {
-        $this->loopMultiple($store, $key, $callback)();
-        
-        return $this;
+        return $this->loopMultiple($store, $key, $callback)($result);
     }
 
     protected function loopMultiple($store, $key, $callback)
     {
-        return function() use ($store, $key, $callback) {
+        return function($result = []) use ($store, $key, $callback) {
 
             $items = [];
 
@@ -57,8 +55,15 @@ class Walker
             }
 
             foreach ( $items as $item ) {
-                $callback($item, $this->loopMultiple($item, $key, $callback));
+
+                if ( ! $item ) {
+                    continue;
+                }
+
+                $result = array_merge($callback($result, $item, $this->loopMultiple($item, $key, $callback)));
             }
+
+            return $result;
         };
     }
 

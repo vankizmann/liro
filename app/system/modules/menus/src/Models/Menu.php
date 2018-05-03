@@ -57,6 +57,15 @@ class Menu extends Model
         return $this->attributes['lang'] ?: app()->getLocale();
     }
 
+    public function getActiveAttribute()
+    {
+        $routes = (new Walker)->multiple($this, 'children', function($result, $menu, $next) {
+            return $next(array_merge($result, [$menu->prefixRoute == request()->path()]));
+        });
+
+        return array_intersect(array_merge([$this->prefixRoute == request()->path()], $routes), [true]);
+    }
+
     public function getPrefixRouteAttribute()
     {
         $routes = (new Walker)->single($this, 'parent', function($result, $menu, $next) {

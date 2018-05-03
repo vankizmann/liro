@@ -3,8 +3,8 @@
 @section('toolbar')
     <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
-            <app-toolbar-link icon="fa fa-plus" href="{{ route('liro.users.backend.users.create') }}">
-                {{ trans('*.cms.create') }}
+            <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" href="{{ route('liro.users.backend.users.create') }}">
+                {{ trans('*.users.module.users-create') }}
             </app-toolbar-link>
         </ul>
     </div>

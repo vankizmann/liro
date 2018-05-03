@@ -1,5 +1,5 @@
 @if ( auth()->user()->hasRoute($menu->package) && $menu->state && !$menu->hidden )
-    <li class="{{ $menu->prefixRoute == request()->path() ? 'uk-active' : '' }}">
+    <li class="{{ $menu->active ? 'uk-active' : '' }}">
         <a href="{{ url($menu->prefixRoute) }}">{{ $menu->title_fix }}</a>
         @if ( count($menu->children) )
             @if ( $menu->isRoot() )

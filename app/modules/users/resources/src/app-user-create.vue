@@ -1,26 +1,35 @@
 <template>
     <div class="uk-form uk-form-stacked">
         <portal to="app-toolbar-left">
-            <app-toolbar-event icon="fa fa-check" event="user.create">
-                {{ $t('cms.create') }}
+            <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="user.create">
+                {{ $t('theme.create') }}
             </app-toolbar-event>
-            <app-toolbar-link icon="fa fa-times" :href="baseRoute">
-                {{ $t('cms.close') }}
+            <app-toolbar-link class="uk-icon-danger" icon="fa fa-times" :href="baseRoute">
+                {{ $t('theme.close') }}
             </app-toolbar-link>
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>
             <app-toolbar-event icon="fa fa-undo" event="user.undo" :disabled="!canUndo">
-                {{ $t('cms.undo') }}
+                {{ $t('theme.undo') }}
             </app-toolbar-event>
             <app-toolbar-event icon="fa fa-redo" event="user.redo" :disabled="!canRedo">
-                {{ $t('cms.redo') }}
+                {{ $t('theme.redo') }}
             </app-toolbar-event>
         </portal>
         <portal to="app-toolbar-right">
-            <app-toolbar-event icon="fa fa-ban" event="user.reset" :disabled="!canUndo">
-                {{ $t('cms.discard') }}
+            <app-toolbar-event class="uk-icon-danger" icon="fa fa-ban" event="user.reset" :disabled="!canUndo">
+                {{ $t('theme.discard') }}
             </app-toolbar-event>
+            <app-toolbar-spacer>
+                <!-- Spacer -->
+            </app-toolbar-spacer>
+            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
+                {{ $t('theme.help') }}
+            </app-toolbar-link>
+        </portal>
+        <portal to="app-module-help">
+            <h1>Help</h1>
         </portal>
         <fieldset class="uk-fieldset">
             <app-form-input

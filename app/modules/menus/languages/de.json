@@ -8,10 +8,6 @@
             "types-index":      "Menütyp",
             "types-create":     "Menütyp erstellen",
             "types-edit":       "Menütyp bearbeiten"
-        },
-
-        "label": {
-            "menus-title":      "Titel"
         }
 
     }

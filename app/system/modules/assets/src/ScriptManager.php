@@ -42,6 +42,14 @@ class ScriptManager
         return $this;
     }
 
+    public function plain($name, $body, $dependencies = [], $attributes = [])
+    {
+        $this->scripts[$name] = sprintf('<script %s>%s</script>', implode(' ', $attributes), $body);
+        $this->sorters[$name] = $dependencies;
+
+        return $this;
+    }
+
     public function remove($name)
     {
         unset($this->scripts[$name]);

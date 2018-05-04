@@ -13,13 +13,16 @@
         <portal to="app-module-help">
             <h1>Help</h1>
         </portal>
+
+        <app-list-search column="name,email" placeholder="Search"></app-list-search>
+
         <div class="uk-table-list">
             <div class="uk-table-list-head">
                 <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-filter column="name">{{ $t('theme.name') }}</app-list-filter>
+                    <app-list-direction column="name">{{ $t('theme.name') }}</app-list-direction>
                 </div>
                 <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-filter column="email">{{ $t('theme.email') }}</app-list-filter>
+                    <app-list-direction column="email">{{ $t('theme.email') }}</app-list-direction>
                 </div>
                 <div class="uk-table-list-td uk-width-1-3">
                     {{ $t('theme.roles') }}
@@ -28,7 +31,7 @@
                     {{ $t('theme.state') }}
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
-                    <app-list-filter column="id">{{ $t('theme.id') }}</app-list-filter>
+                    <app-list-direction column="id">{{ $t('theme.id') }}</app-list-direction>
                 </div>
             </div>
             <div class="uk-table-list-row" v-for="user in users" :key="user.id">

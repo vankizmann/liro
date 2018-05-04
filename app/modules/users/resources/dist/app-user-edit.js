@@ -217,7 +217,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-user-edit.vue"
+Component.options.__file = "resources/src/app-user-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -226,9 +226,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5084e0da", Component.options)
+    hotAPI.createRecord("data-v-b6d1fba6", Component.options)
   } else {
-    hotAPI.reload("data-v-5084e0da", Component.options)
+    hotAPI.reload("data-v-b6d1fba6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -362,7 +362,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5084e0da", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-b6d1fba6", module.exports)
   }
 }
 

@@ -1,10 +1,11 @@
 <template>
-    <div :class="{ 'app-list-search': true, 'uk-active': active == column }">
-        <div class="app-list-search-order">
-            <slot></slot>
-            <span v-if="direction == 'desc'" class="fa fa-sort-down" @click="order('asc')"></span>
-            <span v-else class="fa fa-sort-up" @click="order('desc')"></span>
-            
+    <div class="app-list-filter-search">
+        <label v-if="label" for="list-filter-search" class="uk-form-label" v-html="label"></label>
+        <div class="uk-inline">
+            <a class="uk-form-icon uk-form-icon-flip" @click.prevent="search = ''">
+                <i :class="['fa', icon]"></i>
+            </a>
+            <input id="list-filter-search" class="uk-input" type="search" v-model="search" :placeholder="placeholder">
         </div>
     </div>
 </template>
@@ -12,29 +13,36 @@
     module.exports = {
         name: 'app-list-search',
         computed: {
-            direction() {
-                return this.$store.getters['list/direction'];
+            search: {
+                get() {
+                    return this.$store.getters['list/search'];
+                },
+                set(value) {
+                    this.$store.commit('list/search', value);
+                    this.$store.dispatch('list/filter');
+                }
             }
         },
         props: {
-            column: {
-                default: '',
+            icon: {
+                default: 'fa-times',
+                type: String
+            },
+            placeholder: {
+                defaukt: '',
                 type: String
             },
             label: {
                 default: '',
                 type: String
             },
-            search: {
+            column: {
                 default: '',
                 type: String
             }
         },
-        methods: {
-            order(direction) {
-                this.$store.commit('list/set', [this.column, direction]);
-                this.$store.commit('list/search');
-            }
+        mounted() {
+            this.$store.commit('list/search_column', this.column);
         }
     }
     liro.component(module.exports);

@@ -209,7 +209,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-users-index.vue"
+Component.options.__file = "resources/src/app-users-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -218,9 +218,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-213f3154", Component.options)
+    hotAPI.createRecord("data-v-1d86656e", Component.options)
   } else {
-    hotAPI.reload("data-v-213f3154", Component.options)
+    hotAPI.reload("data-v-1d86656e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -234,6 +234,9 @@ module.exports = Component.exports
 /* 7 */
 /***/ (function(module, exports) {
 
+//
+//
+//
 //
 //
 //
@@ -376,6 +379,10 @@ var render = function() {
         _c("h1", [_vm._v("Help")])
       ]),
       _vm._v(" "),
+      _c("app-list-search", {
+        attrs: { column: "name,email", placeholder: "Search" }
+      }),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "uk-table-list" },
@@ -385,7 +392,7 @@ var render = function() {
               "div",
               { staticClass: "uk-table-list-td uk-width-1-3" },
               [
-                _c("app-list-filter", { attrs: { column: "name" } }, [
+                _c("app-list-direction", { attrs: { column: "name" } }, [
                   _vm._v(_vm._s(_vm.$t("theme.name")))
                 ])
               ],
@@ -396,7 +403,7 @@ var render = function() {
               "div",
               { staticClass: "uk-table-list-td uk-width-1-3" },
               [
-                _c("app-list-filter", { attrs: { column: "email" } }, [
+                _c("app-list-direction", { attrs: { column: "email" } }, [
                   _vm._v(_vm._s(_vm.$t("theme.email")))
                 ])
               ],
@@ -433,7 +440,7 @@ var render = function() {
                   "uk-table-list-td uk-table-list-td-s uk-text-center"
               },
               [
-                _c("app-list-filter", { attrs: { column: "id" } }, [
+                _c("app-list-direction", { attrs: { column: "id" } }, [
                   _vm._v(_vm._s(_vm.$t("theme.id")))
                 ])
               ],
@@ -498,7 +505,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-213f3154", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1d86656e", module.exports)
   }
 }
 

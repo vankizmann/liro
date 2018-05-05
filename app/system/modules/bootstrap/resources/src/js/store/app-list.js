@@ -3,45 +3,36 @@ module.exports = {
     name: 'list',
     namespaced: true,
 
-    state: {
-
-        cookie: '',
-        
-        list: [],
-        filter: [],
-
-        search: '',
-        search_column: '',
-
-        direction: 'desc',
-        direction_column: ''
-
-    },
+    state: new List,
 
     getters: {
 
-        list(state) {
+        get(state) {
             return state.list;
         },
 
-        filter(state) {
-            return state.filter;
-        },
-
-        search(state) {
-            return state.search;
-        },
-
-        search_column(state) {
-            return state.search_column;
+        order(state) {
+            return state.order;
         },
 
         direction(state) {
             return state.direction;
         },
 
-        direction_column(state) {
-            return state.direction_column;
+        search(state) {
+            return state.search;
+        },
+
+        searchable(state) {
+            return state.searchable;
+        },
+
+        filter(state) {
+            return state.filter;
+        },
+
+        filterable(state) {
+            return state.filterable;
         }
 
     },
@@ -49,55 +40,19 @@ module.exports = {
     mutations: {
 
         init(state, data) {
-            state.list = state.filter = data;
+            state.init(data);
         },
 
-        search(state, search) {
-            if ( _.isArray(search) ) {
-                state.search = search[0];
-                state.search_column = search[1].split(',')
-            } else {
-                state.search = search;
-            }
+        order(state, data) {
+            state.orderBy(data[0], data[1]);
         },
 
-        search_column(state, search_column) {
-            state.search_column = search_column.split(',');
+        search(state, data) {
+            state.searchBy(data[0], data[1]);
         },
 
-        direction(state, direction) {
-            if ( _.isArray(direction) ) {
-                state.direction = direction[0];
-                state.direction_column = direction[1].split(',');
-            } else {
-                state.direction = direction;
-            }
-        },
-
-        direction_column(state, direction_column) {
-            state.direction_column = direction_column.split(',');
-        }
-
-    },
-
-    actions: {
-
-        filter({ state }) {
-
-            var filter = _.cloneDeep(state.list);
-
-            if ( state.direction != '' && state.direction_column.length != 0 ) {
-                filter = _.orderBy(filter , state.direction_column, state.direction);
-            }
-
-            if ( state.search != '' && state.search_columns != 0 ) {
-                filter = _.filter(filter, (item) => {
-                    var values = _.values(_.pick(item, state.search_column)).join(' ');
-                    return _.includes(values.toLowerCase(), state.search.toLowerCase());
-                });
-            }
-
-            state.filter = filter;
+        filter(state, data) {
+            state.filterBy(data[0], data[1]);
         }
 
     }

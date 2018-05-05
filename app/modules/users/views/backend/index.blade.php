@@ -14,7 +14,7 @@
     <!-- Component start -->
     <app-users-index
         create-route="{{ route('liro.users.backend.users.create') }}" 
-        :value="{{ $users->toJson() }}"
+        :roles="{{ $roles->toJson() }}" :users="{{ $users->toJson() }}"
     ></app-users-index>
     <!-- Compenent end -->
 

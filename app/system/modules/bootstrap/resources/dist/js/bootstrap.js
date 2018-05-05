@@ -1336,10 +1336,13 @@ module.exports = __webpack_require__(18);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uikit__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_uikit__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libraries_undo_js__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__libraries_liro_js__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fuzzy_search__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fuzzy_search___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_fuzzy_search__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_uikit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__libraries_list_js__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__libraries_undo_js__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__libraries_liro_js__ = __webpack_require__(138);
 /**
  * Global data storage
  */
@@ -1377,7 +1380,10 @@ window.axios.defaults.headers.common = {
  */
 
 
-window.UIkit = __WEBPACK_IMPORTED_MODULE_0_uikit___default.a;
+window.Search = __WEBPACK_IMPORTED_MODULE_0_fuzzy_search___default.a;
+
+
+window.UIkit = __WEBPACK_IMPORTED_MODULE_1_uikit___default.a;
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -1386,10 +1392,13 @@ window.UIkit = __WEBPACK_IMPORTED_MODULE_0_uikit___default.a;
  */
 
 
-window.Undo = __WEBPACK_IMPORTED_MODULE_1__libraries_undo_js__["a" /* default */];
+window.List = __WEBPACK_IMPORTED_MODULE_2__libraries_list_js__["a" /* default */];
 
 
-window.liro = new __WEBPACK_IMPORTED_MODULE_2__libraries_liro_js__["a" /* default */]();
+window.Undo = __WEBPACK_IMPORTED_MODULE_3__libraries_undo_js__["a" /* default */];
+
+
+window.liro = new __WEBPACK_IMPORTED_MODULE_4__libraries_liro_js__["a" /* default */]();
 
 /***/ }),
 /* 19 */
@@ -32195,6 +32204,12 @@ module.exports = function spread(callback) {
 /* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
+!function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.FuzzySearch=t():e.FuzzySearch=t()}(this,function(){return function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={};return t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=1)}([function(e,t,n){var r,o,i,r,o,i;!function(n,u){o=[e,t],r=u,void 0!==(i="function"==typeof r?r.apply(t,o):r)&&(e.exports=i)}(0,function(e,t){!function(n,u){o=[e,t],r=u,void 0!==(i="function"==typeof r?r.apply(t,o):r)&&(e.exports=i)}(0,function(e,t){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var r=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),o=function(){function e(){n(this,e)}return r(e,null,[{key:"getDescendantProperty",value:function(t,n){var r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:[],o=void 0,i=void 0,u=void 0,a=void 0,c=void 0,s=void 0;if(n){if(u=n.indexOf("."),-1===u?o=n:(o=n.slice(0,u),i=n.slice(u+1)),null!==(a=t[o])&&void 0!==a)if(i||"string"!=typeof a&&"number"!=typeof a)if("[object Array]"===Object.prototype.toString.call(a))for(c=0,s=a.length;c<s;c++)e.getDescendantProperty(a[c],i,r);else i&&e.getDescendantProperty(a,i,r);else r.push(a)}else r.push(t);return r}}]),e}();t.default=o,e.exports=t.default})})},function(e,t,n){e.exports=n(2)},function(e,t,n){var r,o,i,r,o,i;!function(u,a){o=[e,t,n(0)],r=a,void 0!==(i="function"==typeof r?r.apply(t,o):r)&&(e.exports=i)}(0,function(e,t){!function(u,a){o=[e,t,n(0)],r=a,void 0!==(i="function"==typeof r?r.apply(t,o):r)&&(e.exports=i)}(0,function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var o=function(e){return e&&e.__esModule?e:{default:e}}(n),i=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),u=function(){function e(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:[],o=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};if(r(this,e),0===t.length)throw new Error("We need an array containing the search list");this.haystack=t,this.keys=n,this.options=Object.assign({caseSensitive:!1,sort:!1},o)}return i(e,[{key:"search",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";if(""===t)return this.haystack;for(var n=[],r=0;r<this.haystack.length;r++){var i=this.haystack[r];if(0===this.keys.length){var u=e.isMatch(i,t,this.options.caseSensitive);u&&n.push({item:i,score:u})}else for(var a=0;a<this.keys.length;a++){for(var c=o.default.getDescendantProperty(i,this.keys[a]),s=!1,f=0;f<c.length;f++){var l=e.isMatch(c[f],t,this.options.caseSensitive);if(l){s=!0,n.push({item:i,score:l});break}}if(s)break}}return this.options.sort&&n.sort(function(e,t){return e.score-t.score}),n.map(function(e){return e.item})}}],[{key:"isMatch",value:function(e,t,n){n||(e=e.toLocaleLowerCase(),t=t.toLocaleLowerCase());for(var r=t.split(""),o=[],i=0,u=0;u<r.length;u++){var a=r[u];if(-1===(i=e.indexOf(a,i)))return!1;o.push(i),i++}return e===t?1:o.reduce(function(e,t){return e+t},2)}}]),e}();t.default=u,e.exports=t.default})})}])});
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function(setImmediate) {/*! UIkit 3.0.0-beta.42 | http://www.getuikit.com | (c) 2014 - 2017 YOOtheme | MIT License */
 
 (function (global, factory) {
@@ -43613,7 +43628,76 @@ return UIkit$2;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8).setImmediate))
 
 /***/ }),
-/* 135 */
+/* 136 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _this = this;
+
+/* harmony default export */ __webpack_exports__["a"] = (function () {
+
+    _this.baseList = [];
+
+    _this.list = [];
+
+    _this._build = function () {
+        var list = _.clone(this.baseList);
+
+        list = this._search(list) || list;
+        list = this._order(list) || list;
+
+        this.list = list;
+    };
+
+    _this.init = function (list) {
+        this.baseList = list;
+        this._build();
+    };
+
+    _this.order = 'id';
+    _this.direction = 'desc';
+
+    _this._order = function (list) {
+        if (this.order == '') return;
+        return _.orderBy(list, this.order, this.direction);
+    };
+
+    _this.orderBy = function (order, direction) {
+        this.order = order;
+        this.direction = direction;
+        this._build();
+    };
+
+    _this.search = '';
+    _this.searchable = [];
+
+    _this._search = function (list) {
+        if (this.search == '') return;
+        return new Search(list, this.searchable).search(this.search);
+    };
+
+    _this.searchBy = function (search, searchable) {
+        this.search = search;
+        this.searchable = searchable;
+        this._build();
+    };
+
+    _this.filter = {};
+
+    _this._filter = function (list) {
+        _.filter(list, function (item) {});
+    };
+
+    _this.filterBy = function (filter, filterable) {
+        this.filter[filter] = filterable;
+        this._build();
+    };
+
+    return _this;
+});
+
+/***/ }),
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43710,7 +43794,7 @@ var _this = this;
 });
 
 /***/ }),
-/* 136 */
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -35,6 +35,9 @@ window.axios.defaults.headers.common = {
  * 
  */
 
+import Search from 'fuzzy-search';
+window.Search = Search;
+
 import UIkit from 'uikit';
 window.UIkit = UIkit;
 
@@ -44,6 +47,9 @@ window.UIkit = UIkit;
  * using reactive data binding and reusable components. Vue's API is clean
  * and simple, leaving you to focus on building your next great project.
  */
+
+import List from './libraries/list.js';
+window.List = List;
 
 import Undo from './libraries/undo.js';
 window.Undo = Undo;

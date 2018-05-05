@@ -5,12 +5,14 @@ namespace Liro\Users\Controllers\Backend;
 use Illuminate\Http\Request;
 use Liro\System\Http\Controller;
 use Liro\Users\Models\User;
+use Liro\Users\Models\UserRole;
 
 class UserController extends Controller
 {
     public function index()
     {
         return view('liro.users::backend.index', [
+            'roles' => UserRole::all(),
             'users' => User::all()
         ]);
     }

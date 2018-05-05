@@ -209,7 +209,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-users-index.vue"
+Component.options.__file = "resources\\src\\app-users-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -218,9 +218,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1d86656e", Component.options)
+    hotAPI.createRecord("data-v-213f3154", Component.options)
   } else {
-    hotAPI.reload("data-v-1d86656e", Component.options)
+    hotAPI.reload("data-v-213f3154", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -290,12 +290,20 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 module.exports = {
     name: 'app-users-index',
     computed: {
-        users: function users() {
-            return this.$store.getters['list/filter'];
+        list: function list() {
+            return this.$store.getters['list/get'];
         }
     },
     props: {
@@ -307,13 +315,17 @@ module.exports = {
             default: '',
             type: String
         },
-        value: {
+        roles: {
+            default: [],
+            type: Array
+        },
+        users: {
             default: [],
             type: Array
         }
     },
     mounted: function mounted() {
-        this.$store.commit('list/init', this.value);
+        this.$store.commit('list/init', this.users);
     }
 };
 liro.component(module.exports);
@@ -379,7 +391,7 @@ var render = function() {
         _c("h1", [_vm._v("Help")])
       ]),
       _vm._v(" "),
-      _c("app-list-search", {
+      _c("app-list-filter-search", {
         attrs: { column: "name,email", placeholder: "Search" }
       }),
       _vm._v(" "),
@@ -392,8 +404,12 @@ var render = function() {
               "div",
               { staticClass: "uk-table-list-td uk-width-1-3" },
               [
-                _c("app-list-direction", { attrs: { column: "name" } }, [
-                  _vm._v(_vm._s(_vm.$t("theme.name")))
+                _c("app-list-filter-direction", { attrs: { column: "name" } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.$t("theme.name")) +
+                      "\n                "
+                  )
                 ])
               ],
               1
@@ -403,20 +419,46 @@ var render = function() {
               "div",
               { staticClass: "uk-table-list-td uk-width-1-3" },
               [
-                _c("app-list-direction", { attrs: { column: "email" } }, [
-                  _vm._v(_vm._s(_vm.$t("theme.email")))
-                ])
+                _c(
+                  "app-list-filter-direction",
+                  { attrs: { column: "email" } },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.$t("theme.email")) +
+                        "\n                "
+                    )
+                  ]
+                )
               ],
               1
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "uk-table-list-td uk-width-1-3" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.$t("theme.roles")) +
-                  "\n            "
-              )
-            ]),
+            _c(
+              "div",
+              { staticClass: "uk-table-list-td uk-width-1-3" },
+              [
+                _c(
+                  "app-list-filter-filter",
+                  {
+                    attrs: {
+                      column: "roles",
+                      filters: _vm.roles,
+                      "filters-key": "id",
+                      "filters-label": "title"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.$t("theme.roles")) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
             _c(
               "div",
@@ -440,15 +482,23 @@ var render = function() {
                   "uk-table-list-td uk-table-list-td-s uk-text-center"
               },
               [
-                _c("app-list-direction", { attrs: { column: "id" } }, [
-                  _vm._v(_vm._s(_vm.$t("theme.id")))
-                ])
+                _c(
+                  "app-list-filter-direction",
+                  { attrs: { column: "id", numeric: true } },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.$t("theme.id")) +
+                        "\n                "
+                    )
+                  ]
+                )
               ],
               1
             )
           ]),
           _vm._v(" "),
-          _vm._l(_vm.users, function(user) {
+          _vm._l(_vm.list, function(user) {
             return _c(
               "div",
               { key: user.id, staticClass: "uk-table-list-row" },
@@ -463,9 +513,15 @@ var render = function() {
                   _c("span", [_vm._v(_vm._s(user.email))])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "uk-table-list-td uk-width-1-3" }, [
-                  _c("span", [_vm._v(_vm._s(user.roles))])
-                ]),
+                _c(
+                  "div",
+                  { staticClass: "uk-table-list-td uk-width-1-3" },
+                  _vm._l(user.roles, function(role) {
+                    return _c("a", { key: role.id, attrs: { href: role.id } }, [
+                      _vm._v(_vm._s(role.title))
+                    ])
+                  })
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -505,7 +561,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1d86656e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-213f3154", module.exports)
   }
 }
 

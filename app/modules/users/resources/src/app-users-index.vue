@@ -14,27 +14,35 @@
             <h1>Help</h1>
         </portal>
 
-        <app-list-search column="name,email" placeholder="Search"></app-list-search>
+        <app-list-filter-search column="name,email" placeholder="Search"></app-list-filter-search>
 
         <div class="uk-table-list">
             <div class="uk-table-list-head">
                 <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-direction column="name">{{ $t('theme.name') }}</app-list-direction>
+                    <app-list-filter-direction column="name">
+                        {{ $t('theme.name') }}
+                    </app-list-filter-direction>
                 </div>
                 <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-direction column="email">{{ $t('theme.email') }}</app-list-direction>
+                    <app-list-filter-direction column="email">
+                        {{ $t('theme.email') }}
+                    </app-list-filter-direction>
                 </div>
                 <div class="uk-table-list-td uk-width-1-3">
-                    {{ $t('theme.roles') }}
+                    <app-list-filter-filter column="roles" :filters="roles" filters-key="id" filters-label="title">
+                        {{ $t('theme.roles') }}
+                    </app-list-filter-filter>
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                     {{ $t('theme.state') }}
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
-                    <app-list-direction column="id">{{ $t('theme.id') }}</app-list-direction>
+                    <app-list-filter-direction column="id" :numeric="true">
+                        {{ $t('theme.id') }}
+                    </app-list-filter-direction>
                 </div>
             </div>
-            <div class="uk-table-list-row" v-for="user in users" :key="user.id">
+            <div class="uk-table-list-row" v-for="user in list" :key="user.id">
                 <div class="uk-table-list-td uk-width-1-3">
                     <a :href="user.edit_route">{{ user.name }}</a>
                 </div>
@@ -42,7 +50,7 @@
                     <span>{{ user.email }}</span>
                 </div>
                 <div class="uk-table-list-td uk-width-1-3">
-                    <span>{{ user.roles }}</span>
+                    <a v-for="role in user.roles" :key="role.id" :href="role.id">{{ role.title }}</a>
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                     <app-list-state :active="user.state == 1" href="#"></app-list-state>
@@ -58,8 +66,8 @@
     module.exports = {
         name: 'app-users-index',
         computed: {
-            users() {
-                return this.$store.getters['list/filter'];
+            list() {
+                return this.$store.getters['list/get'];
             }
         },
         props: {
@@ -71,13 +79,17 @@
                 default: '',
                 type: String
             },
-            value: {
+            roles: {
+                default: [],
+                type: Array
+            },
+            users: {
                 default: [],
                 type: Array
             }
         },
         mounted() {
-            this.$store.commit('list/init', this.value);
+            this.$store.commit('list/init', this.users);
         }
     }
     liro.component(module.exports);

@@ -52,8 +52,8 @@ return [
         'backend.users.edit' => function($router) {
 
             return $router->middleware(['web', 'route'])->group(function($router) {
-                $router->get('/{id}', 'Liro\Users\Controllers\Backend\UserController@edit');
-                $router->post('/{id}', 'Liro\Users\Controllers\Backend\UserController@update');
+                $router->get('{id}', 'Liro\Users\Controllers\Backend\UserController@edit');
+                $router->post('{id}', 'Liro\Users\Controllers\Backend\UserController@update');
             });
 
         }

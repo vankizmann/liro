@@ -29,12 +29,14 @@
                     </app-list-filter-direction>
                 </div>
                 <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-filter-filter column="roles" :filters="roles" filters-key="id" filters-label="title">
+                    <app-list-filter-filter column="role_ids" :filters="roles" filters-value="id" filters-label="title">
                         {{ $t('theme.roles') }}
                     </app-list-filter-filter>
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
-                    {{ $t('theme.state') }}
+                    <app-list-filter-filter column="state" :filters="[{ value: 0, label: 'Unpubished' },{ value: 1, label: 'Published' }]">
+                        {{ $t('theme.state') }}
+                    </app-list-filter-filter>
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                     <app-list-filter-direction column="id" :numeric="true">
@@ -50,7 +52,7 @@
                     <span>{{ user.email }}</span>
                 </div>
                 <div class="uk-table-list-td uk-width-1-3">
-                    <a v-for="role in user.roles" :key="role.id" :href="role.id">{{ role.title }}</a>
+                    <a v-for="role in $liro.func.map(user.role_ids, 'id', roles)" :key="role.id" :href="role.id">{{ role.title }}</a>
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                     <app-list-state :active="user.state == 1" href="#"></app-list-state>
@@ -60,6 +62,7 @@
                 </div>
             </div>
         </div>
+        <app-list-pagination class="uk-margin"></app-list-pagination>
     </div>
 </template>
 <script>
@@ -91,6 +94,7 @@
         mounted() {
             this.$store.commit('list/init', this.users);
         }
+
     }
     liro.component(module.exports);
 </script>

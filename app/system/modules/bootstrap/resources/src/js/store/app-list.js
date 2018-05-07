@@ -12,27 +12,35 @@ module.exports = {
         },
 
         order(state) {
-            return state.order;
+            return state.options.sort.column;
         },
 
         direction(state) {
-            return state.direction;
+            return state.options.sort.direction;
         },
 
         search(state) {
-            return state.search;
+            return state.options.search.query;
         },
 
         searchable(state) {
-            return state.searchable;
+            return state.options.search.columns;
         },
 
         filter(state) {
-            return state.filter;
+            return state.options.filter;
         },
 
-        filterable(state) {
-            return state.filterable;
+        page(state) {
+            return state.options.pagination.page;
+        },
+
+        pages(state) {
+            return state.options.pagination.pages;
+        },
+
+        limit(state) {
+            return state.options.pagination.limit;
         }
 
     },
@@ -53,6 +61,10 @@ module.exports = {
 
         filter(state, data) {
             state.filterBy(data[0], data[1]);
+        },
+
+        paginate(state, data) {
+            state.paginateBy(data.page, data.limit);
         }
 
     }

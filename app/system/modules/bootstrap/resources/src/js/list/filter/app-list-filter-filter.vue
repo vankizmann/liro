@@ -5,7 +5,7 @@
         </a>
         <div uk-dropdown="mode: click;">
             <label v-for="(filter, index) in filters" :key="index" class="uk-display-block">
-                <input type="checkbox" class="uk-checkbox" :value="filter[filtersIndex]" v-model="checked"> <span>{{ filter[filtersLabel] }}</span>
+                <input type="checkbox" class="uk-checkbox" :value="filter[filtersValue]" v-model="checked"> <span>{{ filter[filtersLabel] }}</span>
             </label>
             <div class="uk-text-right">
                 <a href="#" @click.prevent="checked = []">{{ $t('Reset')}}</a>
@@ -33,24 +33,24 @@
             filters: {
                 type: Array
             },
-            filtersIndex: {
-                default: 'id',
+            filtersValue: {
+                default: 'value',
                 type: String
             },
             filtersLabel: {
-                default: 'title',
+                default: 'label',
                 type: String
             },
             
         },
         data() {
             return {
-                checked: []
+                checked: this.$store.getters['list/filter'][this.column] || []
             };
         },
         watch: {
             checked() {
-                this.$store.commit('list/filter', [this.column + '.' + this.filtersIndex, this.checked]);
+                this.$store.commit('list/filter', [this.column, this.checked]);
             }
         }
     }

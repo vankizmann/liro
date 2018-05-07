@@ -42,6 +42,7 @@ require('./toolbar/app-toolbar-event.vue');
 require('./toolbar/app-toolbar-link.vue');
 require('./toolbar/app-toolbar-spacer.vue');
 
+require('./list/filter/app-list-pagination.vue');
 require('./list/filter/app-list-filter-filter.vue');
 require('./list/filter/app-list-filter-direction.vue');
 require('./list/filter/app-list-filter-search.vue');

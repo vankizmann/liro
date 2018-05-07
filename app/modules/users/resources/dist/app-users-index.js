@@ -298,6 +298,9 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
 
 module.exports = {
     name: 'app-users-index',
@@ -442,9 +445,9 @@ var render = function() {
                   "app-list-filter-filter",
                   {
                     attrs: {
-                      column: "roles",
+                      column: "role_ids",
                       filters: _vm.roles,
-                      "filters-key": "id",
+                      "filters-value": "id",
                       "filters-label": "title"
                     }
                   },
@@ -467,12 +470,27 @@ var render = function() {
                   "uk-table-list-td uk-table-list-td-s uk-text-center"
               },
               [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.$t("theme.state")) +
-                    "\n            "
+                _c(
+                  "app-list-filter-filter",
+                  {
+                    attrs: {
+                      column: "state",
+                      filters: [
+                        { value: 0, label: "Unpubished" },
+                        { value: 1, label: "Published" }
+                      ]
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.$t("theme.state")) +
+                        "\n                "
+                    )
+                  ]
                 )
-              ]
+              ],
+              1
             ),
             _vm._v(" "),
             _c(
@@ -516,11 +534,16 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "uk-table-list-td uk-width-1-3" },
-                  _vm._l(user.roles, function(role) {
-                    return _c("a", { key: role.id, attrs: { href: role.id } }, [
-                      _vm._v(_vm._s(role.title))
-                    ])
-                  })
+                  _vm._l(
+                    _vm.$liro.func.map(user.role_ids, "id", _vm.roles),
+                    function(role) {
+                      return _c(
+                        "a",
+                        { key: role.id, attrs: { href: role.id } },
+                        [_vm._v(_vm._s(role.title))]
+                      )
+                    }
+                  )
                 ),
                 _vm._v(" "),
                 _c(
@@ -550,7 +573,9 @@ var render = function() {
           })
         ],
         2
-      )
+      ),
+      _vm._v(" "),
+      _c("app-list-pagination", { staticClass: "uk-margin" })
     ],
     1
   )

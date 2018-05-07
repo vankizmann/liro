@@ -106,8 +106,13 @@ export default function() {
         });
     }.bind(this);
 
+    const func = {
+        map: require('./func/map.js'),
+        range: require('./func/range.js')
+    };
+
     return {
-        data: {}, listen, trigger, component, store, setLocale, getLocale, setMessages, getMessages, getTranslator
+        data: {}, func, listen, trigger, component, store, setLocale, getLocale, setMessages, getMessages, getTranslator
     }
 
 }

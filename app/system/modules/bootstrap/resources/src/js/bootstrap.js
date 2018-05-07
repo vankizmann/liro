@@ -35,6 +35,12 @@ window.axios.defaults.headers.common = {
  * 
  */
 
+import QueryString from 'qs';
+window.QueryString = QueryString;
+
+import Cookie from 'js-cookie';
+window.Cookie = Cookie;
+
 import Search from 'fuzzy-search';
 window.Search = Search;
 

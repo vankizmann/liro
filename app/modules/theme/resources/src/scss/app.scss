@@ -1,4 +1,37 @@
 
+.app-list-filter > a {
+    @extend .uk-flex-inline, .uk-flex-middle ;
+}
+
+.app-list-filter > a i {
+    @extend .uk-margin-small-right ;
+    color: $color-gray-40;
+}
+
+.app-list-filter.uk-active > a i {
+    color: $color-primary;
+}
+
+.app-list-filter .uk-dropdown {
+    @extend .uk-text-left ;
+}
+
+.app-list-filter .uk-dropdown a {
+    color: $color-primary !important;
+}
+
+.app-list-sort > a {
+    @extend .uk-flex-inline, .uk-flex-middle ;
+}
+
+.app-list-sort > a i {
+    @extend .uk-margin-small-right ;
+    color: $color-gray-40;
+}
+
+.app-list-sort.uk-active > a i {
+    color: $color-primary;
+}
 
 /**
  * App list collapse

@@ -8384,7 +8384,7 @@ ul.uk-nav-sub {
 
 /* Alignment modifiers
  ========================================================================== */
-.uk-text-left {
+.uk-text-left, .app-list-filter .uk-dropdown {
   text-align: left !important;
 }
 
@@ -9639,7 +9639,7 @@ iframe.uk-cover {
   display: flex;
 }
 
-.uk-flex-inline {
+.uk-flex-inline, .app-list-filter > a, .app-list-sort > a {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -9655,7 +9655,11 @@ iframe.uk-cover {
 .uk-table-list .uk-table-list-head::after,
 .uk-table-list .uk-table-list-row::after,
 .uk-flex-inline::before,
-.uk-flex-inline::after {
+.app-list-filter > a::before,
+.app-list-sort > a::before,
+.uk-flex-inline::after,
+.app-list-filter > a::after,
+.app-list-sort > a::after {
   display: none;
 }
 
@@ -9822,7 +9826,7 @@ iframe.uk-cover {
           align-items: flex-start;
 }
 
-.uk-flex-middle, #uk-header .uk-toolbar .uk-toolbar-spacer, .uk-table-list .uk-table-list-head, .uk-table-list .uk-table-list-row {
+.uk-flex-middle, .app-list-filter > a, .app-list-sort > a, #uk-header .uk-toolbar .uk-toolbar-spacer, .uk-table-list .uk-table-list-head, .uk-table-list .uk-table-list-row {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -10076,7 +10080,7 @@ iframe.uk-cover {
   margin-left: 10px !important;
 }
 
-.uk-margin-small-right {
+.uk-margin-small-right, .app-list-filter > a i, .app-list-sort > a i {
   margin-right: 10px !important;
 }
 
@@ -12170,6 +12174,26 @@ iframe.uk-cover {
   }
 }
 
+.app-list-filter > a i {
+  color: #c9cfd4;
+}
+
+.app-list-filter.uk-active > a i {
+  color: #28a5f5;
+}
+
+.app-list-filter .uk-dropdown a {
+  color: #28a5f5 !important;
+}
+
+.app-list-sort > a i {
+  color: #c9cfd4;
+}
+
+.app-list-sort.uk-active > a i {
+  color: #28a5f5;
+}
+
 /**
  * App list collapse
  */
@@ -12339,11 +12363,6 @@ a, button {
   background-color: #ffffff;
   -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.uk-table-list {
-  margin: 0 -20px;
-  width: calc(100% + 40px);
 }
 
 .uk-table-list .uk-list, .uk-table-list .uk-list li {

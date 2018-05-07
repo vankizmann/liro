@@ -1,7 +1,7 @@
 <template>
-    <div :class="{ 'app-list-filter-order': true, 'uk-active': active }">
+    <div :class="{ 'app-list-sort': true, 'uk-active': active }">
         <a href="#"  @click.prevent="reverse">
-            <slot></slot> <i :class="['fa', icon]"></i>
+            <i :class="['fa', icon]"></i> <span><slot></slot></span>
         </a>
     </div>
 </template>
@@ -15,19 +15,19 @@
             icon() {
 
                 if ( this.numeric && this.direction == 'asc' ) {
-                    return 'fa-sort-numeric-down';
+                    return 'fa-sort-amount-up';
                 }
 
                 if ( this.numeric && this.direction == 'desc' ) {
-                    return 'fa-sort-numeric-up';
+                    return 'fa-sort-amount-down';
                 }
 
-                if ( ! this.numeric && this.direction == 'asc' ) {
-                    return 'fa-sort-alpha-down';
+                if ( this.direction == 'asc' ) {
+                    return 'fa-sort-amount-down';
                 }
 
-                if ( ! this.numeric && this.direction == 'desc' ) {
-                    return 'fa-sort-alpha-up';
+                if ( this.direction == 'desc' ) {
+                    return 'fa-sort-amount-up';
                 }
 
                 return '';

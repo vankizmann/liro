@@ -6,7 +6,18 @@
             "auth-logout":      "Abmelden",
             "users-index":      "Benutzer",
             "users-create":     "Benutzer erstellen",
-            "users-edit":       "Benutzer bearbeiten"
+            "users-edit":       "Benutzer bearbeiten",
+            "users-help":       "Hilfe"
+        },
+
+        "form": {
+            "search":           "Suche",
+            "reset":            "Zurücksetzen",
+            "id":               "ID",
+            "state":            "Status",
+            "name":             "Name",
+            "email":            "E-Mail",
+            "roles":            "Gruppen"
         }
 
     }

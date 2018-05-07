@@ -1,41 +1,45 @@
 <template>
     <div :class="{ 'app-list-sort': true, 'uk-active': active }">
-        <a href="#"  @click.prevent="reverse">
+
+        <!-- Label start -->
+        <a href="#"  @click.prevent="setSort">
             <i :class="['fa', icon]"></i> <span><slot></slot></span>
         </a>
+        <!-- Label end -->
+
     </div>
 </template>
 <script>
     module.exports = {
-        name: 'app-list-filter-direction',
+
+        /**
+         * Component name
+         */
+        name: 'app-list-sort',
+
+        /**
+         * Computed properties
+         */
         computed: {
             direction() {
                 return this.$store.getters['list/direction'];
             },
             icon() {
 
-                if ( this.numeric && this.direction == 'asc' ) {
-                    return 'fa-sort-amount-up';
+                if ( this.reverse ) {
+                    return this.direction == 'asc' ? 'fa-sort-amount-up' : 'fa-sort-amount-down';
                 }
 
-                if ( this.numeric && this.direction == 'desc' ) {
-                    return 'fa-sort-amount-down';
-                }
-
-                if ( this.direction == 'asc' ) {
-                    return 'fa-sort-amount-down';
-                }
-
-                if ( this.direction == 'desc' ) {
-                    return 'fa-sort-amount-up';
-                }
-
-                return '';
+                return this.direction == 'asc' ? 'fa-sort-amount-down' : 'fa-sort-amount-up';
             },
             active() {
                 return this.$store.getters['list/order'] == this.column;
             }
         },
+
+        /**
+         * Changable properties
+         */
         props: {
             column: {
                 default: '',
@@ -45,16 +49,21 @@
                 default: '',
                 type: String
             },
-            numeric: {
+            reverse: {
                 default: false,
                 type: Boolean
             }
         },
+
+        /**
+         * Component methods
+         */
         methods: {
-            reverse() {
-                this.$store.commit('list/order', [this.column, this.direction == 'desc' ? 'asc' : 'desc']);
+            setSort() {
+                this.$store.commit('list/sort', { column: this.column, direction: this.direction == 'desc' ? 'asc' : 'desc' });
             }
         }
+
     }
     liro.component(module.exports);
 </script>

@@ -35,6 +35,7 @@ import VeeValidateRU from 'vee-validate/dist/locale/ru';
 /**
  * 
  */
+
 require('./store/app-history.js');
 require('./store/app-list.js');
 
@@ -42,11 +43,10 @@ require('./toolbar/app-toolbar-event.vue');
 require('./toolbar/app-toolbar-link.vue');
 require('./toolbar/app-toolbar-spacer.vue');
 
-require('./list/filter/app-list-pagination.vue');
-require('./list/filter/app-list-filter-filter.vue');
-require('./list/filter/app-list-filter-direction.vue');
-require('./list/filter/app-list-filter-search.vue');
-
+require('./list/app-list-pagination.vue');
+require('./list/app-list-filter.vue');
+require('./list/app-list-sort.vue');
+require('./list/app-list-search.vue');
 require('./list/app-list-collapse.vue');
 require('./list/app-list-state.vue');
 require('./list/app-list-hidden.vue');

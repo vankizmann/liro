@@ -84,7 +84,6 @@ export default () => {
         this._build();
     }
 
-
     this._order = function(items) {
 
         if ( this.options.sort.column == '' ) {

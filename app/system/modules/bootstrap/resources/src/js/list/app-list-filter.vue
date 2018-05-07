@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ 'app-list-filter': true, 'uk-active': checked.length != 0 }">
+    <div :class="{ 'app-list-filter': true, 'uk-active': values.length != 0 }">
         
         <!-- Label start -->
         <a href="#">
@@ -11,13 +11,13 @@
 
             <!-- Options start -->
             <label v-for="(filter, index) in filters" :key="index" class="uk-display-block" style="margin-bottom: 3px;">
-                <input type="checkbox" class="uk-checkbox" style="margin-right: 4px;" :value="filter[filtersValue]" v-model="checked"> <span>{{ filter[filtersLabel] }}</span>
+                <input type="checkbox" class="uk-checkbox" style="margin-right: 4px;" :value="filter[filtersValue]" v-model="values"> <span>{{ filter[filtersLabel] }}</span>
             </label>
             <!-- Options end -->
 
             <!-- Reset start -->
             <div class="uk-text-small uk-text-right">
-                <a href="#" @click.prevent="checked = []">{{ $t('Reset')}}</a>
+                <a href="#" @click.prevent="values = []">{{ reset }}</a>
             </div>
             <!-- Reset end -->
 
@@ -27,7 +27,15 @@
 </template>
 <script>
     module.exports = {
-        name: 'app-list-filter-filter',
+
+        /**
+         * Component name
+         */
+        name: 'app-list-filter',
+
+        /**
+         * Changable properties
+         */
         props: {
             column: {
                 default: '',
@@ -41,7 +49,12 @@
                 default: '',
                 type: String
             },
+            reset: {
+                default: '',
+                type: String
+            },
             filters: {
+                default: () => [],
                 type: Array
             },
             filtersValue: {
@@ -52,18 +65,26 @@
                 default: 'label',
                 type: String
             },
-            
         },
+
+        /**
+         * Data function
+         */
         data() {
             return {
-                checked: this.$store.getters['list/filter'][this.column] || []
+                values: this.$store.getters['list/filter'][this.column] || []
             };
         },
+
+        /**
+         * Component watchers
+         */
         watch: {
-            checked() {
-                this.$store.commit('list/filter', [this.column, this.checked]);
+            values() {
+                this.$store.commit('list/filter', { column: this.column, values: this.values });
             }
         }
+
     }
     liro.component(module.exports);
 </script>

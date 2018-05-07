@@ -209,7 +209,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-users-index.vue"
+Component.options.__file = "resources\\src\\app-users-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -218,9 +218,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1d86656e", Component.options)
+    hotAPI.createRecord("data-v-213f3154", Component.options)
   } else {
-    hotAPI.reload("data-v-1d86656e", Component.options)
+    hotAPI.reload("data-v-213f3154", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -234,6 +234,24 @@ module.exports = Component.exports
 /* 7 */
 /***/ (function(module, exports) {
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -358,7 +376,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("menus.module.menus-create")) +
+                  _vm._s(_vm.$t("users.module.users-create")) +
                   "\n        "
               )
             ]
@@ -382,7 +400,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.help")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("users.module.users-help")) +
+                  "\n        "
               )
             ]
           )
@@ -391,12 +411,30 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("portal", { attrs: { to: "app-module-help" } }, [
-        _c("h1", [_vm._v("Help")])
+        _c("h1", [_vm._v(_vm._s(_vm.$t("users.module.users-help")))])
       ]),
       _vm._v(" "),
-      _c("app-list-filter-search", {
-        attrs: { column: "name,email", placeholder: "Search" }
-      }),
+      _c("div", { staticClass: "uk-flex uk-flex-middle uk-margin-bottom" }, [
+        _c("div", [
+          _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
+            _vm._v(_vm._s(_vm.$t("users.module.users-index")))
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticStyle: { "margin-left": "auto" } },
+          [
+            _c("app-list-search", {
+              attrs: {
+                columns: ["name", "email"],
+                placeholder: _vm.$t("users.form.search")
+              }
+            })
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -407,10 +445,25 @@ var render = function() {
               "div",
               { staticClass: "uk-table-list-td uk-width-1-3" },
               [
-                _c("app-list-filter-direction", { attrs: { column: "name" } }, [
+                _c("app-list-sort", { attrs: { column: "name" } }, [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(_vm.$t("theme.name")) +
+                      _vm._s(_vm.$t("users.form.name")) +
+                      "\n                "
+                  )
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "uk-table-list-td uk-width-1-3" },
+              [
+                _c("app-list-sort", { attrs: { column: "email" } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.$t("users.form.email")) +
                       "\n                "
                   )
                 ])
@@ -423,38 +476,20 @@ var render = function() {
               { staticClass: "uk-table-list-td uk-width-1-3" },
               [
                 _c(
-                  "app-list-filter-direction",
-                  { attrs: { column: "email" } },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.$t("theme.email")) +
-                        "\n                "
-                    )
-                  ]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "uk-table-list-td uk-width-1-3" },
-              [
-                _c(
-                  "app-list-filter-filter",
+                  "app-list-filter",
                   {
                     attrs: {
                       column: "role_ids",
                       filters: _vm.roles,
                       "filters-value": "id",
-                      "filters-label": "title"
+                      "filters-label": "title",
+                      reset: _vm.$t("users.form.reset")
                     }
                   },
                   [
                     _vm._v(
                       "\n                    " +
-                        _vm._s(_vm.$t("theme.roles")) +
+                        _vm._s(_vm.$t("users.form.roles")) +
                         "\n                "
                     )
                   ]
@@ -471,20 +506,21 @@ var render = function() {
               },
               [
                 _c(
-                  "app-list-filter-filter",
+                  "app-list-filter",
                   {
                     attrs: {
                       column: "state",
                       filters: [
                         { value: 0, label: "Unpubished" },
                         { value: 1, label: "Published" }
-                      ]
+                      ],
+                      reset: _vm.$t("users.form.reset")
                     }
                   },
                   [
                     _vm._v(
                       "\n                    " +
-                        _vm._s(_vm.$t("theme.state")) +
+                        _vm._s(_vm.$t("users.form.state")) +
                         "\n                "
                     )
                   ]
@@ -501,12 +537,12 @@ var render = function() {
               },
               [
                 _c(
-                  "app-list-filter-direction",
-                  { attrs: { column: "id", numeric: true } },
+                  "app-list-sort",
+                  { attrs: { column: "id", reverse: true } },
                   [
                     _vm._v(
                       "\n                    " +
-                        _vm._s(_vm.$t("theme.id")) +
+                        _vm._s(_vm.$t("users.form.id")) +
                         "\n                "
                     )
                   ]
@@ -531,20 +567,22 @@ var render = function() {
                   _c("span", [_vm._v(_vm._s(user.email))])
                 ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "uk-table-list-td uk-width-1-3" },
-                  _vm._l(
-                    _vm.$liro.func.map(user.role_ids, "id", _vm.roles),
-                    function(role) {
-                      return _c(
-                        "a",
-                        { key: role.id, attrs: { href: role.id } },
-                        [_vm._v(_vm._s(role.title))]
-                      )
-                    }
+                _c("div", { staticClass: "uk-table-list-td uk-width-1-3" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "uk-list-inline uk-margin-remove" },
+                    _vm._l(
+                      _vm.$liro.func.map(user.role_ids, "id", _vm.roles),
+                      function(role) {
+                        return _c("li", { key: role.id }, [
+                          _c("a", { attrs: { href: role.id } }, [
+                            _vm._v(_vm._s(role.title))
+                          ])
+                        ])
+                      }
+                    )
                   )
-                ),
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -553,9 +591,7 @@ var render = function() {
                       "uk-table-list-td uk-table-list-td-m uk-text-center"
                   },
                   [
-                    _c("app-list-state", {
-                      attrs: { active: user.state == 1, href: "#" }
-                    })
+                    _c("app-list-state", { attrs: { active: user.state == 1 } })
                   ],
                   1
                 ),
@@ -586,7 +622,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1d86656e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-213f3154", module.exports)
   }
 }
 

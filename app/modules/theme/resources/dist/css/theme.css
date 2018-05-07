@@ -12365,6 +12365,19 @@ a, button {
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.uk-list-inline {
+  padding: 0;
+  list-style-type: none;
+}
+
+.uk-list-inline li {
+  display: inline-block;
+}
+
+.uk-list-inline li:nth-child(1n+2):before {
+  content: ', ';
+}
+
 .uk-table-list .uk-list, .uk-table-list .uk-list li {
   margin: 0 !important;
 }

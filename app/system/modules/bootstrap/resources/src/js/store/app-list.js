@@ -51,16 +51,16 @@ module.exports = {
             state.init(data);
         },
 
-        order(state, data) {
-            state.orderBy(data[0], data[1]);
+        sort(state, data) {
+            state.orderBy(data.column, data.direction);
         },
 
         search(state, data) {
-            state.searchBy(data[0], data[1]);
+            state.searchBy(data.query, data.columns);
         },
 
         filter(state, data) {
-            state.filterBy(data[0], data[1]);
+            state.filterBy(data.column, data.values);
         },
 
         paginate(state, data) {

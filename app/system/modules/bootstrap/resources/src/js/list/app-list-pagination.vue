@@ -19,31 +19,31 @@
 
                 <!-- Last start -->
                 <li :class="{ 'uk-disabled': active == 1 }">
-                    <a href="#" @click.prevent="paginate(1)"><i class="fa fa-angle-double-left"></i></a>
+                    <a href="#" @click.prevent="setPaginate(1)"><i class="fa fa-angle-double-left"></i></a>
                 </li>
                 <!-- Last end -->
 
                 <!-- Prev start -->
                 <li :class="{ 'uk-disabled': active == 1 }">
-                    <a href="#" @click.prevent="paginate(active - 1)"><i class="fa fa-angle-left"></i></a>
+                    <a href="#" @click.prevent="setPaginate(active - 1)"><i class="fa fa-angle-left"></i></a>
                 </li>
                 <!-- Prev end -->
 
                 <!-- Pages start -->
                 <li v-for="page in $liro.func.range(pages, 1)" :key="page" :class="{ 'uk-active': page == active }">
-                    <a href="#" @click.prevent="paginate(page)">{{ page }}</a>
+                    <a href="#" @click.prevent="setPaginate(page)">{{ page }}</a>
                 </li>
                 <!-- Pages end -->
 
                 <!-- Next start -->
                 <li :class="{ 'uk-disabled': active == pages }">
-                    <a href="#" @click.prevent="paginate(active + 1)"><i class="fa fa-angle-right"></i></a>
+                    <a href="#" @click.prevent="setPaginate(active + 1)"><i class="fa fa-angle-right"></i></a>
                 </li>
                 <!-- Next end -->
 
                 <!-- Last start -->
                 <li :class="{ 'uk-disabled': active == pages }">
-                    <a href="#" @click.prevent="paginate(pages)"><i class="fa fa-angle-double-right"></i></a>
+                    <a href="#" @click.prevent="setPaginate(pages)"><i class="fa fa-angle-double-right"></i></a>
                 </li>
                 <!-- Last end -->
 
@@ -99,7 +99,7 @@
          * Component methods
          */
         methods: {
-            paginate(page) {
+            setPaginate(page) {
                 this.$store.commit('list/paginate', { page: page, limit: this.limit });
             }
         }

@@ -1,12 +1,24 @@
 <template>
     <div :class="{ 'app-list-collapse': true, 'uk-disabled': disabled, 'uk-active': active }">
+
+        <!-- Label start -->
         <a v-if="active" href="#" :class="['fa', open]" @click="click"></a>
         <a v-else href="#" :class="['fa', closed]" @click="click"></a>
+        <!-- Label end -->
+
     </div>
 </template>
 <script>
     module.exports = {
+
+        /**
+         * Component name
+         */
         name: 'app-list-collapse',
+
+        /**
+         * Changable properties
+         */
         props: {
             open: {
                 default: 'fa-angle-down',
@@ -25,6 +37,10 @@
                 type: Boolean
             }
         },
+
+        /**
+         * Component methods
+         */
         methods: {
             click(event) {
 
@@ -35,6 +51,7 @@
                 this.$emit('click', event);
             }
         }
+
     }
     liro.component(module.exports);
 </script>

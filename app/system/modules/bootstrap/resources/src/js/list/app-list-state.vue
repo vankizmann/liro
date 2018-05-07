@@ -1,17 +1,24 @@
 <template>
-    <div :class="{ 'app-list-state': true, 'uk-active': active }">
-        <a v-if="href" :href="href" :class="{'fa': icon != '', icon: icon != '' }"></a>
-        <span v-else :class="{'fa': icon != '', icon: icon != '' }"></span>
+    <div :class="{ 'app-list-state': true, 'uk-active': active, 'uk-disabled': href == '' }">
+
+        <!-- Marker start -->
+        <a :href="href"></a>
+        <!-- Marker end -->
+
     </div>
 </template>
 <script>
     module.exports = {
+
+        /**
+         * Component name
+         */
         name: 'app-list-state',
+
+        /**
+         * Computed properties
+         */
         props: {
-            icon: {
-                default: '',
-                type: String
-            },
             href: {
                 default: '',
                 type: String
@@ -21,6 +28,7 @@
                 type: Boolean
             }
         }
+
     }
     liro.component(module.exports);
 </script>

@@ -7,10 +7,6 @@
 @section('content')
 <div class="liro-users-index">
 
-    <!-- Title start -->
-    <h1 class="uk-text-lead">{{ trans('*.users.module.users-index') }}</h1>
-    <!-- Title end -->
-
     <!-- Component start -->
     <app-users-index
         create-route="{{ route('liro.users.backend.users.create') }}" 

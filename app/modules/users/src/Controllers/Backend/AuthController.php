@@ -22,7 +22,7 @@ class AuthController extends Controller
 
     public function submit(Request $request)
     {
-        $credentials = $request->only(['email', 'password']);
+        $credentials = array_merge(['state' => 1], $request->only(['email', 'password']));
 
         if ( auth()->attempt($credentials) ) {
             return redirect('/de/backend/menus');

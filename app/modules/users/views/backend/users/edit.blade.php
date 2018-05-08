@@ -1,11 +1,11 @@
 @extends('backend::index')
 
 @php
-    app('scripts')->link('app-user-edit', 'liro.users:resources/dist/app-user-edit.js');
+    app('scripts')->link('app-users', 'liro.users:resources/dist/app-users.js');
 @endphp
 
 @section('content')
-    <app-user-edit
+    <app-users-edit
         update="{{ $user->editRoute }}" :value="{{ $user->toJson() }}"
-    ></app-user-edit>
+    ></app-users-edit>
 @endsection

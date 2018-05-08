@@ -90,7 +90,7 @@
                 type: Number
             },
             options: {
-                default: () => [25, 50, 100, 250, 500],
+                default: () => [2, 25, 50, 100, 250, 500],
                 type: Array
             }
         },

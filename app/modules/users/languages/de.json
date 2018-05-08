@@ -7,17 +7,33 @@
             "users-index":      "Benutzer",
             "users-create":     "Benutzer erstellen",
             "users-edit":       "Benutzer bearbeiten",
-            "users-help":       "Hilfe"
+            "users-help":       "Hilfe",
+            "roles-index":      "Gruppen",
+            "roles-create":     "Gruppe erstellen",
+            "roles-edit":       "Gruppe bearbeiten",
+            "roles-help":       "Hilfe"
         },
 
         "form": {
+            "create":           "Erstellen",
+            "close":            "Schliessen",
+            "undo":             "Rückgängig",
+            "redo":             "Wiederholen",
+            "discard":          "Verwerfen",
+            "empty":            "Kein Eintrag gefunden.",
+            "enabled":          "Aktiviert",
+            "disabled":         "Deaktiviert",
             "search":           "Suche",
             "reset":            "Zurücksetzen",
             "id":               "ID",
             "state":            "Status",
             "name":             "Name",
+            "title":            "Titel",
+            "description":      "Beschreibung",
             "email":            "E-Mail",
-            "roles":            "Gruppen"
+            "roles":            "Gruppen",
+            "routes":           "Routen",
+            "route_count":      "Keine Routen | {count} Route | {count} Routen"
         }
 
     }

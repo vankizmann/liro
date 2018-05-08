@@ -46,6 +46,31 @@ return [
 
             $app['db']->table('user_role_routes')->insert([
                 'user_role_id'  => 1,
+                'route'         => 'liro.users.backend.users.enable'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.users.backend.users.disable'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.users.backend.roles.index'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.users.backend.roles.create'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro.users.backend.roles.edit'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
                 'route'         => 'liro.menus.backend.menus.index'
             ]);
 
@@ -113,6 +138,11 @@ return [
             $app['db']->table('user_role_link')->insert([
                 'user_id'       => 1,
                 'user_role_id'  => 1
+            ]);
+
+            $app['db']->table('user_role_link')->insert([
+                'user_id'       => 1,
+                'user_role_id'  => 2
             ]);
 
             $app['db']->table('user_role_link')->insert([

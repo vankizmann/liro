@@ -11834,16 +11834,16 @@ __webpack_require__(160);
 __webpack_require__(163);
 __webpack_require__(166);
 
-__webpack_require__(169);
-__webpack_require__(172);
-__webpack_require__(193);
-__webpack_require__(175);
-__webpack_require__(178);
+__webpack_require__(196);
+__webpack_require__(199);
+__webpack_require__(202);
+__webpack_require__(205);
 __webpack_require__(181);
 __webpack_require__(184);
-
 __webpack_require__(187);
+
 __webpack_require__(190);
+__webpack_require__(193);
 
 liro.listen('document.ready', function () {
 
@@ -20992,7 +20992,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\js\\toolbar\\app-toolbar-event.vue"
+Component.options.__file = "resources/src/js/toolbar/app-toolbar-event.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -21001,9 +21001,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-94c1daf6", Component.options)
+    hotAPI.createRecord("data-v-5e56dfc5", Component.options)
   } else {
-    hotAPI.reload("data-v-94c1daf6", Component.options)
+    hotAPI.reload("data-v-5e56dfc5", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -21093,7 +21093,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-94c1daf6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5e56dfc5", module.exports)
   }
 }
 
@@ -21123,7 +21123,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\js\\toolbar\\app-toolbar-link.vue"
+Component.options.__file = "resources/src/js/toolbar/app-toolbar-link.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -21132,9 +21132,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-65aff4df", Component.options)
+    hotAPI.createRecord("data-v-e7ad00c2", Component.options)
   } else {
-    hotAPI.reload("data-v-65aff4df", Component.options)
+    hotAPI.reload("data-v-e7ad00c2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -21211,7 +21211,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-65aff4df", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-e7ad00c2", module.exports)
   }
 }
 
@@ -21241,7 +21241,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\js\\toolbar\\app-toolbar-spacer.vue"
+Component.options.__file = "resources/src/js/toolbar/app-toolbar-spacer.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -21250,9 +21250,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-356f265e", Component.options)
+    hotAPI.createRecord("data-v-538a4791", Component.options)
   } else {
-    hotAPI.reload("data-v-356f265e", Component.options)
+    hotAPI.reload("data-v-538a4791", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -21300,20 +21300,32 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-356f265e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-538a4791", module.exports)
   }
 }
 
 /***/ }),
-/* 169 */
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(170)
+var __vue_script__ = __webpack_require__(182)
 /* template */
-var __vue_template__ = __webpack_require__(171)
+var __vue_template__ = __webpack_require__(183)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -21330,7 +21342,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\js\\list\\app-list-pagination.vue"
+Component.options.__file = "resources/src/js/list/app-list-collapse.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -21339,9 +21351,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1633ceb6", Component.options)
+    hotAPI.createRecord("data-v-6ba69fb2", Component.options)
   } else {
-    hotAPI.reload("data-v-1633ceb6", Component.options)
+    hotAPI.reload("data-v-6ba69fb2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -21352,756 +21364,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 170 */
-/***/ (function(module, exports) {
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-module.exports = {
-
-    /**
-     * Component name
-     */
-    name: 'app-list-pagination',
-
-    /**
-     * Computed properties
-     */
-    computed: {
-        active: function active() {
-            return this.$store.getters['list/page'];
-        },
-        pages: function pages() {
-            return this.$store.getters['list/pages'];
-        },
-
-        limit: {
-            get: function get() {
-                return this.$store.getters['list/limit'];
-            },
-            set: function set(value) {
-                this.$store.commit('list/paginate', { page: this.active, limit: value });
-            }
-        }
-    },
-
-    /**
-     * Changable properties
-     */
-    props: {
-        defaultLimit: {
-            default: 25,
-            type: Number
-        },
-        options: {
-            default: function _default() {
-                return [25, 50, 100, 250, 500];
-            },
-            type: Array
-        }
-    },
-
-    /**
-     * Component methods
-     */
-    methods: {
-        setPaginate: function setPaginate(page) {
-            this.$store.commit('list/paginate', { page: page, limit: this.limit });
-        }
-    }
-
-};
-liro.component(module.exports);
-
-/***/ }),
-/* 171 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "app-list-pagination uk-flex uk-flex-middle" },
-    [
-      _c("div", { staticClass: "app-list-pagination-limit uk-flex-left" }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.limit,
-                expression: "limit"
-              }
-            ],
-            staticClass: "uk-select",
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.limit = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
-            }
-          },
-          _vm._l(_vm.options, function(option, index) {
-            return _c(
-              "option",
-              {
-                key: index,
-                domProps: { value: option, selected: option == _vm.limit }
-              },
-              [_vm._v(_vm._s(option))]
-            )
-          })
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "app-list-pagination-pages uk-flex-right",
-          staticStyle: { "margin-left": "auto" }
-        },
-        [
-          _c(
-            "ul",
-            { staticClass: "uk-pagination uk-flex-middle" },
-            [
-              _c("li", { class: { "uk-disabled": _vm.active == 1 } }, [
-                _c(
-                  "a",
-                  {
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.setPaginate(1)
-                      }
-                    }
-                  },
-                  [_c("i", { staticClass: "fa fa-angle-double-left" })]
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", { class: { "uk-disabled": _vm.active == 1 } }, [
-                _c(
-                  "a",
-                  {
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.setPaginate(_vm.active - 1)
-                      }
-                    }
-                  },
-                  [_c("i", { staticClass: "fa fa-angle-left" })]
-                )
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.$liro.func.range(_vm.pages, 1), function(page) {
-                return _c(
-                  "li",
-                  { key: page, class: { "uk-active": page == _vm.active } },
-                  [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "#" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.setPaginate(page)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(page))]
-                    )
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _c("li", { class: { "uk-disabled": _vm.active == _vm.pages } }, [
-                _c(
-                  "a",
-                  {
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.setPaginate(_vm.active + 1)
-                      }
-                    }
-                  },
-                  [_c("i", { staticClass: "fa fa-angle-right" })]
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", { class: { "uk-disabled": _vm.active == _vm.pages } }, [
-                _c(
-                  "a",
-                  {
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.setPaginate(_vm.pages)
-                      }
-                    }
-                  },
-                  [_c("i", { staticClass: "fa fa-angle-double-right" })]
-                )
-              ])
-            ],
-            2
-          )
-        ]
-      )
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1633ceb6", module.exports)
-  }
-}
-
-/***/ }),
-/* 172 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(173)
-/* template */
-var __vue_template__ = __webpack_require__(174)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\src\\js\\list\\app-list-filter.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-036a3f03", Component.options)
-  } else {
-    hotAPI.reload("data-v-036a3f03", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 173 */
-/***/ (function(module, exports) {
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-module.exports = {
-
-    /**
-     * Component name
-     */
-    name: 'app-list-filter',
-
-    /**
-     * Changable properties
-     */
-    props: {
-        column: {
-            default: '',
-            type: String
-        },
-        display: {
-            default: '',
-            type: String
-        },
-        label: {
-            default: '',
-            type: String
-        },
-        reset: {
-            default: '',
-            type: String
-        },
-        filters: {
-            default: function _default() {
-                return [];
-            },
-            type: Array
-        },
-        filtersValue: {
-            default: 'value',
-            type: String
-        },
-        filtersLabel: {
-            default: 'label',
-            type: String
-        }
-    },
-
-    /**
-     * Data function
-     */
-    data: function data() {
-        return {
-            values: this.$store.getters['list/filter'][this.column] || []
-        };
-    },
-
-
-    /**
-     * Component watchers
-     */
-    watch: {
-        values: function values() {
-            this.$store.commit('list/filter', { column: this.column, values: this.values });
-        }
-    }
-
-};
-liro.component(module.exports);
-
-/***/ }),
-/* 174 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { class: { "app-list-filter": true, "uk-active": _vm.values.length != 0 } },
-    [
-      _c("a", { attrs: { href: "#" } }, [
-        _c("i", { staticClass: "fa fa-check-square" }),
-        _vm._v(" "),
-        _c("span", [_vm._t("default")], 2)
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { attrs: { "uk-dropdown": "mode: click;" } },
-        [
-          _vm._l(_vm.filters, function(filter, index) {
-            return _c(
-              "label",
-              {
-                key: index,
-                staticClass: "uk-display-block",
-                staticStyle: { "margin-bottom": "3px" }
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.values,
-                      expression: "values"
-                    }
-                  ],
-                  staticClass: "uk-checkbox",
-                  staticStyle: { "margin-right": "4px" },
-                  attrs: { type: "checkbox" },
-                  domProps: {
-                    value: filter[_vm.filtersValue],
-                    checked: Array.isArray(_vm.values)
-                      ? _vm._i(_vm.values, filter[_vm.filtersValue]) > -1
-                      : _vm.values
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.values,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = filter[_vm.filtersValue],
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (_vm.values = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (_vm.values = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.values = $$c
-                      }
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(filter[_vm.filtersLabel]))])
-              ]
-            )
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "uk-text-small uk-text-right" }, [
-            _c(
-              "a",
-              {
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.values = []
-                  }
-                }
-              },
-              [_vm._v(_vm._s(_vm.reset))]
-            )
-          ])
-        ],
-        2
-      )
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-036a3f03", module.exports)
-  }
-}
-
-/***/ }),
-/* 175 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(176)
-/* template */
-var __vue_template__ = __webpack_require__(177)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\src\\js\\list\\app-list-search.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-35a34133", Component.options)
-  } else {
-    hotAPI.reload("data-v-35a34133", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 176 */
-/***/ (function(module, exports) {
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-module.exports = {
-
-    /**
-     * Component name
-     */
-    name: 'app-list-search',
-
-    /**
-     * Computed properties
-     */
-    computed: {
-        search: {
-            get: function get() {
-                return this.$store.getters['list/search'];
-            },
-            set: function set(value) {
-                this.$store.commit('list/search', { query: value, columns: this.columns });
-            }
-        }
-    },
-
-    /**
-     * Changable properties
-     */
-    props: {
-        placeholder: {
-            default: '',
-            type: String
-        },
-        columns: {
-            default: function _default() {
-                return [];
-            },
-            type: Array
-        }
-    }
-
-};
-liro.component(module.exports);
-
-/***/ }),
-/* 177 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "app-list-search" }, [
-    _c("div", { staticClass: "uk-inline" }, [
-      _c(
-        "a",
-        {
-          staticClass: "uk-form-icon uk-form-icon-flip",
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              _vm.search = ""
-            }
-          }
-        },
-        [_c("i", { staticClass: "fa fa-times" })]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.search,
-            expression: "search"
-          }
-        ],
-        staticClass: "uk-input",
-        attrs: {
-          id: "list-filter-search",
-          type: "search",
-          placeholder: _vm.placeholder
-        },
-        domProps: { value: _vm.search },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.search = $event.target.value
-          }
-        }
-      })
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-35a34133", module.exports)
-  }
-}
-
-/***/ }),
-/* 178 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(179)
-/* template */
-var __vue_template__ = __webpack_require__(180)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\src\\js\\list\\app-list-collapse.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-015803f8", Component.options)
-  } else {
-    hotAPI.reload("data-v-015803f8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 179 */
+/* 182 */
 /***/ (function(module, exports) {
 
 //
@@ -22162,7 +21425,7 @@ module.exports = {
 liro.component(module.exports);
 
 /***/ }),
-/* 180 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -22199,20 +21462,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-015803f8", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-6ba69fb2", module.exports)
   }
 }
 
 /***/ }),
-/* 181 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(182)
+var __vue_script__ = __webpack_require__(185)
 /* template */
-var __vue_template__ = __webpack_require__(183)
+var __vue_template__ = __webpack_require__(186)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -22229,7 +21492,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\js\\list\\app-list-state.vue"
+Component.options.__file = "resources/src/js/list/app-list-state.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -22238,9 +21501,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4d6ec154", Component.options)
+    hotAPI.createRecord("data-v-b437a448", Component.options)
   } else {
-    hotAPI.reload("data-v-4d6ec154", Component.options)
+    hotAPI.reload("data-v-b437a448", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -22251,7 +21514,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 182 */
+/* 185 */
 /***/ (function(module, exports) {
 
 //
@@ -22289,7 +21552,7 @@ module.exports = {
 liro.component(module.exports);
 
 /***/ }),
-/* 183 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -22314,20 +21577,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4d6ec154", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-b437a448", module.exports)
   }
 }
 
 /***/ }),
-/* 184 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(185)
+var __vue_script__ = __webpack_require__(188)
 /* template */
-var __vue_template__ = __webpack_require__(186)
+var __vue_template__ = __webpack_require__(189)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -22344,7 +21607,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\js\\list\\app-list-hidden.vue"
+Component.options.__file = "resources/src/js/list/app-list-hidden.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -22353,9 +21616,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5e57a835", Component.options)
+    hotAPI.createRecord("data-v-252dea6f", Component.options)
   } else {
-    hotAPI.reload("data-v-5e57a835", Component.options)
+    hotAPI.reload("data-v-252dea6f", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -22366,7 +21629,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 185 */
+/* 188 */
 /***/ (function(module, exports) {
 
 //
@@ -22408,7 +21671,7 @@ module.exports = {
 liro.component(module.exports);
 
 /***/ }),
-/* 186 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -22433,20 +21696,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5e57a835", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-252dea6f", module.exports)
   }
 }
 
 /***/ }),
-/* 187 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(188)
+var __vue_script__ = __webpack_require__(191)
 /* template */
-var __vue_template__ = __webpack_require__(189)
+var __vue_template__ = __webpack_require__(192)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -22463,7 +21726,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\js\\form\\app-form-input.vue"
+Component.options.__file = "resources/src/js/form/app-form-input.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -22472,9 +21735,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-158a6e62", Component.options)
+    hotAPI.createRecord("data-v-7c535156", Component.options)
   } else {
-    hotAPI.reload("data-v-158a6e62", Component.options)
+    hotAPI.reload("data-v-7c535156", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -22485,7 +21748,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 188 */
+/* 191 */
 /***/ (function(module, exports) {
 
 //
@@ -22555,7 +21818,7 @@ module.exports = {
 liro.component(module.exports);
 
 /***/ }),
-/* 189 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -22721,20 +21984,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-158a6e62", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7c535156", module.exports)
   }
 }
 
 /***/ }),
-/* 190 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(191)
+var __vue_script__ = __webpack_require__(194)
 /* template */
-var __vue_template__ = __webpack_require__(192)
+var __vue_template__ = __webpack_require__(195)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -22751,7 +22014,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\js\\form\\app-form-password.vue"
+Component.options.__file = "resources/src/js/form/app-form-password.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -22760,9 +22023,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c6c2bdb4", Component.options)
+    hotAPI.createRecord("data-v-06ed3ce0", Component.options)
   } else {
-    hotAPI.reload("data-v-c6c2bdb4", Component.options)
+    hotAPI.reload("data-v-06ed3ce0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -22773,7 +22036,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 191 */
+/* 194 */
 /***/ (function(module, exports) {
 
 //
@@ -22862,7 +22125,7 @@ module.exports = {
 liro.component(module.exports);
 
 /***/ }),
-/* 192 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -23084,20 +22347,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c6c2bdb4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-06ed3ce0", module.exports)
   }
 }
 
 /***/ }),
-/* 193 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(194)
+var __vue_script__ = __webpack_require__(197)
 /* template */
-var __vue_template__ = __webpack_require__(195)
+var __vue_template__ = __webpack_require__(198)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -23114,7 +22377,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\js\\list\\app-list-sort.vue"
+Component.options.__file = "resources/src/js/list/app-list-pagination.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -23123,9 +22386,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e1eaf22e", Component.options)
+    hotAPI.createRecord("data-v-05fcaddf", Component.options)
   } else {
-    hotAPI.reload("data-v-e1eaf22e", Component.options)
+    hotAPI.reload("data-v-05fcaddf", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -23136,7 +22399,590 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 194 */
+/* 197 */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = {
+
+    /**
+     * Component name
+     */
+    name: 'app-list-pagination',
+
+    /**
+     * Computed properties
+     */
+    computed: {
+        active: function active() {
+            return this.$store.getters['list/page'];
+        },
+        pages: function pages() {
+            return this.$store.getters['list/pages'];
+        },
+
+        limit: {
+            get: function get() {
+                return this.$store.getters['list/limit'];
+            },
+            set: function set(value) {
+                this.$store.commit('list/paginate', { page: this.active, limit: value });
+            }
+        }
+    },
+
+    /**
+     * Changable properties
+     */
+    props: {
+        defaultLimit: {
+            default: 25,
+            type: Number
+        },
+        options: {
+            default: function _default() {
+                return [2, 25, 50, 100, 250, 500];
+            },
+            type: Array
+        }
+    },
+
+    /**
+     * Component methods
+     */
+    methods: {
+        setPaginate: function setPaginate(page) {
+            this.$store.commit('list/paginate', { page: page, limit: this.limit });
+        }
+    }
+
+};
+liro.component(module.exports);
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "app-list-pagination uk-flex uk-flex-middle" },
+    [
+      _c("div", { staticClass: "app-list-pagination-limit uk-flex-left" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.limit,
+                expression: "limit"
+              }
+            ],
+            staticClass: "uk-select",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.limit = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          _vm._l(_vm.options, function(option, index) {
+            return _c(
+              "option",
+              {
+                key: index,
+                domProps: { value: option, selected: option == _vm.limit }
+              },
+              [_vm._v(_vm._s(option))]
+            )
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "app-list-pagination-pages uk-flex-right",
+          staticStyle: { "margin-left": "auto" }
+        },
+        [
+          _c(
+            "ul",
+            { staticClass: "uk-pagination uk-flex-middle" },
+            [
+              _c("li", { class: { "uk-disabled": _vm.active == 1 } }, [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.setPaginate(1)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-angle-double-left" })]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { class: { "uk-disabled": _vm.active == 1 } }, [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.setPaginate(_vm.active - 1)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-angle-left" })]
+                )
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.$liro.func.range(_vm.pages, 1), function(page) {
+                return _c(
+                  "li",
+                  { key: page, class: { "uk-active": page == _vm.active } },
+                  [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.setPaginate(page)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(page))]
+                    )
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _c("li", { class: { "uk-disabled": _vm.active == _vm.pages } }, [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.setPaginate(_vm.active + 1)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-angle-right" })]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", { class: { "uk-disabled": _vm.active == _vm.pages } }, [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.setPaginate(_vm.pages)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-angle-double-right" })]
+                )
+              ])
+            ],
+            2
+          )
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-05fcaddf", module.exports)
+  }
+}
+
+/***/ }),
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(200)
+/* template */
+var __vue_template__ = __webpack_require__(201)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/js/list/app-list-filter.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6b7efd86", Component.options)
+  } else {
+    hotAPI.reload("data-v-6b7efd86", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = {
+
+    /**
+     * Component name
+     */
+    name: 'app-list-filter',
+
+    /**
+     * Changable properties
+     */
+    props: {
+        column: {
+            default: '',
+            type: String
+        },
+        display: {
+            default: '',
+            type: String
+        },
+        label: {
+            default: '',
+            type: String
+        },
+        reset: {
+            default: '',
+            type: String
+        },
+        filters: {
+            default: function _default() {
+                return [];
+            },
+            type: Array
+        },
+        filtersValue: {
+            default: 'value',
+            type: String
+        },
+        filtersLabel: {
+            default: 'label',
+            type: String
+        }
+    },
+
+    /**
+     * Data function
+     */
+    data: function data() {
+        return {
+            values: this.$store.getters['list/filter'][this.column] || []
+        };
+    },
+
+
+    /**
+     * Component watchers
+     */
+    watch: {
+        values: function values() {
+            this.$store.commit('list/filter', { column: this.column, values: this.values });
+        }
+    }
+
+};
+liro.component(module.exports);
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { class: { "app-list-filter": true, "uk-active": _vm.values.length != 0 } },
+    [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-check-square" }),
+        _vm._v(" "),
+        _c("span", [_vm._t("default")], 2)
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { attrs: { "uk-dropdown": "mode: click;" } },
+        [
+          _vm._l(_vm.filters, function(filter, index) {
+            return _c(
+              "label",
+              {
+                key: index,
+                staticClass: "uk-display-block",
+                staticStyle: { "margin-bottom": "3px" }
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.values,
+                      expression: "values"
+                    }
+                  ],
+                  staticClass: "uk-checkbox",
+                  staticStyle: { "margin-right": "4px" },
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    value: filter[_vm.filtersValue],
+                    checked: Array.isArray(_vm.values)
+                      ? _vm._i(_vm.values, filter[_vm.filtersValue]) > -1
+                      : _vm.values
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.values,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = filter[_vm.filtersValue],
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.values = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.values = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.values = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(filter[_vm.filtersLabel]))])
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "uk-text-small uk-text-right" }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.values = []
+                  }
+                }
+              },
+              [_vm._v(_vm._s(_vm.reset))]
+            )
+          ])
+        ],
+        2
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6b7efd86", module.exports)
+  }
+}
+
+/***/ }),
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(203)
+/* template */
+var __vue_template__ = __webpack_require__(204)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/js/list/app-list-sort.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f5bfe0ba", Component.options)
+  } else {
+    hotAPI.reload("data-v-f5bfe0ba", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 203 */
 /***/ (function(module, exports) {
 
 //
@@ -23209,7 +23055,7 @@ module.exports = {
 liro.component(module.exports);
 
 /***/ }),
-/* 195 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -23246,7 +23092,173 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-e1eaf22e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-f5bfe0ba", module.exports)
+  }
+}
+
+/***/ }),
+/* 205 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(206)
+/* template */
+var __vue_template__ = __webpack_require__(207)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/js/list/app-list-search.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-070cf926", Component.options)
+  } else {
+    hotAPI.reload("data-v-070cf926", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 206 */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = {
+
+    /**
+     * Component name
+     */
+    name: 'app-list-search',
+
+    /**
+     * Computed properties
+     */
+    computed: {
+        search: {
+            get: function get() {
+                return this.$store.getters['list/search'];
+            },
+            set: function set(value) {
+                this.$store.commit('list/search', { query: value, columns: this.columns });
+            }
+        }
+    },
+
+    /**
+     * Changable properties
+     */
+    props: {
+        placeholder: {
+            default: '',
+            type: String
+        },
+        columns: {
+            default: function _default() {
+                return [];
+            },
+            type: Array
+        }
+    }
+
+};
+liro.component(module.exports);
+
+/***/ }),
+/* 207 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-list-search" }, [
+    _c("div", { staticClass: "uk-inline", staticStyle: { display: "block" } }, [
+      _c(
+        "a",
+        {
+          staticClass: "uk-form-icon uk-form-icon-flip",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.search = ""
+            }
+          }
+        },
+        [_c("i", { staticClass: "fa fa-times" })]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.search,
+            expression: "search"
+          }
+        ],
+        staticClass: "uk-input",
+        attrs: {
+          id: "list-filter-search",
+          type: "search",
+          placeholder: _vm.placeholder
+        },
+        domProps: { value: _vm.search },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.search = $event.target.value
+          }
+        }
+      })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-070cf926", module.exports)
   }
 }
 

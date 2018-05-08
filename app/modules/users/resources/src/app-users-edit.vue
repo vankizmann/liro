@@ -19,7 +19,7 @@
 </template>
 <script>
     module.exports = {
-        name: 'app-user-edit',
+        name: 'app-users-edit',
         props: {
             update: {
                 default: '',

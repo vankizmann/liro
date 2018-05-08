@@ -1,6 +1,5 @@
 {
-    "/resources/dist/app-users-index.js": "/resources/dist/app-users-index.js",
-    "/resources/dist/app-user-edit.js": "/resources/dist/app-user-edit.js",
-    "/resources/dist/app-user-create.js": "/resources/dist/app-user-create.js",
-    "/resources/dist/app-login.js": "/resources/dist/app-login.js"
+    "/resources/dist/app-users.js": "/resources/dist/app-users.js",
+    "/resources/dist/app-roles.js": "/resources/dist/app-roles.js",
+    "/resources/dist/app-auth.js": "/resources/dist/app-auth.js"
 }

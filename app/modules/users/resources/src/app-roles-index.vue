@@ -4,19 +4,19 @@
         <!-- Toolbar start -->
         <portal to="app-toolbar-left">
             <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" :href="createRoute">
-                {{ $t('users.module.users-create') }}
+                {{ $t('users.module.roles-create') }}
             </app-toolbar-link>
         </portal>
         <portal to="app-toolbar-right">
             <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('users.module.users-help') }}
+                {{ $t('users.module.roles-help') }}
             </app-toolbar-link>
         </portal>
         <!-- Toolbar end -->
 
         <!-- Help start -->
         <portal to="app-module-help">
-            <h1>{{ $t('users.module.users-help') }}</h1>
+            <h1>{{ $t('users.module.roles-help') }}</h1>
         </portal>
         <!-- Help end -->
 
@@ -24,13 +24,13 @@
 
             <!-- Title start -->
             <div>
-                <h1 class="uk-text-lead uk-margin-remove">{{ $t('users.module.users-index') }}</h1>
+                <h1 class="uk-text-lead uk-margin-remove">{{ $t('users.module.roles-index') }}</h1>
             </div>
             <!-- Title end -->
 
             <!-- Search start -->
             <div style="width: 300px; margin-left: auto;">
-                <app-list-search :columns="['name', 'email']" :placeholder="$t('users.form.search')"></app-list-search>
+                <app-list-search :columns="['title', 'description']" :placeholder="$t('users.form.search')"></app-list-search>
             </div>
             <!-- Search end -->
 
@@ -40,25 +40,18 @@
 
             <!-- Head start -->
             <div class="uk-table-list-head">
-                <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-sort column="name">
-                        {{ $t('users.form.name') }}
+                <div class="uk-table-list-td uk-width-1-4">
+                    <app-list-sort column="title">
+                        {{ $t('users.form.title') }}
                     </app-list-sort>
                 </div>
-                <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-sort column="email">
-                        {{ $t('users.form.email') }}
+                <div class="uk-table-list-td uk-width-2-4">
+                    <app-list-sort column="description">
+                        {{ $t('users.form.description') }}
                     </app-list-sort>
                 </div>
-                <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-filter column="role_ids" :filters="roles" filters-value="id" filters-label="title" :reset="$t('users.form.reset')">
-                        {{ $t('users.form.roles') }}
-                    </app-list-filter>
-                </div>
-                <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
-                    <app-list-filter column="state" :reset="$t('users.form.reset')" :filters="states">
-                        {{ $t('users.form.state') }}
-                    </app-list-filter>
+                <div class="uk-table-list-td uk-width-1-4">
+                    <span>{{ $t('users.form.routes') }}</span>
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                     <app-list-sort column="id" :reverse="true">
@@ -69,25 +62,18 @@
             <!-- Head end -->
 
             <!-- Body start -->
-            <div v-if="list.length != 0" class="uk-table-list-row" v-for="user in list" :key="user.id">
-                <div class="uk-table-list-td uk-width-1-3">
-                    <a :href="user.edit_route">{{ user.name }}</a>
+            <div v-if="list.length != 0" class="uk-table-list-row" v-for="role in list" :key="role.id">
+                <div class="uk-table-list-td uk-width-1-4">
+                    <a :href="role.edit_route">{{ role.title }}</a>
                 </div>
-                <div class="uk-table-list-td uk-width-1-3">
-                    <span>{{ user.email }}</span>
+                <div class="uk-table-list-td uk-width-2-4">
+                    <span class="uk-text-muted">{{ role.description }}</span>
                 </div>
-                <div class="uk-table-list-td uk-width-1-3">
-                    <ul class="uk-list-inline uk-margin-remove">
-                        <li v-for="role in $liro.func.map(user.role_ids, 'id', roles)" :key="role.id">
-                            <a :href="role.edit_route">{{ role.title }}</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
-                    <app-list-state :active="user.state == 1" :href="user.state == 1 ? user.disable_route : user.enable_route"></app-list-state>
+                <div class="uk-table-list-td uk-width-1-4">
+                    <span class="uk-text-muted">{{ $tc('users.form.route_count', role.route_ids.length, { count: role.route_ids.length }) }}</span>
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
-                    <span>{{ user.id }}</span>
+                    <span>{{ role.id }}</span>
                 </div>
             </div>
             <!-- Body end -->
@@ -111,7 +97,7 @@
 <script>
     module.exports = {
 
-        name: 'app-users-index',
+        name: 'app-roles-index',
 
         computed: {
             list() {
@@ -132,19 +118,14 @@
                 default: () => [],
                 type: Array
             },
-            states: {
-                default() {
-                    return [
-                        { value: 1, label: this.$t('users.form.enabled') },
-                        { value: 0, label: this.$t('users.form.disabled') }
-                    ]
-                },
+            routes: {
+                default: () => [],
                 type: Array
             }
         },
 
         mounted() {
-            this.$store.commit('list/init', this.users);
+            this.$store.commit('list/init', this.roles);
         }
 
     }

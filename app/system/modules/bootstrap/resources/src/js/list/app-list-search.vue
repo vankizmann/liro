@@ -2,7 +2,7 @@
     <div class="app-list-search">
 
         <!-- Input start -->
-        <div class="uk-inline">
+        <div class="uk-inline" style="display: block;">
             <a class="uk-form-icon uk-form-icon-flip" @click.prevent="search = ''"><i class="fa fa-times"></i></a>
             <input id="list-filter-search" class="uk-input" type="search" v-model="search" :placeholder="placeholder">
         </div>

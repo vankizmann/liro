@@ -88,4 +88,8 @@ class MenuManager implements \IteratorAggregate
         return $this;
     }
 
+    public function getRouteNames()
+    {
+        return collect(array_keys($this->handlers));
+    }
 }

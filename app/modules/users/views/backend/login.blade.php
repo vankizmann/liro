@@ -1,7 +1,7 @@
 @extends('backend::login')
 
 @php
-    app('scripts')->link('app-login', 'liro.users:resources/dist/app-login.js');
+    app('scripts')->link('app-auth', 'liro.users:resources/dist/app-auth.js');
 @endphp
 
 @section('content')

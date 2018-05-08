@@ -211,7 +211,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-users-index.vue"
+Component.options.__file = "resources\\src\\app-users-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -220,9 +220,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1d86656e", Component.options)
+    hotAPI.createRecord("data-v-213f3154", Component.options)
   } else {
-    hotAPI.reload("data-v-1d86656e", Component.options)
+    hotAPI.reload("data-v-213f3154", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -376,7 +376,7 @@ module.exports = {
         },
         states: {
             default: function _default() {
-                return [{ value: 1, label: this.$t('users.form.enabled') }, { value: 0, label: this.$t('users.form.disabled') }];
+                return [{ value: 1, label: this.$t('liro-users.form.enabled') }, { value: 0, label: this.$t('liro-users.form.disabled') }];
             },
 
             type: Array
@@ -414,7 +414,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("users.module.users-create")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.create")) +
                   "\n        "
               )
             ]
@@ -439,7 +439,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("users.module.users-help")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.help")) +
                   "\n        "
               )
             ]
@@ -449,13 +449,13 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("portal", { attrs: { to: "app-module-help" } }, [
-        _c("h1", [_vm._v(_vm._s(_vm.$t("users.module.users-help")))])
+        _c("h1", [_vm._v(_vm._s(_vm.$t("liro-users.toolbar.help")))])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "uk-flex uk-flex-middle uk-margin-bottom" }, [
         _c("div", [
           _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
-            _vm._v(_vm._s(_vm.$t("users.module.users-index")))
+            _vm._v(_vm._s(_vm.$t("liro-users.backend.users.index")))
           ])
         ]),
         _vm._v(" "),
@@ -466,7 +466,7 @@ var render = function() {
             _c("app-list-search", {
               attrs: {
                 columns: ["name", "email"],
-                placeholder: _vm.$t("users.form.search")
+                placeholder: _vm.$t("liro-users.form.search")
               }
             })
           ],
@@ -486,7 +486,7 @@ var render = function() {
                 _c("app-list-sort", { attrs: { column: "name" } }, [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(_vm.$t("users.form.name")) +
+                      _vm._s(_vm.$t("liro-users.form.name")) +
                       "\n                "
                   )
                 ])
@@ -501,7 +501,7 @@ var render = function() {
                 _c("app-list-sort", { attrs: { column: "email" } }, [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(_vm.$t("users.form.email")) +
+                      _vm._s(_vm.$t("liro-users.form.email")) +
                       "\n                "
                   )
                 ])
@@ -521,13 +521,13 @@ var render = function() {
                       filters: _vm.roles,
                       "filters-value": "id",
                       "filters-label": "title",
-                      reset: _vm.$t("users.form.reset")
+                      reset: _vm.$t("liro-users.form.reset")
                     }
                   },
                   [
                     _vm._v(
                       "\n                    " +
-                        _vm._s(_vm.$t("users.form.roles")) +
+                        _vm._s(_vm.$t("liro-users.form.roles")) +
                         "\n                "
                     )
                   ]
@@ -548,14 +548,14 @@ var render = function() {
                   {
                     attrs: {
                       column: "state",
-                      reset: _vm.$t("users.form.reset"),
+                      reset: _vm.$t("liro-users.form.reset"),
                       filters: _vm.states
                     }
                   },
                   [
                     _vm._v(
                       "\n                    " +
-                        _vm._s(_vm.$t("users.form.state")) +
+                        _vm._s(_vm.$t("liro-users.form.state")) +
                         "\n                "
                     )
                   ]
@@ -577,7 +577,7 @@ var render = function() {
                   [
                     _vm._v(
                       "\n                    " +
-                        _vm._s(_vm.$t("users.form.id")) +
+                        _vm._s(_vm.$t("liro-users.form.id")) +
                         "\n                "
                     )
                   ]
@@ -678,7 +678,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1d86656e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-213f3154", module.exports)
   }
 }
 
@@ -708,7 +708,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-users-create.vue"
+Component.options.__file = "resources\\src\\app-users-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -717,9 +717,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-8a0ad9e0", Component.options)
+    hotAPI.createRecord("data-v-2e5b43ea", Component.options)
   } else {
-    hotAPI.reload("data-v-8a0ad9e0", Component.options)
+    hotAPI.reload("data-v-2e5b43ea", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1041,7 +1041,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-8a0ad9e0", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-2e5b43ea", module.exports)
   }
 }
 
@@ -1071,7 +1071,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-users-edit.vue"
+Component.options.__file = "resources\\src\\app-users-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1080,9 +1080,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c8874fc4", Component.options)
+    hotAPI.createRecord("data-v-65311110", Component.options)
   } else {
-    hotAPI.reload("data-v-c8874fc4", Component.options)
+    hotAPI.reload("data-v-65311110", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1216,7 +1216,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c8874fc4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-65311110", module.exports)
   }
 }
 

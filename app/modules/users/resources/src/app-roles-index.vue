@@ -4,19 +4,19 @@
         <!-- Toolbar start -->
         <portal to="app-toolbar-left">
             <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" :href="createRoute">
-                {{ $t('users.module.roles-create') }}
+                {{ $t('liro-users.toolbar.create') }}
             </app-toolbar-link>
         </portal>
         <portal to="app-toolbar-right">
             <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('users.module.roles-help') }}
+                {{ $t('liro-users.toolbar.help') }}
             </app-toolbar-link>
         </portal>
         <!-- Toolbar end -->
 
         <!-- Help start -->
         <portal to="app-module-help">
-            <h1>{{ $t('users.module.roles-help') }}</h1>
+            <h1>{{ $t('liro-users.toolbar.help') }}</h1>
         </portal>
         <!-- Help end -->
 
@@ -24,13 +24,13 @@
 
             <!-- Title start -->
             <div>
-                <h1 class="uk-text-lead uk-margin-remove">{{ $t('users.module.roles-index') }}</h1>
+                <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-users.backend.roles.index') }}</h1>
             </div>
             <!-- Title end -->
 
             <!-- Search start -->
             <div style="width: 300px; margin-left: auto;">
-                <app-list-search :columns="['title', 'description']" :placeholder="$t('users.form.search')"></app-list-search>
+                <app-list-search :columns="['title', 'description']" :placeholder="$t('liro-users.form.search')"></app-list-search>
             </div>
             <!-- Search end -->
 
@@ -42,20 +42,20 @@
             <div class="uk-table-list-head">
                 <div class="uk-table-list-td uk-width-1-4">
                     <app-list-sort column="title">
-                        {{ $t('users.form.title') }}
+                        {{ $t('liro-users.form.title') }}
                     </app-list-sort>
                 </div>
                 <div class="uk-table-list-td uk-width-2-4">
                     <app-list-sort column="description">
-                        {{ $t('users.form.description') }}
+                        {{ $t('liro-users.form.description') }}
                     </app-list-sort>
                 </div>
                 <div class="uk-table-list-td uk-width-1-4">
-                    <span>{{ $t('users.form.routes') }}</span>
+                    <span>{{ $t('liro-users.form.routes') }}</span>
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                     <app-list-sort column="id" :reverse="true">
-                        {{ $t('users.form.id') }}
+                        {{ $t('liro-users.form.id') }}
                     </app-list-sort>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                     <span class="uk-text-muted">{{ role.description }}</span>
                 </div>
                 <div class="uk-table-list-td uk-width-1-4">
-                    <span class="uk-text-muted">{{ $tc('users.form.route_count', role.route_ids.length, { count: role.route_ids.length }) }}</span>
+                    <span class="uk-text-muted">{{ $tc('liro-users.form.route_count', role.route_ids.length, { count: role.route_ids.length }) }}</span>
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                     <span>{{ role.id }}</span>
@@ -80,7 +80,7 @@
 
             <!-- Empty start -->
             <div v-if="list.length == 0" class="uk-table-list-empty uk-padding uk-text-center">
-                <span>{{ $t('users.form.empty') }}</span>
+                <span>{{ $t('liro-users.form.empty') }}</span>
             </div>
             <!-- Empty end -->
             

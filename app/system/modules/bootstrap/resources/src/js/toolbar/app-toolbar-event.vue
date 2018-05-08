@@ -24,7 +24,7 @@
         },
         methods: {
             clickEvent() {
-                if ( ! this.diabled && this.event ) {
+                if ( ! this.disabled && this.event ) {
                     this.$liro.trigger(this.event);
                 }
             }

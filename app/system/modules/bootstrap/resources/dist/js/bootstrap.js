@@ -44885,7 +44885,8 @@ var _this = this;
 
     var func = {
         map: __webpack_require__(145),
-        range: __webpack_require__(146)
+        range: __webpack_require__(146),
+        group: __webpack_require__(196)
     };
 
     return {
@@ -44909,6 +44910,79 @@ module.exports = function (values, key, collection) {
 
 module.exports = function (length, start) {
     return _.range(start, length + start);
+};
+
+/***/ }),
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */
+/***/ (function(module, exports) {
+
+module.exports = function (values, pattern) {
+
+    if (!pattern) {
+        pattern = /\.[^\.]+$/;
+    }
+
+    return _.reduce(values, function (base, item) {
+
+        var group = item.split(pattern)[0];
+
+        if (typeof base[group] == 'undefined') {
+            base[group] = [];
+        }
+
+        base[group].push(item);
+
+        return base;
+    }, {});
 };
 
 /***/ })

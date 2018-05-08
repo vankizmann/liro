@@ -2,7 +2,7 @@
 
 return [
 
-    'name' => 'liro.menus',
+    'name' => 'liro-menus',
 
     'autoload' => [
         'Liro\\Menus\\' => 'src/'
@@ -15,7 +15,7 @@ return [
         },
 
         'backend.menus.order' => function($router) {
-            return $router->middleware(['web', 'route:liro.menus.backend.menus.index'])->post('/', 'Liro\Menus\Controllers\BackendMenuController@order');
+            return $router->middleware(['web', 'route'])->post('/', 'Liro\Menus\Controllers\BackendMenuController@order');
         },
 
         'backend.menus.create' => function($router) {

@@ -10,7 +10,7 @@ class Menu extends \Liro\System\Menus\Models\Menu
 
     public function getEditRouteAttribute()
     {
-        return route('liro.menus.backend.menus.edit', $this->attributes['id']);
+        return route('liro-menus.backend.menus.edit', $this->attributes['id']);
     }
 
 }

@@ -3,49 +3,66 @@
 namespace Liro\Users\Controllers\Backend;
 
 use Illuminate\Support\Facades\App;
-use Illuminate\Http\Request;
-use Liro\System\Http\Controller;
 use Liro\Users\Models\User;
 use Liro\Users\Models\UserRole;
-use Liro\System\Users\Models\UserRoleRoute;
+use Liro\Users\Requests\RoleStoreRequest;
+use Liro\Users\Requests\RoleUpdateRequest;
 
-class RoleController extends Controller
+class RoleController extends \Liro\System\Http\Controller
 {
-    public function index()
+    public function index(UserRole $roles, User $users)
     {
-        return view('liro.users::backend.roles.index', [
-            'roles' => UserRole::all(),
-            'users' => User::all(),
-            'routes' => UserRoleRoute::all()
+        $routes = app('menus')->getRouteNames();
+
+        return view('liro-users::backend/roles/index', [
+            'roles' => $roles->all(), 'users' => $users->all(), 'routes' => $routes
         ]);
     }
 
-    public function create()
+    public function create(UserRole $role)
     {
-        return view('liro.users::backend.roles.create', [
-            'user' => new User
+        $routes = app('menus')->getRouteNames();
+
+        return view('liro-users::backend/roles/create', [
+            'role' => $role,
+            'routes' => $routes
         ]);
     }
 
-    public function store()
+    public function store(UserRole $role, RoleStoreRequest $request)
     {
-        dd('store');
+        $role = $role->create($request->only(
+            ['title', 'access', 'description', 'route_names']
+        ));
+
+        return response()->json([
+            'message' => trans('*.liro-users.messages.roles.created'),
+            'redirect' => $role->edit_route
+        ]);
     }
 
-    public function edit($id)
+    public function edit(UserRole $role, $id)
     {
-        return view('liro.users::backend.roles.edit', [
-            'role' => UserRole::find($id),
+        $routes = app('menus')->getRouteNames();
+
+        return view('liro-users::backend/roles/edit', [
+            'role' => $role->findOrFail($id),
             'routes' => app('menus')->getRouteNames()
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UserRole $role, RoleUpdateRequest $request, $id)
     {
-        dd('update');
+        $role->findOrFail($id)->update($request->only([
+            'title', 'description', 'route_names'
+        ]));
+
+        return response()->json([
+            'message' => trans('*.liro-users.messages.roles.updated')
+        ]);
     }
 
-    public function delete($id)
+    public function delete(UserRole $role, $id)
     {
         dd('delete');
     }

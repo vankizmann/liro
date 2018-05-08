@@ -7,12 +7,12 @@
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/solid.css">
 
         @php
-            app('styles')->link('theme', 'liro.theme:resources/dist/css/theme.css');
+            app('styles')->link('theme', 'liro-theme:resources/dist/css/theme.css');
             echo app('styles')->get();
         @endphp
 
         @php
-            app('scripts')->link('theme', 'liro.theme:resources/dist/js/theme.js');
+            app('scripts')->link('theme', 'liro-theme:resources/dist/js/theme.js');
             echo app('scripts')->get();
         @endphp
 

@@ -2,7 +2,7 @@
 
 return [
 
-    'name' => 'liro.users',
+    'name' => 'liro-users',
 
     'autoload' => [
         'Liro\\Users\\' => 'src/'
@@ -58,6 +58,22 @@ return [
 
         },
 
+        'backend.users.enable' => function($router) {
+
+            return $router->middleware(['web', 'route'])->group(function($router) {
+                $router->get('{id}', 'Liro\Users\Controllers\Backend\UserController@enable');
+            });
+
+        },
+
+        'backend.users.disable' => function($router) {
+
+            return $router->middleware(['web', 'route'])->group(function($router) {
+                $router->get('{id}', 'Liro\Users\Controllers\Backend\UserController@disable');
+            });
+
+        },
+
         'backend.roles.index' => function($router) {
 
             return $router->middleware(['web', 'route'])->group(function($router) {
@@ -80,22 +96,6 @@ return [
             return $router->middleware(['web', 'route'])->group(function($router) {
                 $router->get('{id}', 'Liro\Users\Controllers\Backend\RoleController@edit');
                 $router->post('{id}', 'Liro\Users\Controllers\Backend\RoleController@update');
-            });
-
-        },
-
-        'backend.users.enable' => function($router) {
-
-            return $router->middleware(['web', 'route'])->group(function($router) {
-                $router->get('{id}', 'Liro\Users\Controllers\Backend\UserController@enable');
-            });
-
-        },
-
-        'backend.users.disable' => function($router) {
-
-            return $router->middleware(['web', 'route'])->group(function($router) {
-                $router->get('{id}', 'Liro\Users\Controllers\Backend\UserController@disable');
             });
 
         }

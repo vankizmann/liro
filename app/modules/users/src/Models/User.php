@@ -10,17 +10,17 @@ class User extends \Liro\System\Users\Models\User
 
     public function getEditRouteAttribute()
     {
-        return route('liro.users.backend.users.edit', $this->id);
+        return route('liro-users.backend.users.edit', $this->id);
     }
 
     public function getEnableRouteAttribute()
     {
-        return route('liro.users.backend.users.enable', $this->id);
+        return route('liro-users.backend.users.enable', $this->id);
     }
 
     public function getDisableRouteAttribute()
     {
-        return route('liro.users.backend.users.disable', $this->id);
+        return route('liro-users.backend.users.disable', $this->id);
     }
 
     public function getRoleIdsAttribute()

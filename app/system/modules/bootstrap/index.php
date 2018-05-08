@@ -8,7 +8,7 @@ return [
 
         $app['modules']->load([
             'system.assets', 'system.languages', 'system.menus', 'system.users', 
-            'liro.dashboard', 'liro.menus', 'liro.users', 'liro.theme'
+            'liro-dashboard', 'liro-menus', 'liro-users', 'liro-theme'
         ]);
 
         $app['router']->get('/', function() use ($app) {
@@ -16,6 +16,8 @@ return [
         });
 
         $app['router']->get('reset', function() use ($app) {
+
+            $app['db']->getSchemaBuilder()->defaultStringLength(191);
             
             $app['modules']->get('system.languages')->install();
             $app['modules']->get('system.menus')->install();

@@ -17,7 +17,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        return view('liro.users::backend.login');
+        return view('liro-users::backend/login');
     }
 
     public function submit(Request $request)
@@ -28,14 +28,14 @@ class AuthController extends Controller
             return redirect('/de/backend/menus');
         }
 
-        return redirect()->route('liro.users.backend.auth.login')->with('error', 'User with given credentials does not exists.');
+        return redirect()->route('liro-users.backend.auth.login')->with('error', 'User with given credentials does not exists.');
     }
 
     public function logout(Request $request)
     {
         auth()->logout();
 
-        return redirect()->route('liro.users.backend.auth.login');
+        return redirect()->route('liro-users.backend.auth.login');
     }
 
 }

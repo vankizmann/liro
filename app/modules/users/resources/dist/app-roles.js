@@ -221,7 +221,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-roles-index.vue"
+Component.options.__file = "resources\\src\\app-roles-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -230,9 +230,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-abe6703a", Component.options)
+    hotAPI.createRecord("data-v-a474d86e", Component.options)
   } else {
-    hotAPI.reload("data-v-abe6703a", Component.options)
+    hotAPI.reload("data-v-a474d86e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -409,7 +409,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("users.module.roles-create")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.create")) +
                   "\n        "
               )
             ]
@@ -434,7 +434,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("users.module.roles-help")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.help")) +
                   "\n        "
               )
             ]
@@ -444,13 +444,13 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("portal", { attrs: { to: "app-module-help" } }, [
-        _c("h1", [_vm._v(_vm._s(_vm.$t("users.module.roles-help")))])
+        _c("h1", [_vm._v(_vm._s(_vm.$t("liro-users.toolbar.help")))])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "uk-flex uk-flex-middle uk-margin-bottom" }, [
         _c("div", [
           _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
-            _vm._v(_vm._s(_vm.$t("users.module.roles-index")))
+            _vm._v(_vm._s(_vm.$t("liro-users.backend.roles.index")))
           ])
         ]),
         _vm._v(" "),
@@ -461,7 +461,7 @@ var render = function() {
             _c("app-list-search", {
               attrs: {
                 columns: ["title", "description"],
-                placeholder: _vm.$t("users.form.search")
+                placeholder: _vm.$t("liro-users.form.search")
               }
             })
           ],
@@ -481,7 +481,7 @@ var render = function() {
                 _c("app-list-sort", { attrs: { column: "title" } }, [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(_vm.$t("users.form.title")) +
+                      _vm._s(_vm.$t("liro-users.form.title")) +
                       "\n                "
                   )
                 ])
@@ -496,7 +496,7 @@ var render = function() {
                 _c("app-list-sort", { attrs: { column: "description" } }, [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(_vm.$t("users.form.description")) +
+                      _vm._s(_vm.$t("liro-users.form.description")) +
                       "\n                "
                   )
                 ])
@@ -505,7 +505,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "uk-table-list-td uk-width-1-4" }, [
-              _c("span", [_vm._v(_vm._s(_vm.$t("users.form.routes")))])
+              _c("span", [_vm._v(_vm._s(_vm.$t("liro-users.form.routes")))])
             ]),
             _vm._v(" "),
             _c(
@@ -521,7 +521,7 @@ var render = function() {
                   [
                     _vm._v(
                       "\n                    " +
-                        _vm._s(_vm.$t("users.form.id")) +
+                        _vm._s(_vm.$t("liro-users.form.id")) +
                         "\n                "
                     )
                   ]
@@ -551,7 +551,7 @@ var render = function() {
                       _vm._v(
                         _vm._s(
                           _vm.$tc(
-                            "users.form.route_count",
+                            "liro-users.form.route_count",
                             role.route_ids.length,
                             { count: role.route_ids.length }
                           )
@@ -578,7 +578,7 @@ var render = function() {
                 {
                   staticClass: "uk-table-list-empty uk-padding uk-text-center"
                 },
-                [_c("span", [_vm._v(_vm._s(_vm.$t("users.form.empty")))])]
+                [_c("span", [_vm._v(_vm._s(_vm.$t("liro-users.form.empty")))])]
               )
             : _vm._e()
         ],
@@ -601,7 +601,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-abe6703a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-a474d86e", module.exports)
   }
 }
 
@@ -631,7 +631,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-roles-create.vue"
+Component.options.__file = "resources\\src\\app-roles-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -640,9 +640,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-817f018a", Component.options)
+    hotAPI.createRecord("data-v-32a13015", Component.options)
   } else {
-    hotAPI.reload("data-v-817f018a", Component.options)
+    hotAPI.reload("data-v-32a13015", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -706,9 +706,41 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 module.exports = {
+
     name: 'app-roles-create',
+
     computed: {
         canUndo: function canUndo() {
             return this.$store.getters['history/canUndo'];
@@ -717,55 +749,81 @@ module.exports = {
             return this.$store.getters['history/canRedo'];
         }
     },
+
     props: {
-        baseRoute: {
-            type: String
-        },
         createRoute: {
+            default: '',
             type: String
         },
-        value: {
+        indexRoute: {
+            default: '',
+            type: String
+        },
+        routes: {
+            default: function _default() {
+                return [];
+            },
+
+            type: Array
+        },
+        role: {
+            default: function _default() {
+                return {};
+            },
+
             type: Object
         }
     },
+
     data: function data() {
         return {
-            user: this.value
+            disabled: false,
+            item: this.role
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.$store.commit('history/init', this.user);
+        this.$store.commit('history/init', this.item);
 
-        this.$watch('user', _.debounce(this.save, 600), {
+        this.$watch('item', _.debounce(this.create, 600), {
             deep: true
         });
 
-        this.$liro.listen('user.undo', function () {
-            _this.user = _this.$store.state.history.undo();
+        this.$liro.listen('role.undo', function () {
+            _this.item = _this.$store.state.history.undo();
         });
 
-        this.$liro.listen('user.redo', function () {
-            _this.user = _this.$store.state.history.redo();
+        this.$liro.listen('role.redo', function () {
+            _this.item = _this.$store.state.history.redo();
         });
 
-        this.$liro.listen('user.reset', function () {
-            _this.user = _this.$store.state.history.reset();
+        this.$liro.listen('role.reset', function () {
+            _this.item = _this.$store.state.history.reset();
         });
 
-        this.$liro.listen('user.create', function () {
-            _this.$http.post(_this.createRoute, _this.user).then(_this.$root.httpSuccess).catch(_this.$root.httpError);
+        this.$liro.listen('role.create', function () {
+            _this.$http.post(_this.createRoute, _this.item);
+        });
+
+        this.$liro.listen('ajax.load', function () {
+            _this.disabled = true;
+        });
+
+        this.$liro.listen('ajax.error', function () {
+            _this.disabled = false;
         });
     },
 
+
     methods: {
-        save: function save() {
+        create: function create() {
             if (this.$store.state.history.preventer()) {
-                this.$store.commit('history/save', this.user);
+                this.$store.commit('history/save', this.item);
             }
         }
     }
+
 };
 liro.component(module.exports);
 
@@ -789,11 +847,17 @@ var render = function() {
             "app-toolbar-event",
             {
               staticClass: "uk-icon-success",
-              attrs: { icon: "fa fa-check", event: "user.create" }
+              attrs: {
+                icon: "fa fa-check",
+                event: "role.create",
+                disabled: _vm.disabled
+              }
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.create")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.create")) +
+                  "\n        "
               )
             ]
           ),
@@ -802,11 +866,13 @@ var render = function() {
             "app-toolbar-link",
             {
               staticClass: "uk-icon-danger",
-              attrs: { icon: "fa fa-times", href: _vm.baseRoute }
+              attrs: { icon: "fa fa-times", href: _vm.indexRoute }
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.close")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.close")) +
+                  "\n        "
               )
             ]
           ),
@@ -818,13 +884,15 @@ var render = function() {
             {
               attrs: {
                 icon: "fa fa-undo",
-                event: "user.undo",
+                event: "role.undo",
                 disabled: !_vm.canUndo
               }
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.undo")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.undo")) +
+                  "\n        "
               )
             ]
           ),
@@ -834,13 +902,15 @@ var render = function() {
             {
               attrs: {
                 icon: "fa fa-redo",
-                event: "user.redo",
+                event: "role.redo",
                 disabled: !_vm.canRedo
               }
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.redo")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.redo")) +
+                  "\n        "
               )
             ]
           )
@@ -858,14 +928,14 @@ var render = function() {
               staticClass: "uk-icon-danger",
               attrs: {
                 icon: "fa fa-ban",
-                event: "user.reset",
+                event: "role.reset",
                 disabled: !_vm.canUndo
               }
             },
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("theme.discard")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.discard")) +
                   "\n        "
               )
             ]
@@ -884,7 +954,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.help")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.help")) +
+                  "\n        "
               )
             ]
           )
@@ -896,63 +968,152 @@ var render = function() {
         _c("h1", [_vm._v("Help")])
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "uk-margin-bottom" }, [
+        _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
+          _vm._v(_vm._s(_vm.$t("liro-users.backend.roles.create")))
+        ])
+      ]),
+      _vm._v(" "),
       _c(
         "fieldset",
         { staticClass: "uk-fieldset" },
         [
           _c("app-form-input", {
             attrs: {
-              label: _vm.$t("user.form.name"),
+              label: _vm.$t("liro-users.form.title"),
               type: "text",
-              id: "name",
-              name: "name",
+              id: "title",
+              name: "title",
               rules: "required|min:4"
             },
             model: {
-              value: _vm.user.name,
+              value: _vm.item.title,
               callback: function($$v) {
-                _vm.$set(_vm.user, "name", $$v)
+                _vm.$set(_vm.item, "title", $$v)
               },
-              expression: "user.name"
+              expression: "item.title"
             }
           }),
           _vm._v(" "),
           _c("app-form-input", {
             attrs: {
-              label: _vm.$t("user.form.email"),
-              type: "email",
-              id: "email",
-              name: "email",
-              rules: "required|email"
+              label: _vm.$t("liro-users.form.access"),
+              type: "text",
+              id: "access",
+              name: "access",
+              rules: "required|alpha|min:4"
             },
             model: {
-              value: _vm.user.email,
+              value: _vm.item.access,
               callback: function($$v) {
-                _vm.$set(_vm.user, "email", $$v)
+                _vm.$set(_vm.item, "access", $$v)
               },
-              expression: "user.email"
+              expression: "item.access"
             }
           }),
           _vm._v(" "),
-          _c("app-form-password", {
+          _c("app-form-input", {
             attrs: {
-              label: _vm.$t("user.form.password"),
-              generate: _vm.$t("user.form.generate"),
-              type: "text",
-              id: "password",
-              name: "password",
-              rules: "required|min:6"
+              label: _vm.$t("liro-users.form.description"),
+              type: "description",
+              id: "description",
+              name: "description"
             },
             model: {
-              value: _vm.user.password,
+              value: _vm.item.description,
               callback: function($$v) {
-                _vm.$set(_vm.user, "password", $$v)
+                _vm.$set(_vm.item, "description", $$v)
               },
-              expression: "user.password"
+              expression: "item.description"
             }
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.$liro.func.group(_vm.routes), function(group, index) {
+            return _c(
+              "div",
+              {
+                key: index,
+                staticClass: "uk-margin uk-padding uk-background-muted"
+              },
+              [
+                _c("div", { staticClass: "uk-width-1-1" }, [
+                  _c("h4", [_vm._v(_vm._s(_vm.$t(index + ".group")))])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l"
+                  },
+                  _vm._l(group, function(route) {
+                    return _c(
+                      "label",
+                      {
+                        key: route.id,
+                        staticClass: "uk-display-inline-block uk-margin-small"
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.item.route_names,
+                              expression: "item.route_names"
+                            }
+                          ],
+                          staticClass: "uk-checkbox",
+                          staticStyle: { "margin-right": "4px" },
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            value: route,
+                            checked: Array.isArray(_vm.item.route_names)
+                              ? _vm._i(_vm.item.route_names, route) > -1
+                              : _vm.item.route_names
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.item.route_names,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = route,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.item,
+                                      "route_names",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.item,
+                                      "route_names",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(_vm.item, "route_names", $$c)
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v(_vm._s(_vm.$t(route)))])
+                      ]
+                    )
+                  })
+                )
+              ]
+            )
           })
         ],
-        1
+        2
       )
     ],
     1
@@ -964,7 +1125,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-817f018a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-32a13015", module.exports)
   }
 }
 
@@ -994,7 +1155,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-roles-edit.vue"
+Component.options.__file = "resources\\src\\app-roles-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1003,9 +1164,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3b5559ee", Component.options)
+    hotAPI.createRecord("data-v-14007263", Component.options)
   } else {
-    hotAPI.reload("data-v-3b5559ee", Component.options)
+    hotAPI.reload("data-v-14007263", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1019,6 +1180,16 @@ module.exports = Component.exports
 /* 23 */
 /***/ (function(module, exports) {
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1121,6 +1292,7 @@ module.exports = {
 
     data: function data() {
         return {
+            disabled: false,
             item: this.role
         };
     },
@@ -1145,8 +1317,20 @@ module.exports = {
             _this.item = _this.$store.state.history.reset();
         });
 
-        this.$liro.listen('role.create', function () {
-            _this.$http.post(_this.createRoute, _this.item).then(_this.$root.httpSuccess).catch(_this.$root.httpError);
+        this.$liro.listen('role.save', function () {
+            _this.$http.post(_this.item.edit_route, _this.item);
+        });
+
+        this.$liro.listen('ajax.load', function () {
+            _this.disabled = true;
+        });
+
+        this.$liro.listen('ajax.done', function () {
+            _this.disabled = false;
+        });
+
+        this.$liro.listen('ajax.error', function () {
+            _this.disabled = false;
         });
     },
 
@@ -1182,12 +1366,16 @@ var render = function() {
             "app-toolbar-event",
             {
               staticClass: "uk-icon-success",
-              attrs: { icon: "fa fa-check", event: "role.create" }
+              attrs: {
+                icon: "fa fa-check",
+                event: "role.save",
+                disabled: _vm.disabled
+              }
             },
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("users.form.create")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.save")) +
                   "\n        "
               )
             ]
@@ -1202,7 +1390,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("users.form.close")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.close")) +
                   "\n        "
               )
             ]
@@ -1222,7 +1410,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("users.form.undo")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.undo")) +
                   "\n        "
               )
             ]
@@ -1240,7 +1428,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("users.form.redo")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.redo")) +
                   "\n        "
               )
             ]
@@ -1266,7 +1454,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("users.form.discard")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.discard")) +
                   "\n        "
               )
             ]
@@ -1286,7 +1474,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("users.module.roles-help")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.help")) +
                   "\n        "
               )
             ]
@@ -1301,7 +1489,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "uk-margin-bottom" }, [
         _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
-          _vm._v(_vm._s(_vm.$t("users.module.roles-edit")))
+          _vm._v(_vm._s(_vm.$t("liro-users.backend.roles.edit")))
         ])
       ]),
       _vm._v(" "),
@@ -1311,7 +1499,7 @@ var render = function() {
         [
           _c("app-form-input", {
             attrs: {
-              label: _vm.$t("users.form.title"),
+              label: _vm.$t("liro-users.form.title"),
               type: "text",
               id: "title",
               name: "title",
@@ -1328,7 +1516,7 @@ var render = function() {
           _vm._v(" "),
           _c("app-form-input", {
             attrs: {
-              label: _vm.$t("users.form.description"),
+              label: _vm.$t("liro-users.form.description"),
               type: "description",
               id: "description",
               name: "description"
@@ -1342,73 +1530,92 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "uk-child-width-1-2" },
-            _vm._l(_vm.routes, function(route) {
-              return _c(
-                "label",
-                {
-                  key: route.id,
-                  staticClass: "uk-display-inline-block",
-                  staticStyle: { "margin-bottom": "3px" }
-                },
-                [
-                  _c("input", {
-                    directives: [
+          _vm._l(_vm.$liro.func.group(_vm.routes), function(group, index) {
+            return _c(
+              "div",
+              {
+                key: index,
+                staticClass: "uk-margin uk-padding uk-background-muted"
+              },
+              [
+                _c("div", { staticClass: "uk-width-1-1" }, [
+                  _c("h4", [_vm._v(_vm._s(_vm.$t(index + ".group")))])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l"
+                  },
+                  _vm._l(group, function(route) {
+                    return _c(
+                      "label",
                       {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.item.route_names,
-                        expression: "item.route_names"
-                      }
-                    ],
-                    staticClass: "uk-checkbox",
-                    staticStyle: { "margin-right": "4px" },
-                    attrs: { type: "checkbox" },
-                    domProps: {
-                      value: route,
-                      checked: Array.isArray(_vm.item.route_names)
-                        ? _vm._i(_vm.item.route_names, route) > -1
-                        : _vm.item.route_names
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.item.route_names,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = route,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.item,
-                                "route_names",
-                                $$a.concat([$$v])
-                              )
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.item,
-                                "route_names",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
+                        key: route.id,
+                        staticClass: "uk-display-inline-block uk-margin-small"
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.item.route_names,
+                              expression: "item.route_names"
+                            }
+                          ],
+                          staticClass: "uk-checkbox",
+                          staticStyle: { "margin-right": "4px" },
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            value: route,
+                            checked: Array.isArray(_vm.item.route_names)
+                              ? _vm._i(_vm.item.route_names, route) > -1
+                              : _vm.item.route_names
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.item.route_names,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = route,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.item,
+                                      "route_names",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.item,
+                                      "route_names",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(_vm.item, "route_names", $$c)
+                              }
+                            }
                           }
-                        } else {
-                          _vm.$set(_vm.item, "route_names", $$c)
-                        }
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(route))])
-                ]
-              )
-            })
-          )
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v(_vm._s(_vm.$t(route)))])
+                      ]
+                    )
+                  })
+                )
+              ]
+            )
+          })
         ],
-        1
+        2
       )
     ],
     1
@@ -1420,7 +1627,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3b5559ee", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-14007263", module.exports)
   }
 }
 

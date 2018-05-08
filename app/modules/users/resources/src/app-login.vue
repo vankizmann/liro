@@ -3,16 +3,16 @@
         <form :action="action" method="post" style="margin: 0;">
             <fieldset class="uk-fieldset">
                 <app-form-input 
-                    :label="$t('user.label.email')" type="email" id="email" name="email" 
+                    :label="$t('liro-users.form.email')" type="email" id="email" name="email" 
                     rules="required|email" value=""
                 ></app-form-input>
                 <app-form-password 
-                    :label="$t('user.label.password')" type="text" id="password" name="password" 
+                    :label="$t('liro-users.form.password')" type="text" id="password" name="password" 
                     rules="required|min:6" value=""
                 >
                 </app-form-password>
                 <div class="uk-margin-top">
-                    <button type="submit" class="uk-button uk-button-primary uk-width-1-1">{{ $t('user.form.login') }}</button>
+                    <button type="submit" class="uk-button uk-button-primary uk-width-1-1">{{ $t('liro-users.form.login') }}</button>
                 </div>
                 <slot>
                     <!-- Slot -->

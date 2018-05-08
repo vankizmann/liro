@@ -4,19 +4,19 @@
         <!-- Toolbar start -->
         <portal to="app-toolbar-left">
             <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" :href="createRoute">
-                {{ $t('users.module.users-create') }}
+                {{ $t('liro-users.toolbar.create') }}
             </app-toolbar-link>
         </portal>
         <portal to="app-toolbar-right">
             <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('users.module.users-help') }}
+                {{ $t('liro-users.toolbar.help') }}
             </app-toolbar-link>
         </portal>
         <!-- Toolbar end -->
 
         <!-- Help start -->
         <portal to="app-module-help">
-            <h1>{{ $t('users.module.users-help') }}</h1>
+            <h1>{{ $t('liro-users.toolbar.help') }}</h1>
         </portal>
         <!-- Help end -->
 
@@ -24,13 +24,13 @@
 
             <!-- Title start -->
             <div>
-                <h1 class="uk-text-lead uk-margin-remove">{{ $t('users.module.users-index') }}</h1>
+                <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-users.backend.users.index') }}</h1>
             </div>
             <!-- Title end -->
 
             <!-- Search start -->
             <div style="width: 300px; margin-left: auto;">
-                <app-list-search :columns="['name', 'email']" :placeholder="$t('users.form.search')"></app-list-search>
+                <app-list-search :columns="['name', 'email']" :placeholder="$t('liro-users.form.search')"></app-list-search>
             </div>
             <!-- Search end -->
 
@@ -42,27 +42,27 @@
             <div class="uk-table-list-head">
                 <div class="uk-table-list-td uk-width-1-3">
                     <app-list-sort column="name">
-                        {{ $t('users.form.name') }}
+                        {{ $t('liro-users.form.name') }}
                     </app-list-sort>
                 </div>
                 <div class="uk-table-list-td uk-width-1-3">
                     <app-list-sort column="email">
-                        {{ $t('users.form.email') }}
+                        {{ $t('liro-users.form.email') }}
                     </app-list-sort>
                 </div>
                 <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-filter column="role_ids" :filters="roles" filters-value="id" filters-label="title" :reset="$t('users.form.reset')">
-                        {{ $t('users.form.roles') }}
+                    <app-list-filter column="role_ids" :filters="roles" filters-value="id" filters-label="title" :reset="$t('liro-users.form.reset')">
+                        {{ $t('liro-users.form.roles') }}
                     </app-list-filter>
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
-                    <app-list-filter column="state" :reset="$t('users.form.reset')" :filters="states">
-                        {{ $t('users.form.state') }}
+                    <app-list-filter column="state" :reset="$t('liro-users.form.reset')" :filters="states">
+                        {{ $t('liro-users.form.state') }}
                     </app-list-filter>
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                     <app-list-sort column="id" :reverse="true">
-                        {{ $t('users.form.id') }}
+                        {{ $t('liro-users.form.id') }}
                     </app-list-sort>
                 </div>
             </div>
@@ -135,8 +135,8 @@
             states: {
                 default() {
                     return [
-                        { value: 1, label: this.$t('users.form.enabled') },
-                        { value: 0, label: this.$t('users.form.disabled') }
+                        { value: 1, label: this.$t('liro-users.form.enabled') },
+                        { value: 0, label: this.$t('liro-users.form.disabled') }
                     ]
                 },
                 type: Array

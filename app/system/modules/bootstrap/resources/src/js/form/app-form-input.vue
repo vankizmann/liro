@@ -5,7 +5,7 @@
         </label>
         <input 
             :class="{ 'uk-input': true, 'uk-form-danger uk-animation-shake': errors.has(name) }" 
-            :type="type" :id="id" :name="name" v-model="valueFix" v-validate="rules"
+            :type="type" :id="id" :name="name" v-model="valueFix" v-validate="rules" :data-vv-as="label"
         >
         <div class="uk-margin-small-top uk-text-danger" v-show="errors.has(name)">
             <small>{{ errors.first(name) | capitalize }}</small>

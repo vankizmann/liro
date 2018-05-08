@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('liro.users::backend.users.index', [
+        return view('liro-users::backend/users/index', [
             'roles' => UserRole::all(),
             'users' => User::all()
         ]);
@@ -19,14 +19,14 @@ class UserController extends Controller
 
     public function show($id)
     {
-        return view('liro.users::backend.users.show', [
+        return view('liro-users::backend/users/show', [
             'user' => User::find($id)
         ]);
     }
 
     public function create()
     {
-        return view('liro.users::backend.users.create', [
+        return view('liro-users::backend/users/create', [
             'user' => new User
         ]);
     }
@@ -38,7 +38,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        return view('liro.users::backend.users.edit', [
+        return view('liro-users::backend/users/edit', [
             'user' => User::find($id)
         ]);
     }
@@ -51,13 +51,13 @@ class UserController extends Controller
     public function enable($id)
     {
         $user = User::findOrFail($id)->fill([ 'state' => 1 ])->save();
-        return redirect()->route('liro.users.backend.users.index');
+        return redirect()->route('liro-users.backend.users.index');
     }
 
     public function disable($id)
     {
         $user = User::findOrFail($id)->fill([ 'state' => 0 ])->save();
-        return redirect()->route('liro.users.backend.users.index');
+        return redirect()->route('liro-users.backend.users.index');
     }
 
     public function delete($id)

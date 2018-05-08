@@ -23,7 +23,12 @@ class CheckUserRoute
         $routes = explode(',', $route);
 
         if ( ! $request->user() || ! $request->user()->hasRoutes($routes) ) {
-            return redirect()->route('liro.users.backend.auth.login')->with('error', 'This action is unauthorized.');
+
+            if ( $request->ajax() ) {
+                return abort(401, 'This action is unauthorized.');
+            }
+
+            return redirect()->route('liro-users.backend.auth.login')->with('error', 'This action is unauthorized.');
         }
 
         return $next($request);

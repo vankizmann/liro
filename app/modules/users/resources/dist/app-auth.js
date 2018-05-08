@@ -205,7 +205,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-login.vue"
+Component.options.__file = "resources\\src\\app-login.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -214,9 +214,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4a4e466c", Component.options)
+    hotAPI.createRecord("data-v-1c7a0d30", Component.options)
   } else {
-    hotAPI.reload("data-v-4a4e466c", Component.options)
+    hotAPI.reload("data-v-1c7a0d30", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -287,7 +287,7 @@ var render = function() {
           [
             _c("app-form-input", {
               attrs: {
-                label: _vm.$t("user.label.email"),
+                label: _vm.$t("liro-users.form.email"),
                 type: "email",
                 id: "email",
                 name: "email",
@@ -298,7 +298,7 @@ var render = function() {
             _vm._v(" "),
             _c("app-form-password", {
               attrs: {
-                label: _vm.$t("user.label.password"),
+                label: _vm.$t("liro-users.form.password"),
                 type: "text",
                 id: "password",
                 name: "password",
@@ -314,7 +314,7 @@ var render = function() {
                   staticClass: "uk-button uk-button-primary uk-width-1-1",
                   attrs: { type: "submit" }
                 },
-                [_vm._v(_vm._s(_vm.$t("user.form.login")))]
+                [_vm._v(_vm._s(_vm.$t("liro-users.form.login")))]
               )
             ]),
             _vm._v(" "),
@@ -332,7 +332,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4a4e466c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1c7a0d30", module.exports)
   }
 }
 

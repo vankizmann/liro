@@ -108,7 +108,8 @@ export default function() {
 
     const func = {
         map: require('./func/map.js'),
-        range: require('./func/range.js')
+        range: require('./func/range.js'),
+        group: require('./func/group.js')
     };
 
     return {

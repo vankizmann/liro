@@ -2,7 +2,7 @@
 
 return [
 
-    'name' => 'liro.dashboard',
+    'name' => 'liro-dashboard',
 
     'autoload' => [
         'Liro\\Dashboard\\' => 'src/'

@@ -12,7 +12,7 @@ class BackendMenuController
     {
         $query = new Menu;
 
-        return view('liro.menus::index', [
+        return view('liro-menus::index', [
             'menus' => $query->getType($type)->get()
         ]);
     }

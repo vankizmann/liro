@@ -2,7 +2,7 @@
 
 return [
 
-    'name' => 'liro.theme',
+    'name' => 'liro-theme',
     'type' => 'theme.backend'
 
 ];

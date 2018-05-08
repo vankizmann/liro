@@ -9,12 +9,12 @@
         <title>{{ isset($title) ? $title . ' | ' .  env('APP_NAME') :  env('APP_NAME') }}</title>
 
         @php
-            app('styles')->link('theme', 'liro.theme:resources/dist/css/theme.css');
+            app('styles')->link('theme', 'liro-theme:resources/dist/css/theme.css');
             echo app('styles')->get();
         @endphp
 
         @php
-            app('scripts')->link('theme', 'liro.theme:resources/dist/js/theme.js');
+            app('scripts')->link('theme', 'liro-theme:resources/dist/js/theme.js');
             echo app('scripts')->get();
         @endphp
         

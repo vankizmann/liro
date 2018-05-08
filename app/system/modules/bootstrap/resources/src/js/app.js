@@ -98,6 +98,36 @@ liro.listen('document.ready', function() {
 
         mounted() {
 
+            this.$http.interceptors.request.use(
+                (request) => {
+                    this.$liro.trigger('ajax.load');
+                    this.ajaxRequestDone(request);
+
+                    return request;
+                },
+                (error) => {
+                    this.$liro.trigger('ajax.error');
+                    this.ajaxRequestError(error);
+
+                    return Promise.reject(error);
+                }
+            );
+
+            this.$http.interceptors.response.use(
+                (response) => {
+                    this.$liro.trigger('ajax.done');
+                    this.ajaxResponseDone(response)
+
+                    return response;
+                },
+                (error) => {
+                    this.$liro.trigger('ajax.error');
+                    this.ajaxResponseError(error);
+
+                    return Promise.reject(error);
+                }
+            );
+
             switch(this.locale) {
                 case 'en':
                 this.$validator.localize(this.locale, VeeValidateEN);
@@ -118,19 +148,32 @@ liro.listen('document.ready', function() {
 
         methods: {
 
-            httpSuccess(success) {
-
-                if ( success.data.redirect ) {
-                    setTimeout(() => {
-                        window.location.replace(success.data.redirect)
-                    }, 2500);
-                }
-
-                UIkit.notification('<i class="fa fa-check"></i><span class="uk-margin-small-left">' + success.data.message + '</span>', 'success');
+            ajaxRequestDone(request) {
+                // Request done
             },
 
-            httpError(error) {
-                UIkit.notification('<i class="fa fa-times"></i><span class="uk-margin-small-left">' + error.message + '</span>', 'danger');
+            ajaxRequestError(error) {
+                // Request error
+            },
+
+            ajaxResponseDone(response) {
+
+                if ( typeof response.data.redirect != 'undefined' ) {
+                    setTimeout(() => window.location.replace(response.data.redirect), 2500);
+                }
+
+                UIkit.notification(response.data.message, 'success');
+            },
+
+            ajaxResponseError(error) {
+
+                var messages = Vue.config.devtools ? [error.message] : [];
+
+                if ( typeof error.response != 'undefined' && typeof error.response.data.errors != 'undefined' ) {
+                    _.each(error.response.data.errors, (items) => _.each(items, (item) => messages.push(item)));
+                }
+
+                _.each(messages, (message) => UIkit.notification(message, 'danger'));
             }
 
         }

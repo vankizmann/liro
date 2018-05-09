@@ -53,6 +53,8 @@ require('./list/app-list-hidden.vue');
 
 require('./form/app-form-input.vue');
 require('./form/app-form-password.vue');
+require('./form/app-form-select.vue');
+require('./form/app-form-select-multiple.vue');
 
 liro.listen('document.ready', function() {
 

@@ -2,9 +2,7 @@
 
 namespace Liro\Users\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class RoleUpdateRequest extends FormRequest
+class RoleUpdateRequest extends \Illuminate\Foundation\Http\FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -41,4 +39,5 @@ class RoleUpdateRequest extends FormRequest
             'title.min'         => '*.liro-users.messages.title.min'
         ];
     }
+
 }

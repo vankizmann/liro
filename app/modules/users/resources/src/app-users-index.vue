@@ -125,11 +125,15 @@
                 type: String
             },
             roles: {
-                default: () => [],
+                default() {
+                    return [];
+                },
                 type: Array
             },
             users: {
-                default: () => [],
+                default() {
+                    return [];
+                },
                 type: Array
             },
             states: {

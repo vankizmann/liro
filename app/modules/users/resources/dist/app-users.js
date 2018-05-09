@@ -211,7 +211,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-users-index.vue"
+Component.options.__file = "resources/src/app-users-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -220,9 +220,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-213f3154", Component.options)
+    hotAPI.createRecord("data-v-1d86656e", Component.options)
   } else {
-    hotAPI.reload("data-v-213f3154", Component.options)
+    hotAPI.reload("data-v-1d86656e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -366,12 +366,14 @@ module.exports = {
             default: function _default() {
                 return [];
             },
+
             type: Array
         },
         users: {
             default: function _default() {
                 return [];
             },
+
             type: Array
         },
         states: {
@@ -678,7 +680,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-213f3154", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1d86656e", module.exports)
   }
 }
 
@@ -708,7 +710,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-users-create.vue"
+Component.options.__file = "resources/src/app-users-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -717,9 +719,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2e5b43ea", Component.options)
+    hotAPI.createRecord("data-v-8a0ad9e0", Component.options)
   } else {
-    hotAPI.reload("data-v-2e5b43ea", Component.options)
+    hotAPI.reload("data-v-8a0ad9e0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -783,9 +785,42 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 module.exports = {
-    name: 'app-user-create',
+
+    name: 'app-users-create',
+
     computed: {
         canUndo: function canUndo() {
             return this.$store.getters['history/canUndo'];
@@ -794,55 +829,88 @@ module.exports = {
             return this.$store.getters['history/canRedo'];
         }
     },
+
     props: {
-        baseRoute: {
-            type: String
-        },
         createRoute: {
+            default: '',
             type: String
         },
-        value: {
+        indexRoute: {
+            default: '',
+            type: String
+        },
+        roles: {
+            default: function _default() {
+                return [];
+            },
+
+            type: Array
+        },
+        user: {
+            default: function _default() {
+                return {};
+            },
+
             type: Object
+        },
+        states: {
+            default: function _default() {
+                return [{ value: 1, label: this.$t('liro-users.form.enabled'), css: 'uk-success' }, { value: 0, label: this.$t('liro-users.form.disabled'), css: 'uk-danger' }];
+            },
+
+            type: Array
         }
     },
+
     data: function data() {
         return {
-            user: this.value
+            disabled: false,
+            item: this.user
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.$store.commit('history/init', this.user);
+        this.$store.commit('history/init', this.item);
 
-        this.$watch('user', _.debounce(this.save, 600), {
+        this.$watch('item', _.debounce(this.create, 600), {
             deep: true
         });
 
         this.$liro.listen('user.undo', function () {
-            _this.user = _this.$store.state.history.undo();
+            _this.item = _this.$store.state.history.undo();
         });
 
         this.$liro.listen('user.redo', function () {
-            _this.user = _this.$store.state.history.redo();
+            _this.item = _this.$store.state.history.redo();
         });
 
         this.$liro.listen('user.reset', function () {
-            _this.user = _this.$store.state.history.reset();
+            _this.item = _this.$store.state.history.reset();
         });
 
         this.$liro.listen('user.create', function () {
-            _this.$http.post(_this.createRoute, _this.user).then(_this.$root.httpSuccess).catch(_this.$root.httpError);
+            _this.$http.post(_this.createRoute, _this.item);
+        });
+
+        this.$liro.listen('ajax.load', function () {
+            _this.disabled = true;
+        });
+
+        this.$liro.listen('ajax.error', function () {
+            _this.disabled = false;
         });
     },
 
+
     methods: {
-        save: function save() {
+        create: function create() {
             if (this.$store.state.history.preventer()) {
-                this.$store.commit('history/save', this.user);
+                this.$store.commit('history/save', this.item);
             }
         }
     }
+
 };
 liro.component(module.exports);
 
@@ -866,11 +934,17 @@ var render = function() {
             "app-toolbar-event",
             {
               staticClass: "uk-icon-success",
-              attrs: { icon: "fa fa-check", event: "user.create" }
+              attrs: {
+                icon: "fa fa-check",
+                event: "user.create",
+                disabled: _vm.disabled
+              }
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.create")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.create")) +
+                  "\n        "
               )
             ]
           ),
@@ -879,11 +953,17 @@ var render = function() {
             "app-toolbar-link",
             {
               staticClass: "uk-icon-danger",
-              attrs: { icon: "fa fa-times", href: _vm.baseRoute }
+              attrs: {
+                icon: "fa fa-times",
+                href: _vm.indexRoute,
+                disabled: _vm.disabled
+              }
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.close")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.close")) +
+                  "\n        "
               )
             ]
           ),
@@ -901,7 +981,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.undo")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.undo")) +
+                  "\n        "
               )
             ]
           ),
@@ -917,7 +999,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.redo")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.redo")) +
+                  "\n        "
               )
             ]
           )
@@ -942,7 +1026,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("theme.discard")) +
+                  _vm._s(_vm.$t("liro-users.toolbar.discard")) +
                   "\n        "
               )
             ]
@@ -961,7 +1045,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.help")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.help")) +
+                  "\n        "
               )
             ]
           )
@@ -973,59 +1059,100 @@ var render = function() {
         _c("h1", [_vm._v("Help")])
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "uk-margin-bottom" }, [
+        _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
+          _vm._v(_vm._s(_vm.$t("liro-users.backend.users.create")))
+        ])
+      ]),
+      _vm._v(" "),
       _c(
         "fieldset",
         { staticClass: "uk-fieldset" },
         [
           _c("app-form-input", {
             attrs: {
-              label: _vm.$t("user.label.name"),
+              label: _vm.$t("liro-users.form.name"),
               type: "text",
               id: "name",
               name: "name",
               rules: "required|min:4"
             },
             model: {
-              value: _vm.user.name,
+              value: _vm.item.name,
               callback: function($$v) {
-                _vm.$set(_vm.user, "name", $$v)
+                _vm.$set(_vm.item, "name", $$v)
               },
-              expression: "user.name"
+              expression: "item.name"
+            }
+          }),
+          _vm._v(" "),
+          _c("app-form-select", {
+            attrs: {
+              label: _vm.$t("liro-users.form.state"),
+              id: "state",
+              name: "state",
+              options: _vm.states,
+              placeholder: _vm.$t("liro-users.placeholder.state")
+            },
+            model: {
+              value: _vm.item.state,
+              callback: function($$v) {
+                _vm.$set(_vm.item, "state", $$v)
+              },
+              expression: "item.state"
+            }
+          }),
+          _vm._v(" "),
+          _c("app-form-select-multiple", {
+            attrs: {
+              label: _vm.$t("liro-users.form.roles"),
+              id: "role_ids",
+              name: "role_ids",
+              options: _vm.roles,
+              "option-label": "title",
+              "option-value": "id",
+              placeholder: _vm.$t("liro-users.placeholder.roles")
+            },
+            model: {
+              value: _vm.item.role_ids,
+              callback: function($$v) {
+                _vm.$set(_vm.item, "role_ids", $$v)
+              },
+              expression: "item.role_ids"
             }
           }),
           _vm._v(" "),
           _c("app-form-input", {
             attrs: {
-              label: _vm.$t("user.label.email"),
+              label: _vm.$t("liro-users.form.email"),
               type: "email",
               id: "email",
               name: "email",
               rules: "required|email"
             },
             model: {
-              value: _vm.user.email,
+              value: _vm.item.email,
               callback: function($$v) {
-                _vm.$set(_vm.user, "email", $$v)
+                _vm.$set(_vm.item, "email", $$v)
               },
-              expression: "user.email"
+              expression: "item.email"
             }
           }),
           _vm._v(" "),
           _c("app-form-password", {
             attrs: {
-              label: _vm.$t("user.label.password"),
-              generate: _vm.$t("user.form.generate"),
-              type: "text",
+              label: _vm.$t("liro-users.form.password"),
               id: "password",
               name: "password",
-              rules: "required|min:6"
+              rules: "min:6",
+              generate: _vm.$t("liro-users.form.generate")
             },
             model: {
-              value: _vm.user.password,
+              value: _vm.item.password,
               callback: function($$v) {
-                _vm.$set(_vm.user, "password", $$v)
+                _vm.$set(_vm.item, "password", $$v)
               },
-              expression: "user.password"
+              expression: "item.password"
             }
           })
         ],
@@ -1041,7 +1168,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2e5b43ea", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-8a0ad9e0", module.exports)
   }
 }
 
@@ -1071,7 +1198,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-users-edit.vue"
+Component.options.__file = "resources/src/app-users-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1080,9 +1207,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-65311110", Component.options)
+    hotAPI.createRecord("data-v-c8874fc4", Component.options)
   } else {
-    hotAPI.reload("data-v-65311110", Component.options)
+    hotAPI.reload("data-v-c8874fc4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1115,29 +1242,163 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 module.exports = {
+
     name: 'app-users-edit',
+
+    computed: {
+        canUndo: function canUndo() {
+            return this.$store.getters['history/canUndo'];
+        },
+        canRedo: function canRedo() {
+            return this.$store.getters['history/canRedo'];
+        }
+    },
+
     props: {
-        update: {
+        indexRoute: {
             default: '',
             type: String
         },
-        value: {
+        roles: {
+            default: function _default() {
+                return [];
+            },
+
+            type: Array
+        },
+        user: {
+            default: function _default() {
+                return {};
+            },
+
             type: Object
+        },
+        states: {
+            default: function _default() {
+                return [{ value: 1, label: this.$t('liro-users.form.enabled'), css: 'uk-success' }, { value: 0, label: this.$t('liro-users.form.disabled'), css: 'uk-danger' }];
+            },
+
+            type: Array
         }
     },
+
     data: function data() {
         return {
-            user: this.value
+            disabled: false,
+            item: this.user
         };
     },
     mounted: function mounted() {
-        // this.$root.$on('user.update', (event) => {
-        //     event.preventDefault();
-        //     this.$http.post(this.update, this.user).then(this.$root.httpSuccess).catch(this.$root.httpError);
-        // });
+        var _this = this;
+
+        this.$store.commit('history/init', this.item);
+
+        this.$watch('item', _.debounce(this.save, 600), {
+            deep: true
+        });
+
+        this.$liro.listen('user.undo', function () {
+            _this.item = _this.$store.state.history.undo();
+        });
+
+        this.$liro.listen('user.redo', function () {
+            _this.item = _this.$store.state.history.redo();
+        });
+
+        this.$liro.listen('user.reset', function () {
+            _this.item = _this.$store.state.history.reset();
+        });
+
+        this.$liro.listen('user.save', function () {
+            _this.$http.post(_this.item.edit_route, _this.item);
+        });
+
+        this.$liro.listen('ajax.load', function () {
+            _this.disabled = true;
+        });
+
+        this.$liro.listen('ajax.done', function () {
+            _this.disabled = false;
+        });
+
+        this.$liro.listen('ajax.error', function () {
+            _this.disabled = false;
+        });
+    },
+
+
+    methods: {
+        save: function save() {
+            if (this.$store.state.history.preventer()) {
+                this.$store.commit('history/save', this.item);
+            }
+        }
     }
+
 };
 liro.component(module.exports);
 
@@ -1149,66 +1410,245 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "uk-form uk-form-stacked" }, [
-    _c(
-      "fieldset",
-      { staticClass: "uk-fieldset" },
-      [
-        _c("app-form-input", {
-          attrs: {
-            label: _vm.$t("user.label.name"),
-            type: "text",
-            id: "name",
-            name: "name",
-            rules: "required|min:4"
-          },
-          model: {
-            value: _vm.user.name,
-            callback: function($$v) {
-              _vm.$set(_vm.user, "name", $$v)
+  return _c(
+    "div",
+    { staticClass: "uk-form uk-form-stacked" },
+    [
+      _c(
+        "portal",
+        { attrs: { to: "app-toolbar-left" } },
+        [
+          _c(
+            "app-toolbar-event",
+            {
+              staticClass: "uk-icon-success",
+              attrs: {
+                icon: "fa fa-check",
+                event: "user.save",
+                disabled: _vm.disabled
+              }
             },
-            expression: "user.name"
-          }
-        }),
-        _vm._v(" "),
-        _c("app-form-input", {
-          attrs: {
-            label: _vm.$t("user.label.email"),
-            type: "email",
-            id: "email",
-            name: "email",
-            rules: "required|email"
-          },
-          model: {
-            value: _vm.user.email,
-            callback: function($$v) {
-              _vm.$set(_vm.user, "email", $$v)
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.save")) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-link",
+            {
+              staticClass: "uk-icon-danger",
+              attrs: {
+                icon: "fa fa-times",
+                href: _vm.indexRoute,
+                disabled: _vm.disabled
+              }
             },
-            expression: "user.email"
-          }
-        }),
-        _vm._v(" "),
-        _c("app-form-password", {
-          attrs: {
-            label: _vm.$t("user.label.password"),
-            generate: _vm.$t("user.form.generate"),
-            type: "text",
-            id: "password",
-            name: "password",
-            rules: "min:6"
-          },
-          model: {
-            value: _vm.user.password,
-            callback: function($$v) {
-              _vm.$set(_vm.user, "password", $$v)
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.close")) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("app-toolbar-spacer"),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-event",
+            {
+              attrs: {
+                icon: "fa fa-undo",
+                event: "user.undo",
+                disabled: !_vm.canUndo
+              }
             },
-            expression: "user.password"
-          }
-        })
-      ],
-      1
-    )
-  ])
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.undo")) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-event",
+            {
+              attrs: {
+                icon: "fa fa-redo",
+                event: "user.redo",
+                disabled: !_vm.canRedo
+              }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.redo")) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "portal",
+        { attrs: { to: "app-toolbar-right" } },
+        [
+          _c(
+            "app-toolbar-event",
+            {
+              staticClass: "uk-icon-danger",
+              attrs: {
+                icon: "fa fa-ban",
+                event: "user.reset",
+                disabled: !_vm.canUndo
+              }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.discard")) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("app-toolbar-spacer"),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-link",
+            {
+              attrs: {
+                icon: "fa fa-info-circle",
+                href: "#",
+                "uk-toggle": "target: #app-module-help"
+              }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.help")) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("portal", { attrs: { to: "app-module-help" } }, [
+        _c("h1", [_vm._v("Help")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-margin-bottom" }, [
+        _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
+          _vm._v(_vm._s(_vm.$t("liro-users.backend.users.edit")))
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "fieldset",
+        { staticClass: "uk-fieldset" },
+        [
+          _c("app-form-input", {
+            attrs: {
+              label: _vm.$t("liro-users.form.name"),
+              type: "text",
+              id: "name",
+              name: "name",
+              rules: "required|min:4"
+            },
+            model: {
+              value: _vm.item.name,
+              callback: function($$v) {
+                _vm.$set(_vm.item, "name", $$v)
+              },
+              expression: "item.name"
+            }
+          }),
+          _vm._v(" "),
+          _c("app-form-select", {
+            attrs: {
+              label: _vm.$t("liro-users.form.state"),
+              id: "state",
+              name: "state",
+              options: _vm.states,
+              placeholder: _vm.$t("liro-users.placeholder.state")
+            },
+            model: {
+              value: _vm.item.state,
+              callback: function($$v) {
+                _vm.$set(_vm.item, "state", $$v)
+              },
+              expression: "item.state"
+            }
+          }),
+          _vm._v(" "),
+          _c("app-form-select-multiple", {
+            attrs: {
+              label: _vm.$t("liro-users.form.roles"),
+              id: "role_ids",
+              name: "role_ids",
+              options: _vm.roles,
+              "option-label": "title",
+              "option-value": "id",
+              placeholder: _vm.$t("liro-users.placeholder.roles")
+            },
+            model: {
+              value: _vm.item.role_ids,
+              callback: function($$v) {
+                _vm.$set(_vm.item, "role_ids", $$v)
+              },
+              expression: "item.role_ids"
+            }
+          }),
+          _vm._v(" "),
+          _c("app-form-input", {
+            attrs: {
+              label: _vm.$t("liro-users.form.email"),
+              type: "email",
+              id: "email",
+              name: "email",
+              rules: "required|email"
+            },
+            model: {
+              value: _vm.item.email,
+              callback: function($$v) {
+                _vm.$set(_vm.item, "email", $$v)
+              },
+              expression: "item.email"
+            }
+          }),
+          _vm._v(" "),
+          _c("app-form-password", {
+            attrs: {
+              label: _vm.$t("liro-users.form.password"),
+              id: "password",
+              name: "password",
+              rules: "min:6",
+              generate: _vm.$t("liro-users.form.generate")
+            },
+            model: {
+              value: _vm.item.password,
+              callback: function($$v) {
+                _vm.$set(_vm.item, "password", $$v)
+              },
+              expression: "item.password"
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1216,7 +1656,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-65311110", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-c8874fc4", module.exports)
   }
 }
 

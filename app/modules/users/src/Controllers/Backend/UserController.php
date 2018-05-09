@@ -2,65 +2,71 @@
 
 namespace Liro\Users\Controllers\Backend;
 
-use Illuminate\Http\Request;
-use Liro\System\Http\Controller;
+use Illuminate\Support\Facades\App;
 use Liro\Users\Models\User;
 use Liro\Users\Models\UserRole;
+use Liro\Users\Requests\UserStoreRequest;
+use Liro\Users\Requests\UserUpdateRequest;
 
-class UserController extends Controller
+class UserController extends \Liro\System\Http\Controller
 {
-    public function index()
+    public function index(User $users, UserRole $roles)
     {
         return view('liro-users::backend/users/index', [
-            'roles' => UserRole::all(),
-            'users' => User::all()
+            'users' => $users->all(), 'roles' => $roles->all()
         ]);
     }
 
-    public function show($id)
+    public function enable(User $user, $id)
     {
-        return view('liro-users::backend/users/show', [
-            'user' => User::find($id)
-        ]);
+        $user->findOrFail($id)->update([ 'state' => 1 ]);
+        return redirect()->route('liro-users.backend.users.index');
     }
 
-    public function create()
+    public function disable(User $user, $id)
+    {
+        $user->findOrFail($id)->update([ 'state' => 0 ]);
+        return redirect()->route('liro-users.backend.users.index');
+    }
+
+    public function create(User $user, UserRole $roles)
     {
         return view('liro-users::backend/users/create', [
-            'user' => new User
+            'user' => $user, 'roles' => $roles->all()
         ]);
     }
 
-    public function store()
+    public function store(User $user, UserStoreRequest $request)
     {
-        dd('store');
+        $user = $user->create($request->only([
+            'state', 'name', 'email', 'password', 'role_ids'
+        ]));
+
+        return response()->json([
+            'message' => trans('*.liro-users.messages.users.created'),
+            'redirect' => $user->edit_route
+        ]);
     }
 
-    public function edit($id)
+    public function edit(User $user, UserRole $roles, $id)
     {
         return view('liro-users::backend/users/edit', [
-            'user' => User::find($id)
+            'user' => $user->findOrFail($id), 'roles' => $roles->all()
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(User $user, UserUpdateRequest $request, $id)
     {
-        dd('update');
+        $user->findOrFail($id)->update($request->only([
+            'state', 'name', 'email', 'password', 'role_ids'
+        ]));
+
+        return response()->json([
+            'message' => trans('*.liro-users.messages.users.updated')
+        ]);
     }
 
-    public function enable($id)
-    {
-        $user = User::findOrFail($id)->fill([ 'state' => 1 ])->save();
-        return redirect()->route('liro-users.backend.users.index');
-    }
-
-    public function disable($id)
-    {
-        $user = User::findOrFail($id)->fill([ 'state' => 0 ])->save();
-        return redirect()->route('liro-users.backend.users.index');
-    }
-
-    public function delete($id)
+    public function delete(User $user, $id)
     {
         dd('delete');
     }

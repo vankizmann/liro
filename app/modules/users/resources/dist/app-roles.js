@@ -221,7 +221,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-roles-index.vue"
+Component.options.__file = "resources/src/app-roles-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -230,9 +230,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a474d86e", Component.options)
+    hotAPI.createRecord("data-v-abe6703a", Component.options)
   } else {
-    hotAPI.reload("data-v-a474d86e", Component.options)
+    hotAPI.reload("data-v-abe6703a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -601,7 +601,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a474d86e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-abe6703a", module.exports)
   }
 }
 
@@ -631,7 +631,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-roles-create.vue"
+Component.options.__file = "resources/src/app-roles-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -640,9 +640,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-32a13015", Component.options)
+    hotAPI.createRecord("data-v-817f018a", Component.options)
   } else {
-    hotAPI.reload("data-v-32a13015", Component.options)
+    hotAPI.reload("data-v-817f018a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -866,7 +866,11 @@ var render = function() {
             "app-toolbar-link",
             {
               staticClass: "uk-icon-danger",
-              attrs: { icon: "fa fa-times", href: _vm.indexRoute }
+              attrs: {
+                icon: "fa fa-times",
+                href: _vm.indexRoute,
+                disabled: _vm.disabled
+              }
             },
             [
               _vm._v(
@@ -1125,7 +1129,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-32a13015", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-817f018a", module.exports)
   }
 }
 
@@ -1155,7 +1159,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-roles-edit.vue"
+Component.options.__file = "resources/src/app-roles-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1164,9 +1168,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-14007263", Component.options)
+    hotAPI.createRecord("data-v-3b5559ee", Component.options)
   } else {
-    hotAPI.reload("data-v-14007263", Component.options)
+    hotAPI.reload("data-v-3b5559ee", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1385,7 +1389,11 @@ var render = function() {
             "app-toolbar-link",
             {
               staticClass: "uk-icon-danger",
-              attrs: { icon: "fa fa-times", href: _vm.indexRoute }
+              attrs: {
+                icon: "fa fa-times",
+                href: _vm.indexRoute,
+                disabled: _vm.disabled
+              }
             },
             [
               _vm._v(
@@ -1627,7 +1635,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-14007263", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3b5559ee", module.exports)
   }
 }
 

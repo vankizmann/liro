@@ -6,7 +6,7 @@
             <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="role.create" :disabled="disabled">
                 {{ $t('liro-users.toolbar.create') }}
             </app-toolbar-event>
-            <app-toolbar-link class="uk-icon-danger" icon="fa fa-times" :href="indexRoute">
+            <app-toolbar-link class="uk-icon-danger" icon="fa fa-times" :href="indexRoute" :disabled="disabled">
                 {{ $t('liro-users.toolbar.close') }}
             </app-toolbar-link>
             <app-toolbar-spacer>

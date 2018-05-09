@@ -30,6 +30,10 @@ class User extends \Illuminate\Foundation\Auth\User
         'password', 'remember_token',
     ];
 
+    protected $attributes = [
+        'state' => 0
+    ];
+
     public function roles()
     {
         return $this->belongsToMany(UserRole::class, 'user_role_link', 'user_id', 'user_role_id');
@@ -64,7 +68,9 @@ class User extends \Illuminate\Foundation\Auth\User
 
     public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = Hash::make($password);
+        if ( $password != '' ) {
+            $this->attributes['password'] = Hash::make($password);
+        }
     }
 
 }

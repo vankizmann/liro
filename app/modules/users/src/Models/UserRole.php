@@ -6,8 +6,6 @@ use Liro\System\Users\Models\UserRoleRoute;
 
 class UserRole extends \Liro\System\Users\Models\UserRole
 {
-    protected $attributes = [];
-
     protected $appends = ['edit_route', 'user_ids', 'route_ids', 'route_names'];
 
     protected $hidden = ['users', 'routes', 'created_at', 'updated_at'];

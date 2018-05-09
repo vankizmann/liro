@@ -6,6 +6,7 @@
 
 @section('content')
     <app-users-edit
-        update="{{ $user->editRoute }}" :value="{{ $user->toJson() }}"
+        index-route="{{ route('liro-users.backend.users.index') }}"
+        :user="{{ $user->toJson() }}" :roles="{{ $roles->toJson() }}"
     ></app-users-edit>
 @endsection

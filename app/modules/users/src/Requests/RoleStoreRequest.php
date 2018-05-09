@@ -2,9 +2,7 @@
 
 namespace Liro\Users\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class RoleStoreRequest extends FormRequest
+class RoleStoreRequest extends \Illuminate\Foundation\Http\FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -47,4 +45,5 @@ class RoleStoreRequest extends FormRequest
             'route_names.array'     => trans('*.liro-users.messages.route_names.array')
         ];
     }
+
 }

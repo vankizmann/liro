@@ -79,6 +79,11 @@ a, button {
     .uk-toolbar .uk-navbar-container {
         padding: 0 20px;
         background-color: $color-gray-20;
+        transition: box-shadow 600ms ease;
+    }
+
+    .uk-toolbar.uk-sticky-below .uk-navbar-container {
+        box-shadow: 0 2px 10px rgba($color-black, 0.2); 
     }
 
     .uk-toolbar .uk-toolbar-item {
@@ -115,7 +120,7 @@ a, button {
 
     .uk-toolbar .uk-toolbar-spacer div {
         width: $global-border-width;
-        background-color: $color-gray-20;
+        background-color: darken($color-gray-20, 5%);
         height: 35px;
     }
 
@@ -161,6 +166,135 @@ a, button {
     background-color: $color-white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
+.uk-select-group {
+
+    .uk-select {
+        display: inline-flex !important;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .uk-select:focus,
+    .uk-select.uk-open {
+        border-color: $color-primary;
+    }
+
+    &.uk-success .uk-select:focus,
+    &.uk-success .uk-select.uk-open {
+        border-color: $color-green;
+    }
+
+    &.uk-warning .uk-select:focus,
+    &.uk-warning .uk-select.uk-open {
+        border-color: $color-orange;
+    }
+
+    &.uk-danger .uk-select:focus,
+    &.uk-danger .uk-select.uk-open {
+        border-color: $color-red;
+    }
+    
+    .uk-select:before {
+        content: '\00a0';
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+        margin-right: 10px;
+        background-color: $color-primary;
+    }
+
+    &.uk-success .uk-select:before {
+        background-color: $color-green;
+    }
+
+    &.uk-warning .uk-select:before {
+        background-color: $color-orange;
+    }
+
+    &.uk-danger .uk-select:before {
+        background-color: $color-red;
+    }
+
+    .uk-dropdown {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: $color-primary;
+        transition: background 300ms;
+    }
+
+    &.uk-success .uk-dropdown {
+        background-color: $color-green;
+    }
+
+    &.uk-warning .uk-dropdown {
+        background-color: $color-orange;
+    }
+
+    &.uk-danger .uk-dropdown {
+        background-color: $color-red;
+    }
+
+    .uk-dropdown .uk-input {
+        border: none;
+        background-color: darken($color-primary, 15%);
+    }
+
+    .uk-dropdown li {
+        color: $color-white;
+        padding: 8px 15px 10px;
+        transition: background 300ms;
+    }
+
+    .uk-dropdown li:not(.uk-disabled) {
+        cursor: pointer;
+    }
+
+    .uk-dropdown li:not(.uk-disabled):hover {
+        background-color: darken($color-primary, 5%);
+    }
+
+    &.uk-success .uk-dropdown li:not(.uk-disabled):hover {
+        background-color: darken($color-green, 5%);
+    }
+
+    &.uk-warning .uk-dropdown li:not(.uk-disabled):hover {
+        background-color: darken($color-orange, 5%);
+    }
+
+    &.uk-danger .uk-dropdown li:not(.uk-disabled):hover {
+        background-color: darken($color-red, 5%);
+    }
+
+    .uk-dropdown li.uk-active {
+        background-color: darken($color-primary, 10%) !important;
+    }
+
+    &.uk-success .uk-dropdown li.uk-active {
+        background-color: darken($color-green, 10%) !important;
+    }
+
+    &.uk-warning .uk-dropdown li.uk-active {
+        background-color: darken($color-orange, 10%) !important;
+    }
+
+    &.uk-danger .uk-dropdown li.uk-active {
+        background-color: darken($color-red, 10%) !important;
+    }
+
+    .uk-dropdown li:hover {
+        padding: 8px 15px 10px;
+    }
+
+    .uk-dropdown li a {
+        color: $color-white;
+    }
+    
+}
+
+
 
 .uk-list-inline {
 

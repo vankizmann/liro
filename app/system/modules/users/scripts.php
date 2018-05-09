@@ -202,9 +202,9 @@ return [
 
             $schema->create('users', function(Blueprint $table) {
                 $table->increments('id');
-                $table->integer('state');
+                $table->integer('state')->default(0);
                 $table->string('name');
-                $table->string('email');
+                $table->string('email')->unique();
                 $table->string('password');
                 $table->rememberToken();
                 $table->timestamps();

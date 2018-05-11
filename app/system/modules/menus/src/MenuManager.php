@@ -76,8 +76,6 @@ class MenuManager implements \IteratorAggregate
             );
         }
 
-        // dd($this->app['router']);
-
         return $this;
     }
 
@@ -91,5 +89,9 @@ class MenuManager implements \IteratorAggregate
     public function getRouteNames()
     {
         return collect(array_keys($this->handlers));
+    }
+
+    public function current() {
+        return $this->menus->where('package', $this->app['router']->currentRouteName())->first();
     }
 }

@@ -12,6 +12,8 @@ class Module
 
     public $path;
 
+    public $type = 'module';
+
     public $config = [];
 
     public $options = [];

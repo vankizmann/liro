@@ -8,7 +8,7 @@ return [
 
         $app['modules']->load([
             'system.assets', 'system.languages', 'system.menus', 'system.users', 
-            'liro-dashboard', 'liro-menus', 'liro-users', 'liro-theme'
+            'liro-dashboard', 'liro-menus', 'liro-users'
         ]);
 
         $app['router']->get('/', function() use ($app) {

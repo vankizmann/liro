@@ -4,16 +4,10 @@ namespace Liro\Users\Controllers\Backend;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
-use Liro\System\Http\Controller;
 
-class AuthController extends Controller
+class AuthController extends \Liro\System\Http\Controller
 {
     protected $app;
-
-    public function __construct(Application $app)
-    {
-        $this->app = $app;
-    }
 
     public function login(Request $request)
     {

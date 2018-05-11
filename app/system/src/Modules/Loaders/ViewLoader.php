@@ -15,22 +15,13 @@ class ViewLoader implements LoaderInterface
 
     public function load($module)
     {
-        if ( $module->config('type') == 'theme.frontend' ) {
+        if ( $module->config('type') == 'theme' ) {
 
             foreach ($this->app['modules'] as $view) {
                 $this->app['view']->prependNamespace($view->name, "{$module->path}/views/{$view->name}");
             }
 
-            $this->app['view']->addNamespace('frontend', "{$module->path}/views");
-        }
-
-        if ( $module->config('type') == 'theme.backend' ) {
-
-            foreach ($this->app['modules'] as $view) {
-                $this->app['view']->prependNamespace($view->name, "{$module->path}/views/{$view->name}");
-            }
-
-            $this->app['view']->addNamespace('backend', "{$module->path}/views");
+            $this->app['view']->addNamespace('theme', "{$module->path}/views");
         }
 
         $this->app['view']->addNamespace($module->name, "{$module->path}/views");

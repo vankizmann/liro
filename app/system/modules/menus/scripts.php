@@ -17,27 +17,32 @@ return [
                 $table->increments('id');
                 $table->string('title');
                 $table->string('route');
+                $table->string('theme');
                 $table->timestamps();
             });
 
             $app['db']->table('menu_types')->insert([
                 'title' => 'Backend Main Menu',
-                'route' => 'backend'
+                'route' => 'backend',
+                'theme' => 'liro-backend'
             ]);
 
             $app['db']->table('menu_types')->insert([
                 'title' => 'Backend User Menu',
-                'route' => 'backend'
+                'route' => 'backend',
+                'theme' => 'liro-backend'
             ]);
 
             $app['db']->table('menu_types')->insert([
                 'title' => 'Main Menu',
-                'route' => ''
+                'route' => '',
+                'theme' => 'liro-frontend'
             ]);
 
             $app['db']->table('menu_types')->insert([
                 'title' => 'User Menu',
-                'route' => ''
+                'route' => '',
+                'theme' => 'liro-frontend'
             ]);
         
         $schema->dropIfExists('menus');

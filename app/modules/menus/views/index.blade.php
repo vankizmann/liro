@@ -1,4 +1,4 @@
-@extends('backend::index')
+@extends('theme::index')
 
 @php
     app('scripts')->link('jquery-ui', '//code.jquery.com/ui/1.10.4/jquery-ui.min.js');

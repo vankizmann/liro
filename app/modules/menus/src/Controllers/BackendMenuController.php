@@ -5,7 +5,7 @@ namespace Liro\Menus\Controllers;
 use Illuminate\Http\Request;
 use Liro\Menus\Models\Menu;
 
-class BackendMenuController
+class BackendMenuController extends \Liro\System\Http\Controller
 {
 
     public function index(Request $request, $type = 1)

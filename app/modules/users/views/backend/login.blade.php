@@ -1,4 +1,4 @@
-@extends('backend::login')
+@extends('theme::login')
 
 @php
     app('scripts')->link('app-auth', 'liro-users:resources/dist/app-auth.js');

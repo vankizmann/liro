@@ -16,20 +16,12 @@ return [
     'routes' => [
 
         'backend.auth.login' => function($router) {
-
-            return $router->middleware(['web'])->group(function($router) {
-                $router->get('/', 'Liro\Users\Controllers\Backend\AuthController@login');
-                $router->post('/', 'Liro\Users\Controllers\Backend\AuthController@submit');
-            });
-
+            $router->middleware(['web'])->get('/', 'Liro\Users\Controllers\Backend\AuthController@login');
+            $router->middleware(['web'])->post('/', 'Liro\Users\Controllers\Backend\AuthController@submit');
         },
 
         'backend.auth.logout' => function($router) {
-
-            return $router->middleware(['web'])->group(function($router) {
-                $router->get('/', 'Liro\Users\Controllers\Backend\AuthController@logout');
-            });
-
+            $router->middleware(['web'])->get('/', 'Liro\Users\Controllers\Backend\AuthController@logout');
         },
 
         'backend.users.index' => function($router) {

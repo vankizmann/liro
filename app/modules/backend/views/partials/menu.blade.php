@@ -6,14 +6,14 @@
                 <div class="uk-navbar-dropdown">
                     <ul class="uk-nav uk-navbar-dropdown-nav">
                         @foreach ($menu->children as $menu)
-                            @include('backend::partials.menu', $menu)
+                            @include('liro-backend::partials/menu', $menu)
                         @endforeach
                     </ul>
                 </div>
             @else
                 <ul class="uk-list">
                     @foreach ($menu->children as $menu)
-                        @include('backend::partials.menu', $menu)
+                        @include('liro-backend::partials/menu', $menu)
                     @endforeach
                 </ul>
             @endif

@@ -1,4 +1,4 @@
-@extends('backend::index')
+@extends('theme::index')
 
 @php
     app('scripts')->link('app-users', 'liro-users:resources/dist/app-users.js');

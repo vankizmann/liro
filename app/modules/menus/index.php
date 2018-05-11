@@ -24,7 +24,16 @@ return [
 
         'backend.menus.edit' => function($router) {
             return $router->middleware(['web', 'route'])->get('{id}', 'Liro\Menus\Controllers\BackendMenuController@edit');
-        }
+        },
+
+        'backend.types.index' => function($router) {
+            $router->middleware('web', 'route')->get('/', 'Liro\Menus\Controllers\Backend\TypeController@index');
+        },
+
+        'backend.types.create' => function($router) {
+            $router->middleware('web', 'route')->get('/', 'Liro\Menus\Controllers\Backend\TypeController@create');
+            $router->middleware('web', 'route')->post('/', 'Liro\Menus\Controllers\Backend\TypeController@store');
+        },
 
     ]
 

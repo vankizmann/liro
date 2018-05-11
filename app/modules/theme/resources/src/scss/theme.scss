@@ -2,7 +2,7 @@
  * Theme
  **/
 
-$color-green:               #5CEDBF;
+$color-green:               #14c97a;
 $color-blue:                #28a5f5;
 $color-red:                 #ff5f67;
 $color-orange:              #FF9430;
@@ -133,23 +133,23 @@ a, button {
     }
 
     .uk-toolbar .uk-toolbar-item.uk-icon-primary:not(.uk-disabled) .fa {
-        color: darken($color-primary, 10%);
+        color: $color-primary;
     }
 
     .uk-toolbar .uk-toolbar-item.uk-icon-success:not(.uk-disabled) .fa {
-        color: darken($color-green, 10%);
+        color: $color-green;
     }
 
     .uk-toolbar .uk-toolbar-item.uk-icon-warning:not(.uk-disabled) .fa {
-        color: darken($color-orange, 10%);
+        color: $color-orange;
     }
 
     .uk-toolbar .uk-toolbar-item.uk-icon-danger:not(.uk-disabled) .fa {
-        color: darken($color-red, 10%);
+        color: $color-red;
     }
 
     .uk-toolbar .uk-toolbar-item.uk-icon-info:not(.uk-disabled) .fa {
-        color: darken($color-blue, 10%);
+        color: $color-blue;
     }
 
 }

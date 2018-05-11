@@ -7,7 +7,7 @@
         </label>
         <!-- Label end -->
 
-        <div :class="[ 'uk-select-group' ]">
+        <div class="uk-select-group">
 
             <!-- Button start -->
             <button :class="{ 'uk-select uk-text-left': true, 'uk-form-danger uk-animation-shake': errors.has(name) }">
@@ -131,10 +131,10 @@
                 return this.valueFix.indexOf(this._value(option)) != -1;
             },
             _label(option) {
-                return option[this.optionLabel] || '';
+                return option[this.optionLabel];
             },
             _value(option) {
-                return option[this.optionValue] || '';
+                return option[this.optionValue];
             },
             _css(option) {
                 return option[this.optionCss] || '';

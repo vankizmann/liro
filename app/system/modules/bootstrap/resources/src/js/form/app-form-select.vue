@@ -3,13 +3,13 @@
         <label v-show="label" class="uk-form-label" :for="id">
             <span v-html="label"></span>
         </label>
-        <div :class="[ 'uk-select-group', getOptionCss(activeOption) ]">
+        <div :class="[ 'uk-select-group', _css(active) ]">
             <button :class="{ 'uk-select uk-text-left': true, 'uk-form-danger uk-animation-shake': errors.has(name) }">
-                <span>{{ activeOption ? getOptionLabel(activeOption) : placeholder }}</span>
+                <span>{{ active ? _label(active) : placeholder }}</span>
             </button>
             <ul uk-dropdown="mode: click; pos: bottom-justify;">
-                <li v-for="(option, index) in options" :key="index"  @click.prevent="valueFix = getOptionValue(option)">
-                    <span>{{ getOptionLabel(option) }}</span>
+                <li v-for="(option, index) in options" :key="index" :class="_style(option)" @click.prevent="valueFix = _value(option)">
+                    <span>{{ _label(option) }}</span>
                 </li>
             </ul>
             <input type="hidden" :id="id" :name="name" v-model="valueFix" v-validate="rules" :data-vv-as="label">
@@ -27,9 +27,8 @@
         name: 'app-form-select',
 
         computed: {
-            activeOption() {
-                var config = {}; config[this.optionValue] = this.valueFix;
-                return _.find(this.options, config);
+            active() {
+                return _.find(this.options, [this.optionValue, this.valueFix]);
             }
 
         },
@@ -96,38 +95,20 @@
             }
         },
         methods: {
-            getOptionLabel(option) {
-                
-                if ( typeof option[this.optionLabel] == 'undefined' ) {
-                    return '';
-                }
-
+            _active(option) {
+                return this.valueFix == this._value(option);
+            },
+            _label(option) {
                 return option[this.optionLabel];
             },
-            getOptionValue(option) {
-                
-                if ( typeof option[this.optionValue] == 'undefined' ) {
-                    return '';
-                }
-
+            _value(option) {
                 return option[this.optionValue];
             },
-            getOptionCss(option) {
-
-                if ( typeof option[this.optionCss] == 'undefined' ) {
-                    return '';
-                }
-
-                return option[this.optionCss];
+            _css(option) {
+                return option[this.optionCss] || '';
             },
-            getOptionStyle(option) {
-                var style = [this.getOptionCss(option)];
-
-                if ( this.valueFix == this.getOptionValue(option) ) {
-                    style.push('uk-active');
-                }
-
-                return style;
+            _style(option) {
+                return [this._css(option), this._active(option) ? 'uk-active' : 'uk-inactive'];
             }
         }
     }

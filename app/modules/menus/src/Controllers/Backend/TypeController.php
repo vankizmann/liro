@@ -36,16 +36,16 @@ class TypeController extends \Liro\System\Http\Controller
         ]);
     }
 
-    public function edit(MenuType $type, $id)
+    public function edit(MenuType $type)
     {
         return view('liro-menus::backend/types/edit', [
-            'type' => $type->findOrFail($id), 'themes' => app('modules')->getThemes()
+            'type' => $type, 'themes' => app('modules')->getThemes()
         ]);
     }
 
-    public function update(MenuType $type, TypeUpdateRequest $request, $id)
+    public function update(TypeUpdateRequest $request, MenuType $type)
     {
-        $type->findOrFail($id)->update($request->only([
+        $type->update($request->only([
             'title', 'description', 'route_names'
         ]));
 
@@ -54,7 +54,7 @@ class TypeController extends \Liro\System\Http\Controller
         ]);
     }
 
-    public function delete(MenuType $type, $id)
+    public function delete(MenuType $type)
     {
         dd('delete');
     }

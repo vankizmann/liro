@@ -207,9 +207,9 @@ return [
                 'hidden'            => 1,
                 'lang'              => '',
                 'title'             => '*.liro-menus.backend.types.edit',
-                'route'             => 'create',
+                'route'             => 'edit',
                 'query'             => '',
-                'package'           => 'liro-menus.backend.types.create',
+                'package'           => 'liro-menus.backend.types.edit',
                 'menu_type_id'      => 1,
                 'parent_id'         => 11
             ]);

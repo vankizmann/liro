@@ -59,8 +59,10 @@ class Menu extends Model
 
     public function getActiveAttribute()
     {
-        $routes = (new Walker)->multiple($this, 'children', function($result, $menu, $next) {
-            return $next(array_merge($result, [$menu->prefixRoute == request()->path()]));
+        $current = app('router')->currentRouteName();
+
+        $routes = (new Walker)->multiple($this, 'children', function($result, $menu, $next) use ($current) {
+            return $next(array_merge($result, [$menu->package == $current]));
         });
 
         return array_intersect(array_merge([$this->prefixRoute == request()->path()], $routes), [true]);

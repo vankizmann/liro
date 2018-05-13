@@ -105,7 +105,7 @@
                 return option[this.optionValue];
             },
             _css(option) {
-                return option[this.optionCss] || '';
+                return _.isPlainObject(option) ? option[this.optionCss] || '' : '';
             },
             _style(option) {
                 return [this._css(option), this._active(option) ? 'uk-active' : 'uk-inactive'];

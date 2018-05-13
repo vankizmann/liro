@@ -1,18 +1,41 @@
 <template>
     <div class="uk-form uk-form-stacked">
+
+       <!-- Toolbar start -->
         <portal to="app-toolbar-left">
             <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" :href="createRoute">
-                {{ $t('menus.module.menus-create') }}
+                {{ $t('liro-menus.toolbar.create') }}
             </app-toolbar-link>
         </portal>
         <portal to="app-toolbar-right">
             <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('theme.help') }}
+                {{ $t('liro-menus.toolbar.help') }}
             </app-toolbar-link>
         </portal>
+        <!-- Toolbar end -->
+
+        <!-- Help start -->
         <portal to="app-module-help">
-            <h1>Help</h1>
+            <h1>{{ $t('liro-menus.toolbar.help') }}</h1>
         </portal>
+        <!-- Help end -->
+
+        <div class="uk-flex uk-flex-middle uk-margin-bottom">
+
+            <!-- Title start -->
+            <div>
+                <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-menus.backend.roles.index') }}</h1>
+            </div>
+            <!-- Title end -->
+
+            <!-- Search start -->
+            <div style="width: 300px; margin-left: auto;">
+                <app-list-search :columns="['title', 'description']" :placeholder="$t('liro-menus.form.search')"></app-list-search>
+            </div>
+            <!-- Search end -->
+
+        </div>
+
         <div class="uk-table-list">
             <div class="uk-table-list-head">
                 <div class="uk-table-list-td uk-table-list-td-xs uk-text-center">

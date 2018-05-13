@@ -3,7 +3,7 @@
 @php
     app('scripts')->link('jquery-ui', '//code.jquery.com/ui/1.10.4/jquery-ui.min.js');
     app('scripts')->link('jquery-nestedset', 'liro-menus:resources/dist/jquery-nestedset.js');
-    app('scripts')->link('app-menu-index', 'liro-menus:resources/dist/app-menu-index.js');
+    app('scripts')->link('app-menus', 'liro-menus:resources/dist/app-menus.js');
 @endphp
 
 @section('content')

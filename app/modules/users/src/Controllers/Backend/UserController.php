@@ -17,15 +17,21 @@ class UserController extends \Liro\System\Http\Controller
         ]);
     }
 
-    public function enable(User $user, $id)
+    public function enable(User $user)
     {
-        $user->findOrFail($id)->update([ 'state' => 1 ]);
+        $user->update([
+            'state' => 1
+        ]);
+
         return redirect()->route('liro-users.backend.users.index');
     }
 
-    public function disable(User $user, $id)
+    public function disable(User $user)
     {
-        $user->findOrFail($id)->update([ 'state' => 0 ]);
+        $user->update([
+            'state' => 0
+        ]);
+
         return redirect()->route('liro-users.backend.users.index');
     }
 
@@ -48,16 +54,16 @@ class UserController extends \Liro\System\Http\Controller
         ]);
     }
 
-    public function edit(User $user, UserRole $roles, $id)
+    public function edit(User $user, UserRole $roles)
     {
         return view('liro-users::backend/users/edit', [
-            'user' => $user->findOrFail($id), 'roles' => $roles->all()
+            'user' => $user, 'roles' => $roles->all()
         ]);
     }
 
-    public function update(User $user, UserUpdateRequest $request, $id)
+    public function update(User $user, UserUpdateRequest $request)
     {
-        $user->findOrFail($id)->update($request->only([
+        $user->update($request->only([
             'state', 'name', 'email', 'password', 'role_ids'
         ]));
 
@@ -66,7 +72,7 @@ class UserController extends \Liro\System\Http\Controller
         ]);
     }
 
-    public function delete(User $user, $id)
+    public function delete(User $user)
     {
         dd('delete');
     }

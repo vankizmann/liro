@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -173,24 +173,32 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 1 */
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(2);
-__webpack_require__(5);
-module.exports = __webpack_require__(8);
+__webpack_require__(10);
+__webpack_require__(13);
+module.exports = __webpack_require__(16);
 
 
 /***/ }),
-/* 2 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(3)
+var __vue_script__ = __webpack_require__(11)
 /* template */
-var __vue_template__ = __webpack_require__(4)
+var __vue_template__ = __webpack_require__(12)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -207,7 +215,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-menu-index-list.vue"
+Component.options.__file = "resources\\src\\app-menus-index-list.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -216,9 +224,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4379a908", Component.options)
+    hotAPI.createRecord("data-v-5a2f3fbb", Component.options)
   } else {
-    hotAPI.reload("data-v-4379a908", Component.options)
+    hotAPI.reload("data-v-5a2f3fbb", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -229,7 +237,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 3 */
+/* 11 */
 /***/ (function(module, exports) {
 
 //
@@ -249,7 +257,7 @@ module.exports = {
 liro.component(module.exports);
 
 /***/ }),
-/* 4 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -279,20 +287,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4379a908", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5a2f3fbb", module.exports)
   }
 }
 
 /***/ }),
-/* 5 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(6)
+var __vue_script__ = __webpack_require__(14)
 /* template */
-var __vue_template__ = __webpack_require__(7)
+var __vue_template__ = __webpack_require__(15)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -309,7 +317,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-menu-index-item.vue"
+Component.options.__file = "resources\\src\\app-menus-index-item.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -318,9 +326,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-397430fd", Component.options)
+    hotAPI.createRecord("data-v-5029c7b0", Component.options)
   } else {
-    hotAPI.reload("data-v-397430fd", Component.options)
+    hotAPI.reload("data-v-5029c7b0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -331,7 +339,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 6 */
+/* 14 */
 /***/ (function(module, exports) {
 
 //
@@ -363,17 +371,18 @@ module.exports = {
     props: {
         value: {
             type: Object
-        },
-        collapse: {
-            default: false,
-            type: Boolean
         }
+    },
+    data: function data() {
+        return {
+            collapse: true
+        };
     }
 };
 liro.component(module.exports);
 
 /***/ }),
-/* 7 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -384,33 +393,29 @@ var render = function() {
     "li",
     { attrs: { id: "menuItem_" + _vm.value.id } },
     [
-      _c("div", { staticClass: "uk-menu-item uk-flex uk-flex-middle" }, [
+      _c("div", { staticClass: "uk-table-list-row" }, [
         _c(
-          "a",
+          "div",
           {
-            class: {
-              "uk-menu-item-collapse": true,
-              "uk-disabled": !_vm.value.children.length
-            },
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                _vm.collapse = !_vm.collapse
-              }
-            }
+            staticClass: "uk-table-list-td uk-table-list-td-xs uk-text-center"
           },
           [
-            _c("span", {
-              class: {
-                fa: true,
-                "fa-angle-right": _vm.collapse,
-                "fa-angle-down": !_vm.collapse
+            _c("app-list-collapse", {
+              attrs: {
+                disabled: _vm.value.children.length == 0,
+                active: !_vm.collapse
+              },
+              on: {
+                click: function($event) {
+                  _vm.collapse = !_vm.collapse
+                }
               }
             })
-          ]
+          ],
+          1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "uk-menu-item-title uk-flex-1" }, [
+        _c("div", { staticClass: "uk-table-list-td uk-table-list-td-auto" }, [
           _c("a", { attrs: { href: _vm.value.edit_route } }, [
             _vm._v(_vm._s(_vm.value.title_fix))
           ]),
@@ -421,32 +426,34 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          {
-            class: {
-              "uk-menu-item-hidden": true,
-              "uk-active": _vm.value.hidden == 1
-            }
-          },
-          [_c("span", { staticClass: "fa fa-eye-slash" })]
+          { staticClass: "uk-table-list-td uk-table-list-td-s uk-text-center" },
+          [
+            _c("app-list-hidden", {
+              attrs: { active: _vm.value.hidden == 1, href: "#" }
+            })
+          ],
+          1
         ),
         _vm._v(" "),
         _c(
           "div",
-          {
-            class: {
-              "uk-menu-item-state": true,
-              "uk-active": _vm.value.state == 1
-            }
-          },
-          [_c("span")]
+          { staticClass: "uk-table-list-td uk-table-list-td-s uk-text-center" },
+          [
+            _c("app-list-state", {
+              attrs: { active: _vm.value.state == 1, href: "#" }
+            })
+          ],
+          1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "uk-menu-item-id uk-width-auto" }, [
-          _c("span", [_vm._v(_vm._s(_vm.value.id))])
-        ])
+        _c(
+          "div",
+          { staticClass: "uk-table-list-td uk-table-list-td-s uk-text-center" },
+          [_c("span", [_vm._v(_vm._s(_vm.value.id))])]
+        )
       ]),
       _vm._v(" "),
-      _c("app-menu-index-item", {
+      _c("app-menu-index-list", {
         directives: [
           {
             name: "show",
@@ -473,20 +480,20 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-397430fd", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5029c7b0", module.exports)
   }
 }
 
 /***/ }),
-/* 8 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(9)
+var __vue_script__ = __webpack_require__(17)
 /* template */
-var __vue_template__ = __webpack_require__(10)
+var __vue_template__ = __webpack_require__(18)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -503,7 +510,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-menu-index.vue"
+Component.options.__file = "resources\\src\\app-menus-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -512,9 +519,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-19d53dd3", Component.options)
+    hotAPI.createRecord("data-v-71f30340", Component.options)
   } else {
-    hotAPI.reload("data-v-19d53dd3", Component.options)
+    hotAPI.reload("data-v-71f30340", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -525,9 +532,29 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 9 */
+/* 17 */
 /***/ (function(module, exports) {
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -608,7 +635,7 @@ module.exports = {
 liro.component(module.exports);
 
 /***/ }),
-/* 10 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -632,7 +659,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("menus.module.menus-create")) +
+                  _vm._s(_vm.$t("liro-menus.toolbar.create")) +
                   "\n        "
               )
             ]
@@ -651,12 +678,14 @@ var render = function() {
               attrs: {
                 icon: "fa fa-info-circle",
                 href: "#",
-                "uk-toggle": "target: #offcanvas-slide"
+                "uk-toggle": "target: #app-module-help"
               }
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.$t("theme.help")) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
+                  "\n        "
               )
             ]
           )
@@ -664,52 +693,108 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._m(0),
+      _c("portal", { attrs: { to: "app-module-help" } }, [
+        _c("h1", [_vm._v(_vm._s(_vm.$t("liro-menus.toolbar.help")))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-flex uk-flex-middle uk-margin-bottom" }, [
+        _c("div", [
+          _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
+            _vm._v(_vm._s(_vm.$t("liro-menus.backend.roles.index")))
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticStyle: { width: "300px", "margin-left": "auto" } },
+          [
+            _c("app-list-search", {
+              attrs: {
+                columns: ["title", "description"],
+                placeholder: _vm.$t("liro-menus.form.search")
+              }
+            })
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "app-menu-index" },
+        { staticClass: "uk-table-list" },
         [
-          _c("div", { staticClass: "uk-menu-title uk-flex uk-flex-middle" }, [
-            _c("div", { staticClass: "uk-menu-title-collapse" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.$t("theme.hash")) +
-                  "\n            "
-              )
-            ]),
+          _c("div", { staticClass: "uk-table-list-head" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "uk-table-list-td uk-table-list-td-xs uk-text-center"
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.$t("theme.hash")) +
+                    "\n            "
+                )
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "uk-menu-title-title uk-flex-1" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.$t("theme.title")) +
-                  "\n            "
-              )
-            ]),
+            _c(
+              "div",
+              { staticClass: "uk-table-list-td uk-table-list-td-auto" },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.$t("theme.title")) +
+                    "\n            "
+                )
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "uk-menu-title-hidden" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.$t("theme.hidden")) +
-                  "\n            "
-              )
-            ]),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "uk-table-list-td uk-table-list-td-s uk-text-center"
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.$t("theme.hidden")) +
+                    "\n            "
+                )
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "uk-menu-title-state" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.$t("theme.state")) +
-                  "\n            "
-              )
-            ]),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "uk-table-list-td uk-table-list-td-s uk-text-center"
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.$t("theme.state")) +
+                    "\n            "
+                )
+              ]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "uk-menu-title-id uk-width-auto" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.$t("theme.id")) +
-                  "\n            "
-              )
-            ])
+            _c(
+              "div",
+              {
+                staticClass:
+                  "uk-table-list-td uk-table-list-td-s uk-text-center"
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.$t("theme.id")) +
+                    "\n            "
+                )
+              ]
+            )
           ]),
           _vm._v(" "),
           _c("app-menu-index-list", {
@@ -729,39 +814,13 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        attrs: {
-          id: "offcanvas-slide",
-          "uk-offcanvas": "overlay: true; mode: push;"
-        }
-      },
-      [
-        _c("div", { staticClass: "uk-offcanvas-bar" }, [
-          _c("h3", { staticClass: "uk-text-primary" }, [_vm._v("Title")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-            )
-          ])
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-19d53dd3", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-71f30340", module.exports)
   }
 }
 

@@ -25,71 +25,39 @@ return [
         },
 
         'backend.users.index' => function($router) {
-
-            return $router->middleware(['web', 'route'])->group(function($router) {
-                $router->get('/', 'Liro\Users\Controllers\Backend\UserController@index');
-            });
-
+            $router->middleware(['web', 'route'])->get('/', 'Liro\Users\Controllers\Backend\UserController@index');
         },
 
         'backend.users.create' => function($router) {
-
-            return $router->middleware(['web', 'route'])->group(function($router) {
-                $router->get('/', 'Liro\Users\Controllers\Backend\UserController@create');
-                $router->post('/', 'Liro\Users\Controllers\Backend\UserController@store');
-            });
-
+            $router->middleware(['web', 'route'])->get('/', 'Liro\Users\Controllers\Backend\UserController@create');
+            $router->middleware(['web', 'route'])->post('/', 'Liro\Users\Controllers\Backend\UserController@store');
         },
 
         'backend.users.edit' => function($router) {
-
-            return $router->middleware(['web', 'route'])->group(function($router) {
-                $router->get('{id}', 'Liro\Users\Controllers\Backend\UserController@edit');
-                $router->post('{id}', 'Liro\Users\Controllers\Backend\UserController@update');
-            });
-
+            $router->middleware(['web', 'route'])->get('{user}', 'Liro\Users\Controllers\Backend\UserController@edit');
+            $router->middleware(['web', 'route'])->post('{user}', 'Liro\Users\Controllers\Backend\UserController@update');
         },
 
         'backend.users.enable' => function($router) {
-
-            return $router->middleware(['web', 'route'])->group(function($router) {
-                $router->get('{id}', 'Liro\Users\Controllers\Backend\UserController@enable');
-            });
-
+            $router->middleware(['web', 'route'])->get('{user}', 'Liro\Users\Controllers\Backend\UserController@enable');
         },
 
         'backend.users.disable' => function($router) {
-
-            return $router->middleware(['web', 'route'])->group(function($router) {
-                $router->get('{id}', 'Liro\Users\Controllers\Backend\UserController@disable');
-            });
-
+            $router->middleware(['web', 'route'])->get('{user}', 'Liro\Users\Controllers\Backend\UserController@disable');
         },
 
         'backend.roles.index' => function($router) {
-
-            return $router->middleware(['web', 'route'])->group(function($router) {
-                $router->get('/', 'Liro\Users\Controllers\Backend\RoleController@index');
-            });
-
+            $router->middleware(['web', 'route'])->get('/', 'Liro\Users\Controllers\Backend\RoleController@index');
         },
 
         'backend.roles.create' => function($router) {
-
-            return $router->middleware(['web', 'route'])->group(function($router) {
-                $router->get('/', 'Liro\Users\Controllers\Backend\RoleController@create');
-                $router->post('/', 'Liro\Users\Controllers\Backend\RoleController@store');
-            });
-
+            $router->middleware(['web', 'route'])->get('/', 'Liro\Users\Controllers\Backend\RoleController@create');
+            $router->middleware(['web', 'route'])->post('/', 'Liro\Users\Controllers\Backend\RoleController@store');
         },
 
         'backend.roles.edit' => function($router) {
-
-            return $router->middleware(['web', 'route'])->group(function($router) {
-                $router->get('{id}', 'Liro\Users\Controllers\Backend\RoleController@edit');
-                $router->post('{id}', 'Liro\Users\Controllers\Backend\RoleController@update');
-            });
-
+            $router->middleware(['web', 'route'])->get('{role}', 'Liro\Users\Controllers\Backend\RoleController@edit');
+            $router->middleware(['web', 'route'])->post('{role}', 'Liro\Users\Controllers\Backend\RoleController@update');
         }
 
     ]

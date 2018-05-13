@@ -89,7 +89,6 @@
         },
 
         "form": {
-            
             "empty":            "Kein Eintrag gefunden.",
             "enabled":          "Aktiviert",
             "disabled":         "Deaktiviert",

@@ -24,8 +24,7 @@ class RoleController extends \Liro\System\Http\Controller
         $routes = app('menus')->getRouteNames();
 
         return view('liro-users::backend/roles/create', [
-            'role' => $role,
-            'routes' => $routes
+            'role' => $role, 'routes' => $routes
         ]);
     }
 
@@ -36,24 +35,23 @@ class RoleController extends \Liro\System\Http\Controller
         ));
 
         return response()->json([
-            'message' => trans('*.liro-users.messages.roles.created'),
+            'message' => trans('*.liro-users.messages.roles.created'), 
             'redirect' => $role->edit_route
         ]);
     }
 
-    public function edit(UserRole $role, $id)
+    public function edit(UserRole $role)
     {
         $routes = app('menus')->getRouteNames();
 
         return view('liro-users::backend/roles/edit', [
-            'role' => $role->findOrFail($id),
-            'routes' => app('menus')->getRouteNames()
+            'role' => $role, 'routes' => app('menus')->getRouteNames()
         ]);
     }
 
-    public function update(UserRole $role, RoleUpdateRequest $request, $id)
+    public function update(RoleUpdateRequest $request, UserRole $role)
     {
-        $role->findOrFail($id)->update($request->only([
+        $role->update($request->only([
             'title', 'description', 'route_names'
         ]));
 
@@ -62,7 +60,7 @@ class RoleController extends \Liro\System\Http\Controller
         ]);
     }
 
-    public function delete(UserRole $role, $id)
+    public function delete(UserRole $role)
     {
         dd('delete');
     }

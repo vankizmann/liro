@@ -30,13 +30,23 @@ mix.setResourceRoot(
  * Compile files
  */
 
-mix.copy('resources/src/jquery-nestedset.js', 'resources/dist/jquery-nestedset.js');
+mix.copy(
+    'resources/src/jquery-nestedset.js', 
+    'resources/dist/jquery-nestedset.js'
+);
 
 mix.js([
-    'resources/src/app-menu-index-list.vue',
-    'resources/src/app-menu-index-item.vue',
-    'resources/src/app-menu-index.vue'
-], 'resources/dist/app-menu-index.js');
 
-// mix.js('resources/src/app-menu-create.vue', 'resources/dist');
-// mix.js('resources/src/app-menu-edit.vue', 'resources/dist');
+    'resources/src/app-types-index.vue',
+    'resources/src/app-types-create.vue',
+    'resources/src/app-types-edit.vue'
+
+], 'resources/dist/app-types.js');
+
+mix.js([
+
+    'resources/src/app-menus-index-list.vue',
+    'resources/src/app-menus-index-item.vue',
+    'resources/src/app-menus-index.vue'
+
+], 'resources/dist/app-menus.js');

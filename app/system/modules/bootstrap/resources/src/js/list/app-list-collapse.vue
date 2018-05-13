@@ -2,8 +2,8 @@
     <div :class="{ 'app-list-collapse': true, 'uk-disabled': disabled, 'uk-active': active }">
 
         <!-- Label start -->
-        <a v-if="active" href="#" :class="['fa', open]" @click="click"></a>
-        <a v-else href="#" :class="['fa', closed]" @click="click"></a>
+        <a v-if="active" href="#" :class="['fa', open]" @click.prevent="click"></a>
+        <a v-else href="#" :class="['fa', closed]" @click.prevent="click"></a>
         <!-- Label end -->
 
     </div>
@@ -43,11 +43,6 @@
          */
         methods: {
             click(event) {
-
-                if (this.disabled) {
-                    return;
-                }
-
                 this.$emit('click', event);
             }
         }

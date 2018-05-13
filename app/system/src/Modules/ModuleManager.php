@@ -72,9 +72,13 @@ class ModuleManager implements \IteratorAggregate
      */
     public function getThemes()
     {
-        return collect(array_filter($this->modules, function($module) {
-            return $module->config('type') == 'theme';
-        }));
+        return collect(
+            array_values(
+                array_filter($this->modules, function($module) {
+                    return $module->config('type') == 'theme';
+                })
+            )
+        );
     }
 
     /**

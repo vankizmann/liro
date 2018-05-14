@@ -24,13 +24,13 @@
 
             <!-- Title start -->
             <div>
-                <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-menus.backend.roles.index') }}</h1>
+                <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-menus.backend.menus.index') }}</h1>
             </div>
             <!-- Title end -->
 
             <!-- Search start -->
             <div style="width: 300px; margin-left: auto;">
-                <app-list-search :columns="['title', 'description']" :placeholder="$t('liro-menus.form.search')"></app-list-search>
+                <app-list-search :columns="['title', 'description']" :placeholder="$t('liro-menus.defaults.search')"></app-list-search>
             </div>
             <!-- Search end -->
 
@@ -39,19 +39,19 @@
         <div class="uk-table-list">
             <div class="uk-table-list-head">
                 <div class="uk-table-list-td uk-table-list-td-xs uk-text-center">
-                    {{ $t('theme.hash') }}
+                    {{ $t('liro-menus.form.hash') }}
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-auto">
-                    {{ $t('theme.title') }}
+                    {{ $t('liro-menus.form.title') }}
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
-                    {{ $t('theme.hidden') }}
+                    {{ $t('liro-menus.form.hidden') }}
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
-                    {{ $t('theme.state') }}
+                    {{ $t('liro-menus.form.state') }}
                 </div>
                 <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
-                    {{ $t('theme.id') }}
+                    {{ $t('liro-menus.form.id') }}
                 </div>
             </div>
             <app-menu-index-list ref="sortable" v-model="value"></app-menu-index-list>

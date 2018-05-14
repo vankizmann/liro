@@ -30,7 +30,7 @@
 
             <!-- Search start -->
             <div style="width: 300px; margin-left: auto;">
-                <app-list-search :columns="['title', 'theme', 'route']" :placeholder="$t('liro-menus.form.search')"></app-list-search>
+                <app-list-search :columns="['title', 'theme', 'route']" :placeholder="$t('liro-menus.defaults.search')"></app-list-search>
             </div>
             <!-- Search end -->
 
@@ -82,7 +82,7 @@
 
             <!-- Empty start -->
             <div v-if="list.length == 0" class="uk-table-list-empty uk-padding uk-text-center">
-                <span>{{ $t('liro-menus.form.empty') }}</span>
+                <span>{{ $t('liro-menus.defaults.empty') }}</span>
             </div>
             <!-- Empty end -->
             

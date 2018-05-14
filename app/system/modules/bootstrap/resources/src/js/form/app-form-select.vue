@@ -1,25 +1,49 @@
 <template>
     <div class="uk-margin">
+
+        <!-- Label start -->
         <label v-show="label" class="uk-form-label" :for="id">
             <span v-html="label"></span>
         </label>
+        <!-- Label end -->
+
         <div :class="[ 'uk-select-group', _css(active) ]">
+
+            <!-- Button start -->
             <button :class="{ 'uk-select uk-text-left': true, 'uk-form-danger uk-animation-shake': errors.has(name) }">
-                <span>{{ active ? _label(active) : placeholder }}</span>
+
+                <!-- Selected start -->
+                <span v-if="active">{{ _label(active) }}</span>
+                <!-- Selected end -->
+
+                <!-- Default start -->
+                <span v-if="!active" class="uk-text-muted">{{ placeholder }}</span>
+                <!-- Default end -->
+
             </button>
+            <!-- Button end -->
+
+            <!-- Dropdown start -->
             <ul uk-dropdown="mode: click; pos: bottom-justify;">
                 <li v-for="(option, index) in options" :key="index" :class="_style(option)" @click.prevent="valueFix = _value(option)">
                     <span>{{ _label(option) }}</span>
                 </li>
             </ul>
+            <!-- Dropdown end -->
+
             <input type="hidden" :id="id" :name="name" v-model="valueFix" v-validate="rules" :data-vv-as="label">
         </div>
+
+        <!-- Error start -->
         <div class="uk-margin-small-top uk-text-danger" v-show="errors.has(name)">
             <small>{{ errors.first(name) | capitalize }}</small>
         </div>
+        <!-- Error end -->
+
         <slot>
             <!-- Slot -->
         </slot>
+        
     </div>
 </template>
 <script>

@@ -26,9 +26,9 @@ class TypeController extends \Liro\System\Http\Controller
 
     public function store(MenuType $type, TypeStoreRequest $request)
     {
-        $type = $type->create($request->only(
-            ['title', 'access', 'description', 'route_names']
-        ));
+        $type = $type->create($request->only([
+            'title', 'route', 'theme'
+        ]));
 
         return response()->json([
             'message' => trans('*.liro-menus.messages.types.created'),
@@ -46,7 +46,7 @@ class TypeController extends \Liro\System\Http\Controller
     public function update(TypeUpdateRequest $request, MenuType $type)
     {
         $type->update($request->only([
-            'title', 'description', 'route_names'
+            'title', 'route', 'theme'
         ]));
 
         return response()->json([

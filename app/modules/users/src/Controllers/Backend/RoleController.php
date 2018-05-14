@@ -30,9 +30,9 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function store(UserRole $role, RoleStoreRequest $request)
     {
-        $role = $role->create($request->only(
-            ['title', 'access', 'description', 'route_names']
-        ));
+        $role = $role->create($request->only([
+            'title', 'access', 'description', 'route_names'
+        ]));
 
         return response()->json([
             'message' => trans('*.liro-users.messages.roles.created'), 

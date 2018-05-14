@@ -16,7 +16,7 @@ return [
             $schema->create('menu_types', function(Blueprint $table) {
                 $table->increments('id');
                 $table->string('title');
-                $table->string('route');
+                $table->string('route')->nullable();
                 $table->string('theme');
                 $table->timestamps();
             });
@@ -51,13 +51,13 @@ return [
 
             $schema->create('menus', function(Blueprint $table) {
                 $table->increments('id');
-                $table->integer('state');
-                $table->string('lang');
+                $table->integer('state')->default(0);
+                $table->string('lang')->nullable();
                 $table->string('title');
-                $table->string('route');
+                $table->string('route')->nullable();
                 $table->string('package');
-                $table->string('query');
-                $table->string('hidden');
+                $table->string('query')->nullable();
+                $table->string('hidden')->default(0);
                 $table->integer('menu_type_id');
                 $table->timestamps();
                 NestedSet::columns($table);
@@ -184,7 +184,7 @@ return [
                 'hidden'            => 0,
                 'lang'              => '',
                 'title'             => '*.liro-menus.backend.types.index',
-                'route'             => 'menutype',
+                'route'             => 'menutypes',
                 'query'             => '',
                 'package'           => 'liro-menus.backend.types.index',
                 'menu_type_id'      => 1

@@ -3,8 +3,8 @@
 
         <!-- Toolbar start -->
         <portal to="app-toolbar-left">
-            <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="type.create" :disabled="disabled">
-                {{ $t('liro-menus.toolbar.create') }}
+            <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="type.save" :disabled="disabled">
+                {{ $t('liro-menus.toolbar.save') }}
             </app-toolbar-event>
             <app-toolbar-link class="uk-icon-danger" icon="fa fa-times" :href="indexRoute" :disabled="disabled">
                 {{ $t('liro-menus.toolbar.close') }}
@@ -128,12 +128,16 @@ module.exports = {
             this.item = this.$store.state.history.reset();
         });
 
-        this.$liro.listen('type.create', () => {
-            this.$http.post(this.item.updateRoute, this.item);
+        this.$liro.listen('type.save', () => {
+            this.$http.post(this.item.edit_route, this.item);
         });
 
         this.$liro.listen('ajax.load', () => {
             this.disabled = true;
+        });
+
+        this.$liro.listen('ajax.done', () => {
+            this.disabled = false;
         });
 
         this.$liro.listen('ajax.error', () => {

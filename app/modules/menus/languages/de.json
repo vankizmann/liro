@@ -22,14 +22,14 @@
 
         "messages": {
 
-            "roles": {
-                "created":      "Benutzergruppe wurde erfolgreich erstellt.",
-                "updated":      "Benutzergruppe wurde erfolgreich gespeichert."
+            "types": {
+                "created":      "Menügruppe wurde erfolgreich erstellt.",
+                "updated":      "Menügruppe wurde erfolgreich gespeichert."
             },
 
-            "users": {
-                "created":      "Benutzer wurde erfolgreich erstellt.",
-                "updated":      "Benutzer wurde erfolgreich gespeichert."
+            "menus": {
+                "created":      "Menü wurde erfolgreich erstellt.",
+                "updated":      "Menü wurde erfolgreich gespeichert."
             },
 
             "title": {
@@ -37,35 +37,13 @@
                 "min":          "Titel muss mindestens :min Zeichen lang sein."
             },
 
-            "name": {
-                "required":     "Name ist ein Pflichfeld.",
-                "min":          "Name muss mindestens :min Zeichen lang sein."
+            "route": {
+                "alpha_dash":   "Route darf nur alphabetische, numerische Zeichen sowie Bindestriche enthalten."
             },
 
-            "password": {
-                "required":     "Password ist ein Pflichfeld.",
-                "min":          "Password muss mindestens :min Zeichen lang sein."
-            },
-
-            "access": {
-                "required":     "Zugriff ist ein Pflichfeld.",
-                "unique":       "Eine Benutzergruppe mit dem Zugriff \":input\" existiert bereits.",
-                "alpha":        "Zugriff darf nur alphabetische Zeichen enthalten.",
-                "min":          "Zugriff muss mindestens :min Zeichen lang sein."
-            },
-
-            "email": {
-                "required":     "E-Mail ist ein Pflichfeld.",
-                "unique":       "Ein Benutzer mit der E-Mail \":input\" existiert bereits.",
-                "email":        "E-Mail muss eine gültige E-Mail-Adresse sein."
-            },
-
-            "role_ids": {
-                "array":        "Unerwarteter Fehler bitte kontaktieren Sie den Administrator."
-            },
-
-            "route_names": {
-                "array":        "Unerwarteter Fehler bitte kontaktieren Sie den Administrator."
+            "theme": {
+                "required":     "Theme ist ein Pflichfeld.",
+                "alpha_dash":   "Theme darf nur alphabetische, numerische Zeichen sowie Bindestriche enthalten."
             }
 
         },
@@ -80,24 +58,28 @@
             "help":             "Hilfe"
         },
 
-        "form": {
+        "defaults": {
             "empty":            "Kein Eintrag gefunden.",
             "enabled":          "Aktiviert",
             "disabled":         "Deaktiviert",
+            "visible":          "Sichtbar",
+            "hidden":           "Versteckt",
             "search":           "Suche",
-            "reset":            "Zurücksetzen",
-            "generate":         "Generieren",
+            "reset":            "Zurücksetzen"
+        },
+
+        "form": {
+            "hash":             "#",
             "id":               "ID",
             "state":            "Status",
-            "name":             "Name",
             "title":            "Titel",
-            "access":           "Zugriff",
-            "password":         "Password",
-            "description":      "Beschreibung",
-            "email":            "E-Mail",
-            "roles":            "Gruppen",
-            "routes":           "Routen",
-            "route_count":      "Keine Routen | {count} Route | {count} Routen"
+            "theme":            "Theme",
+            "route":            "Route",
+            "hidden":           "Versteckt"
+        },
+
+        "placeholder": {
+            "themes": "Theme auswählen"
         }
 
     }

@@ -8,7 +8,6 @@
 
 @section('content')
 <div class="liro-menus">
-    <h1 class="uk-text-lead">{{ trans('*.menus.module.menus-index') }}</h1>
     <app-menu-index
         create-route="{{ route('liro-menus.backend.menus.create') }}" 
         order-route="{{ route('liro-menus.backend.menus.order') }}" 

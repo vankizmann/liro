@@ -47,6 +47,8 @@ mix.js([
 
     'resources/src/app-menus-index-list.vue',
     'resources/src/app-menus-index-item.vue',
-    'resources/src/app-menus-index.vue'
+    'resources/src/app-menus-index.vue',
+    'resources/src/app-menus-create.vue',
+    'resources/src/app-menus-edit.vue'
 
 ], 'resources/dist/app-menus.js');

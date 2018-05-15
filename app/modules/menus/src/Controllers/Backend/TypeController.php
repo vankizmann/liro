@@ -56,7 +56,11 @@ class TypeController extends \Liro\System\Http\Controller
 
     public function delete(MenuType $type)
     {
-        dd('delete');
+        $type->delete();
+
+        return redirect()->route('liro-menus.backend.types.index')->with(
+            'success', trans('*.liro-menus.messages.types.deleted')
+        );
     }
 
 }

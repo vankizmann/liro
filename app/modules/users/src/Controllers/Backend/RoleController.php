@@ -62,7 +62,11 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function delete(UserRole $role)
     {
-        dd('delete');
+        $role->delete();
+
+        return redirect()->route('liro-users.backend.roles.index')->with(
+            'success', trans('*.liro-users.messages.roles.deleted')
+        );
     }
 
 }

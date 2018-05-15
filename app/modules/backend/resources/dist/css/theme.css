@@ -12433,6 +12433,8 @@ a, button {
   background-color: #28a5f5;
   -webkit-transition: background 300ms;
   transition: background 300ms;
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 .uk-select-group.uk-success .uk-dropdown {

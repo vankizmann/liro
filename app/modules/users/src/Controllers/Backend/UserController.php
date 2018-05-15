@@ -74,7 +74,11 @@ class UserController extends \Liro\System\Http\Controller
 
     public function delete(User $user)
     {
-        dd('delete');
+        $user->delete();
+
+        return redirect()->route('liro-users.backend.users.index')->with(
+            'success', trans('*.liro-users.messages.users.deleted')
+        );
     }
 
 }

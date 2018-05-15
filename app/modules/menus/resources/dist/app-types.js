@@ -1150,6 +1150,9 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
 
 module.exports = {
 
@@ -1331,15 +1334,8 @@ var render = function() {
                   "\n        "
               )
             ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "portal",
-        { attrs: { to: "app-toolbar-right" } },
-        [
+          ),
+          _vm._v(" "),
           _c(
             "app-toolbar-event",
             {
@@ -1354,6 +1350,28 @@ var render = function() {
               _vm._v(
                 "\n            " +
                   _vm._s(_vm.$t("liro-menus.toolbar.discard")) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "portal",
+        { attrs: { to: "app-toolbar-right" } },
+        [
+          _c(
+            "app-toolbar-link",
+            {
+              staticClass: "uk-icon-danger",
+              attrs: { icon: "fa fa-minus-circle", href: _vm.item.delete_route }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-menus.toolbar.delete")) +
                   "\n        "
               )
             ]

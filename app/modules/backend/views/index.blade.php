@@ -40,7 +40,7 @@
                             <!-- App logo start -->
                             <div class="uk-navbar-item uk-logo">
                                 <a href="/">
-                                    <img src="/app/modules/theme/resources/dist/img/liro.svg" alt="{{ env('APP_NAME') }}" width="37" height="37">
+                                    <img src="/app/modules/backend/resources/dist/img/liro.svg" alt="{{ env('APP_NAME') }}" width="37" height="37">
                                 </a>
                             </div>
                             <!-- App logo end -->
@@ -89,10 +89,13 @@
             <main id="uk-main" style="padding: 30px 0;" v-cloak>
                 <div class="uk-container uk-container-expand">
                     @if ( session()->has('error') )
-                        <div class="uk-alert uk-alert-danger">{{ session('error') }}</div>
+                        <script>UIkit.notification('{{ session('error') }}', 'error');</script>
+                    @endif
+                    @if ( session()->has('success') )
+                        <script>UIkit.notification('{{ session('success') }}', 'success');</script>
                     @endif
                     @if ( session()->has('message') )
-                        <div class="uk-alert uk-alert-primary">{{ session('message') }}</div>
+                        <script>UIkit.notification('{{ session('message') }}', 'message');</script>
                     @endif
                     @yield('content')
                 </div>

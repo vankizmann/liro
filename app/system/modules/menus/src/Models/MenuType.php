@@ -14,4 +14,9 @@ class MenuType extends Model
         return $this->hasMany(Menu::class, 'menu_type_id', 'id');
     }
 
+    public function menu_tree()
+    {
+        return $this->menus()->where('parent_id', null)->with(['children']);
+    }
+
 }

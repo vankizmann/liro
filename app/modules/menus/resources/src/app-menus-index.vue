@@ -30,7 +30,7 @@
 
             <!-- Search start -->
             <div style="width: 300px; margin-left: auto;">
-                <app-list-search :columns="['title', 'description']" :placeholder="$t('liro-menus.defaults.search')"></app-list-search>
+                <app-form-select :options="types" option-label="title" option-value="id" v-model="tab"></app-form-select>
             </div>
             <!-- Search end -->
 
@@ -54,18 +54,20 @@
                     {{ $t('liro-menus.form.id') }}
                 </div>
             </div>
-            <app-menu-index-list ref="sortable" v-model="value"></app-menu-index-list>
+            <app-menu-index-list v-if="active" ref="sortable" v-model="active.menu_tree"></app-menu-index-list>
         </div>
+
     </div>
 </template>
 <script>
     module.exports = {
-        name: 'app-menu-index',
+        name: 'app-menus-index',
+        computed: {
+            active() {
+                return _.find(this.types, { id: this.tab });
+            }
+        },
         props: {
-            baseRoute: {
-                default: '',
-                type: String
-            },
             createRoute: {
                 default: '',
                 type: String
@@ -74,19 +76,32 @@
                 default: '',
                 type: String
             },
-            value: {
-                default: [],
+            menus: {
+                default() {
+                    return [];
+                },
                 type: Array
+            },
+            types: {
+                default() {
+                    return [];
+                },
+                type: Array
+            }
+        },
+        data() {
+            return {
+                tab: 1
             }
         },
         mounted() {
 
-            $(this.$refs.sortable.$el).nestedSortable({
-                handle:             'div',
-                items:              'li',
-                toleranceElement:   '> div',
-                relocate:           this.relocate
-            });
+            // $(this.$refs.sortable.$el).nestedSortable({
+            //     handle:             'div',
+            //     items:              'li',
+            //     toleranceElement:   '> div',
+            //     relocate:           this.relocate
+            // });
 
         },
         methods: {

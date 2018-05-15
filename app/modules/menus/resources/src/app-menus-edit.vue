@@ -3,37 +3,37 @@
 
         <!-- Toolbar start -->
         <portal to="app-toolbar-left">
-            <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="user.save" :disabled="disabled">
-                {{ $t('liro-users.toolbar.save') }}
+            <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="menu.save" :disabled="disabled">
+                {{ $t('liro-menus.toolbar.save') }}
             </app-toolbar-event>
             <app-toolbar-link class="uk-icon-danger" icon="fa fa-times" :href="indexRoute" :disabled="disabled">
-                {{ $t('liro-users.toolbar.close') }}
+                {{ $t('liro-menus.toolbar.close') }}
             </app-toolbar-link>
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>
-            <app-toolbar-event icon="fa fa-undo" event="user.undo" :disabled="!canUndo">
-                {{ $t('liro-users.toolbar.undo') }}
+            <app-toolbar-event icon="fa fa-undo" event="menu.undo" :disabled="!canUndo">
+                {{ $t('liro-menus.toolbar.undo') }}
             </app-toolbar-event>
-            <app-toolbar-event icon="fa fa-redo" event="user.redo" :disabled="!canRedo">
-                {{ $t('liro-users.toolbar.redo') }}
+            <app-toolbar-event icon="fa fa-redo" event="menu.redo" :disabled="!canRedo">
+                {{ $t('liro-menus.toolbar.redo') }}
             </app-toolbar-event>
         </portal>
         <portal to="app-toolbar-right">
-            <app-toolbar-event class="uk-icon-danger" icon="fa fa-ban" event="user.reset" :disabled="!canUndo">
-                {{ $t('liro-users.toolbar.discard') }}
+            <app-toolbar-event class="uk-icon-danger" icon="fa fa-ban" event="menu.reset" :disabled="!canUndo">
+                {{ $t('liro-menus.toolbar.discard') }}
             </app-toolbar-event>
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>
             <app-toolbar-link class="uk-icon-danger" icon="fa fa-minus-circle" :href="item.delete_route">
-                {{ $t('liro-users.toolbar.delete') }}
+                {{ $t('liro-menus.toolbar.delete') }}
             </app-toolbar-link>
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>
             <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('liro-users.toolbar.help') }}
+                {{ $t('liro-menus.toolbar.help') }}
             </app-toolbar-link>
         </portal>
         <!-- Toolbar end -->
@@ -46,16 +46,16 @@
 
         <!-- Title start -->
         <div class="uk-margin-bottom">
-            <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-users.backend.users.edit') }}</h1>
+            <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-menus.backend.menus.create') }}</h1>
         </div>
         <!-- Title end -->
 
         <!-- Form start -->
         <fieldset class="uk-fieldset">
 
-            <app-form-input 
-                :label="$t('liro-users.form.name')" type="text" id="name" name="name" 
-                rules="required|min:4" v-model="item.name"
+            <app-form-input
+                :label="$t('liro-menus.form.title')" type="text" id="title" name="title" 
+                rules="required|min:4" v-model="item.title"
             ></app-form-input>
 
             <app-form-select 
@@ -63,22 +63,26 @@
                 :placeholder="$t('liro-users.placeholder.state')" v-model="item.state"
             ></app-form-select>
 
-            <app-form-select-multiple
-                :label="$t('liro-users.form.roles')" id="role_ids" name="role_ids" 
-                :options="roles" option-label="title" option-value="id"
-                :placeholder="$t('liro-users.placeholder.roles')" v-model="item.role_ids"
-            ></app-form-select-multiple>
+            <app-form-select 
+                :label="$t('liro-users.form.hidden')" id="hidden" name="hidden" :options="hiddens" 
+                :placeholder="$t('liro-users.placeholder.state')" v-model="item.hidden"
+            ></app-form-select>
 
-            <app-form-input 
-                :label="$t('liro-users.form.email')" type="email" id="email" name="email" 
-                rules="required|email" v-model="item.email"
-            ></app-form-input>
+            <app-form-select
+                :label="$t('liro-users.form.type')" id="menu_type_id" name="menu_type_id" 
+                :options="types" option-label="title" option-value="id"
+                :placeholder="$t('liro-users.placeholder.state')" v-model="item.menu_type_id"
+            ></app-form-select>
             
-            <app-form-password 
-                :label="$t('liro-users.form.password')" id="password" name="password" 
-                rules="min:6" :generate="$t('liro-users.form.generate')" v-model="item.password"
-            >
-            </app-form-password>
+            <app-form-input
+                :label="$t('liro-menus.form.route')" type="route" id="route" 
+                name="route" v-model="item.route"
+            ></app-form-input>
+
+            <app-form-select 
+                :label="$t('liro-users.form.package')" id="module" name="module" :options="routes" 
+                :placeholder="$t('liro-users.placeholder.module')" v-model="item.package"
+            ></app-form-select>
 
         </fieldset>
         <!-- Form end -->
@@ -88,7 +92,7 @@
 <script>
 module.exports = {
 
-    name: 'app-users-edit',
+    name: 'app-menus-edit',
 
     computed: {
         canUndo() {
@@ -104,17 +108,23 @@ module.exports = {
             default: '',
             type: String
         },
-        roles: {
+        menu: {
+            default() {
+                return {};
+            },
+            type: Object
+        },
+        types: {
             default() {
                 return [];
             },
             type: Array
         },
-        user: {
+        routes: {
             default() {
-                return {};
+                return [];
             },
-            type: Object
+            type: Array
         },
         states: {
             default() {
@@ -124,13 +134,22 @@ module.exports = {
                 ]
             },
             type: Array
+        },
+        hiddens: {
+            default() {
+                return [
+                    { value: 1, label: this.$t('liro-users.form.hidden'), css: 'uk-danger' },
+                    { value: 0, label: this.$t('liro-users.form.visible'), css: 'uk-success' }
+                ]
+            },
+            type: Array
         }
     },
 
     data() {
         return {
             disabled: false,
-            item: this.user
+            item: this.menu
         }
     },
 
@@ -138,23 +157,23 @@ module.exports = {
 
         this.$store.commit('history/init', this.item);
 
-        this.$watch('item', _.debounce(this.save, 600), {
+        this.$watch('item', _.debounce(this.create, 600), {
             deep: true
         });
 
-        this.$liro.listen('user.undo', () => {
+        this.$liro.listen('menu.undo', () => {
             this.item = this.$store.state.history.undo();
         });
 
-        this.$liro.listen('user.redo', () => {
+        this.$liro.listen('menu.redo', () => {
             this.item = this.$store.state.history.redo();
         });
 
-        this.$liro.listen('user.reset', () => {
+        this.$liro.listen('menu.reset', () => {
             this.item = this.$store.state.history.reset();
         });
 
-        this.$liro.listen('user.save', () => {
+        this.$liro.listen('menu.save', () => {
             this.$http.post(this.item.edit_route, this.item);
         });
 
@@ -173,7 +192,7 @@ module.exports = {
     },
 
     methods: {
-        save() {
+        create() {
             if ( this.$store.state.history.preventer() ) {
                 this.$store.commit('history/save', this.item);
             }
@@ -183,3 +202,4 @@ module.exports = {
 }
 liro.component(module.exports);
 </script>
+

@@ -16,6 +16,10 @@ class MenuManager implements \IteratorAggregate
      */
     protected $app;
 
+    protected $groups = [];
+
+    protected $routes = [];
+
     protected $handlers = [];
 
     protected $registerd = [];
@@ -59,21 +63,21 @@ class MenuManager implements \IteratorAggregate
 
     public function load()
     {
-        foreach ( $this->handlers as $name => $handler ) {
-            $handler(
+        foreach ( $this->routes as $name => $route ) {
+            $this->app->call($route['handler'], [
                 $this->app['router']->prefix("_{$name}")->name($name)
-            );
+            ]);
         }
 
         foreach ($this->menus as $menu) {
 
-            if ( ! isset($this->handlers[$menu->package]) ) {
+            if ( ! isset($this->routes[$menu->package]) ) {
                 continue;
             }
 
-            $this->handlers[$menu->package](
+            $this->app->call($this->routes[$menu->package]['handler'], [
                 $this->app['router']->prefix($menu->prefixRoute)->name($menu->package)
-            );
+            ]);
         }
 
         return $this;
@@ -86,9 +90,54 @@ class MenuManager implements \IteratorAggregate
         return $this;
     }
 
+    public function appendGroup($group, $options = [])
+    {
+        $this->groups[$group] = $options;
+    }
+
+    public function appendRoute($route, $options = [])
+    {
+        $this->routes[$route] = $options;
+    }
+
     public function getRouteNames()
     {
-        return collect(array_keys($this->handlers));
+        $result = array_keys($this->handlers);
+
+        return collect($result);
+    }
+
+    public function getRouteNamesAssoc()
+    {
+        $result = collect(array_keys($this->handlers))->reduce(function($base, $item) {
+            return array_merge($base, [
+                trans('*.' . $item) => $item
+            ]);
+        }, []);
+
+        return collect($result);
+    }
+
+    public function getRouteNamesList()
+    {
+        $result = collect(array_keys($this->handlers))->reduce(function($base, $item) {
+            return array_merge($base, [
+                ['label' => trans('*.' . $item), 'value' => $item]
+            ]);
+        }, []);
+
+        return collect($result);
+    }
+
+    public function getRouteGroups()
+    {
+        $result = array_reduce(array_keys($this->handlers), function($base, $item) {
+            return array_merge_recursive($base, [
+                preg_split('/\.[^\.]+$/', $item)[0] => [$item]
+            ]);
+        }, []);
+
+        return collect($result);
     }
 
     public function current() {

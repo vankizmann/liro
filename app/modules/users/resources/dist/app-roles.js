@@ -1259,6 +1259,12 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 module.exports = {
 
@@ -1463,6 +1469,23 @@ var render = function() {
               _vm._v(
                 "\n            " +
                   _vm._s(_vm.$t("liro-users.toolbar.discard")) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("app-toolbar-spacer"),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-link",
+            {
+              staticClass: "uk-icon-danger",
+              attrs: { icon: "fa fa-minus-circle", href: _vm.item.delete_route }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-users.toolbar.delete")) +
                   "\n        "
               )
             ]

@@ -26,6 +26,12 @@
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>
+            <app-toolbar-link class="uk-icon-danger" icon="fa fa-minus-circle" :href="item.delete_route">
+                {{ $t('liro-users.toolbar.delete') }}
+            </app-toolbar-link>
+            <app-toolbar-spacer>
+                <!-- Spacer -->
+            </app-toolbar-spacer>
             <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
                 {{ $t('liro-users.toolbar.help') }}
             </app-toolbar-link>

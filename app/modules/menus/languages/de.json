@@ -8,14 +8,16 @@
                 "index":        "Menüs",
                 "order":        "Menüs sortieren",
                 "create":       "Menü erstellen",
-                "edit":         "Menü bearbeiten"
+                "edit":         "Menü bearbeiten",
+                "delete":       "Menü löschen"
             },
 
             "types": {
                 "group":        "Menügruppen",
                 "index":        "Menügruppen",
                 "create":       "Menügruppe erstellen",
-                "edit":         "Menügruppe bearbeiten"
+                "edit":         "Menügruppe bearbeiten",
+                "delete":       "Menügruppe löschen"
             }
 
         },
@@ -24,12 +26,14 @@
 
             "types": {
                 "created":      "Menügruppe wurde erfolgreich erstellt.",
-                "updated":      "Menügruppe wurde erfolgreich gespeichert."
+                "updated":      "Menügruppe wurde erfolgreich gespeichert.",
+                "deleted":      "Menügruppe wurde erfolgreich gelöscht."
             },
 
             "menus": {
                 "created":      "Menü wurde erfolgreich erstellt.",
-                "updated":      "Menü wurde erfolgreich gespeichert."
+                "updated":      "Menü wurde erfolgreich gespeichert.",
+                "deleted":      "Menü wurde erfolgreich gelöscht."
             },
 
             "title": {
@@ -52,30 +56,27 @@
             "save":             "Speichern",
             "create":           "Erstellen",
             "close":            "Schliessen",
+            "delete":           "Löschen",
             "undo":             "Rückgängig",
             "redo":             "Wiederholen",
             "discard":          "Verwerfen",
             "help":             "Hilfe"
         },
 
-        "defaults": {
+        "form": {
             "empty":            "Kein Eintrag gefunden.",
             "enabled":          "Aktiviert",
             "disabled":         "Deaktiviert",
             "visible":          "Sichtbar",
             "hidden":           "Versteckt",
             "search":           "Suche",
-            "reset":            "Zurücksetzen"
-        },
-
-        "form": {
+            "reset":            "Zurücksetzen",
             "hash":             "#",
             "id":               "ID",
             "state":            "Status",
             "title":            "Titel",
             "theme":            "Theme",
-            "route":            "Route",
-            "hidden":           "Versteckt"
+            "route":            "Route"
         },
 
         "placeholder": {

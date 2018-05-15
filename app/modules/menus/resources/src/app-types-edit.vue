@@ -18,11 +18,14 @@
             <app-toolbar-event icon="fa fa-redo" event="type.redo" :disabled="!canRedo">
                 {{ $t('liro-menus.toolbar.redo') }}
             </app-toolbar-event>
-        </portal>
-        <portal to="app-toolbar-right">
             <app-toolbar-event class="uk-icon-danger" icon="fa fa-ban" event="type.reset" :disabled="!canUndo">
                 {{ $t('liro-menus.toolbar.discard') }}
             </app-toolbar-event>
+        </portal>
+        <portal to="app-toolbar-right">
+            <app-toolbar-link class="uk-icon-danger" icon="fa fa-minus-circle" :href="item.delete_route">
+                {{ $t('liro-menus.toolbar.delete') }}
+            </app-toolbar-link>
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>

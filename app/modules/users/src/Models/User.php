@@ -4,7 +4,7 @@ namespace Liro\Users\Models;
 
 class User extends \Liro\System\Users\Models\User
 {
-    protected $appends = ['edit_route', 'enable_route', 'disable_route', 'role_ids'];
+    protected $appends = ['edit_route', 'delete_route', 'enable_route', 'disable_route', 'role_ids'];
 
     protected $hidden = ['roles', 'password', 'remember_token', 'created_at', 'updated_at'];
 
@@ -13,6 +13,11 @@ class User extends \Liro\System\Users\Models\User
     public function getEditRouteAttribute()
     {
         return $this->id ? route('liro-users.backend.users.edit', $this->id) : '';
+    }
+
+    public function getDeleteRouteAttribute()
+    {
+        return $this->id ? route('liro-users.backend.users.delete', $this->id) : '';
     }
 
     public function getEnableRouteAttribute()

@@ -57,7 +57,7 @@ return [
                 $table->string('route')->nullable();
                 $table->string('package');
                 $table->string('query')->nullable();
-                $table->string('hidden')->default(0);
+                $table->integer('hidden')->default(0);
                 $table->integer('menu_type_id');
                 $table->timestamps();
                 NestedSet::columns($table);

@@ -67,7 +67,7 @@ class MenuController extends \Liro\System\Http\Controller
         ]));
 
         return response()->json([
-            'message' => trans('*.liro-menus.messages.menus.created'),
+            'message' => trans('liro-menus.messages.menus.created'),
             'redirect' => $menu->edit_route
         ]);
     }
@@ -75,7 +75,10 @@ class MenuController extends \Liro\System\Http\Controller
     public function edit(Menu $menu, MenuType $types)
     {
         return view('liro-menus::backend/menus/edit', [
-            'menu' => $menu, 'types' => $types->all(), 'routes' => app('menus')->getRouteNamesList()
+            'menu'          => $menu, 
+            'types'         => $types->all(), 
+            'routes'        => app('menus')->getRouteNamesList(false), 
+            'groups'        => app('menus')->getRouteGroups()
         ]);
     }
 
@@ -86,7 +89,7 @@ class MenuController extends \Liro\System\Http\Controller
         ]));
 
         return response()->json([
-            'message' => trans('*.liro-menus.messages.menus.updated')
+            'message' => trans('liro-menus.messages.menus.updated')
         ]);
     }
 
@@ -95,7 +98,7 @@ class MenuController extends \Liro\System\Http\Controller
         $menu->delete();
 
         return redirect()->route('liro-menus.backend.menus.index')->with(
-            'success', trans('*.liro-menus.messages.menus.deleted')
+            'success', trans('liro-menus.messages.menus.deleted')
         );
     }
 

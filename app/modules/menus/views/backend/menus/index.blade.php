@@ -9,8 +9,7 @@
 
     <!-- Component start -->
     <app-menus-index
-        create-route="{{ route('liro-menus.backend.menus.create') }}" 
-        order-route="{{ route('liro-menus.backend.menus.order') }}" 
+        create-route="{{ route('liro-menus.backend.menus.create') }}" order-route="{{ route('liro-menus.backend.menus.order') }}" 
         :menus="{{ $menus->toTree()->toJson() }}" :types="{{ $types->toJson() }}"
     ></app-menus-index>
     <!-- Compenent end -->

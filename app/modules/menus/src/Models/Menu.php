@@ -5,7 +5,7 @@ namespace Liro\Menus\Models;
 class Menu extends \Liro\System\Menus\Models\Menu
 {
     protected $fillable = [
-        'state', 'title', 'route', 'query', 'hidden', 'menu_type_id', 'parent_id', '_lft', '_rgt'
+        'state', 'title', 'route', 'package', 'query', 'hidden', 'menu_type_id', 'parent_id', '_lft', '_rgt'
     ];
 
     protected $hidden = [

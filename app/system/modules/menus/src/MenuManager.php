@@ -83,59 +83,99 @@ class MenuManager implements \IteratorAggregate
         return $this;
     }
 
-    public function append($name, $handler, $prefix = '')
-    {
-        $this->handlers[($prefix ? "{$prefix}.{$name}" : $name)] = $handler;
-
-        return $this;
-    }
-
     public function appendGroup($group, $options = [])
     {
-        $this->groups[$group] = $options;
+        $this->groups[$group] = array_merge([
+            'name' => $group
+        ], $options);
     }
 
     public function appendRoute($route, $options = [])
     {
-        $this->routes[$route] = $options;
+        $this->routes[$route] = array_merge([
+            'name'          => $route,
+            'hidden'        => false
+        ], $options);
     }
 
-    public function getRouteNames()
+    public function getRouteNames($hidden = null, $group = null)
     {
-        $result = array_keys($this->handlers);
+        $routes = collect($this->routes);
+
+        if ( isset($hidden) ) {
+            $routes = $routes->where('hidden', $hidden);
+        }
+
+        if ( isset($group) ) {
+            $routes = $routes->where('group', $group);
+        }
+
+        $result = [];
+
+        foreach ($routes as $route => $options) {
+            $result[] = $route;
+        }
 
         return collect($result);
     }
 
-    public function getRouteNamesAssoc()
+    public function getRouteNamesAssoc($hidden = null, $group = null)
     {
-        $result = collect(array_keys($this->handlers))->reduce(function($base, $item) {
-            return array_merge($base, [
-                trans('*.' . $item) => $item
-            ]);
-        }, []);
+        $routes = collect($this->routes);
+
+        if ( isset($hidden) ) {
+            $routes = $routes->where('hidden', $hidden);
+        }
+
+        if ( isset($group) ) {
+            $routes = $routes->where('group', $group);
+        }
+
+        $result = [];
+
+        foreach ($routes as $route => $options) {
+            $result[$route] = trans($options['title']);
+        }
 
         return collect($result);
     }
 
-    public function getRouteNamesList()
+    public function getRouteNamesList($hidden = null, $group = null)
     {
-        $result = collect(array_keys($this->handlers))->reduce(function($base, $item) {
-            return array_merge($base, [
-                ['label' => trans('*.' . $item), 'value' => $item]
-            ]);
-        }, []);
+        $routes = collect($this->routes);
+
+        if ( isset($hidden) ) {
+            $routes = $routes->where('hidden', $hidden);
+        }
+
+        if ( isset($group) ) {
+            $routes = $routes->where('group', $group);
+        }
+
+        $result = [];
+
+        foreach ($routes as $route => $options) {
+            $result[] = [
+                'label'         => trans($options['title']),
+                'value'         => $options['name'],
+                'group'         => $options['group'],
+                'hidden'        => $options['hidden']
+            ];
+        }
 
         return collect($result);
     }
 
-    public function getRouteGroups()
+    public function getRouteGroups($hidden = null)
     {
-        $result = array_reduce(array_keys($this->handlers), function($base, $item) {
-            return array_merge_recursive($base, [
-                preg_split('/\.[^\.]+$/', $item)[0] => [$item]
-            ]);
-        }, []);
+        $result = [];
+
+        foreach ($this->groups as $group => $options) {
+            $result[] = [
+                'label'         => $options['title'],
+                'children'      => $this->getRouteNamesList($hidden, $group)->toArray()
+            ];
+        }
 
         return collect($result);
     }

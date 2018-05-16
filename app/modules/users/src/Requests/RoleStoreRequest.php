@@ -36,13 +36,13 @@ class RoleStoreRequest extends \Illuminate\Foundation\Http\FormRequest
     public function messages()
     {
         return [
-            'title.required'        => trans('*.liro-users.messages.title.required'),
-            'title.min'             => trans('*.liro-users.messages.title.min'),
-            'access.required'       => trans('*.liro-users.messages.access.required'),
-            'access.unique'         => trans('*.liro-users.messages.access.unique'),
-            'access.alpha'          => trans('*.liro-users.messages.access.alpha'),
-            'access.min'            => trans('*.liro-users.messages.access.min'),
-            'route_names.array'     => trans('*.liro-users.messages.route_names.array')
+            'title.required'        => trans('liro-users.messages.title.required'),
+            'title.min'             => trans('liro-users.messages.title.min'),
+            'access.required'       => trans('liro-users.messages.access.required'),
+            'access.unique'         => trans('liro-users.messages.access.unique'),
+            'access.alpha'          => trans('liro-users.messages.access.alpha'),
+            'access.min'            => trans('liro-users.messages.access.min'),
+            'route_names.array'     => trans('liro-users.messages.route_names.array')
         ];
     }
 

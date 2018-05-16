@@ -38,16 +38,16 @@ class UserStoreRequest extends \Illuminate\Foundation\Http\FormRequest
     public function messages()
     {
         return [
-            'state.required'        => trans('*.liro-users.messages.state.required'),
-            'state.integer'         => trans('*.liro-users.messages.state.integer'),
-            'name.required'         => trans('*.liro-users.messages.name.required'),
-            'name.min'              => trans('*.liro-users.messages.name.min'),
-            'email.required'        => trans('*.liro-users.messages.email.required'),
-            'email.unique'          => trans('*.liro-users.messages.email.unique'),
-            'email.email'           => trans('*.liro-users.messages.email.email'),
-            'password.required'     => trans('*.liro-users.messages.password.required'),
-            'password.min'          => trans('*.liro-users.messages.password.min'),
-            'role_ids.array'        => trans('*.liro-users.messages.role_ids.array')
+            'state.required'        => trans('liro-users.messages.state.required'),
+            'state.integer'         => trans('liro-users.messages.state.integer'),
+            'name.required'         => trans('liro-users.messages.name.required'),
+            'name.min'              => trans('liro-users.messages.name.min'),
+            'email.required'        => trans('liro-users.messages.email.required'),
+            'email.unique'          => trans('liro-users.messages.email.unique'),
+            'email.email'           => trans('liro-users.messages.email.email'),
+            'password.required'     => trans('liro-users.messages.password.required'),
+            'password.min'          => trans('liro-users.messages.password.min'),
+            'role_ids.array'        => trans('liro-users.messages.role_ids.array')
         ];
     }
 

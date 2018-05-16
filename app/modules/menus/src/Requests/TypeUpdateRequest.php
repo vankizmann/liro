@@ -36,11 +36,11 @@ class TypeUpdateRequest extends \Illuminate\Foundation\Http\FormRequest
     public function messages()
     {
         return [
-            'title.required'        => trans('*.liro-menus.messages.title.required'),
-            'title.min'             => trans('*.liro-menus.messages.title.min'),
-            'route.alpha_dash'      => trans('*.liro-menus.messages.route.alpha_dash'),
-            'theme.required'        => trans('*.liro-menus.messages.theme.required'),
-            'theme.alpha'           => trans('*.liro-menus.messages.theme.alpha_dash')
+            'title.required'        => trans('liro-menus.messages.title.required'),
+            'title.min'             => trans('liro-menus.messages.title.min'),
+            'route.alpha_dash'      => trans('liro-menus.messages.route.alpha_dash'),
+            'theme.required'        => trans('liro-menus.messages.theme.required'),
+            'theme.alpha'           => trans('liro-menus.messages.theme.alpha_dash')
         ];
     }
 

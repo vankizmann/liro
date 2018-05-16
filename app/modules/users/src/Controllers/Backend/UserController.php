@@ -49,7 +49,7 @@ class UserController extends \Liro\System\Http\Controller
         ]));
 
         return response()->json([
-            'message' => trans('*.liro-users.messages.users.created'),
+            'message' => trans('liro-users.messages.users.created'),
             'redirect' => $user->edit_route
         ]);
     }
@@ -68,7 +68,7 @@ class UserController extends \Liro\System\Http\Controller
         ]));
 
         return response()->json([
-            'message' => trans('*.liro-users.messages.users.updated')
+            'message' => trans('liro-users.messages.users.updated')
         ]);
     }
 
@@ -77,7 +77,7 @@ class UserController extends \Liro\System\Http\Controller
         $user->delete();
 
         return redirect()->route('liro-users.backend.users.index')->with(
-            'success', trans('*.liro-users.messages.users.deleted')
+            'success', trans('liro-users.messages.users.deleted')
         );
     }
 

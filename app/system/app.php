@@ -15,6 +15,10 @@ $app = new Liro\System\Application(
     realpath(__DIR__.'/../../')
 );
 
+$app->extend('translator', function ($translator, $app) {
+    return new Liro\System\Services\Translator($app['translation.loader'], $app['config']['app.locale']);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces

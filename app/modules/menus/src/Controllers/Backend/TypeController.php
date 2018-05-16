@@ -31,7 +31,7 @@ class TypeController extends \Liro\System\Http\Controller
         ]));
 
         return response()->json([
-            'message' => trans('*.liro-menus.messages.types.created'),
+            'message' => trans('liro-menus.messages.types.created'),
             'redirect' => $type->edit_route
         ]);
     }
@@ -50,7 +50,7 @@ class TypeController extends \Liro\System\Http\Controller
         ]));
 
         return response()->json([
-            'message' => trans('*.liro-menus.messages.types.updated')
+            'message' => trans('liro-menus.messages.types.updated')
         ]);
     }
 
@@ -59,7 +59,7 @@ class TypeController extends \Liro\System\Http\Controller
         $type->delete();
 
         return redirect()->route('liro-menus.backend.types.index')->with(
-            'success', trans('*.liro-menus.messages.types.deleted')
+            'success', trans('liro-menus.messages.types.deleted')
         );
     }
 

@@ -18,8 +18,8 @@ class RoleRouter
 
     public function edit($router)
     {
-        $router->middleware('web', 'route')->get('{user}', 'Liro\Users\Controllers\Backend\RoleController@edit');
-        $router->middleware('web', 'route')->post('{user}', 'Liro\Users\Controllers\Backend\RoleController@update');
+        $router->middleware('web', 'route')->get('{role}', 'Liro\Users\Controllers\Backend\RoleController@edit');
+        $router->middleware('web', 'route')->post('{role}', 'Liro\Users\Controllers\Backend\RoleController@update');
     }
 
     public function delete($router)

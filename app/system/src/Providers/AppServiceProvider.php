@@ -3,7 +3,6 @@
 namespace Liro\System\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Framework\Factory\FactoryManager;
 
 class AppServiceProvider extends ServiceProvider
 {

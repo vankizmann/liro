@@ -1,0 +1,14 @@
+{
+    "liro-dashboard": {
+       
+        "backend": {
+
+            "dashboard": {
+                "group": "Dashboard",
+                "index": "Dashboard"
+            }
+
+        }
+
+    }
+}

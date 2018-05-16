@@ -35,7 +35,7 @@ class RoleController extends \Liro\System\Http\Controller
         ]));
 
         return response()->json([
-            'message' => trans('*.liro-users.messages.roles.created'), 
+            'message' => trans('liro-users.messages.roles.created'), 
             'redirect' => $role->edit_route
         ]);
     }
@@ -56,7 +56,7 @@ class RoleController extends \Liro\System\Http\Controller
         ]));
 
         return response()->json([
-            'message' => trans('*.liro-users.messages.roles.updated')
+            'message' => trans('liro-users.messages.roles.updated')
         ]);
     }
 
@@ -65,7 +65,7 @@ class RoleController extends \Liro\System\Http\Controller
         $role->delete();
 
         return redirect()->route('liro-users.backend.roles.index')->with(
-            'success', trans('*.liro-users.messages.roles.deleted')
+            'success', trans('liro-users.messages.roles.deleted')
         );
     }
 

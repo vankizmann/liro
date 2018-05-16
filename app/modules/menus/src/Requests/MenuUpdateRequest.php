@@ -22,9 +22,12 @@ class MenuUpdateRequest extends \Illuminate\Foundation\Http\FormRequest
     public function rules()
     {
         return [
-            'title'         => 'required|min:4',
+            'title'         => 'required|min:1',
+            'state'         => 'required|integer',
+            'hidden'        => 'required|integer',
             'route'         => 'nullable|alpha_dash',
-            'theme'         => 'required|alpha_dash'
+            'package'       => 'required',
+            'menu_type_id'  => 'required|integer',
         ];
     }
 
@@ -36,11 +39,8 @@ class MenuUpdateRequest extends \Illuminate\Foundation\Http\FormRequest
     public function messages()
     {
         return [
-            'title.required'        => trans('*.liro-menus.messages.title.required'),
-            'title.min'             => trans('*.liro-menus.messages.title.min'),
-            'route.alpha_dash'      => trans('*.liro-menus.messages.route.alpha_dash'),
-            'theme.required'        => trans('*.liro-menus.messages.theme.required'),
-            'theme.alpha'           => trans('*.liro-menus.messages.theme.alpha_dash')
+            'title.required'        => trans('liro-menus.messages.title.required'),
+            'title.min'             => trans('liro-menus.messages.title.min'),
         ];
     }
 

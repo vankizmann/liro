@@ -7,6 +7,6 @@
 @section('content')
     <app-menus-edit
         index-route="{{ route('liro-menus.backend.menus.index') }}"
-        :menu="{{ $menu->toJson() }}" :types="{{ $types->toJson() }}" :routes="{{ $routes->toJson() }}"
+        :menu="{{ $menu->toJson() }}" :types="{{ $types->toJson() }}" :routes="{{ $routes->toJson() }}" :groups="{{ $groups->toJson() }}"
     ></app-menus-edit>
 @endsection

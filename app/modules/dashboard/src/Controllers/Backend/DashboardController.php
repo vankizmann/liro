@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return 'dashboard';
+        return view('liro-dashboard::backend/index');
     }
 
 }

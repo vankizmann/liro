@@ -35,8 +35,8 @@ class RoleUpdateRequest extends \Illuminate\Foundation\Http\FormRequest
     public function messages()
     {
         return [
-            'title.required'    => '*.liro-users.messages.title.required',
-            'title.min'         => '*.liro-users.messages.title.min'
+            'title.required'    => 'liro-users.messages.title.required',
+            'title.min'         => 'liro-users.messages.title.min'
         ];
     }
 

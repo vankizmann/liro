@@ -126,6 +126,12 @@ module.exports = {
             },
             type: Array
         },
+        groups: {
+            default() {
+                return [];
+            },
+            type: Array
+        },
         states: {
             default() {
                 return [

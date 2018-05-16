@@ -1080,6 +1080,13 @@ module.exports = {
 
             type: Array
         },
+        groups: {
+            default: function _default() {
+                return [];
+            },
+
+            type: Array
+        },
         states: {
             default: function _default() {
                 return [{ value: 1, label: this.$t('liro-users.form.enabled'), css: 'uk-success' }, { value: 0, label: this.$t('liro-users.form.disabled'), css: 'uk-danger' }];

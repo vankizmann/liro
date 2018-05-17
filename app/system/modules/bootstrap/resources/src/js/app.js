@@ -58,6 +58,9 @@ require('./form/app-form-select-multiple.vue');
 
 liro.listen('document.ready', function() {
 
+    var vuedraggable = require('vuedraggable-turbo');
+    Vue.component('app-drag', vuedraggable);
+
     Vue.use(Vuex);
     Vue.use(VeeValidate);
     Vue.use(PortalVue);

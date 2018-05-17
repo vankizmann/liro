@@ -30,5 +30,9 @@
     "vue-i18n": "^7.6.0",
     "vue2-filters": "^0.3.0",
     "vuex": "^3.0.1"
+  },
+  "dependencies": {
+    "vuedraggable": "^2.16.0",
+    "vuedraggable-turbo": "^2.4.0"
   }
 }

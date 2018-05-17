@@ -54,7 +54,9 @@
                     {{ $t('liro-menus.form.id') }}
                 </div>
             </div>
-            <app-menu-index-list v-if="active" ref="sortable" v-model="active.menu_tree"></app-menu-index-list>
+            <app-drag v-if="active" v-model="active.menu_tree">
+                <app-menu-index-list v-if="active" ref="sortable" v-model="active.menu_tree"></app-menu-index-list>
+            </app-drag>
         </div>
 
     </div>

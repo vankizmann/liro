@@ -18,7 +18,7 @@
                 <span>{{ value.id }}</span>
             </div>
         </div>
-        <app-menu-index-list v-show="collapse == false" v-model="value.children"></app-menu-index-list>
+        <app-menu-index-list :collapse="collapse" v-model="value.children"></app-menu-index-list>
     </li>
 </template>
 <script>

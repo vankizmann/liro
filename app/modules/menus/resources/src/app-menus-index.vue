@@ -54,7 +54,7 @@
                     {{ $t('liro-menus.form.id') }}
                 </div>
             </div>
-            <app-menu-index-list v-if="active" v-model="active.menu_tree"></app-menu-index-list>
+            <app-menu-index-list v-if="active" v-model="active.menu_tree" @input="$liro.trigger('menus.order')"></app-menu-index-list>
         </div>
 
     </div>
@@ -79,7 +79,7 @@
                 default: '',
                 type: String
             },
-            menus: {
+            types: {
                 default() {
                     return [];
                 },
@@ -99,7 +99,7 @@
         },
         mounted() {
 
-            $('body').on('end', () => {
+            this.$liro.listen('menus.order', () => {
                 this.$http.post(this.orderRoute, { type: this.active.id, menus: this.active.menu_tree });
             });
 

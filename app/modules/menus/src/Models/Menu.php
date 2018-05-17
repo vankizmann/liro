@@ -13,7 +13,7 @@ class Menu extends \Liro\System\Menus\Models\Menu
     ];
 
     protected $appends = [
-        'edit_route', 'delete_route', 'enable_route', 'disable_route', 'visible_route', 'hidden_route', 'title_fix', 'prefix_route'
+        'children', 'edit_route', 'delete_route', 'enable_route', 'disable_route', 'visible_route', 'hidden_route', 'title_fix', 'prefix_route'
     ];
 
     public function getEditRouteAttribute()
@@ -44,6 +44,11 @@ class Menu extends \Liro\System\Menus\Models\Menu
     public function getVisibleRouteAttribute()
     {
         return $this->id ? route('liro-menus.backend.menus.visible', $this->id) : '';
+    }
+
+    public function getChildrenAttribute()
+    {
+        return $this->children()->defaultOrder()->get();
     }
 
 }

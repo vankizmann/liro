@@ -1,7 +1,6 @@
 <template>
-    <ul class="uk-list" style="position: relative; overflow:hidden;">
-        <app-drag class="app-menu-dropzone"
-        v-model="menus" :options="{ draggable: '.app-menu-item', group: 'app-menu-list', animation: 150 }">
+    <ul class="uk-list" ref="list">
+        <app-drag class="app-menu-dropzone" ref="dropzone" :list="menus" :options="{ draggable: '.app-menu-item', group: 'app-menu-list', animation: 300, delay: 10 }">
             <app-menu-index-item class="app-menu-item" v-for="(menu, index) in menus" :key="menu.id" v-model="menus[index]"></app-menu-index-item>
         </app-drag>
     </ul>
@@ -19,6 +18,7 @@
         },
         data() {
             return {
+                drag: false,
                 menus: this.value
             }
         },
@@ -29,21 +29,23 @@
             });
 
             this.$watch('value', (value) => {
-                this.list = value
+                this.menus = value;
+            });
+
+            $('body').on('start', (event) => {
+                if ( this.$refs.dropzone ) {
+                    $(this.$refs.dropzone.$el).addClass('sortable-drag');
+                }
+            });
+
+            $('body').on('end', (event) => {
+                if ( this.$refs.dropzone ) {
+                    $(this.$refs.dropzone.$el).removeClass('sortable-drag');
+                }
             });
 
         }
     }
     liro.component(module.exports);
 </script>
-<style>
-.app-menu-dropzone {
-    min-height: 0;
-    transition: min-height 300ms;
-}
-.app-menu-dropzone:hover li:not([draggable="true"]) > ul > .app-menu-dropzone {
-    min-height: 100px;
-    background-color: rgba(0, 0, 255, 0.1);
-}
-</style>
 

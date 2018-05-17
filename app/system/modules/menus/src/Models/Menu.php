@@ -74,7 +74,7 @@ class Menu extends Model
             return $next(array_merge($result, [$menu->route]));
         });
 
-        return implode('/', array_filter(array_merge([$this->lang_fix, $this->type->route], $routes, [$this->route])));
+        return implode('/', array_filter(array_merge([$this->lang_fix, $this->type->route], array_reverse($routes), [$this->route])));
     }
 
 }

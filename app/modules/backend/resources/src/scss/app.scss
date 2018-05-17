@@ -76,3 +76,30 @@
 .app-list-hidden.uk-active span {
     color: $color-gray-80;
 }
+
+/**
+ * App menu dropzone
+ */
+
+.app-menu-dropzone:empty {
+    margin-top: 1px;
+    height: 20px;
+    max-height: 0;
+    transition: max-height 300ms;
+}
+
+.sortable-chosen .app-menu-dropzone:empty {
+    max-height: 0 !important;
+    border: 0 !important;
+}
+
+.sortable-drag .app-menu-dropzone:empty {
+    max-height: 20px;
+    background-color: rgba($color-primary, 0.1);
+    border: 1px dashed rgba($color-primary, 0.5);
+    border-radius: 3px;
+}
+
+.app-menu-dropzone ul {
+    padding-left: 75px;
+}

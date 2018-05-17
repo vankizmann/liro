@@ -10,6 +10,11 @@ class MenuRouter
         $router->middleware('web', 'route')->get('/', 'Liro\Menus\Controllers\Backend\MenuController@index');
     }
 
+    public function order($router)
+    {
+        $router->middleware('web', 'route')->post('/', 'Liro\Menus\Controllers\Backend\MenuController@order');
+    }
+
     public function create($router)
     {
         $router->middleware('web', 'route')->get('/', 'Liro\Menus\Controllers\Backend\MenuController@create');

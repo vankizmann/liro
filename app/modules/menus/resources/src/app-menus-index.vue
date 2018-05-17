@@ -54,9 +54,7 @@
                     {{ $t('liro-menus.form.id') }}
                 </div>
             </div>
-            <app-drag v-if="active" v-model="active.menu_tree">
-                <app-menu-index-list v-if="active" ref="sortable" v-model="active.menu_tree"></app-menu-index-list>
-            </app-drag>
+            <app-menu-index-list v-if="active" v-model="active.menu_tree"></app-menu-index-list>
         </div>
 
     </div>
@@ -67,6 +65,9 @@
         computed: {
             active() {
                 return _.find(this.types, { id: this.tab });
+            },
+            activeIndex() {
+                return _.findIndex(this.types, { id: this.tab });
             }
         },
         props: {
@@ -98,18 +99,10 @@
         },
         mounted() {
 
-            // $(this.$refs.sortable.$el).nestedSortable({
-            //     handle:             'div',
-            //     items:              'li',
-            //     toleranceElement:   '> div',
-            //     relocate:           this.relocate
-            // });
+            $('body').on('end', () => {
+                this.$http.post(this.orderRoute, { type: this.active.id, menus: this.active.menu_tree });
+            });
 
-        },
-        methods: {
-            relocate() {
-                this.$http.post(this.orderRoute, { order: $(this.$refs.sortable.$el).nestedSortable('toArray') });
-            }
         }
     }
     liro.component(module.exports);

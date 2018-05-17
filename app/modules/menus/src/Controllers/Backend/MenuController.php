@@ -2,7 +2,7 @@
 
 namespace Liro\Menus\Controllers\Backend;
 
-use Illuminate\Support\Facades\App;
+use Illuminate\Http\Request;
 use Liro\Menus\Models\Menu;
 use Liro\Menus\Models\MenuType;
 use Liro\Menus\Requests\MenuStoreRequest;
@@ -14,6 +14,15 @@ class MenuController extends \Liro\System\Http\Controller
     {
         return view('liro-menus::backend/menus/index', [
             'menus' => $menus->all(), 'types' => $types->with(['menu_tree'])->get()
+        ]);
+    }
+
+    public function order(Request $request, Menu $menu)
+    {
+        $menu->scoped(['menu_type_id' => $request->get('type', null)])->rebuildTree($request->get('menus', []));
+
+        return response()->json([
+            'message' => trans('liro-menus.messages.menus.ordered')
         ]);
     }
 
@@ -35,7 +44,7 @@ class MenuController extends \Liro\System\Http\Controller
         return redirect()->route('liro-menus.backend.menus.index');
     }
 
-    public function hide(Menu $menu)
+    public function hidden(Menu $menu)
     {
         $menu->update([
             'hidden' => 1
@@ -44,7 +53,7 @@ class MenuController extends \Liro\System\Http\Controller
         return redirect()->route('liro-menus.backend.menus.index');
     }
 
-    public function show(Menu $menu)
+    public function visible(Menu $menu)
     {
         $menu->update([
             'hidden' => 0

@@ -26,7 +26,7 @@ return [
             'hidden'        => true,
             'group'         => 'liro-menus.backend.menus',
             'title'         => 'liro-menus.backend.menus.order',
-            'handler'       => 'Liro\Menus\Routers\MenuRouter@index'
+            'handler'       => 'Liro\Menus\Routers\MenuRouter@order'
         ],
 
         'liro-menus.backend.menus.create' => [

@@ -16,7 +16,7 @@ class MenuType extends Model
 
     public function menu_tree()
     {
-        return $this->menus()->where('parent_id', null)->with(['children']);
+        return $this->menus()->where('parent_id', null)->defaultOrder();
     }
 
 }

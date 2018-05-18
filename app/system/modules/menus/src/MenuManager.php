@@ -43,16 +43,6 @@ class MenuManager implements \IteratorAggregate
         return new \ArrayIterator($this->menus);
     }
 
-    public function type($id)
-    {
-        return Menu::getType($id)->get();
-    }
-
-    public function all()
-    {
-        return $this->menus;
-    }
-
     public function register()
     {
         $this->menus = Menu::getEnabled()->get();
@@ -180,7 +170,21 @@ class MenuManager implements \IteratorAggregate
         return collect($result);
     }
 
+    public function all()
+    {
+        return $this->menus;
+    }
+
+    public function type($id)
+    {
+        return Menu::getType($id)->get();
+    }
+
     public function current() {
         return $this->menus->where('package', $this->app['router']->currentRouteName())->first();
+    }
+
+    public function currentRoot() {
+        return $this->menus->where('active', true)->where('parent_id', null)->first();
     }
 }

@@ -49,12 +49,12 @@ class Menu extends Model
 
     public function getTitleFixAttribute()
     {
-        return trans($this->attributes['title']);
+        return $this->title ? trans($this->title) : '';
     }
 
     public function getLangFixAttribute()
     {
-        return $this->attributes['lang'] ?: app()->getLocale();
+        return $this->lang ?: app()->getLocale();
     }
 
     public function getActiveAttribute()
@@ -74,7 +74,7 @@ class Menu extends Model
             return $next(array_merge($result, [$menu->route]));
         });
 
-        return implode('/', array_filter(array_merge([$this->lang_fix, $this->type->route], array_reverse($routes), [$this->route])));
+        return implode('/', array_filter(array_merge([$this->lang_fix, @$this->type->route ?: 'undefined'], array_reverse($routes), [$this->route])));
     }
 
 }

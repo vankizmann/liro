@@ -1,18 +1,16 @@
 <template>
     <div class="uk-form uk-form-stacked">
-        
-        <!-- Toolbar start -->
-        <portal to="app-toolbar-left">
+
+        <!-- Infobar start -->
+        <portal to="app-navbar-actions">
             <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" :href="createRoute">
                 {{ $t('liro-menus.toolbar.create') }}
             </app-toolbar-link>
-        </portal>
-        <portal to="app-toolbar-right">
-            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
+            <app-toolbar-link class="uk-icon-default" icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
                 {{ $t('liro-menus.toolbar.help') }}
             </app-toolbar-link>
         </portal>
-        <!-- Toolbar end -->
+        <!-- Infobar end -->
 
         <!-- Help start -->
         <portal to="app-module-help">

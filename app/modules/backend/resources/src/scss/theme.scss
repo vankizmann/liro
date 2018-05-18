@@ -38,117 +38,207 @@ a, button {
 
 #uk-header {
 
-    .uk-navigation .uk-navbar-container {
-        padding: 0 20px;
+    .uk-navbar-container {
+        padding: 15px 20px 0;
         background-color: $color-black;
     }
 
-    .uk-navigation .uk-logo {
+    .uk-sticky .uk-navbar-container {
+        padding: 0 20px;
+    }
+
+    .uk-logo {
+        @extend .uk-flex, .uk-flex-middle, .uk-flex-center ;
         display: none;
-        width: 70px;
-        margin-right: 20px;
+        width: 125px;
         background-color: $color-primary;
     }
 
-    .uk-navigation .uk-navbar-item,
-    .uk-navigation .uk-navbar-nav > li > a {
-        height: 70px;
+    .uk-navbar-container .uk-navbar-item,
+    .uk-navbar-container .uk-navbar-nav > li > a {
+        height: 40px;
     }
 
-    .uk-navigation .uk-navbar-nav > li > a {
+    .uk-navbar-container .uk-navbar-nav > li > a {
         text-transform: none;
         color: $global-muted-color;
-        font-size: 1rem;
+        font-size: 0.875rem;
         font-weight: 500;
         transition: background 300ms ease;
     }
 
-    .uk-navigation .uk-navbar-nav > li > a.uk-open,
-    .uk-navigation .uk-navbar-nav > li > a:hover {
+    .uk-navbar-container .uk-navbar-nav > li > a.uk-open,
+    .uk-navbar-container .uk-navbar-nav > li > a:hover {
         color: $color-gray-20;
     }
 
-    .uk-navigation .uk-navbar-nav > li.uk-active > a {
-        color: $color-primary;
+    .uk-navbar-container .uk-navbar-nav > li.uk-active > a {
+        color: $color-white;
+        background-color: mix($color-white, $color-black, 12.5%);
     }
 
-    .uk-navigation .uk-navbar-dropdown {
+    .uk-navbar-dropdown {
         margin-top: 0;
     }
 
-    .uk-toolbar .uk-navbar-container {
+    .uk-infobar-container {
+        padding: 0 20px;
+        background-color: mix($color-white, $color-black, 12.5%);
+    }
+
+    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li {
+        @extend .uk-flex-inline, .uk-flex-middle ;
+    }
+
+    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li:nth-child(1n+2):before {
+        content: '/';
+        display: block;
+        font-weight: 300;
+        font-size: 1.500rem;
+    }
+
+    .uk-infobar-container .uk-navbar-item,
+    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li > a {
+        height: 70px;
+    }
+
+    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li > a {
+        text-transform: none;
+        color: $global-muted-color;
+        font-size: 1.000rem;
+        font-weight: 500;
+        transition: background 300ms ease;
+    }
+
+    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li > a.uk-open,
+    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li > a:hover {
+        color: $color-gray-40;
+    }
+
+    .uk-infobar-container  .uk-navbar-left .uk-navbar-nav > li.uk-active > a {
+        color: $color-white;
+    }
+
+    .uk-infobar-container .uk-navbar-right {
+        @extend .uk-flex-middle ;
+    }
+
+    .uk-infobar-container .uk-navbar-right .uk-toolbar-item a {
+        height: 40px;
+        text-transform: none;
+    }
+
+    .uk-infobar-container .uk-toolbar-item {
+        font-size: 0.875rem;
+        margin: 10px 5px;
+    }
+
+    .uk-infobar-container .uk-toolbar-item:not(.uk-disabled) a, 
+    .uk-infobar-container .uk-toolbar-item:not(.uk-disabled) button {
+        color: $color-gray-40;
+    }
+
+    .uk-infobar-container .uk-toolbar-item:not(.uk-disabled) a:hover,
+    .uk-infobar-container .uk-toolbar-item:not(.uk-disabled) button:hover {
+        background-color: mix($color-white, $color-black, 20%);
+    }
+
+    .uk-infobar-container .uk-toolbar-spacer {
+        @extend .uk-flex, .uk-flex-middle ;
+    }
+
+    .uk-infobar-container .uk-toolbar-spacer div {
+        width: $global-border-width;
+        background-color: mix($color-white, $color-black, 20%);
+        height: 30px;
+    }
+
+    .uk-infobar-container .uk-toolbar-item .fa {
+        color: $color-gray-80;
+    }
+
+
+
+
+
+
+
+
+
+
+    .uk-toolbar .uk-toolbar-container {
         padding: 0 20px;
         background-color: $color-gray-20;
         transition: box-shadow 600ms ease;
     }
 
-    .uk-toolbar.uk-sticky-below .uk-navbar-container {
+    .uk-toolbar.uk-sticky-below .uk-toolbar-container {
         box-shadow: 0 2px 10px rgba($color-black, 0.2); 
     }
 
-    .uk-toolbar .uk-toolbar-item {
+    .uk-toolbar-container .uk-toolbar-item {
         @extend .uk-navbar-item, .uk-flex, .uk-flex-stretch ;
         padding: 0;
         height: 60px;
     }
 
-    .uk-toolbar .uk-toolbar-item a {
+    .uk-toolbar-container .uk-toolbar-item a {
         height: 60px;
         text-transform: none;
     }
 
-    .uk-toolbar .uk-toolbar-item button {
+    .uk-toolbar-container .uk-toolbar-item button {
         padding: 0 15px;
         height: 60px;
         text-transform: none;
     }
 
-    .uk-toolbar .uk-toolbar-item:not(.uk-disabled) a, 
-    .uk-toolbar .uk-toolbar-item:not(.uk-disabled) button {
+    .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) a, 
+    .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) button {
         color: $color-black;
     }
 
-    .uk-toolbar .uk-toolbar-item:not(.uk-disabled) a:hover,
-    .uk-toolbar .uk-toolbar-item:not(.uk-disabled) button:hover {
+    .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) a:hover,
+    .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) button:hover {
         background-color: darken($color-gray-20, 5%);
     }
 
-    .uk-toolbar .uk-toolbar-spacer {
+    .uk-toolbar-container .uk-toolbar-spacer {
         @extend .uk-navbar-item, .uk-flex, .uk-flex-middle ;
         height: 60px;
     }
 
-    .uk-toolbar .uk-toolbar-spacer div {
+    .uk-toolbar-container .uk-toolbar-spacer div {
         width: $global-border-width;
         background-color: darken($color-gray-20, 5%);
         height: 35px;
     }
 
-    .uk-toolbar .uk-toolbar-item .fa {
+    .uk-toolbar-container .uk-toolbar-item .fa {
         color: $color-gray-40;
     }
 
-    .uk-toolbar .uk-toolbar-item:not(.uk-disabled) .fa {
+    .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) .fa {
         color: $color-gray-60;
     }
 
-    .uk-toolbar .uk-toolbar-item.uk-icon-primary:not(.uk-disabled) .fa {
+    .uk-toolbar-item.uk-icon-primary:not(.uk-disabled) .fa {
         color: $color-primary;
     }
 
-    .uk-toolbar .uk-toolbar-item.uk-icon-success:not(.uk-disabled) .fa {
+    .uk-toolbar-item.uk-icon-success:not(.uk-disabled) .fa {
         color: $color-green;
     }
 
-    .uk-toolbar .uk-toolbar-item.uk-icon-warning:not(.uk-disabled) .fa {
+    .uk-toolbar-item.uk-icon-warning:not(.uk-disabled) .fa {
         color: $color-orange;
     }
 
-    .uk-toolbar .uk-toolbar-item.uk-icon-danger:not(.uk-disabled) .fa {
+    .uk-toolbar-item.uk-icon-danger:not(.uk-disabled) .fa {
         color: $color-red;
     }
 
-    .uk-toolbar .uk-toolbar-item.uk-icon-info:not(.uk-disabled) .fa {
+    .uk-toolbar-item.uk-icon-info:not(.uk-disabled) .fa {
         color: $color-blue;
     }
 

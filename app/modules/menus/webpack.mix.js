@@ -30,11 +30,6 @@ mix.setResourceRoot(
  * Compile files
  */
 
-mix.copy(
-    'resources/src/jquery-nestedset.js', 
-    'resources/dist/jquery-nestedset.js'
-);
-
 mix.js([
 
     'resources/src/app-types-index.vue',

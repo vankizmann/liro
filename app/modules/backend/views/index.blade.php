@@ -33,45 +33,67 @@
             <header id="uk-header">
 
                 <!-- Navigation start -->
-                <div class="uk-navigation uk-gradient">
-                    <nav class="uk-navbar-container uk-container uk-container-expand" uk-navbar>
-                        <div class="uk-navbar-left">
+                <div class="uk-navigation">
+                    <div class="uk-flex">
 
-                            <!-- App logo start -->
-                            <div class="uk-navbar-item uk-logo">
-                                <a href="/">
-                                    <img src="/app/modules/backend/resources/dist/img/liro.svg" alt="{{ env('APP_NAME') }}" width="37" height="37">
-                                </a>
-                            </div>
-                            <!-- App logo end -->
-
-                            <!-- Main menu start -->
-                            <ul class="uk-navbar-nav">
-                                @foreach( app('menus')->type(1)->toTree() as $menu )
-                                    @include('liro-backend::partials.menu', $menu)
-                                @endforeach
-                            </ul>
-                            <!-- Main menu end -->
-
+                        <!-- App logo start -->
+                        <div class="uk-logo">
+                            <a href="/">
+                                <img src="/app/modules/backend/resources/dist/img/liro.svg" alt="{{ env('APP_NAME') }}" width="37" height="37">
+                            </a>
                         </div>
-                        <div class="uk-navbar-right">
+                        <!-- App logo end -->
 
-                            <!-- User menu start -->
-                            <ul class="uk-navbar-nav">
-                                @foreach( app('menus')->type(2)->toTree() as $menu )
-                                    @include('liro-backend::partials.menu', $menu)
-                                @endforeach
-                            </ul>
-                            <!-- User menu end -->
-                            
+                        <div class="uk-flex-auto">
+
+                            <nav class="uk-navbar-container uk-container uk-container-expand" uk-navbar>
+                                <div class="uk-navbar-left">
+
+                                    <!-- Main menu start -->
+                                    <ul class="uk-navbar-nav">
+                                        @foreach( app('menus')->type(1)->toTree() as $menu )
+                                            @include('liro-backend::partials/menu-item', $menu)
+                                        @endforeach
+                                    </ul>
+                                    <!-- Main menu end -->
+
+                                </div>
+                                <div class="uk-navbar-right">
+
+                                    <!-- User menu start -->
+                                    <ul class="uk-navbar-nav">
+                                        @foreach( app('menus')->type(2)->toTree() as $menu )
+                                            @include('liro-backend::partials/menu-item', $menu)
+                                        @endforeach
+                                    </ul>
+                                    <!-- User menu end -->
+                                    
+                                </div>
+                            </nav>
+                            <nav class="uk-infobar-container uk-container uk-container-expand" uk-navbar>
+                                <div class="uk-navbar-left">
+
+                                    <!-- Main menu subitems start -->
+                                    <ul class="uk-navbar-nav">
+                                        @foreach( app('menus')->currentRoot()->children()->getEnabled()->get() as $menu )
+                                            @include('liro-backend::partials/menu-item', $menu)
+                                        @endforeach
+                                    </ul>
+                                    <!-- Main menu subitems end -->
+
+                                </div>
+                                <div class="uk-navbar-right">
+                                    <portal-target class="uk-navbar-nav" name="app-navbar-actions" multiple></portal-target>
+                                </div>
+                            </nav>
                         </div>
-                    </nav>
+                    </div>
                 </div>
                 <!-- Navigation end -->
 
                 <!-- Toolbar start -->
                 <div class="uk-toolbar" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'" v-cloak>
-                    <div class="uk-navbar-container uk-container uk-container-expand" uk-navbar>
+                    <div class="uk-toolbar-container uk-container uk-container-expand" uk-navbar>
                         <div class="uk-navbar-left">
                             <portal-target class="uk-navbar-nav" name="app-toolbar-left" multiple></portal-target>
                         </div>

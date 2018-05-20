@@ -2,7 +2,7 @@
     <div class="uk-form uk-form-stacked">
 
        <!-- Infobar start -->
-        <portal to="app-navbar-actions">
+        <portal to="app-infobar-action">
             <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" :href="createRoute">
                 {{ $t('liro-menus.toolbar.create') }}
             </app-toolbar-link>
@@ -97,9 +97,9 @@
         },
         mounted() {
 
-            this.$watch('active', () => {
+            $('body').on('end', () => {
                 this.$http.post(this.orderRoute, { type: this.active.id, menus: this.active.menu_tree });
-            }, { deep: true });
+            });
 
         }
     }

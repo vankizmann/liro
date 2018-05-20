@@ -2,7 +2,7 @@
     <div :class="{ 'app-list-hidden': true, 'uk-active': active, 'uk-disabled': href == '' }">
 
         <!-- Label start -->
-        <a :href="href" :class="['fa', icon]"></a>
+        <a :href="href" :class="['fa', icon]" @click="click"></a>
         <!-- Label end -->
 
     </div>
@@ -30,6 +30,12 @@
             active: {
                 default: false,
                 type: Boolean
+            }
+        },
+
+        methods: {
+            click(event) {
+                this.$emit('click', event);
             }
         }
 

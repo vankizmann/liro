@@ -47,6 +47,16 @@ class Menu extends Model
         return ['menu_type_id'];
     }
 
+    public function setQueryAttribute($value)
+    {
+        return @json_encode($value) ?: $value;
+    }
+
+    public function getQueryAttribute()
+    {
+        return @json_decode($this->attributes['query'], true) ?: [];
+    }
+
     public function getTitleFixAttribute()
     {
         return $this->title ? trans($this->title) : '';
@@ -70,11 +80,17 @@ class Menu extends Model
 
     public function getPrefixRouteAttribute()
     {
-        $routes = (new Walker)->single($this, 'parent', function($result, $menu, $next) {
+        $segments = (new Walker)->single($this, 'parent', function($result, $menu, $next) {
             return $next(array_merge($result, [$menu->route]));
         });
 
-        return implode('/', array_filter(array_merge([$this->lang_fix, @$this->type->route ?: 'undefined'], array_reverse($routes), [$this->route])));
+        $segments = array_filter(
+            array_merge(
+                [$this->lang_fix, @$this->type->route ?: ''], array_reverse($segments), [$this->route]
+            )
+        );
+
+        return implode('/', $segments);
     }
 
 }

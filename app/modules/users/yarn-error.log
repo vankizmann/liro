@@ -2,7 +2,7 @@ Arguments:
   C:\Program Files\nodejs\node.exe C:\Users\vlicicz\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run watch
 
 PATH: 
-  C:\Program Files\Docker\Docker\Resources\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\vlicicz\Documents\php-7.2;C:\ProgramData\ComposerSetup\bin;C:\Program Files\nodejs\;C:\Users\vlicicz\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\vlicicz\AppData\Roaming\Composer\vendor\bin;C:\Users\vlicicz\AppData\Roaming\npm;C:\Users\vlicicz\AppData\Local\GitHubDesktop\bin
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\vlicicz\Documents\php-7.2;C:\ProgramData\ComposerSetup\bin;C:\Program Files\nodejs\;C:\Users\vlicicz\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\vlicicz\AppData\Roaming\Composer\vendor\bin;C:\Users\vlicicz\AppData\Roaming\npm;C:\Users\vlicicz\AppData\Local\GitHubDesktop\bin
 
 Yarn version: 
   1.5.1
@@ -8189,7 +8189,7 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 3221225786
+  Exit code: 1
   Command: C:\Windows\system32\cmd.exe
   Arguments: /d /s /c cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js
   Directory: C:\Users\vlicicz\Documents\GitHub\liro\app\modules\users

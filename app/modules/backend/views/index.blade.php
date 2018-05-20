@@ -21,6 +21,10 @@
     </head>
     <body>
 
+        <div class="uk-ajax-load">
+            <div class="uk-spinner" uk-spinner="ratio: 3;"></div>
+        </div>
+
         <div id="app" class="uk-offcanvas-content">
 
             <div id="app-module-help" uk-offcanvas="overlay: true; mode: push;">
@@ -35,14 +39,6 @@
                 <!-- Navigation start -->
                 <div class="uk-navigation">
                     <div class="uk-flex">
-
-                        <!-- App logo start -->
-                        <div class="uk-logo">
-                            <a href="/">
-                                <img src="/app/modules/backend/resources/dist/img/liro.svg" alt="{{ env('APP_NAME') }}" width="37" height="37">
-                            </a>
-                        </div>
-                        <!-- App logo end -->
 
                         <div class="uk-flex-auto">
 
@@ -83,7 +79,7 @@
 
                                 </div>
                                 <div class="uk-navbar-right">
-                                    <portal-target class="uk-navbar-nav" name="app-navbar-actions" multiple></portal-target>
+                                    <portal-target class="uk-navbar-nav" name="app-infobar-action" multiple></portal-target>
                                 </div>
                             </nav>
                         </div>

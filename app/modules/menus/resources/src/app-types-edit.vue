@@ -1,6 +1,14 @@
 <template>
     <div class="uk-form uk-form-stacked">
 
+        <!-- Infobar start -->
+        <portal to="app-infobar-action">
+            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
+                {{ $t('liro-menus.toolbar.help') }}
+            </app-toolbar-link>
+        </portal>
+        <!-- Infobar end -->
+
         <!-- Toolbar start -->
         <portal to="app-toolbar-left">
             <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="type.save" :disabled="disabled">
@@ -18,19 +26,16 @@
             <app-toolbar-event icon="fa fa-redo" event="type.redo" :disabled="!canRedo">
                 {{ $t('liro-menus.toolbar.redo') }}
             </app-toolbar-event>
+        </portal>
+        <portal to="app-toolbar-right">
             <app-toolbar-event class="uk-icon-danger" icon="fa fa-ban" event="type.reset" :disabled="!canUndo">
                 {{ $t('liro-menus.toolbar.discard') }}
             </app-toolbar-event>
-        </portal>
-        <portal to="app-toolbar-right">
-            <app-toolbar-link class="uk-icon-danger" icon="fa fa-minus-circle" :href="item.delete_route">
-                {{ $t('liro-menus.toolbar.delete') }}
-            </app-toolbar-link>
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>
-            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('liro-menus.toolbar.help') }}
+            <app-toolbar-link class="uk-icon-danger" icon="fa fa-minus-circle" :href="item.delete_route">
+                {{ $t('liro-menus.toolbar.delete') }}
             </app-toolbar-link>
         </portal>
         <!-- Toolbar end -->
@@ -115,7 +120,7 @@ module.exports = {
 
         this.$store.commit('history/init', this.item);
 
-        this.$watch('item', _.debounce(this.create, 600), {
+        this.$watch('item', _.debounce(this.save, 600), {
             deep: true
         });
 
@@ -150,7 +155,7 @@ module.exports = {
     },
 
     methods: {
-        create() {
+        save() {
             if ( this.$store.state.history.preventer() ) {
                 this.$store.commit('history/save', this.item);
             }

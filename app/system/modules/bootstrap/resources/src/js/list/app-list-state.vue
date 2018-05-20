@@ -2,7 +2,7 @@
     <div :class="{ 'app-list-state': true, 'uk-active': active, 'uk-disabled': href == '' }">
 
         <!-- Marker start -->
-        <a :href="href"></a>
+        <a :href="href" @click="click"></a>
         <!-- Marker end -->
 
     </div>
@@ -26,6 +26,12 @@
             active: {
                 default: false,
                 type: Boolean
+            }
+        },
+
+        methods: {
+            click(event) {
+                this.$emit('click', event);
             }
         }
 

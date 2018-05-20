@@ -1,6 +1,14 @@
 <template>
     <div class="uk-form uk-form-stacked">
 
+        <!-- Infobar start -->
+        <portal to="app-infobar-action">
+            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
+                {{ $t('liro-menus.toolbar.help') }}
+            </app-toolbar-link>
+        </portal>
+        <!-- Infobar end -->
+
         <!-- Toolbar start -->
         <portal to="app-toolbar-left">
             <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="menu.save" :disabled="disabled">
@@ -28,12 +36,6 @@
             </app-toolbar-spacer>
             <app-toolbar-link class="uk-icon-danger" icon="fa fa-minus-circle" :href="item.delete_route">
                 {{ $t('liro-menus.toolbar.delete') }}
-            </app-toolbar-link>
-            <app-toolbar-spacer>
-                <!-- Spacer -->
-            </app-toolbar-spacer>
-            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('liro-menus.toolbar.help') }}
             </app-toolbar-link>
         </portal>
         <!-- Toolbar end -->
@@ -83,6 +85,11 @@
                 :label="$t('liro-users.form.package')" id="module" name="module" :options="routes" 
                 :placeholder="$t('liro-users.placeholder.module')" v-model="item.package"
             ></app-form-select>
+
+            <app-form-input
+                :label="$t('liro-menus.form.query')" type="query" id="query" 
+                name="query" v-model="item.query"
+            ></app-form-input>
 
         </fieldset>
         <!-- Form end -->
@@ -163,7 +170,7 @@ module.exports = {
 
         this.$store.commit('history/init', this.item);
 
-        this.$watch('item', _.debounce(this.create, 600), {
+        this.$watch('item', _.debounce(this.save, 600), {
             deep: true
         });
 
@@ -198,7 +205,7 @@ module.exports = {
     },
 
     methods: {
-        create() {
+        save() {
             if ( this.$store.state.history.preventer() ) {
                 this.$store.commit('history/save', this.item);
             }

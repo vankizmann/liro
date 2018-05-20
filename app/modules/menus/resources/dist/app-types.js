@@ -207,7 +207,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-types-index.vue"
+Component.options.__file = "resources\\src\\app-types-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -216,9 +216,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2b0cd2c2", Component.options)
+    hotAPI.createRecord("data-v-239b3af6", Component.options)
   } else {
-    hotAPI.reload("data-v-2b0cd2c2", Component.options)
+    hotAPI.reload("data-v-239b3af6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -378,7 +378,7 @@ var render = function() {
     [
       _c(
         "portal",
-        { attrs: { to: "app-navbar-actions" } },
+        { attrs: { to: "app-infobar-action" } },
         [
           _c(
             "app-toolbar-link",
@@ -435,7 +435,7 @@ var render = function() {
             _c("app-list-search", {
               attrs: {
                 columns: ["title", "theme", "route"],
-                placeholder: _vm.$t("liro-menus.defaults.search")
+                placeholder: _vm.$t("liro-menus.form.search")
               }
             })
           ],
@@ -445,7 +445,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "uk-table-list" },
+        { staticClass: "uk-table-list uk-table-list-highlight" },
         [
           _c("div", { staticClass: "uk-table-list-head" }, [
             _c(
@@ -555,11 +555,7 @@ var render = function() {
                 {
                   staticClass: "uk-table-list-empty uk-padding uk-text-center"
                 },
-                [
-                  _c("span", [
-                    _vm._v(_vm._s(_vm.$t("liro-menus.defaults.empty")))
-                  ])
-                ]
+                [_c("span", [_vm._v(_vm._s(_vm.$t("liro-menus.form.empty")))])]
               )
             : _vm._e()
         ],
@@ -582,7 +578,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2b0cd2c2", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-239b3af6", module.exports)
   }
 }
 
@@ -612,7 +608,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-types-create.vue"
+Component.options.__file = "resources\\src\\app-types-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -621,9 +617,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e724f002", Component.options)
+    hotAPI.createRecord("data-v-00638e4e", Component.options)
   } else {
-    hotAPI.reload("data-v-e724f002", Component.options)
+    hotAPI.reload("data-v-00638e4e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -637,6 +633,8 @@ module.exports = Component.exports
 /* 6 */
 /***/ (function(module, exports) {
 
+//
+//
 //
 //
 //
@@ -812,6 +810,31 @@ var render = function() {
     [
       _c(
         "portal",
+        { attrs: { to: "app-infobar-action" } },
+        [
+          _c(
+            "app-toolbar-link",
+            {
+              attrs: {
+                icon: "fa fa-info-circle",
+                href: "#",
+                "uk-toggle": "target: #app-module-help"
+              }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "portal",
         { attrs: { to: "app-toolbar-left" } },
         [
           _c(
@@ -914,26 +937,6 @@ var render = function() {
                   "\n        "
               )
             ]
-          ),
-          _vm._v(" "),
-          _c("app-toolbar-spacer"),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-link",
-            {
-              attrs: {
-                icon: "fa fa-info-circle",
-                href: "#",
-                "uk-toggle": "target: #app-module-help"
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
-                  "\n        "
-              )
-            ]
           )
         ],
         1
@@ -1017,7 +1020,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-e724f002", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-00638e4e", module.exports)
   }
 }
 
@@ -1047,7 +1050,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-types-edit.vue"
+Component.options.__file = "resources\\src\\app-types-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1056,9 +1059,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-15f5bccd", Component.options)
+    hotAPI.createRecord("data-v-47a0dc27", Component.options)
   } else {
-    hotAPI.reload("data-v-15f5bccd", Component.options)
+    hotAPI.reload("data-v-47a0dc27", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1072,6 +1075,11 @@ module.exports = Component.exports
 /* 9 */
 /***/ (function(module, exports) {
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1191,7 +1199,7 @@ module.exports = {
 
         this.$store.commit('history/init', this.item);
 
-        this.$watch('item', _.debounce(this.create, 600), {
+        this.$watch('item', _.debounce(this.save, 600), {
             deep: true
         });
 
@@ -1226,7 +1234,7 @@ module.exports = {
 
 
     methods: {
-        create: function create() {
+        save: function save() {
             if (this.$store.state.history.preventer()) {
                 this.$store.commit('history/save', this.item);
             }
@@ -1248,6 +1256,31 @@ var render = function() {
     "div",
     { staticClass: "uk-form uk-form-stacked" },
     [
+      _c(
+        "portal",
+        { attrs: { to: "app-infobar-action" } },
+        [
+          _c(
+            "app-toolbar-link",
+            {
+              attrs: {
+                icon: "fa fa-info-circle",
+                href: "#",
+                "uk-toggle": "target: #app-module-help"
+              }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c(
         "portal",
         { attrs: { to: "app-toolbar-left" } },
@@ -1326,8 +1359,15 @@ var render = function() {
                   "\n        "
               )
             ]
-          ),
-          _vm._v(" "),
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "portal",
+        { attrs: { to: "app-toolbar-right" } },
+        [
           _c(
             "app-toolbar-event",
             {
@@ -1345,15 +1385,10 @@ var render = function() {
                   "\n        "
               )
             ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "portal",
-        { attrs: { to: "app-toolbar-right" } },
-        [
+          ),
+          _vm._v(" "),
+          _c("app-toolbar-spacer"),
+          _vm._v(" "),
           _c(
             "app-toolbar-link",
             {
@@ -1364,26 +1399,6 @@ var render = function() {
               _vm._v(
                 "\n            " +
                   _vm._s(_vm.$t("liro-menus.toolbar.delete")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("app-toolbar-spacer"),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-link",
-            {
-              attrs: {
-                icon: "fa fa-info-circle",
-                href: "#",
-                "uk-toggle": "target: #app-module-help"
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
                   "\n        "
               )
             ]
@@ -1470,7 +1485,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-15f5bccd", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-47a0dc27", module.exports)
   }
 }
 

@@ -32,7 +32,9 @@ class MenuController extends \Liro\System\Http\Controller
             'state' => 1
         ]);
 
-        return redirect()->route('liro-menus.backend.menus.index');
+        return response()->json([
+            'message' => trans('liro-menus.messages.menus.enabled')
+        ]);
     }
 
     public function disable(Menu $menu)
@@ -41,7 +43,9 @@ class MenuController extends \Liro\System\Http\Controller
             'state' => 0
         ]);
 
-        return redirect()->route('liro-menus.backend.menus.index');
+        return response()->json([
+            'message' => trans('liro-menus.messages.menus.disabled')
+        ]);
     }
 
     public function hidden(Menu $menu)
@@ -50,7 +54,9 @@ class MenuController extends \Liro\System\Http\Controller
             'hidden' => 1
         ]);
 
-        return redirect()->route('liro-menus.backend.menus.index');
+        return response()->json([
+            'message' => trans('liro-menus.messages.menus.changed')
+        ]);
     }
 
     public function visible(Menu $menu)
@@ -59,13 +65,18 @@ class MenuController extends \Liro\System\Http\Controller
             'hidden' => 0
         ]);
 
-        return redirect()->route('liro-menus.backend.menus.index');
+        return response()->json([
+            'message' => trans('liro-menus.messages.menus.changed')
+        ]);
     }
 
     public function create(Menu $menu, MenuType $types)
     {
         return view('liro-menus::backend/menus/create', [
-            'menu' => $menu, 'types' => $types->all()
+            'menu'          => $menu, 
+            'types'         => $types->all(), 
+            'routes'        => app('menus')->getRouteNamesList(false), 
+            'groups'        => app('menus')->getRouteGroups(true)
         ]);
     }
 
@@ -87,7 +98,7 @@ class MenuController extends \Liro\System\Http\Controller
             'menu'          => $menu, 
             'types'         => $types->all(), 
             'routes'        => app('menus')->getRouteNamesList(false), 
-            'groups'        => app('menus')->getRouteGroups()
+            'groups'        => app('menus')->getRouteGroups(true)
         ]);
     }
 

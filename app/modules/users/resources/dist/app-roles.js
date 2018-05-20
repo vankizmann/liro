@@ -221,7 +221,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-roles-index.vue"
+Component.options.__file = "resources\\src\\app-roles-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -230,9 +230,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-abe6703a", Component.options)
+    hotAPI.createRecord("data-v-a474d86e", Component.options)
   } else {
-    hotAPI.reload("data-v-abe6703a", Component.options)
+    hotAPI.reload("data-v-a474d86e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -246,8 +246,6 @@ module.exports = Component.exports
 /* 17 */
 /***/ (function(module, exports) {
 
-//
-//
 //
 //
 //
@@ -398,7 +396,7 @@ var render = function() {
     [
       _c(
         "portal",
-        { attrs: { to: "app-toolbar-left" } },
+        { attrs: { to: "app-infobar-action" } },
         [
           _c(
             "app-toolbar-link",
@@ -413,15 +411,8 @@ var render = function() {
                   "\n        "
               )
             ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "portal",
-        { attrs: { to: "app-toolbar-right" } },
-        [
+          ),
+          _vm._v(" "),
           _c(
             "app-toolbar-link",
             {
@@ -434,7 +425,7 @@ var render = function() {
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("liro-users.toolbar.help")) +
+                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
                   "\n        "
               )
             ]
@@ -601,7 +592,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-abe6703a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-a474d86e", module.exports)
   }
 }
 
@@ -631,7 +622,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-roles-create.vue"
+Component.options.__file = "resources\\src\\app-roles-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -640,9 +631,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-817f018a", Component.options)
+    hotAPI.createRecord("data-v-32a13015", Component.options)
   } else {
-    hotAPI.reload("data-v-817f018a", Component.options)
+    hotAPI.reload("data-v-32a13015", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -656,6 +647,8 @@ module.exports = Component.exports
 /* 20 */
 /***/ (function(module, exports) {
 
+//
+//
 //
 //
 //
@@ -841,6 +834,31 @@ var render = function() {
     [
       _c(
         "portal",
+        { attrs: { to: "app-infobar-action" } },
+        [
+          _c(
+            "app-toolbar-link",
+            {
+              attrs: {
+                icon: "fa fa-info-circle",
+                href: "#",
+                "uk-toggle": "target: #app-module-help"
+              }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "portal",
         { attrs: { to: "app-toolbar-left" } },
         [
           _c(
@@ -940,26 +958,6 @@ var render = function() {
               _vm._v(
                 "\n            " +
                   _vm._s(_vm.$t("liro-users.toolbar.discard")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("app-toolbar-spacer"),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-link",
-            {
-              attrs: {
-                icon: "fa fa-info-circle",
-                href: "#",
-                "uk-toggle": "target: #app-module-help"
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-users.toolbar.help")) +
                   "\n        "
               )
             ]
@@ -1129,7 +1127,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-817f018a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-32a13015", module.exports)
   }
 }
 
@@ -1159,7 +1157,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-roles-edit.vue"
+Component.options.__file = "resources\\src\\app-roles-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1168,9 +1166,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3b5559ee", Component.options)
+    hotAPI.createRecord("data-v-14007263", Component.options)
   } else {
-    hotAPI.reload("data-v-3b5559ee", Component.options)
+    hotAPI.reload("data-v-14007263", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1184,6 +1182,8 @@ module.exports = Component.exports
 /* 23 */
 /***/ (function(module, exports) {
 
+//
+//
 //
 //
 //
@@ -1370,6 +1370,31 @@ var render = function() {
     [
       _c(
         "portal",
+        { attrs: { to: "app-infobar-action" } },
+        [
+          _c(
+            "app-toolbar-link",
+            {
+              attrs: {
+                icon: "fa fa-info-circle",
+                href: "#",
+                "uk-toggle": "target: #app-module-help"
+              }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "portal",
         { attrs: { to: "app-toolbar-left" } },
         [
           _c(
@@ -1486,26 +1511,6 @@ var render = function() {
               _vm._v(
                 "\n            " +
                   _vm._s(_vm.$t("liro-users.toolbar.delete")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("app-toolbar-spacer"),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-link",
-            {
-              attrs: {
-                icon: "fa fa-info-circle",
-                href: "#",
-                "uk-toggle": "target: #app-module-help"
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-users.toolbar.help")) +
                   "\n        "
               )
             ]
@@ -1658,7 +1663,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3b5559ee", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-14007263", module.exports)
   }
 }
 

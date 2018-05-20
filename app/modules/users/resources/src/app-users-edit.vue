@@ -1,6 +1,14 @@
 <template>
     <div class="uk-form uk-form-stacked">
 
+        <!-- Infobar start -->
+        <portal to="app-infobar-action">
+            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
+                {{ $t('liro-menus.toolbar.help') }}
+            </app-toolbar-link>
+        </portal>
+        <!-- Infobar end -->
+
         <!-- Toolbar start -->
         <portal to="app-toolbar-left">
             <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="user.save" :disabled="disabled">
@@ -28,12 +36,6 @@
             </app-toolbar-spacer>
             <app-toolbar-link class="uk-icon-danger" icon="fa fa-minus-circle" :href="item.delete_route">
                 {{ $t('liro-users.toolbar.delete') }}
-            </app-toolbar-link>
-            <app-toolbar-spacer>
-                <!-- Spacer -->
-            </app-toolbar-spacer>
-            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('liro-users.toolbar.help') }}
             </app-toolbar-link>
         </portal>
         <!-- Toolbar end -->

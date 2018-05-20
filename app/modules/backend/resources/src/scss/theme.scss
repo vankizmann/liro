@@ -9,14 +9,18 @@ $color-orange:              #FF9430;
 $color-yellow:              #FFD530;
 
 $color-white:               #ffffff;
-$color-black:               #090e15;
+$color-black:               #05080c;
 
-$color-gray-10:             #f9fafa;
-$color-gray-20:             #ebedef;
-$color-gray-40:             #c9cfd4;
-$color-gray-60:             #a9afb8;
-$color-gray-70:             #8991a0;
-$color-gray-80:             #5f6269;
+$color-gray-5:              mix($color-white, $color-black, 95%);
+$color-gray-10:             mix($color-white, $color-black, 90%);
+$color-gray-20:             mix($color-white, $color-black, 80%);
+$color-gray-30:             mix($color-white, $color-black, 70%);
+$color-gray-40:             mix($color-white, $color-black, 60%);
+$color-gray-50:             mix($color-white, $color-black, 50%);
+$color-gray-60:             mix($color-white, $color-black, 40%);
+$color-gray-70:             mix($color-white, $color-black, 30%);
+$color-gray-80:             mix($color-white, $color-black, 20%);
+$color-gray-90:             mix($color-white, $color-black, 10%);
 
 $color-primary:             $color-blue;
 $color-secondary:           $color-black;
@@ -32,26 +36,40 @@ a, button {
     text-decoration: none !important;
 }
 
+.uk-ajax-load {
+    @extend .uk-position-cover, .uk-overlay-default ;
+    z-index: 999;
+    display: none;
+}
+
+.uk-ajax-load.uk-active {
+    @extend .uk-flex, .uk-flex-center, .uk-flex-middle ;
+}
+
+// .uk-ajax-load .uk-spinner circle {
+//     stroke: $color-white !important;
+// }
+
 .uk-container {
     padding: 0;
+}
+
+.uk-background-pattern {
+    background-color: $color-primary;
+    background-image: url('../img/science.png');
+    background-size: 400px 300px;
 }
 
 #uk-header {
 
     .uk-navbar-container {
+        height: 40px;
         padding: 15px 20px 0;
         background-color: $color-black;
     }
 
     .uk-sticky .uk-navbar-container {
         padding: 0 20px;
-    }
-
-    .uk-logo {
-        @extend .uk-flex, .uk-flex-middle, .uk-flex-center ;
-        display: none;
-        width: 125px;
-        background-color: $color-primary;
     }
 
     .uk-navbar-container .uk-navbar-item,
@@ -74,7 +92,7 @@ a, button {
 
     .uk-navbar-container .uk-navbar-nav > li.uk-active > a {
         color: $color-white;
-        background-color: mix($color-white, $color-black, 12.5%);
+        background-color: $color-gray-90;
     }
 
     .uk-navbar-dropdown {
@@ -82,8 +100,9 @@ a, button {
     }
 
     .uk-infobar-container {
+        height: 70px;
         padding: 0 20px;
-        background-color: mix($color-white, $color-black, 12.5%);
+        background-color: $color-gray-90;
     }
 
     .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li {
@@ -95,6 +114,7 @@ a, button {
         display: block;
         font-weight: 300;
         font-size: 1.500rem;
+        color: $color-gray-80;
     }
 
     .uk-infobar-container .uk-navbar-item,
@@ -104,7 +124,7 @@ a, button {
 
     .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li > a {
         text-transform: none;
-        color: $global-muted-color;
+        color: $color-gray-60;
         font-size: 1.000rem;
         font-weight: 500;
         transition: background 300ms ease;
@@ -140,7 +160,7 @@ a, button {
 
     .uk-infobar-container .uk-toolbar-item:not(.uk-disabled) a:hover,
     .uk-infobar-container .uk-toolbar-item:not(.uk-disabled) button:hover {
-        background-color: mix($color-white, $color-black, 20%);
+        background-color: $color-gray-80;
     }
 
     .uk-infobar-container .uk-toolbar-spacer {
@@ -149,12 +169,12 @@ a, button {
 
     .uk-infobar-container .uk-toolbar-spacer div {
         width: $global-border-width;
-        background-color: mix($color-white, $color-black, 20%);
+        background-color: $color-gray-80;
         height: 30px;
     }
 
     .uk-infobar-container .uk-toolbar-item .fa {
-        color: $color-gray-80;
+        color: $color-gray-70;
     }
 
 
@@ -168,7 +188,8 @@ a, button {
 
     .uk-toolbar .uk-toolbar-container {
         padding: 0 20px;
-        background-color: $color-gray-20;
+        background-color: $color-gray-10;
+        // box-shadow: 0 1px 5px rgba($color-black, 0.1); 
         transition: box-shadow 600ms ease;
     }
 
@@ -179,17 +200,18 @@ a, button {
     .uk-toolbar-container .uk-toolbar-item {
         @extend .uk-navbar-item, .uk-flex, .uk-flex-stretch ;
         padding: 0;
-        height: 60px;
+        margin: 10px 0;
+        height: 40px;
     }
 
     .uk-toolbar-container .uk-toolbar-item a {
-        height: 60px;
+        height: 40px;
         text-transform: none;
     }
 
     .uk-toolbar-container .uk-toolbar-item button {
         padding: 0 15px;
-        height: 60px;
+        height: 40px;
         text-transform: none;
     }
 
@@ -200,7 +222,7 @@ a, button {
 
     .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) a:hover,
     .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) button:hover {
-        background-color: darken($color-gray-20, 5%);
+        background-color: $color-white;
     }
 
     .uk-toolbar-container .uk-toolbar-spacer {
@@ -210,16 +232,16 @@ a, button {
 
     .uk-toolbar-container .uk-toolbar-spacer div {
         width: $global-border-width;
-        background-color: darken($color-gray-20, 5%);
+        background-color: darken($color-gray-10, 5%);
         height: 35px;
     }
 
     .uk-toolbar-container .uk-toolbar-item .fa {
-        color: $color-gray-40;
+        color: $color-gray-30;
     }
 
     .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) .fa {
-        color: $color-gray-60;
+        color: $color-gray-50;
     }
 
     .uk-toolbar-item.uk-icon-primary:not(.uk-disabled) .fa {
@@ -250,11 +272,6 @@ a, button {
         padding: 0 30px;
     }
 
-}
-
-.ui-sortable-helper {
-    background-color: $color-white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .uk-select-group {
@@ -413,9 +430,9 @@ a, button {
 
     .uk-table-list-head {
         @extend .uk-flex, .uk-flex-middle ;
-        padding: 15px 10px;
+        padding: 15px 0;
         color: $color-gray-60;
-        border-bottom: 1px solid $color-gray-20;
+        border-bottom: 1px solid $color-gray-10;
     }
 
     .uk-table-list-head a {
@@ -424,8 +441,16 @@ a, button {
 
     .uk-table-list-row {
         @extend .uk-flex, .uk-flex-middle ;
-        padding: 15px 10px;
-        border-bottom: 1px solid $color-gray-20;
+        padding: 15px 0;
+        border-bottom: 1px solid $color-gray-10;
+    }
+
+    &.uk-table-list-highlight .uk-table-list-row {
+        transition: background 400ms;
+    }
+
+    &.uk-table-list-highlight .uk-table-list-row:hover {
+        background-color: $color-gray-5;
     }
 
     .uk-table-list-td {

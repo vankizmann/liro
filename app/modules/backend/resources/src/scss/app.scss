@@ -1,11 +1,13 @@
 
+
+
 .app-list-filter > a {
     @extend .uk-flex-inline, .uk-flex-middle ;
 }
 
 .app-list-filter > a i {
     @extend .uk-margin-small-right ;
-    color: $color-gray-40;
+    color: $color-gray-20;
 }
 
 .app-list-filter.uk-active > a i {
@@ -26,7 +28,7 @@
 
 .app-list-sort > a i {
     @extend .uk-margin-small-right ;
-    color: $color-gray-40;
+    color: $color-gray-20;
 }
 
 .app-list-sort.uk-active > a i {
@@ -38,7 +40,7 @@
  */
 
 .app-list-collapse.uk-disabled a {
-    color: $color-gray-40;
+    color: $color-gray-20;
 }
 
 .app-list-collapse a {
@@ -69,12 +71,12 @@
 
 .app-list-hidden a,
 .app-list-hidden span {
-    color: $color-gray-40;
+    color: $color-gray-20;
 }
 
 .app-list-hidden.uk-active a,
 .app-list-hidden.uk-active span {
-    color: $color-gray-80;
+    color: $color-gray-50;
 }
 
 /**
@@ -101,5 +103,5 @@
 }
 
 .app-menu-dropzone ul {
-    padding-left: 75px;
+    padding-left: 55px;
 }

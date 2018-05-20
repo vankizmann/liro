@@ -80,8 +80,8 @@ return [
                 'lang'              => '',
                 'title'             => 'liro-users.backend.users.index',
                 'route'             => 'users',
-                'query'             => '',
-                'package'           => 'liro-users.backend.users.index',
+                'query'             => '{"menu": 3}',
+                'package'           => 'liro-menus.backend.redirect.menu',
                 'menu_type_id'      => 1
             ]);
 
@@ -89,12 +89,24 @@ return [
                 'state'             => 1,
                 'hidden'            => 0,
                 'lang'              => '',
+                'title'             => 'liro-users.backend.users.index',
+                'route'             => 'users',
+                'query'             => '',
+                'package'           => 'liro-users.backend.users.index',
+                'menu_type_id'      => 1,
+                'parent_id'         => 2
+            ]);
+
+            $app['db']->table('menus')->insert([
+                'state'             => 1,
+                'hidden'            => 1,
+                'lang'              => '',
                 'title'             => 'liro-users.backend.users.create',
                 'route'             => 'create',
                 'query'             => '',
                 'package'           => 'liro-users.backend.users.create',
                 'menu_type_id'      => 1,
-                'parent_id'         => 2,
+                'parent_id'         => 3,
             ]);
 
             $app['db']->table('menus')->insert([
@@ -106,7 +118,7 @@ return [
                 'query'             => '',
                 'package'           => 'liro-users.backend.users.edit',
                 'menu_type_id'      => 1,
-                'parent_id'         => 2
+                'parent_id'         => 3
             ]);
 
             $app['db']->table('menus')->insert([
@@ -117,19 +129,20 @@ return [
                 'route'             => 'roles',
                 'query'             => '',
                 'package'           => 'liro-users.backend.roles.index',
-                'menu_type_id'      => 1
+                'menu_type_id'      => 1,
+                'parent_id'         => 2
             ]);
 
             $app['db']->table('menus')->insert([
                 'state'             => 1,
-                'hidden'            => 0,
+                'hidden'            => 1,
                 'lang'              => '',
                 'title'             => 'liro-users.backend.roles.create',
                 'route'             => 'create',
                 'query'             => '',
                 'package'           => 'liro-users.backend.roles.create',
                 'menu_type_id'      => 1,
-                'parent_id'         => 5,
+                'parent_id'         => 6,
             ]);
 
             $app['db']->table('menus')->insert([
@@ -141,7 +154,18 @@ return [
                 'query'             => '',
                 'package'           => 'liro-users.backend.roles.edit',
                 'menu_type_id'      => 1,
-                'parent_id'         => 5
+                'parent_id'         => 6
+            ]);
+
+            $app['db']->table('menus')->insert([
+                'state'             => 1,
+                'hidden'            => 0,
+                'lang'              => '',
+                'title'             => 'liro-menus.backend.menus.index',
+                'route'             => 'menus',
+                'query'             => '{"menu": 10}',
+                'package'           => 'liro-menus.backend.redirect.menu',
+                'menu_type_id'      => 1
             ]);
 
             $app['db']->table('menus')->insert([
@@ -152,7 +176,8 @@ return [
                 'route'             => 'menus',
                 'query'             => '',
                 'package'           => 'liro-menus.backend.menus.index',
-                'menu_type_id'      => 1
+                'menu_type_id'      => 1,
+                'parent_id'         => 9
             ]);
 
             $app['db']->table('menus')->insert([
@@ -164,7 +189,7 @@ return [
                 'query'             => '',
                 'package'           => 'liro-menus.backend.menus.create',
                 'menu_type_id'      => 1,
-                'parent_id'         => 8
+                'parent_id'         => 10
             ]);
 
             $app['db']->table('menus')->insert([
@@ -176,7 +201,7 @@ return [
                 'query'             => '',
                 'package'           => 'liro-menus.backend.menus.edit',
                 'menu_type_id'      => 1,
-                'parent_id'         => 8
+                'parent_id'         => 10
             ]);
 
             $app['db']->table('menus')->insert([
@@ -187,7 +212,8 @@ return [
                 'route'             => 'menutypes',
                 'query'             => '',
                 'package'           => 'liro-menus.backend.types.index',
-                'menu_type_id'      => 1
+                'menu_type_id'      => 1,
+                'parent_id'         => 9
             ]);
 
             $app['db']->table('menus')->insert([
@@ -199,7 +225,7 @@ return [
                 'query'             => '',
                 'package'           => 'liro-menus.backend.types.create',
                 'menu_type_id'      => 1,
-                'parent_id'         => 11
+                'parent_id'         => 13
             ]);
 
             $app['db']->table('menus')->insert([
@@ -211,7 +237,7 @@ return [
                 'query'             => '',
                 'package'           => 'liro-menus.backend.types.edit',
                 'menu_type_id'      => 1,
-                'parent_id'         => 11
+                'parent_id'         => 13
             ]);
 
             $app['db']->table('menus')->insert([

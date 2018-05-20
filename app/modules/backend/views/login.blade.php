@@ -19,9 +19,15 @@
     </head>
     <body class="login">
 
-        <div id="app" class="uk-offcanvas-content uk-background-primary">
+        <div id="app" class="uk-offcanvas-content uk-background-pattern">
             <div class="uk-container uk-container-expand uk-flex uk-flex-center uk-flex-middle" style="min-height: 100vh;">
-                    <div class="uk-padding uk-background-default" style="width: 100%; max-width: 400px;">
+                <div style="width: 100%; max-width: 400px;" class="uk-flex uk-flex-wrap uk-flex-center">
+                    <div class="uk-logo uk-margin-bottom">
+                        <a href="/">
+                            <img src="/app/modules/backend/resources/dist/img/liro.svg" alt="{{ env('APP_NAME') }}" width="50" height="50">
+                        </a>
+                    </div>
+                    <div class="uk-padding uk-background-default uk-width-1-1">
                         @if ( session()->has('error') )
                             <div class="uk-alert uk-alert-danger">{{ session('error') }}</div>
                         @endif
@@ -30,6 +36,7 @@
                         @endif
                         @yield('content')
                     </div>
+                </div>
             </div>
         </div>
 

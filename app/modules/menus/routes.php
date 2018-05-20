@@ -10,6 +10,10 @@ return [
 
         'liro-menus.backend.types' => [
             'title' => 'liro-menus.backend.types.group'
+        ],
+
+        'liro-menus.backend.redirect' => [
+            'title' => 'liro-menus.backend.redirect.group'
         ]
 
     ],
@@ -99,6 +103,18 @@ return [
             'group'         => 'liro-menus.backend.types',
             'title'         => 'liro-menus.backend.types.delete',
             'handler'       => 'Liro\Menus\Routers\TypeRouter@delete'
+        ],
+
+        'liro-menus.backend.redirect.menu' => [
+            'group'         => 'liro-menus.backend.redirect',
+            'title'         => 'liro-menus.backend.redirect.menu',
+            'handler'       => 'Liro\Menus\Routers\RedirectRouter@menu'
+        ],
+
+        'liro-menus.backend.redirect.link' => [
+            'group'         => 'liro-menus.backend.redirect',
+            'title'         => 'liro-menus.backend.redirect.link',
+            'handler'       => 'Liro\Menus\Routers\RedirectRouter@link'
         ]
 
     ]

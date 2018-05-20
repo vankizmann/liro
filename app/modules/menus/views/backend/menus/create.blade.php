@@ -8,6 +8,6 @@
     <app-menus-create
         index-route="{{ route('liro-menus.backend.menus.index') }}"
         create-route="{{ route('liro-menus.backend.menus.create') }}"
-        :menu="{{ $menu->toJson() }}"
+        :menu="{{ $menu->toJson() }}" :types="{{ $types->toJson() }}" :routes="{{ $routes->toJson() }}" :groups="{{ $groups->toJson() }}"
     ></app-menus-create>
 @endsection

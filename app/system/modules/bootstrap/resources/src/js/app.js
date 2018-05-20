@@ -105,12 +105,20 @@ liro.listen('document.ready', function() {
 
             this.$http.interceptors.request.use(
                 (request) => {
+
+                    $('.uk-ajax-load').addClass('uk-active');
+
                     this.$liro.trigger('ajax.load');
                     this.ajaxRequestDone(request);
 
                     return request;
                 },
                 (error) => {
+
+                    setTimeout(() => {
+                        $('.uk-ajax-load').removeClass('uk-active');
+                    }, 500);
+
                     this.$liro.trigger('ajax.error');
                     this.ajaxRequestError(error);
 
@@ -120,12 +128,22 @@ liro.listen('document.ready', function() {
 
             this.$http.interceptors.response.use(
                 (response) => {
+
+                    setTimeout(() => {
+                        $('.uk-ajax-load').removeClass('uk-active');
+                    }, 500);
+
                     this.$liro.trigger('ajax.done');
                     this.ajaxResponseDone(response)
 
                     return response;
                 },
                 (error) => {
+
+                    setTimeout(() => {
+                        $('.uk-ajax-load').removeClass('uk-active');
+                    }, 500);
+
                     this.$liro.trigger('ajax.error');
                     this.ajaxResponseError(error);
 

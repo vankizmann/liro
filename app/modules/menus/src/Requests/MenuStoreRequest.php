@@ -2,7 +2,7 @@
 
 namespace Liro\Menus\Requests;
 
-class MenuUpdateRequest extends \Illuminate\Foundation\Http\FormRequest
+class MenuStoreRequest extends \Illuminate\Foundation\Http\FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

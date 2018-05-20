@@ -46,7 +46,7 @@
         },
         data() {
             return {
-                valueFix: this.value
+                valueFix: _.isObject(this.value) ? JSON.stringify(this.value) : this.value
             }
         },
         mounted() {

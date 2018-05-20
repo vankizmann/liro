@@ -2,7 +2,7 @@
     <div class="uk-form uk-form-stacked">
 
         <!-- Infobar start -->
-        <portal to="app-navbar-actions">
+        <portal to="app-infobar-action">
             <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" :href="createRoute">
                 {{ $t('liro-menus.toolbar.create') }}
             </app-toolbar-link>
@@ -28,13 +28,13 @@
 
             <!-- Search start -->
             <div style="width: 300px; margin-left: auto;">
-                <app-list-search :columns="['title', 'theme', 'route']" :placeholder="$t('liro-menus.defaults.search')"></app-list-search>
+                <app-list-search :columns="['title', 'theme', 'route']" :placeholder="$t('liro-menus.form.search')"></app-list-search>
             </div>
             <!-- Search end -->
 
         </div>
 
-        <div class="uk-table-list">
+        <div class="uk-table-list uk-table-list-highlight">
 
             <!-- Head start -->
             <div class="uk-table-list-head">
@@ -80,7 +80,7 @@
 
             <!-- Empty start -->
             <div v-if="list.length == 0" class="uk-table-list-empty uk-padding uk-text-center">
-                <span>{{ $t('liro-menus.defaults.empty') }}</span>
+                <span>{{ $t('liro-menus.form.empty') }}</span>
             </div>
             <!-- Empty end -->
             

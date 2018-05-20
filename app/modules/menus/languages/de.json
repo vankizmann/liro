@@ -14,10 +14,10 @@
 
             "types": {
                 "group":        "Menügruppen",
-                "index":        "Menügruppen",
-                "create":       "Menügruppe erstellen",
-                "edit":         "Menügruppe bearbeiten",
-                "delete":       "Menügruppe löschen"
+                "index":        "Gruppen",
+                "create":       "Gruppe erstellen",
+                "edit":         "Gruppe bearbeiten",
+                "delete":       "Gruppe löschen"
             }
 
         },
@@ -33,7 +33,11 @@
             "menus": {
                 "created":      "Menü wurde erfolgreich erstellt.",
                 "updated":      "Menü wurde erfolgreich gespeichert.",
-                "deleted":      "Menü wurde erfolgreich gelöscht."
+                "deleted":      "Menü wurde erfolgreich gelöscht.",
+                "ordered":      "Menü wurde erfolgreich sortiert.",
+                "enabled":      "Menü wurde erfolgreich aktiviert.",
+                "disabled":     "Menü wurde erfolgreich deaktiviert.",
+                "changed":      "Menü wurde erfolgreich geändert."
             },
 
             "title": {

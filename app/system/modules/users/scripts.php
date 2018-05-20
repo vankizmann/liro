@@ -46,6 +46,11 @@ return [
 
             $app['db']->table('user_role_routes')->insert([
                 'user_role_id'  => 1,
+                'route'         => 'liro-users.backend.users.delete'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
                 'route'         => 'liro-users.backend.users.enable'
             ]);
 
@@ -71,7 +76,27 @@ return [
 
             $app['db']->table('user_role_routes')->insert([
                 'user_role_id'  => 1,
+                'route'         => 'liro-users.backend.roles.delete'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro-menus.backend.redirect.menu'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro-menus.backend.redirect.link'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
                 'route'         => 'liro-menus.backend.menus.index'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro-menus.backend.menus.order'
             ]);
 
             $app['db']->table('user_role_routes')->insert([
@@ -82,6 +107,31 @@ return [
             $app['db']->table('user_role_routes')->insert([
                 'user_role_id'  => 1,
                 'route'         => 'liro-menus.backend.menus.edit'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro-menus.backend.menus.delete'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro-menus.backend.menus.enable'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro-menus.backend.menus.disable'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro-menus.backend.menus.visible'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro-menus.backend.menus.hidden'
             ]);
 
             $app['db']->table('user_role_routes')->insert([
@@ -97,6 +147,11 @@ return [
             $app['db']->table('user_role_routes')->insert([
                 'user_role_id'  => 1,
                 'route'         => 'liro-menus.backend.types.edit'
+            ]);
+
+            $app['db']->table('user_role_routes')->insert([
+                'user_role_id'  => 1,
+                'route'         => 'liro-menus.backend.types.delete'
             ]);
 
             $app['db']->table('user_role_routes')->insert([

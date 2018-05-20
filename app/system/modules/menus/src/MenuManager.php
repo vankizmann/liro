@@ -66,7 +66,7 @@ class MenuManager implements \IteratorAggregate
             }
 
             $this->app->call($this->routes[$menu->package]['handler'], [
-                $this->app['router']->prefix($menu->prefixRoute)->name($menu->package)
+                $this->app['router']->prefix($menu->prefixRoute)->name($menu->package), $menu
             ]);
         }
 
@@ -170,6 +170,11 @@ class MenuManager implements \IteratorAggregate
         return collect($result);
     }
 
+    public function get($id)
+    {
+        return $this->menus->find($id);
+    }
+
     public function all()
     {
         return $this->menus;
@@ -180,11 +185,34 @@ class MenuManager implements \IteratorAggregate
         return Menu::getType($id)->get();
     }
 
-    public function current() {
-        return $this->menus->where('package', $this->app['router']->currentRouteName())->first();
+    public function current()
+    {
+        $menus = $this->menus->where(
+            'prefix_route', $this->app['router']->current()->uri()
+        );
+
+        if ( $menus->count() ) {
+            return $menus->first();
+        }
+
+        $menus = $this->menus->where(
+            'package', $this->app['router']->currentRouteName()
+        );
+
+        if ( $menus->count() ) {
+            return $menus->first();
+        }
+
+        return null;
     }
 
-    public function currentRoot() {
+    public function currentRoot()
+    {
         return $this->menus->where('active', true)->where('parent_id', null)->first();
+    }
+
+    public function query($key, $default = null)
+    {
+        return isset($this->current()->query[$key]) ? $this->current()->query[$key] : $default;
     }
 }

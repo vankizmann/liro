@@ -7,7 +7,7 @@
 </template>
 <script>
     module.exports = {
-        name: 'app-menu-index-list',
+
         props: {
             value: {
                 default() {
@@ -46,6 +46,6 @@
 
         }
     }
-    liro.component(module.exports);
+    liro.vue.$component('app-menu-index-list', module.exports);
 </script>
 

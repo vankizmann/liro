@@ -59,7 +59,6 @@
 </template>
 <script>
     module.exports = {
-        name: 'app-menus-index',
         computed: {
             active() {
                 return _.find(this.types, { id: this.tab });
@@ -103,5 +102,5 @@
 
         }
     }
-    liro.component(module.exports);
+    liro.vue.$component('app-menus-index', module.exports);
 </script>

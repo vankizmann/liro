@@ -56,7 +56,39 @@ require('./form/app-form-password.vue');
 require('./form/app-form-select.vue');
 require('./form/app-form-select-multiple.vue');
 
-liro.listen('document.ready', function() {
+function install (Vue) {
+
+    // Set default http class
+    Vue.prototype.$http = window.axios;
+    Vue.prototype.$liro = window.liro;
+
+    Vue.ready = function (callback) {
+
+        var handle = function () {
+
+            document.removeEventListener('DOMContentLoaded', handle);
+            window.removeEventListener('load', handle);
+
+            callback();
+        };
+
+        if (document.readyState == 'complete') {
+            callback();
+        }
+
+        if (document.readyState != 'complete') {
+            document.addEventListener('DOMContentLoaded', handle);
+            window.addEventListener('load', handle);
+        }
+
+        return;
+    }
+
+}
+
+Vue.use(install);
+
+Vue.ready(function() {
 
     var vuedraggable = require('vuedraggable');
     Vue.component('app-drag', vuedraggable);
@@ -72,10 +104,6 @@ liro.listen('document.ready', function() {
 
     // Trigger before init via liro listiner
     liro.trigger('app.beforeInit');
-
-    // Set default http class
-    Vue.prototype.$http = window.axios;
-    Vue.prototype.$liro = window.liro;
 
     const App = new Vue({
 
@@ -106,18 +134,12 @@ liro.listen('document.ready', function() {
             this.$http.interceptors.request.use(
                 (request) => {
 
-                    $('.uk-ajax-load').addClass('uk-active');
-
                     this.$liro.trigger('ajax.load');
                     this.ajaxRequestDone(request);
 
                     return request;
                 },
                 (error) => {
-
-                    setTimeout(() => {
-                        $('.uk-ajax-load').removeClass('uk-active');
-                    }, 500);
 
                     this.$liro.trigger('ajax.error');
                     this.ajaxRequestError(error);
@@ -129,20 +151,12 @@ liro.listen('document.ready', function() {
             this.$http.interceptors.response.use(
                 (response) => {
 
-                    setTimeout(() => {
-                        $('.uk-ajax-load').removeClass('uk-active');
-                    }, 500);
-
                     this.$liro.trigger('ajax.done');
                     this.ajaxResponseDone(response)
 
                     return response;
                 },
                 (error) => {
-
-                    setTimeout(() => {
-                        $('.uk-ajax-load').removeClass('uk-active');
-                    }, 500);
 
                     this.$liro.trigger('ajax.error');
                     this.ajaxResponseError(error);
@@ -203,11 +217,9 @@ liro.listen('document.ready', function() {
 
     }).$mount('#app');
 
+    UIkit.use(window.Icons)
+
     // Trigger after init via liro listiner
     liro.trigger('app.afterInit');
 
-});
-
-$(document).ready(function() {
-    liro.trigger('document.ready');
 });

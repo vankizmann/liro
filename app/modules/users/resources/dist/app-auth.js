@@ -228,10 +228,10 @@ module.exports = Component.exports
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-//
-//
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -254,16 +254,15 @@ module.exports = Component.exports
 //
 //
 
-module.exports = {
-    name: 'app-login',
+/* harmony default export */ __webpack_exports__["default"] = ({
     props: {
         action: {
             default: '',
             type: String
         }
     }
-};
-liro.component(module.exports);
+});
+liro.vue.$component('app-login', this.default);
 
 /***/ }),
 /* 4 */
@@ -291,7 +290,6 @@ var render = function() {
                 type: "email",
                 id: "email",
                 name: "email",
-                rules: "required|email",
                 value: ""
               }
             }),
@@ -302,7 +300,6 @@ var render = function() {
                 type: "text",
                 id: "password",
                 name: "password",
-                rules: "required|min:6",
                 value: ""
               }
             }),

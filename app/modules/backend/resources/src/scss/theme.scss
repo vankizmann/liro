@@ -2,8 +2,8 @@
  * Theme
  **/
 
-$color-green:               #14c97a;
-$color-blue:                #28a5f5;
+$color-green:               #7fda89;
+$color-blue:                #5394f6;
 $color-red:                 #ee4e56;
 $color-orange:              #FF9430;
 $color-yellow:              #FFD530;
@@ -32,23 +32,17 @@ $color-secondary:           $color-black;
     display: none
 }
 
+body {
+    background-color: $color-gray-5;
+}
+
 a, button {
     text-decoration: none !important;
 }
 
-.uk-ajax-load {
-    @extend .uk-position-cover, .uk-overlay-default ;
-    z-index: 999;
-    display: none;
+.uk-pagination {
+    margin-bottom: 0;
 }
-
-.uk-ajax-load.uk-active {
-    @extend .uk-flex, .uk-flex-center, .uk-flex-middle ;
-}
-
-// .uk-ajax-load .uk-spinner circle {
-//     stroke: $color-white !important;
-// }
 
 .uk-container {
     padding: 0;
@@ -60,12 +54,43 @@ a, button {
     background-size: 400px 300px;
 }
 
+// .uk-form {
+//     background-color: $color-white;
+//     border-radius: 8px;
+//     padding: 30px 30px;
+//     box-shadow: rgba($color-gray-50, 0.1);
+// }
+
+.uk-button, .uk-input, .uk-select {
+    // border-radius: 500px;
+}
+
+.uk-ajax-load {
+
+    & {
+        @extend .uk-position-cover ;
+        z-index: 999;
+        opacity: 0;
+        display: none;
+        background-color: rgba($color-primary, 0.8);
+    }
+
+    &.uk-active {
+        @extend .uk-flex, .uk-flex-center, .uk-flex-middle ;
+    }
+
+    .uk-spinner circle {
+        stroke: $color-white !important;
+    }
+    
+}
+
 #uk-header {
 
     .uk-navbar-container {
-        height: 40px;
-        padding: 15px 20px 0;
-        background-color: $color-black;
+        height: 30px;
+        padding: 20px 20px;
+        background-color: $color-white;
     }
 
     .uk-sticky .uk-navbar-container {
@@ -74,25 +99,25 @@ a, button {
 
     .uk-navbar-container .uk-navbar-item,
     .uk-navbar-container .uk-navbar-nav > li > a {
-        height: 40px;
+        height: 30px;
     }
 
     .uk-navbar-container .uk-navbar-nav > li > a {
+        border-radius: 500px;
+        margin: 0 5px;
         text-transform: none;
-        color: $global-muted-color;
-        font-size: 0.875rem;
-        font-weight: 500;
-        transition: background 300ms ease;
+        color: $color-gray-30;
+        font-size: 1rem;
+        transition: all 300ms ease;
     }
 
     .uk-navbar-container .uk-navbar-nav > li > a.uk-open,
     .uk-navbar-container .uk-navbar-nav > li > a:hover {
-        color: $color-gray-20;
+        color: $color-gray-60;
     }
 
     .uk-navbar-container .uk-navbar-nav > li.uk-active > a {
-        color: $color-white;
-        background-color: $color-gray-90;
+        color: $color-black;
     }
 
     .uk-navbar-dropdown {
@@ -100,9 +125,9 @@ a, button {
     }
 
     .uk-infobar-container {
-        height: 70px;
+        height: 90px;
         padding: 0 20px;
-        background-color: $color-gray-90;
+        background-color: $color-black;
     }
 
     .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li {
@@ -119,7 +144,7 @@ a, button {
 
     .uk-infobar-container .uk-navbar-item,
     .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li > a {
-        height: 70px;
+        height: 90px;
     }
 
     .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li > a {
@@ -144,7 +169,7 @@ a, button {
     }
 
     .uk-infobar-container .uk-navbar-right .uk-toolbar-item a {
-        height: 40px;
+        height: 30px;
         text-transform: none;
     }
 
@@ -188,7 +213,7 @@ a, button {
 
     .uk-toolbar .uk-toolbar-container {
         padding: 0 20px;
-        background-color: $color-gray-10;
+        background-color: $color-white;
         // box-shadow: 0 1px 5px rgba($color-black, 0.1); 
         transition: box-shadow 600ms ease;
     }
@@ -201,17 +226,17 @@ a, button {
         @extend .uk-navbar-item, .uk-flex, .uk-flex-stretch ;
         padding: 0;
         margin: 10px 0;
-        height: 40px;
+        height: 30px;
     }
 
     .uk-toolbar-container .uk-toolbar-item a {
-        height: 40px;
+        height: 30px;
         text-transform: none;
     }
 
     .uk-toolbar-container .uk-toolbar-item button {
         padding: 0 15px;
-        height: 40px;
+        height: 30px;
         text-transform: none;
     }
 
@@ -233,7 +258,7 @@ a, button {
     .uk-toolbar-container .uk-toolbar-spacer div {
         width: $global-border-width;
         background-color: darken($color-gray-10, 5%);
-        height: 35px;
+        height: 30px;
     }
 
     .uk-toolbar-container .uk-toolbar-item .fa {
@@ -331,7 +356,7 @@ a, button {
         background-color: $color-primary;
         transition: background 300ms;
         max-height: 300px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     &.uk-success .uk-dropdown {
@@ -432,7 +457,7 @@ a, button {
         @extend .uk-flex, .uk-flex-middle ;
         padding: 15px 0;
         color: $color-gray-60;
-        border-bottom: 1px solid $color-gray-10;
+        border-bottom: 2px solid $color-gray-5;
     }
 
     .uk-table-list-head a {
@@ -442,15 +467,7 @@ a, button {
     .uk-table-list-row {
         @extend .uk-flex, .uk-flex-middle ;
         padding: 15px 0;
-        border-bottom: 1px solid $color-gray-10;
-    }
-
-    &.uk-table-list-highlight .uk-table-list-row {
-        transition: background 400ms;
-    }
-
-    &.uk-table-list-highlight .uk-table-list-row:hover {
-        background-color: $color-gray-5;
+        border-bottom: 1px solid $color-gray-5;
     }
 
     .uk-table-list-td {

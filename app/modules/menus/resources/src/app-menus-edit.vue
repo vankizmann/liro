@@ -99,8 +99,6 @@
 <script>
 module.exports = {
 
-    name: 'app-menus-edit',
-
     computed: {
         canUndo() {
             return this.$store.getters['history/canUndo'];
@@ -213,6 +211,6 @@ module.exports = {
     }
 
 }
-liro.component(module.exports);
+liro.vue.$component('app-menus-edit', module.exports);
 </script>
 

@@ -32,11 +32,11 @@ return [
 
         $app['events']->fire('boot', $app);
 
-        $app['scripts']->link('bootstrap', '/app/system/modules/bootstrap/resources/dist/js/bootstrap.js');
-        $app['scripts']->link('app', '/app/system/modules/bootstrap/resources/dist/js/app.js');
+        $app['scripts']->link('vendor', '/app/system/modules/bootstrap/resources/dist/vendor.js');
+        $app['scripts']->link('app', '/app/system/modules/bootstrap/resources/dist/app.js');
 
         $messages = $app['translator']->getFromJson('*', []);
-        $app['scripts']->plain('messages', 'liro.setMessages(liro.getLocale(), ' . json_encode($messages) . ');'); 
+        $app['scripts']->plain('messages', 'liro.message.$set(' . json_encode($messages) . ');'); 
 
         // dd($app['router']);
     }

@@ -24,8 +24,6 @@
 <script>
     module.exports = {
 
-        name: 'app-menu-index-item',
-
         computed: {
             children() {
                 return this.item.children || []
@@ -81,6 +79,6 @@
         }
 
     }
-    liro.component(module.exports);
+    liro.vue.$component('app-menu-index-item', module.exports);
 </script>
 

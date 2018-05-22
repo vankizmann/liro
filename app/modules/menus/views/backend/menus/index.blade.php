@@ -1,7 +1,7 @@
 @extends('theme::index')
 
 @php
-    app('scripts')->link('app-menus', 'liro-menus:resources/dist/app-menus.js');
+    app('scripts')->link('app-menus', 'liro-menus:resources/dist/app-menus.js', ['vendor']);
 @endphp
 
 @section('content')

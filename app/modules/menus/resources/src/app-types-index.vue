@@ -87,7 +87,7 @@
         </div>
 
         <!-- Pagination start -->
-        <div class="uk-table-list-pagination uk-margin">
+        <div class="uk-table-list-pagination uk-margin-top">
             <app-list-pagination></app-list-pagination>
         </div>
         <!-- Pagination end -->

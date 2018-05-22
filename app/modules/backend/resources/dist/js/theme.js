@@ -76,9 +76,6 @@ module.exports = __webpack_require__(2);
 /***/ (function(module, exports) {
 
 
-liro.listen('app.mounted', function () {
-    console.log('app.mounted');
-});
 
 /***/ }),
 /* 2 */

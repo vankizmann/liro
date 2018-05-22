@@ -3,12 +3,10 @@
         <form :action="action" method="post" style="margin: 0;">
             <fieldset class="uk-fieldset">
                 <app-form-input 
-                    :label="$t('liro-users.form.email')" type="email" id="email" name="email" 
-                    rules="required|email" value=""
+                    :label="$t('liro-users.form.email')" type="email" id="email" name="email" value=""
                 ></app-form-input>
                 <app-form-password 
-                    :label="$t('liro-users.form.password')" type="text" id="password" name="password" 
-                    rules="required|min:6" value=""
+                    :label="$t('liro-users.form.password')" type="text" id="password" name="password" value=""
                 >
                 </app-form-password>
                 <div class="uk-margin-top">
@@ -22,8 +20,7 @@
     </div>
 </template>
 <script>
-    module.exports = {
-        name: 'app-login',
+    export default {
         props: {
             action: {
                 default: '',
@@ -31,5 +28,5 @@
             }
         }
     }
-    liro.component(module.exports);
+    liro.vue.$component('app-login', this.default);
 </script>

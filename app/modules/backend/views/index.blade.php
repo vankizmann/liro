@@ -21,17 +21,50 @@
     </head>
     <body>
 
+        <!-- Loader start -->
         <div class="uk-ajax-load">
             <div class="uk-spinner" uk-spinner="ratio: 3;"></div>
         </div>
+        <!-- Loader end -->
+
+        <script>
+
+            liro.event.$watch('ajax.load', function() {
+                $('.uk-ajax-load').queue(() => {
+                    $('.uk-ajax-load').addClass('uk-active').dequeue();
+                }).animate({
+                    opacity: 1
+                }, 300);
+            });
+
+            liro.event.$watch('ajax.done', function() {
+                $('.uk-ajax-load').animate({
+                    opacity: 0
+                }, 300).queue(() => {
+                    $('.uk-ajax-load').removeClass('uk-active').dequeue();
+                });
+            });
+        
+            liro.event.$watch('ajax.error', function() {
+                $('.uk-ajax-load').animate({
+                    opacity: 0
+                }, 300).queue(() => {
+                    $('.uk-ajax-load').removeClass('uk-active').dequeue();
+                });
+            });
+
+
+        </script>
 
         <div id="app" class="uk-offcanvas-content">
 
+            <!-- Help start -->
             <div id="app-module-help" uk-offcanvas="overlay: true; mode: push;">
                 <div class="uk-offcanvas-bar">
                     <portal-target name="app-module-help" multiple></portal-target>
                 </div>
             </div>
+            <!-- Help end -->
 
             <!-- Header start -->
             <header id="uk-header">

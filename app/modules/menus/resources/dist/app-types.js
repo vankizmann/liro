@@ -564,7 +564,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "uk-table-list-pagination uk-margin" },
+        { staticClass: "uk-table-list-pagination uk-margin-top" },
         [_c("app-list-pagination")],
         1
       )

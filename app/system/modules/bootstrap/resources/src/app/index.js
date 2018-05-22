@@ -1,11 +1,11 @@
-import Vue from 'vue';
-window.Vue = Vue;
-
 import VueI18n from 'vue-i18n';
 import Vuex from 'vuex';
-import VeeValidate from 'vee-validate';
+import VeeValidate, { Validator } from 'vee-validate';
 import PortalVue from 'portal-vue';
 import VueDraggable from 'vuedraggable';
+
+import VeeValidateDE from 'vee-validate/dist/locale/de';
+import VeeValidateEN from 'vee-validate/dist/locale/en';
 
 var ready = function (callback) {
 
@@ -43,7 +43,7 @@ function install (Vue) {
     Vue.prototype.$http = window.axios;
     Vue.prototype.$liro = window.liro;
 
-    // require('./store/app-history.js');
+    require('./store/app-history.js');
     // require('./store/app-list.js');
 
     require('./filters/capitalize.js');
@@ -65,18 +65,18 @@ function install (Vue) {
     require('./components/form/app-form-select.vue');
     require('./components/form/app-form-select-multiple.vue');
 
-    var store = new Vuex.Store({
-        modules: window.liro.vue.store
-    });
-
-    var i18n = new VueI18n({
-        locale: window.liro.locale.$get(),
-        messages: window.liro.message.$get()
-    });
-
     Vue.ready(function () {
 
         Vue.component('app-drag', VueDraggable);
+
+        switch(window.liro.locale.locale) {
+            case 'en':
+            Validator.localize('en', VeeValidateEN);
+            break;
+            case 'de':
+            Validator.localize('de', VeeValidateDE);
+            break;
+        }
 
         collect(liro.vue.filters).each(function(options, name) {
             Vue.filter(name, options);
@@ -84,6 +84,15 @@ function install (Vue) {
 
         collect(liro.vue.components).each(function(options, name) {
             Vue.component(name, options);
+        });
+    
+        var i18n = new VueI18n({
+            locale: window.liro.locale.locale,
+            messages: window.liro.message.messages
+        });
+
+        var store = new Vuex.Store({
+            modules: window.liro.vue.stores
         });
 
         new Vue({ i18n, store }).$mount('#app');

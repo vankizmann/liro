@@ -1740,31 +1740,31 @@ module.exports = {
             deep: true
         });
 
-        this.$liro.listen('menu.undo', function () {
+        this.$liro.event.$watch('menu.undo', function () {
             _this.item = _this.$store.state.history.undo();
         });
 
-        this.$liro.listen('menu.redo', function () {
+        this.$liro.event.$watch('menu.redo', function () {
             _this.item = _this.$store.state.history.redo();
         });
 
-        this.$liro.listen('menu.reset', function () {
+        this.$liro.event.$watch('menu.reset', function () {
             _this.item = _this.$store.state.history.reset();
         });
 
-        this.$liro.listen('menu.save', function () {
+        this.$liro.event.$watch('menu.save', function () {
             _this.$http.post(_this.item.edit_route, _this.item);
         });
 
-        this.$liro.listen('ajax.load', function () {
+        this.$liro.event.$watch('ajax.load', function () {
             _this.disabled = true;
         });
 
-        this.$liro.listen('ajax.done', function () {
+        this.$liro.event.$watch('ajax.done', function () {
             _this.disabled = false;
         });
 
-        this.$liro.listen('ajax.error', function () {
+        this.$liro.event.$watch('ajax.error', function () {
             _this.disabled = false;
         });
     },

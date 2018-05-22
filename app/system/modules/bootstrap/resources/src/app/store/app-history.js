@@ -1,19 +1,18 @@
 module.exports = {
 
-    name: 'history',
     namespaced: true,
 
-    state: new Undo,
+    state: new liro.history,
 
     getters: {
         get(state) {
             return state;
         },
         canUndo(state) {
-            return state.canUndo;
+            return state.canUndo();
         },
         canRedo(state) {
-            return state.canRedo;
+            return state.canRedo();
         }
     },
 
@@ -27,4 +26,4 @@ module.exports = {
     }
 
 }
-liro.store(module.exports);
+liro.vue.$store('history', module.exports);

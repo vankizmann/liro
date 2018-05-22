@@ -23,22 +23,12 @@ window._ = require('lodash');
 
 window.axios = require('axios');
 
-window.axios.defaults.headers.common = {
-    'X-Requested-With': 'XMLHttpRequest'
-};
-
 /**
  * We'll load the collect.js which can help us handle collections
  * like laravel does. Has handy functions like find, map and so on.
  */
 
 window.collect = require('collect.js');
-
-/**
- * Vue is a modern JavaScript library for building interactive web interfaces
- * using reactive data binding and reusable components. Vue's API is clean
- * and simple, leaving you to focus on building your next great project.
- */
 
 
 /**
@@ -53,4 +43,42 @@ window.UIkit = require('uikit');
  * like laravel does. Has handy functions like find, map and so on.
  */
 
+window.JSONStorage = require('jsonstorage/storage.js');
+
+/**
+ * We'll load the collect.js which can help us handle collections
+ * like laravel does. Has handy functions like find, map and so on.
+ */
+
 window.liro = require('./liro/index.js');
+
+/**
+ * We'll load the collect.js which can help us handle collections
+ * like laravel does. Has handy functions like find, map and so on.
+ */
+
+window.axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest'
+};
+
+window.axios.interceptors.request.use(
+    function (request) {
+        window.liro.event.$emit('axios.load');
+        return request;
+    },
+    function (error) {
+        window.liro.event.$emit('axios.error');
+        return Promise.reject(error);
+    }
+);
+
+window.axios.interceptors.response.use(
+    function (response) {
+        window.liro.event.$emit('axios.done');
+        return response;
+    },
+    function (error) {
+        window.liro.event.$emit('axios.error');
+        return Promise.reject(error);
+    }
+);

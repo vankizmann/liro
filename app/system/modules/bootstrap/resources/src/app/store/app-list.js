@@ -1,6 +1,5 @@
 module.exports = {
 
-    name: 'list',
     namespaced: true,
 
     state: new List,
@@ -70,4 +69,4 @@ module.exports = {
     }
 
 }
-liro.store(module.exports);
+liro.vue.$store('list', module.exports);

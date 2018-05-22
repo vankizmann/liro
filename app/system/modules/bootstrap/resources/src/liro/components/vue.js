@@ -4,14 +4,14 @@ module.exports = function () {
      * Store
      */
 
-    this.store = {};
+    this.stores = {};
 
     /**
      * Set store function
      */
 
-    this.$set = function(key, value) {
-        this.store[key] = value;
+    this.$store = function(key, value) {
+        this.stores[key] = value;
     }.bind(this);
 
     /**

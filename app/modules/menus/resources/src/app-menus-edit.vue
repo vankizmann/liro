@@ -1,41 +1,39 @@
 <template>
-    <div class="uk-form uk-form-stacked">
-
-        <!-- Infobar start -->
-        <portal to="app-infobar-action">
-            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('liro-menus.toolbar.help') }}
-            </app-toolbar-link>
-        </portal>
-        <!-- Infobar end -->
+    <div class="uk-form uk-form-stacked uk-padding">
 
         <!-- Toolbar start -->
         <portal to="app-toolbar-left">
-            <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="menu.save" :disabled="disabled">
+            <app-toolbar-event class="uk-success" icon="check" event="menu.save">
                 {{ $t('liro-menus.toolbar.save') }}
             </app-toolbar-event>
-            <app-toolbar-link class="uk-icon-danger" icon="fa fa-times" :href="indexRoute" :disabled="disabled">
+            <app-toolbar-link class="uk-danger" icon="close" :href="indexRoute">
                 {{ $t('liro-menus.toolbar.close') }}
             </app-toolbar-link>
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>
-            <app-toolbar-event icon="fa fa-undo" event="menu.undo" :disabled="!canUndo">
+            <app-toolbar-event event="menu.undo" :disabled="!canUndo">
                 {{ $t('liro-menus.toolbar.undo') }}
             </app-toolbar-event>
-            <app-toolbar-event icon="fa fa-redo" event="menu.redo" :disabled="!canRedo">
+            <app-toolbar-event event="menu.redo" :disabled="!canRedo">
                 {{ $t('liro-menus.toolbar.redo') }}
             </app-toolbar-event>
         </portal>
         <portal to="app-toolbar-right">
-            <app-toolbar-event class="uk-icon-danger" icon="fa fa-ban" event="menu.reset" :disabled="!canUndo">
+            <app-toolbar-event class="uk-danger" event="menu.reset" :disabled="!canUndo">
                 {{ $t('liro-menus.toolbar.discard') }}
             </app-toolbar-event>
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>
-            <app-toolbar-link class="uk-icon-danger" icon="fa fa-minus-circle" :href="item.delete_route">
+            <app-toolbar-link class="uk-danger" icon="trash" :href="item.delete_route">
                 {{ $t('liro-menus.toolbar.delete') }}
+            </app-toolbar-link>
+            <app-toolbar-spacer>
+                <!-- Spacer -->
+            </app-toolbar-spacer>
+            <app-toolbar-link class="uk-info" icon="info" href="#" uk-toggle="target: #app-module-help">
+                {{ $t('liro-menus.toolbar.help') }}
             </app-toolbar-link>
         </portal>
         <!-- Toolbar end -->
@@ -99,15 +97,6 @@
 <script>
 module.exports = {
 
-    computed: {
-        canUndo() {
-            return this.$store.getters['history/canUndo'];
-        },
-        canRedo() {
-            return this.$store.getters['history/canRedo'];
-        }
-    },
-
     props: {
         indexRoute: {
             default: '',
@@ -159,55 +148,37 @@ module.exports = {
 
     data() {
         return {
-            disabled: false,
-            item: this.menu
+            canUndo: false,
+            canRedo: false,
+
+            item: this.menu,
+            value: this.$liro.data.$get('menu-type', {})
         }
     },
 
+    created() {
+        liro.vue.$history(this, 'item');
+    },  
+
     mounted() {
 
-        this.$store.commit('history/init', this.item);
-
-        this.$watch('item', _.debounce(this.save, 600), {
-            deep: true
-        });
-
         this.$liro.event.$watch('menu.undo', () => {
-            this.item = this.$store.state.history.undo();
+            this.item = this._history.undo();
         });
 
         this.$liro.event.$watch('menu.redo', () => {
-            this.item = this.$store.state.history.redo();
+            this.item = this._history.redo();
         });
 
         this.$liro.event.$watch('menu.reset', () => {
-            this.item = this.$store.state.history.reset();
+            this.item = this._history.reset();
         });
 
         this.$liro.event.$watch('menu.save', () => {
             this.$http.post(this.item.edit_route, this.item);
         });
 
-        this.$liro.event.$watch('ajax.load', () => {
-            this.disabled = true;
-        });
 
-        this.$liro.event.$watch('ajax.done', () => {
-            this.disabled = false;
-        });
-
-        this.$liro.event.$watch('ajax.error', () => {
-            this.disabled = false;
-        });
-
-    },
-
-    methods: {
-        save() {
-            if ( this.$store.state.history.preventer() ) {
-                this.$store.commit('history/save', this.item);
-            }
-        }
     }
 
 }

@@ -29,7 +29,7 @@
 
         <script>
 
-            liro.event.$watch('ajax.load', function() {
+            liro.event.$watch('axios.load', function() {
                 $('.uk-ajax-load').queue(() => {
                     $('.uk-ajax-load').addClass('uk-active').dequeue();
                 }).animate({
@@ -37,7 +37,7 @@
                 }, 300);
             });
 
-            liro.event.$watch('ajax.done', function() {
+            liro.event.$watch('axios.done', function() {
                 $('.uk-ajax-load').animate({
                     opacity: 0
                 }, 300).queue(() => {
@@ -45,7 +45,7 @@
                 });
             });
         
-            liro.event.$watch('ajax.error', function() {
+            liro.event.$watch('axios.error', function() {
                 $('.uk-ajax-load').animate({
                     opacity: 0
                 }, 300).queue(() => {
@@ -56,7 +56,7 @@
 
         </script>
 
-        <div id="app" class="uk-offcanvas-content">
+        <div id="app" class="uk-offcanvas-content" style="min-height: 100vh;">
 
             <!-- Help start -->
             <div id="app-module-help" uk-offcanvas="overlay: true; mode: push;">
@@ -66,92 +66,50 @@
             </div>
             <!-- Help end -->
 
-            <!-- Header start -->
-            <header id="uk-header">
+            <div class="uk-flex">
 
-                <!-- Navigation start -->
-                <div class="uk-navigation">
-                    <div class="uk-flex">
+                <div class="app-navigation">
+                    <div class="uk-logo" style="height: 80px">
+                    LOGO
+                    </div>
+                    <!-- Main menu start -->
+                    <ul class="uk-list">
+                        @foreach( app('menus')->type(1)->toTree() as $menu )
+                            @include('liro-backend::partials/menu-item', $menu)
+                        @endforeach
+                    </ul>
+                    <!-- Main menu end -->
+                </div>
 
-                        <div class="uk-flex-auto">
+                <div class="app-body">
 
-                            <nav class="uk-navbar-container uk-container uk-container-expand" uk-navbar>
-                                <div class="uk-navbar-left">
-
-                                    <!-- Main menu start -->
-                                    <ul class="uk-navbar-nav">
-                                        @foreach( app('menus')->type(1)->toTree() as $menu )
-                                            @include('liro-backend::partials/menu-item', $menu)
-                                        @endforeach
-                                    </ul>
-                                    <!-- Main menu end -->
-
-                                </div>
-                                <div class="uk-navbar-right">
-
-                                    <!-- User menu start -->
-                                    <ul class="uk-navbar-nav">
-                                        @foreach( app('menus')->type(2)->toTree() as $menu )
-                                            @include('liro-backend::partials/menu-item', $menu)
-                                        @endforeach
-                                    </ul>
-                                    <!-- User menu end -->
-                                    
-                                </div>
-                            </nav>
-                            <nav class="uk-infobar-container uk-container uk-container-expand" uk-navbar>
-                                <div class="uk-navbar-left">
-
-                                    <!-- Main menu subitems start -->
-                                    <ul class="uk-navbar-nav">
-                                        @foreach( app('menus')->currentRoot()->children()->getEnabled()->get() as $menu )
-                                            @include('liro-backend::partials/menu-item', $menu)
-                                        @endforeach
-                                    </ul>
-                                    <!-- Main menu subitems end -->
-
-                                </div>
-                                <div class="uk-navbar-right">
-                                    <portal-target class="uk-navbar-nav" name="app-infobar-action" multiple></portal-target>
-                                </div>
-                            </nav>
+                    <!-- Toolbar start -->
+                    <div class="app-toolbar uk-flex uk-flex-middle" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'">
+                        <div class="uk-flex-pull-left">
+                            <portal-target class="uk-list uk-flex" name="app-toolbar-left" multiple></portal-target>
+                        </div>
+                        <div class="uk-flex-pull-right">
+                            <portal-target class="uk-list uk-flex" name="app-toolbar-right" multiple></portal-target>
                         </div>
                     </div>
-                </div>
-                <!-- Navigation end -->
+                    <!-- Toolbar end -->
 
-                <!-- Toolbar start -->
-                <div class="uk-toolbar" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'" v-cloak>
-                    <div class="uk-toolbar-container uk-container uk-container-expand" uk-navbar>
-                        <div class="uk-navbar-left">
-                            <portal-target class="uk-navbar-nav" name="app-toolbar-left" multiple></portal-target>
-                        </div>
-                        <div class="uk-navbar-right">
-                            <portal-target class="uk-navbar-nav" name="app-toolbar-right" multiple></portal-target>
-                        </div>
+                    <div class="app-content">
+                        @if ( session()->has('error') )
+                            <script>UIkit.notification('{{ session('error') }}', 'error');</script>
+                        @endif
+                        @if ( session()->has('success') )
+                            <script>UIkit.notification('{{ session('success') }}', 'success');</script>
+                        @endif
+                        @if ( session()->has('message') )
+                            <script>UIkit.notification('{{ session('message') }}', 'message');</script>
+                        @endif
+                        @yield('content')
                     </div>
+                    
                 </div>
-                <!-- Toolbar end -->
-                
-            </header>
-            <!-- Header end -->
 
-            <!-- Main start -->
-            <main id="uk-main" style="padding: 30px 0;" v-cloak>
-                <div class="uk-container uk-container-expand">
-                    @if ( session()->has('error') )
-                        <script>UIkit.notification('{{ session('error') }}', 'error');</script>
-                    @endif
-                    @if ( session()->has('success') )
-                        <script>UIkit.notification('{{ session('success') }}', 'success');</script>
-                    @endif
-                    @if ( session()->has('message') )
-                        <script>UIkit.notification('{{ session('message') }}', 'message');</script>
-                    @endif
-                    @yield('content')
-                </div>
-            </main>
-            <!-- Main end -->
+            </div>
 
         </div>
     </body>

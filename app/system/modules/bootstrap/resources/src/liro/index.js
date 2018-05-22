@@ -5,7 +5,7 @@ var LiroData = require('./components/data.js');
 var LiroEvent = require('./components/event.js');
 var LiroVue = require('./components/vue.js');
 var LiroHistory = require('./libraries/history.js');
-var LiroList = require('./components/list.js');
+var LiroList = require('./libraries/list.js');
 
 
 module.exports = {

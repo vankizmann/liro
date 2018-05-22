@@ -18,7 +18,7 @@
         </portal>
         <!-- Help end -->
 
-        <div class="uk-flex uk-flex-middle uk-margin-bottom">
+        <div class="uk-flex uk-flex-middle uk-padding">
 
             <!-- Title start -->
             <div>

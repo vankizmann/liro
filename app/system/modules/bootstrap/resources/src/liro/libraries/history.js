@@ -1,15 +1,37 @@
 (function (global) {
 
-    function History (data) {
+    function History () {
 
         this.states = [];
         this.pointer = 0;
         this.prevent = false;
+
+        this.canUndo = false;
+        this.canRedo = false;
+
+    }
+
+    History.prototype.changeCanUndo = function () {
+        // changeCanUndo
+    }
+
+    History.prototype.defineCanUndo = function () {
+        this.canUndo = this.pointer > 0;
+        return this.changeCanUndo(this.canUndo) || this.canUndo;
+    }
+
+    History.prototype.changeCanRedo = function () {
+        // changeCanUndo
+    }
+
+    History.prototype.defineCanRedo = function () {
+        this.canRedo = this.pointer < this.states.length - 1;
+        return this.changeCanRedo(this.canRedo) || this.canRedo;
     }
 
     History.prototype.preventer = function () {
         var _prevent = this.prevent; this.prevent = false;
-        return !_prevent;
+        return _prevent;
     }
 
     History.prototype.init = function (data) {
@@ -17,36 +39,51 @@
     }
 
     History.prototype.save = function (data) {
+        
+        if ( this.preventer() ) return;
+        
         this.states = this.states.slice(0, this.pointer + 1);
         this.pointer = this.states.length;
+
+        this.defineCanUndo();
+        this.defineCanRedo();
+
         this.states[this.pointer] = Object.assign({}, data);
     }
 
     History.prototype.reset = function () {
+
         this.states = this.states.slice(0, 1);
         this.pointer = this.states.length - 1;
+
+        this.defineCanUndo();
+        this.defineCanRedo();
+
         this.prevent = true;
+
         return Object.assign({}, this.states[this.pointer]);
     }
 
     History.prototype.undo = function () {
+
         this.pointer--;
         this.prevent = true;
+
+        this.defineCanUndo();
+        this.defineCanRedo();
+
         return Object.assign({}, this.states[this.pointer]);
     }
 
     History.prototype.redo = function () {
+
         this.pointer++;
         this.prevent = true;
+
+        this.defineCanUndo();
+        this.defineCanRedo();
+
         return Object.assign({}, this.states[this.pointer]);
-    }
-
-    History.prototype.canUndo = function () {
-        return this.pointer > 0;
-    }
-
-    History.prototype.canRedo = function () {
-        return this.pointer < this.states.length - 1;
     }
 
     if (typeof module != 'undefined' && module.exports) {

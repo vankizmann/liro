@@ -43,7 +43,7 @@ function install (Vue) {
     Vue.prototype.$http = window.axios;
     Vue.prototype.$liro = window.liro;
 
-    require('./store/app-history.js');
+    // require('./store/app-history.js');
     // require('./store/app-list.js');
 
     require('./filters/capitalize.js');
@@ -66,6 +66,8 @@ function install (Vue) {
     require('./components/form/app-form-select-multiple.vue');
 
     Vue.ready(function () {
+
+        var Icons = require('uikit/dist/js/uikit-icons');
 
         Vue.component('app-drag', VueDraggable);
 
@@ -95,7 +97,7 @@ function install (Vue) {
             modules: window.liro.vue.stores
         });
 
-        new Vue({ i18n, store }).$mount('#app');
+        new Vue({ i18n, store, mounted: () => UIkit.use(Icons) }).$mount('#app');
     });
 
 }

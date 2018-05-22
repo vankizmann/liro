@@ -1,7 +1,7 @@
 <template>
-    <li :class="{ 'uk-toolbar-item': true, 'uk-disabled': disabled }">
-        <a class="uk-button uk-button-link" :href="href" :disabled="disabled">
-            <i v-if="icon" :class="icon+' uk-margin-small-right'"></i> <slot></slot>
+    <li :class="{ 'app-toolbar-item': true, 'uk-disabled': disabled }">
+        <a class="uk-flex uk-flex-middle uk-button" :href="href" :disabled="disabled">
+            <span v-if="icon" class="uk-margin-small-right" :uk-icon="icon"></span> <slot></slot>
         </a>
     </li>
 </template>

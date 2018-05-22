@@ -2,8 +2,8 @@
     <div :class="{ 'app-list-collapse': true, 'uk-disabled': disabled, 'uk-active': active }">
 
         <!-- Label start -->
-        <a v-if="active" href="#" :class="['fa', open]" @click.prevent="click"></a>
-        <a v-else href="#" :class="['fa', closed]" @click.prevent="click"></a>
+        <a v-if="active" href="#" @click.prevent="click" uk-icon="chevron-down"></a>
+        <a v-else href="#" @click.prevent="click" uk-icon="chevron-right"></a>
         <!-- Label end -->
 
     </div>

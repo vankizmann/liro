@@ -33,12 +33,148 @@ $color-secondary:           $color-black;
 }
 
 body {
-    background-color: $color-gray-5;
+    background-color: $color-white;
 }
 
 a, button {
     text-decoration: none !important;
 }
+
+.app-navigation {
+
+    & {
+        width: 300px;
+        background-color: darken($color-primary, 5%);
+    }
+
+}
+
+.app-infobar {
+
+    & {
+        width: 100%;
+        background-color: darken($color-primary, 5%);
+    }
+
+}
+
+.app-body {
+
+    & {
+        width: 100%;
+        background-color: $color-white;
+    }
+
+}
+
+.app-toolbar {
+
+    & {
+        background-color: $color-white;
+        border-bottom: 2px solid $color-gray-5;
+    }
+
+    .uk-list li {
+        margin: 0;
+        height: 60px;
+    }
+
+    .app-toolbar-item {
+        height: 60px;
+    }
+
+    .app-toolbar-item a,
+    .app-toolbar-item button {
+        padding: 0 15px;
+        height: 40px;
+        margin: 10px 5px;
+        text-transform: none;
+        color: $color-gray-40;
+    }
+
+    .app-toolbar-item:not(.uk-disabled) a, 
+    .app-toolbar-item:not(.uk-disabled) button {
+        color: $color-gray-60;
+    }
+
+    .app-toolbar-item:not(.uk-disabled) a:hover,
+    .app-toolbar-item:not(.uk-disabled) button:hover {
+        color: $color-gray-80;
+    }
+
+    .uk-toolbar-container .uk-toolbar-spacer {
+        @extend .uk-navbar-item, .uk-flex, .uk-flex-middle ;
+        height: 60px;
+    }
+
+    .app-toolbar-spacer div {
+        width: $global-border-width;
+        background-color: $color-gray-5;
+        height: 30px;
+        margin: 15px 10px;
+    }
+
+    .app-toolbar-item .fa {
+        color: $color-gray-30;
+    }
+
+    .app-toolbar-item:not(.uk-disabled) .fa {
+        color: $color-gray-50;
+    }
+
+    .app-toolbar-item.uk-primary:not(.uk-disabled) a span,
+    .app-toolbar-item.uk-primary:not(.uk-disabled) button span {
+        color: $color-primary;
+    }
+
+    .app-toolbar-item.uk-success:not(.uk-disabled) a span,
+    .app-toolbar-item.uk-success:not(.uk-disabled) button span {
+        color: $color-green;
+    }
+
+    .app-toolbar-item.uk-warning:not(.uk-disabled) a span,
+    .app-toolbar-item.uk-warning:not(.uk-disabled) button span {
+        color: $color-orange;
+    }
+
+    .app-toolbar-item.uk-danger:not(.uk-disabled) a span,
+    .app-toolbar-item.uk-danger:not(.uk-disabled) button span {
+        color: $color-red;
+    }
+
+    .app-toolbar-item.uk-info:not(.uk-disabled) a span,
+    .app-toolbar-item.uk-info:not(.uk-disabled) button span {
+        color: $color-blue;
+    }
+
+    // .app-toolbar-item.uk-primary:not(.uk-disabled) a:hover,
+    // .app-toolbar-item.uk-primary:not(.uk-disabled) button:hover {
+    //     background-color: mix($color-white, $color-primary, 50%);
+    // }
+
+    // .app-toolbar-item.uk-success:not(.uk-disabled) a:hover,
+    // .app-toolbar-item.uk-success:not(.uk-disabled) button:hover {
+    //     background-color: mix($color-white, $color-green, 50%);
+    // }
+
+    // .app-toolbar-item.uk-warning:not(.uk-disabled) a:hover,
+    // .app-toolbar-item.uk-warning:not(.uk-disabled) button:hover {
+    //     background-color: mix($color-white, $color-orange, 50%);
+    // }
+
+    // .app-toolbar-item.uk-danger:not(.uk-disabled) a:hover,
+    // .app-toolbar-item.uk-danger:not(.uk-disabled) button:hover {
+    //     background-color: mix($color-white, $color-red, 50%);
+    // }
+
+    // .app-toolbar-item.uk-info:not(.uk-disabled) a:hover,
+    // .app-toolbar-item.uk-info:not(.uk-disabled) button:hover {
+    //     background-color: mix($color-white, $color-blue, 50%);
+    // }
+
+}
+
+
 
 .uk-pagination {
     margin-bottom: 0;
@@ -48,21 +184,22 @@ a, button {
     padding: 0;
 }
 
+.uk-flex-pull-left {
+    margin-right: auto;
+}
+
+.uk-flex-pull-right {
+    margin-left: auto;
+}
+
 .uk-background-pattern {
     background-color: $color-primary;
     background-image: url('../img/science.png');
     background-size: 400px 300px;
 }
 
-// .uk-form {
-//     background-color: $color-white;
-//     border-radius: 8px;
-//     padding: 30px 30px;
-//     box-shadow: rgba($color-gray-50, 0.1);
-// }
-
 .uk-button, .uk-input, .uk-select {
-    // border-radius: 500px;
+    border-radius: 3px;
 }
 
 .uk-ajax-load {
@@ -211,90 +348,14 @@ a, button {
 
 
 
-    .uk-toolbar .uk-toolbar-container {
-        padding: 0 20px;
-        background-color: $color-white;
-        // box-shadow: 0 1px 5px rgba($color-black, 0.1); 
-        transition: box-shadow 600ms ease;
-    }
-
-    .uk-toolbar.uk-sticky-below .uk-toolbar-container {
-        box-shadow: 0 2px 10px rgba($color-black, 0.2); 
-    }
-
-    .uk-toolbar-container .uk-toolbar-item {
-        @extend .uk-navbar-item, .uk-flex, .uk-flex-stretch ;
-        padding: 0;
-        margin: 10px 0;
-        height: 30px;
-    }
-
-    .uk-toolbar-container .uk-toolbar-item a {
-        height: 30px;
-        text-transform: none;
-    }
-
-    .uk-toolbar-container .uk-toolbar-item button {
-        padding: 0 15px;
-        height: 30px;
-        text-transform: none;
-    }
-
-    .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) a, 
-    .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) button {
-        color: $color-black;
-    }
-
-    .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) a:hover,
-    .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) button:hover {
-        background-color: $color-white;
-    }
-
-    .uk-toolbar-container .uk-toolbar-spacer {
-        @extend .uk-navbar-item, .uk-flex, .uk-flex-middle ;
-        height: 60px;
-    }
-
-    .uk-toolbar-container .uk-toolbar-spacer div {
-        width: $global-border-width;
-        background-color: darken($color-gray-10, 5%);
-        height: 30px;
-    }
-
-    .uk-toolbar-container .uk-toolbar-item .fa {
-        color: $color-gray-30;
-    }
-
-    .uk-toolbar-container .uk-toolbar-item:not(.uk-disabled) .fa {
-        color: $color-gray-50;
-    }
-
-    .uk-toolbar-item.uk-icon-primary:not(.uk-disabled) .fa {
-        color: $color-primary;
-    }
-
-    .uk-toolbar-item.uk-icon-success:not(.uk-disabled) .fa {
-        color: $color-green;
-    }
-
-    .uk-toolbar-item.uk-icon-warning:not(.uk-disabled) .fa {
-        color: $color-orange;
-    }
-
-    .uk-toolbar-item.uk-icon-danger:not(.uk-disabled) .fa {
-        color: $color-red;
-    }
-
-    .uk-toolbar-item.uk-icon-info:not(.uk-disabled) .fa {
-        color: $color-blue;
-    }
+    
 
 }
 
 #uk-main {
-    
-    .uk-container {
-        padding: 0 30px;
+
+    & {
+        background-color: $color-white;
     }
 
 }
@@ -457,7 +518,7 @@ a, button {
         @extend .uk-flex, .uk-flex-middle ;
         padding: 15px 0;
         color: $color-gray-60;
-        border-bottom: 2px solid $color-gray-5;
+        background-color: $color-gray-5;
     }
 
     .uk-table-list-head a {
@@ -468,6 +529,7 @@ a, button {
         @extend .uk-flex, .uk-flex-middle ;
         padding: 15px 0;
         border-bottom: 1px solid $color-gray-5;
+        background-color: $color-white;
     }
 
     .uk-table-list-td {

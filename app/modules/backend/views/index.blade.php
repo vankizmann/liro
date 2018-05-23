@@ -66,51 +66,86 @@
             </div>
             <!-- Help end -->
 
-            <div class="uk-flex">
+            <header class="app-header">
 
-                <div class="app-navigation">
-                    <div class="uk-logo" style="height: 80px">
-                    LOGO
+                <nav class="app-navigation uk-flex">
+                    <div class="uk-flex-pull-left">
+
+                        <!-- Main menu start -->
+                        <ul class="uk-navbar-nav">
+                            @foreach( app('menus')->type(1)->toTree() as $menu )
+                                @include('liro-backend::partials/menu-item', $menu)
+                            @endforeach
+                        </ul>
+                        <!-- Main menu end -->
+
                     </div>
-                    <!-- Main menu start -->
-                    <ul class="uk-list">
-                        @foreach( app('menus')->type(1)->toTree() as $menu )
-                            @include('liro-backend::partials/menu-item', $menu)
-                        @endforeach
-                    </ul>
-                    <!-- Main menu end -->
+                    <div class="uk-flex-pull-right">
+
+                        <!-- User menu start -->
+                        <ul class="uk-navbar-nav">
+                            @foreach( app('menus')->type(2)->toTree() as $menu )
+                                @include('liro-backend::partials/menu-item', $menu)
+                            @endforeach
+                        </ul>
+                        <!-- User menu end -->
+                        
+                    </div>
+                </nav>
+
+                <nav class="app-infobar uk-flex">
+
+                    <!-- Main menu subitems start -->
+                    <div class="uk-flex-pull-left">
+                        <ul class="uk-navbar-nav">
+                            @foreach( app('menus')->currentRoot()->children()->getEnabled()->get() as $menu )
+                                @include('liro-backend::partials/menu-item', $menu)
+                            @endforeach
+                        </ul>
+                    </div>
+                    <!-- Main menu subitems end -->
+
+                    <div class="uk-flex-pull-right">
+
+                        <!-- User menu start -->
+                        <portal-target class="uk-navbar-nav" name="app-infobar-action" multiple></portal-target>
+                        <!-- User menu end -->
+                        
+                    </div>
+                </nav>
+
+            </header>
+
+            <nav class="app-toolbar uk-flex" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'">
+
+                <div class="uk-flex-pull-left">
+                    <portal-target class="uk-list uk-flex" name="app-toolbar-left" multiple></portal-target>
                 </div>
 
-                <div class="app-body">
-
-                    <!-- Toolbar start -->
-                    <div class="app-toolbar uk-flex uk-flex-middle" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'">
-                        <div class="uk-flex-pull-left">
-                            <portal-target class="uk-list uk-flex" name="app-toolbar-left" multiple></portal-target>
-                        </div>
-                        <div class="uk-flex-pull-right">
-                            <portal-target class="uk-list uk-flex" name="app-toolbar-right" multiple></portal-target>
-                        </div>
-                    </div>
-                    <!-- Toolbar end -->
-
-                    <div class="app-content">
-                        @if ( session()->has('error') )
-                            <script>UIkit.notification('{{ session('error') }}', 'error');</script>
-                        @endif
-                        @if ( session()->has('success') )
-                            <script>UIkit.notification('{{ session('success') }}', 'success');</script>
-                        @endif
-                        @if ( session()->has('message') )
-                            <script>UIkit.notification('{{ session('message') }}', 'message');</script>
-                        @endif
-                        @yield('content')
-                    </div>
-                    
+                <div class="uk-flex-pull-right">
+                    <portal-target class="uk-list uk-flex" name="app-toolbar-right" multiple></portal-target>
                 </div>
 
+            </nav>
+
+            <main class="app-body">
+
+                <div class="app-content">
+                    @if ( session()->has('error') )
+                        <script>UIkit.notification('{{ session('error') }}', 'error');</script>
+                    @endif
+                    @if ( session()->has('success') )
+                        <script>UIkit.notification('{{ session('success') }}', 'success');</script>
+                    @endif
+                    @if ( session()->has('message') )
+                        <script>UIkit.notification('{{ session('message') }}', 'message');</script>
+                    @endif
+                    @yield('content')
+                </div>
+                
             </div>
 
-        </div>
+        </main>
+
     </body>
 </html>

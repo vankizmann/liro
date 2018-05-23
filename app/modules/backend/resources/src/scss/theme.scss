@@ -11,40 +11,59 @@ $color-yellow:              #FFD530;
 $color-white:               #ffffff;
 $color-black:               #05080c;
 
-$color-gray-5:              mix($color-white, $color-black, 95%);
-$color-gray-10:             mix($color-white, $color-black, 90%);
-$color-gray-20:             mix($color-white, $color-black, 80%);
-$color-gray-30:             mix($color-white, $color-black, 70%);
-$color-gray-40:             mix($color-white, $color-black, 60%);
-$color-gray-50:             mix($color-white, $color-black, 50%);
-$color-gray-60:             mix($color-white, $color-black, 40%);
-$color-gray-70:             mix($color-white, $color-black, 30%);
-$color-gray-80:             mix($color-white, $color-black, 20%);
-$color-gray-90:             mix($color-white, $color-black, 10%);
-
 $color-primary:             $color-blue;
 $color-secondary:           $color-black;
+
+$color-dark-10:             mix($color-black, $color-primary, 90%);
+$color-dark-20:             mix($color-black, $color-primary, 80%);
+$color-dark-30:             mix($color-black, $color-primary, 70%);
+$color-dark-40:             mix($color-black, $color-primary, 60%);
+$color-dark-50:             mix($color-black, $color-primary, 50%);
+$color-dark-60:             mix($color-black, $color-primary, 40%);
+$color-dark-70:             mix($color-black, $color-primary, 30%);
+$color-dark-80:             mix($color-black, $color-primary, 20%);
+$color-dark-90:             mix($color-black, $color-primary, 10%);
+
+$color-light-10:            mix($color-white, $color-primary, 90%);
+$color-light-20:            mix($color-white, $color-primary, 80%);
+$color-light-30:            mix($color-white, $color-primary, 70%);
+$color-light-40:            mix($color-white, $color-primary, 60%);
+$color-light-50:            mix($color-white, $color-primary, 50%);
+$color-light-60:            mix($color-white, $color-primary, 40%);
+$color-light-70:            mix($color-white, $color-primary, 30%);
+$color-light-80:            mix($color-white, $color-primary, 20%);
+$color-light-90:            mix($color-white, $color-primary, 10%);
+
+$color-gray-10:             mix($color-white, $color-dark-20, 95%);
+$color-gray-20:             mix($color-white, $color-dark-20, 90%);
+$color-gray-30:             mix($color-white, $color-dark-20, 85%);
+$color-gray-40:             mix($color-white, $color-dark-20, 60%);
+$color-gray-50:             mix($color-white, $color-dark-20, 50%);
+$color-gray-60:             mix($color-white, $color-dark-20, 40%);
+$color-gray-70:             mix($color-white, $color-dark-20, 30%);
+$color-gray-80:             mix($color-white, $color-dark-20, 20%);
+$color-gray-90:             mix($color-white, $color-dark-20, 10%);
 
 @import 'vendor.scss';
 @import 'app.scss';
 
-[v-cloak] {
-    display: none
-}
-
 body {
-    background-color: $color-white;
+    background-color: $color-gray-10;
 }
 
 a, button {
     text-decoration: none !important;
 }
 
+.app-header {
+    box-shadow: 0 0 20px rgba($color-gray-50, 0.1);
+}
+
 .app-navigation {
 
     & {
-        width: 300px;
-        background-color: darken($color-primary, 5%);
+        background-color: $color-white;
+        border-bottom: 1px solid $color-gray-10;
     }
 
 }
@@ -52,8 +71,8 @@ a, button {
 .app-infobar {
 
     & {
-        width: 100%;
-        background-color: darken($color-primary, 5%);
+        background-color: $color-white;
+        // border-bottom: 1px solid $color-gray-10;
     }
 
 }
@@ -62,7 +81,7 @@ a, button {
 
     & {
         width: 100%;
-        background-color: $color-white;
+        // background-color: $color-white;
     }
 
 }
@@ -70,8 +89,7 @@ a, button {
 .app-toolbar {
 
     & {
-        background-color: $color-white;
-        border-bottom: 2px solid $color-gray-5;
+        background-color: $color-gray-20;
     }
 
     .uk-list li {
@@ -109,7 +127,7 @@ a, button {
 
     .app-toolbar-spacer div {
         width: $global-border-width;
-        background-color: $color-gray-5;
+        background-color: $color-gray-10;
         height: 30px;
         margin: 15px 10px;
     }
@@ -518,7 +536,7 @@ a, button {
         @extend .uk-flex, .uk-flex-middle ;
         padding: 15px 0;
         color: $color-gray-60;
-        background-color: $color-gray-5;
+        background-color: $color-gray-10;
     }
 
     .uk-table-list-head a {
@@ -528,7 +546,7 @@ a, button {
     .uk-table-list-row {
         @extend .uk-flex, .uk-flex-middle ;
         padding: 15px 0;
-        border-bottom: 1px solid $color-gray-5;
+        border-bottom: 1px solid $color-gray-10;
         background-color: $color-white;
     }
 

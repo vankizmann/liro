@@ -79,8 +79,6 @@
 <script>
 module.exports = {
 
-    name: 'app-types-edit',
-
     computed: {
         canUndo() {
             return this.$store.getters['history/canUndo'];
@@ -163,6 +161,10 @@ module.exports = {
     }
 
 }
-liro.component(module.exports);
+
+if (window.liro) {
+    liro.vue.$component('app-types-edit', module.exports);
+} 
+
 </script>
 

@@ -97,11 +97,10 @@
 <script>
     module.exports = {
 
-        name: 'app-types-index',
-
         computed: {
             list() {
-                return this.$store.getters['list/get'];
+                return this.types;
+                // return this.$store.getters['list/get'];
             }
         },
 
@@ -125,5 +124,9 @@
         }
 
     }
-    liro.component(module.exports);
+    
+if (window.liro) {
+    liro.vue.$component('app-types-index', module.exports);
+} 
+
 </script>

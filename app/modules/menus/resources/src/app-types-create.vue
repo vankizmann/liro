@@ -73,8 +73,6 @@
 <script>
 module.exports = {
 
-    name: 'app-types-create',
-
     computed: {
         canUndo() {
             return this.$store.getters['history/canUndo'];
@@ -157,6 +155,10 @@ module.exports = {
     }
 
 }
-liro.component(module.exports);
+
+if (window.liro) {
+    liro.vue.$component('app-types-create', module.exports);
+} 
+
 </script>
 

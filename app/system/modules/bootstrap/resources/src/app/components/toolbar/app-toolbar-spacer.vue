@@ -1,6 +1,6 @@
 <template>
     <li class="app-toolbar-spacer">
-        <div></div>
+        <div class="uk-spacer"></div>
     </li>
 </template>
 <script>

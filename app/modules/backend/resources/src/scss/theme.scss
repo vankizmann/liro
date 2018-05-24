@@ -2,10 +2,10 @@
  * Theme
  **/
 
-$color-green:               #7fda89;
-$color-blue:                #5394f6;
-$color-red:                 #ee4e56;
-$color-orange:              #FF9430;
+$color-green:               #00df94;
+$color-blue:                #007cff;
+$color-red:                 #ff2169;
+$color-orange:              #ffb958;
 $color-yellow:              #FFD530;
 
 $color-white:               #ffffff;
@@ -34,15 +34,15 @@ $color-light-70:            mix($color-white, $color-primary, 30%);
 $color-light-80:            mix($color-white, $color-primary, 20%);
 $color-light-90:            mix($color-white, $color-primary, 10%);
 
-$color-gray-10:             mix($color-white, $color-dark-20, 95%);
-$color-gray-20:             mix($color-white, $color-dark-20, 90%);
-$color-gray-30:             mix($color-white, $color-dark-20, 85%);
-$color-gray-40:             mix($color-white, $color-dark-20, 60%);
-$color-gray-50:             mix($color-white, $color-dark-20, 50%);
-$color-gray-60:             mix($color-white, $color-dark-20, 40%);
-$color-gray-70:             mix($color-white, $color-dark-20, 30%);
-$color-gray-80:             mix($color-white, $color-dark-20, 20%);
-$color-gray-90:             mix($color-white, $color-dark-20, 10%);
+$color-gray-10:             mix($color-white, $color-dark-10, 97.5%);
+$color-gray-20:             mix($color-white, $color-dark-10, 87.5%);
+$color-gray-30:             mix($color-white, $color-dark-10, 77.5%);
+$color-gray-40:             mix($color-white, $color-dark-10, 67.5%);
+$color-gray-50:             mix($color-white, $color-dark-10, 57.5%);
+$color-gray-60:             mix($color-white, $color-dark-10, 47.5%);
+$color-gray-70:             mix($color-white, $color-dark-10, 37.5%);
+$color-gray-80:             mix($color-white, $color-dark-10, 27.5%);
+$color-gray-90:             mix($color-white, $color-dark-10, 17.5%);
 
 @import 'vendor.scss';
 @import 'app.scss';
@@ -55,6 +55,99 @@ a, button {
     text-decoration: none !important;
 }
 
+.uk-input, .uk-select, .uk-checkbox {
+    border-width: 2px;
+    background-color: transparent;
+}
+
+.uk-button, .uk-input, .uk-select, .uk-checkbox {
+    border-radius: 2px;
+}
+
+.uk-ajax-load {
+
+    & {
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    & {
+        width: 100%;
+        height: 100%;
+    }
+
+    & {
+        z-index: 999;
+        opacity: 0;
+        display: none;
+    }
+
+    & {
+        background-color: rgba($color-primary, 0.8);
+    }
+
+    &.uk-active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .uk-spinner circle {
+        stroke: $color-white !important;
+    }
+    
+}
+
+.uk-navbar-list {
+
+    & {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    li {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    li > a {
+        display: inline-flex;
+        align-items: center;
+        text-transform: none;
+    }
+
+    li > a {
+        padding: 0 10px;
+        color: $color-gray-40;
+        transition: all 150ms;
+    }
+
+    li:first-child > a {
+        margin-left: 0 !important;
+    }
+
+    li:last-child > a {
+        margin-right: 0 !important;
+    }
+
+    li > a.uk-button {
+        padding: 0 15px;
+        margin: 0 5px;
+    }
+
+    li > a:hover {
+        color: $color-gray-60;
+    } 
+
+    li.uk-active > a {
+        color: $color-primary;
+    }
+
+}
+
 .app-header {
     box-shadow: 0 0 20px rgba($color-gray-50, 0.1);
 }
@@ -62,8 +155,17 @@ a, button {
 .app-navigation {
 
     & {
+        padding: 0 30px;
         background-color: $color-white;
         border-bottom: 1px solid $color-gray-10;
+    }
+
+    .uk-navbar-list > li {
+        font-size: 0.875rem;
+    }
+
+    .uk-navbar-list > li > a {
+        height: 45px;
     }
 
 }
@@ -71,17 +173,59 @@ a, button {
 .app-infobar {
 
     & {
+        padding: 0 30px;
         background-color: $color-white;
-        // border-bottom: 1px solid $color-gray-10;
     }
 
-}
+    & > div:first-child li {
+        font-size: 1.150rem;
+    }
 
-.app-body {
+    & > div:first-child li > a {
+        margin: 0 10px;
+        height: 85px;
+    }
 
-    & {
-        width: 100%;
-        // background-color: $color-white;
+    & > div:last-child li > .uk-button {
+        color: $color-white;
+        background-color: $color-primary;
+    }
+
+    & > div:last-child li > .uk-button:hover {
+        background-color: darken($color-primary, 5%);
+    }
+
+    & > div:last-child li.uk-success > .uk-button {
+        background-color: $color-green;
+    }
+
+    & > div:last-child li.uk-success > .uk-button:hover {
+        background-color: darken($color-green, 5%);
+    }
+
+    & > div:last-child li.uk-warning > .uk-button {
+        background-color: $color-orange;
+    }
+
+    & > div:last-child li.uk-warning > .uk-button:hover {
+        background-color: darken($color-orange, 5%);
+    }
+
+    & > div:last-child li.uk-danger > .uk-button {
+        background-color: $color-red;
+    }
+
+    & > div:last-child li.uk-danger > .uk-button:hover {
+        background-color: darken($color-red, 5%);
+    }
+
+    & > div:last-child li > .uk-button > .uk-icon {
+        opacity: 0.95;
+    }
+
+    & > div:last-child li > .uk-button > .uk-icon svg {
+        width: 17.5px;
+        height: 17.5px;
     }
 
 }
@@ -89,117 +233,89 @@ a, button {
 .app-toolbar {
 
     & {
-        background-color: $color-gray-20;
+        padding: 0 40px;
+        background-color: darken($color-primary, 5%);
+        box-shadow: 0 0 20px rgba($color-gray-50, 0.1);
     }
 
-    .uk-list li {
-        margin: 0;
-        height: 60px;
+    li {
+        padding: 10px 0;
     }
 
-    .app-toolbar-item {
-        height: 60px;
+    li > a {
+        margin: 0 10px;
     }
 
-    .app-toolbar-item a,
-    .app-toolbar-item button {
-        padding: 0 15px;
-        height: 40px;
-        margin: 10px 5px;
-        text-transform: none;
-        color: $color-gray-40;
+    li > .uk-button {
+        color: mix($color-white, $color-primary, 90%);
+        background-color: $color-primary;
     }
 
-    .app-toolbar-item:not(.uk-disabled) a, 
-    .app-toolbar-item:not(.uk-disabled) button {
-        color: $color-gray-60;
+    li > .uk-button:hover {
+        color: $color-white;
+        background-color: lighten($color-primary, 5%);
     }
 
-    .app-toolbar-item:not(.uk-disabled) a:hover,
-    .app-toolbar-item:not(.uk-disabled) button:hover {
-        color: $color-gray-80;
+    li.uk-disabled > .uk-button {
+        color: mix($color-white, $color-primary, 50%);
     }
 
-    .uk-toolbar-container .uk-toolbar-spacer {
-        @extend .uk-navbar-item, .uk-flex, .uk-flex-middle ;
-        height: 60px;
+    li.uk-success > .uk-button {
+        color: mix($color-white, $color-green, 90%);
+        background-color: $color-green;
     }
 
-    .app-toolbar-spacer div {
-        width: $global-border-width;
-        background-color: $color-gray-10;
-        height: 30px;
-        margin: 15px 10px;
+    li.uk-success > .uk-button:hover {
+        color: $color-white;
+        background-color: darken($color-green, 5%);
     }
 
-    .app-toolbar-item .fa {
-        color: $color-gray-30;
+    li.uk-warning > .uk-button {
+        color: mix($color-white, $color-orange, 90%);
+        background-color: $color-orange;
     }
 
-    .app-toolbar-item:not(.uk-disabled) .fa {
-        color: $color-gray-50;
+    li.uk-warning > .uk-button:hover {
+        color: $color-white;
+        background-color: darken($color-orange, 5%);
     }
 
-    .app-toolbar-item.uk-primary:not(.uk-disabled) a span,
-    .app-toolbar-item.uk-primary:not(.uk-disabled) button span {
-        color: $color-primary;
+    li.uk-danger > .uk-button {
+        color: mix($color-white, $color-red, 90%);
+        background-color: $color-red;
     }
 
-    .app-toolbar-item.uk-success:not(.uk-disabled) a span,
-    .app-toolbar-item.uk-success:not(.uk-disabled) button span {
-        color: $color-green;
+    li.uk-danger > .uk-button:hover {
+        color: $color-white;
+        background-color: darken($color-red, 5%);
     }
 
-    .app-toolbar-item.uk-warning:not(.uk-disabled) a span,
-    .app-toolbar-item.uk-warning:not(.uk-disabled) button span {
-        color: $color-orange;
+    li > .uk-button > .uk-icon {
+        opacity: 0.95;
     }
 
-    .app-toolbar-item.uk-danger:not(.uk-disabled) a span,
-    .app-toolbar-item.uk-danger:not(.uk-disabled) button span {
-        color: $color-red;
+    li > .uk-button > .uk-icon svg {
+        width: 17.5px;
+        height: 17.5px;
     }
 
-    .app-toolbar-item.uk-info:not(.uk-disabled) a span,
-    .app-toolbar-item.uk-info:not(.uk-disabled) button span {
-        color: $color-blue;
-    }
-
-    // .app-toolbar-item.uk-primary:not(.uk-disabled) a:hover,
-    // .app-toolbar-item.uk-primary:not(.uk-disabled) button:hover {
-    //     background-color: mix($color-white, $color-primary, 50%);
-    // }
-
-    // .app-toolbar-item.uk-success:not(.uk-disabled) a:hover,
-    // .app-toolbar-item.uk-success:not(.uk-disabled) button:hover {
-    //     background-color: mix($color-white, $color-green, 50%);
-    // }
-
-    // .app-toolbar-item.uk-warning:not(.uk-disabled) a:hover,
-    // .app-toolbar-item.uk-warning:not(.uk-disabled) button:hover {
-    //     background-color: mix($color-white, $color-orange, 50%);
-    // }
-
-    // .app-toolbar-item.uk-danger:not(.uk-disabled) a:hover,
-    // .app-toolbar-item.uk-danger:not(.uk-disabled) button:hover {
-    //     background-color: mix($color-white, $color-red, 50%);
-    // }
-
-    // .app-toolbar-item.uk-info:not(.uk-disabled) a:hover,
-    // .app-toolbar-item.uk-info:not(.uk-disabled) button:hover {
-    //     background-color: mix($color-white, $color-blue, 50%);
-    // }
+    li > .uk-spacer {
+       width: 15px;
+    } 
 
 }
 
+.app-body {
 
+    & {
+        padding: 0 30px;
+        // background-color: $color-white;
+    }
+
+}
 
 .uk-pagination {
     margin-bottom: 0;
-}
-
-.uk-container {
-    padding: 0;
 }
 
 .uk-flex-pull-left {
@@ -214,168 +330,6 @@ a, button {
     background-color: $color-primary;
     background-image: url('../img/science.png');
     background-size: 400px 300px;
-}
-
-.uk-button, .uk-input, .uk-select {
-    border-radius: 3px;
-}
-
-.uk-ajax-load {
-
-    & {
-        @extend .uk-position-cover ;
-        z-index: 999;
-        opacity: 0;
-        display: none;
-        background-color: rgba($color-primary, 0.8);
-    }
-
-    &.uk-active {
-        @extend .uk-flex, .uk-flex-center, .uk-flex-middle ;
-    }
-
-    .uk-spinner circle {
-        stroke: $color-white !important;
-    }
-    
-}
-
-#uk-header {
-
-    .uk-navbar-container {
-        height: 30px;
-        padding: 20px 20px;
-        background-color: $color-white;
-    }
-
-    .uk-sticky .uk-navbar-container {
-        padding: 0 20px;
-    }
-
-    .uk-navbar-container .uk-navbar-item,
-    .uk-navbar-container .uk-navbar-nav > li > a {
-        height: 30px;
-    }
-
-    .uk-navbar-container .uk-navbar-nav > li > a {
-        border-radius: 500px;
-        margin: 0 5px;
-        text-transform: none;
-        color: $color-gray-30;
-        font-size: 1rem;
-        transition: all 300ms ease;
-    }
-
-    .uk-navbar-container .uk-navbar-nav > li > a.uk-open,
-    .uk-navbar-container .uk-navbar-nav > li > a:hover {
-        color: $color-gray-60;
-    }
-
-    .uk-navbar-container .uk-navbar-nav > li.uk-active > a {
-        color: $color-black;
-    }
-
-    .uk-navbar-dropdown {
-        margin-top: 0;
-    }
-
-    .uk-infobar-container {
-        height: 90px;
-        padding: 0 20px;
-        background-color: $color-black;
-    }
-
-    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li {
-        @extend .uk-flex-inline, .uk-flex-middle ;
-    }
-
-    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li:nth-child(1n+2):before {
-        content: '/';
-        display: block;
-        font-weight: 300;
-        font-size: 1.500rem;
-        color: $color-gray-80;
-    }
-
-    .uk-infobar-container .uk-navbar-item,
-    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li > a {
-        height: 90px;
-    }
-
-    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li > a {
-        text-transform: none;
-        color: $color-gray-60;
-        font-size: 1.000rem;
-        font-weight: 500;
-        transition: background 300ms ease;
-    }
-
-    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li > a.uk-open,
-    .uk-infobar-container .uk-navbar-left .uk-navbar-nav > li > a:hover {
-        color: $color-gray-40;
-    }
-
-    .uk-infobar-container  .uk-navbar-left .uk-navbar-nav > li.uk-active > a {
-        color: $color-white;
-    }
-
-    .uk-infobar-container .uk-navbar-right {
-        @extend .uk-flex-middle ;
-    }
-
-    .uk-infobar-container .uk-navbar-right .uk-toolbar-item a {
-        height: 30px;
-        text-transform: none;
-    }
-
-    .uk-infobar-container .uk-toolbar-item {
-        font-size: 0.875rem;
-        margin: 10px 5px;
-    }
-
-    .uk-infobar-container .uk-toolbar-item:not(.uk-disabled) a, 
-    .uk-infobar-container .uk-toolbar-item:not(.uk-disabled) button {
-        color: $color-gray-40;
-    }
-
-    .uk-infobar-container .uk-toolbar-item:not(.uk-disabled) a:hover,
-    .uk-infobar-container .uk-toolbar-item:not(.uk-disabled) button:hover {
-        background-color: $color-gray-80;
-    }
-
-    .uk-infobar-container .uk-toolbar-spacer {
-        @extend .uk-flex, .uk-flex-middle ;
-    }
-
-    .uk-infobar-container .uk-toolbar-spacer div {
-        width: $global-border-width;
-        background-color: $color-gray-80;
-        height: 30px;
-    }
-
-    .uk-infobar-container .uk-toolbar-item .fa {
-        color: $color-gray-70;
-    }
-
-
-
-
-
-
-
-
-
-
-    
-
-}
-
-#uk-main {
-
-    & {
-        background-color: $color-white;
-    }
-
 }
 
 .uk-select-group {

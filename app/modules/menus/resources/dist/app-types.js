@@ -331,11 +331,10 @@ module.exports = Component.exports
 
 module.exports = {
 
-    name: 'app-types-index',
-
     computed: {
         list: function list() {
-            return this.$store.getters['list/get'];
+            return this.types;
+            // return this.$store.getters['list/get'];
         }
     },
 
@@ -362,7 +361,10 @@ module.exports = {
         this.$store.commit('list/init', this.types);
     }
 };
-liro.component(module.exports);
+
+if (window.liro) {
+    liro.vue.$component('app-types-index', module.exports);
+}
 
 /***/ }),
 /* 4 */
@@ -708,8 +710,6 @@ module.exports = Component.exports
 
 module.exports = {
 
-    name: 'app-types-create',
-
     computed: {
         canUndo: function canUndo() {
             return this.$store.getters['history/canUndo'];
@@ -794,7 +794,10 @@ module.exports = {
     }
 
 };
-liro.component(module.exports);
+
+if (window.liro) {
+    liro.vue.$component('app-types-create', module.exports);
+}
 
 /***/ }),
 /* 7 */
@@ -1156,8 +1159,6 @@ module.exports = Component.exports
 
 module.exports = {
 
-    name: 'app-types-edit',
-
     computed: {
         canUndo: function canUndo() {
             return this.$store.getters['history/canUndo'];
@@ -1242,7 +1243,10 @@ module.exports = {
     }
 
 };
-liro.component(module.exports);
+
+if (window.liro) {
+    liro.vue.$component('app-types-edit', module.exports);
+}
 
 /***/ }),
 /* 10 */

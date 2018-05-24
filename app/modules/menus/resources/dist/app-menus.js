@@ -780,14 +780,11 @@ var render = function() {
     [
       _c(
         "portal",
-        { attrs: { to: "app-infobar-action" } },
+        { attrs: { to: "app-infobar-right" } },
         [
           _c(
             "app-toolbar-link",
-            {
-              staticClass: "uk-icon-success",
-              attrs: { icon: "fa fa-plus", href: _vm.createRoute }
-            },
+            { staticClass: "uk-success", attrs: { href: _vm.createRoute } },
             [
               _vm._v(
                 "\n            " +
@@ -799,14 +796,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "app-toolbar-link",
-            {
-              staticClass: "uk-icon-default",
-              attrs: {
-                icon: "fa fa-info-circle",
-                href: "#",
-                "uk-toggle": "target: #app-module-help"
-              }
-            },
+            { attrs: { "uk-toggle": "target: #app-module-help" } },
             [
               _vm._v(
                 "\n            " +
@@ -823,7 +813,7 @@ var render = function() {
         _c("h1", [_vm._v(_vm._s(_vm.$t("liro-menus.toolbar.help")))])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "uk-flex uk-flex-middle uk-padding" }, [
+      _c("div", { staticClass: "uk-flex uk-flex-middle uk-margin" }, [
         _c("div", [
           _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
             _vm._v(_vm._s(_vm.$t("liro-menus.backend.menus.index")))
@@ -1661,7 +1651,6 @@ module.exports = Component.exports
 //
 //
 //
-//
 
 module.exports = {
 
@@ -1762,13 +1751,53 @@ var render = function() {
     [
       _c(
         "portal",
+        { attrs: { to: "app-infobar-right" } },
+        [
+          _c(
+            "app-toolbar-button",
+            {
+              staticClass: "uk-danger",
+              attrs: { icon: "trash", href: _vm.item.delete_route }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-menus.toolbar.delete")) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-button",
+            { attrs: { "uk-toggle": "target: #app-module-help" } },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "portal",
         { attrs: { to: "app-toolbar-left" } },
         [
           _c(
-            "app-toolbar-event",
+            "app-toolbar-button",
             {
               staticClass: "uk-success",
-              attrs: { icon: "check", event: "menu.save" }
+              attrs: { icon: "check" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.$liro.event.$emit("menu.save")
+                }
+              }
             },
             [
               _vm._v(
@@ -1780,11 +1809,8 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "app-toolbar-link",
-            {
-              staticClass: "uk-danger",
-              attrs: { icon: "close", href: _vm.indexRoute }
-            },
+            "app-toolbar-button",
+            { attrs: { icon: "close", href: _vm.indexRoute } },
             [
               _vm._v(
                 "\n            " +
@@ -1797,8 +1823,16 @@ var render = function() {
           _c("app-toolbar-spacer"),
           _vm._v(" "),
           _c(
-            "app-toolbar-event",
-            { attrs: { event: "menu.undo", disabled: !_vm.canUndo } },
+            "app-toolbar-button",
+            {
+              attrs: { disabled: !_vm.canUndo },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.$liro.event.$emit("menu.undo")
+                }
+              }
+            },
             [
               _vm._v(
                 "\n            " +
@@ -1809,8 +1843,16 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "app-toolbar-event",
-            { attrs: { event: "menu.redo", disabled: !_vm.canRedo } },
+            "app-toolbar-button",
+            {
+              attrs: { disabled: !_vm.canRedo },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.$liro.event.$emit("menu.redo")
+                }
+              }
+            },
             [
               _vm._v(
                 "\n            " +
@@ -1828,53 +1870,20 @@ var render = function() {
         { attrs: { to: "app-toolbar-right" } },
         [
           _c(
-            "app-toolbar-event",
+            "app-toolbar-button",
             {
-              staticClass: "uk-danger",
-              attrs: { event: "menu.reset", disabled: !_vm.canUndo }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.discard")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("app-toolbar-spacer"),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-link",
-            {
-              staticClass: "uk-danger",
-              attrs: { icon: "trash", href: _vm.item.delete_route }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.delete")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("app-toolbar-spacer"),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-link",
-            {
-              staticClass: "uk-info",
-              attrs: {
-                icon: "info",
-                href: "#",
-                "uk-toggle": "target: #app-module-help"
+              attrs: { disabled: !_vm.canUndo },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.$liro.event.$emit("menu.reset")
+                }
               }
             },
             [
               _vm._v(
                 "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
+                  _vm._s(_vm.$t("liro-menus.toolbar.discard")) +
                   "\n        "
               )
             ]

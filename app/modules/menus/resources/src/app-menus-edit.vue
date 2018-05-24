@@ -1,40 +1,39 @@
 <template>
     <div class="uk-form uk-form-stacked uk-padding">
 
+        <!-- Infobar start -->
+        <portal to="app-infobar-right">
+            <app-toolbar-button class="uk-danger" icon="trash" :href="item.delete_route">
+                {{ $t('liro-menus.toolbar.delete') }}
+            </app-toolbar-button>
+            <app-toolbar-button uk-toggle="target: #app-module-help">
+                {{ $t('liro-menus.toolbar.help') }}
+            </app-toolbar-button>
+        </portal>
+        <!-- Infobar end -->
+
         <!-- Toolbar start -->
         <portal to="app-toolbar-left">
-            <app-toolbar-event class="uk-success" icon="check" event="menu.save">
+            <app-toolbar-button class="uk-success" icon="check" @click.prevent="$liro.event.$emit('menu.save')">
                 {{ $t('liro-menus.toolbar.save') }}
-            </app-toolbar-event>
-            <app-toolbar-link class="uk-danger" icon="close" :href="indexRoute">
+            </app-toolbar-button>
+            <app-toolbar-button icon="close" :href="indexRoute">
                 {{ $t('liro-menus.toolbar.close') }}
-            </app-toolbar-link>
+            </app-toolbar-button>
             <app-toolbar-spacer>
                 <!-- Spacer -->
             </app-toolbar-spacer>
-            <app-toolbar-event event="menu.undo" :disabled="!canUndo">
+            <app-toolbar-button @click.prevent="$liro.event.$emit('menu.undo')" :disabled="!canUndo">
                 {{ $t('liro-menus.toolbar.undo') }}
-            </app-toolbar-event>
-            <app-toolbar-event event="menu.redo" :disabled="!canRedo">
+            </app-toolbar-button>
+            <app-toolbar-button @click.prevent="$liro.event.$emit('menu.redo')" :disabled="!canRedo">
                 {{ $t('liro-menus.toolbar.redo') }}
-            </app-toolbar-event>
+            </app-toolbar-button>
         </portal>
         <portal to="app-toolbar-right">
-            <app-toolbar-event class="uk-danger" event="menu.reset" :disabled="!canUndo">
+            <app-toolbar-button @click.prevent="$liro.event.$emit('menu.reset')" :disabled="!canUndo">
                 {{ $t('liro-menus.toolbar.discard') }}
-            </app-toolbar-event>
-            <app-toolbar-spacer>
-                <!-- Spacer -->
-            </app-toolbar-spacer>
-            <app-toolbar-link class="uk-danger" icon="trash" :href="item.delete_route">
-                {{ $t('liro-menus.toolbar.delete') }}
-            </app-toolbar-link>
-            <app-toolbar-spacer>
-                <!-- Spacer -->
-            </app-toolbar-spacer>
-            <app-toolbar-link class="uk-info" icon="info" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('liro-menus.toolbar.help') }}
-            </app-toolbar-link>
+            </app-toolbar-button>
         </portal>
         <!-- Toolbar end -->
 

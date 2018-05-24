@@ -177,13 +177,9 @@ a, button {
         background-color: $color-white;
     }
 
-    & > div:first-child li {
-        font-size: 1.150rem;
-    }
-
     & > div:first-child li > a {
         margin: 0 10px;
-        height: 85px;
+        height: 70px;
     }
 
     & > div:last-child li > .uk-button {

@@ -12460,13 +12460,9 @@ a, button {
   background-color: #ffffff;
 }
 
-.app-infobar > div:first-child li {
-  font-size: 1.150rem;
-}
-
 .app-infobar > div:first-child li > a {
   margin: 0 10px;
-  height: 85px;
+  height: 70px;
 }
 
 .app-infobar > div:last-child li > .uk-button {

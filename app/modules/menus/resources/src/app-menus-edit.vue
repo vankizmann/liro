@@ -1,11 +1,11 @@
 <template>
-    <div class="uk-form uk-form-stacked uk-padding">
+    <div class="uk-form uk-form-stacked">
 
         <!-- Infobar start -->
         <portal to="app-infobar-right">
-            <app-toolbar-button class="uk-danger" icon="trash" :href="item.delete_route">
-                {{ $t('liro-menus.toolbar.delete') }}
-            </app-toolbar-button>
+            <li class="uk-margin-right">
+                <span class="uk-text-small">Last save under a minute ago.</span>
+            </li>
             <app-toolbar-button uk-toggle="target: #app-module-help">
                 {{ $t('liro-menus.toolbar.help') }}
             </app-toolbar-button>
@@ -34,6 +34,9 @@
             <app-toolbar-button @click.prevent="$liro.event.$emit('menu.reset')" :disabled="!canUndo">
                 {{ $t('liro-menus.toolbar.discard') }}
             </app-toolbar-button>
+            <app-toolbar-button icon="trash" :href="item.delete_route">
+                {{ $t('liro-menus.toolbar.delete') }}
+            </app-toolbar-button>
         </portal>
         <!-- Toolbar end -->
 
@@ -44,8 +47,8 @@
         <!-- Help end -->
 
         <!-- Title start -->
-        <div class="uk-margin-bottom">
-            <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-menus.backend.menus.create') }}</h1>
+        <div class="uk-margin-large">
+            <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-menus.backend.menus.create') }}</h1>
         </div>
         <!-- Title end -->
 

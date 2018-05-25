@@ -3,14 +3,19 @@
 
        <!-- Infobar start -->
         <portal to="app-infobar-right">
-            <app-toolbar-link class="uk-success" :href="createRoute">
-                {{ $t('liro-menus.toolbar.create') }}
-            </app-toolbar-link>
             <app-toolbar-link uk-toggle="target: #app-module-help">
                 {{ $t('liro-menus.toolbar.help') }}
             </app-toolbar-link>
         </portal>
         <!-- Infobar end -->
+
+        <!-- Toolbar start -->
+        <portal to="app-toolbar-left">
+            <app-toolbar-link class="uk-success" icon="plus" :href="createRoute">
+                {{ $t('liro-menus.toolbar.create') }}
+            </app-toolbar-link>
+        </portal>
+        <!-- Toolbar end -->
 
         <!-- Help start -->
         <portal to="app-module-help">
@@ -18,11 +23,11 @@
         </portal>
         <!-- Help end -->
 
-        <div class="uk-flex uk-flex-middle uk-margin">
+        <div class="uk-flex uk-flex-middle uk-margin-large">
 
             <!-- Title start -->
             <div>
-                <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-menus.backend.menus.index') }}</h1>
+                <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-menus.backend.menus.index') }}</h1>
             </div>
             <!-- Title end -->
 

@@ -49,6 +49,7 @@ $color-gray-90:             mix($color-white, $color-dark-10, 17.5%);
 
 body {
     background-color: $color-gray-10;
+    // background-color: $color-white;
 }
 
 a, button {
@@ -56,12 +57,35 @@ a, button {
 }
 
 .uk-input, .uk-select, .uk-checkbox {
-    border-width: 2px;
-    background-color: transparent;
+    transition: all 150ms;
+}
+
+.uk-input:focus, .uk-select:focus, .uk-checkbox:focus, .uk-select.uk-open {
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
+}
+
+.uk-success > .uk-input:focus, .uk-success > .uk-select:focus, .uk-success > .uk-checkbox:focus, .uk-success > .uk-select.uk-open,
+.uk-form-success.uk-input:focus, .uk-form-success.uk-select:focus, .uk-form-success.uk-checkbox:focus {
+    box-shadow: 0 0 0 3px rgba($color-green, 0.15);
+}
+
+.uk-warning > .uk-input:focus, .uk-warning > .uk-select:focus, .uk-warning > .uk-checkbox:focus, .uk-warning > .uk-select.uk-open,
+.uk-form-warning.uk-input:focus, .uk-form-warning.uk-select:focus, .uk-form-warning.uk-checkbox:focus {
+    box-shadow: 0 0 0 3px rgba($color-orange, 0.15);
+}
+
+.uk-danger > .uk-input:focus, .uk-danger > .uk-select:focus, .uk-danger > .uk-checkbox:focus, .uk-danger > .uk-select.uk-open,
+.uk-form-danger.uk-input:focus, .uk-form-danger.uk-select:focus, .uk-form-danger.uk-checkbox:focus {
+    box-shadow: 0 0 0 3px rgba($color-red, 0.15);
 }
 
 .uk-button, .uk-input, .uk-select, .uk-checkbox {
     border-radius: 2px;
+}
+
+.uk-heading-primary {
+    font-weight: 300;
+    color: $color-primary;
 }
 
 .uk-ajax-load {
@@ -146,102 +170,6 @@ a, button {
         color: $color-primary;
     }
 
-}
-
-.app-header {
-    box-shadow: 0 0 20px rgba($color-gray-50, 0.1);
-}
-
-.app-navigation {
-
-    & {
-        padding: 0 30px;
-        background-color: $color-white;
-        border-bottom: 1px solid $color-gray-10;
-    }
-
-    .uk-navbar-list > li {
-        font-size: 0.875rem;
-    }
-
-    .uk-navbar-list > li > a {
-        height: 45px;
-    }
-
-}
-
-.app-infobar {
-
-    & {
-        padding: 0 30px;
-        background-color: $color-white;
-    }
-
-    & > div:first-child li > a {
-        margin: 0 10px;
-        height: 70px;
-    }
-
-    & > div:last-child li > .uk-button {
-        color: $color-white;
-        background-color: $color-primary;
-    }
-
-    & > div:last-child li > .uk-button:hover {
-        background-color: darken($color-primary, 5%);
-    }
-
-    & > div:last-child li.uk-success > .uk-button {
-        background-color: $color-green;
-    }
-
-    & > div:last-child li.uk-success > .uk-button:hover {
-        background-color: darken($color-green, 5%);
-    }
-
-    & > div:last-child li.uk-warning > .uk-button {
-        background-color: $color-orange;
-    }
-
-    & > div:last-child li.uk-warning > .uk-button:hover {
-        background-color: darken($color-orange, 5%);
-    }
-
-    & > div:last-child li.uk-danger > .uk-button {
-        background-color: $color-red;
-    }
-
-    & > div:last-child li.uk-danger > .uk-button:hover {
-        background-color: darken($color-red, 5%);
-    }
-
-    & > div:last-child li > .uk-button > .uk-icon {
-        opacity: 0.95;
-    }
-
-    & > div:last-child li > .uk-button > .uk-icon svg {
-        width: 17.5px;
-        height: 17.5px;
-    }
-
-}
-
-.app-toolbar {
-
-    & {
-        padding: 0 40px;
-        background-color: darken($color-primary, 5%);
-        box-shadow: 0 0 20px rgba($color-gray-50, 0.1);
-    }
-
-    li {
-        padding: 10px 0;
-    }
-
-    li > a {
-        margin: 0 10px;
-    }
-
     li > .uk-button {
         color: mix($color-white, $color-primary, 90%);
         background-color: $color-primary;
@@ -301,10 +229,63 @@ a, button {
 
 }
 
+.app-header {
+    box-shadow: 0 -5px 50px rgba($color-gray-50, 0.1);
+}
+
+.app-navigation {
+
+    & {
+        padding: 0 40px;
+        background-color: $color-white;
+        border-bottom: 1px solid $color-gray-10;
+    }
+
+    .uk-navbar-list > li {
+        font-size: 0.875rem;
+    }
+
+    .uk-navbar-list > li > a {
+        height: 50px;
+    }
+
+}
+
+.app-infobar {
+
+    & {
+        padding: 0 40px;
+        background-color: $color-white;
+    }
+
+    & > div:first-child li > a {
+        margin: 0 10px;
+        height: 80px;
+    }
+
+}
+
+.app-toolbar {
+
+    & {
+        padding: 0 40px;
+        background-color: darken($color-primary, 5%);
+    }
+
+    li {
+        padding: 10px 0;
+    }
+
+    li > a {
+        margin: 0 10px;
+    }
+
+}
+
 .app-body {
 
     & {
-        padding: 0 30px;
+        padding: 0 40px;
         // background-color: $color-white;
     }
 

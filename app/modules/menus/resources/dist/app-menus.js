@@ -717,6 +717,11 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
+//
+//
 
 module.exports = {
     computed: {
@@ -784,18 +789,6 @@ var render = function() {
         [
           _c(
             "app-toolbar-link",
-            { staticClass: "uk-success", attrs: { href: _vm.createRoute } },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.create")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-link",
             { attrs: { "uk-toggle": "target: #app-module-help" } },
             [
               _vm._v(
@@ -809,13 +802,35 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c(
+        "portal",
+        { attrs: { to: "app-toolbar-left" } },
+        [
+          _c(
+            "app-toolbar-link",
+            {
+              staticClass: "uk-success",
+              attrs: { icon: "plus", href: _vm.createRoute }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-menus.toolbar.create")) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c("portal", { attrs: { to: "app-module-help" } }, [
         _c("h1", [_vm._v(_vm._s(_vm.$t("liro-menus.toolbar.help")))])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "uk-flex uk-flex-middle uk-margin" }, [
+      _c("div", { staticClass: "uk-flex uk-flex-middle uk-margin-large" }, [
         _c("div", [
-          _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
+          _c("h1", { staticClass: "uk-heading-primary uk-margin-remove" }, [
             _vm._v(_vm._s(_vm.$t("liro-menus.backend.menus.index")))
           ])
         ]),
@@ -1651,6 +1666,9 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
 
 module.exports = {
 
@@ -1747,26 +1765,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "uk-form uk-form-stacked uk-padding" },
+    { staticClass: "uk-form uk-form-stacked" },
     [
       _c(
         "portal",
         { attrs: { to: "app-infobar-right" } },
         [
-          _c(
-            "app-toolbar-button",
-            {
-              staticClass: "uk-danger",
-              attrs: { icon: "trash", href: _vm.item.delete_route }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.delete")) +
-                  "\n        "
-              )
-            ]
-          ),
+          _c("li", { staticClass: "uk-margin-right" }, [
+            _c("span", { staticClass: "uk-text-small" }, [
+              _vm._v("Last save under a minute ago.")
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "app-toolbar-button",
@@ -1887,6 +1896,18 @@ var render = function() {
                   "\n        "
               )
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-button",
+            { attrs: { icon: "trash", href: _vm.item.delete_route } },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-menus.toolbar.delete")) +
+                  "\n        "
+              )
+            ]
           )
         ],
         1
@@ -1896,8 +1917,8 @@ var render = function() {
         _c("h1", [_vm._v("Help")])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "uk-margin-bottom" }, [
-        _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
+      _c("div", { staticClass: "uk-margin-large" }, [
+        _c("h1", { staticClass: "uk-heading-primary uk-margin-remove" }, [
           _vm._v(_vm._s(_vm.$t("liro-menus.backend.menus.create")))
         ])
       ]),

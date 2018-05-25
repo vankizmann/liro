@@ -118,19 +118,19 @@
                     </div>
                 </nav>
 
+                <nav class="app-toolbar uk-flex" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'">
+
+                    <div class="uk-flex-pull-left">
+                        <portal-target class="uk-navbar-list" name="app-toolbar-left" multiple></portal-target>
+                    </div>
+
+                    <div class="uk-flex-pull-right">
+                        <portal-target class="uk-navbar-list" name="app-toolbar-right" multiple></portal-target>
+                    </div>
+
+                </nav>
+
             </header>
-
-            <nav class="app-toolbar uk-flex" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'">
-
-                <div class="uk-flex-pull-left">
-                    <portal-target class="uk-navbar-list" name="app-toolbar-left" multiple></portal-target>
-                </div>
-
-                <div class="uk-flex-pull-right">
-                    <portal-target class="uk-navbar-list" name="app-toolbar-right" multiple></portal-target>
-                </div>
-
-            </nav>
 
             <main class="app-body">
 

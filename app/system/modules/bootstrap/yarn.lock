@@ -7541,9 +7541,9 @@ uglifyjs-webpack-plugin@^1.1.8:
     webpack-sources "^1.1.0"
     worker-farm "^1.5.2"
 
-uikit@^3.0.0-beta.42:
-  version "3.0.0-beta.42"
-  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.0.0-beta.42.tgz#f00a3504cfff33bcbef692fbfac6c6f0f3d5be08"
+uikit@^3.0.0-rc.2:
+  version "3.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.0.0-rc.2.tgz#e3d6fe59d751839c5308022354bb23fc61dda0d3"
 
 ultron@~1.1.0:
   version "1.1.1"

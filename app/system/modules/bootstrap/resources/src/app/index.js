@@ -35,6 +35,9 @@ if (window.Vue) {
 
 function install (Vue) {
 
+    var vuedraggable = require('vuedraggable');
+    Vue.component('app-drag', vuedraggable);
+
     Vue.use(Vuex);
     Vue.use(VueI18n);
     Vue.use(VeeValidate);
@@ -67,10 +70,6 @@ function install (Vue) {
 
     Vue.ready(function () {
 
-        var Icons = require('uikit/dist/js/uikit-icons');
-
-        Vue.component('app-drag', VueDraggable);
-
         switch(window.liro.locale.locale) {
             case 'en':
             Validator.localize('en', VeeValidateEN);
@@ -97,7 +96,7 @@ function install (Vue) {
             modules: window.liro.vue.stores
         });
 
-        new Vue({ i18n, store, mounted: () => UIkit.use(Icons) }).$mount('#app');
+        new Vue({ i18n, store }).$mount('#app');
     });
 
 }

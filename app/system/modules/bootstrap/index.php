@@ -32,8 +32,11 @@ return [
 
         $app['events']->fire('boot', $app);
 
+        $app['scripts']->link('draggable', '//cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.7/lib/draggable.bundle.js');
         $app['scripts']->link('vendor', '/app/system/modules/bootstrap/resources/dist/vendor.js');
         $app['scripts']->link('app', '/app/system/modules/bootstrap/resources/dist/app.js');
+
+        
 
         $messages = $app['translator']->getFromJson('*', []);
         $app['scripts']->plain('messages', 'liro.message.$set(' . json_encode($messages) . ');'); 

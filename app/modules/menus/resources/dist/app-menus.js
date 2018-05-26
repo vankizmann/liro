@@ -219,7 +219,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-menus-index-list.vue"
+Component.options.__file = "resources\\src\\app-menus-index-list.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -228,9 +228,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4ab2e83e", Component.options)
+    hotAPI.createRecord("data-v-5a2f3fbb", Component.options)
   } else {
-    hotAPI.reload("data-v-4ab2e83e", Component.options)
+    hotAPI.reload("data-v-5a2f3fbb", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -244,8 +244,6 @@ module.exports = Component.exports
 /* 13 */
 /***/ (function(module, exports) {
 
-//
-//
 //
 //
 //
@@ -265,7 +263,6 @@ module.exports = {
     },
     data: function data() {
         return {
-            drag: false,
             menus: this.value
         };
     },
@@ -280,15 +277,32 @@ module.exports = {
             _this.menus = value;
         });
 
+        var interval = null;
+
         $('body').on('start', function (event) {
-            if (_this.$refs.dropzone) {
-                $(_this.$refs.dropzone.$el).addClass('sortable-drag');
+
+            if (_this.$refs.dropzone && !$(_this.$refs.dropzone.$el).parent().hasClass('sortable-chosen')) {
+                interval = setInterval(function () {
+
+                    if (_this.$refs.dropzone && $(_this.$refs.dropzone.$el).children('li').length != 0) {
+                        $('> .app-menu-ignore', _this.$refs.dropzone.$el).remove();
+                    }
+
+                    if (_this.$refs.dropzone && $(_this.$refs.dropzone.$el).children('li').length == 0) {
+                        $(_this.$refs.dropzone.$el).append('<li class="app-menu-ignore"></li>');
+                    }
+                }, 50);
             }
         });
 
         $('body').on('end', function (event) {
-            if (_this.$refs.dropzone) {
-                $(_this.$refs.dropzone.$el).removeClass('sortable-drag');
+
+            if (interval) {
+                clearInterval(interval);
+            }
+
+            if (_this.$refs.dropzone && $(_this.$refs.dropzone.$el).children('li').length != 0) {
+                $('> .app-menu-ignore', _this.$refs.dropzone.$el).remove();
             }
         });
     }
@@ -304,40 +318,28 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "ul",
-    { ref: "list", staticClass: "uk-list" },
-    [
-      _c(
-        "app-drag",
-        {
-          ref: "dropzone",
-          staticClass: "app-menu-dropzone",
-          attrs: {
-            list: _vm.menus,
-            options: {
-              draggable: ".app-menu-item",
-              group: "app-menu-list",
-              animation: 300,
-              delay: 10
-            }
-          }
-        },
-        _vm._l(_vm.menus, function(menu, index) {
-          return _c("app-menu-index-item", {
-            key: menu.id,
-            staticClass: "app-menu-item",
-            model: {
-              value: _vm.menus[index],
-              callback: function($$v) {
-                _vm.$set(_vm.menus, index, $$v)
-              },
-              expression: "menus[index]"
-            }
-          })
-        })
-      )
-    ],
-    1
+    "app-drag",
+    {
+      ref: "dropzone",
+      staticClass: "uk-list",
+      attrs: {
+        element: "ul",
+        list: _vm.menus,
+        options: { group: "menu", filter: ".app-menu-ignore" }
+      }
+    },
+    _vm._l(_vm.menus, function(menu, index) {
+      return _c("app-menu-index-item", {
+        key: menu.id,
+        model: {
+          value: _vm.menus[index],
+          callback: function($$v) {
+            _vm.$set(_vm.menus, index, $$v)
+          },
+          expression: "menus[index]"
+        }
+      })
+    })
   )
 }
 var staticRenderFns = []
@@ -346,7 +348,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4ab2e83e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5a2f3fbb", module.exports)
   }
 }
 
@@ -376,7 +378,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-menus-index-item.vue"
+Component.options.__file = "resources\\src\\app-menus-index-item.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -385,9 +387,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5ebdd854", Component.options)
+    hotAPI.createRecord("data-v-5029c7b0", Component.options)
   } else {
-    hotAPI.reload("data-v-5ebdd854", Component.options)
+    hotAPI.reload("data-v-5029c7b0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -453,7 +455,7 @@ module.exports = {
         });
 
         this.$watch('value', function () {
-            _this.item = value;
+            _this.item = _this.value;
         });
     },
 
@@ -502,9 +504,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "li",
-    { attrs: { id: "menuItem_" + _vm.item.id } },
+    { staticClass: "app-menu-item" },
     [
-      _c("div", { staticClass: "uk-table-list-row" }, [
+      _c("div", { staticClass: "app-menu-display uk-table-list-row" }, [
         _c(
           "div",
           {
@@ -513,8 +515,8 @@ var render = function() {
           [
             _c("app-list-collapse", {
               attrs: {
-                disabled: _vm.children.length == 0,
-                active: !_vm.collapse && _vm.children.length != 0
+                disabled: _vm.item.children.length == 0,
+                active: !_vm.collapse && _vm.item.children.length != 0
               },
               on: {
                 click: function($event) {
@@ -581,8 +583,8 @@ var render = function() {
           {
             name: "show",
             rawName: "v-show",
-            value: !_vm.collapse || _vm.children.length == 0,
-            expression: "!collapse || children.length == 0"
+            value: !_vm.collapse || _vm.item.children.length == 0,
+            expression: "! collapse || item.children.length == 0"
           }
         ],
         model: {
@@ -603,7 +605,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5ebdd854", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-5029c7b0", module.exports)
   }
 }
 
@@ -633,7 +635,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-menus-index.vue"
+Component.options.__file = "resources\\src\\app-menus-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -642,9 +644,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6e3a375a", Component.options)
+    hotAPI.createRecord("data-v-71f30340", Component.options)
   } else {
-    hotAPI.reload("data-v-6e3a375a", Component.options)
+    hotAPI.reload("data-v-71f30340", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -658,11 +660,6 @@ module.exports = Component.exports
 /* 19 */
 /***/ (function(module, exports) {
 
-//
-//
-//
-//
-//
 //
 //
 //
@@ -764,7 +761,7 @@ module.exports = {
     mounted: function mounted() {
         var _this = this;
 
-        $('body').on('end', function () {
+        $(this.$refs.dropzone.$el).on('end', function () {
             _this.$http.post(_this.orderRoute, { type: _this.active.id, menus: _this.active.menu_tree });
         });
     }
@@ -789,25 +786,6 @@ var render = function() {
         [
           _c(
             "app-toolbar-link",
-            { attrs: { "uk-toggle": "target: #app-module-help" } },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
-                  "\n        "
-              )
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "portal",
-        { attrs: { to: "app-toolbar-left" } },
-        [
-          _c(
-            "app-toolbar-link",
             {
               staticClass: "uk-success",
               attrs: { icon: "plus", href: _vm.createRoute }
@@ -816,6 +794,18 @@ var render = function() {
               _vm._v(
                 "\n            " +
                   _vm._s(_vm.$t("liro-menus.toolbar.create")) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-link",
+            { attrs: { "uk-toggle": "target: #app-module-help" } },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
                   "\n        "
               )
             ]
@@ -939,6 +929,7 @@ var render = function() {
           _vm._v(" "),
           _vm.active
             ? _c("app-menu-index-list", {
+                ref: "dropzone",
                 model: {
                   value: _vm.active.menu_tree,
                   callback: function($$v) {
@@ -961,7 +952,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6e3a375a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-71f30340", module.exports)
   }
 }
 
@@ -991,7 +982,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-menus-create.vue"
+Component.options.__file = "resources\\src\\app-menus-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1000,9 +991,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-fe7e02b8", Component.options)
+    hotAPI.createRecord("data-v-17bca104", Component.options)
   } else {
-    hotAPI.reload("data-v-fe7e02b8", Component.options)
+    hotAPI.reload("data-v-17bca104", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1516,7 +1507,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-fe7e02b8", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-17bca104", module.exports)
   }
 }
 
@@ -1546,7 +1537,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-menus-edit.vue"
+Component.options.__file = "resources\\src\\app-menus-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1555,9 +1546,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f4dece9c", Component.options)
+    hotAPI.createRecord("data-v-91888fe8", Component.options)
   } else {
-    hotAPI.reload("data-v-f4dece9c", Component.options)
+    hotAPI.reload("data-v-91888fe8", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1799,7 +1790,6 @@ var render = function() {
           _c(
             "app-toolbar-button",
             {
-              staticClass: "uk-success",
               attrs: { icon: "check" },
               on: {
                 click: function($event) {
@@ -1919,7 +1909,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "uk-margin-large" }, [
         _c("h1", { staticClass: "uk-heading-primary uk-margin-remove" }, [
-          _vm._v(_vm._s(_vm.$t("liro-menus.backend.menus.create")))
+          _vm._v(_vm._s(_vm.$t("liro-menus.backend.menus.edit")))
         ])
       ]),
       _vm._v(" "),
@@ -2058,7 +2048,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f4dece9c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-91888fe8", module.exports)
   }
 }
 

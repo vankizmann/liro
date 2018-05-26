@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@shopify/draggable@shopify/draggable":
+  version "1.0.0-beta.7"
+  resolved "https://codeload.github.com/shopify/draggable/tar.gz/c2f41e8dbfb91d44e73973a4e1f8e1c0921603f4"
+
 JSONStorage@aheinze/JSONStorage#master:
   version "0.0.0"
   resolved "https://codeload.github.com/aheinze/JSONStorage/tar.gz/87f583f883e2eb96ad48dcbc7668ffe8339247e1"

@@ -1,8 +1,8 @@
 <template>
-    <li :id="'menuItem_' + item.id">
-        <div class="uk-table-list-row">
+    <li class="app-menu-item">
+        <div class="app-menu-display uk-table-list-row">
             <div class="uk-table-list-td uk-table-list-td-xs uk-text-center">
-                <app-list-collapse :disabled="children.length == 0" :active="!collapse && children.length != 0" @click="collapse = !collapse"></app-list-collapse>
+                <app-list-collapse :disabled="item.children.length == 0" :active="! collapse && item.children.length != 0 " @click="collapse = !collapse"></app-list-collapse>
             </div>
             <div class="uk-table-list-td uk-table-list-td-auto">
                 <a :href="item.edit_route">{{ item.title_fix }}</a><br>
@@ -18,7 +18,7 @@
                 <span>{{ item.id }}</span>
             </div>
         </div>
-        <app-menu-index-list v-show="!collapse || children.length == 0" v-model="item.children"></app-menu-index-list>
+        <app-menu-index-list v-show="! collapse || item.children.length == 0" v-model="item.children"></app-menu-index-list>
     </li>
 </template>
 <script>
@@ -50,7 +50,7 @@
             });
 
             this.$watch('value', () => {
-                this.item = value;
+                this.item = this.value;
             });
 
         },

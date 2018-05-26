@@ -207,7 +207,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-types-index.vue"
+Component.options.__file = "resources\\src\\app-types-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -216,9 +216,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2b0cd2c2", Component.options)
+    hotAPI.createRecord("data-v-239b3af6", Component.options)
   } else {
-    hotAPI.reload("data-v-2b0cd2c2", Component.options)
+    hotAPI.reload("data-v-239b3af6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -380,13 +380,13 @@ var render = function() {
     [
       _c(
         "portal",
-        { attrs: { to: "app-infobar-action" } },
+        { attrs: { to: "app-infobar-right" } },
         [
           _c(
             "app-toolbar-link",
             {
-              staticClass: "uk-icon-success",
-              attrs: { icon: "fa fa-plus", href: _vm.createRoute }
+              staticClass: "uk-success",
+              attrs: { icon: "plus", href: _vm.createRoute }
             },
             [
               _vm._v(
@@ -399,14 +399,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "app-toolbar-link",
-            {
-              staticClass: "uk-icon-default",
-              attrs: {
-                icon: "fa fa-info-circle",
-                href: "#",
-                "uk-toggle": "target: #app-module-help"
-              }
-            },
+            { attrs: { href: "#", "uk-toggle": "target: #app-module-help" } },
             [
               _vm._v(
                 "\n            " +
@@ -423,9 +416,9 @@ var render = function() {
         _c("h1", [_vm._v(_vm._s(_vm.$t("liro-menus.toolbar.help")))])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "uk-flex uk-flex-middle uk-margin-bottom" }, [
+      _c("div", { staticClass: "uk-flex uk-flex-middle uk-margin-large" }, [
         _c("div", [
-          _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
+          _c("h1", { staticClass: "uk-heading-primary uk-margin-remove" }, [
             _vm._v(_vm._s(_vm.$t("liro-menus.backend.types.index")))
           ])
         ]),
@@ -580,7 +573,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2b0cd2c2", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-239b3af6", module.exports)
   }
 }
 
@@ -610,7 +603,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-types-create.vue"
+Component.options.__file = "resources\\src\\app-types-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -619,9 +612,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e724f002", Component.options)
+    hotAPI.createRecord("data-v-00638e4e", Component.options)
   } else {
-    hotAPI.reload("data-v-e724f002", Component.options)
+    hotAPI.reload("data-v-00638e4e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1023,7 +1016,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-e724f002", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-00638e4e", module.exports)
   }
 }
 
@@ -1053,7 +1046,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-types-edit.vue"
+Component.options.__file = "resources\\src\\app-types-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1062,9 +1055,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-15f5bccd", Component.options)
+    hotAPI.createRecord("data-v-47a0dc27", Component.options)
   } else {
-    hotAPI.reload("data-v-15f5bccd", Component.options)
+    hotAPI.reload("data-v-47a0dc27", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1489,7 +1482,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-15f5bccd", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-47a0dc27", module.exports)
   }
 }
 

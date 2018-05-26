@@ -3,19 +3,14 @@
 
        <!-- Infobar start -->
         <portal to="app-infobar-right">
+            <app-toolbar-link class="uk-success" icon="plus" :href="createRoute">
+                {{ $t('liro-menus.toolbar.create') }}
+            </app-toolbar-link>
             <app-toolbar-link uk-toggle="target: #app-module-help">
                 {{ $t('liro-menus.toolbar.help') }}
             </app-toolbar-link>
         </portal>
         <!-- Infobar end -->
-
-        <!-- Toolbar start -->
-        <portal to="app-toolbar-left">
-            <app-toolbar-link class="uk-success" icon="plus" :href="createRoute">
-                {{ $t('liro-menus.toolbar.create') }}
-            </app-toolbar-link>
-        </portal>
-        <!-- Toolbar end -->
 
         <!-- Help start -->
         <portal to="app-module-help">
@@ -57,7 +52,7 @@
                     {{ $t('liro-menus.form.id') }}
                 </div>
             </div>
-            <app-menu-index-list v-if="active" v-model="active.menu_tree"></app-menu-index-list>
+            <app-menu-index-list ref="dropzone" v-if="active" v-model="active.menu_tree"></app-menu-index-list>
         </div>
 
     </div>
@@ -101,7 +96,7 @@
         },
         mounted() {
 
-            $('body').on('end', () => {
+            $(this.$refs.dropzone.$el).on('end', () => {
                 this.$http.post(this.orderRoute, { type: this.active.id, menus: this.active.menu_tree });
             });
 

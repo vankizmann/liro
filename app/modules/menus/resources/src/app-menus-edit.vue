@@ -14,7 +14,7 @@
 
         <!-- Toolbar start -->
         <portal to="app-toolbar-left">
-            <app-toolbar-button class="uk-success" icon="check" @click.prevent="$liro.event.$emit('menu.save')">
+            <app-toolbar-button icon="check" @click.prevent="$liro.event.$emit('menu.save')">
                 {{ $t('liro-menus.toolbar.save') }}
             </app-toolbar-button>
             <app-toolbar-button icon="close" :href="indexRoute">
@@ -48,7 +48,7 @@
 
         <!-- Title start -->
         <div class="uk-margin-large">
-            <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-menus.backend.menus.create') }}</h1>
+            <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-menus.backend.menus.edit') }}</h1>
         </div>
         <!-- Title end -->
 

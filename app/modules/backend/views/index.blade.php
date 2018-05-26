@@ -132,7 +132,7 @@
 
             </header>
 
-            <main class="app-body">
+            <main class="app-body uk-flex">
 
                 <div class="app-content">
                     @if ( session()->has('error') )
@@ -146,6 +146,8 @@
                     @endif
                     @yield('content')
                 </div>
+
+                <portal-target class="app-preview" name="app-module-preview" multiple></portal-target>
                 
             </div>
 

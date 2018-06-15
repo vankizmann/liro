@@ -10,7 +10,7 @@ module.exports = function () {
      * Watch function
      */
 
-    this.$watch = function(name, callback) {
+    this.$watch = this.watch = function(name, callback) {
         this.events.push({
             name, callback
         });
@@ -20,7 +20,7 @@ module.exports = function () {
      * Emit function
      */
 
-    this.$emit = function(name, args) {
+    this.$emit = this.emit = function(name, args) {
         this.events.where('name', name).map((event) => {
             event.callback.apply(this, arguments);
         });

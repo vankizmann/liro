@@ -4,8 +4,7 @@ var LiroMessage = require('./components/message.js');
 var LiroData = require('./components/data.js');
 var LiroEvent = require('./components/event.js');
 var LiroVue = require('./components/vue.js');
-var LiroHistory = require('./libraries/history.js');
-var LiroList = require('./libraries/list.js');
+var LiroFunc = require('./components/func.js');
 
 
 module.exports = {
@@ -14,6 +13,5 @@ module.exports = {
     data: new LiroData,
     event: new LiroEvent,
     vue: new LiroVue,
-    history: LiroHistory,
-    list: LiroList
+    func: new LiroFunc
 }

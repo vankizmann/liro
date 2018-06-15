@@ -18,23 +18,17 @@
         </portal>
         <!-- Help end -->
 
-        <div class="uk-flex uk-flex-middle uk-margin-large">
-
-            <!-- Title start -->
-            <div>
-                <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-menus.backend.menus.index') }}</h1>
-            </div>
-            <!-- Title end -->
-
-            <!-- Search start -->
-            <div style="width: 300px; margin-left: auto;">
-                <app-form-select class="uk-margin-remove" :options="types" option-label="title" option-value="id" v-model="tab"></app-form-select>
-            </div>
-            <!-- Search end -->
-
+        <!-- Title start -->
+        <div class="uk-margin-large">
+            <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-menus.backend.menus.index') }}</h1>
         </div>
+        <!-- Title end -->
 
-        <div class="uk-table-list">
+        <ul uk-tab>
+            <li v-for="(type, index) in types" :key="index"><a href="#" @click.prevent="tab = type.id">{{ type.title }}</a></li>
+        </ul>
+
+        <div class="uk-table-list"> 
             <div class="uk-table-list-head">
                 <div class="uk-table-list-td uk-table-list-td-xs uk-text-center">
                     {{ $t('liro-menus.form.hash') }}
@@ -58,7 +52,7 @@
     </div>
 </template>
 <script>
-    module.exports = {
+    export default {
         computed: {
             active() {
                 return _.find(this.types, { id: this.tab });
@@ -68,32 +62,45 @@
             }
         },
         props: {
+
             createRoute: {
-                default: '',
+                default() {
+                    return '';
+                },
                 type: String
             },
+
             orderRoute: {
-                default: '',
+                default() {
+                    return '';
+                },
                 type: String
             },
+
             menus: {
                 default() {
-                    return [];
+                    return this.$liro.data.get('menus', []);
                 },
-                type: Array
+                type: [Array, Object]
             },
+
             types: {
                 default() {
-                    return [];
+                    return this.$liro.data.get('types', []);
                 },
-                type: Array
+                type: [Array, Object]
             }
+
         },
+
         data() {
+
             return {
                 tab: 1
             }
+
         },
+
         mounted() {
 
             $(this.$refs.dropzone.$el).on('end', () => {
@@ -101,6 +108,7 @@
             });
 
         }
+
     }
-    liro.vue.$component('app-menus-index', module.exports);
+    liro.vue.$component('app-menus-index', this.default);
 </script>

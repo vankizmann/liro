@@ -11,7 +11,7 @@
                 default() {
                     return [];
                 },
-                type: Array
+                type: [Array, Object]
             }
         },
         data() {
@@ -23,7 +23,7 @@
 
             this.$watch('menus', (value) => {
                 this.$emit('input', value);
-            });
+            }, { deep: true });
 
             this.$watch('value', (value) => {
                 this.menus = value;

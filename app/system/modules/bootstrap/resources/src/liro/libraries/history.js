@@ -1,8 +1,11 @@
 (function (global) {
 
-    function History () {
+    function History (initial) {
 
-        this.states = [];
+        this.states = [
+            Object.assign({}, initial)
+        ];
+        
         this.pointer = 0;
         this.prevent = false;
 
@@ -11,22 +14,14 @@
 
     }
 
-    History.prototype.changeCanUndo = function () {
-        // changeCanUndo
-    }
-
     History.prototype.defineCanUndo = function () {
         this.canUndo = this.pointer > 0;
-        return this.changeCanUndo(this.canUndo) || this.canUndo;
-    }
-
-    History.prototype.changeCanRedo = function () {
-        // changeCanUndo
+        return this.canUndo;
     }
 
     History.prototype.defineCanRedo = function () {
         this.canRedo = this.pointer < this.states.length - 1;
-        return this.changeCanRedo(this.canRedo) || this.canRedo;
+        return this.canRedo;
     }
 
     History.prototype.preventer = function () {

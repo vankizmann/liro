@@ -72,7 +72,7 @@ class Menu extends Model
         $current = app('router')->currentRouteName();
 
         $routes = (new Walker)->multiple($this, 'children', function($result, $menu, $next) use ($current) {
-            return $next(array_merge($result, [$menu->package == $current]));
+            return $next(array_merge($result, [$menu->module == $current]));
         });
 
         return array_intersect(array_merge([$this->prefixRoute == request()->path()], $routes), [true]);

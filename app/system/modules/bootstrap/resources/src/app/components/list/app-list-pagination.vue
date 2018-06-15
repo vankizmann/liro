@@ -6,7 +6,7 @@
 
             <!-- Select start -->
             <select class="uk-select" v-model="limit">
-                <option v-for="(option, index) in options" :key="index" :value="option" :selected="option == limit">{{ option }}</option>
+                <option v-for="(option, index) in options" :key="index" :value="option">{{ option }}</option>
             </select>
             <!-- Select end -->
 
@@ -18,32 +18,32 @@
             <ul class="uk-pagination uk-flex-middle">
 
                 <!-- Last start -->
-                <li :class="{ 'uk-disabled': active == 1 }">
-                    <a href="#" @click.prevent="setPaginate(1)"><i class="fa fa-angle-double-left"></i></a>
+                <li :class="{ 'uk-disabled': config.page == 1 }">
+                    <a href="#" @click.prevent="paginate(1)"><i class="fa fa-angle-double-left"></i></a>
                 </li>
                 <!-- Last end -->
 
                 <!-- Prev start -->
-                <li :class="{ 'uk-disabled': active == 1 }">
-                    <a href="#" @click.prevent="setPaginate(active - 1)"><i class="fa fa-angle-left"></i></a>
+                <li :class="{ 'uk-disabled': config.page == 1 }">
+                    <a href="#" @click.prevent="paginate(config.page - 1)"><i class="fa fa-angle-left"></i></a>
                 </li>
                 <!-- Prev end -->
 
                 <!-- Pages start -->
-                <li v-for="page in $liro.func.range(pages, 1)" :key="page" :class="{ 'uk-active': page == active }">
-                    <a href="#" @click.prevent="setPaginate(page)">{{ page }}</a>
+                <li v-for="page in $liro.func.range(pages, 1)" :key="page" :class="{ 'uk-active': page == config.page }">
+                    <a href="#" @click.prevent="paginate(page)">{{ page }}</a>
                 </li>
                 <!-- Pages end -->
 
                 <!-- Next start -->
-                <li :class="{ 'uk-disabled': active == pages }">
-                    <a href="#" @click.prevent="setPaginate(active + 1)"><i class="fa fa-angle-right"></i></a>
+                <li :class="{ 'uk-disabled': config.page == pages }">
+                    <a href="#" @click.prevent="paginate(config.page + 1)"><i class="fa fa-angle-right"></i></a>
                 </li>
                 <!-- Next end -->
 
                 <!-- Last start -->
-                <li :class="{ 'uk-disabled': active == pages }">
-                    <a href="#" @click.prevent="setPaginate(pages)"><i class="fa fa-angle-double-right"></i></a>
+                <li :class="{ 'uk-disabled': config.page == pages }">
+                    <a href="#" @click.prevent="paginate(pages)"><i class="fa fa-angle-double-right"></i></a>
                 </li>
                 <!-- Last end -->
 
@@ -56,47 +56,58 @@
 <script>
     export default {
 
-        /**
-         * Computed properties
-         */
-        computed: {
-            active() {
-                return this.$store.getters['list/page'];
-            },
-            pages() {
-                return this.$store.getters['list/pages'];
-            },
-            limit: {
-                get() {
-                    return this.$store.getters['list/limit']
-                },
-                set(value) {
-                    this.$store.commit('list/paginate', { page: this.active, limit: value });
-                }
-            }
-        },
-
-        /**
-         * Changable properties
-         */
         props: {
-            defaultLimit: {
-                default: 25,
+
+            pages: {
+                default() {
+                    return 1;
+                },
                 type: Number
             },
+
+            config: {
+                default() {
+                    return {
+                        page: 1, limit: 25
+                    };
+                },
+                type: Object
+            },
+
             options: {
-                default: () => [25, 50, 100, 250, 500],
+                default() {
+                    return [25, 50, 100, 250, 500];
+                },
                 type: Array
             }
         },
 
-        /**
-         * Component methods
-         */
+        data() {
+            
+            return {
+                limit: this.config.limit
+            };
+
+        },
+
+        mounted() {
+
+            this.$watch('limit', () => {
+                this.paginate(this.config.page, this.limit);
+            });
+
+            this.$watch('config', () => {
+                this.limit = this.config.limit;
+            }, { deep: true });
+
+        },
+
         methods: {
-            setPaginate(page) {
-                this.$store.commit('list/paginate', { page: page, limit: this.limit });
+
+            paginate(page, limit) {
+                this.$emit('paginate', page || this.config.page, limit || this.config.limit);
             }
+
         }
         
     }

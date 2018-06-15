@@ -51,6 +51,10 @@ function install (Vue) {
 
     require('./filters/capitalize.js');
 
+    require('./components/helper/app-helper-history.vue');
+    require('./components/helper/app-helper-list.vue');
+
+
     require('./components/toolbar/app-toolbar-button.vue');
     require('./components/toolbar/app-toolbar-link.vue');
     require('./components/toolbar/app-toolbar-spacer.vue');

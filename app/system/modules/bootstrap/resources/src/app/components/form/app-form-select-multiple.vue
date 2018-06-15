@@ -60,7 +60,7 @@
                 default() {
                     return [];
                 },
-                type: [Array]
+                type: Array
             },
             label: {
                 default: '',
@@ -84,9 +84,9 @@
             },
             options: {
                 default: () => {
-                    return [];
+                    return {};
                 },
-                type: Array
+                type: [Object, Array]
             },
             optionValue: {
                 default: 'value',

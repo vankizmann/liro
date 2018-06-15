@@ -71,6 +71,7 @@
             "empty":            "Kein Eintrag gefunden.",
             "enabled":          "Aktiviert",
             "disabled":         "Deaktiviert",
+            "visibility":       "Sichtbarkeit",
             "visible":          "Sichtbar",
             "hidden":           "Versteckt",
             "search":           "Suche",
@@ -80,11 +81,19 @@
             "state":            "Status",
             "title":            "Titel",
             "theme":            "Theme",
-            "route":            "Route"
+            "route":            "Route",
+            "type":             "Menütyp",
+            "module":           "Modul",
+            "query":            "Query"
+
         },
 
         "placeholder": {
-            "themes": "Theme auswählen"
+            "themes":           "Theme auswählen",
+            "state":            "Status auswählen",
+            "visibility":       "Sichtbarkeit auswählen",
+            "type":             "Menütyp auswählen",
+            "module":           "Modul auswählen"
         }
 
     }

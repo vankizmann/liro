@@ -7,18 +7,26 @@ module.exports = function () {
     this.data = window.$data || {};
 
     /**
-     * Set locale function
+     * Init data function
      */
 
-    this.$set = function(key, value) {
+    this.$init = this.init = function(value) {
+        this.data = value;
+    }.bind(this);
+
+    /**
+     * Set data function
+     */
+
+    this.$set = this.set = function(key, value) {
         this.data[key] = value;
     }.bind(this);
 
     /**
-     * Get locale function
+     * Get data function
      */
 
-    this.$get = function(key, fallback) {
+    this.$get = this.get = function(key, fallback) {
         return this.data[key] || fallback;
     }.bind(this);
 

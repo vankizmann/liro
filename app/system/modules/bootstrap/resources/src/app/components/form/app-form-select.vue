@@ -83,9 +83,9 @@
             },
             options: {
                 default: () => {
-                    return [];
+                    return {};
                 },
-                type: Array
+                type: [Object, Array]
             },
             optionValue: {
                 default: 'value',

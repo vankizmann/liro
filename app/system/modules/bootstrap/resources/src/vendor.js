@@ -50,6 +50,13 @@ window.JSONStorage = require('jsonstorage/storage.js');
  * like laravel does. Has handy functions like find, map and so on.
  */
 
+window.Fuzzy = require('fuzzy-search');
+
+/**
+ * We'll load the collect.js which can help us handle collections
+ * like laravel does. Has handy functions like find, map and so on.
+ */
+
 window.liro = require('./liro/index.js');
 
 /**

@@ -27,7 +27,9 @@
                 type: String
             },
             id: {
-                default: '',
+                default() {
+                    return _.uniqueId('form-input-');
+                },
                 type: String
             },
             name: {

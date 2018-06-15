@@ -1,164 +1,132 @@
 <template>
-    <div class="uk-form uk-form-stacked">
+    <app-helper-history :value="TypeModel">
+        <div class="uk-form uk-form-stacked" slot-scope="{ item, canUndo, canRedo, undo, redo, reset }">
 
-        <!-- Infobar start -->
-        <portal to="app-infobar-action">
-            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('liro-menus.toolbar.help') }}
-            </app-toolbar-link>
-        </portal>
-        <!-- Infobar end -->
+            <!-- Infobar start -->
+            <portal to="app-infobar-right">
+                <app-toolbar-button uk-toggle="target: #app-module-help">
+                    {{ $t('liro-menus.toolbar.help') }}
+                </app-toolbar-button>
+            </portal>
+            <!-- Infobar end -->
 
-        <!-- Toolbar start -->
-        <portal to="app-toolbar-left">
-            <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="type.create" :disabled="disabled">
-                {{ $t('liro-menus.toolbar.create') }}
-            </app-toolbar-event>
-            <app-toolbar-link class="uk-icon-danger" icon="fa fa-times" :href="indexRoute" :disabled="disabled">
-                {{ $t('liro-menus.toolbar.close') }}
-            </app-toolbar-link>
-            <app-toolbar-spacer>
-                <!-- Spacer -->
-            </app-toolbar-spacer>
-            <app-toolbar-event icon="fa fa-undo" event="type.undo" :disabled="!canUndo">
-                {{ $t('liro-menus.toolbar.undo') }}
-            </app-toolbar-event>
-            <app-toolbar-event icon="fa fa-redo" event="type.redo" :disabled="!canRedo">
-                {{ $t('liro-menus.toolbar.redo') }}
-            </app-toolbar-event>
-        </portal>
-        <portal to="app-toolbar-right">
-            <app-toolbar-event class="uk-icon-danger" icon="fa fa-ban" event="type.reset" :disabled="!canUndo">
-                {{ $t('liro-menus.toolbar.discard') }}
-            </app-toolbar-event>
-        </portal>
-        <!-- Toolbar end -->
+            <!-- Toolbar start -->
+            <portal to="app-toolbar-left">
+                <app-toolbar-button icon="check" @click.prevent="create()">
+                    {{ $t('liro-menus.toolbar.create') }}
+                </app-toolbar-button>
+                <app-toolbar-button icon="close" :href="indexRoute">
+                    {{ $t('liro-menus.toolbar.close') }}
+                </app-toolbar-button>
+                <app-toolbar-spacer>
+                    <!-- Spacer -->
+                </app-toolbar-spacer>
+                <app-toolbar-button @click.prevent="undo()" :disabled="!canUndo">
+                    {{ $t('liro-menus.toolbar.undo') }}
+                </app-toolbar-button>
+                <app-toolbar-button @click.prevent="redo()" :disabled="!canRedo">
+                    {{ $t('liro-menus.toolbar.redo') }}
+                </app-toolbar-button>
+            </portal>
+            <portal to="app-toolbar-right">
+                <app-toolbar-button @click.prevent="reset()" :disabled="!canUndo">
+                    {{ $t('liro-menus.toolbar.discard') }}
+                </app-toolbar-button>
+            </portal>
+            <!-- Toolbar end -->
 
-        <!-- Help start -->
-        <portal to="app-module-help">
-            <h1>Help</h1>
-        </portal>
-        <!-- Help end -->
+            <!-- Help start -->
+            <portal to="app-module-help">
+                <h1>Help</h1>
+            </portal>
+            <!-- Help end -->
 
-        <!-- Title start -->
-        <div class="uk-margin-bottom">
-            <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-menus.backend.types.create') }}</h1>
+            <!-- Title start -->
+            <div class="uk-margin-large">
+                <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-menus.backend.types.create') }}</h1>
+            </div>
+            <!-- Title end -->
+
+            <!-- Form start -->
+            <fieldset class="uk-fieldset">
+
+                <app-form-input
+                    name="title" v-model="item.title" rules="required|min:4"
+                    :label="$t('liro-menus.form.title')" 
+                ></app-form-input>
+                
+                <app-form-input
+                    name="route" v-model="item.route"
+                    :label="$t('liro-menus.form.route')"
+                ></app-form-input>
+
+                <app-form-select
+                    name="theme" v-model="item.theme" :options="themes" option-label="name" option-value="name"
+                    :label="$t('liro-menus.form.theme')" :placeholder="$t('liro-menus.placeholder.themes')"
+                ></app-form-select>
+
+            </fieldset>
+            <!-- Form end -->
+
         </div>
-        <!-- Title end -->
-
-        <!-- Form start -->
-        <fieldset class="uk-fieldset">
-
-            <app-form-input
-                :label="$t('liro-menus.form.title')" type="text" id="title" name="title" 
-                rules="required|min:4" v-model="item.title"
-            ></app-form-input>
-            
-            <app-form-input
-                :label="$t('liro-menus.form.route')" type="route" id="route" 
-                name="route" v-model="item.route"
-            ></app-form-input>
-
-            <app-form-select
-                :label="$t('liro-menus.form.theme')" id="theme" name="theme" 
-                :options="themes" option-label="name" option-value="name"
-                :placeholder="$t('liro-menus.placeholder.themes')" v-model="item.theme"
-            ></app-form-select>
-
-        </fieldset>
-        <!-- Form end -->
-
-    </div>
+    </app-helper-history>
 </template>
 <script>
-module.exports = {
-
-    computed: {
-        canUndo() {
-            return this.$store.getters['history/canUndo'];
-        },
-        canRedo() {
-            return this.$store.getters['history/canRedo'];
-        }
-    },
+export default {
 
     props: {
+
         createRoute: {
-            default: '',
-            type: String
-        },
-        indexRoute: {
-            default: '',
-            type: String
-        },
-        themes: {
             default() {
-                return [];
+                return '';
             },
-            type: Array
+            type: String
         },
+
+        indexRoute: {
+            default() {
+                return '';
+            },
+            type: String
+        },
+
         type: {
             default() {
-                return {};
+                return this.$liro.data.get('type', []);
             },
             type: Object
+        },
+
+        themes: {
+            default() {
+                return this.$liro.data.get('themes', []);
+            },
+            type: [Array, Object]
         }
+
     },
 
     data() {
+        
         return {
-            disabled: false,
-            item: this.type
-        }
-    },
-
-    mounted() {
-
-        this.$store.commit('history/init', this.item);
-
-        this.$watch('item', _.debounce(this.create, 600), {
-            deep: true
-        });
-
-        this.$liro.listen('type.undo', () => {
-            this.item = this.$store.state.history.undo();
-        });
-
-        this.$liro.listen('type.redo', () => {
-            this.item = this.$store.state.history.redo();
-        });
-
-        this.$liro.listen('type.reset', () => {
-            this.item = this.$store.state.history.reset();
-        });
-
-        this.$liro.listen('type.create', () => {
-            this.$http.post(this.createRoute, this.item);
-        });
-
-        this.$liro.listen('ajax.load', () => {
-            this.disabled = true;
-        });
-
-        this.$liro.listen('ajax.error', () => {
-            this.disabled = false;
-        });
-
+            TypeModel: this.type
+        };
+        
     },
 
     methods: {
+
         create() {
-            if ( this.$store.state.history.preventer() ) {
-                this.$store.commit('history/save', this.item);
-            }
+            this.$http.post(this.createRoute, this.TypeModel);
         }
+
     }
 
 }
 
 if (window.liro) {
-    liro.vue.$component('app-types-create', module.exports);
-} 
+    liro.vue.$component('app-types-create', this.default);
+}
 
 </script>
 

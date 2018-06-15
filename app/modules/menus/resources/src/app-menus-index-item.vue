@@ -5,8 +5,7 @@
                 <app-list-collapse :disabled="item.children.length == 0" :active="! collapse && item.children.length != 0 " @click="collapse = !collapse"></app-list-collapse>
             </div>
             <div class="uk-table-list-td uk-table-list-td-auto">
-                <a :href="item.edit_route">{{ item.title_fix }}</a><br>
-                <span>{{ item.package }}</span>
+                <a :href="item.edit_route">{{ item.title_fix }}</a>
             </div>
             <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
                 <app-list-hidden :active="item.hidden == 1" href="#" @click.prevent="item.hidden == 1 ? visible() : hidden()"></app-list-hidden>

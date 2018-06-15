@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ 'app-list-sort': true, 'uk-active': active }">
+    <div :class="{ 'app-list-sort': true, 'uk-active': column == config.column }">
 
         <!-- Label start -->
         <a href="#"  @click.prevent="setSort">
@@ -16,19 +16,13 @@
          * Computed properties
          */
         computed: {
-            direction() {
-                return this.$store.getters['list/direction'];
-            },
             icon() {
 
                 if ( this.reverse ) {
-                    return this.direction == 'asc' ? 'fa-sort-amount-up' : 'fa-sort-amount-down';
+                    return this.config.direction == 'asc' ? 'fa-sort-amount-up' : 'fa-sort-amount-down';
                 }
 
-                return this.direction == 'asc' ? 'fa-sort-amount-down' : 'fa-sort-amount-up';
-            },
-            active() {
-                return this.$store.getters['list/order'] == this.column;
+                return this.config.direction == 'asc' ? 'fa-sort-amount-down' : 'fa-sort-amount-up';
             }
         },
 
@@ -36,18 +30,31 @@
          * Changable properties
          */
         props: {
+
+            config: {
+                default() {
+                    return {
+                        column: 'id', direction: 'desc'
+                    };
+                },
+                type: Object
+            },
+
             column: {
                 default: '',
                 type: String
             },
+
             label: {
                 default: '',
                 type: String
             },
+
             reverse: {
                 default: false,
                 type: Boolean
             }
+
         },
 
         /**
@@ -55,10 +62,11 @@
          */
         methods: {
             setSort() {
-                this.$store.commit('list/sort', { column: this.column, direction: this.direction == 'desc' ? 'asc' : 'desc' });
+                console.log(this.config.direction);
+                this.$emit('order', this.column, this.config.direction == 'desc' ? 'asc' : 'desc');
             }
         }
 
     }
-    liro.vue.$component('app-list-sort', this.default);
+    liro.vue.$component('app-list-order', this.default);
 </script>

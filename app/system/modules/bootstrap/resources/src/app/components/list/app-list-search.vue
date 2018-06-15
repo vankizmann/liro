@@ -3,8 +3,8 @@
 
         <!-- Input start -->
         <div class="uk-inline" style="display: block;">
-            <a class="uk-form-icon uk-form-icon-flip" @click.prevent="search = ''"><span :uk-icon="'close'"></span></a>
-            <input id="list-filter-search" class="uk-input" type="search" v-model="search" :placeholder="placeholder">
+            <a class="uk-form-icon uk-form-icon-flip" @click.prevent="query = ''"><span :uk-icon="'close'"></span></a>
+            <input id="list-filter-search" class="uk-input" type="search" v-model="query" :placeholder="placeholder">
         </div>
         <!-- Input end -->
 
@@ -13,32 +13,45 @@
 <script>
     export default {
 
-        /**
-         * Computed properties
-         */
-        computed: {
-            search: {
-                get() {
-                    return this.$store.getters['list/search'];
-                },
-                set(value) {
-                    this.$store.commit('list/search', { query: value, columns: this.columns });
-                }
-            }
-        },
-
-        /**
-         * Changable properties
-         */
         props: {
+
+            config: {
+                default() {
+                    return {
+                        query: '', columns: []
+                    };
+                },
+                type: Object
+            },
+
             placeholder: {
-                default: '',
+                default() {
+                    return '';
+                },
                 type: String
             },
+
             columns: {
-                default: () => [],
+                default() {
+                    return [];
+                },
                 type: Array
             }
+
+        },
+
+        data() {
+            return {
+                query: ''
+            };
+        },
+
+        mounted() {
+
+            this.$watch('query', _.debounce(() => {
+                this.$emit('search', this.query, this.columns);
+            }, 300));
+
         }
 
     }

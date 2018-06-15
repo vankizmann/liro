@@ -10,7 +10,7 @@ module.exports = function () {
      * Set locale function
      */
 
-    this.$set = function(locale) {
+    this.$set = this.set = function(locale) {
         this.locale = locale;
     }.bind(this);
 
@@ -18,7 +18,7 @@ module.exports = function () {
      * Get locale function
      */
 
-    this.$get = function() {
+    this.$get = this.get = function() {
         return this.locale;
     }.bind(this);
 

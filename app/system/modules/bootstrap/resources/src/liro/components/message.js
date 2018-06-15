@@ -10,7 +10,7 @@ module.exports = function () {
      * Set messages function
      */
 
-    this.$set = function(messages, locale) {
+    this.$set = this.set = function(messages, locale) {
 
         if (locale == null || locale == undefined) {
             locale = window.liro.locale.$get();
@@ -24,7 +24,7 @@ module.exports = function () {
      * Get messages function
      */
 
-    this.$get = function() {
+    this.$get = this.get = function() {
         return this.messages;
     }.bind(this);
 

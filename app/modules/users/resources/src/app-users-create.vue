@@ -1,181 +1,151 @@
 <template>
-    <div class="uk-form uk-form-stacked">
+    <app-helper-history :value="UserModel">
+        <div class="uk-form uk-form-stacked" slot-scope="{ item, canUndo, canRedo, undo, redo, reset }">
 
-        <!-- Infobar start -->
-        <portal to="app-infobar-action">
-            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('liro-menus.toolbar.help') }}
-            </app-toolbar-link>
-        </portal>
-        <!-- Infobar end -->
+            <!-- Infobar start -->
+            <portal to="app-infobar-right">
+                <app-toolbar-button uk-toggle="target: #app-module-help">
+                    {{ $t('liro-users.toolbar.help') }}
+                </app-toolbar-button>
+            </portal>
+            <!-- Infobar end -->
 
-        <!-- Toolbar start -->
-        <portal to="app-toolbar-left">
-            <app-toolbar-event class="uk-icon-success" icon="fa fa-check" event="user.create" :disabled="disabled">
-                {{ $t('liro-users.toolbar.create') }}
-            </app-toolbar-event>
-            <app-toolbar-link class="uk-icon-danger" icon="fa fa-times" :href="indexRoute" :disabled="disabled">
-                {{ $t('liro-users.toolbar.close') }}
-            </app-toolbar-link>
-            <app-toolbar-spacer>
-                <!-- Spacer -->
-            </app-toolbar-spacer>
-            <app-toolbar-event icon="fa fa-undo" event="user.undo" :disabled="!canUndo">
-                {{ $t('liro-users.toolbar.undo') }}
-            </app-toolbar-event>
-            <app-toolbar-event icon="fa fa-redo" event="user.redo" :disabled="!canRedo">
-                {{ $t('liro-users.toolbar.redo') }}
-            </app-toolbar-event>
-        </portal>
-        <portal to="app-toolbar-right">
-            <app-toolbar-event class="uk-icon-danger" icon="fa fa-ban" event="user.reset" :disabled="!canUndo">
-                {{ $t('liro-users.toolbar.discard') }}
-            </app-toolbar-event>
-        </portal>
-        <!-- Toolbar end -->
+            <!-- Toolbar start -->
+            <portal to="app-toolbar-left">
+                <app-toolbar-button icon="check" @click.prevent="create()">
+                    {{ $t('liro-users.toolbar.create') }}
+                </app-toolbar-button>
+                <app-toolbar-button icon="close" :href="indexRoute">
+                    {{ $t('liro-users.toolbar.close') }}
+                </app-toolbar-button>
+                <app-toolbar-spacer>
+                    <!-- Spacer -->
+                </app-toolbar-spacer>
+                <app-toolbar-button @click.prevent="undo()" :disabled="!canUndo">
+                    {{ $t('liro-users.toolbar.undo') }}
+                </app-toolbar-button>
+                <app-toolbar-button @click.prevent="redo()" :disabled="!canRedo">
+                    {{ $t('liro-users.toolbar.redo') }}
+                </app-toolbar-button>
+            </portal>
+            <portal to="app-toolbar-right">
+                <app-toolbar-button @click.prevent="reset()" :disabled="!canUndo">
+                    {{ $t('liro-users.toolbar.discard') }}
+                </app-toolbar-button>
+            </portal>
+            <!-- Toolbar end -->
 
-        <!-- Help start -->
-        <portal to="app-module-help">
-            <h1>Help</h1>
-        </portal>
-        <!-- Help end -->
+            <!-- Help start -->
+            <portal to="app-module-help">
+                <h1>Help</h1>
+            </portal>
+            <!-- Help end -->
 
-        <!-- Title start -->
-        <div class="uk-margin-bottom">
-            <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-users.backend.users.create') }}</h1>
+            <!-- Title start -->
+            <div class="uk-margin-large">
+                <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-users.backend.users.create') }}</h1>
+            </div>
+            <!-- Title end -->
+
+            <!-- Form start -->
+            <fieldset class="uk-fieldset">
+
+                <app-form-input 
+                    name="name" rules="required|min:4" v-model="item.name"
+                    :label="$t('liro-users.form.name')"
+                ></app-form-input>
+
+                <app-form-select 
+                    name="state" v-model="item.state" :options="states"
+                    :label="$t('liro-users.form.state')" :placeholder="$t('liro-users.placeholder.state')"
+                ></app-form-select>
+
+                <app-form-select-multiple 
+                    name="role_ids" v-model="item.role_ids" :options="roles" option-label="title" option-value="id"
+                    :label="$t('liro-users.form.roles')" :placeholder="$t('liro-users.placeholder.roles')"
+                ></app-form-select-multiple>
+
+                <app-form-input 
+                    type="email" name="email" rules="required|email" v-model="item.email"
+                    :label="$t('liro-users.form.email')"
+                ></app-form-input>
+                
+                <app-form-password 
+                    name="password" rules="min:6" v-model="item.password"
+                    :label="$t('liro-users.form.password')" :generate="$t('liro-users.form.generate')"
+                ></app-form-password>
+
+            </fieldset>
+            <!-- Form end -->
+
         </div>
-        <!-- Title end -->
-
-        <!-- Form start -->
-        <fieldset class="uk-fieldset">
-
-            <app-form-input 
-                :label="$t('liro-users.form.name')" type="text" id="name" name="name" 
-                rules="required|min:4" v-model="item.name"
-            ></app-form-input>
-
-            <app-form-select 
-                :label="$t('liro-users.form.state')" id="state" name="state" :options="states" 
-                :placeholder="$t('liro-users.placeholder.state')" v-model="item.state"
-            ></app-form-select>
-
-            <app-form-select-multiple 
-                :label="$t('liro-users.form.roles')" id="role_ids" name="role_ids" 
-                :options="roles" option-label="title" option-value="id"
-                :placeholder="$t('liro-users.placeholder.roles')" v-model="item.role_ids"
-            ></app-form-select-multiple>
-
-            <app-form-input 
-                :label="$t('liro-users.form.email')" type="email" id="email" name="email" 
-                rules="required|email" v-model="item.email"
-            ></app-form-input>
-            
-            <app-form-password 
-                :label="$t('liro-users.form.password')" id="password" name="password" 
-                rules="min:6" :generate="$t('liro-users.form.generate')" v-model="item.password"
-            >
-            </app-form-password>
-
-        </fieldset>
-        <!-- Form end -->
-
-    </div>
+    </app-helper-history>
 </template>
 <script>
-module.exports = {
-
-    name: 'app-users-create',
-
-    computed: {
-        canUndo() {
-            return this.$store.getters['history/canUndo'];
-        },
-        canRedo() {
-            return this.$store.getters['history/canRedo'];
-        }
-    },
+export default {
 
     props: {
+
         createRoute: {
-            default: '',
-            type: String
-        },
-        indexRoute: {
-            default: '',
-            type: String
-        },
-        roles: {
             default() {
-                return [];
+                return '';
             },
-            type: Array
+            type: String
         },
+
+        indexRoute: {
+            default() {
+                return '';
+            },
+            type: String
+        },
+
         user: {
             default() {
-                return {};
+                return this.$liro.data.get('user', {});
             },
             type: Object
         },
+
+        roles: {
+            default() {
+                return this.$liro.data.get('roles', []);
+            },
+            type: [Array, Object]
+        },
+
         states: {
             default() {
                 return [
                     { value: 1, label: this.$t('liro-users.form.enabled'), css: 'uk-success' },
                     { value: 0, label: this.$t('liro-users.form.disabled'), css: 'uk-danger' }
-                ]
+                ];
             },
             type: Array
         }
+
     },
 
     data() {
+        
         return {
-            disabled: false,
-            item: this.user
-        }
-    },
-
-    mounted() {
-
-        this.$store.commit('history/init', this.item);
-
-        this.$watch('item', _.debounce(this.create, 600), {
-            deep: true
-        });
-
-        this.$liro.listen('user.undo', () => {
-            this.item = this.$store.state.history.undo();
-        });
-
-        this.$liro.listen('user.redo', () => {
-            this.item = this.$store.state.history.redo();
-        });
-
-        this.$liro.listen('user.reset', () => {
-            this.item = this.$store.state.history.reset();
-        });
-
-        this.$liro.listen('user.create', () => {
-            this.$http.post(this.createRoute, this.item);
-        });
-
-        this.$liro.listen('ajax.load', () => {
-            this.disabled = true;
-        });
-
-        this.$liro.listen('ajax.error', () => {
-            this.disabled = false;
-        });
-
+            UserModel: this.type
+        };
+        
     },
 
     methods: {
+
         create() {
-            if ( this.$store.state.history.preventer() ) {
-                this.$store.commit('history/save', this.item);
-            }
+            this.$http.post(this.createRoute, this.UserModel);
         }
+
     }
 
 }
-liro.component(module.exports);
+
+if (window.liro) {
+    liro.vue.$component('app-users-create', this.default);
+}
+
 </script>

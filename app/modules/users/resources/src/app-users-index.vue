@@ -2,7 +2,7 @@
     <div class="uk-form uk-form-stacked">
 
         <!-- Infobar start -->
-        <portal to="app-infobar-action">
+        <portal to="app-infobar-right">
             <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" :href="createRoute">
                 {{ $t('liro-users.toolbar.create') }}
             </app-toolbar-link>
@@ -150,5 +150,5 @@
         }
 
     }
-    liro.component(module.exports);
+    // liro.component(module.exports);
 </script>

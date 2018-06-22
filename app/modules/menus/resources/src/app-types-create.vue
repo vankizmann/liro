@@ -92,7 +92,7 @@ export default {
 
         type: {
             default() {
-                return this.$liro.data.get('type', []);
+                return this.$liro.data.get('type', {});
             },
             type: Object
         },

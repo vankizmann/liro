@@ -76,13 +76,6 @@ export default {
 
     props: {
 
-        editRoute: {
-            default() {
-                return '';
-            },
-            type: String
-        },
-
         indexRoute: {
             default() {
                 return '';
@@ -92,7 +85,7 @@ export default {
 
         type: {
             default() {
-                return this.$liro.data.get('type', []);
+                return this.$liro.data.get('type', {});
             },
             type: Object
         },
@@ -117,7 +110,7 @@ export default {
     methods: {
 
         edit() {
-            this.$http.post(this.editRoute, this.TypeModel);
+            this.$http.post(this.TypeModel.edit_route, this.TypeModel);
         }
 
     }

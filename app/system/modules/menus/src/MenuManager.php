@@ -162,7 +162,8 @@ class MenuManager implements \IteratorAggregate
 
         foreach ($this->groups as $group => $options) {
             $result[] = [
-                'label'         => $options['title'],
+                'label'         => trans($options['title']),
+                'value'         => $options['title'],
                 'children'      => $this->getRouteNamesList($hidden, $group)->toArray()
             ];
         }

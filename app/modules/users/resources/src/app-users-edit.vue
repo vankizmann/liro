@@ -5,7 +5,7 @@
             <!-- Infobar start -->
             <portal to="app-infobar-right">
                 <app-toolbar-button uk-toggle="target: #app-module-help">
-                    {{ $t('liro-menus.toolbar.help') }}
+                    {{ $t('liro-users.toolbar.help') }}
                 </app-toolbar-button>
             </portal>
             <!-- Infobar end -->
@@ -13,24 +13,24 @@
             <!-- Toolbar start -->
             <portal to="app-toolbar-left">
                 <app-toolbar-button icon="check" @click.prevent="edit()">
-                    {{ $t('liro-menus.toolbar.save') }}
+                    {{ $t('liro-users.toolbar.save') }}
                 </app-toolbar-button>
                 <app-toolbar-button icon="close" :href="indexRoute">
-                    {{ $t('liro-menus.toolbar.close') }}
+                    {{ $t('liro-users.toolbar.close') }}
                 </app-toolbar-button>
                 <app-toolbar-spacer>
                     <!-- Spacer -->
                 </app-toolbar-spacer>
                 <app-toolbar-button @click.prevent="undo()" :disabled="!canUndo">
-                    {{ $t('liro-menus.toolbar.undo') }}
+                    {{ $t('liro-users.toolbar.undo') }}
                 </app-toolbar-button>
                 <app-toolbar-button @click.prevent="redo()" :disabled="!canRedo">
-                    {{ $t('liro-menus.toolbar.redo') }}
+                    {{ $t('liro-users.toolbar.redo') }}
                 </app-toolbar-button>
             </portal>
             <portal to="app-toolbar-right">
                 <app-toolbar-button @click.prevent="reset()" :disabled="!canUndo">
-                    {{ $t('liro-menus.toolbar.discard') }}
+                    {{ $t('liro-users.toolbar.discard') }}
                 </app-toolbar-button>
             </portal>
             <!-- Toolbar end -->
@@ -43,7 +43,7 @@
 
             <!-- Title start -->
             <div class="uk-margin-large">
-                <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-menus.backend.users.edit') }}</h1>
+                <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-users.backend.users.edit') }}</h1>
             </div>
             <!-- Title end -->
 
@@ -90,21 +90,21 @@ export default {
             default() {
                 return '';
             },
-            user: String
+            type: String
         },
 
         user: {
             default() {
                 return this.$liro.data.get('user', {});
             },
-            user: Object
+            type: Object
         },
 
         roles: {
             default() {
                 return this.$liro.data.get('roles', []);
             },
-            user: [Array, Object]
+            type: [Array, Object]
         },
 
         states: {
@@ -114,7 +114,7 @@ export default {
                     { value: 0, label: this.$t('liro-users.form.disabled'), css: 'uk-danger' }
                 ];
             },
-            user: Array
+            type: Array
         }
 
     },

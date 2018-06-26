@@ -23,7 +23,9 @@ class UserController extends \Liro\System\Http\Controller
             'state' => 1
         ]);
 
-        return redirect()->route('liro-users.backend.users.index');
+        return response()->json([
+            'message' => trans('liro-users.messages.users.enabled')
+        ]);
     }
 
     public function disable(User $user)
@@ -32,7 +34,9 @@ class UserController extends \Liro\System\Http\Controller
             'state' => 0
         ]);
 
-        return redirect()->route('liro-users.backend.users.index');
+        return response()->json([
+            'message' => trans('liro-users.messages.users.disabled')
+        ]);
     }
 
     public function create(User $user, UserRole $roles)

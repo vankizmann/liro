@@ -22371,6 +22371,10 @@ var List = __webpack_require__(161);
 
     props: {
 
+        database: {
+            required: true
+        },
+
         value: {
             required: true
         }
@@ -22391,7 +22395,7 @@ var List = __webpack_require__(161);
         });
     },
     created: function created() {
-        this.list = new List(this.items);
+        this.list = new List(this.items, this.database);
     },
     mounted: function mounted() {
         this.refresh();
@@ -22493,7 +22497,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
     List.prototype.filter = function (column, values) {
 
-        var filters = this.storage.get('filter_filters', []);
+        var filters = this.storage.get('filter_filters', {});
 
         filters[column] = values;
 
@@ -22504,16 +22508,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
     List.prototype.filterData = function () {
 
-        return {
-            filters: this.storage.get('filter_filters', [])
-        };
+        return this.storage.get('filter_filters', {});
     };
 
     List.prototype.filterFunction = function (items) {
 
         var attr = this.filterData();
 
-        _.each(attr.filters, function (values, column) {
+        _.each(attr, function (values, column) {
 
             if (values.length == 0) {
                 return;
@@ -23349,63 +23351,87 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    /**
-     * Changable properties
-     */
     props: {
+
         column: {
-            default: '',
+            default: function _default() {
+                return '';
+            },
+
             type: String
         },
+
         display: {
-            default: '',
+            default: function _default() {
+                return '';
+            },
+
             type: String
         },
+
         label: {
-            default: '',
+            default: function _default() {
+                return '';
+            },
+
             type: String
         },
-        reset: {
-            default: '',
-            type: String
-        },
+
         filters: {
             default: function _default() {
                 return [];
             },
-            type: Array
+
+            type: [Array, Object]
         },
+
         filtersValue: {
-            default: 'value',
+            default: function _default() {
+                return 'value';
+            },
+
             type: String
         },
+
         filtersLabel: {
-            default: 'label',
+            default: function _default() {
+                return 'label';
+            },
+
             type: String
+        },
+
+        config: {
+            default: function _default() {
+                return {};
+            },
+
+            type: Object
         }
+
     },
 
-    /**
-     * Data function
-     */
     data: function data() {
         return {
-            values: this.$store.getters['list/filter'][this.column] || []
+            values: []
         };
     },
+    mounted: function mounted() {
+        var _this = this;
 
+        this.$watch('config', function () {
+            _this.values = _this.config[_this.column] || [];
+        });
 
-    /**
-     * Component watchers
-     */
-    watch: {
-        values: function values() {
-            this.$store.commit('list/filter', { column: this.column, values: this.values });
-        }
+        this.$watch('values', function () {
+            _this.$emit('filter', _this.column, _this.values);
+        });
     }
-
 });
-liro.vue.$component('app-list-filter', this.default);
+
+if (window.liro) {
+    liro.vue.$component('app-list-filter', this.default);
+}
 
 /***/ }),
 /* 176 */
@@ -23496,7 +23522,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v(_vm._s(_vm.reset))]
+              [_vm._v("Reset")]
             )
           ])
         ],
@@ -23633,7 +23659,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
      */
     methods: {
         setSort: function setSort() {
-            console.log(this.config.direction);
             this.$emit('order', this.column, this.config.direction == 'desc' ? 'asc' : 'desc');
         }
     }
@@ -24084,7 +24109,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
      */
     props: {
         href: {
-            default: '',
+            default: '#',
             type: String
         },
         active: {

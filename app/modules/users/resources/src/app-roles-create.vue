@@ -167,6 +167,6 @@ module.exports = {
     }
 
 }
-liro.component(module.exports);
+liro.vue.$component('app-roles-create', module.exports);
 </script>
 

@@ -17,7 +17,7 @@
 
             <!-- Reset start -->
             <div class="uk-text-small uk-text-right">
-                <a href="#" @click.prevent="values = []">{{ reset }}</a>
+                <a href="#" @click.prevent="values = []">Reset</a>
             </div>
             <!-- Reset end -->
 
@@ -28,58 +28,80 @@
 <script>
     export default {
 
-        /**
-         * Changable properties
-         */
         props: {
+
             column: {
-                default: '',
+                default() {
+                    return '';
+                },
                 type: String
             },
+
             display: {
-                default: '',
+                default() {
+                    return '';
+                },
                 type: String
             },
+
             label: {
-                default: '',
+                default() {
+                    return '';
+                },
                 type: String
             },
-            reset: {
-                default: '',
-                type: String
-            },
+
             filters: {
-                default: () => [],
-                type: Array
+                default() {
+                    return [];
+                },
+                type: [Array, Object]
             },
+
             filtersValue: {
-                default: 'value',
+                default() {
+                    return 'value';
+                },
                 type: String
             },
+
             filtersLabel: {
-                default: 'label',
+                default() {
+                    return 'label';
+                },
                 type: String
             },
+
+            config: {
+                default() {
+                    return {};
+                },
+                type: Object
+            }
+
         },
 
-        /**
-         * Data function
-         */
         data() {
             return {
-                values: this.$store.getters['list/filter'][this.column] || []
+                values: []
             };
         },
 
-        /**
-         * Component watchers
-         */
-        watch: {
-            values() {
-                this.$store.commit('list/filter', { column: this.column, values: this.values });
-            }
+        mounted() {
+
+            this.$watch('config', () => {
+                this.values = this.config[this.column] || []
+            });
+
+            this.$watch('values', () => {
+                this.$emit('filter', this.column, this.values);
+            });
+
         }
 
     }
-    liro.vue.$component('app-list-filter', this.default);
+
+    if (window.liro) {
+        liro.vue.$component('app-list-filter', this.default);
+    }
 </script>

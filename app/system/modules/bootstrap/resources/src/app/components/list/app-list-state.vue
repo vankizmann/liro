@@ -15,7 +15,7 @@
          */
         props: {
             href: {
-                default: '',
+                default: '#',
                 type: String
             },
             active: {

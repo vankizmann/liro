@@ -5,6 +5,10 @@ export default {
 
     props: {
 
+        database: {
+            required: true
+        },
+
         value: {
             required: true
         }
@@ -29,7 +33,7 @@ export default {
     },
 
     created() {
-        this.list = new List(this.items);
+        this.list = new List(this.items, this.database);
     },
 
     mounted() { 

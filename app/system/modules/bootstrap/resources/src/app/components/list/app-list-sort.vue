@@ -62,7 +62,6 @@
          */
         methods: {
             setSort() {
-                console.log(this.config.direction);
                 this.$emit('order', this.column, this.config.direction == 'desc' ? 'asc' : 'desc');
             }
         }

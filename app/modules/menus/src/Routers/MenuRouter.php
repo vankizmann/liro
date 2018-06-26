@@ -29,27 +29,27 @@ class MenuRouter
 
     public function delete($router)
     {
-        $router->middleware('ajax', 'route')->post('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@delete');
+        $router->middleware('ajax', 'route')->any('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@delete');
     }
 
     public function enable($router)
     {
-        $router->middleware('ajax', 'route')->post('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@enable');
+        $router->middleware('ajax', 'route')->any('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@enable');
     }
 
     public function disable($router)
     {
-        $router->middleware('ajax', 'route')->post('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@disable');
+        $router->middleware('ajax', 'route')->any('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@disable');
     }
 
     public function visible($router)
     {
-        $router->middleware('ajax', 'route')->post('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@visible');
+        $router->middleware('ajax', 'route')->any('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@visible');
     }
 
     public function hidden($router)
     {
-        $router->middleware('ajax', 'route')->post('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@hidden');
+        $router->middleware('ajax', 'route')->any('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@hidden');
     }
 
 }

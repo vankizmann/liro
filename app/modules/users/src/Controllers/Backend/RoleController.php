@@ -21,7 +21,7 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function create(UserRole $role)
     {
-        $routes = app('menus')->getRouteNames();
+        $routes = app('menus')->getRouteGroups();
 
         return view('liro-users::backend/roles/create', [
             'role' => $role, 'routes' => $routes
@@ -42,10 +42,10 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function edit(UserRole $role)
     {
-        $routes = app('menus')->getRouteNames();
+        $routes = app('menus')->getRouteGroups();
 
         return view('liro-users::backend/roles/edit', [
-            'role' => $role, 'routes' => app('menus')->getRouteNames()
+            'role' => $role, 'routes' => $routes
         ]);
     }
 

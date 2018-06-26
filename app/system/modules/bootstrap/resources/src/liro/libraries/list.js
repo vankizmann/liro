@@ -65,7 +65,7 @@
 
     List.prototype.filter = function (column, values) {
 
-        var filters = this.storage.get('filter_filters', []);
+        var filters = this.storage.get('filter_filters', {});
 
         filters[column] = values;
 
@@ -76,9 +76,7 @@
 
     List.prototype.filterData = function () {
 
-        return {
-            filters: this.storage.get('filter_filters', [])
-        };
+        return this.storage.get('filter_filters', {});
 
     }
 
@@ -86,7 +84,7 @@
 
         var attr = this.filterData();
 
-        _.each(attr.filters, (values, column) => {
+        _.each(attr, (values, column) => {
 
             if (values.length == 0) {
                 return;

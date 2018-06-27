@@ -23819,6 +23819,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
+        this.$watch('config', function () {
+            _this.query = _this.config.query || '';
+        });
+
         this.$watch('query', _.debounce(function () {
             _this.$emit('search', _this.query, _this.columns);
         }, 300));

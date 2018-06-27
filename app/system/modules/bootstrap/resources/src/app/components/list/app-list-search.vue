@@ -48,6 +48,10 @@
 
         mounted() {
 
+            this.$watch('config', () => {
+                this.query = this.config.query || '';
+            });
+
             this.$watch('query', _.debounce(() => {
                 this.$emit('search', this.query, this.columns);
             }, 300));

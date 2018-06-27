@@ -970,7 +970,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
 
         return {
-            UserModel: this.type
+            UserModel: this.user
         };
     },
 
@@ -996,7 +996,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("app-helper-history", {
-    attrs: { value: _vm.UserModel },
     scopedSlots: _vm._u([
       {
         key: "default",
@@ -1242,7 +1241,14 @@ var render = function() {
           )
         }
       }
-    ])
+    ]),
+    model: {
+      value: _vm.UserModel,
+      callback: function($$v) {
+        _vm.UserModel = $$v
+      },
+      expression: "UserModel"
+    }
   })
 }
 var staticRenderFns = []
@@ -1459,7 +1465,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("app-helper-history", {
-    attrs: { value: _vm.UserModel },
     scopedSlots: _vm._u([
       {
         key: "default",
@@ -1705,7 +1710,14 @@ var render = function() {
           )
         }
       }
-    ])
+    ]),
+    model: {
+      value: _vm.UserModel,
+      callback: function($$v) {
+        _vm.UserModel = $$v
+      },
+      expression: "UserModel"
+    }
   })
 }
 var staticRenderFns = []

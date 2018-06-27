@@ -30,7 +30,7 @@
                 <!-- Search start -->
                 <div style="width: 300px; margin-left: auto;">
                     <app-list-search
-                        :columns="['name', 'email']" :config="options.search" @search="search"
+                        :columns="['title', 'description']" :config="options.search" @search="search"
                         :placeholder="$t('liro-users.form.search')"
                     ></app-list-search>
                 </div>

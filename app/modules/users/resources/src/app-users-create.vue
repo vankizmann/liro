@@ -1,5 +1,5 @@
 <template>
-    <app-helper-history :value="UserModel">
+    <app-helper-history v-model="UserModel">
         <div class="uk-form uk-form-stacked" slot-scope="{ item, canUndo, canRedo, undo, redo, reset }">
 
             <!-- Infobar start -->
@@ -129,7 +129,7 @@ export default {
     data() {
         
         return {
-            UserModel: this.type
+            UserModel: this.user
         };
         
     },

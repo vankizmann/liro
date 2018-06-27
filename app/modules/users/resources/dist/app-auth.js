@@ -253,16 +253,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
+
         action: {
-            default: '',
+            default: function _default() {
+                return '';
+            },
+
             type: String
         }
+
     }
 });
-liro.vue.$component('app-login', this.default);
+
+if (window.liro) {
+    liro.vue.$component('app-login', this.default);
+}
 
 /***/ }),
 /* 4 */
@@ -286,21 +296,18 @@ var render = function() {
           [
             _c("app-form-input", {
               attrs: {
-                label: _vm.$t("liro-users.form.email"),
                 type: "email",
-                id: "email",
                 name: "email",
-                value: ""
+                value: "",
+                label: _vm.$t("liro-users.form.email")
               }
             }),
             _vm._v(" "),
             _c("app-form-password", {
               attrs: {
-                label: _vm.$t("liro-users.form.password"),
-                type: "text",
-                id: "password",
                 name: "password",
-                value: ""
+                value: "",
+                label: _vm.$t("liro-users.form.password")
               }
             }),
             _vm._v(" "),
@@ -313,11 +320,9 @@ var render = function() {
                 },
                 [_vm._v(_vm._s(_vm.$t("liro-users.form.login")))]
               )
-            ]),
-            _vm._v(" "),
-            _vm._t("default")
+            ])
           ],
-          2
+          1
         )
       ]
     )

@@ -82,11 +82,11 @@
 
 .app-list-filter > a i {
     @extend .uk-margin-small-right ;
-    color: $color-gray-20;
+    color: mix($color-white, $color-primary, 40%);
 }
 
 .app-list-filter.uk-active > a i {
-    color: $color-primary;
+    color: $color-white;
 }
 
 .app-list-filter .uk-dropdown {
@@ -103,11 +103,11 @@
 
 .app-list-sort > a i {
     @extend .uk-margin-small-right ;
-    color: $color-gray-20;
+    color: mix($color-white, $color-primary, 40%);
 }
 
 .app-list-sort.uk-active > a i {
-    color: $color-primary;
+    color: $color-white;
 }
 
 /**

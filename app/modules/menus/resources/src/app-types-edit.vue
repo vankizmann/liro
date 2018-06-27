@@ -1,5 +1,5 @@
 <template>
-    <app-helper-history :value="TypeModel">
+    <app-helper-history v-model="TypeModel">
         <div class="uk-form uk-form-stacked" slot-scope="{ item, canUndo, canRedo, undo, redo, reset }">
 
             <!-- Infobar start -->

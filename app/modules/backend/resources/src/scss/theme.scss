@@ -49,7 +49,10 @@ $color-gray-90:             mix($color-white, $color-dark-10, 17.5%);
 
 body {
     background-color: $color-gray-10;
-    // background-color: $color-white;
+}
+
+body.login {
+    background-color: $color-primary;
 }
 
 a, button {
@@ -406,23 +409,26 @@ a, button {
 
     .uk-table-list-head {
         @extend .uk-flex, .uk-flex-middle ;
-        padding: 15px 0;
-        color: $color-gray-50;
-        background-color: $color-gray-10;
+        border-radius: 3px;
+        padding: 15px 10px;
+        color: mix($color-white, $color-primary, 60%);
+        margin-bottom: 10px;
+        background-color: $color-primary;
         font-size: 0.875rem;
+        box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
     }
 
     .uk-table-list-head a {
-        color: $color-black;
+        color: $color-white;
     }
 
     .uk-table-list-row {
         @extend .uk-flex, .uk-flex-middle ;
         border-radius: 3px;
-        padding: 15px 5px;
+        padding: 20px 10px;
         margin-bottom: 5px;
         background-color: $color-white;
-        box-shadow: 0 2px 8px rgba($color-gray-30, 0.1);
+        box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
     }
 
     .uk-table-list-td {

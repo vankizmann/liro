@@ -1,5 +1,5 @@
 <template>
-    <app-helper-history :value="RoleModel">
+    <app-helper-history v-model="RoleModel">
         <div class="uk-form uk-form-stacked" slot-scope="{ item, canUndo, canRedo, undo, redo, reset }">
 
             <!-- Infobar start -->
@@ -60,13 +60,13 @@
                     :label="$t('liro-users.form.description')"
                 ></app-form-input>
 
-                <div v-for="(group, index) in routes" :key="index" class="uk-margin uk-padding uk-background-muted">
+                <div v-for="(group, index) in routes" :key="index" class="uk-margin uk-padding" style="background-color: #fff;">
                     <div class="uk-width-1-1">
                         <h4>{{ group.label }}</h4>
                     </div>
                     <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l">
                         <label v-for="route in group.children" :key="route.id" class="uk-display-inline-block uk-margin-small">
-                            <input type="checkbox" class="uk-checkbox" style="margin-right: 4px;" :value="route.value" v-model="item.route_names"> <span>{{ route.label }}</span>
+                            <input name="route_names" type="checkbox" class="uk-checkbox" style="margin-right: 4px;" :value="route.value" v-model="item.route_names"> <span>{{ route.label }}</span>
                         </label>
                     </div>
                 </div>

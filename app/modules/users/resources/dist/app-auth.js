@@ -255,6 +255,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -320,9 +324,11 @@ var render = function() {
                 },
                 [_vm._v(_vm._s(_vm.$t("liro-users.form.login")))]
               )
-            ])
+            ]),
+            _vm._v(" "),
+            _vm._t("default")
           ],
-          1
+          2
         )
       ]
     )

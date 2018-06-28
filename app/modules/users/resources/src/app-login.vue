@@ -16,6 +16,10 @@
                 <div class="uk-margin-top">
                     <button type="submit" class="uk-button uk-button-primary uk-width-1-1">{{ $t('liro-users.form.login') }}</button>
                 </div>
+
+                <slot>
+                    <!-- CSRF Token -->
+                </slot>
                 
             </fieldset>
         </form>

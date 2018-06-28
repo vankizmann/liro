@@ -8,7 +8,7 @@ return [
 
         $app['modules']->load([
             'system.assets', 'system.languages', 'system.menus', 'system.users', 
-            'liro-dashboard', 'liro-menus', 'liro-users'
+            'liro-dashboard', 'liro-menus', 'liro-users', 'liro-media'
         ]);
 
         $app['router']->get('/', function() use ($app) {
@@ -32,7 +32,6 @@ return [
 
         $app['events']->fire('boot', $app);
 
-        $app['scripts']->link('draggable', '//cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.7/lib/draggable.bundle.js');
         $app['scripts']->link('vendor', '/app/system/modules/bootstrap/resources/dist/vendor.js');
         $app['scripts']->link('app', '/app/system/modules/bootstrap/resources/dist/app.js');
 

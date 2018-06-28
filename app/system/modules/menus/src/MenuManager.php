@@ -5,6 +5,7 @@ namespace Liro\System\Menus;
 use Illuminate\Contracts\Foundation\Application;
 use Liro\System\Menus\Models\Menu;
 use Liro\System\Menus\Models\MenuType;
+use Liro\System\Menus\Helpers\Router;
 use Liro\System\Menus\Helpers\Walker;
 
 class MenuManager implements \IteratorAggregate
@@ -15,6 +16,8 @@ class MenuManager implements \IteratorAggregate
      * @var Illuminate\Contracts\Foundation\Application
      */
     protected $app;
+
+    protected $router;
 
     protected $groups = [];
 
@@ -33,9 +36,10 @@ class MenuManager implements \IteratorAggregate
      *
      * @param Illuminate\Contracts\Foundation\Application $app
      */
-    public function __construct(Application $app)
+    public function __construct(Application $app, Router $router)
     {
         $this->app = $app;
+        $this->router = $router;
     }
 
     public function getIterator()
@@ -45,6 +49,9 @@ class MenuManager implements \IteratorAggregate
 
     public function register()
     {
+
+        dd($this->router, $this->router->groups());
+
         $this->menus = Menu::getEnabled()->get();
         $this->types = MenuType::all();
 
@@ -71,6 +78,12 @@ class MenuManager implements \IteratorAggregate
         }
 
         return $this;
+    }
+    
+
+    public function append($config)
+    {
+        $this->router->add($config);
     }
 
     public function appendGroup($group, $options = [])

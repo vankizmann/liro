@@ -4,10 +4,8 @@ return [
 
     'routes' => [
 
-        'liro-media.backend.media.index' => [
-            'label'         => 'liro-media.backend.media.index',
-            'handler'       => 'Liro\Media\Routers\MediaRouter@index'
-        ]
+        'liro-media.backend.media.index' => 'Liro\Media\Routers\MediaRouter@index',
+        'liro-media.backend.media.trash' => 'Liro\Media\Routers\MediaRouter@trash'
 
     ],
 
@@ -19,11 +17,7 @@ return [
 
     ],
 
-    'access' => [
-        'liro-media.backend.media.index'
-    ],
-
-    'menus' => [
+    'options' => [
 
         'liro-media.backend.media.index' => function() {
             return 'TEST';

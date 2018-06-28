@@ -16,17 +16,19 @@ class MenuLoader implements LoaderInterface
 
     public function load($module)
     {
-        if ( ! is_array($menus = @include $module->path . '/routes.php') ) {
+        if ( ! is_array($routes = @include $module->path . '/routes.php') ) {
             return $module;
         }
 
-        foreach ( $menus['groups'] as $group => $options ) {
-            $this->app['menus']->appendGroup($group, $options);
-        }
+        $this->app['menus']->append($routes);
 
-        foreach ( $menus['routes'] as $route => $options ) {
-            $this->app['menus']->appendRoute($route, $options);
-        }
+        // foreach ( $menus['groups'] as $group => $options ) {
+        //     $this->app['menus']->appendGroup($group, $options);
+        // }
+
+        // foreach ( $menus['routes'] as $route => $options ) {
+        //     $this->app['menus']->appendRoute($route, $options);
+        // }
         
         return $module;
     }

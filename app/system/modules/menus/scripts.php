@@ -244,6 +244,29 @@ return [
                 'state'             => 1,
                 'hidden'            => 0,
                 'lang'              => '',
+                'title'             => 'liro-media.backend.media.index',
+                'route'             => 'media',
+                'query'             => '{"menu": 17}',
+                'module'            => 'liro-menus.backend.redirect.menu',
+                'menu_type_id'      => 1
+            ]);
+
+            $app['db']->table('menus')->insert([
+                'state'             => 1,
+                'hidden'            => 0,
+                'lang'              => '',
+                'title'             => 'liro-media.backend.media.index',
+                'route'             => 'index',
+                'query'             => '',
+                'module'            => 'liro-media.backend.media.index',
+                'menu_type_id'      => 1,
+                'parent_id'         => 16
+            ]);
+
+            $app['db']->table('menus')->insert([
+                'state'             => 1,
+                'hidden'            => 0,
+                'lang'              => '',
                 'title'             => 'liro-users.backend.auth.login',
                 'route'             => 'login',
                 'query'             => '',

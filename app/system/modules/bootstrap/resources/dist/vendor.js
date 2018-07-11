@@ -44649,6 +44649,8 @@ module.exports = function () {
 /* 145 */
 /***/ (function(module, exports) {
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 module.exports = function () {
 
     /**
@@ -44667,6 +44669,24 @@ module.exports = function () {
         return _.map(values, function (value) {
             return _.find(items, [key, value]);
         });
+    }.bind(this);
+
+    /**
+     * Find function
+     */
+
+    this.$find = this.findRecursive = function (item, key, value, childs) {
+        var _this = this;
+
+        if (item[key] == value) {
+            return item;
+        }
+
+        if (_typeof(item[childs]) == 'object') {
+            return _.first(_.map(item[childs], function (item) {
+                return _this.findRecursive(item, key, value, childs);
+            }));
+        }
     }.bind(this);
 };
 

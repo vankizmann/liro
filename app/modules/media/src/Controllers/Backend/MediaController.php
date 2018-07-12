@@ -12,7 +12,7 @@ class MediaController extends Controller
     public function index()
     {
         return view('liro-media::backend/media/index', [
-            'directories' => new Folder('')
+            'media' => new Folder('')
         ]);
     }
 
@@ -25,7 +25,22 @@ class MediaController extends Controller
         Storage::move($source, rtrim($target, '/') . '/' . pathinfo($source, PATHINFO_BASENAME));
 
         return response()->json([
-            'message' => trans('liro-media.messages.media.moved')
+            'message' => trans('liro-media.messages.media.moved'),
+            'media' => new Folder('')
+        ]);
+    }
+
+    public function upload(Request $request)
+    {
+        $target = $request->get('target', null);
+
+        foreach ($request->file('files') as $file) {
+            $file->storeAs($target, $file->getClientOriginalName());
+        }
+        
+        return response()->json([
+            'message' => trans('liro-media.messages.media.moved'),
+            'media' => new Folder('')
         ]);
     }
 

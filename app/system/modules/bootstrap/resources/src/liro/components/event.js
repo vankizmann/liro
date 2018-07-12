@@ -17,6 +17,16 @@ module.exports = function () {
     }.bind(this);
 
     /**
+     * Watch function
+     */
+
+    this.$once = this.once = function(name, callback) {
+        if ( this.events.where('name', name).count() == 0 ) this.events.push({
+            name, callback
+        });
+    }.bind(this);
+
+    /**
      * Emit function
      */
 

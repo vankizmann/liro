@@ -66,7 +66,8 @@
             "route":            "Route",
             "type":             "Menütyp",
             "module":           "Modul",
-            "query":            "Query"
+            "query":            "Query",
+            "element_count":    "Leerer Ordner | {count} Dateien | {count} Dateien"
 
         },
 

@@ -22,6 +22,12 @@ return [
             'group'         => 'liro-media.backend.media',
             'title'         => 'liro-media.backend.media.move',
             'handler'       => 'Liro\Media\Routers\MediaRouter@move'
+        ],
+
+        'liro-media.backend.media.upload' => [
+            'group'         => 'liro-media.backend.media',
+            'title'         => 'liro-media.backend.media.upload',
+            'handler'       => 'Liro\Media\Routers\MediaRouter@upload'
         ]
 
     ]

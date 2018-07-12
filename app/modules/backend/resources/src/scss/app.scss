@@ -178,37 +178,76 @@
     padding-left: 60px;
 }
 
-
-.app-media {
-    user-select: none;
+.app-media--breadcrumb {
+    margin: 20px -10px;
+    width: calc(100% + 20px);
+    // border-radius: 3px;
+    // background-color: $color-white;
+    // box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
 }
 
-.app-media--folder {
+.app-media--breadcrumb--list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.app-media--breadcrumb-item {
+    cursor: pointer;
+    width: 200px;
+    border-radius: 3px;
+    padding: 15px 20px;
+    background-color: $color-white;
+    box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
+    margin: 10px;
+}
+
+.app-media--breadcrumb-item--title {
+    color: $color-black;
+}
+
+.app-media--breadcrumb-item--info {
+    color: mix($color-white, $color-black, 50%);
+    font-size: 0.825rem;
+}
+
+.app-media--cards {
+    user-select: none;
+    margin: 20px -10px;
+    width: calc(100% + 20px);
+}
+
+.app-media--card-blue {
     cursor: pointer;
     border-radius: 3px;
     background-color: $color-primary;
     margin: 10px;
+    padding: 0 10px;
     width: 200px;
     height: 230px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: border 150ms;
+    transition: background 150ms, border 150ms;
     box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
 }
 
-.app-media--folder.app-media--selected {
+.app-media--card-blue:hover {
+    background-color: lighten($color-primary, 7.5%);
+}
+
+.app-media--card-blue.app-media--selected {
     border: 2px solid $color-blue;
 }
 
-.app-media--folder--card {
+.app-media--card-blue--body {
     color: $color-white;
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.app-media--folder--card-icon {
+.app-media--card-blue--icon {
     width: 100%;
     height: 120px;
     display: flex;
@@ -216,19 +255,19 @@
     align-items: center;
 }
 
-.app-media--folder--card-icon .uk-icon svg {
+.app-media--card-blue--icon .uk-icon svg {
     width: 40px;
     height: 40px;
 }
 
-.app-media--folder--card-title {
+.app-media--card-blue--title {
     width: 100%;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.app-media--folder--card-info {
+.app-media--card-blue--info {
     width: 100%;
     text-align: center;
     color: mix($color-white, $color-primary, 50%);
@@ -237,31 +276,32 @@
     font-size: 0.825rem;
 }
 
-.app-media--file {
+.app-media--card-white {
     border: 2px solid $color-white;
     border-radius: 3px;
     background-color: $color-white;
     margin: 10px;
+    padding: 0 10px;
     width: 200px;
     height: 230px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: border 150ms;
+    transition: box-shadow 600ms, border 150ms;
     box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
 }
 
-.app-media--file.app-media--selected {
+.app-media--card-white.app-media--selected {
     border: 2px solid $color-blue;
 }
 
-.app-media--file--card {
+.app-media--card-white--body {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.app-media--file--card-icon {
+.app-media--card-white--icon {
     width: 100%;
     height: 120px;
     display: flex;
@@ -269,24 +309,34 @@
     align-items: center;
 }
 
-.app-media--file--card-icon .uk-icon svg {
+.app-media--card-white--icon img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 120px;
+    margin-bottom: 10px;
+}
+
+.app-media--card-white--icon .uk-icon svg {
     width: 40px;
     height: 40px;
 }
 
-.app-media--file--card-title {
+.app-media--card-white--title {
     width: 100%;
     text-align: center;
     color: $color-primary;
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.app-media--file--card-info {
+.app-media--card-white--info {
     width: 100%;
     text-align: center;
     color: mix($color-white, $color-black, 50%);
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
     font-size: 0.825rem;
 }

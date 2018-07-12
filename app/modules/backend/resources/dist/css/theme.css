@@ -12304,18 +12304,52 @@ iframe.uk-cover {
   padding-left: 60px;
 }
 
-.app-media {
+.app-media--breadcrumb {
+  margin: 20px -10px;
+  width: calc(100% + 20px);
+}
+
+.app-media--breadcrumb--list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.app-media--breadcrumb-item {
+  cursor: pointer;
+  width: 200px;
+  border-radius: 3px;
+  padding: 15px 20px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 2px 8px rgba(174, 179, 184, 0.15);
+          box-shadow: 0 2px 8px rgba(174, 179, 184, 0.15);
+  margin: 10px;
+}
+
+.app-media--breadcrumb-item--title {
+  color: #05080c;
+}
+
+.app-media--breadcrumb-item--info {
+  color: #828486;
+  font-size: 0.825rem;
+}
+
+.app-media--cards {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  margin: 20px -10px;
+  width: calc(100% + 20px);
 }
 
-.app-media--folder {
+.app-media--card-blue {
   cursor: pointer;
   border-radius: 3px;
   background-color: #007cff;
   margin: 10px;
+  padding: 0 10px;
   width: 200px;
   height: 230px;
   display: -webkit-box;
@@ -12327,17 +12361,21 @@ iframe.uk-cover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transition: border 150ms;
-  transition: border 150ms;
+  -webkit-transition: background 150ms, border 150ms;
+  transition: background 150ms, border 150ms;
   -webkit-box-shadow: 0 2px 8px rgba(174, 179, 184, 0.15);
           box-shadow: 0 2px 8px rgba(174, 179, 184, 0.15);
 }
 
-.app-media--folder.app-media--selected {
+.app-media--card-blue:hover {
+  background-color: #2690ff;
+}
+
+.app-media--card-blue.app-media--selected {
   border: 2px solid #007cff;
 }
 
-.app-media--folder--card {
+.app-media--card-blue--body {
   color: #ffffff;
   width: 100%;
   display: -webkit-box;
@@ -12349,7 +12387,7 @@ iframe.uk-cover {
           flex-direction: column;
 }
 
-.app-media--folder--card-icon {
+.app-media--card-blue--icon {
   width: 100%;
   height: 120px;
   display: -webkit-box;
@@ -12363,19 +12401,19 @@ iframe.uk-cover {
           align-items: center;
 }
 
-.app-media--folder--card-icon .uk-icon svg {
+.app-media--card-blue--icon .uk-icon svg {
   width: 40px;
   height: 40px;
 }
 
-.app-media--folder--card-title {
+.app-media--card-blue--title {
   width: 100%;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.app-media--folder--card-info {
+.app-media--card-blue--info {
   width: 100%;
   text-align: center;
   color: #80beff;
@@ -12384,11 +12422,12 @@ iframe.uk-cover {
   font-size: 0.825rem;
 }
 
-.app-media--file {
+.app-media--card-white {
   border: 2px solid #ffffff;
   border-radius: 3px;
   background-color: #ffffff;
   margin: 10px;
+  padding: 0 10px;
   width: 200px;
   height: 230px;
   display: -webkit-box;
@@ -12400,17 +12439,19 @@ iframe.uk-cover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transition: border 150ms;
-  transition: border 150ms;
+  -webkit-transition: border 150ms, -webkit-box-shadow 600ms;
+  transition: border 150ms, -webkit-box-shadow 600ms;
+  transition: box-shadow 600ms, border 150ms;
+  transition: box-shadow 600ms, border 150ms, -webkit-box-shadow 600ms;
   -webkit-box-shadow: 0 2px 8px rgba(174, 179, 184, 0.15);
           box-shadow: 0 2px 8px rgba(174, 179, 184, 0.15);
 }
 
-.app-media--file.app-media--selected {
+.app-media--card-white.app-media--selected {
   border: 2px solid #007cff;
 }
 
-.app-media--file--card {
+.app-media--card-white--body {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -12421,7 +12462,7 @@ iframe.uk-cover {
           flex-direction: column;
 }
 
-.app-media--file--card-icon {
+.app-media--card-white--icon {
   width: 100%;
   height: 120px;
   display: -webkit-box;
@@ -12435,24 +12476,34 @@ iframe.uk-cover {
           align-items: center;
 }
 
-.app-media--file--card-icon .uk-icon svg {
+.app-media--card-white--icon img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 120px;
+  margin-bottom: 10px;
+}
+
+.app-media--card-white--icon .uk-icon svg {
   width: 40px;
   height: 40px;
 }
 
-.app-media--file--card-title {
+.app-media--card-white--title {
   width: 100%;
   text-align: center;
   color: #007cff;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.app-media--file--card-info {
+.app-media--card-white--info {
   width: 100%;
   text-align: center;
   color: #828486;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 0.825rem;
 }
@@ -12463,6 +12514,11 @@ body {
 
 body.login {
   background-color: #007cff;
+}
+
+div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 a, button {

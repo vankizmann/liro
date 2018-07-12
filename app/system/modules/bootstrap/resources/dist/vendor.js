@@ -44581,6 +44581,16 @@ module.exports = function () {
     }.bind(this);
 
     /**
+     * Watch function
+     */
+
+    this.$once = this.once = function (name, callback) {
+        if (this.events.where('name', name).count() == 0) this.events.push({
+            name: name, callback: callback
+        });
+    }.bind(this);
+
+    /**
      * Emit function
      */
 
@@ -44675,7 +44685,7 @@ module.exports = function () {
      * Find function
      */
 
-    this.$find = this.findRecursive = function (item, key, value, childs) {
+    this.$findRecursive = this.findRecursive = function (item, key, value, childs) {
         var _this = this;
 
         if (item[key] == value) {
@@ -44687,6 +44697,26 @@ module.exports = function () {
                 return _this.findRecursive(item, key, value, childs);
             }));
         }
+    }.bind(this);
+
+    /**
+     * Ladder function
+     */
+
+    this.$ladderRecursive = this.ladderRecursive = function (item, key, value, childs, ladder) {
+        var _this2 = this;
+
+        ladder.push(item);
+
+        if (_typeof(item[childs]) == 'object') {
+            _.map(item[childs], function (item) {
+                if (_this2.findRecursive(item, key, value, childs)) {
+                    ladder = _this2.ladderRecursive(item, key, value, childs, ladder);
+                }
+            });
+        }
+
+        return ladder;
     }.bind(this);
 };
 

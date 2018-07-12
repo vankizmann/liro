@@ -20,7 +20,7 @@ module.exports = function () {
      * Find function
      */
 
-    this.$find = this.findRecursive = function(item, key, value, childs) {
+    this.$findRecursive = this.findRecursive = function(item, key, value, childs) {
 
         if (item[key] == value) {
             return item;
@@ -29,6 +29,26 @@ module.exports = function () {
         if (typeof item[childs] == 'object') {
             return _.first(_.map(item[childs], (item) => this.findRecursive(item, key, value, childs)));
         }
+
+    }.bind(this);
+
+    /**
+     * Ladder function
+     */
+
+    this.$ladderRecursive = this.ladderRecursive = function(item, key, value, childs, ladder) {
+
+        ladder.push(item);
+
+        if (typeof item[childs] == 'object') {
+            _.map(item[childs], (item) => {
+                if (this.findRecursive(item, key, value, childs)) {
+                    ladder = this.ladderRecursive(item, key, value, childs, ladder);
+                }
+            });
+        }
+
+        return ladder;
 
     }.bind(this);
 

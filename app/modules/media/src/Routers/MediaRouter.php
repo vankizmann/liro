@@ -15,4 +15,9 @@ class MediaRouter
         $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Backend\MediaController@move');
     }
 
+    public function upload($router)
+    {
+        $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Backend\MediaController@upload');
+    }
+
 }

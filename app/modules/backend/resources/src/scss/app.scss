@@ -340,3 +340,259 @@
     text-overflow: ellipsis;
     font-size: 0.825rem;
 }
+
+.app-media-breadcrumb {
+
+    & {
+        width: calc(100% + 20px);
+        margin: 0 -10px;
+    }
+
+    &-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &-item {
+        margin: 10px;
+    }
+
+    &-item:not(.app-media-breadcrumb-disable) {
+        cursor: pointer;
+    }
+
+    &-item:nth-last-child(1n+2):after {
+        content: '\00a0';
+        display: block;
+        width: 1px;
+        height: 35px;
+        background-color: $color-gray-20;
+        margin-left: 20px;
+    }
+
+    &-item:not(.app-media-breadcrumb-disable) &-name {
+        color: $color-primary;
+    }
+
+    &-name {
+        max-width: 130px;
+    }
+
+    &-info {
+        max-width: 130px;
+        color: $color-gray-30;
+        font-size: 0.825rem;
+    }
+
+}
+
+.app-media-upload {
+
+    & {
+        margin: 10px 0;
+    }
+
+    &-dropzone {
+        border-radius: 4px;
+        background-color: rgba($color-primary, 0.1);
+        border: 1px dashed rgba($color-primary, 0.5);
+    }
+
+    &-empty {
+        font-size: 0.825rem;
+        color: $color-black;
+    }
+
+    &-files {
+        width: calc(100% + 20px);
+        margin: 0 -10px;
+    }
+
+    &-file {
+        background-color: $color-white;
+        margin: 10px;
+        width: 200px;
+        border-radius: 3px;
+        box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
+    }
+
+    &-file-image {
+        color: $color-gray-20;
+        height: 120px;
+    }
+
+    &-file-image img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 120px;
+    }
+
+    &-file-image svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    &-file-name {
+        color: $color-black;
+    }
+
+    &-file-remove {
+        font-size: 0.825rem;
+    }
+
+    &-file-remove a {
+        color: $color-red;
+    }
+
+}
+
+.app-media-index {
+
+    & {
+        width: calc(100% + 20px);
+        margin: 0 -10px;
+    }
+
+    &-file {
+        background-color: $color-white;
+        margin: 10px;
+        width: 200px;
+        border-radius: 3px;
+        box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
+    }
+
+    &-file * {
+        pointer-events: none;
+    }
+
+    &-file-image {
+        color: $color-gray-20;
+        height: 120px;
+    }
+
+    &-file-image img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 120px;
+    }
+
+    &-file-image svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    &-file-name {
+        color: $color-black;
+    }
+
+    &-file-info {
+        color: $color-gray-50;
+        font-size: 0.825rem;
+    }
+
+    &-folder {
+        cursor: pointer;
+        background-color: $color-primary;
+        margin: 10px;
+        width: 200px;
+        border-radius: 3px;
+        box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
+        transition: background 150ms;
+    }
+
+    &-folder:hover {
+        background-color: lighten($color-primary, 7.5%);
+    }
+
+    &-folder-image {
+        color: $color-white;
+        height: 120px;
+    }
+
+    &-folder-image img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 120px;
+    }
+
+    &-folder-image svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    &-folder-name {
+        color: $color-white;
+    }
+
+    &-folder-info {
+        color: mix($color-white, $color-primary, 50%);
+        font-size: 0.825rem;
+    }
+
+}
+
+.app-media-browser {
+
+    &-tree {
+        border-radius: 3px;
+        // background-color: $color-gray-20;
+        width: 300px;
+        flex-shrink: 0;
+        margin: 5px 0;
+        // box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
+    }
+
+    &-body {
+        padding-left: 30px;
+        flex-grow: 1;
+    }
+
+}
+
+.app-media-tree {
+
+    &-folder {
+        margin: 5px 0;
+    }
+
+    &-folder &-folder {
+        padding-left: 20px;
+    }
+
+    &-item {
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 3px;
+        background-color: $color-white;
+        transition: color 150ms, border 150ms;
+        box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
+    }
+
+    &-icon {
+        margin-right: 9px;
+    }
+
+    &-icon svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    &-name {
+        font-size: 0.875rem;
+        color: $color-black;
+        margin-right: auto;
+    }
+
+    &-item:hover &-name {
+        color: $color-primary;
+    }
+
+    &-count {
+        font-size: 0.825rem;
+    }
+
+}

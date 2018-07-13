@@ -11,7 +11,7 @@ class File
     public $path;
     public $url;
     public $size;
-    public $mime;
+    public $type;
 
     public function __construct($path)
     {
@@ -19,7 +19,7 @@ class File
         $this->url = Storage::url($path);
         $this->name = pathinfo($path, PATHINFO_BASENAME);
         $this->size = Storage::size($path);
-        $this->mime = mime_content_type(Storage::path($path));
+        $this->type = mime_content_type(Storage::path($path));
     }
     
 }

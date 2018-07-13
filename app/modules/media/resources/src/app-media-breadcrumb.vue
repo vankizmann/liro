@@ -1,33 +1,46 @@
 <template>
-    <li class="app-media--breadcrumb-item" @click="$emit('click')">
+    <li :class="{ 'app-media-breadcrumb-item uk-flex uk-flex-middle': true, 'app-media-breadcrumb-disable': disable }" @click="event => $emit('click', event)" @drop="drop" @dragover.prevent>
+        <div class="uk-flex uk-flex-column">
 
-        <!--  -->
-        <div class="app-media--breadcrumb-item--title">
-            {{ directory.name || $t('liro-media.form.root') }}
+            <!--  -->
+            <div class="app-media-breadcrumb-name uk-text-truncate">
+                {{ directory.name || $t('liro-media.form.root') }}
+            </div>
+            <!--  -->
+
+            <!--  -->
+            <div class="app-media-breadcrumb-info uk-text-truncate">
+                {{ $tc('liro-media.form.element_count', count, { count: count }) }}
+            </div>
+            <!--  -->
+
         </div>
-        <!--  -->
-
-        <!--  -->
-        <div class="app-media--breadcrumb-item--info">
-            {{ $tc('liro-media.form.element_count', count, { count: count }) }}
-        </div>
-        <!--  -->
-
     </li>
 </template>
 <script>
 export default {
-    computed: {
-        count() {
-            return this.directory.files.length + this.directory.directories.length;
-        }
-    },
     props: {
+        disable: {
+            default() {
+                return false;
+            },
+            type: Boolean
+        },
         directory: {
             default() {
                 return {};
             },
             type: Object
+        }
+    },
+    computed: {
+        count() {
+            return this.directory.files.length + this.directory.directories.length;
+        }
+    },
+    methods: {
+        drop(event) {
+            this.$liro.event.emit('media:move', event, this.directory)
         }
     }
 }

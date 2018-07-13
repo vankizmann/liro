@@ -1,30 +1,29 @@
 <template>
-    <div class="app-media--card-blue" :data-path="directory.path" @click="$emit('click', directory)" ref="card">
-        <div class="app-media--card-blue--body">
+    <div class="app-media-index-folder uk-flex uk-flex-column uk-flex-middle uk-padding-small" @click="event => $emit('click', event)" @drop="drop" @dragover.prevent>
 
-            <div class="app-media--card-blue--icon">
-                <span uk-icon="folder"></span>
-            </div>
-
-            <div class="app-media--card-blue--title">
-                {{ directory.name }}
-            </div>
-
-            <div class="app-media--card-blue--info">
-                {{ $tc('liro-media.form.element_count', count, { count: count }) }}
-            </div>
-
+        <div class="app-media-index-folder-image uk-flex uk-flex-middle uk-flex-center">
+            <span :uk-icon="icon"></span>
         </div>
+
+        <div class="app-media-index-folder-name uk-text-center uk-text-truncate uk-margin-top">
+            {{ directory.name || $t('liro-media.form.root') }}
+        </div>
+
+        <div class="app-media-index-folder-info uk-text-center uk-text-truncate uk-margin-small-bottom">
+            {{ $tc('liro-media.form.element_count', count, { count: count }) }}
+        </div>
+        
     </div>
 </template>
 <script>
 export default {
-    computed: {
-        count() {
-            return this.directory.files.length + this.directory.directories.length;
-        }
-    },
     props: {
+        icon: {
+            default() {
+                return 'folder';
+            },
+            type: String
+        },
         directory: {
             default() {
                 return {};
@@ -32,9 +31,15 @@ export default {
             type: Object
         }
     },
-    mounted() {
-        $(this.$refs.card).attr('ondrop', "liro.event.emit('media:move', event)");
-        $(this.$refs.card).attr('ondragover', "event.preventDefault()");
+    computed: {
+        count() {
+            return this.directory.files.length + this.directory.directories.length
+        }
+    },
+    methods: {
+        drop(event) {
+            this.$liro.event.emit('media:move', event, this.directory)
+        }
     }
 }
 

@@ -1,27 +1,31 @@
 <template>
-    <div class="app-media--card-white" :data-path="file.path" @click="$emit('click')" ref="card">
-        <div class="app-media--card-white--body">
-            
-            <div class="app-media--card-white--icon">
+    <div class="app-media-index-file uk-flex uk-flex-column uk-flex-middle uk-padding-small" @click="event => $emit('click', event)" @drag="drag" draggable="true">
 
-                <img v-if="file.mime == 'image/jpeg'" :data-src="file.url" uk-img>
-                <img v-else-if="file.mime == 'image/png'" :data-src="file.url" uk-img>
-                <span v-else uk-icon="file"></span>
-            </div>
-
-            <div class="app-media--card-white--title">
-                {{ file.name }}
-            </div>
-            
-            <div class="app-media--card-white--info">
-                {{ size }}
-            </div>
-
+        <div class="app-media-index-file-image uk-flex uk-flex-middle uk-flex-center">
+            <img v-if="['image/jpeg', 'image/png'].indexOf(file.type) != -1" :src="file.url" :alt="file.name" :title="file.name">
+            <span v-else uk-icon="question"></span>
         </div>
+
+        <div class="app-media-index-file-name uk-text-center uk-text-truncate uk-margin-top">
+            {{ file.name || $t('liro-media.form.root') }}
+        </div>
+
+        <div class="app-media-index-file-info uk-text-center uk-text-truncate uk-margin-small-bottom">
+            {{ size }}
+        </div>
+    
     </div>
 </template>
 <script>
 export default {
+    props: {
+        file: {
+            default() {
+                return {};
+            },
+            type: Object
+        }
+    },
     computed: {
         size() {
             if ( this.file.size > 1024 * 1024 * 1024 ) {
@@ -35,17 +39,10 @@ export default {
             return (this.file.size / 1024).toFixed(2) + ' KB';
         }
     },
-    props: {
-        file: {
-            default() {
-                return {};
-            },
-            type: Object
+    methods: {
+        drag(event) {
+            this.$liro.event.emit('media:drag', event, this.file)
         }
-    },
-    mounted() {
-        $(this.$refs.card).attr('ondragstart', "liro.event.emit('media:drag', event)");
-        $(this.$refs.card).attr('draggable', "true");
     }
 }
 

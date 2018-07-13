@@ -38,9 +38,16 @@
 
         },
 
+        "upload": {
+            "empty":            "Keine Datei ausgewählt, ziehen Sie die Dateien einfach in dieses Feld.",
+            "remove":           "Entfernen",
+            "select":           "Datei auswählen",
+            "start":            "Hochladen starten"
+        },
+
         "toolbar": {
             "save":             "Speichern",
-            "create":           "Erstellen",
+            "upload":           "Datei hochladen",
             "close":            "Schliessen",
             "delete":           "Löschen",
             "undo":             "Rückgängig",
@@ -67,6 +74,7 @@
             "type":             "Menütyp",
             "module":           "Modul",
             "query":            "Query",
+            "root":             "Hauptverzeichnis",
             "element_count":    "Leerer Ordner | {count} Dateien | {count} Dateien"
 
         },

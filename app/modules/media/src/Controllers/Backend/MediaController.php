@@ -18,11 +18,10 @@ class MediaController extends Controller
 
     public function move(Request $request)
     {
-        $source = $request->get('source', null);
-        $target = $request->get('target', null);
 
-
-        Storage::move($source, rtrim($target, '/') . '/' . pathinfo($source, PATHINFO_BASENAME));
+        foreach ($request->get('sources', []) as $file) {
+            Storage::move($file, $request->get('target', null) . '/' . pathinfo($file, PATHINFO_BASENAME));
+        }
 
         return response()->json([
             'message' => trans('liro-media.messages.media.moved'),
@@ -32,10 +31,8 @@ class MediaController extends Controller
 
     public function upload(Request $request)
     {
-        $target = $request->get('target', null);
-
         foreach ($request->file('files') as $file) {
-            $file->storeAs($target, $file->getClientOriginalName());
+            $file->storeAs($request->get('target', null), $file->getClientOriginalName());
         }
         
         return response()->json([

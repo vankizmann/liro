@@ -40,29 +40,13 @@
 </template>
 <script>
 export default {
-    computed: {
-        // count() {
-        //     return this.directory.files.length + this.directory.directories.length;
-        // }
-    },
-    props: {
-        // directory: {
-        //     default() {
-        //         return {};
-        //     },
-        //     type: Object
-        // }
-    },
     data() {
         return {
             files: []
         };
     },
     mounted() {
-
-        this.$liro.event.watch('media:update', () => this.files = []);
-        // this.$refs.dropzone.setAttribute('ondrop', "event.preventDefault(); liro.event.emit('media:upload', event);");
-        // this.$refs.dropzone.setAttribute('ondragover', "event.preventDefault();");
+        this.$liro.event.watch("media:update", () => (this.files = []));
     },
     methods: {
         fileDrop(event) {
@@ -78,12 +62,12 @@ export default {
             this.files.splice(index, 1);
         },
         fileUpload() {
-            this.$liro.event.emit('media:upload', this.files);
+            this.$liro.event.emit("media:upload", this.files);
         }
     }
-}
+};
 
 if (window.liro) {
-    liro.vue.$component('app-media-upload', this.default);
-} 
+    liro.vue.$component("app-media-upload", this.default);
+}
 </script>

@@ -60,65 +60,11 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(1);
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(3)
-/* template */
-var __vue_template__ = __webpack_require__(4)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/src/app-media-index.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-48b3a44a", Component.options)
-  } else {
-    hotAPI.reload("data-v-48b3a44a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -227,20 +173,74 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(2);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(3)
+/* template */
+var __vue_template__ = __webpack_require__(19)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/app-media-index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-48b3a44a", Component.options)
+  } else {
+    hotAPI.reload("data-v-48b3a44a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
 /* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_media_breadcrumb_vue__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_media_breadcrumb_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_media_breadcrumb_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__app_media_breadcrumb_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_media_upload_vue__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_media_upload_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_media_upload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__app_media_upload_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_media_directory_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_media_directory_vue__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_media_directory_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__app_media_directory_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_media_file_vue__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_media_file_vue__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_media_file_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__app_media_file_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_media_tree_vue__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_media_tree_vue__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_media_tree_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__app_media_tree_vue__);
 //
 //
@@ -307,6 +307,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -315,12 +319,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
     props: {
-
         moveRoute: {
             default: function _default() {
-                return '';
+                return "";
             },
 
             type: String
@@ -328,7 +330,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         uploadRoute: {
             default: function _default() {
-                return '';
+                return "";
             },
 
             type: String
@@ -336,17 +338,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         media: {
             default: function _default() {
-                return this.$liro.data.get('media', {});
+                return this.$liro.data.get("media", {});
             },
 
             type: Object
         }
-
     },
 
     computed: {
         breadcrumb: function breadcrumb() {
-            return this.$liro.func.ladderRecursive(this.root, 'path', this.path, 'directories', []);
+            return this.$liro.func.ladderRecursive(this.root, "path", this.path, "directories", []);
         },
         active: function active() {
             return _.nth(this.breadcrumb, -1);
@@ -357,605 +358,91 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     data: function data() {
-
         return {
-            path: '', root: this.media
+            path: "",
+            files: [],
+            root: this.media
         };
     },
     mounted: function mounted() {
         var _this = this;
 
-        this.$liro.event.once('media:upload', function (name, files) {
-
+        this.$liro.event.once("media:upload", function (name, files) {
             if (files.length == 0) {
                 return;
             }
 
             var formData = new FormData();
 
+            formData.append("path", _this.path);
+
             _.each(files, function (file, i) {
-                formData.append('files[' + i + ']', file);
+                formData.append("files[" + i + "]", file);
             });
 
             var res = _this.$http.post(_this.uploadRoute, formData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
             });
 
             res.then(function (res) {
-                return _this.$liro.event.emit('media:update', res);
+                return _this.$liro.event.emit("media:update", res);
             });
         });
 
-        this.$liro.event.watch('media:update', function (name, res) {
+        this.$liro.event.watch("media:update", function (name, res) {
             _this.root = res.data.media;
+            _this.files = [];
         });
 
-        this.$liro.event.watch('media:goto', function (name, event, directory) {
-            _this.path = directory.path;
+        this.$liro.event.watch("media:drag", function (name, event, file) {
+            _this.files = [file.path];
         });
 
-        this.$liro.event.watch('media:drag', function (name, event, file) {
-            _this.$liro.data.set('media:drag', [file.path]);
-        });
+        this.$liro.event.watch("media:goto", this.goto);
+        this.$liro.event.watch("media:select", this.select);
 
-        this.$liro.event.once('media:move', function (name, event, folder) {
+        this.$liro.event.once("media:move", function (name, event, folder) {
 
             var req = _this.$http.post(_this.moveRoute, {
-                sources: _this.$liro.data.get('media:drag'), target: folder.path
+                files: _this.files, path: folder.path
             });
 
             req.then(function (res) {
-                return _this.$liro.event.emit('media:update', res);
+                return _this.$liro.event.emit("media:update", res);
             });
         });
     },
 
 
     methods: {
-        goto: function goto(path) {
-            this.path = path;
+        goto: function goto(name, event, directory) {
+            this.path = directory.path;
+        },
+        select: function select(name, event, file) {
+            this.files = _.xor(this.files, [file.path]);
         },
         test: function test() {
-            console.log('test');
+            console.log("test");
         }
     }
-
 });
 
 if (window.liro) {
-    liro.vue.$component('app-media-index', this.default);
+    liro.vue.$component("app-media-index", this.default);
 }
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "app-media" },
-    [
-      _c(
-        "portal",
-        { attrs: { to: "app-infobar-right" } },
-        [
-          _c(
-            "app-toolbar-button",
-            {
-              staticClass: "uk-success",
-              attrs: {
-                href: "#",
-                icon: "cloud-upload",
-                "uk-toggle": "target: #app-media-upload"
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-media.toolbar.upload")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-button",
-            { attrs: { href: "#", "uk-toggle": "target: #app-module-help" } },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-media.toolbar.help")) +
-                  "\n        "
-              )
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("portal", { attrs: { to: "app-module-help" } }, [
-        _c("h1", [_vm._v(_vm._s(_vm.$t("liro-media.toolbar.help")))])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "uk-margin-large" }, [
-        _c("h1", { staticClass: "uk-heading-primary uk-margin-remove" }, [
-          _vm._v(_vm._s(_vm.$t("liro-media.backend.media.index")))
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "app-media-breadcrumb uk-margin" }, [
-        _c(
-          "ul",
-          { staticClass: "app-media-breadcrumb-list uk-flex" },
-          _vm._l(_vm.breadcrumb, function(directory, index) {
-            return _c("app-media-breadcrumb", {
-              key: index,
-              attrs: {
-                directory: directory,
-                disable: _vm.parent ? _vm.path == directory.path : true
-              },
-              on: {
-                click: function($event) {
-                  _vm.goto(directory.path)
-                }
-              }
-            })
-          })
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "app-media-browser uk-flex" }, [
-        _c(
-          "div",
-          { staticClass: "app-media-browser-tree" },
-          [_c("app-media-tree", { attrs: { directory: _vm.root } })],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "app-media-browser-body" },
-          [
-            _c("app-media-upload", {
-              attrs: { id: "app-media-upload", hidden: "" }
-            }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "app-media-index uk-flex uk-flex-wrap" },
-              [
-                _vm.parent
-                  ? _c("app-media-directory", {
-                      attrs: { directory: _vm.parent, icon: "chevron-left" },
-                      on: {
-                        click: function($event) {
-                          _vm.goto(_vm.parent.path)
-                        }
-                      }
-                    })
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm._l(_vm.active.directories, function(directory) {
-                  return _c("app-media-directory", {
-                    key: directory.path,
-                    attrs: { directory: directory },
-                    on: {
-                      click: function($event) {
-                        _vm.goto(directory.path)
-                      }
-                    }
-                  })
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.active.files, function(file) {
-                  return _c("app-media-file", {
-                    key: file.path,
-                    attrs: { file: file }
-                  })
-                })
-              ],
-              2
-            )
-          ],
-          1
-        )
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-48b3a44a", module.exports)
-  }
-}
-
-/***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(9)
+var __vue_script__ = __webpack_require__(5)
 /* template */
-var __vue_template__ = __webpack_require__(10)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/src/app-media-directory.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-40eb3736", Component.options)
-  } else {
-    hotAPI.reload("data-v-40eb3736", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        icon: {
-            default: function _default() {
-                return 'folder';
-            },
-
-            type: String
-        },
-        directory: {
-            default: function _default() {
-                return {};
-            },
-
-            type: Object
-        }
-    },
-    computed: {
-        count: function count() {
-            return this.directory.files.length + this.directory.directories.length;
-        }
-    },
-    methods: {
-        drop: function drop(event) {
-            this.$liro.event.emit('media:move', event, this.directory);
-        }
-    }
-});
-
-if (window.liro) {
-    liro.vue.$component('app-media-directory', this.default);
-}
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass:
-        "app-media-index-folder uk-flex uk-flex-column uk-flex-middle uk-padding-small",
-      on: {
-        click: function(event) {
-          return _vm.$emit("click", event)
-        },
-        drop: _vm.drop,
-        dragover: function($event) {
-          $event.preventDefault()
-        }
-      }
-    },
-    [
-      _c(
-        "div",
-        {
-          staticClass:
-            "app-media-index-folder-image uk-flex uk-flex-middle uk-flex-center"
-        },
-        [_c("span", { attrs: { "uk-icon": _vm.icon } })]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "app-media-index-folder-name uk-text-center uk-text-truncate uk-margin-top"
-        },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.directory.name || _vm.$t("liro-media.form.root")) +
-              "\n    "
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "app-media-index-folder-info uk-text-center uk-text-truncate uk-margin-small-bottom"
-        },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(
-                _vm.$tc("liro-media.form.element_count", _vm.count, {
-                  count: _vm.count
-                })
-              ) +
-              "\n    "
-          )
-        ]
-      )
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-40eb3736", module.exports)
-  }
-}
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(12)
-/* template */
-var __vue_template__ = __webpack_require__(13)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/src/app-media-file.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-f52d6798", Component.options)
-  } else {
-    hotAPI.reload("data-v-f52d6798", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        file: {
-            default: function _default() {
-                return {};
-            },
-
-            type: Object
-        }
-    },
-    computed: {
-        size: function size() {
-            if (this.file.size > 1024 * 1024 * 1024) {
-                return (this.file.size / (1024 * 1024 * 1024)).toFixed(2) + ' GB';
-            }
-
-            if (this.file.size > 1024 * 1024) {
-                return (this.file.size / (1024 * 1024)).toFixed(2) + ' MB';
-            }
-
-            return (this.file.size / 1024).toFixed(2) + ' KB';
-        }
-    },
-    methods: {
-        drag: function drag(event) {
-            this.$liro.event.emit('media:drag', event, this.file);
-        }
-    }
-});
-
-if (window.liro) {
-    liro.vue.$component('app-media-file', this.default);
-}
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass:
-        "app-media-index-file uk-flex uk-flex-column uk-flex-middle uk-padding-small",
-      attrs: { draggable: "true" },
-      on: {
-        click: function(event) {
-          return _vm.$emit("click", event)
-        },
-        drag: _vm.drag
-      }
-    },
-    [
-      _c(
-        "div",
-        {
-          staticClass:
-            "app-media-index-file-image uk-flex uk-flex-middle uk-flex-center"
-        },
-        [
-          ["image/jpeg", "image/png"].indexOf(_vm.file.type) != -1
-            ? _c("img", {
-                attrs: {
-                  src: _vm.file.url,
-                  alt: _vm.file.name,
-                  title: _vm.file.name
-                }
-              })
-            : _c("span", { attrs: { "uk-icon": "question" } })
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "app-media-index-file-name uk-text-center uk-text-truncate uk-margin-top"
-        },
-        [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.file.name || _vm.$t("liro-media.form.root")) +
-              "\n    "
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "app-media-index-file-info uk-text-center uk-text-truncate uk-margin-small-bottom"
-        },
-        [_vm._v("\n        " + _vm._s(_vm.size) + "\n    ")]
-      )
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-f52d6798", module.exports)
-  }
-}
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(15)
-/* template */
-var __vue_template__ = __webpack_require__(16)
+var __vue_template__ = __webpack_require__(6)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -994,7 +481,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 15 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1042,18 +529,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
+        goto: function goto(event) {
+            this.$liro.event.emit("media:goto", event, this.directory);
+        },
         drop: function drop(event) {
-            this.$liro.event.emit('media:move', event, this.directory);
+            this.$liro.event.emit("media:move", event, this.directory);
         }
     }
 });
 
 if (window.liro) {
-    liro.vue.$component('app-media-breadcrumb', this.default);
+    liro.vue.$component("app-media-breadcrumb", this.default);
 }
 
 /***/ }),
-/* 16 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1068,9 +558,7 @@ var render = function() {
         "app-media-breadcrumb-disable": _vm.disable
       },
       on: {
-        click: function(event) {
-          return _vm.$emit("click", event)
-        },
+        click: _vm.goto,
         drop: _vm.drop,
         dragover: function($event) {
           $event.preventDefault()
@@ -1121,15 +609,15 @@ if (false) {
 }
 
 /***/ }),
-/* 17 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(18)
+var __vue_script__ = __webpack_require__(8)
 /* template */
-var __vue_template__ = __webpack_require__(19)
+var __vue_template__ = __webpack_require__(9)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1168,7 +656,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 18 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1215,19 +703,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    computed: {
-        // count() {
-        //     return this.directory.files.length + this.directory.directories.length;
-        // }
-    },
-    props: {
-        // directory: {
-        //     default() {
-        //         return {};
-        //     },
-        //     type: Object
-        // }
-    },
     data: function data() {
         return {
             files: []
@@ -1236,11 +711,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.$liro.event.watch('media:update', function () {
+        this.$liro.event.watch("media:update", function () {
             return _this.files = [];
         });
-        // this.$refs.dropzone.setAttribute('ondrop', "event.preventDefault(); liro.event.emit('media:upload', event);");
-        // this.$refs.dropzone.setAttribute('ondragover', "event.preventDefault();");
     },
 
     methods: {
@@ -1265,17 +738,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.files.splice(index, 1);
         },
         fileUpload: function fileUpload() {
-            this.$liro.event.emit('media:upload', this.files);
+            this.$liro.event.emit("media:upload", this.files);
         }
     }
 });
 
 if (window.liro) {
-    liro.vue.$component('app-media-upload', this.default);
+    liro.vue.$component("app-media-upload", this.default);
 }
 
 /***/ }),
-/* 19 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1432,18 +905,385 @@ if (false) {
 }
 
 /***/ }),
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(24)
+var __vue_script__ = __webpack_require__(11)
 /* template */
-var __vue_template__ = __webpack_require__(25)
+var __vue_template__ = __webpack_require__(12)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/app-media-directory.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-40eb3736", Component.options)
+  } else {
+    hotAPI.reload("data-v-40eb3736", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        icon: {
+            default: function _default() {
+                return "folder";
+            },
+
+            type: String
+        },
+        directory: {
+            default: function _default() {
+                return {};
+            },
+
+            type: Object
+        }
+    },
+    computed: {
+        count: function count() {
+            return this.directory.files.length + this.directory.directories.length;
+        }
+    },
+    methods: {
+        gotoEvent: function gotoEvent(event) {
+            this.$liro.event.emit("media:goto", event, this.directory);
+        },
+        dropEvent: function dropEvent(event) {
+            this.$liro.event.emit("media:move", event, this.directory);
+        },
+        dragEvent: function dragEvent(event) {
+            this.$liro.event.emit("media:drag", event, this.directory);
+        }
+    }
+});
+
+if (window.liro) {
+    liro.vue.$component("app-media-directory", this.default);
+}
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "app-media-index-folder uk-flex uk-flex-column uk-flex-middle uk-padding-small",
+      attrs: { draggable: "true" },
+      on: {
+        click: _vm.gotoEvent,
+        drag: _vm.dragEvent,
+        drop: _vm.dropEvent,
+        dragover: function($event) {
+          $event.preventDefault()
+        }
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "app-media-index-folder-image uk-flex uk-flex-middle uk-flex-center"
+        },
+        [_c("span", { attrs: { "uk-icon": _vm.icon } })]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "app-media-index-folder-name uk-text-center uk-text-truncate uk-margin-top"
+        },
+        [
+          _vm._v(
+            "\n        " +
+              _vm._s(_vm.directory.name || _vm.$t("liro-media.form.root")) +
+              "\n    "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "app-media-index-folder-info uk-text-center uk-text-truncate uk-margin-small-bottom"
+        },
+        [
+          _vm._v(
+            "\n        " +
+              _vm._s(
+                _vm.$tc("liro-media.form.element_count", _vm.count, {
+                  count: _vm.count
+                })
+              ) +
+              "\n    "
+          )
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-40eb3736", module.exports)
+  }
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(14)
+/* template */
+var __vue_template__ = __webpack_require__(15)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/app-media-file.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f52d6798", Component.options)
+  } else {
+    hotAPI.reload("data-v-f52d6798", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        file: {
+            default: function _default() {
+                return {};
+            },
+
+            type: Object
+        }
+    },
+    computed: {
+        size: function size() {
+            if (this.file.size > 1024 * 1024 * 1024) {
+                return (this.file.size / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+            }
+
+            if (this.file.size > 1024 * 1024) {
+                return (this.file.size / (1024 * 1024)).toFixed(2) + " MB";
+            }
+
+            return (this.file.size / 1024).toFixed(2) + " KB";
+        }
+    },
+    methods: {
+        dragEvent: function dragEvent(event) {
+            this.$liro.event.emit("media:drag", event, this.file);
+        }
+    }
+});
+
+if (window.liro) {
+    liro.vue.$component("app-media-file", this.default);
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "app-media-index-file uk-flex uk-flex-column uk-flex-middle uk-padding-small",
+      attrs: { draggable: "true" },
+      on: { drag: _vm.dragEvent }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "app-media-index-file-image uk-flex uk-flex-middle uk-flex-center"
+        },
+        [
+          ["image/jpeg", "image/png"].indexOf(_vm.file.type) != -1
+            ? _c("img", {
+                attrs: {
+                  src: _vm.file.url,
+                  alt: _vm.file.name,
+                  title: _vm.file.name
+                }
+              })
+            : _c("span", { attrs: { "uk-icon": "question" } })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "app-media-index-file-name uk-text-center uk-text-truncate uk-margin-top"
+        },
+        [
+          _vm._v(
+            "\n        " +
+              _vm._s(_vm.file.name || _vm.$t("liro-media.form.root")) +
+              "\n    "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "app-media-index-file-info uk-text-center uk-text-truncate uk-margin-small-bottom"
+        },
+        [_vm._v("\n        " + _vm._s(_vm.size) + "\n    ")]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f52d6798", module.exports)
+  }
+}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(17)
+/* template */
+var __vue_template__ = __webpack_require__(18)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1482,7 +1322,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 24 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1531,7 +1371,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        click: function click(event) {
+        goto: function goto(event) {
             this.$liro.event.$emit('media:goto', event, this.directory);
         },
         drop: function drop(event) {
@@ -1545,7 +1385,7 @@ if (window.liro) {
 }
 
 /***/ }),
-/* 25 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1561,7 +1401,7 @@ var render = function() {
         {
           staticClass: "app-media-tree-item uk-flex uk-flex-middle",
           on: {
-            click: _vm.click,
+            click: _vm.goto,
             drop: _vm.drop,
             dragover: function($event) {
               $event.preventDefault()
@@ -1608,6 +1448,161 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-03dfe956", module.exports)
+  }
+}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "app-media" },
+    [
+      _c(
+        "portal",
+        { attrs: { to: "app-infobar-right" } },
+        [
+          _c(
+            "app-toolbar-button",
+            {
+              staticClass: "uk-success",
+              attrs: {
+                href: "#",
+                icon: "cloud-upload",
+                "uk-toggle": "target: #app-media-upload"
+              }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-media.toolbar.upload")) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-button",
+            {
+              staticClass: "uk-success",
+              attrs: {
+                href: "#",
+                icon: "folder",
+                "uk-toggle": "target: #app-media-upload"
+              }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-media.toolbar.create")) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-button",
+            { attrs: { href: "#", "uk-toggle": "target: #app-module-help" } },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-media.toolbar.help")) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("portal", { attrs: { to: "app-module-help" } }, [
+        _c("h1", [_vm._v(_vm._s(_vm.$t("liro-media.toolbar.help")))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-margin-large" }, [
+        _c("h1", { staticClass: "uk-heading-primary uk-margin-remove" }, [
+          _vm._v(_vm._s(_vm.$t("liro-media.backend.media.index")))
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "app-media-breadcrumb uk-margin" }, [
+        _c(
+          "ul",
+          { staticClass: "app-media-breadcrumb-list uk-flex" },
+          _vm._l(_vm.breadcrumb, function(directory, index) {
+            return _c("app-media-breadcrumb", {
+              key: index,
+              attrs: {
+                directory: directory,
+                disable: _vm.parent ? _vm.path == directory.path : true
+              }
+            })
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "app-media-browser uk-flex" }, [
+        _c(
+          "div",
+          { staticClass: "app-media-browser-tree" },
+          [_c("app-media-tree", { attrs: { directory: _vm.root } })],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "app-media-browser-body" },
+          [
+            _c("app-media-upload", {
+              attrs: { id: "app-media-upload", hidden: "" }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "app-media-index uk-flex uk-flex-wrap" },
+              [
+                _vm.parent
+                  ? _c("app-media-directory", {
+                      attrs: { directory: _vm.parent, icon: "chevron-left" }
+                    })
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._l(_vm.active.directories, function(directory) {
+                  return _c("app-media-directory", {
+                    key: directory.path,
+                    attrs: { directory: directory }
+                  })
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.active.files, function(file) {
+                  return _c("app-media-file", {
+                    key: file.path,
+                    attrs: { file: file }
+                  })
+                })
+              ],
+              2
+            )
+          ],
+          1
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-48b3a44a", module.exports)
   }
 }
 

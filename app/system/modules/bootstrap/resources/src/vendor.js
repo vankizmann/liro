@@ -70,22 +70,22 @@ window.axios.defaults.headers.common = {
 
 window.axios.interceptors.request.use(
     function (request) {
-        window.liro.event.$emit('axios.load');
+        window.liro.event.$emit('axios.load', request);
         return request;
     },
     function (error) {
-        window.liro.event.$emit('axios.error');
+        window.liro.event.$emit('axios.error', error.response);
         return Promise.reject(error);
     }
 );
 
 window.axios.interceptors.response.use(
     function (response) {
-        window.liro.event.$emit('axios.done');
+        window.liro.event.$emit('axios.done', response);
         return response;
     },
     function (error) {
-        window.liro.event.$emit('axios.error');
+        window.liro.event.$emit('axios.error', error.response);
         return Promise.reject(error);
     }
 );

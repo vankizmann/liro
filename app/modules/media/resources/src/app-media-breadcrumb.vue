@@ -1,5 +1,5 @@
 <template>
-    <li :class="{ 'app-media-breadcrumb-item uk-flex uk-flex-middle': true, 'app-media-breadcrumb-disable': disable }" @click="event => $emit('click', event)" @drop="drop" @dragover.prevent>
+    <li :class="{ 'app-media-breadcrumb-item uk-flex uk-flex-middle': true, 'app-media-breadcrumb-disable': disable }" @click="goto" @drop="drop" @dragover.prevent>
         <div class="uk-flex uk-flex-column">
 
             <!--  -->
@@ -39,13 +39,16 @@ export default {
         }
     },
     methods: {
+        goto(event) {
+            this.$liro.event.emit("media:goto", event, this.directory);
+        },
         drop(event) {
-            this.$liro.event.emit('media:move', event, this.directory)
+            this.$liro.event.emit("media:move", event, this.directory);
         }
     }
-}
+};
 
 if (window.liro) {
-    liro.vue.$component('app-media-breadcrumb', this.default);
+    liro.vue.$component("app-media-breadcrumb", this.default);
 }
 </script>

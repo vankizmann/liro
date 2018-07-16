@@ -28,35 +28,6 @@
         </div>
         <!-- Loader end -->
 
-        <script>
-
-            liro.event.$watch('axios.load', function() {
-                $('.uk-ajax-load').queue(() => {
-                    $('.uk-ajax-load').addClass('uk-active').dequeue();
-                }).animate({
-                    opacity: 1
-                }, 300);
-            });
-
-            liro.event.$watch('axios.done', function() {
-                $('.uk-ajax-load').animate({
-                    opacity: 0
-                }, 300).queue(() => {
-                    $('.uk-ajax-load').removeClass('uk-active').dequeue();
-                });
-            });
-        
-            liro.event.$watch('axios.error', function() {
-                $('.uk-ajax-load').animate({
-                    opacity: 0
-                }, 300).queue(() => {
-                    $('.uk-ajax-load').removeClass('uk-active').dequeue();
-                });
-            });
-
-
-        </script>
-
         <div id="app" class="app-container uk-offcanvas-content" style="min-height: 100vh;">
 
             <!-- Help start -->

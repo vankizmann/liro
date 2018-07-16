@@ -12350,6 +12350,8 @@ function install(Vue) {
     Vue.prototype.$http = window.axios;
     Vue.prototype.$liro = window.liro;
 
+    Vue.prototype.$notify = UIkit.notification;
+
     // require('./store/app-history.js');
     // require('./store/app-list.js');
 

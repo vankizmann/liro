@@ -1,7 +1,7 @@
 <template>
     <div class="app-media-tree-folder">
 
-        <div class="app-media-tree-item uk-flex uk-flex-middle" @click="click" @drop="drop" @dragover.prevent>
+        <div class="app-media-tree-item uk-flex uk-flex-middle" @click="goto" @drop="drop" @dragover.prevent>
 
             <div class="app-media-tree-icon">
                 <span uk-icon="folder"></span>
@@ -41,7 +41,7 @@ export default {
         }
     },
     methods: {
-        click(event) {
+        goto(event) {
             this.$liro.event.$emit('media:goto', event, this.directory);
         },
         drop(event) {

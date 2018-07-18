@@ -15,9 +15,19 @@ class MediaRouter
         $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Backend\MediaController@move');
     }
 
+    public function delete($router)
+    {
+        $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Backend\MediaController@delete');
+    }
+
     public function upload($router)
     {
         $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Backend\MediaController@upload');
+    }
+
+    public function folder($router)
+    {
+        $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Backend\MediaController@folder');
     }
 
 }

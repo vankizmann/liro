@@ -24,10 +24,22 @@ return [
             'handler'       => 'Liro\Media\Routers\MediaRouter@move'
         ],
 
+        'liro-media.backend.media.delete' => [
+            'group'         => 'liro-media.backend.media',
+            'title'         => 'liro-media.backend.media.delete',
+            'handler'       => 'Liro\Media\Routers\MediaRouter@delete'
+        ],
+
         'liro-media.backend.media.upload' => [
             'group'         => 'liro-media.backend.media',
             'title'         => 'liro-media.backend.media.upload',
             'handler'       => 'Liro\Media\Routers\MediaRouter@upload'
+        ],
+
+        'liro-media.backend.media.folder' => [
+            'group'         => 'liro-media.backend.media',
+            'title'         => 'liro-media.backend.media.folder',
+            'handler'       => 'Liro\Media\Routers\MediaRouter@folder'
         ]
 
     ]

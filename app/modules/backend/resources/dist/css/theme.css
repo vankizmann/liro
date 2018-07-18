@@ -13213,19 +13213,25 @@ iframe.uk-cover {
   font-size: 0.825rem;
 }
 
-.app-media-upload {
-  margin: 10px 0;
+.app-media-create-folder-modal .uk-close {
+  color: #ffffff;
 }
 
-.app-media-upload-dropzone {
-  border-radius: 4px;
-  background-color: rgba(0, 124, 255, 0.1);
-  border: 1px dashed rgba(0, 124, 255, 0.5);
+.app-media-upload {
+  min-height: 100vh;
+}
+
+.app-media-upload-modal .uk-modal-dialog {
+  padding: 0;
+  background-color: transparent;
+}
+
+.app-media-upload-modal .uk-close {
+  color: #ffffff;
 }
 
 .app-media-upload-empty {
-  font-size: 0.825rem;
-  color: #05080c;
+  color: #ffffff;
 }
 
 .app-media-upload-files {
@@ -13431,6 +13437,15 @@ a, button {
   text-decoration: none !important;
 }
 
+.uk-modal {
+  background: rgba(3, 66, 134, 0.8);
+}
+
+.uk-modal-dialog {
+  -webkit-box-shadow: 0 2px 16px rgba(199, 202, 206, 0.1);
+          box-shadow: 0 2px 16px rgba(199, 202, 206, 0.1);
+}
+
 .uk-pagination {
   margin-bottom: 0;
 }
@@ -13469,13 +13484,13 @@ a, button {
 }
 
 .uk-ajax-load {
-  z-index: 999;
+  z-index: 9999;
   opacity: 0;
   display: none;
 }
 
 .uk-ajax-load {
-  background-color: rgba(0, 124, 255, 0.8);
+  background-color: rgba(3, 66, 134, 0.8);
 }
 
 .uk-ajax-load.uk-active {

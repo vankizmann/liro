@@ -41,11 +41,13 @@
         "upload": {
             "empty":            "Keine Datei ausgewählt, ziehen Sie die Dateien einfach in dieses Feld.",
             "remove":           "Entfernen",
+            "remove_all":       "Alle entfernen",
             "select":           "Datei auswählen",
             "start":            "Hochladen starten"
         },
 
         "toolbar": {
+            "folder":           "Ordner erstellen",
             "save":             "Speichern",
             "upload":           "Datei hochladen",
             "close":            "Schliessen",
@@ -58,6 +60,7 @@
 
         "form": {
             "empty":            "Kein Eintrag gefunden.",
+            "create":           "Erstellen",
             "enabled":          "Aktiviert",
             "disabled":         "Deaktiviert",
             "visibility":       "Sichtbarkeit",
@@ -80,7 +83,7 @@
         },
 
         "placeholder": {
-            "themes":           "Theme auswählen",
+            "folder":           "Namen eingeben",
             "state":            "Status auswählen",
             "visibility":       "Sichtbarkeit auswählen",
             "type":             "Menütyp auswählen",

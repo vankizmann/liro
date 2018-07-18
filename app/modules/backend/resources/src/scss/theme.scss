@@ -63,6 +63,14 @@ a, button {
     text-decoration: none !important;
 }
 
+.uk-modal {
+    background: rgba(mix($color-primary, $color-black, 50%), 0.8);
+}
+
+.uk-modal-dialog {
+    box-shadow: 0 2px 16px rgba($color-gray-30, 0.1);
+}
+
 .uk-pagination {
     margin-bottom: 0;
 }
@@ -132,13 +140,13 @@ a, button {
     }
 
     & {
-        z-index: 999;
+        z-index: 9999;
         opacity: 0;
         display: none;
     }
 
     & {
-        background-color: rgba($color-primary, 0.8);
+        background-color: rgba(mix($color-primary, $color-black, 50%), 0.8);
     }
 
     &.uk-active {

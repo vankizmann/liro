@@ -3,13 +3,16 @@
 
     <!-- Infobar start -->
     <portal to="app-infobar-right">
-        <app-toolbar-button href="#" class="uk-success" icon="cloud-upload" uk-toggle="target: #app-media-upload-file">
+        <app-toolbar-button href="#" class="uk-success" icon="cloud-upload" uk-toggle="target: #app-media-upload">
             {{ $t('liro-media.toolbar.upload') }}
         </app-toolbar-button>
-        <app-toolbar-button href="#" class="uk-success" icon="folder" uk-toggle="target: #app-media-create-folder">
+        <app-toolbar-button href="#" class="uk-success" icon="folder" uk-toggle="target: #app-media-create">
             {{ $t('liro-media.toolbar.folder') }}
         </app-toolbar-button>
-        <app-toolbar-button href="#" uk-toggle="target: #app-module-help">
+        <app-toolbar-button href="#" class="uk-danger" icon="trash" :disabled="files.length == 0">
+            {{ $t('liro-media.toolbar.delete') }}
+        </app-toolbar-button>
+        <app-toolbar-button href="#" :disabled="true" uk-toggle="target: #app-module-help">
             {{ $t('liro-media.toolbar.help') }}
         </app-toolbar-button>
     </portal>
@@ -27,15 +30,8 @@
     </div>
     <!-- Title end -->
 
-    <div id="app-media-upload-file" class="app-media-upload-modal uk-modal-full" uk-modal>
-        <button class="uk-modal-close-default uk-close-large" type="button" uk-close></button>
-        <app-media-upload-file class="uk-modal-body"></app-media-upload-file>
-    </div>
-
-    <div id="app-media-create-folder" class="app-media-create-folder-modal" uk-modal>
-        <button class="uk-modal-close-default uk-close-large" type="button" uk-close></button>
-        <app-media-create-folder class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"></app-media-create-folder>
-    </div>
+    <app-media-upload id="app-media-upload"></app-media-upload>
+    <app-media-create id="app-media-create"></app-media-create>
 
     <div class="app-media-breadcrumb uk-margin">
         <ul class="app-media-breadcrumb-list uk-flex">
@@ -76,8 +72,8 @@
 </template>
 
 <script>
-import MediaUploadFile from "./app-media-upload-file.vue";
-import MediaCreateFolder from "./app-media-create-folder.vue";
+import MediaUpload from "./app-media-upload.vue";
+import MediaCreate from "./app-media-create.vue";
 import MediaBreadcrumb from "./app-media-breadcrumb.vue";
 import MediaDirectory from "./app-media-directory.vue";
 import MediaFile from "./app-media-file.vue";
@@ -99,7 +95,7 @@ export default {
             type: String
         },
 
-        folderRoute: {
+        createRoute: {
             default() {
                 return "";
             },
@@ -129,8 +125,9 @@ export default {
     },
 
     data() {
+        setTimeout(() => this.test = false, 3000)
         return {
-            path: "", files: [], root: this.media
+            path: "", files: [], root: this.media, test: true
         };
     },
 
@@ -163,8 +160,8 @@ export default {
             this.root = res.data.media;
             this.files = [];
 
-            window.UIkit.modal('#app-media-upload-file').hide();
-            window.UIkit.modal('#app-media-create-folder').hide();
+            window.UIkit.modal('#app-media-upload').hide();
+            window.UIkit.modal('#app-media-create').hide();
         });
 
         this.$liro.event.watch("media:drag", (name, event, file) => {
@@ -176,7 +173,7 @@ export default {
 
         this.$liro.event.once("media:folder", (name, event, folders) => {
 
-            var req = this.$http.post(this.folderRoute, {
+            var req = this.$http.post(this.createRoute, {
                 folders: folders, path: this.path
             });
 

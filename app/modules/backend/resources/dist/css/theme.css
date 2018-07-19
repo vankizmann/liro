@@ -13213,25 +13213,22 @@ iframe.uk-cover {
   font-size: 0.825rem;
 }
 
-.app-media-create-folder-modal .uk-close {
+.app-media-create .uk-close {
   color: #ffffff;
 }
 
-.app-media-upload {
-  min-height: 100vh;
-}
-
-.app-media-upload-modal .uk-modal-dialog {
-  padding: 0;
-  background-color: transparent;
-}
-
-.app-media-upload-modal .uk-close {
+.app-media-upload .uk-close {
   color: #ffffff;
+}
+
+.app-media-upload-dropzone {
+  border-radius: 4px;
+  background-color: rgba(0, 124, 255, 0.1);
+  border: 1px dashed rgba(0, 124, 255, 0.5);
 }
 
 .app-media-upload-empty {
-  color: #ffffff;
+  font-size: 0.825rem;
 }
 
 .app-media-upload-files {
@@ -13438,7 +13435,7 @@ a, button {
 }
 
 .uk-modal {
-  background: rgba(3, 66, 134, 0.8);
+  background: rgba(2, 89, 182, 0.8);
 }
 
 .uk-modal-dialog {
@@ -13490,7 +13487,7 @@ a, button {
 }
 
 .uk-ajax-load {
-  background-color: rgba(3, 66, 134, 0.8);
+  background-color: rgba(2, 89, 182, 0.8);
 }
 
 .uk-ajax-load.uk-active {
@@ -13566,6 +13563,7 @@ a, button {
 }
 
 .uk-navbar-list li > .uk-button {
+  border: 1px solid transparent;
   color: #e6f2ff;
   background-color: #007cff;
 }
@@ -13576,7 +13574,8 @@ a, button {
 }
 
 .uk-navbar-list li.uk-disabled > .uk-button {
-  color: #80beff;
+  color: #aeb3b8 !important;
+  background-color: #f2f2f4 !important;
 }
 
 .uk-navbar-list li.uk-success > .uk-button {

@@ -387,9 +387,9 @@
 
 }
 
-.app-media-create-folder {
+.app-media-create {
 
-    &-modal .uk-close {
+    .uk-close {
         color: $color-white;
     }
 
@@ -397,28 +397,18 @@
 
 .app-media-upload {
 
-    & {
-        min-height: 100vh;
-    }
-
-    &-modal .uk-modal-dialog {
-        padding: 0;
-        background-color: transparent;
-    }
-
-    &-modal .uk-close {
+    .uk-close {
         color: $color-white;
     }
 
     &-dropzone {
-        // border-radius: 4px;
-        // background-color: rgba($color-primary, 0.1);
-        // border: 1px dashed rgba($color-primary, 0.5);
+        border-radius: 4px;
+        background-color: rgba($color-primary, 0.1);
+        border: 1px dashed rgba($color-primary, 0.5);
     }
 
     &-empty {
-        // font-size: 0.825rem;
-        color: $color-white;
+        font-size: 0.825rem;
     }
 
     &-files {

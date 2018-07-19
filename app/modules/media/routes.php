@@ -36,10 +36,10 @@ return [
             'handler'       => 'Liro\Media\Routers\MediaRouter@upload'
         ],
 
-        'liro-media.backend.media.folder' => [
+        'liro-media.backend.media.create' => [
             'group'         => 'liro-media.backend.media',
-            'title'         => 'liro-media.backend.media.folder',
-            'handler'       => 'Liro\Media\Routers\MediaRouter@folder'
+            'title'         => 'liro-media.backend.media.create',
+            'handler'       => 'Liro\Media\Routers\MediaRouter@create'
         ]
 
     ]

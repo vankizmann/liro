@@ -25,9 +25,9 @@ class MediaRouter
         $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Backend\MediaController@upload');
     }
 
-    public function folder($router)
+    public function create($router)
     {
-        $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Backend\MediaController@folder');
+        $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Backend\MediaController@create');
     }
 
 }

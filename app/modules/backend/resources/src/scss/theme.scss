@@ -64,7 +64,7 @@ a, button {
 }
 
 .uk-modal {
-    background: rgba(mix($color-primary, $color-black, 50%), 0.8);
+    background: rgba(mix($color-primary, $color-black, 70%), 0.8);
 }
 
 .uk-modal-dialog {
@@ -146,7 +146,7 @@ a, button {
     }
 
     & {
-        background-color: rgba(mix($color-primary, $color-black, 50%), 0.8);
+        background-color: rgba(mix($color-primary, $color-black, 70%), 0.8);
     }
 
     &.uk-active {
@@ -209,6 +209,7 @@ a, button {
     }
 
     li > .uk-button {
+        border: 1px solid transparent;
         color: mix($color-white, $color-primary, 90%);
         background-color: $color-primary;
     }
@@ -219,7 +220,8 @@ a, button {
     }
 
     li.uk-disabled > .uk-button {
-        color: mix($color-white, $color-primary, 50%);
+        color: $color-gray-40 !important;
+        background-color: darken($color-gray-10, 2.5%) !important;
     }
 
     li.uk-success > .uk-button {

@@ -26,6 +26,6 @@ liro.event.$watch('axios.error', function(name, res) {
         opacity: 0
     }, 300).queue(() => {
         $('.uk-ajax-load').removeClass('uk-active').dequeue();
-        UIkit.notification(res.data.message, 'danger');
+        UIkit.notification(res.data.message || res.statusText, 'danger');
     });
 });

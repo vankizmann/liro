@@ -17,8 +17,6 @@
 
         </div>
 
-        
-
         <app-media-tree 
             v-for="(item, index) in directory.directories" :key="index" :directory="item"
         ></app-media-tree>

@@ -232,10 +232,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_media_upload_file_vue__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_media_upload_file_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__app_media_upload_file_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_media_create_folder_vue__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_media_create_folder_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__app_media_create_folder_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_media_upload_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_media_upload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__app_media_upload_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_media_create_vue__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_media_create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__app_media_create_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_media_breadcrumb_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_media_breadcrumb_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__app_media_breadcrumb_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_media_directory_vue__ = __webpack_require__(10);
@@ -244,10 +244,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_media_file_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__app_media_file_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_media_tree_vue__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_media_tree_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__app_media_tree_vue__);
-//
-//
-//
-//
 //
 //
 //
@@ -347,7 +343,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: String
         },
 
-        folderRoute: {
+        createRoute: {
             default: function _default() {
                 return "";
             },
@@ -377,12 +373,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     data: function data() {
+        var _this = this;
+
+        setTimeout(function () {
+            return _this.test = false;
+        }, 3000);
         return {
-            path: "", files: [], root: this.media
+            path: "", files: [], root: this.media, test: true
         };
     },
     mounted: function mounted() {
-        var _this = this;
+        var _this2 = this;
 
         this.$liro.event.once("media:upload", function (name, files) {
 
@@ -392,33 +393,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var formData = new FormData();
 
-            formData.append("path", _this.path);
+            formData.append("path", _this2.path);
 
             _.each(files, function (file, i) {
                 formData.append("files[" + i + "]", file);
             });
 
-            var res = _this.$http.post(_this.uploadRoute, formData, {
+            var res = _this2.$http.post(_this2.uploadRoute, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
             });
 
             res.then(function (res) {
-                return _this.$liro.event.emit("media:update", res);
+                return _this2.$liro.event.emit("media:update", res);
             });
         });
 
         this.$liro.event.watch("media:update", function (name, res) {
-            _this.root = res.data.media;
-            _this.files = [];
+            _this2.root = res.data.media;
+            _this2.files = [];
 
-            window.UIkit.modal('#app-media-upload-file').hide();
-            window.UIkit.modal('#app-media-create-folder').hide();
+            window.UIkit.modal('#app-media-upload').hide();
+            window.UIkit.modal('#app-media-create').hide();
         });
 
         this.$liro.event.watch("media:drag", function (name, event, file) {
-            _this.files = [file.path];
+            _this2.files = [file.path];
         });
 
         this.$liro.event.watch("media:goto", this.goto);
@@ -426,23 +427,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.$liro.event.once("media:folder", function (name, event, folders) {
 
-            var req = _this.$http.post(_this.folderRoute, {
-                folders: folders, path: _this.path
+            var req = _this2.$http.post(_this2.createRoute, {
+                folders: folders, path: _this2.path
             });
 
             req.then(function (res) {
-                return _this.$liro.event.emit("media:update", res);
+                return _this2.$liro.event.emit("media:update", res);
             });
         });
 
         this.$liro.event.once("media:move", function (name, event, folder) {
 
-            var req = _this.$http.post(_this.moveRoute, {
-                files: _this.files, path: folder.path
+            var req = _this2.$http.post(_this2.moveRoute, {
+                files: _this2.files, path: folder.path
             });
 
             req.then(function (res) {
-                return _this.$liro.event.emit("media:update", res);
+                return _this2.$liro.event.emit("media:update", res);
             });
         });
     },
@@ -638,9 +639,409 @@ if (false) {
 }
 
 /***/ }),
-/* 7 */,
-/* 8 */,
-/* 9 */,
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(8)
+/* template */
+var __vue_template__ = __webpack_require__(9)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/app-media-upload.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d548db8e", Component.options)
+  } else {
+    hotAPI.reload("data-v-d548db8e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            files: []
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$liro.event.watch("media:update", function () {
+            return _this.files = [];
+        });
+    },
+
+    methods: {
+        fileDrop: function fileDrop(event) {
+            var _this2 = this;
+
+            _.each(event.dataTransfer.files, function (file) {
+                return file.type != '' ? _this2.files.push(file) : null;
+            });
+        },
+        fileSelect: function fileSelect(event) {
+            var _this3 = this;
+
+            _.each(this.$refs.input.files, function (file) {
+                return _this3.files.push(file);
+            });
+        },
+        filePreview: function filePreview(file) {
+            return URL.createObjectURL(file);
+        },
+        fileRemove: function fileRemove(index) {
+            isNaN(index) ? this.files = [] : this.files.splice(index, 1);
+        },
+        fileUpload: function fileUpload(event) {
+            this.$liro.event.emit("media:upload", this.files);
+        }
+    }
+});
+
+if (window.liro) {
+    liro.vue.$component("app-media-upload", this.default);
+}
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      ref: "dropzone",
+      staticClass: "app-media-upload uk-modal-container",
+      attrs: { "uk-modal": "" },
+      on: {
+        drop: function($event) {
+          $event.preventDefault()
+          return _vm.fileDrop($event)
+        },
+        dragover: function($event) {
+          $event.preventDefault()
+        }
+      }
+    },
+    [
+      _c("button", {
+        staticClass: "uk-modal-close-default uk-close-large",
+        attrs: { type: "button", "uk-close": "" }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "app-media-upload uk-modal-dialog uk-margin-auto-vertical"
+        },
+        [
+          _c("div", { staticClass: "uk-modal-body" }, [
+            _c("div", { staticClass: "app-media-upload-dropzone uk-padding" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "app-media-upload-files uk-flex uk-flex-wrap uk-flex-center"
+                },
+                [
+                  _vm.files.length == 0
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "app-media-upload-empty uk-text-center"
+                        },
+                        [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.$t("liro-media.upload.empty")))
+                          ])
+                        ]
+                      )
+                    : _vm._l(_vm.files, function(file, index) {
+                        return _c(
+                          "div",
+                          {
+                            key: index,
+                            staticClass:
+                              "app-media-upload-file uk-flex uk-flex-column uk-padding-small"
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "app-media-upload-file-image uk-flex uk-flex-middle uk-flex-center"
+                              },
+                              [
+                                ["image/jpeg", "image/png"].indexOf(
+                                  file.type
+                                ) != -1
+                                  ? _c("img", {
+                                      attrs: {
+                                        src: _vm.filePreview(file),
+                                        alt: file.name
+                                      }
+                                    })
+                                  : _c("span", {
+                                      attrs: { "uk-icon": "question" }
+                                    })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "app-media-upload-file-name uk-text-center uk-text-truncate uk-margin-top"
+                              },
+                              [_c("span", [_vm._v(_vm._s(file.name))])]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "app-media-upload-file-remove uk-text-center uk-text-truncate uk-margin-small-bottom"
+                              },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        _vm.fileRemove(index)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(_vm.$t("liro-media.upload.remove"))
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "app-media-upload-button uk-width-1-1 uk-margin-top uk-text-center"
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "uk-button uk-button-primary",
+                          on: {
+                            click: function($event) {
+                              _vm.$refs.input.click()
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(_vm.$t("liro-media.upload.select")) +
+                              "\n                        "
+                          )
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    ref: "input",
+                    staticStyle: { display: "none" },
+                    attrs: { type: "file", multiple: "" },
+                    on: { change: _vm.fileSelect }
+                  })
+                ],
+                2
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "app-media-upload-button uk-modal-footer uk-flex uk-flex-middle"
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "uk-button uk-button-danger",
+                  staticStyle: { "margin-right": "auto" },
+                  attrs: { disabled: _vm.files.length == 0 },
+                  on: { click: _vm.fileRemove }
+                },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.$t("liro-media.upload.remove_all")) +
+                      "\n            "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "uk-button uk-button-success",
+                  staticStyle: { "margin-left": "auto" },
+                  attrs: { disabled: _vm.files.length == 0 },
+                  on: { click: _vm.fileUpload }
+                },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.$t("liro-media.upload.start")) +
+                      "\n            "
+                  )
+                ]
+              )
+            ]
+          )
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d548db8e", module.exports)
+  }
+}
+
+/***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1088,8 +1489,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -1210,7 +1609,7 @@ var render = function() {
               attrs: {
                 href: "#",
                 icon: "cloud-upload",
-                "uk-toggle": "target: #app-media-upload-file"
+                "uk-toggle": "target: #app-media-upload"
               }
             },
             [
@@ -1229,7 +1628,7 @@ var render = function() {
               attrs: {
                 href: "#",
                 icon: "folder",
-                "uk-toggle": "target: #app-media-create-folder"
+                "uk-toggle": "target: #app-media-create"
               }
             },
             [
@@ -1243,7 +1642,32 @@ var render = function() {
           _vm._v(" "),
           _c(
             "app-toolbar-button",
-            { attrs: { href: "#", "uk-toggle": "target: #app-module-help" } },
+            {
+              staticClass: "uk-danger",
+              attrs: {
+                href: "#",
+                icon: "trash",
+                disabled: _vm.files.length == 0
+              }
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("liro-media.toolbar.delete")) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "app-toolbar-button",
+            {
+              attrs: {
+                href: "#",
+                disabled: true,
+                "uk-toggle": "target: #app-module-help"
+              }
+            },
             [
               _vm._v(
                 "\n            " +
@@ -1266,41 +1690,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "app-media-upload-modal uk-modal-full",
-          attrs: { id: "app-media-upload-file", "uk-modal": "" }
-        },
-        [
-          _c("button", {
-            staticClass: "uk-modal-close-default uk-close-large",
-            attrs: { type: "button", "uk-close": "" }
-          }),
-          _vm._v(" "),
-          _c("app-media-upload-file", { staticClass: "uk-modal-body" })
-        ],
-        1
-      ),
+      _c("app-media-upload", { attrs: { id: "app-media-upload" } }),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "app-media-create-folder-modal",
-          attrs: { id: "app-media-create-folder", "uk-modal": "" }
-        },
-        [
-          _c("button", {
-            staticClass: "uk-modal-close-default uk-close-large",
-            attrs: { type: "button", "uk-close": "" }
-          }),
-          _vm._v(" "),
-          _c("app-media-create-folder", {
-            staticClass: "uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
-          })
-        ],
-        1
-      ),
+      _c("app-media-create", { attrs: { id: "app-media-create" } }),
       _vm._v(" "),
       _c("div", { staticClass: "app-media-breadcrumb uk-margin" }, [
         _c(
@@ -1370,15 +1762,21 @@ if (false) {
 }
 
 /***/ }),
-/* 20 */
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(21)
+var __vue_script__ = __webpack_require__(27)
 /* template */
-var __vue_template__ = __webpack_require__(22)
+var __vue_template__ = __webpack_require__(28)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1395,7 +1793,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-media-upload-file.vue"
+Component.options.__file = "resources/src/app-media-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1404,9 +1802,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d66c6b80", Component.options)
+    hotAPI.createRecord("data-v-1515a098", Component.options)
   } else {
-    hotAPI.reload("data-v-d66c6b80", Component.options)
+    hotAPI.reload("data-v-1515a098", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1417,7 +1815,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 21 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1445,320 +1843,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            files: []
-        };
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        this.$liro.event.watch("media:update", function () {
-            return _this.files = [];
-        });
-    },
-
-    methods: {
-        fileDrop: function fileDrop(event) {
-            var _this2 = this;
-
-            _.each(event.dataTransfer.files, function (file) {
-                return file.type != '' ? _this2.files.push(file) : null;
-            });
-        },
-        fileSelect: function fileSelect() {
-            var _this3 = this;
-
-            _.each(this.$refs.input.files, function (file) {
-                return _this3.files.push(file);
-            });
-        },
-        filePreview: function filePreview(file) {
-            return URL.createObjectURL(file);
-        },
-        fileRemove: function fileRemove(index) {
-            isNaN(index) ? this.files = [] : this.files.splice(index, 1);
-        },
-        fileUpload: function fileUpload() {
-            this.$liro.event.emit("media:upload", this.files);
-        }
-    }
-});
-
-if (window.liro) {
-    liro.vue.$component("app-media-upload-file", this.default);
-}
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "app-media-upload uk-flex uk-flex-stretch" },
-    [
-      _c(
-        "div",
-        {
-          ref: "dropzone",
-          staticClass:
-            "app-media-upload-dropzone uk-width-1-1 uk-flex uk-flex-wrap uk-flex-middle uk-padding",
-          on: {
-            drop: function($event) {
-              $event.preventDefault()
-              return _vm.fileDrop($event)
-            },
-            dragover: function($event) {
-              $event.preventDefault()
-            }
-          }
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "app-media-upload-files uk-width-1-1 uk-flex uk-flex-wrap uk-flex-center"
-            },
-            [
-              _vm.files.length == 0
-                ? _c(
-                    "div",
-                    { staticClass: "app-media-upload-empty uk-text-center" },
-                    [
-                      _c("span", [
-                        _vm._v(_vm._s(_vm.$t("liro-media.upload.empty")))
-                      ])
-                    ]
-                  )
-                : _vm._l(_vm.files, function(file, index) {
-                    return _c(
-                      "div",
-                      {
-                        key: index,
-                        staticClass:
-                          "app-media-upload-file uk-flex uk-flex-column uk-padding-small"
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "app-media-upload-file-image uk-flex uk-flex-middle uk-flex-center"
-                          },
-                          [
-                            ["image/jpeg", "image/png"].indexOf(file.type) != -1
-                              ? _c("img", {
-                                  attrs: {
-                                    src: _vm.filePreview(file),
-                                    alt: file.name
-                                  }
-                                })
-                              : _c("span", { attrs: { "uk-icon": "question" } })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "app-media-upload-file-name uk-text-center uk-text-truncate uk-margin-top"
-                          },
-                          [_c("span", [_vm._v(_vm._s(file.name))])]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "app-media-upload-file-remove uk-text-center uk-text-truncate uk-margin-small-bottom"
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    _vm.fileRemove(index)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  _vm._s(_vm.$t("liro-media.upload.remove"))
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "app-media-upload-button uk-width-1-1 uk-margin-top uk-text-center"
-                },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "uk-button uk-button-primary",
-                      on: {
-                        click: function($event) {
-                          _vm.$refs.input.click()
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(_vm.$t("liro-media.upload.select")))]
-                  )
-                ]
-              )
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "app-media-upload-button uk-width-1-1 uk-margin-top uk-text-center"
-            },
-            [
-              _c(
-                "button",
-                {
-                  class: {
-                    "uk-button uk-button-danger": true,
-                    "uk-disabled": _vm.files.length == 0
-                  },
-                  on: { click: _vm.fileRemove }
-                },
-                [_vm._v(_vm._s(_vm.$t("liro-media.upload.remove_all")))]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  class: {
-                    "uk-button uk-button-success": true,
-                    "uk-disabled": _vm.files.length == 0
-                  },
-                  on: { click: _vm.fileUpload }
-                },
-                [_vm._v(_vm._s(_vm.$t("liro-media.upload.start")))]
-              )
-            ]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _vm._t("default"),
-      _vm._v(" "),
-      _c("input", {
-        ref: "input",
-        staticStyle: { display: "none" },
-        attrs: { type: "file", multiple: "" },
-        on: { change: _vm.fileSelect }
-      })
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d66c6b80", module.exports)
-  }
-}
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(24)
-/* template */
-var __vue_template__ = __webpack_require__(25)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/src/app-media-create-folder.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2f331f57", Component.options)
-  } else {
-    hotAPI.reload("data-v-2f331f57", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -1788,11 +1872,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 if (window.liro) {
-    liro.vue.$component("app-media-create-folder", this.default);
+    liro.vue.$component("app-media-create", this.default);
 }
 
 /***/ }),
-/* 25 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1801,56 +1885,73 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass:
-        "app-media-create-folder uk-flex uk-flex-center uk-flex-middle"
-    },
+    { staticClass: "app-media-create", attrs: { "uk-modal": "" } },
     [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.folder,
-            expression: "folder"
-          }
-        ],
-        staticClass: "uk-input uk-margin-small-right",
-        attrs: {
-          type: "text",
-          placeholder: _vm.$t("liro-media.placeholder.folder"),
-          autofocus: "true"
-        },
-        domProps: { value: _vm.folder },
-        on: {
-          keyup: function($event) {
-            if (
-              !("button" in $event) &&
-              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-            ) {
-              return null
-            }
-            return _vm.createFolder($event)
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.folder = $event.target.value
-          }
-        }
+      _c("button", {
+        staticClass: "uk-modal-close-default uk-close-large",
+        attrs: { type: "button", "uk-close": "" }
       }),
       _vm._v(" "),
       _c(
-        "button",
+        "div",
         {
-          class: {
-            "uk-button uk-button-primary": true,
-            "uk-disabled": _vm.folder == ""
-          },
-          on: { click: _vm.createFolder }
+          staticClass:
+            "app-media-create uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
         },
-        [_vm._v(_vm._s(_vm.$t("liro-media.form.create")))]
+        [
+          _c("div", { staticClass: "uk-flex uk-flex-center uk-flex-middle" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.folder,
+                  expression: "folder"
+                }
+              ],
+              staticClass: "uk-input uk-margin-small-right",
+              attrs: {
+                type: "text",
+                placeholder: _vm.$t("liro-media.placeholder.folder"),
+                autofocus: "true"
+              },
+              domProps: { value: _vm.folder },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  return _vm.createFolder($event)
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.folder = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "uk-button uk-button-primary",
+                attrs: { disabled: _vm.folder == "" },
+                on: { click: _vm.createFolder }
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.$t("liro-media.form.create")) +
+                    "\n            "
+                )
+              ]
+            )
+          ])
+        ]
       )
     ]
   )
@@ -1861,7 +1962,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2f331f57", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1515a098", module.exports)
   }
 }
 

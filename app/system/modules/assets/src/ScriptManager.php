@@ -17,6 +17,8 @@ class ScriptManager
 
     protected $sorters = [];
 
+    protected $data = [];
+
     public function __construct(Application $app)
     {
         $this->app = $app;
@@ -50,6 +52,13 @@ class ScriptManager
         return $this;
     }
 
+    public function data($data)
+    {
+        $this->data = array_merge($this->data, $data);
+
+        return $this;
+    }
+
     public function remove($name)
     {
         unset($this->scripts[$name]);
@@ -72,7 +81,7 @@ class ScriptManager
             return (array_search($key1, $order) > array_search($key2, $order));
         });
 
-        return implode("\n", $this->scripts);
+        return '<script>window.$data = ' . json_encode($this->data) . ';</script>' . "\n" . implode("\n", $this->scripts);
     }
 
 }

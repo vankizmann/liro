@@ -1,0 +1,95 @@
+{
+    "liro-media": {
+
+        "backend": {
+
+            "media": {
+                "group":        "Medien",
+                "index":        "Medien"
+            }
+
+        },
+
+        "messages": {
+
+            "media": {
+                "created":      "Medien wurde erfolgreich erstellt.",
+                "updated":      "Medien wurde erfolgreich gespeichert.",
+                "deleted":      "Medien wurde erfolgreich gelöscht.",
+                "ordered":      "Medien wurde erfolgreich sortiert.",
+                "enabled":      "Medien wurde erfolgreich aktiviert.",
+                "disabled":     "Medien wurde erfolgreich deaktiviert.",
+                "changed":      "Medien wurde erfolgreich geändert."
+            },
+
+            "title": {
+                "required":     "Titel ist ein Pflichfeld.",
+                "min":          "Titel muss mindestens :min Zeichen lang sein."
+            },
+
+            "route": {
+                "alpha_dash":   "Route darf nur alphabetische, numerische Zeichen sowie Bindestriche enthalten."
+            },
+
+            "theme": {
+                "required":     "Theme ist ein Pflichfeld.",
+                "alpha_dash":   "Theme darf nur alphabetische, numerische Zeichen sowie Bindestriche enthalten."
+            }
+
+        },
+
+        "upload": {
+            "empty":            "Keine Datei ausgewählt, ziehen Sie die Dateien einfach in dieses Feld.",
+            "remove":           "Entfernen",
+            "remove_all":       "Alle entfernen",
+            "select":           "Datei auswählen",
+            "start":            "Hochladen starten"
+        },
+
+        "toolbar": {
+            "folder":           "Ordner erstellen",
+            "save":             "Speichern",
+            "upload":           "Datei hochladen",
+            "close":            "Schliessen",
+            "delete":           "Löschen",
+            "undo":             "Rückgängig",
+            "redo":             "Wiederholen",
+            "discard":          "Verwerfen",
+            "help":             "Hilfe"
+        },
+
+        "form": {
+            "empty":            "Kein Eintrag gefunden.",
+            "create":           "Erstellen",
+            "enabled":          "Aktiviert",
+            "disabled":         "Deaktiviert",
+            "visibility":       "Sichtbarkeit",
+            "visible":          "Sichtbar",
+            "hidden":           "Versteckt",
+            "search":           "Suche",
+            "reset":            "Zurücksetzen",
+            "hash":             "#",
+            "id":               "ID",
+            "state":            "Status",
+            "title":            "Titel",
+            "theme":            "Theme",
+            "route":            "Route",
+            "type":             "Menütyp",
+            "module":           "Modul",
+            "query":            "Query",
+            "root":             "Hauptverzeichnis",
+            "element_count":    "Leerer Ordner | {count} Dateien | {count} Dateien"
+
+        },
+
+        "placeholder": {
+            "folder":           "Namen eingeben",
+            "state":            "Status auswählen",
+            "visibility":       "Sichtbarkeit auswählen",
+            "type":             "Menütyp auswählen",
+            "module":           "Modul auswählen"
+        }
+
+    }
+
+}

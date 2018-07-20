@@ -2,11 +2,11 @@
     <div class="uk-form uk-form-stacked">
 
        <!-- Infobar start -->
-        <portal to="app-infobar-action">
-            <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" :href="createRoute">
+        <portal to="app-infobar-right">
+            <app-toolbar-link class="uk-success" icon="plus" :href="createRoute">
                 {{ $t('liro-menus.toolbar.create') }}
             </app-toolbar-link>
-            <app-toolbar-link class="uk-icon-default" icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
+            <app-toolbar-link uk-toggle="target: #app-module-help">
                 {{ $t('liro-menus.toolbar.help') }}
             </app-toolbar-link>
         </portal>
@@ -18,23 +18,17 @@
         </portal>
         <!-- Help end -->
 
-        <div class="uk-flex uk-flex-middle uk-margin-bottom">
-
-            <!-- Title start -->
-            <div>
-                <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-menus.backend.menus.index') }}</h1>
-            </div>
-            <!-- Title end -->
-
-            <!-- Search start -->
-            <div style="width: 300px; margin-left: auto;">
-                <app-form-select class="uk-margin-remove" :options="types" option-label="title" option-value="id" v-model="tab"></app-form-select>
-            </div>
-            <!-- Search end -->
-
+        <!-- Title start -->
+        <div class="uk-margin-large">
+            <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-menus.backend.menus.index') }}</h1>
         </div>
+        <!-- Title end -->
 
-        <div class="uk-table-list">
+        <ul uk-tab>
+            <li v-for="(type, index) in types" :key="index"><a href="#" @click.prevent="tab = type.id">{{ type.title }}</a></li>
+        </ul>
+
+        <div class="uk-table-list"> 
             <div class="uk-table-list-head">
                 <div class="uk-table-list-td uk-table-list-td-xs uk-text-center">
                     {{ $t('liro-menus.form.hash') }}
@@ -52,14 +46,13 @@
                     {{ $t('liro-menus.form.id') }}
                 </div>
             </div>
-            <app-menu-index-list v-if="active" v-model="active.menu_tree"></app-menu-index-list>
+            <app-menu-index-list ref="dropzone" v-if="active" v-model="active.menu_tree"></app-menu-index-list>
         </div>
 
     </div>
 </template>
 <script>
-    module.exports = {
-        name: 'app-menus-index',
+    export default {
         computed: {
             active() {
                 return _.find(this.types, { id: this.tab });
@@ -69,39 +62,53 @@
             }
         },
         props: {
+
             createRoute: {
-                default: '',
+                default() {
+                    return '';
+                },
                 type: String
             },
+
             orderRoute: {
-                default: '',
+                default() {
+                    return '';
+                },
                 type: String
             },
+
             menus: {
                 default() {
-                    return [];
+                    return this.$liro.data.get('menus', []);
                 },
-                type: Array
+                type: [Array, Object]
             },
+
             types: {
                 default() {
-                    return [];
+                    return this.$liro.data.get('types', []);
                 },
-                type: Array
+                type: [Array, Object]
             }
+
         },
+
         data() {
+
             return {
                 tab: 1
             }
+
         },
+
         mounted() {
 
-            $('body').on('end', () => {
+            $(this.$refs.dropzone.$el).on('end', () => {
                 this.$http.post(this.orderRoute, { type: this.active.id, menus: this.active.menu_tree });
             });
 
         }
+
     }
-    liro.component(module.exports);
+    liro.vue.$component('app-menus-index', this.default);
 </script>

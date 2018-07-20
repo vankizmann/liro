@@ -1,24 +1,21 @@
 <template>
-    <ul class="uk-list" ref="list">
-        <app-drag class="app-menu-dropzone" ref="dropzone" :list="menus" :options="{ draggable: '.app-menu-item', group: 'app-menu-list', animation: 300, delay: 10 }">
-            <app-menu-index-item class="app-menu-item" v-for="(menu, index) in menus" :key="menu.id" v-model="menus[index]"></app-menu-index-item>
-        </app-drag>
-    </ul>
+    <app-drag element="ul" class="uk-list" ref="dropzone" :list="menus" :options="{ group: 'menu', filter: '.app-menu-ignore' }">
+        <app-menu-index-item v-for="(menu, index) in menus" :key="menu.id" v-model="menus[index]"></app-menu-index-item>
+    </app-drag>
 </template>
 <script>
     module.exports = {
-        name: 'app-menu-index-list',
+
         props: {
             value: {
                 default() {
                     return [];
                 },
-                type: Array
+                type: [Array, Object]
             }
         },
         data() {
             return {
-                drag: false,
                 menus: this.value
             }
         },
@@ -26,26 +23,46 @@
 
             this.$watch('menus', (value) => {
                 this.$emit('input', value);
-            });
+            }, { deep: true });
 
             this.$watch('value', (value) => {
                 this.menus = value;
             });
 
+            var interval = null;
+
             $('body').on('start', (event) => {
-                if ( this.$refs.dropzone ) {
-                    $(this.$refs.dropzone.$el).addClass('sortable-drag');
+
+                if ( this.$refs.dropzone && ! $(this.$refs.dropzone.$el).parent().hasClass('sortable-chosen') )  {
+                    interval = setInterval(() => {
+
+                        if( this.$refs.dropzone && $(this.$refs.dropzone.$el).children('li').length != 0 ) {
+                            $('> .app-menu-ignore', this.$refs.dropzone.$el).remove();
+                        }
+                        
+                        if( this.$refs.dropzone && $(this.$refs.dropzone.$el).children('li').length == 0 ) {
+                            $(this.$refs.dropzone.$el).append('<li class="app-menu-ignore"></li>');
+                        }
+
+                    }, 50);
                 }
             });
 
             $('body').on('end', (event) => {
-                if ( this.$refs.dropzone ) {
-                    $(this.$refs.dropzone.$el).removeClass('sortable-drag');
+
+                if ( interval ) {
+                    clearInterval(interval);
                 }
+
+                if( this.$refs.dropzone && $(this.$refs.dropzone.$el).children('li').length != 0 ) {
+                    $('> .app-menu-ignore', this.$refs.dropzone.$el).remove();
+                }
+
             });
 
         }
+
     }
-    liro.component(module.exports);
+    liro.vue.$component('app-menu-index-list', module.exports);
 </script>
 

@@ -37,6 +37,6 @@ require __DIR__.'/vendor/autoload.php';
 
 $segments = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
 
-$installer = $segments[0] == 'installer' && ! file_exists(__DIR__.'/.env');
+$installer = $segments[0] == 'installer'; // && ! file_exists(__DIR__.'/.env');
 
 require_once __DIR__.'/app/'.($installer ? 'installer' : 'system').'/app.php';

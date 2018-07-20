@@ -1,154 +1,182 @@
 <template>
-    <div class="uk-form uk-form-stacked">
+    <app-helper-list v-model="UsersModel" database="users_users">
+        <div slot-scope="{ items, pages, options, order, search, paginate, filter }" class="uk-form uk-form-stacked">
 
-        <!-- Infobar start -->
-        <portal to="app-infobar-action">
-            <app-toolbar-link class="uk-icon-success" icon="fa fa-plus" :href="createRoute">
-                {{ $t('liro-users.toolbar.create') }}
-            </app-toolbar-link>
-            <app-toolbar-link icon="fa fa-info-circle" href="#" uk-toggle="target: #app-module-help">
-                {{ $t('liro-menus.toolbar.help') }}
-            </app-toolbar-link>
-        </portal>
-        <!-- Infobar end -->
+            <!-- Infobar start -->
+            <portal to="app-infobar-right">
+                <app-toolbar-button class="uk-success" icon="plus" :href="createRoute">
+                    {{ $t('liro-users.toolbar.create') }}
+                </app-toolbar-button>
+                <app-toolbar-button uk-toggle="target: #app-module-help">
+                    {{ $t('liro-users.toolbar.help') }}
+                </app-toolbar-button>
+            </portal>
+            <!-- Infobar end -->
 
-        <!-- Help start -->
-        <portal to="app-module-help">
-            <h1>{{ $t('liro-users.toolbar.help') }}</h1>
-        </portal>
-        <!-- Help end -->
+            <!-- Help start -->
+            <portal to="app-module-help">
+                <h1>{{ $t('liro-users.toolbar.help') }}</h1>
+            </portal>
+            <!-- Help end -->
 
-        <div class="uk-flex uk-flex-middle uk-margin-bottom">
+            <div class="uk-flex uk-flex-middle uk-margin-large">
 
-            <!-- Title start -->
-            <div>
-                <h1 class="uk-text-lead uk-margin-remove">{{ $t('liro-users.backend.users.index') }}</h1>
+                <!-- Title start -->
+                <div>
+                    <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-users.backend.users.index') }}</h1>
+                </div>
+                <!-- Title end -->
+
+                <!-- Search start -->
+                <div style="width: 300px; margin-left: auto;">
+                    <app-list-search
+                        :columns="['name', 'email']" :config="options.search" @search="search"
+                        :placeholder="$t('liro-users.form.search')"
+                    ></app-list-search>
+                </div>
+                <!-- Search end -->
+
             </div>
-            <!-- Title end -->
 
-            <!-- Search start -->
-            <div style="width: 300px; margin-left: auto;">
-                <app-list-search :columns="['name', 'email']" :placeholder="$t('liro-users.form.search')"></app-list-search>
+            <div class="uk-table-list uk-table-list-highlight">
+
+                <!-- Head start -->
+                <div class="uk-table-list-head">
+                    <div class="uk-table-list-td uk-width-1-3">
+                        <app-list-order column="name" :config="options.order" @order="order">
+                            {{ $t('liro-users.form.name') }}
+                        </app-list-order>
+                    </div>
+                    <div class="uk-table-list-td uk-width-1-3">
+                        <app-list-order column="email" :config="options.order" @order="order">
+                            {{ $t('liro-users.form.email') }}
+                        </app-list-order>
+                    </div>
+                    <div class="uk-table-list-td uk-width-1-3">
+                        <app-list-filter column="role_ids" :config="options.filter" :filters="roles" filters-value="id" filters-label="title" @filter="filter">
+                            {{ $t('liro-users.form.roles') }}
+                        </app-list-filter>
+                    </div>
+                    <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+                        <app-list-filter column="state" :config="options.filter" :filters="states" @filter="filter">
+                            {{ $t('liro-users.form.state') }}
+                        </app-list-filter>
+                    </div>
+                    <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+                        <app-list-order column="id" :reverse="true" :config="options.order" @order="order">
+                            {{ $t('liro-users.form.id') }}
+                        </app-list-order>
+                    </div>
+                </div>
+                <!-- Head end -->
+
+                <!-- Body start -->
+                <div class="uk-table-list-row" v-for="(item, index) in items" :key="index">
+                    <div class="uk-table-list-td uk-width-1-3">
+                        <a :href="item.edit_route">{{ item.name }}</a>
+                    </div>
+                    <div class="uk-table-list-td uk-width-1-3">
+                        <span>{{ item.email }}</span>
+                    </div>
+                    <div class="uk-table-list-td uk-width-1-3">
+                        <ul class="uk-list-inline uk-margin-remove">
+                            <li v-for="role in $liro.func.map(item.role_ids, 'id', roles)" :key="role.id">
+                                <a :href="role.edit_route">{{ role.title }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+                        <app-list-state :active="item.state == 1" @click.prevent="item.state == 1 ? disable(item) : enable(item)"></app-list-state>
+                    </div>
+                    <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+                        <span>{{ item.id }}</span>
+                    </div>
+                </div>
+                <!-- Body end -->
+
+                <!-- Empty start -->
+                <div v-if="items.length == 0" class="uk-table-list-empty uk-padding uk-text-center">
+                    <span>{{ $t('liro-users.form.empty') }}</span>
+                </div>
+                <!-- Empty end -->
+                
             </div>
-            <!-- Search end -->
+
+            <!-- Pagination start -->
+            <div class="uk-table-list-pagination uk-margin-top">
+                <app-list-pagination :pages="pages" :config="options.paginate" @paginate="paginate"></app-list-pagination>
+            </div>
+            <!-- Pagination end -->
 
         </div>
-
-        <div class="uk-table-list">
-
-            <!-- Head start -->
-            <div class="uk-table-list-head">
-                <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-sort column="name">
-                        {{ $t('liro-users.form.name') }}
-                    </app-list-sort>
-                </div>
-                <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-sort column="email">
-                        {{ $t('liro-users.form.email') }}
-                    </app-list-sort>
-                </div>
-                <div class="uk-table-list-td uk-width-1-3">
-                    <app-list-filter column="role_ids" :filters="roles" filters-value="id" filters-label="title" :reset="$t('liro-users.form.reset')">
-                        {{ $t('liro-users.form.roles') }}
-                    </app-list-filter>
-                </div>
-                <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
-                    <app-list-filter column="state" :reset="$t('liro-users.form.reset')" :filters="states">
-                        {{ $t('liro-users.form.state') }}
-                    </app-list-filter>
-                </div>
-                <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
-                    <app-list-sort column="id" :reverse="true">
-                        {{ $t('liro-users.form.id') }}
-                    </app-list-sort>
-                </div>
-            </div>
-            <!-- Head end -->
-
-            <!-- Body start -->
-            <div v-if="list.length != 0" class="uk-table-list-row" v-for="user in list" :key="user.id">
-                <div class="uk-table-list-td uk-width-1-3">
-                    <a :href="user.edit_route">{{ user.name }}</a>
-                </div>
-                <div class="uk-table-list-td uk-width-1-3">
-                    <span>{{ user.email }}</span>
-                </div>
-                <div class="uk-table-list-td uk-width-1-3">
-                    <ul class="uk-list-inline uk-margin-remove">
-                        <li v-for="role in $liro.func.map(user.role_ids, 'id', roles)" :key="role.id">
-                            <a :href="role.edit_route">{{ role.title }}</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
-                    <app-list-state :active="user.state == 1" :href="user.state == 1 ? user.disable_route : user.enable_route"></app-list-state>
-                </div>
-                <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
-                    <span>{{ user.id }}</span>
-                </div>
-            </div>
-            <!-- Body end -->
-
-            <!-- Empty start -->
-            <div v-if="list.length == 0" class="uk-table-list-empty uk-padding uk-text-center">
-                <span>{{ $t('users.form.empty') }}</span>
-            </div>
-            <!-- Empty end -->
-            
-        </div>
-
-        <!-- Pagination start -->
-        <div class="uk-table-list-pagination uk-margin">
-            <app-list-pagination></app-list-pagination>
-        </div>
-        <!-- Pagination end -->
-
-    </div>
+    </app-helper-list>
 </template>
 <script>
-    module.exports = {
+export default {
 
-        name: 'app-users-index',
+    props: {
 
-        computed: {
-            list() {
-                return this.$store.getters['list/get'];
-            }
+        createRoute: {
+            default() {
+                return '';
+            },
+            type: String
         },
 
-        props: {
-            createRoute: {
-                default: '',
-                type: String
+        users: {
+            default() {
+                return this.$liro.data.get('users', []);
             },
-            roles: {
-                default() {
-                    return [];
-                },
-                type: Array
-            },
-            users: {
-                default() {
-                    return [];
-                },
-                type: Array
-            },
-            states: {
-                default() {
-                    return [
-                        { value: 1, label: this.$t('liro-users.form.enabled') },
-                        { value: 0, label: this.$t('liro-users.form.disabled') }
-                    ]
-                },
-                type: Array
-            }
+            type: [Array, Object]
         },
 
-        mounted() {
-            this.$store.commit('list/init', this.users);
+        roles: {
+            default() {
+                return this.$liro.data.get('roles', []);
+            },
+            type: [Array, Object]
+        },
+
+        states: {
+            default() {
+                return [
+                    { value: 1, label: this.$t('liro-users.form.enabled'), css: 'uk-success' },
+                    { value: 0, label: this.$t('liro-users.form.disabled'), css: 'uk-danger' }
+                ];
+            },
+            type: Array
+        }
+
+    },
+
+    data() {
+
+        return {
+            UsersModel: this.users
+        };
+
+    },
+
+    methods: {
+
+        enable(item) {
+            this.$http.post(item.enable_route, {}).then(() => {
+                item.state = 1;
+            });
+        },
+
+        disable(item) {
+            this.$http.post(item.disable_route, {}).then(() => {
+                item.state = 0;
+            });
         }
 
     }
-    liro.component(module.exports);
+
+}
+
+if (window.liro) {
+    liro.vue.$component('app-users-index', this.default);
+} 
 </script>
+

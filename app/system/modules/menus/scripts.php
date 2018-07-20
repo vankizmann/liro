@@ -55,7 +55,7 @@ return [
                 $table->string('lang')->nullable();
                 $table->string('title');
                 $table->string('route')->nullable();
-                $table->string('package');
+                $table->string('module');
                 $table->string('query')->nullable();
                 $table->integer('hidden')->default(0);
                 $table->integer('menu_type_id');
@@ -70,7 +70,7 @@ return [
                 'title'             => 'Home',
                 'route'             => '',
                 'query'             => '',
-                'package'           => 'liro-dashboard.backend.dashboard.index',
+                'module'            => 'liro-dashboard.backend.dashboard.index',
                 'menu_type_id'      => 1
             ]);
 
@@ -81,7 +81,7 @@ return [
                 'title'             => 'liro-users.backend.users.index',
                 'route'             => 'users',
                 'query'             => '{"menu": 3}',
-                'package'           => 'liro-menus.backend.redirect.menu',
+                'module'            => 'liro-menus.backend.redirect.menu',
                 'menu_type_id'      => 1
             ]);
 
@@ -92,7 +92,7 @@ return [
                 'title'             => 'liro-users.backend.users.index',
                 'route'             => 'users',
                 'query'             => '',
-                'package'           => 'liro-users.backend.users.index',
+                'module'            => 'liro-users.backend.users.index',
                 'menu_type_id'      => 1,
                 'parent_id'         => 2
             ]);
@@ -104,7 +104,7 @@ return [
                 'title'             => 'liro-users.backend.users.create',
                 'route'             => 'create',
                 'query'             => '',
-                'package'           => 'liro-users.backend.users.create',
+                'module'            => 'liro-users.backend.users.create',
                 'menu_type_id'      => 1,
                 'parent_id'         => 3,
             ]);
@@ -116,7 +116,7 @@ return [
                 'title'             => 'liro-users.backend.users.edit',
                 'route'             => 'edit',
                 'query'             => '',
-                'package'           => 'liro-users.backend.users.edit',
+                'module'            => 'liro-users.backend.users.edit',
                 'menu_type_id'      => 1,
                 'parent_id'         => 3
             ]);
@@ -128,7 +128,7 @@ return [
                 'title'             => 'liro-users.backend.roles.index',
                 'route'             => 'roles',
                 'query'             => '',
-                'package'           => 'liro-users.backend.roles.index',
+                'module'            => 'liro-users.backend.roles.index',
                 'menu_type_id'      => 1,
                 'parent_id'         => 2
             ]);
@@ -140,7 +140,7 @@ return [
                 'title'             => 'liro-users.backend.roles.create',
                 'route'             => 'create',
                 'query'             => '',
-                'package'           => 'liro-users.backend.roles.create',
+                'module'            => 'liro-users.backend.roles.create',
                 'menu_type_id'      => 1,
                 'parent_id'         => 6,
             ]);
@@ -152,7 +152,7 @@ return [
                 'title'             => 'liro-users.backend.roles.edit',
                 'route'             => 'edit',
                 'query'             => '',
-                'package'           => 'liro-users.backend.roles.edit',
+                'module'            => 'liro-users.backend.roles.edit',
                 'menu_type_id'      => 1,
                 'parent_id'         => 6
             ]);
@@ -164,7 +164,7 @@ return [
                 'title'             => 'liro-menus.backend.menus.index',
                 'route'             => 'menus',
                 'query'             => '{"menu": 10}',
-                'package'           => 'liro-menus.backend.redirect.menu',
+                'module'            => 'liro-menus.backend.redirect.menu',
                 'menu_type_id'      => 1
             ]);
 
@@ -175,7 +175,7 @@ return [
                 'title'             => 'liro-menus.backend.menus.index',
                 'route'             => 'menus',
                 'query'             => '',
-                'package'           => 'liro-menus.backend.menus.index',
+                'module'            => 'liro-menus.backend.menus.index',
                 'menu_type_id'      => 1,
                 'parent_id'         => 9
             ]);
@@ -187,7 +187,7 @@ return [
                 'title'             => 'liro-menus.backend.menus.create',
                 'route'             => 'create',
                 'query'             => '',
-                'package'           => 'liro-menus.backend.menus.create',
+                'module'            => 'liro-menus.backend.menus.create',
                 'menu_type_id'      => 1,
                 'parent_id'         => 10
             ]);
@@ -199,7 +199,7 @@ return [
                 'title'             => 'liro-menus.backend.menus.edit',
                 'route'             => 'edit',
                 'query'             => '',
-                'package'           => 'liro-menus.backend.menus.edit',
+                'module'            => 'liro-menus.backend.menus.edit',
                 'menu_type_id'      => 1,
                 'parent_id'         => 10
             ]);
@@ -211,7 +211,7 @@ return [
                 'title'             => 'liro-menus.backend.types.index',
                 'route'             => 'menutypes',
                 'query'             => '',
-                'package'           => 'liro-menus.backend.types.index',
+                'module'            => 'liro-menus.backend.types.index',
                 'menu_type_id'      => 1,
                 'parent_id'         => 9
             ]);
@@ -223,7 +223,7 @@ return [
                 'title'             => 'liro-menus.backend.types.create',
                 'route'             => 'create',
                 'query'             => '',
-                'package'           => 'liro-menus.backend.types.create',
+                'module'            => 'liro-menus.backend.types.create',
                 'menu_type_id'      => 1,
                 'parent_id'         => 13
             ]);
@@ -235,9 +235,32 @@ return [
                 'title'             => 'liro-menus.backend.types.edit',
                 'route'             => 'edit',
                 'query'             => '',
-                'package'           => 'liro-menus.backend.types.edit',
+                'module'            => 'liro-menus.backend.types.edit',
                 'menu_type_id'      => 1,
                 'parent_id'         => 13
+            ]);
+
+            $app['db']->table('menus')->insert([
+                'state'             => 1,
+                'hidden'            => 0,
+                'lang'              => '',
+                'title'             => 'liro-media.backend.media.index',
+                'route'             => 'media',
+                'query'             => '{"menu": 17}',
+                'module'            => 'liro-menus.backend.redirect.menu',
+                'menu_type_id'      => 1
+            ]);
+
+            $app['db']->table('menus')->insert([
+                'state'             => 1,
+                'hidden'            => 0,
+                'lang'              => '',
+                'title'             => 'liro-media.backend.media.index',
+                'route'             => 'index',
+                'query'             => '',
+                'module'            => 'liro-media.backend.media.index',
+                'menu_type_id'      => 1,
+                'parent_id'         => 16
             ]);
 
             $app['db']->table('menus')->insert([
@@ -247,7 +270,7 @@ return [
                 'title'             => 'liro-users.backend.auth.login',
                 'route'             => 'login',
                 'query'             => '',
-                'package'           => 'liro-users.backend.auth.login',
+                'module'            => 'liro-users.backend.auth.login',
                 'menu_type_id'      => 2
             ]);
 
@@ -258,7 +281,7 @@ return [
                 'title'             => 'liro-users.backend.auth.logout',
                 'route'             => 'logout',
                 'query'             => '',
-                'package'           => 'liro-users.backend.auth.logout',
+                'module'            => 'liro-users.backend.auth.logout',
                 'menu_type_id'      => 2
             ]);
 
@@ -269,7 +292,7 @@ return [
                 'title'             => 'Home',
                 'route'             => '',
                 'query'             => '',
-                'package'           => 'system.test.backend.home',
+                'module'            => 'system.test.backend.home',
                 'menu_type_id'      => 3
             ]);
 
@@ -280,7 +303,7 @@ return [
                 'title'             => 'liro-users.backend.auth.login',
                 'route'             => 'login',
                 'query'             => '',
-                'package'           => 'liro-users.frontend.login',
+                'module'            => 'liro-users.frontend.login',
                 'menu_type_id'      => 4
             ]);
 
@@ -291,7 +314,7 @@ return [
                 'title'             => 'liro-users.backend.auth.logout',
                 'route'             => 'logout',
                 'query'             => '',
-                'package'           => 'liro-users.frontend.logout',
+                'module'            => 'liro-users.frontend.logout',
                 'menu_type_id'      => 4
             ]);
         

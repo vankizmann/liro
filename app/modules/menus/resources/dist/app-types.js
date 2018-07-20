@@ -207,7 +207,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-types-index.vue"
+Component.options.__file = "resources/src/app-types-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -216,9 +216,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-239b3af6", Component.options)
+    hotAPI.createRecord("data-v-2b0cd2c2", Component.options)
   } else {
-    hotAPI.reload("data-v-239b3af6", Component.options)
+    hotAPI.reload("data-v-2b0cd2c2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -230,8 +230,15 @@ module.exports = Component.exports
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -329,40 +336,50 @@ module.exports = Component.exports
 //
 //
 
-module.exports = {
-
-    name: 'app-types-index',
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     computed: {
         list: function list() {
-            return this.$store.getters['list/get'];
+            return this.types;
+            // return this.$store.getters['list/get'];
         }
     },
 
     props: {
         createRoute: {
-            default: '',
+            default: function _default() {
+                return '';
+            },
+
             type: String
         },
         types: {
             default: function _default() {
-                return [];
+                return this.$liro.data.get('types', []);
             },
-            type: Array
+
+            type: [Array, Object]
         },
         themes: {
             default: function _default() {
-                return [];
+                return this.$liro.data.get('themes', []);
             },
-            type: Array
+
+            type: [Array, Object]
         }
     },
 
-    mounted: function mounted() {
-        this.$store.commit('list/init', this.types);
+    data: function data() {
+
+        return {
+            TypesModel: this.types
+        };
     }
-};
-liro.component(module.exports);
+});
+
+if (window.liro) {
+    liro.vue.$component('app-types-index', this.default);
+}
 
 /***/ }),
 /* 4 */
@@ -372,205 +389,285 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "uk-form uk-form-stacked" },
-    [
-      _c(
-        "portal",
-        { attrs: { to: "app-infobar-action" } },
-        [
-          _c(
-            "app-toolbar-link",
-            {
-              staticClass: "uk-icon-success",
-              attrs: { icon: "fa fa-plus", href: _vm.createRoute }
-            },
+  return _c("app-helper-list", {
+    scopedSlots: _vm._u([
+      {
+        key: "default",
+        fn: function(ref) {
+          var items = ref.items
+          var pages = ref.pages
+          var options = ref.options
+          var order = ref.order
+          var search = ref.search
+          var paginate = ref.paginate
+          return _c(
+            "div",
+            { staticClass: "uk-form uk-form-stacked" },
             [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.create")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-link",
-            {
-              staticClass: "uk-icon-default",
-              attrs: {
-                icon: "fa fa-info-circle",
-                href: "#",
-                "uk-toggle": "target: #app-module-help"
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
-                  "\n        "
-              )
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("portal", { attrs: { to: "app-module-help" } }, [
-        _c("h1", [_vm._v(_vm._s(_vm.$t("liro-menus.toolbar.help")))])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "uk-flex uk-flex-middle uk-margin-bottom" }, [
-        _c("div", [
-          _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
-            _vm._v(_vm._s(_vm.$t("liro-menus.backend.types.index")))
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticStyle: { width: "300px", "margin-left": "auto" } },
-          [
-            _c("app-list-search", {
-              attrs: {
-                columns: ["title", "theme", "route"],
-                placeholder: _vm.$t("liro-menus.form.search")
-              }
-            })
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "uk-table-list uk-table-list-highlight" },
-        [
-          _c("div", { staticClass: "uk-table-list-head" }, [
-            _c(
-              "div",
-              { staticClass: "uk-table-list-td uk-width-2-4" },
-              [
-                _c("app-list-sort", { attrs: { column: "title" } }, [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.$t("liro-menus.form.title")) +
-                      "\n                "
+              _c(
+                "portal",
+                { attrs: { to: "app-infobar-right" } },
+                [
+                  _c(
+                    "app-toolbar-link",
+                    {
+                      staticClass: "uk-success",
+                      attrs: { icon: "plus", href: _vm.createRoute }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.create")) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "app-toolbar-link",
+                    {
+                      attrs: {
+                        href: "#",
+                        "uk-toggle": "target: #app-module-help"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.help")) +
+                          "\n            "
+                      )
+                    ]
                   )
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "uk-table-list-td uk-width-1-4" },
-              [
-                _c("app-list-sort", { attrs: { column: "theme" } }, [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.$t("liro-menus.form.theme")) +
-                      "\n                "
-                  )
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "uk-table-list-td uk-width-1-4" },
-              [
-                _c("app-list-sort", { attrs: { column: "route" } }, [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.$t("liro-menus.form.route")) +
-                      "\n                "
-                  )
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "uk-table-list-td uk-table-list-td-s uk-text-center"
-              },
-              [
-                _c(
-                  "app-list-sort",
-                  { attrs: { column: "id", reverse: true } },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.$t("liro-menus.form.id")) +
-                        "\n                "
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("portal", { attrs: { to: "app-module-help" } }, [
+                _c("h1", [_vm._v(_vm._s(_vm.$t("liro-menus.toolbar.help")))])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "uk-flex uk-flex-middle uk-margin-large" },
+                [
+                  _c("div", [
+                    _c(
+                      "h1",
+                      { staticClass: "uk-heading-primary uk-margin-remove" },
+                      [_vm._v(_vm._s(_vm.$t("liro-menus.backend.types.index")))]
                     )
-                  ]
-                )
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.list, function(type) {
-            return _vm.list.length != 0
-              ? _c("div", { key: type.id, staticClass: "uk-table-list-row" }, [
-                  _c("div", { staticClass: "uk-table-list-td uk-width-2-4" }, [
-                    _c("a", { attrs: { href: type.edit_route } }, [
-                      _vm._v(_vm._s(type.title))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "uk-table-list-td uk-width-1-4" }, [
-                    _c("span", { staticClass: "uk-text-muted" }, [
-                      _vm._v(_vm._s(type.theme))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "uk-table-list-td uk-width-1-4" }, [
-                    _c("span", { staticClass: "uk-text-muted" }, [
-                      _vm._v(_vm._s(type.route))
-                    ])
                   ]),
                   _vm._v(" "),
                   _c(
                     "div",
-                    {
-                      staticClass:
-                        "uk-table-list-td uk-table-list-td-s uk-text-center"
-                    },
-                    [_c("span", [_vm._v(_vm._s(type.id))])]
+                    { staticStyle: { width: "300px", "margin-left": "auto" } },
+                    [
+                      _c("app-list-search", {
+                        attrs: {
+                          columns: ["title", "theme", "route"],
+                          config: options.search,
+                          placeholder: _vm.$t("liro-menus.form.search")
+                        },
+                        on: { search: search }
+                      })
+                    ],
+                    1
                   )
-                ])
-              : _vm._e()
-          }),
-          _vm._v(" "),
-          _vm.list.length == 0
-            ? _c(
+                ]
+              ),
+              _vm._v(" "),
+              _c(
                 "div",
-                {
-                  staticClass: "uk-table-list-empty uk-padding uk-text-center"
-                },
-                [_c("span", [_vm._v(_vm._s(_vm.$t("liro-menus.form.empty")))])]
+                { staticClass: "uk-table-list uk-table-list-highlight" },
+                [
+                  _c("div", { staticClass: "uk-table-list-head" }, [
+                    _c(
+                      "div",
+                      { staticClass: "uk-table-list-td uk-width-2-4" },
+                      [
+                        _c(
+                          "app-list-order",
+                          {
+                            attrs: { column: "title", config: options.order },
+                            on: { order: order }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(_vm.$t("liro-menus.form.title")) +
+                                "\n                    "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "uk-table-list-td uk-width-1-4" },
+                      [
+                        _c(
+                          "app-list-order",
+                          {
+                            attrs: { column: "theme", config: options.order },
+                            on: { order: order }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(_vm.$t("liro-menus.form.theme")) +
+                                "\n                    "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "uk-table-list-td uk-width-1-4" },
+                      [
+                        _c(
+                          "app-list-order",
+                          {
+                            attrs: { column: "route", config: options.order },
+                            on: { order: order }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(_vm.$t("liro-menus.form.route")) +
+                                "\n                    "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "uk-table-list-td uk-table-list-td-s uk-text-center"
+                      },
+                      [
+                        _c(
+                          "app-list-order",
+                          {
+                            attrs: {
+                              column: "id",
+                              reverse: true,
+                              config: options.order
+                            },
+                            on: { order: order }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(_vm.$t("liro-menus.form.id")) +
+                                "\n                    "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(items, function(item, index) {
+                    return _c(
+                      "div",
+                      { key: index, staticClass: "uk-table-list-row" },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "uk-table-list-td uk-width-2-4" },
+                          [
+                            _c("a", { attrs: { href: item.edit_route } }, [
+                              _vm._v(_vm._s(item.title))
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "uk-table-list-td uk-width-1-4" },
+                          [
+                            _c("span", { staticClass: "uk-text-muted" }, [
+                              _vm._v(_vm._s(item.theme))
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "uk-table-list-td uk-width-1-4" },
+                          [
+                            _c("span", { staticClass: "uk-text-muted" }, [
+                              _vm._v(_vm._s(item.route))
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "uk-table-list-td uk-table-list-td-s uk-text-center"
+                          },
+                          [_c("span", [_vm._v(_vm._s(item.id))])]
+                        )
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  items.length == 0
+                    ? _c(
+                        "div",
+                        {
+                          staticClass:
+                            "uk-table-list-empty uk-padding uk-text-center"
+                        },
+                        [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.$t("liro-menus.form.empty")))
+                          ])
+                        ]
+                      )
+                    : _vm._e()
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "uk-table-list-pagination uk-margin-top" },
+                [
+                  _c("app-list-pagination", {
+                    attrs: { pages: pages, config: options.paginate },
+                    on: { paginate: paginate }
+                  })
+                ],
+                1
               )
-            : _vm._e()
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "uk-table-list-pagination uk-margin" },
-        [_c("app-list-pagination")],
-        1
-      )
-    ],
-    1
-  )
+            ],
+            1
+          )
+        }
+      }
+    ]),
+    model: {
+      value: _vm.TypesModel,
+      callback: function($$v) {
+        _vm.TypesModel = $$v
+      },
+      expression: "TypesModel"
+    }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -578,7 +675,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-239b3af6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-2b0cd2c2", module.exports)
   }
 }
 
@@ -608,7 +705,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-types-create.vue"
+Component.options.__file = "resources/src/app-types-create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -617,9 +714,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-00638e4e", Component.options)
+    hotAPI.createRecord("data-v-e724f002", Component.options)
   } else {
-    hotAPI.reload("data-v-00638e4e", Component.options)
+    hotAPI.reload("data-v-e724f002", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -631,8 +728,11 @@ module.exports = Component.exports
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -706,95 +806,63 @@ module.exports = Component.exports
 //
 //
 
-module.exports = {
-
-    name: 'app-types-create',
-
-    computed: {
-        canUndo: function canUndo() {
-            return this.$store.getters['history/canUndo'];
-        },
-        canRedo: function canRedo() {
-            return this.$store.getters['history/canRedo'];
-        }
-    },
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     props: {
+
         createRoute: {
-            default: '',
-            type: String
-        },
-        indexRoute: {
-            default: '',
-            type: String
-        },
-        themes: {
             default: function _default() {
-                return [];
+                return '';
             },
 
-            type: Array
+            type: String
         },
+
+        indexRoute: {
+            default: function _default() {
+                return '';
+            },
+
+            type: String
+        },
+
         type: {
             default: function _default() {
-                return {};
+                return this.$liro.data.get('type', []);
             },
 
             type: Object
+        },
+
+        themes: {
+            default: function _default() {
+                return this.$liro.data.get('themes', []);
+            },
+
+            type: [Array, Object]
         }
+
     },
 
     data: function data() {
+
         return {
-            disabled: false,
-            item: this.type
+            TypeModel: this.type
         };
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        this.$store.commit('history/init', this.item);
-
-        this.$watch('item', _.debounce(this.create, 600), {
-            deep: true
-        });
-
-        this.$liro.listen('type.undo', function () {
-            _this.item = _this.$store.state.history.undo();
-        });
-
-        this.$liro.listen('type.redo', function () {
-            _this.item = _this.$store.state.history.redo();
-        });
-
-        this.$liro.listen('type.reset', function () {
-            _this.item = _this.$store.state.history.reset();
-        });
-
-        this.$liro.listen('type.create', function () {
-            _this.$http.post(_this.createRoute, _this.item);
-        });
-
-        this.$liro.listen('ajax.load', function () {
-            _this.disabled = true;
-        });
-
-        this.$liro.listen('ajax.error', function () {
-            _this.disabled = false;
-        });
     },
 
 
     methods: {
         create: function create() {
-            if (this.$store.state.history.preventer()) {
-                this.$store.commit('history/save', this.item);
-            }
+            this.$http.post(this.createRoute, this.TypeModel);
         }
     }
 
-};
-liro.component(module.exports);
+});
+
+if (window.liro) {
+    liro.vue.$component('app-types-create', this.default);
+}
 
 /***/ }),
 /* 7 */
@@ -804,215 +872,221 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "uk-form uk-form-stacked" },
-    [
-      _c(
-        "portal",
-        { attrs: { to: "app-infobar-action" } },
-        [
-          _c(
-            "app-toolbar-link",
-            {
-              attrs: {
-                icon: "fa fa-info-circle",
-                href: "#",
-                "uk-toggle": "target: #app-module-help"
-              }
-            },
+  return _c("app-helper-history", {
+    attrs: { value: _vm.TypeModel },
+    scopedSlots: _vm._u([
+      {
+        key: "default",
+        fn: function(ref) {
+          var item = ref.item
+          var canUndo = ref.canUndo
+          var canRedo = ref.canRedo
+          var undo = ref.undo
+          var redo = ref.redo
+          var reset = ref.reset
+          return _c(
+            "div",
+            { staticClass: "uk-form uk-form-stacked" },
             [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
-                  "\n        "
+              _c(
+                "portal",
+                { attrs: { to: "app-infobar-right" } },
+                [
+                  _c(
+                    "app-toolbar-button",
+                    { attrs: { "uk-toggle": "target: #app-module-help" } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.help")) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "portal",
+                { attrs: { to: "app-toolbar-left" } },
+                [
+                  _c(
+                    "app-toolbar-button",
+                    {
+                      attrs: { icon: "check" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.create()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.create")) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "app-toolbar-button",
+                    { attrs: { icon: "close", href: _vm.indexRoute } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.close")) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("app-toolbar-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "app-toolbar-button",
+                    {
+                      attrs: { disabled: !canUndo },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          undo()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.undo")) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "app-toolbar-button",
+                    {
+                      attrs: { disabled: !canRedo },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          redo()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.redo")) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "portal",
+                { attrs: { to: "app-toolbar-right" } },
+                [
+                  _c(
+                    "app-toolbar-button",
+                    {
+                      attrs: { disabled: !canUndo },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          reset()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.discard")) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("portal", { attrs: { to: "app-module-help" } }, [
+                _c("h1", [_vm._v("Help")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-margin-large" }, [
+                _c(
+                  "h1",
+                  { staticClass: "uk-heading-primary uk-margin-remove" },
+                  [_vm._v(_vm._s(_vm.$t("liro-menus.backend.types.create")))]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "fieldset",
+                { staticClass: "uk-fieldset" },
+                [
+                  _c("app-form-input", {
+                    attrs: {
+                      name: "title",
+                      rules: "required|min:4",
+                      label: _vm.$t("liro-menus.form.title")
+                    },
+                    model: {
+                      value: item.title,
+                      callback: function($$v) {
+                        _vm.$set(item, "title", $$v)
+                      },
+                      expression: "item.title"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("app-form-input", {
+                    attrs: {
+                      name: "route",
+                      label: _vm.$t("liro-menus.form.route")
+                    },
+                    model: {
+                      value: item.route,
+                      callback: function($$v) {
+                        _vm.$set(item, "route", $$v)
+                      },
+                      expression: "item.route"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("app-form-select", {
+                    attrs: {
+                      name: "theme",
+                      options: _vm.themes,
+                      "option-label": "name",
+                      "option-value": "name",
+                      label: _vm.$t("liro-menus.form.theme"),
+                      placeholder: _vm.$t("liro-menus.placeholder.themes")
+                    },
+                    model: {
+                      value: item.theme,
+                      callback: function($$v) {
+                        _vm.$set(item, "theme", $$v)
+                      },
+                      expression: "item.theme"
+                    }
+                  })
+                ],
+                1
               )
-            ]
+            ],
+            1
           )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "portal",
-        { attrs: { to: "app-toolbar-left" } },
-        [
-          _c(
-            "app-toolbar-event",
-            {
-              staticClass: "uk-icon-success",
-              attrs: {
-                icon: "fa fa-check",
-                event: "type.create",
-                disabled: _vm.disabled
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.create")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-link",
-            {
-              staticClass: "uk-icon-danger",
-              attrs: {
-                icon: "fa fa-times",
-                href: _vm.indexRoute,
-                disabled: _vm.disabled
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.close")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("app-toolbar-spacer"),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-event",
-            {
-              attrs: {
-                icon: "fa fa-undo",
-                event: "type.undo",
-                disabled: !_vm.canUndo
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.undo")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-event",
-            {
-              attrs: {
-                icon: "fa fa-redo",
-                event: "type.redo",
-                disabled: !_vm.canRedo
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.redo")) +
-                  "\n        "
-              )
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "portal",
-        { attrs: { to: "app-toolbar-right" } },
-        [
-          _c(
-            "app-toolbar-event",
-            {
-              staticClass: "uk-icon-danger",
-              attrs: {
-                icon: "fa fa-ban",
-                event: "type.reset",
-                disabled: !_vm.canUndo
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.discard")) +
-                  "\n        "
-              )
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("portal", { attrs: { to: "app-module-help" } }, [
-        _c("h1", [_vm._v("Help")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "uk-margin-bottom" }, [
-        _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
-          _vm._v(_vm._s(_vm.$t("liro-menus.backend.types.create")))
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "fieldset",
-        { staticClass: "uk-fieldset" },
-        [
-          _c("app-form-input", {
-            attrs: {
-              label: _vm.$t("liro-menus.form.title"),
-              type: "text",
-              id: "title",
-              name: "title",
-              rules: "required|min:4"
-            },
-            model: {
-              value: _vm.item.title,
-              callback: function($$v) {
-                _vm.$set(_vm.item, "title", $$v)
-              },
-              expression: "item.title"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              label: _vm.$t("liro-menus.form.route"),
-              type: "route",
-              id: "route",
-              name: "route"
-            },
-            model: {
-              value: _vm.item.route,
-              callback: function($$v) {
-                _vm.$set(_vm.item, "route", $$v)
-              },
-              expression: "item.route"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              label: _vm.$t("liro-menus.form.theme"),
-              id: "theme",
-              name: "theme",
-              options: _vm.themes,
-              "option-label": "name",
-              "option-value": "name",
-              placeholder: _vm.$t("liro-menus.placeholder.themes")
-            },
-            model: {
-              value: _vm.item.theme,
-              callback: function($$v) {
-                _vm.$set(_vm.item, "theme", $$v)
-              },
-              expression: "item.theme"
-            }
-          })
-        ],
-        1
-      )
-    ],
-    1
-  )
+        }
+      }
+    ])
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1020,7 +1094,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-00638e4e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-e724f002", module.exports)
   }
 }
 
@@ -1050,7 +1124,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-types-edit.vue"
+Component.options.__file = "resources/src/app-types-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1059,9 +1133,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-47a0dc27", Component.options)
+    hotAPI.createRecord("data-v-15f5bccd", Component.options)
   } else {
-    hotAPI.reload("data-v-47a0dc27", Component.options)
+    hotAPI.reload("data-v-15f5bccd", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1073,13 +1147,10 @@ module.exports = Component.exports
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-//
-//
-//
-//
-//
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -1154,95 +1225,63 @@ module.exports = Component.exports
 //
 //
 
-module.exports = {
-
-    name: 'app-types-edit',
-
-    computed: {
-        canUndo: function canUndo() {
-            return this.$store.getters['history/canUndo'];
-        },
-        canRedo: function canRedo() {
-            return this.$store.getters['history/canRedo'];
-        }
-    },
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     props: {
-        indexRoute: {
-            default: '',
-            type: String
-        },
-        themes: {
+
+        editRoute: {
             default: function _default() {
-                return [];
+                return '';
             },
 
-            type: Array
+            type: String
         },
+
+        indexRoute: {
+            default: function _default() {
+                return '';
+            },
+
+            type: String
+        },
+
         type: {
             default: function _default() {
-                return {};
+                return this.$liro.data.get('type', []);
             },
 
             type: Object
+        },
+
+        themes: {
+            default: function _default() {
+                return this.$liro.data.get('themes', []);
+            },
+
+            type: [Array, Object]
         }
+
     },
 
     data: function data() {
+
         return {
-            disabled: false,
-            item: this.type
+            TypeModel: this.type
         };
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        this.$store.commit('history/init', this.item);
-
-        this.$watch('item', _.debounce(this.save, 600), {
-            deep: true
-        });
-
-        this.$liro.listen('type.undo', function () {
-            _this.item = _this.$store.state.history.undo();
-        });
-
-        this.$liro.listen('type.redo', function () {
-            _this.item = _this.$store.state.history.redo();
-        });
-
-        this.$liro.listen('type.reset', function () {
-            _this.item = _this.$store.state.history.reset();
-        });
-
-        this.$liro.listen('type.save', function () {
-            _this.$http.post(_this.item.edit_route, _this.item);
-        });
-
-        this.$liro.listen('ajax.load', function () {
-            _this.disabled = true;
-        });
-
-        this.$liro.listen('ajax.done', function () {
-            _this.disabled = false;
-        });
-
-        this.$liro.listen('ajax.error', function () {
-            _this.disabled = false;
-        });
     },
 
 
     methods: {
-        save: function save() {
-            if (this.$store.state.history.preventer()) {
-                this.$store.commit('history/save', this.item);
-            }
+        edit: function edit() {
+            this.$http.post(this.editRoute, this.TypeModel);
         }
     }
 
-};
-liro.component(module.exports);
+});
+
+if (window.liro) {
+    liro.vue.$component('app-types-edit', this.default);
+}
 
 /***/ }),
 /* 10 */
@@ -1252,232 +1291,221 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "uk-form uk-form-stacked" },
-    [
-      _c(
-        "portal",
-        { attrs: { to: "app-infobar-action" } },
-        [
-          _c(
-            "app-toolbar-link",
-            {
-              attrs: {
-                icon: "fa fa-info-circle",
-                href: "#",
-                "uk-toggle": "target: #app-module-help"
-              }
-            },
+  return _c("app-helper-history", {
+    attrs: { value: _vm.TypeModel },
+    scopedSlots: _vm._u([
+      {
+        key: "default",
+        fn: function(ref) {
+          var item = ref.item
+          var canUndo = ref.canUndo
+          var canRedo = ref.canRedo
+          var undo = ref.undo
+          var redo = ref.redo
+          var reset = ref.reset
+          return _c(
+            "div",
+            { staticClass: "uk-form uk-form-stacked" },
             [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.help")) +
-                  "\n        "
+              _c(
+                "portal",
+                { attrs: { to: "app-infobar-right" } },
+                [
+                  _c(
+                    "app-toolbar-button",
+                    { attrs: { "uk-toggle": "target: #app-module-help" } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.help")) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "portal",
+                { attrs: { to: "app-toolbar-left" } },
+                [
+                  _c(
+                    "app-toolbar-button",
+                    {
+                      attrs: { icon: "check" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.edit()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.save")) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "app-toolbar-button",
+                    { attrs: { icon: "close", href: _vm.indexRoute } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.close")) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("app-toolbar-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "app-toolbar-button",
+                    {
+                      attrs: { disabled: !canUndo },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          undo()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.undo")) +
+                          "\n            "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "app-toolbar-button",
+                    {
+                      attrs: { disabled: !canRedo },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          redo()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.redo")) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "portal",
+                { attrs: { to: "app-toolbar-right" } },
+                [
+                  _c(
+                    "app-toolbar-button",
+                    {
+                      attrs: { disabled: !canUndo },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          reset()
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-menus.toolbar.discard")) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("portal", { attrs: { to: "app-module-help" } }, [
+                _c("h1", [_vm._v("Help")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-margin-large" }, [
+                _c(
+                  "h1",
+                  { staticClass: "uk-heading-primary uk-margin-remove" },
+                  [_vm._v(_vm._s(_vm.$t("liro-menus.backend.types.edit")))]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "fieldset",
+                { staticClass: "uk-fieldset" },
+                [
+                  _c("app-form-input", {
+                    attrs: {
+                      name: "title",
+                      rules: "required|min:4",
+                      label: _vm.$t("liro-menus.form.title")
+                    },
+                    model: {
+                      value: item.title,
+                      callback: function($$v) {
+                        _vm.$set(item, "title", $$v)
+                      },
+                      expression: "item.title"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("app-form-input", {
+                    attrs: {
+                      name: "route",
+                      label: _vm.$t("liro-menus.form.route")
+                    },
+                    model: {
+                      value: item.route,
+                      callback: function($$v) {
+                        _vm.$set(item, "route", $$v)
+                      },
+                      expression: "item.route"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("app-form-select", {
+                    attrs: {
+                      name: "theme",
+                      options: _vm.themes,
+                      "option-label": "name",
+                      "option-value": "name",
+                      label: _vm.$t("liro-menus.form.theme"),
+                      placeholder: _vm.$t("liro-menus.placeholder.themes")
+                    },
+                    model: {
+                      value: item.theme,
+                      callback: function($$v) {
+                        _vm.$set(item, "theme", $$v)
+                      },
+                      expression: "item.theme"
+                    }
+                  })
+                ],
+                1
               )
-            ]
+            ],
+            1
           )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "portal",
-        { attrs: { to: "app-toolbar-left" } },
-        [
-          _c(
-            "app-toolbar-event",
-            {
-              staticClass: "uk-icon-success",
-              attrs: {
-                icon: "fa fa-check",
-                event: "type.save",
-                disabled: _vm.disabled
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.save")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-link",
-            {
-              staticClass: "uk-icon-danger",
-              attrs: {
-                icon: "fa fa-times",
-                href: _vm.indexRoute,
-                disabled: _vm.disabled
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.close")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("app-toolbar-spacer"),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-event",
-            {
-              attrs: {
-                icon: "fa fa-undo",
-                event: "type.undo",
-                disabled: !_vm.canUndo
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.undo")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-event",
-            {
-              attrs: {
-                icon: "fa fa-redo",
-                event: "type.redo",
-                disabled: !_vm.canRedo
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.redo")) +
-                  "\n        "
-              )
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "portal",
-        { attrs: { to: "app-toolbar-right" } },
-        [
-          _c(
-            "app-toolbar-event",
-            {
-              staticClass: "uk-icon-danger",
-              attrs: {
-                icon: "fa fa-ban",
-                event: "type.reset",
-                disabled: !_vm.canUndo
-              }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.discard")) +
-                  "\n        "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("app-toolbar-spacer"),
-          _vm._v(" "),
-          _c(
-            "app-toolbar-link",
-            {
-              staticClass: "uk-icon-danger",
-              attrs: { icon: "fa fa-minus-circle", href: _vm.item.delete_route }
-            },
-            [
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.$t("liro-menus.toolbar.delete")) +
-                  "\n        "
-              )
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("portal", { attrs: { to: "app-module-help" } }, [
-        _c("h1", [_vm._v("Help")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "uk-margin-bottom" }, [
-        _c("h1", { staticClass: "uk-text-lead uk-margin-remove" }, [
-          _vm._v(_vm._s(_vm.$t("liro-menus.backend.types.create")))
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "fieldset",
-        { staticClass: "uk-fieldset" },
-        [
-          _c("app-form-input", {
-            attrs: {
-              label: _vm.$t("liro-menus.form.title"),
-              type: "text",
-              id: "title",
-              name: "title",
-              rules: "required|min:4"
-            },
-            model: {
-              value: _vm.item.title,
-              callback: function($$v) {
-                _vm.$set(_vm.item, "title", $$v)
-              },
-              expression: "item.title"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              label: _vm.$t("liro-menus.form.route"),
-              type: "route",
-              id: "route",
-              name: "route"
-            },
-            model: {
-              value: _vm.item.route,
-              callback: function($$v) {
-                _vm.$set(_vm.item, "route", $$v)
-              },
-              expression: "item.route"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              label: _vm.$t("liro-menus.form.theme"),
-              id: "theme",
-              name: "theme",
-              options: _vm.themes,
-              "option-label": "name",
-              "option-value": "name",
-              placeholder: _vm.$t("liro-menus.placeholder.themes")
-            },
-            model: {
-              value: _vm.item.theme,
-              callback: function($$v) {
-                _vm.$set(_vm.item, "theme", $$v)
-              },
-              expression: "item.theme"
-            }
-          })
-        ],
-        1
-      )
-    ],
-    1
-  )
+        }
+      }
+    ])
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1485,7 +1513,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-47a0dc27", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-15f5bccd", module.exports)
   }
 }
 

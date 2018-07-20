@@ -7,7 +7,7 @@
                 <app-toolbar-button class="uk-success" icon="plus" :href="createRoute">
                     {{ $t('liro-users.toolbar.create') }}
                 </app-toolbar-button>
-                <app-toolbar-button uk-toggle="target: #app-module-help">
+                <app-toolbar-button :disabled="true" uk-toggle="target: #app-module-help">
                     {{ $t('liro-users.toolbar.help') }}
                 </app-toolbar-button>
             </portal>
@@ -55,7 +55,7 @@
                     <div class="uk-table-list-td uk-width-1-4">
                         <span>{{ $t('liro-users.form.routes') }}</span>
                     </div>
-                    <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+                    <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
                         <app-list-order column="id" :reverse="true" :config="options.order" @order="order">
                             {{ $t('liro-users.form.id') }}
                         </app-list-order>
@@ -74,7 +74,7 @@
                     <div class="uk-table-list-td uk-width-1-4">
                         <span class="uk-text-muted">{{ $tc('liro-users.form.route_count', item.route_ids.length, { count: item.route_ids.length }) }}</span>
                     </div>
-                    <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+                    <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
                         <span>{{ item.id }}</span>
                     </div>
                 </div>

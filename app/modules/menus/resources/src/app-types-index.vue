@@ -4,12 +4,12 @@
 
             <!-- Infobar start -->
             <portal to="app-infobar-right">
-                <app-toolbar-link class="uk-success" icon="plus" :href="createRoute">
+                <app-toolbar-button class="uk-success" icon="plus" :href="createRoute">
                     {{ $t('liro-menus.toolbar.create') }}
-                </app-toolbar-link>
-                <app-toolbar-link href="#" uk-toggle="target: #app-module-help">
+                </app-toolbar-button>
+                <app-toolbar-button :disabled="true" uk-toggle="target: #app-module-help">
                     {{ $t('liro-menus.toolbar.help') }}
-                </app-toolbar-link>
+                </app-toolbar-button>
             </portal>
             <!-- Infobar end -->
 
@@ -57,7 +57,7 @@
                             {{ $t('liro-menus.form.route') }}
                         </app-list-order>
                     </div>
-                    <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+                    <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
                         <app-list-order column="id" :reverse="true" :config="options.order" @order="order">
                             {{ $t('liro-menus.form.id') }}
                         </app-list-order>
@@ -76,7 +76,7 @@
                     <div class="uk-table-list-td uk-width-1-4">
                         <span class="uk-text-muted">{{ item.route }}</span>
                     </div>
-                    <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+                    <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
                         <span>{{ item.id }}</span>
                     </div>
                 </div>

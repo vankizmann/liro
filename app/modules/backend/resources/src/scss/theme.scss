@@ -45,7 +45,6 @@ $color-gray-80:             mix($color-white, $color-dark-10, 27.5%);
 $color-gray-90:             mix($color-white, $color-dark-10, 17.5%);
 
 @import 'vendor.scss';
-@import 'app.scss';
 
 body {
     background-color: $color-gray-10;
@@ -439,7 +438,7 @@ a, button {
     .uk-table-list-row {
         @extend .uk-flex, .uk-flex-middle ;
         border-radius: 3px;
-        padding: 20px 10px;
+        padding: 15px 10px;
         margin-bottom: 5px;
         background-color: $color-white;
         box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
@@ -478,3 +477,5 @@ a, button {
     }
 
 }
+
+@import 'app.scss';

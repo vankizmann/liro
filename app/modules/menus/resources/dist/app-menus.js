@@ -460,32 +460,24 @@ module.exports = {
 
 
     methods: {
-        enable: function enable() {
-            var _this2 = this;
-
-            this.$http.post(this.item.enable_route, {}).then(function () {
-                _this2.item.state = 1;
+        enable: function enable(item) {
+            this.$http.post(item.enable_route, {}).then(function () {
+                item.state = 1;
             });
         },
-        disable: function disable() {
-            var _this3 = this;
-
-            this.$http.post(this.item.disable_route, {}).then(function () {
-                _this3.item.state = 0;
+        disable: function disable(item) {
+            this.$http.post(item.disable_route, {}).then(function () {
+                item.state = 0;
             });
         },
-        visible: function visible() {
-            var _this4 = this;
-
-            this.$http.post(this.item.visible_route, {}).then(function () {
-                _this4.item.hidden = 0;
+        visible: function visible(item) {
+            this.$http.post(item.visible_route, {}).then(function () {
+                item.hidden = 0;
             });
         },
-        hidden: function hidden() {
-            var _this5 = this;
-
-            this.$http.post(this.item.hidden_route, {}).then(function () {
-                _this5.item.hidden = 1;
+        hidden: function hidden(item) {
+            this.$http.post(item.hidden_route, {}).then(function () {
+                item.hidden = 1;
             });
         }
     }
@@ -535,14 +527,16 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "uk-table-list-td uk-table-list-td-s uk-text-center" },
+          { staticClass: "uk-table-list-td uk-table-list-td-m uk-text-center" },
           [
             _c("app-list-hidden", {
-              attrs: { active: _vm.item.hidden == 1, href: "#" },
+              attrs: { active: _vm.item.hidden == 1 },
               on: {
                 click: function($event) {
                   $event.preventDefault()
-                  _vm.item.hidden == 1 ? _vm.visible() : _vm.hidden()
+                  _vm.item.hidden == 1
+                    ? _vm.visible(_vm.item)
+                    : _vm.hidden(_vm.item)
                 }
               }
             })
@@ -552,14 +546,16 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "uk-table-list-td uk-table-list-td-s uk-text-center" },
+          { staticClass: "uk-table-list-td uk-table-list-td-m uk-text-center" },
           [
             _c("app-list-state", {
-              attrs: { active: _vm.item.state == 1, href: "#" },
+              attrs: { active: _vm.item.state == 1 },
               on: {
                 click: function($event) {
                   $event.preventDefault()
-                  _vm.item.state == 1 ? _vm.disable() : _vm.enable()
+                  _vm.item.state == 1
+                    ? _vm.disable(_vm.item)
+                    : _vm.enable(_vm.item)
                 }
               }
             })
@@ -569,7 +565,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "uk-table-list-td uk-table-list-td-s uk-text-center" },
+          { staticClass: "uk-table-list-td uk-table-list-td-m uk-text-center" },
           [_c("span", [_vm._v(_vm._s(_vm.item.id))])]
         )
       ]),
@@ -790,7 +786,7 @@ var render = function() {
         { attrs: { to: "app-infobar-right" } },
         [
           _c(
-            "app-toolbar-link",
+            "app-toolbar-button",
             {
               staticClass: "uk-success",
               attrs: { icon: "plus", href: _vm.createRoute }
@@ -805,8 +801,10 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "app-toolbar-link",
-            { attrs: { "uk-toggle": "target: #app-module-help" } },
+            "app-toolbar-button",
+            {
+              attrs: { disabled: true, "uk-toggle": "target: #app-module-help" }
+            },
             [
               _vm._v(
                 "\n            " +
@@ -887,7 +885,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "uk-table-list-td uk-table-list-td-s uk-text-center"
+                  "uk-table-list-td uk-table-list-td-m uk-text-center"
               },
               [
                 _vm._v(
@@ -902,7 +900,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "uk-table-list-td uk-table-list-td-s uk-text-center"
+                  "uk-table-list-td uk-table-list-td-m uk-text-center"
               },
               [
                 _vm._v(
@@ -917,7 +915,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "uk-table-list-td uk-table-list-td-s uk-text-center"
+                  "uk-table-list-td uk-table-list-td-m uk-text-center"
               },
               [
                 _vm._v(

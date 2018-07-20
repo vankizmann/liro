@@ -7,13 +7,13 @@
             <div class="uk-table-list-td uk-table-list-td-auto">
                 <a :href="item.edit_route">{{ item.title_fix }}</a>
             </div>
-            <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+            <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
                 <app-list-hidden :active="item.hidden == 1" @click.prevent="item.hidden == 1 ? visible(item) : hidden(item)"></app-list-hidden>
             </div>
-            <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+            <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
                 <app-list-state :active="item.state == 1" @click.prevent="item.state == 1 ? disable(item) : enable(item)"></app-list-state>
             </div>
-            <div class="uk-table-list-td uk-table-list-td-s uk-text-center">
+            <div class="uk-table-list-td uk-table-list-td-m uk-text-center">
                 <span>{{ item.id }}</span>
             </div>
         </div>

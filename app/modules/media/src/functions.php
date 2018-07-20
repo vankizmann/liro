@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 if (!function_exists('get_file_basename')) {

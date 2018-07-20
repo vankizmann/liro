@@ -54,6 +54,11 @@
         margin: 0 10px;
     }
 
+    li.uk-disabled > .uk-button {
+        color: mix($color-primary, $color-white, 50%) !important;
+        background-color: transparent !important;
+    }
+
 }
 
 .app-body {

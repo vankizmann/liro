@@ -409,7 +409,7 @@ var render = function() {
                 { attrs: { to: "app-infobar-right" } },
                 [
                   _c(
-                    "app-toolbar-link",
+                    "app-toolbar-button",
                     {
                       staticClass: "uk-success",
                       attrs: { icon: "plus", href: _vm.createRoute }
@@ -424,10 +424,10 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "app-toolbar-link",
+                    "app-toolbar-button",
                     {
                       attrs: {
-                        href: "#",
+                        disabled: true,
                         "uk-toggle": "target: #app-module-help"
                       }
                     },
@@ -552,7 +552,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "uk-table-list-td uk-table-list-td-s uk-text-center"
+                          "uk-table-list-td uk-table-list-td-m uk-text-center"
                       },
                       [
                         _c(
@@ -617,7 +617,7 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              "uk-table-list-td uk-table-list-td-s uk-text-center"
+                              "uk-table-list-td uk-table-list-td-m uk-text-center"
                           },
                           [_c("span", [_vm._v(_vm._s(item.id))])]
                         )
@@ -828,7 +828,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         type: {
             default: function _default() {
-                return this.$liro.data.get('type', []);
+                return this.$liro.data.get('type', {});
             },
 
             type: Object
@@ -873,7 +873,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("app-helper-history", {
-    attrs: { value: _vm.TypeModel },
     scopedSlots: _vm._u([
       {
         key: "default",
@@ -1085,7 +1084,14 @@ var render = function() {
           )
         }
       }
-    ])
+    ]),
+    model: {
+      value: _vm.TypeModel,
+      callback: function($$v) {
+        _vm.TypeModel = $$v
+      },
+      expression: "TypeModel"
+    }
   })
 }
 var staticRenderFns = []
@@ -1229,14 +1235,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     props: {
 
-        editRoute: {
-            default: function _default() {
-                return '';
-            },
-
-            type: String
-        },
-
         indexRoute: {
             default: function _default() {
                 return '';
@@ -1247,7 +1245,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         type: {
             default: function _default() {
-                return this.$liro.data.get('type', []);
+                return this.$liro.data.get('type', {});
             },
 
             type: Object
@@ -1273,7 +1271,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         edit: function edit() {
-            this.$http.post(this.editRoute, this.TypeModel);
+            this.$http.post(this.TypeModel.edit_route, this.TypeModel);
         }
     }
 
@@ -1292,7 +1290,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("app-helper-history", {
-    attrs: { value: _vm.TypeModel },
     scopedSlots: _vm._u([
       {
         key: "default",
@@ -1504,7 +1501,14 @@ var render = function() {
           )
         }
       }
-    ])
+    ]),
+    model: {
+      value: _vm.TypeModel,
+      callback: function($$v) {
+        _vm.TypeModel = $$v
+      },
+      expression: "TypeModel"
+    }
   })
 }
 var staticRenderFns = []

@@ -211,7 +211,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-users-index.vue"
+Component.options.__file = "resources/src/users/index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -220,9 +220,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1d86656e", Component.options)
+    hotAPI.createRecord("data-v-fa82dc50", Component.options)
   } else {
-    hotAPI.reload("data-v-1d86656e", Component.options)
+    hotAPI.reload("data-v-fa82dc50", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -238,6 +238,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -440,27 +444,12 @@ var render = function() {
           var filter = ref.filter
           return _c(
             "div",
-            { staticClass: "uk-form uk-form-stacked" },
+            {},
             [
               _c(
                 "portal",
                 { attrs: { to: "app-infobar-right" } },
                 [
-                  _c(
-                    "app-toolbar-button",
-                    {
-                      staticClass: "uk-success",
-                      attrs: { icon: "plus", href: _vm.createRoute }
-                    },
-                    [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.$t("liro-users.toolbar.create")) +
-                          "\n            "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
                   _c(
                     "app-toolbar-button",
                     {
@@ -481,6 +470,41 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
+              _c(
+                "portal",
+                { attrs: { to: "app-toolbar-left" } },
+                [
+                  _c(
+                    "app-toolbar-button",
+                    { attrs: { icon: "plus", href: _vm.createRoute } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-users.toolbar.create")) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "portal",
+                { attrs: { to: "app-toolbar-right" } },
+                [
+                  _c("app-list-search", {
+                    attrs: {
+                      columns: ["name", "email"],
+                      config: options.search,
+                      placeholder: _vm.$t("liro-users.form.search")
+                    },
+                    on: { search: search }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c("portal", { attrs: { to: "app-module-help" } }, [
                 _c("h1", [_vm._v(_vm._s(_vm.$t("liro-users.toolbar.help")))])
               ]),
@@ -495,275 +519,254 @@ var render = function() {
                       { staticClass: "uk-heading-primary uk-margin-remove" },
                       [_vm._v(_vm._s(_vm.$t("liro-users.backend.users.index")))]
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticStyle: { width: "300px", "margin-left": "auto" } },
-                    [
-                      _c("app-list-search", {
-                        attrs: {
-                          columns: ["name", "email"],
-                          config: options.search,
-                          placeholder: _vm.$t("liro-users.form.search")
-                        },
-                        on: { search: search }
-                      })
-                    ],
-                    1
-                  )
+                  ])
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "uk-table-list uk-table-list-highlight" },
-                [
-                  _c("div", { staticClass: "uk-table-list-head" }, [
-                    _c(
-                      "div",
-                      { staticClass: "uk-table-list-td uk-width-1-3" },
-                      [
-                        _c(
-                          "app-list-order",
-                          {
-                            attrs: { column: "name", config: options.order },
-                            on: { order: order }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.$t("liro-users.form.name")) +
-                                "\n                    "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "uk-table-list-td uk-width-1-3" },
-                      [
-                        _c(
-                          "app-list-order",
-                          {
-                            attrs: { column: "email", config: options.order },
-                            on: { order: order }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.$t("liro-users.form.email")) +
-                                "\n                    "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "uk-table-list-td uk-width-1-3" },
-                      [
-                        _c(
-                          "app-list-filter",
-                          {
-                            attrs: {
-                              column: "role_ids",
-                              config: options.filter,
-                              filters: _vm.roles,
-                              "filters-value": "id",
-                              "filters-label": "title"
+              _c("div", { staticClass: "uk-form uk-form-stacked" }, [
+                _c(
+                  "div",
+                  { staticClass: "uk-table-list uk-table-list-highlight" },
+                  [
+                    _c("div", { staticClass: "uk-table-list-head" }, [
+                      _c(
+                        "div",
+                        { staticClass: "uk-table-list-td uk-width-1-3" },
+                        [
+                          _c(
+                            "app-list-order",
+                            {
+                              attrs: { column: "name", config: options.order },
+                              on: { order: order }
                             },
-                            on: { filter: filter }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.$t("liro-users.form.roles")) +
-                                "\n                    "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "uk-table-list-td uk-table-list-td-m uk-text-center"
-                      },
-                      [
-                        _c(
-                          "app-list-filter",
-                          {
-                            attrs: {
-                              column: "state",
-                              config: options.filter,
-                              filters: _vm.states
-                            },
-                            on: { filter: filter }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.$t("liro-users.form.state")) +
-                                "\n                    "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "uk-table-list-td uk-table-list-td-m uk-text-center"
-                      },
-                      [
-                        _c(
-                          "app-list-order",
-                          {
-                            attrs: {
-                              column: "id",
-                              reverse: true,
-                              config: options.order
-                            },
-                            on: { order: order }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.$t("liro-users.form.id")) +
-                                "\n                    "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(items, function(item, index) {
-                    return _c(
-                      "div",
-                      { key: index, staticClass: "uk-table-list-row" },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "uk-table-list-td uk-width-1-3" },
-                          [
-                            _c("a", { attrs: { href: item.edit_route } }, [
-                              _vm._v(_vm._s(item.name))
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "uk-table-list-td uk-width-1-3" },
-                          [_c("span", [_vm._v(_vm._s(item.email))])]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "uk-table-list-td uk-width-1-3" },
-                          [
-                            _c(
-                              "ul",
-                              {
-                                staticClass: "uk-list-inline uk-margin-remove"
-                              },
-                              _vm._l(
-                                _vm.$liro.func.map(
-                                  item.role_ids,
-                                  "id",
-                                  _vm.roles
-                                ),
-                                function(role) {
-                                  return _c("li", { key: role.id }, [
-                                    _c(
-                                      "a",
-                                      { attrs: { href: role.edit_route } },
-                                      [_vm._v(_vm._s(role.title))]
-                                    )
-                                  ])
-                                }
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.$t("liro-users.form.name")) +
+                                  "\n                        "
                               )
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "uk-table-list-td uk-table-list-td-m uk-text-center"
-                          },
-                          [
-                            _c("app-list-state", {
-                              attrs: { active: item.state == 1 },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  item.state == 1
-                                    ? _vm.disable(item)
-                                    : _vm.enable(item)
-                                }
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "uk-table-list-td uk-table-list-td-m uk-text-center"
-                          },
-                          [_c("span", [_vm._v(_vm._s(item.id))])]
-                        )
-                      ]
-                    )
-                  }),
-                  _vm._v(" "),
-                  items.length == 0
-                    ? _c(
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "uk-table-list-td uk-width-1-3" },
+                        [
+                          _c(
+                            "app-list-order",
+                            {
+                              attrs: { column: "email", config: options.order },
+                              on: { order: order }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.$t("liro-users.form.email")) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "uk-table-list-td uk-width-1-3" },
+                        [
+                          _c(
+                            "app-list-filter",
+                            {
+                              attrs: {
+                                column: "role_ids",
+                                config: options.filter,
+                                filters: _vm.roles,
+                                "filters-value": "id",
+                                "filters-label": "title"
+                              },
+                              on: { filter: filter }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.$t("liro-users.form.roles")) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
                         "div",
                         {
                           staticClass:
-                            "uk-table-list-empty uk-padding uk-text-center"
+                            "uk-table-list-td uk-table-list-td-m uk-text-center"
                         },
                         [
+                          _c(
+                            "app-list-filter",
+                            {
+                              attrs: {
+                                column: "state",
+                                config: options.filter,
+                                filters: _vm.states
+                              },
+                              on: { filter: filter }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.$t("liro-users.form.state")) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "uk-table-list-td uk-table-list-td-m uk-text-center"
+                        },
+                        [
+                          _c(
+                            "app-list-order",
+                            {
+                              attrs: {
+                                column: "id",
+                                reverse: true,
+                                config: options.order
+                              },
+                              on: { order: order }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.$t("liro-users.form.id")) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(items, function(item, index) {
+                      return _c(
+                        "div",
+                        { key: index, staticClass: "uk-table-list-row" },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "uk-table-list-td uk-width-1-3" },
+                            [
+                              _c("a", { attrs: { href: item.edit_route } }, [
+                                _vm._v(_vm._s(item.name))
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "uk-table-list-td uk-width-1-3" },
+                            [_c("span", [_vm._v(_vm._s(item.email))])]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "uk-table-list-td uk-width-1-3" },
+                            [
+                              _c(
+                                "ul",
+                                {
+                                  staticClass: "uk-list-inline uk-margin-remove"
+                                },
+                                _vm._l(
+                                  _vm.$liro.func.map(
+                                    item.role_ids,
+                                    "id",
+                                    _vm.roles
+                                  ),
+                                  function(role) {
+                                    return _c("li", { key: role.id }, [
+                                      _c(
+                                        "a",
+                                        { attrs: { href: role.edit_route } },
+                                        [_vm._v(_vm._s(role.title))]
+                                      )
+                                    ])
+                                  }
+                                )
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "uk-table-list-td uk-table-list-td-m uk-text-center"
+                            },
+                            [
+                              _c("app-list-state", {
+                                attrs: { active: item.state == 1 },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    item.state == 1
+                                      ? _vm.disable(item)
+                                      : _vm.enable(item)
+                                  }
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "uk-table-list-td uk-table-list-td-m uk-text-center"
+                            },
+                            [_c("span", [_vm._v(_vm._s(item.id))])]
+                          )
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    items.length == 0
+                      ? _c("div", { staticClass: "uk-table-list-empty" }, [
                           _c("span", [
                             _vm._v(_vm._s(_vm.$t("liro-users.form.empty")))
                           ])
-                        ]
-                      )
-                    : _vm._e()
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "uk-table-list-pagination uk-margin-top" },
-                [
-                  _c("app-list-pagination", {
-                    attrs: { pages: pages, config: options.paginate },
-                    on: { paginate: paginate }
-                  })
-                ],
-                1
-              )
+                        ])
+                      : _vm._e()
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "uk-table-list-pagination" },
+                  [
+                    _c("app-list-pagination", {
+                      attrs: { pages: pages, config: options.paginate },
+                      on: { paginate: paginate }
+                    })
+                  ],
+                  1
+                )
+              ])
             ],
             1
           )
@@ -785,7 +788,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1d86656e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-fa82dc50", module.exports)
   }
 }
 
@@ -815,7 +818,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-users-create.vue"
+Component.options.__file = "resources/src/users/create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -824,9 +827,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-8a0ad9e0", Component.options)
+    hotAPI.createRecord("data-v-06701834", Component.options)
   } else {
-    hotAPI.reload("data-v-8a0ad9e0", Component.options)
+    hotAPI.reload("data-v-06701834", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -842,6 +845,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -1013,7 +1018,7 @@ var render = function() {
           var reset = ref.reset
           return _c(
             "div",
-            { staticClass: "uk-form uk-form-stacked" },
+            {},
             [
               _c(
                 "portal",
@@ -1021,7 +1026,12 @@ var render = function() {
                 [
                   _c(
                     "app-toolbar-button",
-                    { attrs: { "uk-toggle": "target: #app-module-help" } },
+                    {
+                      attrs: {
+                        disabled: true,
+                        "uk-toggle": "target: #app-module-help"
+                      }
+                    },
                     [
                       _vm._v(
                         "\n                " +
@@ -1154,93 +1164,95 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "fieldset",
-                { staticClass: "uk-fieldset" },
-                [
-                  _c("app-form-input", {
-                    attrs: {
-                      name: "name",
-                      rules: "required|min:4",
-                      label: _vm.$t("liro-users.form.name")
-                    },
-                    model: {
-                      value: item.name,
-                      callback: function($$v) {
-                        _vm.$set(item, "name", $$v)
+              _c("div", { staticClass: "uk-form uk-form-stacked" }, [
+                _c(
+                  "fieldset",
+                  { staticClass: "uk-fieldset" },
+                  [
+                    _c("app-form-input", {
+                      attrs: {
+                        name: "name",
+                        rules: "required|min:4",
+                        label: _vm.$t("liro-users.form.name")
                       },
-                      expression: "item.name"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("app-form-select", {
-                    attrs: {
-                      name: "state",
-                      options: _vm.states,
-                      label: _vm.$t("liro-users.form.state"),
-                      placeholder: _vm.$t("liro-users.placeholder.state")
-                    },
-                    model: {
-                      value: item.state,
-                      callback: function($$v) {
-                        _vm.$set(item, "state", $$v)
+                      model: {
+                        value: item.name,
+                        callback: function($$v) {
+                          _vm.$set(item, "name", $$v)
+                        },
+                        expression: "item.name"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("app-form-select", {
+                      attrs: {
+                        name: "state",
+                        options: _vm.states,
+                        label: _vm.$t("liro-users.form.state"),
+                        placeholder: _vm.$t("liro-users.placeholder.state")
                       },
-                      expression: "item.state"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("app-form-select-multiple", {
-                    attrs: {
-                      name: "role_ids",
-                      options: _vm.roles,
-                      "option-label": "title",
-                      "option-value": "id",
-                      label: _vm.$t("liro-users.form.roles"),
-                      placeholder: _vm.$t("liro-users.placeholder.roles")
-                    },
-                    model: {
-                      value: item.role_ids,
-                      callback: function($$v) {
-                        _vm.$set(item, "role_ids", $$v)
+                      model: {
+                        value: item.state,
+                        callback: function($$v) {
+                          _vm.$set(item, "state", $$v)
+                        },
+                        expression: "item.state"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("app-form-select-multiple", {
+                      attrs: {
+                        name: "role_ids",
+                        options: _vm.roles,
+                        "option-label": "title",
+                        "option-value": "id",
+                        label: _vm.$t("liro-users.form.roles"),
+                        placeholder: _vm.$t("liro-users.placeholder.roles")
                       },
-                      expression: "item.role_ids"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("app-form-input", {
-                    attrs: {
-                      type: "email",
-                      name: "email",
-                      rules: "required|email",
-                      label: _vm.$t("liro-users.form.email")
-                    },
-                    model: {
-                      value: item.email,
-                      callback: function($$v) {
-                        _vm.$set(item, "email", $$v)
+                      model: {
+                        value: item.role_ids,
+                        callback: function($$v) {
+                          _vm.$set(item, "role_ids", $$v)
+                        },
+                        expression: "item.role_ids"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("app-form-input", {
+                      attrs: {
+                        type: "email",
+                        name: "email",
+                        rules: "required|email",
+                        label: _vm.$t("liro-users.form.email")
                       },
-                      expression: "item.email"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("app-form-password", {
-                    attrs: {
-                      name: "password",
-                      rules: "min:6",
-                      label: _vm.$t("liro-users.form.password"),
-                      generate: _vm.$t("liro-users.form.generate")
-                    },
-                    model: {
-                      value: item.password,
-                      callback: function($$v) {
-                        _vm.$set(item, "password", $$v)
+                      model: {
+                        value: item.email,
+                        callback: function($$v) {
+                          _vm.$set(item, "email", $$v)
+                        },
+                        expression: "item.email"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("app-form-password", {
+                      attrs: {
+                        name: "password",
+                        rules: "min:6",
+                        label: _vm.$t("liro-users.form.password"),
+                        generate: _vm.$t("liro-users.form.generate")
                       },
-                      expression: "item.password"
-                    }
-                  })
-                ],
-                1
-              )
+                      model: {
+                        value: item.password,
+                        callback: function($$v) {
+                          _vm.$set(item, "password", $$v)
+                        },
+                        expression: "item.password"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
             ],
             1
           )
@@ -1262,7 +1274,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-8a0ad9e0", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-06701834", module.exports)
   }
 }
 
@@ -1292,7 +1304,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-users-edit.vue"
+Component.options.__file = "resources/src/users/edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1301,9 +1313,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c8874fc4", Component.options)
+    hotAPI.createRecord("data-v-7df7f674", Component.options)
   } else {
-    hotAPI.reload("data-v-c8874fc4", Component.options)
+    hotAPI.reload("data-v-7df7f674", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1319,6 +1331,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -1482,7 +1496,7 @@ var render = function() {
           var reset = ref.reset
           return _c(
             "div",
-            { staticClass: "uk-form uk-form-stacked" },
+            {},
             [
               _c(
                 "portal",
@@ -1490,7 +1504,12 @@ var render = function() {
                 [
                   _c(
                     "app-toolbar-button",
-                    { attrs: { "uk-toggle": "target: #app-module-help" } },
+                    {
+                      attrs: {
+                        disabled: true,
+                        "uk-toggle": "target: #app-module-help"
+                      }
+                    },
                     [
                       _vm._v(
                         "\n                " +
@@ -1623,93 +1642,95 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "fieldset",
-                { staticClass: "uk-fieldset" },
-                [
-                  _c("app-form-input", {
-                    attrs: {
-                      name: "name",
-                      rules: "required|min:4",
-                      label: _vm.$t("liro-users.form.name")
-                    },
-                    model: {
-                      value: item.name,
-                      callback: function($$v) {
-                        _vm.$set(item, "name", $$v)
+              _c("div", { staticClass: "uk-form uk-form-stacked" }, [
+                _c(
+                  "fieldset",
+                  { staticClass: "uk-fieldset" },
+                  [
+                    _c("app-form-input", {
+                      attrs: {
+                        name: "name",
+                        rules: "required|min:4",
+                        label: _vm.$t("liro-users.form.name")
                       },
-                      expression: "item.name"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("app-form-select", {
-                    attrs: {
-                      name: "state",
-                      options: _vm.states,
-                      label: _vm.$t("liro-users.form.state"),
-                      placeholder: _vm.$t("liro-users.placeholder.state")
-                    },
-                    model: {
-                      value: item.state,
-                      callback: function($$v) {
-                        _vm.$set(item, "state", $$v)
+                      model: {
+                        value: item.name,
+                        callback: function($$v) {
+                          _vm.$set(item, "name", $$v)
+                        },
+                        expression: "item.name"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("app-form-select", {
+                      attrs: {
+                        name: "state",
+                        options: _vm.states,
+                        label: _vm.$t("liro-users.form.state"),
+                        placeholder: _vm.$t("liro-users.placeholder.state")
                       },
-                      expression: "item.state"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("app-form-select-multiple", {
-                    attrs: {
-                      name: "role_ids",
-                      options: _vm.roles,
-                      "option-label": "title",
-                      "option-value": "id",
-                      label: _vm.$t("liro-users.form.roles"),
-                      placeholder: _vm.$t("liro-users.placeholder.roles")
-                    },
-                    model: {
-                      value: item.role_ids,
-                      callback: function($$v) {
-                        _vm.$set(item, "role_ids", $$v)
+                      model: {
+                        value: item.state,
+                        callback: function($$v) {
+                          _vm.$set(item, "state", $$v)
+                        },
+                        expression: "item.state"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("app-form-select-multiple", {
+                      attrs: {
+                        name: "role_ids",
+                        options: _vm.roles,
+                        "option-label": "title",
+                        "option-value": "id",
+                        label: _vm.$t("liro-users.form.roles"),
+                        placeholder: _vm.$t("liro-users.placeholder.roles")
                       },
-                      expression: "item.role_ids"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("app-form-input", {
-                    attrs: {
-                      user: "email",
-                      name: "email",
-                      rules: "required|email",
-                      label: _vm.$t("liro-users.form.email")
-                    },
-                    model: {
-                      value: item.email,
-                      callback: function($$v) {
-                        _vm.$set(item, "email", $$v)
+                      model: {
+                        value: item.role_ids,
+                        callback: function($$v) {
+                          _vm.$set(item, "role_ids", $$v)
+                        },
+                        expression: "item.role_ids"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("app-form-input", {
+                      attrs: {
+                        user: "email",
+                        name: "email",
+                        rules: "required|email",
+                        label: _vm.$t("liro-users.form.email")
                       },
-                      expression: "item.email"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("app-form-password", {
-                    attrs: {
-                      name: "password",
-                      rules: "min:6",
-                      label: _vm.$t("liro-users.form.password"),
-                      generate: _vm.$t("liro-users.form.generate")
-                    },
-                    model: {
-                      value: item.password,
-                      callback: function($$v) {
-                        _vm.$set(item, "password", $$v)
+                      model: {
+                        value: item.email,
+                        callback: function($$v) {
+                          _vm.$set(item, "email", $$v)
+                        },
+                        expression: "item.email"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("app-form-password", {
+                      attrs: {
+                        name: "password",
+                        rules: "min:6",
+                        label: _vm.$t("liro-users.form.password"),
+                        generate: _vm.$t("liro-users.form.generate")
                       },
-                      expression: "item.password"
-                    }
-                  })
-                ],
-                1
-              )
+                      model: {
+                        value: item.password,
+                        callback: function($$v) {
+                          _vm.$set(item, "password", $$v)
+                        },
+                        expression: "item.password"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
             ],
             1
           )
@@ -1731,7 +1752,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c8874fc4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7df7f674", module.exports)
   }
 }
 

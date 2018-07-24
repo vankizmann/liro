@@ -60,11 +60,12 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -173,22 +174,25 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 1 */
+
+/***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(2);
+__webpack_require__(28);
+module.exports = __webpack_require__(31);
 
 
 /***/ }),
-/* 2 */
+
+/***/ 28:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(3)
+var __vue_script__ = __webpack_require__(29)
 /* template */
-var __vue_template__ = __webpack_require__(4)
+var __vue_template__ = __webpack_require__(30)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -205,7 +209,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/auth/login.vue"
+Component.options.__file = "resources/src/options/menu.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -214,9 +218,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-761a4485", Component.options)
+    hotAPI.createRecord("data-v-f6b7869a", Component.options)
   } else {
-    hotAPI.reload("data-v-761a4485", Component.options)
+    hotAPI.reload("data-v-f6b7869a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -227,7 +231,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 3 */
+
+/***/ 29:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -237,23 +242,114 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        value: {
+            default: function _default() {
+                return {};
+            },
+
+            type: Object
+        }
+    }
+});
+
+if (window.liro) {
+    liro.vue.$component('app-menus-option-menu', this.default);
+}
+
+/***/ }),
+
+/***/ 30:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("app-form-input", {
+        attrs: { label: _vm.$t("liro-menus.form.menu") },
+        model: {
+          value: _vm.value.menu,
+          callback: function($$v) {
+            _vm.$set(_vm.value, "menu", $$v)
+          },
+          expression: "value.menu"
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f6b7869a", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 31:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(32)
+/* template */
+var __vue_template__ = __webpack_require__(33)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/options/link.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2061dc64", Component.options)
+  } else {
+    hotAPI.reload("data-v-2061dc64", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 32:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -262,77 +358,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-
-        action: {
+        value: {
             default: function _default() {
-                return '';
+                return {};
             },
 
-            type: String
+            type: Object
         }
-
     }
 });
 
 if (window.liro) {
-    liro.vue.$component('app-login', this.default);
+    liro.vue.$component('app-menus-option-link', this.default);
 }
 
 /***/ }),
-/* 4 */
+
+/***/ 33:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "uk-form uk-form-stacked" }, [
-    _c(
-      "form",
-      {
-        staticStyle: { margin: "0" },
-        attrs: { action: _vm.action, method: "post" }
-      },
-      [
-        _c(
-          "fieldset",
-          { staticClass: "uk-fieldset" },
-          [
-            _c("app-form-input", {
-              attrs: {
-                type: "email",
-                name: "email",
-                value: "",
-                label: _vm.$t("liro-users.form.email")
-              }
-            }),
-            _vm._v(" "),
-            _c("app-form-password", {
-              attrs: {
-                name: "password",
-                value: "",
-                label: _vm.$t("liro-users.form.password")
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-margin-top" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "uk-button uk-button-primary uk-width-1-1",
-                  attrs: { type: "submit" }
-                },
-                [_vm._v(_vm._s(_vm.$t("liro-users.form.login")))]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._t("default")
-          ],
-          2
-        )
-      ]
-    )
-  ])
+  return _c(
+    "div",
+    [
+      _c("app-form-input", {
+        attrs: { label: _vm.$t("liro-menus.form.link") },
+        model: {
+          value: _vm.value.link,
+          callback: function($$v) {
+            _vm.$set(_vm.value, "link", $$v)
+          },
+          expression: "value.link"
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -340,9 +404,10 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-761a4485", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-2061dc64", module.exports)
   }
 }
 
 /***/ })
-/******/ ]);
+
+/******/ });

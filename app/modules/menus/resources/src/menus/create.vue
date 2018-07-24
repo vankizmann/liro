@@ -1,10 +1,10 @@
 <template>
     <app-helper-history v-model="MenuModel">
-        <div class="uk-form uk-form-stacked" slot-scope="{ item, canUndo, canRedo, undo, redo, reset }">
+        <div slot-scope="{ item, canUndo, canRedo, undo, redo, reset }">
 
             <!-- Infobar start -->
             <portal to="app-infobar-right">
-                <app-toolbar-button uk-toggle="target: #app-module-help">
+                <app-toolbar-button uk-toggle="target: #app-module-help"  :disabled="true">
                     {{ $t('liro-menus.toolbar.help') }}
                 </app-toolbar-button>
             </portal>
@@ -48,45 +48,44 @@
             <!-- Title end -->
 
             <!-- Form start -->
-            <fieldset class="uk-fieldset">
+            <div class="uk-form uk-form-stacked">
+                <fieldset class="uk-fieldset">
 
-                <app-form-input 
-                    name="title" v-model="item.title" rules="required|min:4" 
-                    :label="$t('liro-menus.form.title')" 
-                ></app-form-input>
+                    <app-form-input 
+                        name="title" v-model="item.title" rules="required|min:4" 
+                        :label="$t('liro-menus.form.title')" 
+                    ></app-form-input>
 
-                <app-form-select 
-                    name="state" v-model="item.state" :options="states" 
-                    :label="$t('liro-menus.form.state')" :placeholder="$t('liro-menus.placeholder.state')"
-                ></app-form-select>
+                    <app-form-select 
+                        name="state" v-model="item.state" :options="states" 
+                        :label="$t('liro-menus.form.state')" :placeholder="$t('liro-menus.placeholder.state')"
+                    ></app-form-select>
 
-                <app-form-select 
-                    name="hidden" v-model="item.hidden" :options="visibility"
-                    :label="$t('liro-menus.form.visibility')" :placeholder="$t('liro-menus.placeholder.visibility')"
-                ></app-form-select>
+                    <app-form-select 
+                        name="hidden" v-model="item.hidden" :options="visibility"
+                        :label="$t('liro-menus.form.visibility')" :placeholder="$t('liro-menus.placeholder.visibility')"
+                    ></app-form-select>
 
-                <app-form-select 
-                    name="menu_type_id" v-model="item.menu_type_id" :options="types" option-label="title" option-value="id" 
-                    :label="$t('liro-menus.form.type')" :placeholder="$t('liro-menus.placeholder.type')"
-                ></app-form-select>
-                
-                <app-form-input
-                    name="route" v-model="item.route" 
-                    :label="$t('liro-menus.form.route')"
-                ></app-form-input>
+                    <app-form-select 
+                        name="menu_type_id" v-model="item.menu_type_id" :options="types" option-label="title" option-value="id" 
+                        :label="$t('liro-menus.form.type')" :placeholder="$t('liro-menus.placeholder.type')"
+                    ></app-form-select>
+                    
+                    <app-form-input
+                        name="route" v-model="item.route" 
+                        :label="$t('liro-menus.form.route')"
+                    ></app-form-input>
 
-                <app-form-select 
-                    name="module" v-model="item.module" :options="modules"
-                    :label="$t('liro-menus.form.module')" :placeholder="$t('liro-menus.placeholder.module')"
-                ></app-form-select>
+                    <app-form-select 
+                        name="module" v-model="item.module" :options="modules" @change="change"
+                        :label="$t('liro-menus.form.module')" :placeholder="$t('liro-menus.placeholder.module')"
+                    ></app-form-select>
 
-                <app-form-input
-                    name="query" v-model="item.query" 
-                    :label="$t('liro-menus.form.query')"
-                ></app-form-input>
-
-            </fieldset>
+                </fieldset>
+            </div>
             <!-- Form end -->
+
+            <component v-if="module" v-model="item.query" :is="module.option"></component>
 
         </div>
     </app-helper-history>
@@ -134,8 +133,8 @@ export default {
         states: {
             default() {
                 return [
-                    { value: 1, label: this.$t('liro-users.form.enabled'), css: 'uk-success' },
-                    { value: 0, label: this.$t('liro-users.form.disabled'), css: 'uk-danger' }
+                    { value: 1, label: this.$t('liro-menus.form.enabled'), css: 'uk-success' },
+                    { value: 0, label: this.$t('liro-menus.form.disabled'), css: 'uk-danger' }
                 ];
             },
             type: Array
@@ -144,8 +143,8 @@ export default {
         visibility: {
             default() {
                 return [
-                    { value: 1, label: this.$t('liro-users.form.hidden'), css: 'uk-danger' },
-                    { value: 0, label: this.$t('liro-users.form.visible'), css: 'uk-success' }
+                    { value: 1, label: this.$t('liro-menus.form.hidden'), css: 'uk-danger' },
+                    { value: 0, label: this.$t('liro-menus.form.visible'), css: 'uk-success' }
                 ];
             },
             type: Array
@@ -153,18 +152,27 @@ export default {
 
     },
 
+    computed: {
+        module() {
+            return _.find(this.modules, ['value', this.MenuModel.module]);
+        }
+    },
+
     data() {
         
         return {
             MenuModel: this.menu
         };
-        
+
     },
 
     methods: {
 
         create() {
-            this.$http.post(this.item.edit_route, this.MenuModel);
+            this.$http.post(this.createRoute, this.MenuModel);
+        },
+        change() {
+            this.MenuModel.query = {};
         }
 
     }

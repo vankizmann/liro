@@ -3,20 +3,27 @@
 
     <!-- Infobar start -->
     <portal to="app-infobar-right">
-        <app-toolbar-button href="#" class="uk-success" icon="cloud-upload" uk-toggle="target: #app-media-upload">
-            {{ $t('liro-media.toolbar.upload') }}
-        </app-toolbar-button>
-        <app-toolbar-button href="#" class="uk-success" icon="folder" uk-toggle="target: #app-media-create">
-            {{ $t('liro-media.toolbar.folder') }}
-        </app-toolbar-button>
-        <app-toolbar-button href="#" class="uk-danger" icon="trash" :disabled="files.length == 0">
-            {{ $t('liro-media.toolbar.delete') }}
-        </app-toolbar-button>
         <app-toolbar-button href="#" :disabled="true" uk-toggle="target: #app-module-help">
             {{ $t('liro-media.toolbar.help') }}
         </app-toolbar-button>
     </portal>
     <!-- Infobar end -->
+
+    <!-- Toolbar start -->
+    <portal to="app-toolbar-left">
+        <app-toolbar-button href="#" icon="cloud-upload" uk-toggle="target: #app-media-upload">
+            {{ $t('liro-media.toolbar.upload') }}
+        </app-toolbar-button>
+        <app-toolbar-button href="#" icon="folder" uk-toggle="target: #app-media-create">
+            {{ $t('liro-media.toolbar.folder') }}
+        </app-toolbar-button>
+    </portal>
+    <portal to="app-toolbar-right">
+        <app-toolbar-button href="#" icon="trash" :disabled="files.length == 0">
+            {{ $t('liro-media.toolbar.delete') }}
+        </app-toolbar-button>
+    </portal>
+    <!-- Toolbar end -->
 
     <!-- Help start -->
     <portal to="app-module-help">
@@ -72,12 +79,12 @@
 </template>
 
 <script>
-import MediaUpload from "./app-media-upload.vue";
-import MediaCreate from "./app-media-create.vue";
-import MediaBreadcrumb from "./app-media-breadcrumb.vue";
-import MediaDirectory from "./app-media-directory.vue";
-import MediaFile from "./app-media-file.vue";
-import MediaTree from "./app-media-tree.vue";
+import MediaUpload from "./app-media-index/app-media-upload.vue";
+import MediaCreate from "./app-media-index/app-media-create.vue";
+import MediaBreadcrumb from "./app-media-index/app-media-breadcrumb.vue";
+import MediaDirectory from "./app-media-index/app-media-directory.vue";
+import MediaFile from "./app-media-index/app-media-file.vue";
+import MediaTree from "./app-media-index/app-media-tree.vue";
 
 export default {
     props: {

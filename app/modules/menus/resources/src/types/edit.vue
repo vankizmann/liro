@@ -1,6 +1,6 @@
 <template>
     <app-helper-history v-model="TypeModel">
-        <div class="uk-form uk-form-stacked" slot-scope="{ item, canUndo, canRedo, undo, redo, reset }">
+        <div slot-scope="{ item, canUndo, canRedo, undo, redo, reset }">
 
             <!-- Infobar start -->
             <portal to="app-infobar-right">
@@ -48,24 +48,26 @@
             <!-- Title end -->
 
             <!-- Form start -->
-            <fieldset class="uk-fieldset">
+            <div class="uk-form uk-form-stacked">
+                <fieldset class="uk-fieldset">
 
-                <app-form-input
-                    name="title" v-model="item.title" rules="required|min:4"
-                    :label="$t('liro-menus.form.title')" 
-                ></app-form-input>
-                
-                <app-form-input
-                    name="route" v-model="item.route"
-                    :label="$t('liro-menus.form.route')"
-                ></app-form-input>
+                    <app-form-input
+                        name="title" v-model="item.title" rules="required|min:4"
+                        :label="$t('liro-menus.form.title')" 
+                    ></app-form-input>
+                    
+                    <app-form-input
+                        name="route" v-model="item.route"
+                        :label="$t('liro-menus.form.route')"
+                    ></app-form-input>
 
-                <app-form-select
-                    name="theme" v-model="item.theme" :options="themes" option-label="name" option-value="name"
-                    :label="$t('liro-menus.form.theme')" :placeholder="$t('liro-menus.placeholder.themes')"
-                ></app-form-select>
+                    <app-form-select
+                        name="theme" v-model="item.theme" :options="themes" option-label="name" option-value="name"
+                        :label="$t('liro-menus.form.theme')" :placeholder="$t('liro-menus.placeholder.themes')"
+                    ></app-form-select>
 
-            </fieldset>
+                </fieldset>
+            </div>
             <!-- Form end -->
 
         </div>

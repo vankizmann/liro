@@ -2,7 +2,7 @@
 
 @php
     app('scripts')->data([
-        'menu' => $menu->toArray(), 'types' => $types->toArray(), 'routes' => $routes->toArray(), 'groups' => $groups->toArray()
+        'menu' => $menu->toArray(), 'types' => $types->toArray(), 'modules' => $modules->toArray()
     ]);
 
     app('scripts')->link('app-menus', 'liro-menus:resources/dist/app-menus.js');

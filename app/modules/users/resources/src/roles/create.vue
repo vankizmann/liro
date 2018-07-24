@@ -1,10 +1,10 @@
 <template>
-    <app-helper-history v-model="UserModel">
-        <div class="uk-form uk-form-stacked" slot-scope="{ item, canUndo, canRedo, undo, redo, reset }">
+    <app-helper-history v-model="RoleModel">
+        <div slot-scope="{ item, canUndo, canRedo, undo, redo, reset }">
 
             <!-- Infobar start -->
             <portal to="app-infobar-right">
-                <app-toolbar-button uk-toggle="target: #app-module-help">
+                <app-toolbar-button :disabled="true" uk-toggle="target: #app-module-help">
                     {{ $t('liro-users.toolbar.help') }}
                 </app-toolbar-button>
             </portal>
@@ -43,39 +43,39 @@
 
             <!-- Title start -->
             <div class="uk-margin-large">
-                <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-users.backend.users.create') }}</h1>
+                <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-users.backend.roles.create') }}</h1>
             </div>
             <!-- Title end -->
 
             <!-- Form start -->
-            <fieldset class="uk-fieldset">
+            <div class="uk-form uk-form-stacked">
+                <fieldset class="uk-fieldset">
 
-                <app-form-input 
-                    name="name" rules="required|min:4" v-model="item.name"
-                    :label="$t('liro-users.form.name')"
-                ></app-form-input>
+                    <app-form-input
+                        name="title" rules="required|min:4" v-model="item.title"
+                        :label="$t('liro-users.form.title')"
+                    ></app-form-input>
+                    
+                    <app-form-input
+                        name="description" v-model="item.description"
+                        :label="$t('liro-users.form.description')"
+                    ></app-form-input>
 
-                <app-form-select 
-                    name="state" v-model="item.state" :options="states"
-                    :label="$t('liro-users.form.state')" :placeholder="$t('liro-users.placeholder.state')"
-                ></app-form-select>
+                </fieldset>
+            </div>
 
-                <app-form-select-multiple 
-                    name="role_ids" v-model="item.role_ids" :options="roles" option-label="title" option-value="id"
-                    :label="$t('liro-users.form.roles')" :placeholder="$t('liro-users.placeholder.roles')"
-                ></app-form-select-multiple>
-
-                <app-form-input 
-                    type="email" name="email" rules="required|email" v-model="item.email"
-                    :label="$t('liro-users.form.email')"
-                ></app-form-input>
-                
-                <app-form-password 
-                    name="password" rules="min:6" v-model="item.password"
-                    :label="$t('liro-users.form.password')" :generate="$t('liro-users.form.generate')"
-                ></app-form-password>
-
-            </fieldset>
+            <div class="uk-form uk-form-stacked" v-for="(group, index) in routes" :key="index">
+                <fieldset class="uk-fieldset">
+                    <div class="uk-width-1-1">
+                        <h5>{{ group.label }}</h5>
+                    </div>
+                    <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l">
+                        <label v-for="route in group.children" :key="route.id" class="uk-display-inline-block">
+                            <input name="route_names" type="checkbox" class="uk-checkbox" style="margin-right: 4px;" :value="route.value" v-model="item.route_names"> <span>{{ route.label }}</span>
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
             <!-- Form end -->
 
         </div>
@@ -100,28 +100,18 @@ export default {
             type: String
         },
 
-        user: {
+        role: {
             default() {
-                return this.$liro.data.get('user', {});
+                return this.$liro.data.get('role', {});
             },
             type: Object
         },
 
-        roles: {
+        routes: {
             default() {
-                return this.$liro.data.get('roles', []);
+                return this.$liro.data.get('routes', {});
             },
             type: [Array, Object]
-        },
-
-        states: {
-            default() {
-                return [
-                    { value: 1, label: this.$t('liro-users.form.enabled'), css: 'uk-success' },
-                    { value: 0, label: this.$t('liro-users.form.disabled'), css: 'uk-danger' }
-                ];
-            },
-            type: Array
         }
 
     },
@@ -129,7 +119,7 @@ export default {
     data() {
         
         return {
-            UserModel: this.user
+            RoleModel: this.role
         };
         
     },
@@ -137,7 +127,7 @@ export default {
     methods: {
 
         create() {
-            this.$http.post(this.createRoute, this.UserModel);
+            this.$http.post(this.createRoute, this.RoleModel);
         }
 
     }
@@ -145,7 +135,7 @@ export default {
 }
 
 if (window.liro) {
-    liro.vue.$component('app-users-create', this.default);
+    liro.vue.$component('app-roles-create', this.default);
 }
 
 </script>

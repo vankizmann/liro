@@ -26,7 +26,7 @@ class MenuUpdateRequest extends \Illuminate\Foundation\Http\FormRequest
             'state'         => 'required|integer',
             'hidden'        => 'required|integer',
             'route'         => 'nullable|alpha_dash',
-            'package'       => 'required',
+            'module'        => 'required',
             'menu_type_id'  => 'required|integer',
             'query'         => 'nullable'
         ];

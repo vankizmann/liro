@@ -12,7 +12,7 @@ $color-white:               #ffffff;
 $color-black:               #05080c;
 
 $color-primary:             $color-blue;
-$color-secondary:           $color-black;
+$color-secondary:           $color-green;
 
 $color-dark-10:             mix($color-black, $color-primary, 90%);
 $color-dark-20:             mix($color-black, $color-primary, 80%);
@@ -87,12 +87,13 @@ a, button {
     color: darken($color-primary, 5%);
 }
 
-// .uk-fieldset {
-//     padding: 20px 30px;
-//     background-color: $color-white;
-//     border-radius: 4px;
-//     box-shadow: 0 2px 8px rgba($color-gray-30, 0.1);
-// }
+.uk-fieldset {
+    padding: 10px 0;
+}
+
+.uk-fieldset .uk-margin:last-child {
+    margin-bottom: 0 !important;
+}
 
 // .uk-legend {
 //     display: block;
@@ -104,6 +105,14 @@ a, button {
 
 .uk-button, .uk-input, .uk-select, .uk-checkbox {
     border-radius: 2px;
+}
+
+.uk-form {
+    border-radius: 3px;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: $color-white;
+    box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
 }
 
 // .uk-input:focus, .uk-select:focus, .uk-checkbox:focus, .uk-select.uk-open {
@@ -345,56 +354,53 @@ a, button {
         background-color: darken($color-primary, 15%);
     }
 
-    .uk-dropdown li {
+    .uk-dropdown li a {
+        display: block;
         color: $color-white;
         padding: 8px 15px 10px;
         transition: background 300ms;
     }
 
-    .uk-dropdown li:not(.uk-disabled) {
+    .uk-dropdown li a:not(.uk-disabled) {
         cursor: pointer;
     }
 
-    .uk-dropdown li:not(.uk-disabled):hover {
+    .uk-dropdown li a:not(.uk-disabled):hover {
         background-color: darken($color-primary, 5%);
     }
 
-    &.uk-success .uk-dropdown li:not(.uk-disabled):hover {
+    &.uk-success .uk-dropdown li a:not(.uk-disabled):hover {
         background-color: darken($color-green, 5%);
     }
 
-    &.uk-warning .uk-dropdown li:not(.uk-disabled):hover {
+    &.uk-warning .uk-dropdown li a:not(.uk-disabled):hover {
         background-color: darken($color-orange, 5%);
     }
 
-    &.uk-danger .uk-dropdown li:not(.uk-disabled):hover {
+    &.uk-danger .uk-dropdown li a:not(.uk-disabled):hover {
         background-color: darken($color-red, 5%);
     }
 
-    .uk-dropdown li.uk-active {
+    .uk-dropdown li.uk-active a {
         background-color: darken($color-primary, 10%) !important;
     }
 
-    &.uk-success .uk-dropdown li.uk-active {
+    &.uk-success .uk-dropdown li.uk-active a {
         background-color: darken($color-green, 10%) !important;
     }
 
-    &.uk-warning .uk-dropdown li.uk-active {
+    &.uk-warning .uk-dropdown li.uk-active a {
         background-color: darken($color-orange, 10%) !important;
     }
 
-    &.uk-danger .uk-dropdown li.uk-active {
+    &.uk-danger .uk-dropdown li.uk-active a {
         background-color: darken($color-red, 10%) !important;
     }
 
-    .uk-dropdown li:hover {
+    .uk-dropdown li:hover a {
         padding: 8px 15px 10px;
     }
 
-    .uk-dropdown li a {
-        color: $color-white;
-    }
-    
 }
 
 .uk-list-inline {
@@ -422,26 +428,32 @@ a, button {
 
     .uk-table-list-head {
         @extend .uk-flex, .uk-flex-middle ;
-        border-radius: 3px;
         padding: 15px 10px;
-        color: mix($color-white, $color-primary, 60%);
-        margin-bottom: 10px;
-        background-color: $color-primary;
+        color: $color-gray-60;
+        border-bottom: 2px solid $color-blue;
         font-size: 0.875rem;
-        box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
     }
 
     .uk-table-list-head a {
-        color: $color-white;
+        color: $color-gray-50;
+    }
+
+    .uk-table-list-head .uk-active a {
+        color: $color-gray-80;
+    }
+
+    .uk-table-list-empty {
+        padding: 20px 10px;
+        text-align: center;
     }
 
     .uk-table-list-row {
         @extend .uk-flex, .uk-flex-middle ;
-        border-radius: 3px;
         padding: 15px 10px;
-        margin-bottom: 5px;
-        background-color: $color-white;
-        box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
+    }
+
+    .uk-table-list-row:nth-last-child(1n+2) {
+        border-bottom: 1px solid darken($color-gray-10, 2.5%);
     }
 
     .uk-table-list-td {
@@ -476,6 +488,20 @@ a, button {
         width: 200px;
     }
 
+}
+
+.uk-table-list-pagination {
+
+    & {
+        border-top: 1px solid darken($color-gray-10, 2.5%);
+        padding: 15px 10px;
+        font-size: 0.875rem;
+    }
+
+    .uk-input, .uk-select:not([multiple]):not([size]) {
+        height: 30px;
+    }
+    
 }
 
 @import 'app.scss';

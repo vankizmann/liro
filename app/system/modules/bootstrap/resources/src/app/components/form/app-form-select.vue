@@ -24,9 +24,9 @@
             <!-- Button end -->
 
             <!-- Dropdown start -->
-            <ul uk-dropdown="mode: click; pos: bottom-justify;">
-                <li v-for="(option, index) in options" :key="index" :class="_style(option)" @click.prevent="valueFix = _value(option)">
-                    <span>{{ _label(option) }}</span>
+            <ul ref="dropdown" uk-dropdown="mode: click; pos: bottom-justify;">
+                <li v-for="(option, index) in options" :key="index" :class="_style(option)">
+                    <a href="#" @click="update(option)">{{ _label(option) }}</a>
                 </li>
             </ul>
             <!-- Dropdown end -->
@@ -102,17 +102,13 @@
         },
         data() {
             return {
-                open: false,
-                valueFix: this.value
+                open: false, valueFix: this.value
             }
         },
         mounted() {
             this.$emit('input', this.valueFix);
         },
         watch: {
-            valueFix() {
-                this.$emit('input', this.valueFix);
-            },
             value() {
                 this.valueFix = this.value;
             }
@@ -132,6 +128,9 @@
             },
             _style(option) {
                 return [this._css(option), this._active(option) ? 'uk-active' : 'uk-inactive'];
+            },
+            update(option) {
+                this.$emit('input', option[this.optionValue]); this.$emit('change');
             }
         }
     }

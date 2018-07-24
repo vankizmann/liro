@@ -149,7 +149,8 @@ class MenuManager implements \IteratorAggregate
                 'label'         => trans($options['title']),
                 'value'         => $options['name'],
                 'group'         => $options['group'],
-                'hidden'        => $options['hidden']
+                'hidden'        => $options['hidden'],
+                'option'        => isset($options['option']) ? $options['option'] : null
             ];
         }
 

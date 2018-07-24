@@ -25112,8 +25112,7 @@ module.exports = {
     },
     data: function data() {
         return {
-            open: false,
-            valueFix: this.value
+            open: false, valueFix: this.value
         };
     },
     mounted: function mounted() {
@@ -25121,9 +25120,6 @@ module.exports = {
     },
 
     watch: {
-        valueFix: function valueFix() {
-            this.$emit('input', this.valueFix);
-        },
         value: function value() {
             this.valueFix = this.value;
         }
@@ -25143,6 +25139,9 @@ module.exports = {
         },
         _style: function _style(option) {
             return [this._css(option), this._active(option) ? 'uk-active' : 'uk-inactive'];
+        },
+        update: function update(option) {
+            this.$emit('input', option[this.optionValue]);this.$emit('change');
         }
     }
 };
@@ -25201,22 +25200,25 @@ var render = function() {
         _vm._v(" "),
         _c(
           "ul",
-          { attrs: { "uk-dropdown": "mode: click; pos: bottom-justify;" } },
+          {
+            ref: "dropdown",
+            attrs: { "uk-dropdown": "mode: click; pos: bottom-justify;" }
+          },
           _vm._l(_vm.options, function(option, index) {
-            return _c(
-              "li",
-              {
-                key: index,
-                class: _vm._style(option),
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.valueFix = _vm._value(option)
+            return _c("li", { key: index, class: _vm._style(option) }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.update(option)
+                    }
                   }
-                }
-              },
-              [_c("span", [_vm._v(_vm._s(_vm._label(option)))])]
-            )
+                },
+                [_vm._v(_vm._s(_vm._label(option)))]
+              )
+            ])
           })
         ),
         _vm._v(" "),

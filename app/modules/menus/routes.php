@@ -21,6 +21,7 @@ return [
     'routes' => [
 
         'liro-menus.backend.menus.index' => [
+            'hidden'        => true,
             'group'         => 'liro-menus.backend.menus',
             'title'         => 'liro-menus.backend.menus.index',
             'handler'       => 'Liro\Menus\Routers\MenuRouter@index'
@@ -34,12 +35,14 @@ return [
         ],
 
         'liro-menus.backend.menus.create' => [
+            'hidden'        => true,
             'group'         => 'liro-menus.backend.menus',
             'title'         => 'liro-menus.backend.menus.create',
             'handler'       => 'Liro\Menus\Routers\MenuRouter@create'
         ],
 
         'liro-menus.backend.menus.edit' => [
+            'hidden'        => true,
             'group'         => 'liro-menus.backend.menus',
             'title'         => 'liro-menus.backend.menus.edit',
             'handler'       => 'Liro\Menus\Routers\MenuRouter@edit'
@@ -81,18 +84,21 @@ return [
         ],
 
         'liro-menus.backend.types.index' => [
+            'hidden'        => true,
             'group'         => 'liro-menus.backend.types',
             'title'         => 'liro-menus.backend.types.index',
             'handler'       => 'Liro\Menus\Routers\TypeRouter@index'
         ],
 
         'liro-menus.backend.types.create' => [
+            'hidden'        => true,
             'group'         => 'liro-menus.backend.types',
             'title'         => 'liro-menus.backend.types.create',
             'handler'       => 'Liro\Menus\Routers\TypeRouter@create'
         ],
 
         'liro-menus.backend.types.edit' => [
+            'hidden'        => true,
             'group'         => 'liro-menus.backend.types',
             'title'         => 'liro-menus.backend.types.edit',
             'handler'       => 'Liro\Menus\Routers\TypeRouter@edit'
@@ -108,13 +114,15 @@ return [
         'liro-menus.backend.redirect.menu' => [
             'group'         => 'liro-menus.backend.redirect',
             'title'         => 'liro-menus.backend.redirect.menu',
-            'handler'       => 'Liro\Menus\Routers\RedirectRouter@menu'
+            'handler'       => 'Liro\Menus\Routers\RedirectRouter@menu',
+            'option'        => 'Liro\Menus\Options\RedirectOption@menu'
         ],
 
         'liro-menus.backend.redirect.link' => [
             'group'         => 'liro-menus.backend.redirect',
             'title'         => 'liro-menus.backend.redirect.link',
-            'handler'       => 'Liro\Menus\Routers\RedirectRouter@link'
+            'handler'       => 'Liro\Menus\Routers\RedirectRouter@link',
+            'option'        => 'Liro\Menus\Options\RedirectOption@link'
         ]
 
     ]

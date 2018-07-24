@@ -59,6 +59,29 @@
         background-color: transparent !important;
     }
 
+    .app-list-search {
+        padding: 10px 0;
+    }
+
+    .app-list-search .uk-inline {
+        min-width: 300px;
+    }
+
+    .app-list-search .uk-input {
+        color: $color-white;
+        border-color: transparent;
+        background-color: $color-primary;
+        padding: 0 20px;
+    }
+
+    .app-list-search .uk-input::placeholder {
+        color: mix($color-primary, $color-white, 50%);
+    }
+
+    .app-list-search .uk-form-icon {
+        color: $color-white;
+    }
+
 }
 
 .app-body {
@@ -87,11 +110,11 @@
 
 .app-list-filter > a i {
     @extend .uk-margin-small-right ;
-    color: mix($color-white, $color-primary, 40%);
+    color: $color-gray-30;
 }
 
 .app-list-filter.uk-active > a i {
-    color: $color-white;
+    color: $color-primary;
 }
 
 .app-list-filter .uk-dropdown {
@@ -108,11 +131,11 @@
 
 .app-list-sort > a i {
     @extend .uk-margin-small-right ;
-    color: mix($color-white, $color-primary, 40%);
+    color: $color-gray-40;
 }
 
 .app-list-sort.uk-active > a i {
-    color: $color-white;
+    color: $color-primary;
 }
 
 /**
@@ -177,6 +200,10 @@
     border-radius: 4px;
     background-color: rgba($color-primary, 0.1);
     border: 1px dashed rgba($color-primary, 0.5);
+}
+
+.app-menu-item:last-child .uk-table-list-row {
+    border-bottom: 0;
 }
 
 .app-menu-item .app-menu-dropzone {
@@ -372,7 +399,7 @@
         display: block;
         width: 1px;
         height: 35px;
-        background-color: $color-gray-20;
+        background-color: darken($color-gray-10, 5%);
         margin-left: 20px;
     }
 

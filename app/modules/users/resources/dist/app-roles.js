@@ -221,7 +221,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-roles-index.vue"
+Component.options.__file = "resources/src/roles/index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -230,9 +230,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-abe6703a", Component.options)
+    hotAPI.createRecord("data-v-0f44f44d", Component.options)
   } else {
-    hotAPI.reload("data-v-abe6703a", Component.options)
+    hotAPI.reload("data-v-0f44f44d", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -248,6 +248,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -428,27 +432,12 @@ var render = function() {
           var filter = ref.filter
           return _c(
             "div",
-            { staticClass: "uk-form uk-form-stacked" },
+            {},
             [
               _c(
                 "portal",
                 { attrs: { to: "app-infobar-right" } },
                 [
-                  _c(
-                    "app-toolbar-button",
-                    {
-                      staticClass: "uk-success",
-                      attrs: { icon: "plus", href: _vm.createRoute }
-                    },
-                    [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.$t("liro-users.toolbar.create")) +
-                          "\n            "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
                   _c(
                     "app-toolbar-button",
                     {
@@ -469,6 +458,41 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
+              _c(
+                "portal",
+                { attrs: { to: "app-toolbar-left" } },
+                [
+                  _c(
+                    "app-toolbar-button",
+                    { attrs: { icon: "plus", href: _vm.createRoute } },
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.$t("liro-users.toolbar.create")) +
+                          "\n            "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "portal",
+                { attrs: { to: "app-toolbar-right" } },
+                [
+                  _c("app-list-search", {
+                    attrs: {
+                      columns: ["title", "description"],
+                      config: options.search,
+                      placeholder: _vm.$t("liro-users.form.search")
+                    },
+                    on: { search: search }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c("portal", { attrs: { to: "app-module-help" } }, [
                 _c("h1", [_vm._v(_vm._s(_vm.$t("liro-users.toolbar.help")))])
               ]),
@@ -481,200 +505,181 @@ var render = function() {
                     _c(
                       "h1",
                       { staticClass: "uk-heading-primary uk-margin-remove" },
-                      [_vm._v(_vm._s(_vm.$t("liro-users.backend.users.index")))]
+                      [_vm._v(_vm._s(_vm.$t("liro-users.backend.roles.index")))]
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticStyle: { width: "300px", "margin-left": "auto" } },
-                    [
-                      _c("app-list-search", {
-                        attrs: {
-                          columns: ["title", "description"],
-                          config: options.search,
-                          placeholder: _vm.$t("liro-users.form.search")
-                        },
-                        on: { search: search }
-                      })
-                    ],
-                    1
-                  )
+                  ])
                 ]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "uk-table-list uk-table-list-highlight" },
-                [
-                  _c("div", { staticClass: "uk-table-list-head" }, [
-                    _c(
-                      "div",
-                      { staticClass: "uk-table-list-td uk-width-1-4" },
-                      [
-                        _c(
-                          "app-list-order",
-                          {
-                            attrs: { column: "title", config: options.order },
-                            on: { order: order }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.$t("liro-users.form.title")) +
-                                "\n                    "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "uk-table-list-td uk-width-2-4" },
-                      [
-                        _c(
-                          "app-list-order",
-                          {
-                            attrs: {
-                              column: "description",
-                              config: options.order
+              _c("div", { staticClass: "uk-form uk-form-stacked" }, [
+                _c(
+                  "div",
+                  { staticClass: "uk-table-list uk-table-list-highlight" },
+                  [
+                    _c("div", { staticClass: "uk-table-list-head" }, [
+                      _c(
+                        "div",
+                        { staticClass: "uk-table-list-td uk-width-1-4" },
+                        [
+                          _c(
+                            "app-list-order",
+                            {
+                              attrs: { column: "title", config: options.order },
+                              on: { order: order }
                             },
-                            on: { order: order }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.$t("liro-users.form.description")) +
-                                "\n                    "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "uk-table-list-td uk-width-1-4" },
-                      [
-                        _c("span", [
-                          _vm._v(_vm._s(_vm.$t("liro-users.form.routes")))
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "uk-table-list-td uk-table-list-td-m uk-text-center"
-                      },
-                      [
-                        _c(
-                          "app-list-order",
-                          {
-                            attrs: {
-                              column: "id",
-                              reverse: true,
-                              config: options.order
-                            },
-                            on: { order: order }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.$t("liro-users.form.id")) +
-                                "\n                    "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(items, function(item, index) {
-                    return _c(
-                      "div",
-                      { key: index, staticClass: "uk-table-list-row" },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "uk-table-list-td uk-width-1-4" },
-                          [
-                            _c("a", { attrs: { href: item.edit_route } }, [
-                              _vm._v(_vm._s(item.title))
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "uk-table-list-td uk-width-2-4" },
-                          [_c("span", [_vm._v(_vm._s(item.description))])]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "uk-table-list-td uk-width-1-4" },
-                          [
-                            _c("span", { staticClass: "uk-text-muted" }, [
+                            [
                               _vm._v(
-                                _vm._s(
-                                  _vm.$tc(
-                                    "liro-users.form.route_count",
-                                    item.route_ids.length,
-                                    { count: item.route_ids.length }
-                                  )
-                                )
+                                "\n                            " +
+                                  _vm._s(_vm.$t("liro-users.form.title")) +
+                                  "\n                        "
                               )
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "uk-table-list-td uk-table-list-td-m uk-text-center"
-                          },
-                          [_c("span", [_vm._v(_vm._s(item.id))])]
-                        )
-                      ]
-                    )
-                  }),
-                  _vm._v(" "),
-                  items.length == 0
-                    ? _c(
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "uk-table-list-td uk-width-2-4" },
+                        [
+                          _c(
+                            "app-list-order",
+                            {
+                              attrs: {
+                                column: "description",
+                                config: options.order
+                              },
+                              on: { order: order }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(
+                                    _vm.$t("liro-users.form.description")
+                                  ) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "uk-table-list-td uk-width-1-4" },
+                        [
+                          _c("span", [
+                            _vm._v(_vm._s(_vm.$t("liro-users.form.routes")))
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
                         "div",
                         {
                           staticClass:
-                            "uk-table-list-empty uk-padding uk-text-center"
+                            "uk-table-list-td uk-table-list-td-m uk-text-center"
                         },
                         [
+                          _c(
+                            "app-list-order",
+                            {
+                              attrs: {
+                                column: "id",
+                                reverse: true,
+                                config: options.order
+                              },
+                              on: { order: order }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.$t("liro-users.form.id")) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(items, function(item, index) {
+                      return _c(
+                        "div",
+                        { key: index, staticClass: "uk-table-list-row" },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "uk-table-list-td uk-width-1-4" },
+                            [
+                              _c("a", { attrs: { href: item.edit_route } }, [
+                                _vm._v(_vm._s(item.title))
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "uk-table-list-td uk-width-2-4" },
+                            [_c("span", [_vm._v(_vm._s(item.description))])]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "uk-table-list-td uk-width-1-4" },
+                            [
+                              _c("span", { staticClass: "uk-text-muted" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.$tc(
+                                      "liro-users.form.route_count",
+                                      item.route_ids.length,
+                                      { count: item.route_ids.length }
+                                    )
+                                  )
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "uk-table-list-td uk-table-list-td-m uk-text-center"
+                            },
+                            [_c("span", [_vm._v(_vm._s(item.id))])]
+                          )
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    items.length == 0
+                      ? _c("div", { staticClass: "uk-table-list-empty" }, [
                           _c("span", [
                             _vm._v(_vm._s(_vm.$t("liro-users.form.empty")))
                           ])
-                        ]
-                      )
-                    : _vm._e()
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "uk-table-list-pagination uk-margin-top" },
-                [
-                  _c("app-list-pagination", {
-                    attrs: { pages: pages, config: options.paginate },
-                    on: { paginate: paginate }
-                  })
-                ],
-                1
-              )
+                        ])
+                      : _vm._e()
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "uk-table-list-pagination" },
+                  [
+                    _c("app-list-pagination", {
+                      attrs: { pages: pages, config: options.paginate },
+                      on: { paginate: paginate }
+                    })
+                  ],
+                  1
+                )
+              ])
             ],
             1
           )
@@ -696,7 +701,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-abe6703a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0f44f44d", module.exports)
   }
 }
 
@@ -726,7 +731,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-roles-create.vue"
+Component.options.__file = "resources/src/roles/create.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -735,9 +740,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-817f018a", Component.options)
+    hotAPI.createRecord("data-v-010de011", Component.options)
   } else {
-    hotAPI.reload("data-v-817f018a", Component.options)
+    hotAPI.reload("data-v-010de011", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -753,6 +758,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -912,7 +921,7 @@ var render = function() {
           var reset = ref.reset
           return _c(
             "div",
-            { staticClass: "uk-form uk-form-stacked" },
+            {},
             [
               _c(
                 "portal",
@@ -920,7 +929,12 @@ var render = function() {
                 [
                   _c(
                     "app-toolbar-button",
-                    { attrs: { "uk-toggle": "target: #app-module-help" } },
+                    {
+                      attrs: {
+                        disabled: true,
+                        "uk-toggle": "target: #app-module-help"
+                      }
+                    },
                     [
                       _vm._v(
                         "\n                " +
@@ -1049,138 +1063,136 @@ var render = function() {
                 _c(
                   "h1",
                   { staticClass: "uk-heading-primary uk-margin-remove" },
-                  [_vm._v(_vm._s(_vm.$t("liro-users.backend.users.create")))]
+                  [_vm._v(_vm._s(_vm.$t("liro-users.backend.roles.create")))]
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "fieldset",
-                { staticClass: "uk-fieldset" },
-                [
-                  _c("app-form-input", {
-                    attrs: {
-                      name: "title",
-                      rules: "required|min:4",
-                      label: _vm.$t("liro-users.form.title")
-                    },
-                    model: {
-                      value: item.title,
-                      callback: function($$v) {
-                        _vm.$set(item, "title", $$v)
+              _c("div", { staticClass: "uk-form uk-form-stacked" }, [
+                _c(
+                  "fieldset",
+                  { staticClass: "uk-fieldset" },
+                  [
+                    _c("app-form-input", {
+                      attrs: {
+                        name: "title",
+                        rules: "required|min:4",
+                        label: _vm.$t("liro-users.form.title")
                       },
-                      expression: "item.title"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("app-form-input", {
-                    attrs: {
-                      name: "description",
-                      label: _vm.$t("liro-users.form.description")
-                    },
-                    model: {
-                      value: item.description,
-                      callback: function($$v) {
-                        _vm.$set(item, "description", $$v)
+                      model: {
+                        value: item.title,
+                        callback: function($$v) {
+                          _vm.$set(item, "title", $$v)
+                        },
+                        expression: "item.title"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("app-form-input", {
+                      attrs: {
+                        name: "description",
+                        label: _vm.$t("liro-users.form.description")
                       },
-                      expression: "item.description"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm._l(_vm.routes, function(group, index) {
-                    return _c(
-                      "div",
-                      {
-                        key: index,
-                        staticClass: "uk-margin uk-padding",
-                        staticStyle: { "background-color": "#fff" }
-                      },
-                      [
-                        _c("div", { staticClass: "uk-width-1-1" }, [
-                          _c("h4", [_vm._v(_vm._s(group.label))])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l"
-                          },
-                          _vm._l(group.children, function(route) {
-                            return _c(
-                              "label",
-                              {
-                                key: route.id,
-                                staticClass:
-                                  "uk-display-inline-block uk-margin-small"
-                              },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: item.route_names,
-                                      expression: "item.route_names"
-                                    }
-                                  ],
-                                  staticClass: "uk-checkbox",
-                                  staticStyle: { "margin-right": "4px" },
-                                  attrs: {
-                                    name: "route_names",
-                                    type: "checkbox"
-                                  },
-                                  domProps: {
-                                    value: route.value,
-                                    checked: Array.isArray(item.route_names)
-                                      ? _vm._i(item.route_names, route.value) >
-                                        -1
-                                      : item.route_names
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      var $$a = item.route_names,
-                                        $$el = $event.target,
-                                        $$c = $$el.checked ? true : false
-                                      if (Array.isArray($$a)) {
-                                        var $$v = route.value,
-                                          $$i = _vm._i($$a, $$v)
-                                        if ($$el.checked) {
-                                          $$i < 0 &&
-                                            _vm.$set(
-                                              item,
-                                              "route_names",
-                                              $$a.concat([$$v])
-                                            )
-                                        } else {
-                                          $$i > -1 &&
-                                            _vm.$set(
-                                              item,
-                                              "route_names",
-                                              $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1))
-                                            )
-                                        }
+                      model: {
+                        value: item.description,
+                        callback: function($$v) {
+                          _vm.$set(item, "description", $$v)
+                        },
+                        expression: "item.description"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.routes, function(group, index) {
+                return _c(
+                  "div",
+                  { key: index, staticClass: "uk-form uk-form-stacked" },
+                  [
+                    _c("fieldset", { staticClass: "uk-fieldset" }, [
+                      _c("div", { staticClass: "uk-width-1-1" }, [
+                        _c("h5", [_vm._v(_vm._s(group.label))])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l"
+                        },
+                        _vm._l(group.children, function(route) {
+                          return _c(
+                            "label",
+                            {
+                              key: route.id,
+                              staticClass: "uk-display-inline-block"
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: item.route_names,
+                                    expression: "item.route_names"
+                                  }
+                                ],
+                                staticClass: "uk-checkbox",
+                                staticStyle: { "margin-right": "4px" },
+                                attrs: {
+                                  name: "route_names",
+                                  type: "checkbox"
+                                },
+                                domProps: {
+                                  value: route.value,
+                                  checked: Array.isArray(item.route_names)
+                                    ? _vm._i(item.route_names, route.value) > -1
+                                    : item.route_names
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = item.route_names,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = route.value,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            item,
+                                            "route_names",
+                                            $$a.concat([$$v])
+                                          )
                                       } else {
-                                        _vm.$set(item, "route_names", $$c)
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            item,
+                                            "route_names",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
                                       }
+                                    } else {
+                                      _vm.$set(item, "route_names", $$c)
                                     }
                                   }
-                                }),
-                                _vm._v(" "),
-                                _c("span", [_vm._v(_vm._s(route.label))])
-                              ]
-                            )
-                          })
-                        )
-                      ]
-                    )
-                  })
-                ],
-                2
-              )
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v(_vm._s(route.label))])
+                            ]
+                          )
+                        })
+                      )
+                    ])
+                  ]
+                )
+              })
             ],
-            1
+            2
           )
         }
       }
@@ -1200,7 +1212,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-817f018a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-010de011", module.exports)
   }
 }
 
@@ -1230,7 +1242,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/app-roles-edit.vue"
+Component.options.__file = "resources/src/roles/edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -1239,9 +1251,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3b5559ee", Component.options)
+    hotAPI.createRecord("data-v-76de1d42", Component.options)
   } else {
-    hotAPI.reload("data-v-3b5559ee", Component.options)
+    hotAPI.reload("data-v-76de1d42", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1257,6 +1269,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -1408,7 +1424,7 @@ var render = function() {
           var reset = ref.reset
           return _c(
             "div",
-            { staticClass: "uk-form uk-form-stacked" },
+            {},
             [
               _c(
                 "portal",
@@ -1416,7 +1432,12 @@ var render = function() {
                 [
                   _c(
                     "app-toolbar-button",
-                    { attrs: { "uk-toggle": "target: #app-module-help" } },
+                    {
+                      attrs: {
+                        disabled: true,
+                        "uk-toggle": "target: #app-module-help"
+                      }
+                    },
                     [
                       _vm._v(
                         "\n                " +
@@ -1545,138 +1566,136 @@ var render = function() {
                 _c(
                   "h1",
                   { staticClass: "uk-heading-primary uk-margin-remove" },
-                  [_vm._v(_vm._s(_vm.$t("liro-users.backend.users.edit")))]
+                  [_vm._v(_vm._s(_vm.$t("liro-users.backend.roles.edit")))]
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "fieldset",
-                { staticClass: "uk-fieldset" },
-                [
-                  _c("app-form-input", {
-                    attrs: {
-                      name: "title",
-                      rules: "required|min:4",
-                      label: _vm.$t("liro-users.form.title")
-                    },
-                    model: {
-                      value: item.title,
-                      callback: function($$v) {
-                        _vm.$set(item, "title", $$v)
+              _c("div", { staticClass: "uk-form uk-form-stacked" }, [
+                _c(
+                  "fieldset",
+                  { staticClass: "uk-fieldset" },
+                  [
+                    _c("app-form-input", {
+                      attrs: {
+                        name: "title",
+                        rules: "required|min:4",
+                        label: _vm.$t("liro-users.form.title")
                       },
-                      expression: "item.title"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("app-form-input", {
-                    attrs: {
-                      name: "description",
-                      label: _vm.$t("liro-users.form.description")
-                    },
-                    model: {
-                      value: item.description,
-                      callback: function($$v) {
-                        _vm.$set(item, "description", $$v)
+                      model: {
+                        value: item.title,
+                        callback: function($$v) {
+                          _vm.$set(item, "title", $$v)
+                        },
+                        expression: "item.title"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("app-form-input", {
+                      attrs: {
+                        name: "description",
+                        label: _vm.$t("liro-users.form.description")
                       },
-                      expression: "item.description"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm._l(_vm.routes, function(group, index) {
-                    return _c(
-                      "div",
-                      {
-                        key: index,
-                        staticClass: "uk-margin uk-padding",
-                        staticStyle: { "background-color": "#fff" }
-                      },
-                      [
-                        _c("div", { staticClass: "uk-width-1-1" }, [
-                          _c("h4", [_vm._v(_vm._s(group.label))])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l"
-                          },
-                          _vm._l(group.children, function(route) {
-                            return _c(
-                              "label",
-                              {
-                                key: route.id,
-                                staticClass:
-                                  "uk-display-inline-block uk-margin-small"
-                              },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: item.route_names,
-                                      expression: "item.route_names"
-                                    }
-                                  ],
-                                  staticClass: "uk-checkbox",
-                                  staticStyle: { "margin-right": "4px" },
-                                  attrs: {
-                                    name: "route_names",
-                                    type: "checkbox"
-                                  },
-                                  domProps: {
-                                    value: route.value,
-                                    checked: Array.isArray(item.route_names)
-                                      ? _vm._i(item.route_names, route.value) >
-                                        -1
-                                      : item.route_names
-                                  },
-                                  on: {
-                                    change: function($event) {
-                                      var $$a = item.route_names,
-                                        $$el = $event.target,
-                                        $$c = $$el.checked ? true : false
-                                      if (Array.isArray($$a)) {
-                                        var $$v = route.value,
-                                          $$i = _vm._i($$a, $$v)
-                                        if ($$el.checked) {
-                                          $$i < 0 &&
-                                            _vm.$set(
-                                              item,
-                                              "route_names",
-                                              $$a.concat([$$v])
-                                            )
-                                        } else {
-                                          $$i > -1 &&
-                                            _vm.$set(
-                                              item,
-                                              "route_names",
-                                              $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1))
-                                            )
-                                        }
+                      model: {
+                        value: item.description,
+                        callback: function($$v) {
+                          _vm.$set(item, "description", $$v)
+                        },
+                        expression: "item.description"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.routes, function(group, index) {
+                return _c(
+                  "div",
+                  { key: index, staticClass: "uk-form uk-form-stacked" },
+                  [
+                    _c("fieldset", { staticClass: "uk-fieldset" }, [
+                      _c("div", { staticClass: "uk-width-1-1" }, [
+                        _c("h5", [_vm._v(_vm._s(group.label))])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l"
+                        },
+                        _vm._l(group.children, function(route) {
+                          return _c(
+                            "label",
+                            {
+                              key: route.id,
+                              staticClass: "uk-display-inline-block"
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: item.route_names,
+                                    expression: "item.route_names"
+                                  }
+                                ],
+                                staticClass: "uk-checkbox",
+                                staticStyle: { "margin-right": "4px" },
+                                attrs: {
+                                  name: "route_names",
+                                  type: "checkbox"
+                                },
+                                domProps: {
+                                  value: route.value,
+                                  checked: Array.isArray(item.route_names)
+                                    ? _vm._i(item.route_names, route.value) > -1
+                                    : item.route_names
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = item.route_names,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = route.value,
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            item,
+                                            "route_names",
+                                            $$a.concat([$$v])
+                                          )
                                       } else {
-                                        _vm.$set(item, "route_names", $$c)
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            item,
+                                            "route_names",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
                                       }
+                                    } else {
+                                      _vm.$set(item, "route_names", $$c)
                                     }
                                   }
-                                }),
-                                _vm._v(" "),
-                                _c("span", [_vm._v(_vm._s(route.label))])
-                              ]
-                            )
-                          })
-                        )
-                      ]
-                    )
-                  })
-                ],
-                2
-              )
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v(_vm._s(route.label))])
+                            ]
+                          )
+                        })
+                      )
+                    ])
+                  ]
+                )
+              })
             ],
-            1
+            2
           )
         }
       }
@@ -1696,7 +1715,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3b5559ee", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-76de1d42", module.exports)
   }
 }
 

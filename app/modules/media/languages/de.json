@@ -5,7 +5,11 @@
 
             "media": {
                 "group":        "Medien",
-                "index":        "Medien"
+                "index":        "Medien",
+                "move":         "Medien verschieben",
+                "delete":       "Medien löschen",
+                "upload":       "Medien hochladen",
+                "create":       "Ordner erstellen"
             }
 
         },

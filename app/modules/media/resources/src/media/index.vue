@@ -2,7 +2,7 @@
 <div class="app-media">
 
     <!-- Infobar start -->
-    <portal to="app-infobar-right">
+    <portal v-if="browser == false" to="app-infobar-right">
         <app-toolbar-button href="#" :disabled="true" uk-toggle="target: #app-module-help">
             {{ $t('liro-media.toolbar.help') }}
         </app-toolbar-button>
@@ -10,7 +10,7 @@
     <!-- Infobar end -->
 
     <!-- Toolbar start -->
-    <portal to="app-toolbar-left">
+    <portal v-if="browser == false" to="app-toolbar-left">
         <app-toolbar-button href="#" icon="cloud-upload" uk-toggle="target: #app-media-upload">
             {{ $t('liro-media.toolbar.upload') }}
         </app-toolbar-button>
@@ -26,21 +26,21 @@
     <!-- Toolbar end -->
 
     <!-- Help start -->
-    <portal to="app-module-help">
+    <portal v-if="browser == false" to="app-module-help">
         <h1>{{ $t('liro-media.toolbar.help') }}</h1>
     </portal>
     <!-- Help end -->
 
     <!-- Title start -->
-    <div class="uk-margin-large">
+    <div v-if="browser == false" class="uk-margin-large">
         <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-media.backend.media.index') }}</h1>
     </div>
     <!-- Title end -->
 
-    <app-media-upload id="app-media-upload"></app-media-upload>
-    <app-media-create id="app-media-create"></app-media-create>
+    <app-media-upload v-if="browser == false" id="app-media-upload"></app-media-upload>
+    <app-media-create v-if="browser == false" id="app-media-create"></app-media-create>
 
-    <div class="app-media-breadcrumb uk-margin">
+    <div class="app-media-breadcrumb">
         <ul class="app-media-breadcrumb-list uk-flex">
             <app-media-breadcrumb 
                 v-for="(directory, index) in breadcrumb" :key="index" :directory="directory" :disable="parent ? path == directory.path : true"
@@ -50,7 +50,7 @@
 
     <div class="app-media-browser uk-flex">
 
-        <div class="app-media-browser-tree">
+        <div v-if="browser == false" class="app-media-browser-tree">
             <app-media-tree :directory="root"></app-media-tree>
         </div>
 
@@ -79,15 +79,16 @@
 </template>
 
 <script>
-import MediaUpload from "./app-media-index/app-media-upload.vue";
-import MediaCreate from "./app-media-index/app-media-create.vue";
-import MediaBreadcrumb from "./app-media-index/app-media-breadcrumb.vue";
-import MediaDirectory from "./app-media-index/app-media-directory.vue";
-import MediaFile from "./app-media-index/app-media-file.vue";
-import MediaTree from "./app-media-index/app-media-tree.vue";
+import MediaUpload from "./components/upload.vue";
+import MediaCreate from "./components/create.vue";
+import MediaBreadcrumb from "./components/breadcrumb.vue";
+import MediaDirectory from "./components/directory.vue";
+import MediaFile from "./components/file.vue";
+import MediaTree from "./components/tree.vue";
 
 export default {
     props: {
+
         moveRoute: {
             default() {
                 return "";
@@ -109,12 +110,20 @@ export default {
             type: String
         },
 
+        browser: {
+            default() {
+                return false;
+            },
+            type: Boolean
+        },
+
         media: {
             default() {
                 return this.$liro.data.get("media", {});
             },
             type: Object
         }
+
     },
 
     computed: {
@@ -164,45 +173,55 @@ export default {
         });
 
         this.$liro.event.watch("media:update", (name, res) => {
+
             this.root = res.data.media;
             this.files = [];
 
-            window.UIkit.modal('#app-media-upload').hide();
-            window.UIkit.modal('#app-media-create').hide();
+
+            if ( window.UIkit.modal('#app-media-upload') ) {
+                window.UIkit.modal('#app-media-upload').hide();
+            }
+
+            if ( window.UIkit.modal('#app-media-create') ) {
+                window.UIkit.modal('#app-media-create').hide();
+            }
+
         });
 
-        this.$liro.event.watch("media:drag", (name, event, file) => {
+        this.$liro.event.watch("media:drag", this.dragEvent);
+
+        this.$liro.event.watch("media:goto", this.gotoEvent);
+        this.$liro.event.watch("media:select", this.selectEvent);
+
+        this.$liro.event.once("media:folder", this.folderEvent);
+        this.$liro.event.once("media:move", this.moveEvent);
+    },
+
+    methods: {
+        dragEvent(name, event, file) {
             this.files = [file.path];
-        });
-
-        this.$liro.event.watch("media:goto", this.goto);
-        this.$liro.event.watch("media:select", this.select);
-
-        this.$liro.event.once("media:folder", (name, event, folders) => {
+        },
+        gotoEvent(name, event, directory) {
+            this.path = directory.path;
+        },
+        selectEvent(name, event, file) {
+            this.files = _.xor(this.files, [file.path]);
+        },
+        folderEvent(name, event, folders) {
 
             var req = this.$http.post(this.createRoute, {
                 folders: folders, path: this.path
             });
 
             req.then(res => this.$liro.event.emit("media:update", res));
-        });
-
-        this.$liro.event.once("media:move", (name, event, folder) => {
+        },
+        moveEvent(name, event, folder) {
 
             var req = this.$http.post(this.moveRoute, {
                 files: this.files, path: folder.path
             });
 
             req.then(res => this.$liro.event.emit("media:update", res));
-        });
-    },
-
-    methods: {
-        goto(name, event, directory) {
-            this.path = directory.path;
-        },
-        select(name, event, file) {
-            this.files = _.xor(this.files, [file.path]);
         }
     }
 };

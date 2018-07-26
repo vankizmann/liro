@@ -9,4 +9,5 @@
         index-route="{{ route('liro-users.backend.users.index') }}"
         :user="{{ $user->toJson() }}" :roles="{{ $roles->toJson() }}"
     ></app-users-edit>
+    {!! Liro\Media\Helpers\MediaHelper::browser() !!}
 @endsection

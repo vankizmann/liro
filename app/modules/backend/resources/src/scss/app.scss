@@ -582,11 +582,11 @@
         width: 300px;
         flex-shrink: 0;
         margin: 5px 0;
+        padding-right: 30px;
         // box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
     }
 
     &-body {
-        padding-left: 30px;
         flex-grow: 1;
     }
 
@@ -632,6 +632,22 @@
 
     &-count {
         font-size: 0.825rem;
+    }
+
+}
+
+.app-media-browser {
+
+    .uk-close {
+        color: $color-white;
+    }
+
+    .uk-modal-body {
+        background-color: $color-gray-10;
+        height: 9999px;
+        max-height: calc(95% - 75px);
+        overflow-y: scroll;
+        padding: 15px 30px;
     }
 
 }

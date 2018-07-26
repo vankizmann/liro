@@ -12,6 +12,7 @@
 
         <!-- Body -->
         <div class="uk-modal-body">
+            
             <div class="app-media-upload-dropzone uk-padding">
                 <div class="app-media-upload-files uk-flex uk-flex-wrap uk-flex-center">
 

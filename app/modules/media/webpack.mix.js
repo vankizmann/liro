@@ -30,6 +30,4 @@ mix.setResourceRoot(
  * Compile files
  */
 
-mix.js([
-    'resources/src/app-media-index.vue'
-], 'resources/dist/app-media.js');
+mix.js(['resources/src/media/index.vue', 'resources/src/media/browser.vue'], 'resources/dist/app-media.js');

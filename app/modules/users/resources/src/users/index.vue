@@ -102,7 +102,7 @@
                         <span>{{ $t('liro-users.form.empty') }}</span>
                     </div>
                     <!-- Empty end -->
-                    
+
                 </div>
 
                 <!-- Pagination start -->

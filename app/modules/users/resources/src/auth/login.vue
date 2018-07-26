@@ -1,5 +1,5 @@
 <template>
-    <div class="uk-form uk-form-stacked">
+    <div>
         <form :action="action" method="post" style="margin: 0;">
             <fieldset class="uk-fieldset">
 

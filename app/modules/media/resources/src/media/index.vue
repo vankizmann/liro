@@ -89,27 +89,6 @@ import MediaTree from "./components/tree.vue";
 export default {
     props: {
 
-        moveRoute: {
-            default() {
-                return "";
-            },
-            type: String
-        },
-
-        uploadRoute: {
-            default() {
-                return "";
-            },
-            type: String
-        },
-
-        createRoute: {
-            default() {
-                return "";
-            },
-            type: String
-        },
-
         browser: {
             default() {
                 return false;
@@ -163,7 +142,7 @@ export default {
                 formData.append("files[" + i + "]", file);
             });
 
-            var res = this.$http.post(this.uploadRoute, formData, {
+            var res = this.$http.post(this.$liro.routes.get('media-upload'), formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -209,7 +188,7 @@ export default {
         },
         folderEvent(name, event, folders) {
 
-            var req = this.$http.post(this.createRoute, {
+            var req = this.$http.post(this.$liro.routes.get('media-create'), {
                 folders: folders, path: this.path
             });
 
@@ -217,7 +196,9 @@ export default {
         },
         moveEvent(name, event, folder) {
 
-            var req = this.$http.post(this.moveRoute, {
+            console.log(this.$liro.routes.get('media-move'));
+
+            var req = this.$http.post(this.$liro.routes.get('media-move'), {
                 files: this.files, path: folder.path
             });
 

@@ -16,6 +16,12 @@ class MediaController extends Controller
      */
     public function index()
     {
+        app('scripts')->routes([
+            'media-move'        => route('liro-media.backend.media.move'),
+            'media-upload'      => route('liro-media.backend.media.upload'),
+            'media-create'      => route('liro-media.backend.media.create')
+        ]);
+        
         return view('liro-media::backend/media/index', [
             'media' => Folder::make()
         ]);

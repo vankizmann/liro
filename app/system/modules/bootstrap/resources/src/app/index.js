@@ -2,7 +2,6 @@ import VueI18n from 'vue-i18n';
 import Vuex from 'vuex';
 import VeeValidate, { Validator } from 'vee-validate';
 import PortalVue from 'portal-vue';
-import VueDraggable from 'vuedraggable';
 
 import VeeValidateDE from 'vee-validate/dist/locale/de';
 import VeeValidateEN from 'vee-validate/dist/locale/en';
@@ -43,8 +42,8 @@ function install (Vue) {
     Vue.use(VeeValidate);
     Vue.use(PortalVue);
 
-    Vue.prototype.$http = window.axios;
-    Vue.prototype.$liro = window.liro;
+    Vue.prototype.$http = Vue.prototype.http = window.axios;
+    Vue.prototype.$liro = Vue.prototype.liro = window.liro;
 
     Vue.prototype.$notify = UIkit.notification;
 
@@ -55,7 +54,6 @@ function install (Vue) {
 
     require('./components/helper/app-helper-history.vue');
     require('./components/helper/app-helper-list.vue');
-
 
     require('./components/toolbar/app-toolbar-button.vue');
     require('./components/toolbar/app-toolbar-link.vue');

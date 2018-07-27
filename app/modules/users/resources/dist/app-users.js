@@ -1416,6 +1416,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -1638,7 +1642,13 @@ var render = function() {
                 _c(
                   "h1",
                   { staticClass: "uk-heading-primary uk-margin-remove" },
-                  [_vm._v(_vm._s(_vm.$t("liro-users.backend.users.edit")))]
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.$t("liro-users.backend.users.edit")) +
+                        "\n            "
+                    )
+                  ]
                 )
               ]),
               _vm._v(" "),
@@ -1709,6 +1719,16 @@ var render = function() {
                           _vm.$set(item, "email", $$v)
                         },
                         expression: "item.email"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("app-media-browser", {
+                      model: {
+                        value: item.image,
+                        callback: function($$v) {
+                          _vm.$set(item, "image", $$v)
+                        },
+                        expression: "item.image"
                       }
                     }),
                     _vm._v(" "),

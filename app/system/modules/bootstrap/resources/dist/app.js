@@ -12296,13 +12296,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vee_validate__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_portal_vue__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_portal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_portal_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuedraggable__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuedraggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vuedraggable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vee_validate_dist_locale_de__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vee_validate_dist_locale_de___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vee_validate_dist_locale_de__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vee_validate_dist_locale_en__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vee_validate_dist_locale_en___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vee_validate_dist_locale_en__);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vee_validate_dist_locale_de__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vee_validate_dist_locale_de___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vee_validate_dist_locale_de__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vee_validate_dist_locale_en__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vee_validate_dist_locale_en___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vee_validate_dist_locale_en__);
 
 
 
@@ -12347,8 +12344,8 @@ function install(Vue) {
     Vue.use(__WEBPACK_IMPORTED_MODULE_2_vee_validate__["b" /* default */]);
     Vue.use(__WEBPACK_IMPORTED_MODULE_3_portal_vue___default.a);
 
-    Vue.prototype.$http = window.axios;
-    Vue.prototype.$liro = window.liro;
+    Vue.prototype.$http = Vue.prototype.http = window.axios;
+    Vue.prototype.$liro = Vue.prototype.liro = window.liro;
 
     Vue.prototype.$notify = UIkit.notification;
 
@@ -12381,10 +12378,10 @@ function install(Vue) {
 
         switch (window.liro.locale.locale) {
             case 'en':
-                __WEBPACK_IMPORTED_MODULE_2_vee_validate__["a" /* Validator */].localize('en', __WEBPACK_IMPORTED_MODULE_6_vee_validate_dist_locale_en___default.a);
+                __WEBPACK_IMPORTED_MODULE_2_vee_validate__["a" /* Validator */].localize('en', __WEBPACK_IMPORTED_MODULE_5_vee_validate_dist_locale_en___default.a);
                 break;
             case 'de':
-                __WEBPACK_IMPORTED_MODULE_2_vee_validate__["a" /* Validator */].localize('de', __WEBPACK_IMPORTED_MODULE_5_vee_validate_dist_locale_de___default.a);
+                __WEBPACK_IMPORTED_MODULE_2_vee_validate__["a" /* Validator */].localize('de', __WEBPACK_IMPORTED_MODULE_4_vee_validate_dist_locale_de___default.a);
                 break;
         }
 

@@ -336,30 +336,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
 
-        moveRoute: {
-            default: function _default() {
-                return "";
-            },
-
-            type: String
-        },
-
-        uploadRoute: {
-            default: function _default() {
-                return "";
-            },
-
-            type: String
-        },
-
-        createRoute: {
-            default: function _default() {
-                return "";
-            },
-
-            type: String
-        },
-
         browser: {
             default: function _default() {
                 return false;
@@ -417,7 +393,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 formData.append("files[" + i + "]", file);
             });
 
-            var res = _this2.$http.post(_this2.uploadRoute, formData, {
+            var res = _this2.$http.post(_this2.$liro.routes.get('media-upload'), formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -465,7 +441,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         folderEvent: function folderEvent(name, event, folders) {
             var _this3 = this;
 
-            var req = this.$http.post(this.createRoute, {
+            var req = this.$http.post(this.$liro.routes.get('media-create'), {
                 folders: folders, path: this.path
             });
 
@@ -476,7 +452,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         moveEvent: function moveEvent(name, event, folder) {
             var _this4 = this;
 
-            var req = this.$http.post(this.moveRoute, {
+            console.log(this.$liro.routes.get('media-move'));
+
+            var req = this.$http.post(this.$liro.routes.get('media-move'), {
                 files: this.files, path: folder.path
             });
 
@@ -1340,7 +1318,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -1357,6 +1334,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
 
             type: Object
+        },
+        selected: {
+            default: function _default() {
+                return false;
+            },
+
+            type: Boolean
+        },
+        disabled: {
+            default: function _default() {
+                return false;
+            },
+
+            type: Boolean
         }
     },
     computed: {
@@ -1365,14 +1356,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        gotoEvent: function gotoEvent(event) {
-            this.$liro.event.emit("media:goto", event, this.directory);
+        clickEvent: function clickEvent(event) {
+            if (!this.disabled) this.liro.event.emit("media:select", event, this.directory);
+        },
+        dblclickEvent: function dblclickEvent(event) {
+            this.liro.event.emit("media:goto", event, this.directory);
         },
         dropEvent: function dropEvent(event) {
-            this.$liro.event.emit("media:move", event, this.directory);
+            this.liro.event.emit("media:move", event, this.directory);
         },
         dragEvent: function dragEvent(event) {
-            this.$liro.event.emit("media:drag", event, this.directory);
+            if (!this.disabled) this.liro.event.emit("media:drag", event, this.directory);
+        },
+        dragoverEvent: function dragoverEvent(event) {
+            if (this.selected == false) event.preventDefault();
         }
     }
 });
@@ -1392,16 +1389,17 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass:
-        "app-media-index-folder uk-flex uk-flex-column uk-flex-middle uk-padding-small",
-      attrs: { draggable: "true" },
+      class: {
+        "app-media-index-folder uk-flex uk-flex-column uk-flex-middle uk-padding-small": true,
+        "uk-selected": _vm.selected
+      },
+      attrs: { draggable: _vm.selected },
       on: {
-        click: _vm.gotoEvent,
+        dblclick: _vm.dblclickEvent,
+        click: _vm.clickEvent,
         drag: _vm.dragEvent,
         drop: _vm.dropEvent,
-        dragover: function($event) {
-          $event.preventDefault()
-        }
+        dragover: _vm.dragoverEvent
       }
     },
     [
@@ -1541,6 +1539,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
 
             type: Object
+        },
+        selected: {
+            default: function _default() {
+                return false;
+            },
+
+            type: Boolean
+        },
+        disabled: {
+            default: function _default() {
+                return false;
+            },
+
+            type: Boolean
         }
     },
     computed: {
@@ -1558,7 +1570,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         dragEvent: function dragEvent(event) {
-            this.$liro.event.emit("media:drag", event, this.file);
+            if (!this.disabled) this.$liro.event.emit("media:drag", event, this.file);
+        },
+        clickEvent: function clickEvent(event) {
+            if (!this.disabled) this.liro.event.emit("media:select", event, this.file);
         }
     }
 });
@@ -1578,10 +1593,12 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass:
-        "app-media-index-file uk-flex uk-flex-column uk-flex-middle uk-padding-small",
-      attrs: { draggable: "true" },
-      on: { drag: _vm.dragEvent }
+      class: {
+        "app-media-index-file uk-flex uk-flex-column uk-flex-middle uk-padding-small": true,
+        "uk-selected": _vm.selected
+      },
+      attrs: { draggable: _vm.selected },
+      on: { drag: _vm.dragEvent, click: _vm.clickEvent }
     },
     [
       _c(
@@ -2067,6 +2084,16 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_upload_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_upload_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_upload_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_create_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_create_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_create_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_breadcrumb_vue__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_breadcrumb_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_breadcrumb_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_directory_vue__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_directory_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_directory_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_file_vue__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_file_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_file_vue__);
 //
 //
 //
@@ -2099,29 +2126,110 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        moveRoute: {
+        value: {
             default: function _default() {
-                return "";
+                return [];
             },
 
-            type: String
+            type: Array
         },
-        uploadRoute: {
+        multiple: {
             default: function _default() {
-                return "";
+                return true;
             },
 
-            type: String
+            type: Boolean
         },
-        createRoute: {
+        browser: {
             default: function _default() {
-                return "";
+                return false;
             },
 
-            type: String
+            type: Boolean
+        },
+        files: {
+            default: function _default() {
+                return true;
+            },
+
+            type: Boolean
+        }
+    },
+    computed: {
+        breadcrumb: function breadcrumb() {
+            return this.liro.func.ladderRecursive(this.media, "path", this.path, "directories", []);
+        },
+        active: function active() {
+            return _.nth(this.breadcrumb, -1);
+        },
+        parent: function parent() {
+            return _.nth(this.breadcrumb, -2);
+        }
+    },
+    data: function data() {
+        return {
+            path: this.value,
+            selected: [],
+            media: this.liro.data.get("media", {})
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.liro.event.watch("media:goto", function (name, event, folder) {
+            _this.path = folder.path;
+        });
+
+        this.liro.event.watch("media:select", function (name, event, item) {
+            _this.selected = [item];
+        });
+    },
+
+
+    methods: {
+        setImage: function setImage() {
+            this.$emit("input", this.selected);
+            window.UIkit.modal(this.$refs.modal).hide();
         }
     }
 });
@@ -2139,18 +2247,39 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "button",
-      {
-        staticClass: "uk-button uk-button-primary",
-        attrs: { "uk-toggle": "#app-media-browser" }
-      },
-      [_vm._v("Browser")]
-    ),
+    _c("div", { staticClass: "uk-flex uk-flex-wrap" }, [
+      _c(
+        "div",
+        { staticClass: "app-media-preview uk-width-1-1" },
+        _vm._l(_vm.selected, function(item, index) {
+          return _c(
+            "div",
+            { key: index, staticClass: "app-media-preview-item" },
+            [_c("img", { attrs: { src: item.url, alt: item.name } })]
+          )
+        })
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "uk-input uk-margin-small-right",
+        attrs: { type: "text", disabled: "true" },
+        domProps: { value: "" }
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "uk-button uk-button-primary",
+          attrs: { "uk-toggle": "#app-media-browser" }
+        },
+        [_vm._v("Browser")]
+      )
+    ]),
     _vm._v(" "),
     _c(
       "div",
       {
+        ref: "modal",
         staticClass: "app-media-browser uk-modal-container",
         attrs: { id: "app-media-browser", "uk-modal": "" }
       },
@@ -2161,46 +2290,70 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("div", { staticClass: "uk-modal-dialog uk-margin-auto-vertical" }, [
-          _c(
-            "div",
-            { staticClass: "uk-modal-body" },
-            [
-              _c("app-media-index", {
-                attrs: {
-                  "move-route": _vm.moveRoute,
-                  "upload-route": _vm.uploadRoute,
-                  "create-route": _vm.createRoute,
-                  browser: true
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "app-media-upload-button uk-modal-footer uk-flex uk-flex-middle"
-            },
-            [
+          _c("div", { staticClass: "uk-modal-body" }, [
+            _c("div", { staticClass: "app-media-breadcrumb" }, [
               _c(
-                "button",
-                {
-                  staticClass: "uk-button uk-button-success",
-                  staticStyle: { "margin-left": "auto" },
-                  attrs: { disabled: true }
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.$t("liro-media.upload.start")) +
-                      "\n                "
-                  )
-                ]
+                "ul",
+                { staticClass: "app-media-breadcrumb-list uk-flex" },
+                _vm._l(_vm.breadcrumb, function(directory, index) {
+                  return _c("app-media-breadcrumb", {
+                    key: index,
+                    attrs: {
+                      directory: directory,
+                      disable: _vm.parent ? _vm.path == directory.path : true
+                    }
+                  })
+                })
               )
-            ]
-          )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "app-media-index uk-flex uk-flex-wrap" },
+              [
+                _vm.parent
+                  ? _c("app-media-directory", {
+                      attrs: { directory: _vm.parent, icon: "chevron-left" }
+                    })
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._l(_vm.active.directories, function(directory) {
+                  return _c("app-media-directory", {
+                    key: directory.path,
+                    attrs: {
+                      directory: directory,
+                      disabled: _vm.files,
+                      selected: _vm.selected.indexOf(directory.path) != -1
+                    }
+                  })
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.active.files, function(file) {
+                  return _c("app-media-file", {
+                    key: file.path,
+                    attrs: {
+                      file: file,
+                      disabled: !_vm.files,
+                      selected: _vm.selected.indexOf(file.path) != -1
+                    }
+                  })
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "uk-modal-footer uk-text-right" }, [
+            _c(
+              "button",
+              {
+                staticClass: "uk-button uk-button-success",
+                attrs: { type: "button", disabled: _vm.selected.length == 0 },
+                on: { click: _vm.setImage }
+              },
+              [_vm._v(_vm._s(_vm.$t("liro-media.browser.select")))]
+            )
+          ])
         ])
       ]
     )

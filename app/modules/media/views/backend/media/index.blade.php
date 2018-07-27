@@ -9,5 +9,5 @@
 @endphp
 
 @section('content')
-    <app-media-index move-route="{{ route('liro-media.backend.media.move') }}" upload-route="{{ route('liro-media.backend.media.upload') }}" create-route="{{ route('liro-media.backend.media.create') }}"></app-media-index>
+    <app-media-index></app-media-index>
 @endsection

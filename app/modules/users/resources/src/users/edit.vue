@@ -43,7 +43,9 @@
 
             <!-- Title start -->
             <div class="uk-margin-large">
-                <h1 class="uk-heading-primary uk-margin-remove">{{ $t('liro-users.backend.users.edit') }}</h1>
+                <h1 class="uk-heading-primary uk-margin-remove">
+                    {{ $t('liro-users.backend.users.edit') }}
+                </h1>
             </div>
             <!-- Title end -->
 
@@ -70,6 +72,8 @@
                         user="email" name="email" rules="required|email" v-model="item.email"
                         :label="$t('liro-users.form.email')"
                     ></app-form-input>
+
+                    <app-media-browser v-model="item.image"></app-media-browser>
                     
                     <app-form-password 
                         name="password" rules="min:6" v-model="item.password"

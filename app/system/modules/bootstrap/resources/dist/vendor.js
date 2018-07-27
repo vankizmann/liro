@@ -44445,6 +44445,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 var LiroLocale = __webpack_require__(140);
 var LiroMessage = __webpack_require__(141);
 var LiroData = __webpack_require__(142);
+var LiroRoutes = __webpack_require__(204);
 var LiroEvent = __webpack_require__(143);
 var LiroVue = __webpack_require__(144);
 var LiroFunc = __webpack_require__(145);
@@ -44453,6 +44454,7 @@ module.exports = {
     locale: new LiroLocale(),
     message: new LiroMessage(),
     data: new LiroData(),
+    routes: new LiroRoutes(),
     event: new LiroEvent(),
     vue: new LiroVue(),
     func: new LiroFunc()
@@ -44718,6 +44720,101 @@ module.exports = function () {
 
         return ladder;
     }.bind(this);
+};
+
+/***/ }),
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */
+/***/ (function(module, exports) {
+
+module.exports = function () {
+
+  /**
+   * Data
+   */
+
+  this.routes = window.$routes || {};
+
+  /**
+   * Init routes function
+   */
+
+  this.$init = this.init = function (value) {
+    this.routes = value;
+  }.bind(this);
+
+  /**
+   * Set routes function
+   */
+
+  this.$set = this.set = function (key, value) {
+    this.routes[key] = value;
+  }.bind(this);
+
+  /**
+   * Get routes function
+   */
+
+  this.$get = this.get = function (key, fallback) {
+    return this.routes[key] || fallback;
+  }.bind(this);
 };
 
 /***/ })

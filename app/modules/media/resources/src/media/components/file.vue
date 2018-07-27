@@ -1,5 +1,5 @@
 <template>
-<div class="app-media-index-file uk-flex uk-flex-column uk-flex-middle uk-padding-small" draggable="true" @drag="dragEvent">
+<div :class="{ 'app-media-index-file uk-flex uk-flex-column uk-flex-middle uk-padding-small': true, 'uk-selected': selected }" :draggable="selected" @drag="dragEvent" @click="clickEvent">
 
     <div class="app-media-index-file-image uk-flex uk-flex-middle uk-flex-center">
         <img v-if="['image/jpeg', 'image/png'].indexOf(file.type) != -1" :src="file.url" :alt="file.name" :title="file.name">
@@ -25,12 +25,24 @@ export default {
                 return {};
             },
             type: Object
+        },
+        selected: {
+            default() {
+                return false;
+            },
+            type: Boolean
+        },
+        disabled: {
+            default() {
+                return false;
+            },
+            type: Boolean
         }
     },
     computed: {
         size() {
             if (this.file.size > 1024 * 1024 * 1024) {
-                return (this.file.size /( 1024 * 1024 * 1024)).toFixed(2) + " GB";
+                return (this.file.size / ( 1024 * 1024 * 1024)).toFixed(2) + " GB";
             }
 
             if (this.file.size > 1024 * 1024) {
@@ -42,7 +54,10 @@ export default {
     },
     methods: {
         dragEvent(event) {
-            this.$liro.event.emit("media:drag", event, this.file);
+            if ( !this.disabled ) this.$liro.event.emit("media:drag", event, this.file);
+        },
+        clickEvent(event) {
+            if ( !this.disabled ) this.liro.event.emit("media:select", event, this.file);
         }
     }
 };

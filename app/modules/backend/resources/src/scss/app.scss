@@ -494,16 +494,22 @@
         margin: 0 -10px;
     }
 
+    & * {
+        user-select:none;
+    }
+
     &-file {
+        cursor: pointer;
         background-color: $color-white;
         margin: 10px;
         width: 200px;
         border-radius: 3px;
         box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
+        border: 2px solid transparent;
     }
 
-    &-file * {
-        pointer-events: none;
+    &-file.uk-selected {
+        border-color: $color-primary;
     }
 
     &-file-image {
@@ -539,7 +545,13 @@
         width: 200px;
         border-radius: 3px;
         box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
-        transition: background 150ms;
+        transition: all 150ms;
+        border: 2px solid transparent;
+    }
+
+    &-folder.uk-selected {
+        border-color: darken($color-primary, 20%);
+        // background-color: darken($color-primary, 7.5%) !important;
     }
 
     &-folder:hover {

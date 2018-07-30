@@ -19,7 +19,11 @@ class StorageHelper
         $files = array_filter($files);
 
         foreach ($files as $file) {
-            Storage::delete(append_path($path, $file));
+            if ( Storage::getMetadata($file)['type'] != 'dir' ) {
+                Storage::delete($file);
+            } else {
+                Storage::deleteDirectory($file);
+            }
         }
 
         return;

@@ -27,7 +27,7 @@ module.exports = function () {
         }
 
         if (typeof item[childs] == 'object') {
-            return _.first(_.map(item[childs], (item) => this.findRecursive(item, key, value, childs)));
+            return _.first(_.filter(_.map(item[childs], (item) => this.findRecursive(item, key, value, childs)), item => !_.isUndefined(item)));
         }
 
     }.bind(this);

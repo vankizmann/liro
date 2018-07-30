@@ -13779,6 +13779,10 @@ a, button {
   border: 2px solid transparent;
 }
 
+.app-media-index-file * {
+  pointer-events: none;
+}
+
 .app-media-index-file.uk-selected {
   border-color: #007cff;
 }
@@ -13923,4 +13927,31 @@ a, button {
   max-height: calc(95% - 75px);
   overflow-y: scroll;
   padding: 15px 30px;
+}
+
+.app-media-preview {
+  width: calc(100% + 10px);
+  margin: -5px;
+}
+
+.app-media-preview-item {
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+  width: 100px;
+  height: 80px;
+  margin: 5px;
+  -webkit-box-shadow: 0 2px 8px rgba(174, 179, 184, 0.3);
+          box-shadow: 0 2px 8px rgba(174, 179, 184, 0.3);
+}
+
+.app-media-preview-button {
+  width: 100px;
+  height: 80px;
+  margin: 5px;
+}
+
+.app-media-preview-button .uk-button {
+  width: 100px;
+  height: 80px;
 }

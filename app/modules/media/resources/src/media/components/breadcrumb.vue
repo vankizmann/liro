@@ -1,5 +1,5 @@
 <template>
-    <li :class="{ 'app-media-breadcrumb-item uk-flex uk-flex-middle': true, 'app-media-breadcrumb-disable': disable }" @click="goto" @drop="drop" @dragover.prevent>
+    <li :class="{ 'app-media-breadcrumb-item uk-flex uk-flex-middle': true, 'app-media-breadcrumb-disable': disabled }" @click="goto" @drop="drop" @dragover.prevent>
         <div class="uk-flex uk-flex-column">
 
             <!--  -->
@@ -20,7 +20,7 @@
 <script>
 export default {
     props: {
-        disable: {
+        disabled: {
             default() {
                 return false;
             },
@@ -40,10 +40,10 @@ export default {
     },
     methods: {
         goto(event) {
-            this.$liro.event.emit("media:goto", event, this.directory);
+            this.$parent.$emit('media.goto', event, this.directory);
         },
         drop(event) {
-            this.$liro.event.emit("media:move", event, this.directory);
+            this.$parent.$emit("media.move", event, this.directory);
         }
     }
 };

@@ -19,7 +19,7 @@
         </app-toolbar-button>
     </portal>
     <portal to="app-toolbar-right">
-        <app-toolbar-button href="#" icon="trash" :disabled="files.length == 0">
+        <app-toolbar-button href="#" icon="trash" @click="$emit('media.delete')" :disabled="selected.length == 0">
             {{ $t('liro-media.toolbar.delete') }}
         </app-toolbar-button>
     </portal>
@@ -43,7 +43,7 @@
     <div class="app-media-breadcrumb">
         <ul class="app-media-breadcrumb-list uk-flex">
             <app-media-breadcrumb 
-                v-for="(directory, index) in breadcrumb" :key="index" :directory="directory" :disable="parent ? path == directory.path : true"
+                v-for="(directory, index) in breadcrumb" :key="index" :directory="directory" :disabled="parent ? path == directory.path : true"
             ></app-media-breadcrumb>
         </ul>
     </div>
@@ -59,15 +59,15 @@
             <div class="app-media-index uk-flex uk-flex-wrap">
 
                 <app-media-directory 
-                    v-if="parent" :directory="parent" icon="chevron-left"
+                    v-if="parent" :directory="parent" icon="chevron-left" :disabled="true"
                 ></app-media-directory>
 
                 <app-media-directory 
-                    v-for="directory in active.directories" :key="directory.path" :directory="directory"
+                    v-for="directory in active.directories" :key="directory.path" :directory="directory" :selected="isActive(directory.path)"
                 ></app-media-directory>
 
                 <app-media-file 
-                    v-for="file in active.files" :key="file.path" :file="file"
+                    v-for="file in active.files" :key="file.path" :file="file" :selected="isActive(file.path)"
                 ></app-media-file>
 
             </div>
@@ -96,6 +96,13 @@ export default {
             type: Boolean
         },
 
+        multiple: {
+            default() {
+                return true;
+            },
+            type: Boolean
+        },
+
         media: {
             default() {
                 return this.$liro.data.get("media", {});
@@ -120,15 +127,33 @@ export default {
     },
 
     data() {
-        setTimeout(() => this.test = false, 3000)
         return {
-            path: "", files: [], root: this.media, test: true
+            path: "", selected: [], root: this.media
         };
     },
 
     mounted() {
 
-        this.$liro.event.once("media:upload", (name, files) => {
+        this.$on('media.goto', (event, directory) => {
+            this.path = directory.path; this.selected = [];
+        });
+
+        this.$on('media.select', (event, item) => {
+
+            if ( this.multiple == false ) {
+                return this.selected = [item];
+            }
+
+            var index = _.findIndex(this.selected, ['path', item.path]);
+
+            if ( index == -1 ) {
+                return this.selected.push(item);
+            }
+
+            return this.selected.splice(index, 1);
+        });
+
+        this.$on("media.upload", (files) => {
 
             if (files.length == 0) {
                 return;
@@ -148,13 +173,13 @@ export default {
                 }
             });
 
-            res.then(res => this.$liro.event.emit("media:update", res));
+            res.then(res => this.$liro.event.emit("media.update", res));
         });
 
-        this.$liro.event.watch("media:update", (name, res) => {
+        this.$liro.event.watch("media.update", (name, res) => {
 
             this.root = res.data.media;
-            this.files = [];
+            this.selected = [];
 
 
             if ( window.UIkit.modal('#app-media-upload') ) {
@@ -167,42 +192,42 @@ export default {
 
         });
 
-        this.$liro.event.watch("media:drag", this.dragEvent);
+        this.$on("media.folder", this.folderEvent);
+        this.$on("media.move", this.moveEvent);
 
-        this.$liro.event.watch("media:goto", this.gotoEvent);
-        this.$liro.event.watch("media:select", this.selectEvent);
+        this.$on("media.delete", () => {
 
-        this.$liro.event.once("media:folder", this.folderEvent);
-        this.$liro.event.once("media:move", this.moveEvent);
+            var req = this.$http.post(this.$liro.routes.get('media-delete'), {
+                files: _.map(this.selected, item => item.path), path: this.path
+            });
+
+            req.then(res => this.$liro.event.emit("media.update", res));
+
+        });
     },
 
     methods: {
-        dragEvent(name, event, file) {
-            this.files = [file.path];
+        isActive(path) {
+            return _.findIndex(this.selected, ['path', path]) != -1;
         },
-        gotoEvent(name, event, directory) {
-            this.path = directory.path;
+        gotoEvent(event, directory) {
+            this.path = directory.path; this.selected = [];
         },
-        selectEvent(name, event, file) {
-            this.files = _.xor(this.files, [file.path]);
-        },
-        folderEvent(name, event, folders) {
+        folderEvent(event, folders) {
 
             var req = this.$http.post(this.$liro.routes.get('media-create'), {
                 folders: folders, path: this.path
             });
 
-            req.then(res => this.$liro.event.emit("media:update", res));
+            req.then(res => this.$liro.event.emit("media.update", res));
         },
-        moveEvent(name, event, folder) {
-
-            console.log(this.$liro.routes.get('media-move'));
+        moveEvent(event, folder) {
 
             var req = this.$http.post(this.$liro.routes.get('media-move'), {
-                files: this.files, path: folder.path
+                files: _.map(this.selected, item => item.path), path: folder.path
             });
 
-            req.then(res => this.$liro.event.emit("media:update", res));
+            req.then(res => this.$liro.event.emit("media.update", res));
         }
     }
 };

@@ -73,7 +73,9 @@
                         :label="$t('liro-users.form.email')"
                     ></app-form-input>
 
-                    <app-media-browser v-model="item.image"></app-media-browser>
+                    <app-media-browser 
+                        v-model="item.image" :label="$t('liro-users.form.image')"
+                    ></app-media-browser>
                     
                     <app-form-password 
                         name="password" rules="min:6" v-model="item.password"

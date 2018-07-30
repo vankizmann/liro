@@ -51,19 +51,26 @@ export default {
     },
     methods: {
         clickEvent(event) {
-            if ( !this.disabled ) this.liro.event.emit("media:select", event, this.directory);
+            if ( !this.disabled ) {
+                this.$parent.$emit("media.select", event, this.directory);
+            }
         },
         dblclickEvent(event) {
-            this.liro.event.emit("media:goto", event, this.directory);
+            this.$parent.$emit("media.goto", event, this.directory);
         },
         dropEvent(event) {
-            this.liro.event.emit("media:move", event, this.directory);
+            // this.$parent.$emit("media.move", this.directory);
+            this.$parent.$emit("media.move", event, this.directory);
         },
         dragEvent(event) {
-            if ( !this.disabled ) this.liro.event.emit("media:drag", event, this.directory);
+            if ( !this.disabled ) {
+                this.$parent.$emit("media.drag", event, this.directory);
+            }
         },
         dragoverEvent(event) {
-            if ( this.selected == false ) event.preventDefault();
+            if ( this.selected == false ) {
+                event.preventDefault();
+            }
         }
     }
 };

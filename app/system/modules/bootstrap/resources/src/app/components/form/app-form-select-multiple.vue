@@ -31,8 +31,8 @@
 
             <!-- Dropdown start -->
             <ul uk-dropdown="mode: click; pos: bottom-justify;">
-                <li v-for="(option, index) in options" :key="index" :class="_style(option)" @click.prevent="_toggle(option)">
-                    <span>{{ _label(option) }}</span>
+                <li v-for="(option, index) in options" :key="index" :class="_style(option)">
+                    <a href="#" @click.prevent="_toggle(option)">{{ _label(option) }}</a>
                 </li>
             </ul>
             <!-- Dropdown end -->

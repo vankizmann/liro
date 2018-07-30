@@ -1420,6 +1420,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -1723,6 +1725,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("app-media-browser", {
+                      attrs: { label: _vm.$t("liro-users.form.image") },
                       model: {
                         value: item.image,
                         callback: function($$v) {

@@ -26,7 +26,7 @@
             <!-- Dropdown start -->
             <ul ref="dropdown" uk-dropdown="mode: click; pos: bottom-justify;">
                 <li v-for="(option, index) in options" :key="index" :class="_style(option)">
-                    <a href="#" @click="update(option)">{{ _label(option) }}</a>
+                    <a href="#" @click="_toggle(option)">{{ _label(option) }}</a>
                 </li>
             </ul>
             <!-- Dropdown end -->
@@ -129,7 +129,7 @@
             _style(option) {
                 return [this._css(option), this._active(option) ? 'uk-active' : 'uk-inactive'];
             },
-            update(option) {
+            _toggle(option) {
                 this.$emit('input', option[this.optionValue]); this.$emit('change');
             }
         }

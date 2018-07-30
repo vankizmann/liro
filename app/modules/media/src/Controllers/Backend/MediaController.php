@@ -19,7 +19,8 @@ class MediaController extends Controller
         app('scripts')->routes([
             'media-move'        => route('liro-media.backend.media.move'),
             'media-upload'      => route('liro-media.backend.media.upload'),
-            'media-create'      => route('liro-media.backend.media.create')
+            'media-create'      => route('liro-media.backend.media.create'),
+            'media-delete'      => route('liro-media.backend.media.delete')
         ]);
         
         return view('liro-media::backend/media/index', [

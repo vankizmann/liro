@@ -35,11 +35,11 @@ export default {
         };
     },
     mounted() {
-        this.$liro.event.watch("media:update", () => this.folder = '');
+        this.$liro.event.watch("media.update", () => this.folder = '');
     },
     methods: {
         createFolder(event) {
-            this.$liro.event.emit('media:folder', event, [this.folder]);
+            this.$parent.$emit('media.folder', event, [this.folder]);
        }
     }
 };

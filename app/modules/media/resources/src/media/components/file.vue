@@ -54,10 +54,14 @@ export default {
     },
     methods: {
         dragEvent(event) {
-            if ( !this.disabled ) this.$liro.event.emit("media:drag", event, this.file);
+            if ( !this.disabled ) { 
+                this.$parent.$emit("media.drag", event, this.file);
+            }
         },
         clickEvent(event) {
-            if ( !this.disabled ) this.liro.event.emit("media:select", event, this.file);
+            if ( !this.disabled ) {
+                this.$parent.$emit("media.select", event, this.file);
+            }
         }
     }
 };

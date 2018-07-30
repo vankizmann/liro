@@ -17,13 +17,13 @@
         "messages": {
 
             "media": {
-                "created":      "Medien wurde erfolgreich erstellt.",
-                "updated":      "Medien wurde erfolgreich gespeichert.",
-                "deleted":      "Medien wurde erfolgreich gelöscht.",
-                "ordered":      "Medien wurde erfolgreich sortiert.",
-                "enabled":      "Medien wurde erfolgreich aktiviert.",
-                "disabled":     "Medien wurde erfolgreich deaktiviert.",
-                "changed":      "Medien wurde erfolgreich geändert."
+                "created":      "Medien wurden erfolgreich erstellt.",
+                "updated":      "Medien wurden erfolgreich gespeichert.",
+                "deleted":      "Medien wurden erfolgreich gelöscht.",
+                "ordered":      "Medien wurden erfolgreich sortiert.",
+                "enabled":      "Medien wurden erfolgreich aktiviert.",
+                "disabled":     "Medien wurden erfolgreich deaktiviert.",
+                "changed":      "Medien wurden erfolgreich geändert."
             },
 
             "title": {
@@ -60,6 +60,10 @@
             "redo":             "Wiederholen",
             "discard":          "Verwerfen",
             "help":             "Hilfe"
+        },
+
+        "browser": {
+            "select":           "Bild auswählen"
         },
 
         "form": {

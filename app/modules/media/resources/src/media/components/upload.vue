@@ -88,7 +88,7 @@ export default {
         };
     },
     mounted() {
-        this.$liro.event.watch("media:update", () => this.files = []);
+        this.$liro.event.watch("media.update", () => this.files = []);
     },
     methods: {
         fileDrop(event) {
@@ -104,7 +104,7 @@ export default {
             isNaN(index) ? this.files = [] : this.files.splice(index, 1);
         },
         fileUpload(event) {
-            this.$liro.event.emit("media:upload", this.files);
+            this.$parent.$emit("media.upload", this.files);
         }
     }
 };

@@ -49,7 +49,7 @@ class UserController extends \Liro\System\Http\Controller
     public function store(User $user, UserStoreRequest $request)
     {
         $user = $user->create($request->only([
-            'state', 'name', 'email', 'password', 'role_ids'
+            'state', 'name', 'email', 'password', 'image', 'role_ids'
         ]));
 
         return response()->json([
@@ -68,7 +68,7 @@ class UserController extends \Liro\System\Http\Controller
     public function update(User $user, UserUpdateRequest $request)
     {
         $user->update($request->only([
-            'state', 'name', 'email', 'password', 'role_ids'
+            'state', 'name', 'email', 'password', 'image', 'role_ids'
         ]));
 
         return response()->json([

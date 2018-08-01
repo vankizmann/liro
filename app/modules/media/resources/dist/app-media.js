@@ -2354,16 +2354,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            path: this.value,
-            selected: [],
+            path: this.value, selected: [],
             media: this.liro.data.get("media", {})
         };
     },
     mounted: function mounted() {
         var _this2 = this;
 
+        this.selected = this.values;
+
         this.$on('media.goto', function (event, directory) {
-            _this2.path = directory.path;_this2.selected = [];
+            _this2.path = directory.path;
         });
 
         this.$on("media.select", function (event, item) {

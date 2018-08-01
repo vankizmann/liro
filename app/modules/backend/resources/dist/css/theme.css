@@ -13441,10 +13441,6 @@ a, button {
   border: 1px dashed rgba(0, 124, 255, 0.5);
 }
 
-.app-menu-item:last-child .uk-table-list-row {
-  border-bottom: 0;
-}
-
 .app-menu-item .app-menu-dropzone {
   padding-left: 60px;
 }

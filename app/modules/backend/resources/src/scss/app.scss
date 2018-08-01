@@ -202,10 +202,6 @@
     border: 1px dashed rgba($color-primary, 0.5);
 }
 
-.app-menu-item:last-child .uk-table-list-row {
-    border-bottom: 0;
-}
-
 .app-menu-item .app-menu-dropzone {
     padding-left: 60px;
 }
@@ -213,9 +209,6 @@
 .app-media--breadcrumb {
     margin: 20px -10px;
     width: calc(100% + 20px);
-    // border-radius: 3px;
-    // background-color: $color-white;
-    // box-shadow: 0 2px 8px rgba($color-gray-40, 0.15);
 }
 
 .app-media--breadcrumb--list {

@@ -89,7 +89,7 @@
                     </div>
                 </nav>
 
-                <nav class="app-toolbar uk-flex" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'">
+                <nav class="app-toolbar uk-flex" uk-sticky>
 
                     <div class="uk-flex-pull-left">
                         <portal-target class="uk-navbar-list" name="app-toolbar-left" multiple></portal-target>

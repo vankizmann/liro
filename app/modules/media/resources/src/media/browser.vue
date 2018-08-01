@@ -155,15 +155,16 @@ export default {
     },
     data() {
         return {
-            path: this.value,
-            selected: [],
+            path: this.value, selected: [],
             media: this.liro.data.get("media", {})
         };
     },
     mounted() {
 
+        this.selected = this.values;
+
         this.$on('media.goto', (event, directory) => {
-            this.path = directory.path; this.selected = [];
+            this.path = directory.path;
         });
 
         this.$on("media.select", (event, item) => {

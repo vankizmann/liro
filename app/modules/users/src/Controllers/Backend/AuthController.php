@@ -19,7 +19,7 @@ class AuthController extends \Liro\System\Http\Controller
         $credentials = array_merge(['state' => 1], $request->only(['email', 'password']));
 
         if ( auth()->attempt($credentials) ) {
-            return redirect('/de/backend/menus');
+            return redirect()->route('liro-dashboard.backend.dashboard.index');
         }
 
         return redirect()->route('liro-users.backend.auth.login')->with('error', 'User with given credentials does not exists.');

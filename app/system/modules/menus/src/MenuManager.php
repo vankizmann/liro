@@ -61,12 +61,12 @@ class MenuManager implements \IteratorAggregate
 
         foreach ($this->menus as $menu) {
 
-            if ( ! isset($this->routes[$menu->package]) ) {
+            if ( ! isset($this->routes[$menu->module]) ) {
                 continue;
             }
 
-            $this->app->call($this->routes[$menu->package]['handler'], [
-                $this->app['router']->prefix($menu->prefixRoute)->name($menu->package), $menu
+            $this->app->call($this->routes[$menu->module]['handler'], [
+                $this->app['router']->prefix($menu->prefixRoute)->name($menu->module), $menu
             ]);
         }
 
@@ -149,7 +149,8 @@ class MenuManager implements \IteratorAggregate
                 'label'         => trans($options['title']),
                 'value'         => $options['name'],
                 'group'         => $options['group'],
-                'hidden'        => $options['hidden']
+                'hidden'        => $options['hidden'],
+                'option'        => isset($options['option']) ? $options['option'] : null
             ];
         }
 
@@ -162,7 +163,8 @@ class MenuManager implements \IteratorAggregate
 
         foreach ($this->groups as $group => $options) {
             $result[] = [
-                'label'         => $options['title'],
+                'label'         => trans($options['title']),
+                'value'         => $options['title'],
                 'children'      => $this->getRouteNamesList($hidden, $group)->toArray()
             ];
         }
@@ -196,7 +198,7 @@ class MenuManager implements \IteratorAggregate
         }
 
         $menus = $this->menus->where(
-            'package', $this->app['router']->currentRouteName()
+            'module', $this->app['router']->currentRouteName()
         );
 
         if ( $menus->count() ) {

@@ -18,7 +18,7 @@ class User extends \Illuminate\Foundation\Auth\User
      * @var array
      */
     protected $fillable = [
-        'state', 'name', 'email', 'password',
+        'state', 'name', 'email', 'password', 'image'
     ];
 
     /**
@@ -71,6 +71,16 @@ class User extends \Illuminate\Foundation\Auth\User
         if ( $password != '' ) {
             $this->attributes['password'] = Hash::make($password);
         }
+    }
+
+    public function setImageAttribute($value)
+    {
+        $this->attributes['image'] = @json_encode($value) ?: $value;
+    }
+
+    public function getImageAttribute()
+    {
+        return @json_decode($this->attributes['image'], true) ?: [];
     }
 
 }

@@ -72,18 +72,26 @@ class MenuController extends \Liro\System\Http\Controller
 
     public function create(Menu $menu, MenuType $types)
     {
+        $modules = app('menus')->getRouteNamesList(false)->map(function($module) {
+
+            if ( isset($module['option']) ) {
+                $module['option'] = app()->call($module['option']);
+            }
+
+            return $module;
+        });
+
         return view('liro-menus::backend/menus/create', [
             'menu'          => $menu, 
             'types'         => $types->all(), 
-            'routes'        => app('menus')->getRouteNamesList(false), 
-            'groups'        => app('menus')->getRouteGroups(true)
+            'modules'       => $modules
         ]);
     }
 
     public function store(MenuStoreRequest $request, Menu $menu)
     {
         $menu = $menu->create($request->only([
-            'state', 'title', 'route', 'package', 'query', 'hidden', 'menu_type_id', 'parent_id'
+            'state', 'title', 'route', 'module', 'query', 'hidden', 'menu_type_id', 'parent_id'
         ]));
 
         return response()->json([
@@ -94,18 +102,26 @@ class MenuController extends \Liro\System\Http\Controller
 
     public function edit(Menu $menu, MenuType $types)
     {
+        $modules = app('menus')->getRouteNamesList(false)->map(function($module) {
+
+            if ( isset($module['option']) ) {
+                $module['option'] = app()->call($module['option']);
+            }
+
+            return $module;
+        });
+
         return view('liro-menus::backend/menus/edit', [
             'menu'          => $menu, 
             'types'         => $types->all(), 
-            'routes'        => app('menus')->getRouteNamesList(false), 
-            'groups'        => app('menus')->getRouteGroups(true)
+            'modules'       => $modules
         ]);
     }
 
     public function update(MenuUpdateRequest $request, Menu $menu)
     {
         $menu->update($request->only([
-            'state', 'title', 'route', 'package', 'query', 'hidden', 'menu_type_id', 'parent_id'
+            'state', 'title', 'route', 'module', 'query', 'hidden', 'menu_type_id', 'parent_id'
         ]));
 
         return response()->json([

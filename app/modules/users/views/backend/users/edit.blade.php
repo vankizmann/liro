@@ -1,6 +1,7 @@
 @extends('theme::index')
 
 @php
+    Liro\Media\Helpers\MediaHelper::browser();
     app('scripts')->link('app-users', 'liro-users:resources/dist/app-users.js');
 @endphp
 

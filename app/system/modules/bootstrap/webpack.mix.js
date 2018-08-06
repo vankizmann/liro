@@ -35,21 +35,13 @@ mix.setResourceRoot(
 );
 
 /**
- * Compile boostrtap
+ * Vendor
  */
 
-var bootstrap = [
-    'resources/src/js/bootstrap.js'
-];
-
-mix.js(bootstrap, 'resources/dist/js/bootstrap.js');
+mix.js('resources/src/vendor.js', 'resources/dist/vendor.js');
 
 /**
- * Compile application
+ * Application
  */
 
-var application = [
-    'resources/src/js/app.js'
-];
-
-mix.js(application, 'resources/dist/js/app.js');
+mix.js('resources/src/app.js', 'resources/dist/app.js');

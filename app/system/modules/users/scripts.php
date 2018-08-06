@@ -261,6 +261,7 @@ return [
                 $table->string('name');
                 $table->string('email')->unique();
                 $table->string('password');
+                $table->string('image')->nullable();
                 $table->rememberToken();
                 $table->timestamps();
             });

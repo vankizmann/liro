@@ -9,15 +9,24 @@
                 "order":        "Menüs sortieren",
                 "create":       "Menü erstellen",
                 "edit":         "Menü bearbeiten",
-                "delete":       "Menü löschen"
+                "delete":       "Menü löschen",
+                "enable":       "Menü aktivieren",
+                "disable":      "Menü deaktivieren",
+                "visible":      "Menü anzeigen",
+                "hidden":       "Menü verstecken"
             },
 
             "types": {
                 "group":        "Menügruppen",
-                "index":        "Gruppen",
-                "create":       "Gruppe erstellen",
-                "edit":         "Gruppe bearbeiten",
-                "delete":       "Gruppe löschen"
+                "index":        "Menügruppen",
+                "create":       "Menügruppe erstellen",
+                "edit":         "Menügruppe bearbeiten",
+                "delete":       "Menügruppe löschen"
+            },
+
+            "redirect": {
+                "link":         "Weiterleitung",
+                "menu":         "Menüalias"
             }
 
         },
@@ -71,6 +80,7 @@
             "empty":            "Kein Eintrag gefunden.",
             "enabled":          "Aktiviert",
             "disabled":         "Deaktiviert",
+            "visibility":       "Sichtbarkeit",
             "visible":          "Sichtbar",
             "hidden":           "Versteckt",
             "search":           "Suche",
@@ -80,11 +90,20 @@
             "state":            "Status",
             "title":            "Titel",
             "theme":            "Theme",
-            "route":            "Route"
+            "route":            "Route",
+            "type":             "Menütyp",
+            "module":           "Modul",
+            "query":            "Query",
+            "link":             "Link",
+            "menu":             "Menü"
         },
 
         "placeholder": {
-            "themes": "Theme auswählen"
+            "themes":           "Theme auswählen",
+            "state":            "Status auswählen",
+            "visibility":       "Sichtbarkeit auswählen",
+            "type":             "Menütyp auswählen",
+            "module":           "Modul auswählen"
         }
 
     }

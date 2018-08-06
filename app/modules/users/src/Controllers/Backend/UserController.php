@@ -23,7 +23,9 @@ class UserController extends \Liro\System\Http\Controller
             'state' => 1
         ]);
 
-        return redirect()->route('liro-users.backend.users.index');
+        return response()->json([
+            'message' => trans('liro-users.messages.users.enabled')
+        ]);
     }
 
     public function disable(User $user)
@@ -32,7 +34,9 @@ class UserController extends \Liro\System\Http\Controller
             'state' => 0
         ]);
 
-        return redirect()->route('liro-users.backend.users.index');
+        return response()->json([
+            'message' => trans('liro-users.messages.users.disabled')
+        ]);
     }
 
     public function create(User $user, UserRole $roles)
@@ -45,7 +49,7 @@ class UserController extends \Liro\System\Http\Controller
     public function store(User $user, UserStoreRequest $request)
     {
         $user = $user->create($request->only([
-            'state', 'name', 'email', 'password', 'role_ids'
+            'state', 'name', 'email', 'password', 'image', 'role_ids'
         ]));
 
         return response()->json([
@@ -64,7 +68,7 @@ class UserController extends \Liro\System\Http\Controller
     public function update(User $user, UserUpdateRequest $request)
     {
         $user->update($request->only([
-            'state', 'name', 'email', 'password', 'role_ids'
+            'state', 'name', 'email', 'password', 'image', 'role_ids'
         ]));
 
         return response()->json([

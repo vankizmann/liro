@@ -4,8 +4,8 @@ namespace Liro\System\Menus\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
-use Liro\System\Menus\Models\MenuType;
 use Liro\System\Menus\Helpers\Walker;
+use Liro\System\Menus\Models\MenuType;
 
 class Menu extends Model
 {
@@ -14,7 +14,7 @@ class Menu extends Model
     protected $table = 'menus';
 
     protected $appends = [
-        'title_fix', 'lang_fix'
+        'title_fix', 'lang_fix',
     ];
 
     public function parent()
@@ -49,12 +49,12 @@ class Menu extends Model
 
     public function setQueryAttribute($value)
     {
-        return @json_encode($value) ?: $value;
+        $this->attributes['query'] = @json_encode($value) ?: $value;
     }
 
     public function getQueryAttribute()
     {
-        return @json_decode($this->attributes['query'], true) ?: [];
+        return @json_decode($this->attributes['query'], true) ?: new \StdClass;
     }
 
     public function getTitleFixAttribute()
@@ -71,8 +71,8 @@ class Menu extends Model
     {
         $current = app('router')->currentRouteName();
 
-        $routes = (new Walker)->multiple($this, 'children', function($result, $menu, $next) use ($current) {
-            return $next(array_merge($result, [$menu->package == $current]));
+        $routes = (new Walker)->multiple($this, 'children', function ($result, $menu, $next) use ($current) {
+            return $next(array_merge($result, [$menu->module == $current]));
         });
 
         return array_intersect(array_merge([$this->prefixRoute == request()->path()], $routes), [true]);
@@ -80,14 +80,12 @@ class Menu extends Model
 
     public function getPrefixRouteAttribute()
     {
-        $segments = (new Walker)->single($this, 'parent', function($result, $menu, $next) {
+        $segments = (new Walker)->single($this, 'parent', function ($result, $menu, $next) {
             return $next(array_merge($result, [$menu->route]));
         });
 
         $segments = array_filter(
-            array_merge(
-                [$this->lang_fix, @$this->type->route ?: ''], array_reverse($segments), [$this->route]
-            )
+            array_merge([$this->lang_fix, @$this->type->route ?: ''], array_reverse($segments), [$this->route])
         );
 
         return implode('/', $segments);

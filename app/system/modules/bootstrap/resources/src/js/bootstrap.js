@@ -47,6 +47,9 @@ window.Search = Search;
 import UIkit from 'uikit';
 window.UIkit = UIkit;
 
+import Icons from 'uikit/dist/js/uikit-icons';
+window.Icons = Icons;
+
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces

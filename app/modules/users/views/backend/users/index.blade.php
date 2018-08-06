@@ -1,7 +1,7 @@
 @extends('theme::index')
 
 @php
-    app('scripts')->link('app-users', 'liro-users:resources/dist/app-users.js');
+    app('scripts')->link('app-users', 'liro-users:resources/dist/app-users.js', ['vendor']);
 @endphp
 
 @section('content')

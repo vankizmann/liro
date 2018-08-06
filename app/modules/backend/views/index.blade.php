@@ -1,8 +1,9 @@
 <html lang="{{ app()->getLocale() }}">
     <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/fontawesome.css">
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.8/css/solid.css">
 
@@ -21,91 +22,90 @@
     </head>
     <body>
 
+        <!-- Loader start -->
         <div class="uk-ajax-load">
             <div class="uk-spinner" uk-spinner="ratio: 3;"></div>
         </div>
+        <!-- Loader end -->
 
-        <div id="app" class="uk-offcanvas-content">
+        <div id="app" class="app-container uk-offcanvas-content" style="min-height: 100vh;">
 
+            <!-- Help start -->
             <div id="app-module-help" uk-offcanvas="overlay: true; mode: push;">
                 <div class="uk-offcanvas-bar">
                     <portal-target name="app-module-help" multiple></portal-target>
                 </div>
             </div>
+            <!-- Help end -->
 
-            <!-- Header start -->
-            <header id="uk-header">
+            <header class="app-header">
 
-                <!-- Navigation start -->
-                <div class="uk-navigation">
-                    <div class="uk-flex">
+                <nav class="app-navigation uk-flex uk-flex-middle">
+                    <div class="uk-flex-pull-left">
 
-                        <div class="uk-flex-auto">
+                        <!-- Main menu start -->
+                        <ul class="uk-navbar-list">
+                            @foreach( app('menus')->type(1)->toTree() as $menu )
+                                @include('liro-backend::partials/menu-item', $menu)
+                            @endforeach
+                        </ul>
+                        <!-- Main menu end -->
 
-                            <nav class="uk-navbar-container uk-container uk-container-expand" uk-navbar>
-                                <div class="uk-navbar-left">
-
-                                    <!-- Main menu start -->
-                                    <ul class="uk-navbar-nav">
-                                        @foreach( app('menus')->type(1)->toTree() as $menu )
-                                            @include('liro-backend::partials/menu-item', $menu)
-                                        @endforeach
-                                    </ul>
-                                    <!-- Main menu end -->
-
-                                </div>
-                                <div class="uk-navbar-right">
-
-                                    <!-- User menu start -->
-                                    <ul class="uk-navbar-nav">
-                                        @foreach( app('menus')->type(2)->toTree() as $menu )
-                                            @include('liro-backend::partials/menu-item', $menu)
-                                        @endforeach
-                                    </ul>
-                                    <!-- User menu end -->
-                                    
-                                </div>
-                            </nav>
-                            <nav class="uk-infobar-container uk-container uk-container-expand" uk-navbar>
-                                <div class="uk-navbar-left">
-
-                                    <!-- Main menu subitems start -->
-                                    <ul class="uk-navbar-nav">
-                                        @foreach( app('menus')->currentRoot()->children()->getEnabled()->get() as $menu )
-                                            @include('liro-backend::partials/menu-item', $menu)
-                                        @endforeach
-                                    </ul>
-                                    <!-- Main menu subitems end -->
-
-                                </div>
-                                <div class="uk-navbar-right">
-                                    <portal-target class="uk-navbar-nav" name="app-infobar-action" multiple></portal-target>
-                                </div>
-                            </nav>
-                        </div>
                     </div>
-                </div>
-                <!-- Navigation end -->
+                    <div class="uk-flex-pull-right">
 
-                <!-- Toolbar start -->
-                <div class="uk-toolbar" :uk-sticky="'show-on-up: true; animation: uk-animation-slide-top'" v-cloak>
-                    <div class="uk-toolbar-container uk-container uk-container-expand" uk-navbar>
-                        <div class="uk-navbar-left">
-                            <portal-target class="uk-navbar-nav" name="app-toolbar-left" multiple></portal-target>
-                        </div>
-                        <div class="uk-navbar-right">
-                            <portal-target class="uk-navbar-nav" name="app-toolbar-right" multiple></portal-target>
-                        </div>
+                        <!-- User menu start -->
+                        <ul class="uk-navbar-list">
+
+                            <li>&#x1F44B; Moin {{ auth()->user()->name }}</li>
+
+                            @foreach( app('menus')->type(2)->toTree() as $menu )
+                                @include('liro-backend::partials/menu-item', $menu)
+                            @endforeach
+                        </ul>
+                        <!-- User menu end -->
+                        
                     </div>
-                </div>
-                <!-- Toolbar end -->
-                
+                </nav>
+
+                <nav class="app-infobar uk-flex uk-flex-middle">
+
+                    <!-- Main menu subitems start -->
+                    <div class="uk-flex-pull-left">
+                        <ul class="uk-navbar-list">
+                            @foreach( app('menus')->currentRoot()->children()->getEnabled()->get() as $menu )
+                                @include('liro-backend::partials/menu-item', $menu)
+                            @endforeach
+                        </ul>
+                    </div>
+                    <!-- Main menu subitems end -->
+
+                    <div class="uk-flex-pull-right">
+
+                        <!-- User menu start -->
+                        <portal-target class="uk-navbar-list" name="app-infobar-right" multiple></portal-target>
+                        <!-- User menu end -->
+                        
+                    </div>
+                </nav>
+
+                <nav class="app-toolbar uk-flex" uk-sticky>
+
+                    <div class="uk-flex-pull-left">
+                        <portal-target class="uk-navbar-list" name="app-toolbar-left" multiple></portal-target>
+                    </div>
+
+                    <div class="uk-flex-pull-right">
+                        <portal-target class="uk-navbar-list" name="app-toolbar-right" multiple></portal-target>
+                    </div>
+
+                </nav>
+
             </header>
-            <!-- Header end -->
 
-            <!-- Main start -->
-            <main id="uk-main" style="padding: 30px 0;" v-cloak>
-                <div class="uk-container uk-container-expand">
+            <main class="app-body uk-flex">
+
+                <div class="app-content">
                     @if ( session()->has('error') )
                         <script>UIkit.notification('{{ session('error') }}', 'error');</script>
                     @endif
@@ -117,9 +117,12 @@
                     @endif
                     @yield('content')
                 </div>
-            </main>
-            <!-- Main end -->
 
-        </div>
+                <portal-target class="app-preview" name="app-module-preview" multiple></portal-target>
+                
+            </div>
+
+        </main>
+
     </body>
 </html>

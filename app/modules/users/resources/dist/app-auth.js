@@ -205,7 +205,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\src\\app-login.vue"
+Component.options.__file = "resources/src/auth/login.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -214,9 +214,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1c7a0d30", Component.options)
+    hotAPI.createRecord("data-v-761a4485", Component.options)
   } else {
-    hotAPI.reload("data-v-1c7a0d30", Component.options)
+    hotAPI.reload("data-v-761a4485", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -228,8 +228,14 @@ module.exports = Component.exports
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -254,16 +260,23 @@ module.exports = Component.exports
 //
 //
 
-module.exports = {
-    name: 'app-login',
+/* harmony default export */ __webpack_exports__["default"] = ({
     props: {
+
         action: {
-            default: '',
+            default: function _default() {
+                return '';
+            },
+
             type: String
         }
+
     }
-};
-liro.component(module.exports);
+});
+
+if (window.liro) {
+    liro.vue.$component('app-login', this.default);
+}
 
 /***/ }),
 /* 4 */
@@ -273,7 +286,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "uk-form uk-form-stacked" }, [
+  return _c("div", [
     _c(
       "form",
       {
@@ -287,23 +300,18 @@ var render = function() {
           [
             _c("app-form-input", {
               attrs: {
-                label: _vm.$t("liro-users.form.email"),
                 type: "email",
-                id: "email",
                 name: "email",
-                rules: "required|email",
-                value: ""
+                value: "",
+                label: _vm.$t("liro-users.form.email")
               }
             }),
             _vm._v(" "),
             _c("app-form-password", {
               attrs: {
-                label: _vm.$t("liro-users.form.password"),
-                type: "text",
-                id: "password",
                 name: "password",
-                rules: "required|min:6",
-                value: ""
+                value: "",
+                label: _vm.$t("liro-users.form.password")
               }
             }),
             _vm._v(" "),
@@ -332,7 +340,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1c7a0d30", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-761a4485", module.exports)
   }
 }
 

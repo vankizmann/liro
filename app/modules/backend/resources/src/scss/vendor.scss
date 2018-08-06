@@ -2,12 +2,21 @@
  * Vendor
  **/
 
-$global-font-family:                    'Open Sans', 'Helvetica', 'Arial', sans-serif;
-$global-font-size:                      15px;
+$global-font-family:                    'Roboto', 'Helvetica', 'Arial', sans-serif;
+$global-font-size:                      16px;
 $transition-duration:                   0.15s;
 $transition-slow-duration:              0.30s;
+$base-heading-font-weight:              400;
+$global-large-gutter:                   50px;
+$global-large-margin:                   50px;
+$heading-primary-font-size-m:           2.00rem;
+$global-xxlarge-font-size:              1.85rem;
+$global-xlarge-font-size:               1.65rem;
+$global-large-font-size:                1.45rem;
+$global-medium-font-size:               1.25rem;
 $global-emphasis-color:                 $color-black;
 $global-color:                          $color-black;
+$global-border:                         $color-gray-20;
 $global-muted-background:               $color-gray-10;
 $global-muted-color:                    $color-gray-40;
 $global-primary-background:             $color-primary;
@@ -16,9 +25,9 @@ $global-success-background:             $color-green;
 $global-warning-background:             $color-orange;
 $global-danger-background:              $color-red;
 $base-body-color:                       $color-gray-60;
-$button-primary-color:                  $color-black;
-$button-primary-hover-color:            $color-black;
-$button-primary-active-color:           $color-black;
+$button-primary-color:                  $color-white;
+$button-primary-hover-color:            $color-white;
+$button-primary-active-color:           $color-white;
 $button-secondary-color:                $color-primary;
 $button-secondary-hover-color:          $color-primary;
 $button-secondary-active-color:         $color-primary;

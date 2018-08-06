@@ -8,7 +8,7 @@ class User extends \Liro\System\Users\Models\User
 
     protected $hidden = ['roles', 'password', 'remember_token', 'created_at', 'updated_at'];
 
-    protected $fillable = ['state', 'name', 'email', 'password', 'role_ids'];
+    protected $fillable = ['state', 'name', 'email', 'password', 'image', 'role_ids'];
 
     public function getEditRouteAttribute()
     {

@@ -32,7 +32,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => base_path() . '/' . env('CMS_MEDIA', 'storage'),
+            'root' => base_path() . '/storage',
         ]
 
     ]

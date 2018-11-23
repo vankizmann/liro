@@ -1,0 +1,60 @@
+
+.th-index {
+
+    & {
+        background-color: $color-gray-10;
+    }
+
+    &-body {
+        padding: 40px 15px;
+    }
+
+}
+
+.th-error {
+
+    &-body {
+        min-height: 100vh;
+        padding: 40px 15px;
+    }
+
+    &-form {
+        width: 100%;
+        max-width: 450px;
+    }
+
+}
+
+.th-login {
+
+    & {
+        background-color: $color-gray-5;
+        background-image: url('../images/background.jpg');
+        background-size: cover;
+    }
+
+    &-body {
+        min-height: 100vh;
+        padding: 40px 15px;
+    }
+
+    &-form {
+        background-color: $color-white;
+        width: 100%;
+        border-radius: 3px;
+        max-width: 450px;
+    }
+
+}
+
+.th-frame {
+
+    & {
+        width: 100%;
+    }
+
+    &-content {
+        padding: 30px;
+    }
+
+}

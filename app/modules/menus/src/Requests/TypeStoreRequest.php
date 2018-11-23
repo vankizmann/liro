@@ -2,7 +2,7 @@
 
 namespace Liro\Menus\Requests;
 
-class TypeStoreRequest extends \Illuminate\Foundation\Http\FormRequest
+class TypeStoreRequest extends \Liro\System\Http\FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,24 +23,23 @@ class TypeStoreRequest extends \Illuminate\Foundation\Http\FormRequest
     {
         return [
             'title'         => 'required|min:4',
-            'route'         => 'nullable|alpha_dash',
+            'route'         => 'nullable|regex:/^[a-z0-9\-\_\/]+$/i',
             'theme'         => 'required|alpha_dash'
         ];
     }
 
     /**
-     * Get the error messages for the defined validation rules.
+     * Get custom attributes for validator errors.
      *
      * @return array
      */
-    public function messages()
+    public function attributes()
     {
         return [
-            'title.required'        => trans('liro-menus.messages.title.required'),
-            'title.min'             => trans('liro-menus.messages.title.min'),
-            'route.alpha_dash'      => trans('liro-menus.messages.route.alpha_dash'),
-            'theme.required'        => trans('liro-menus.messages.theme.required'),
-            'theme.alpha'           => trans('liro-menus.messages.theme.alpha_dash')
+            'state'         => trans('liro-menus::form.menu.state'),
+            'title'         => trans('liro-menus::form.menu.title'),
+            'route'         => trans('liro-menus::form.menu.route'),
+            'theme'         => trans('liro-menus::form.menu.theme')
         ];
     }
 

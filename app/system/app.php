@@ -15,9 +15,6 @@ $app = new Liro\System\Application(
     realpath(__DIR__.'/../../')
 );
 
-$app->extend('translator', function ($translator, $app) {
-    return new Liro\System\Services\Translator($app['translation.loader'], $app['config']['app.locale']);
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +28,18 @@ $app->extend('translator', function ($translator, $app) {
 */
 
 $app->singleton(
+    Illuminate\Console\Scheduling\Schedule::class, 
+    Illuminate\Console\Scheduling\Schedule::class
+);
+
+$app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
     Liro\System\Http\Kernel::class
+);
+
+$app->singleton(
+    Illuminate\Contracts\Console\Kernel::class,
+    Liro\System\Console\Kernel::class
 );
 
 $app->singleton(
@@ -40,28 +47,49 @@ $app->singleton(
     Liro\System\Exceptions\Handler::class
 );
 
+$app->extend('translator', function ($service) use ($app) {
+    return new Liro\System\Translation\Translator($app['translation.loader'], $app['config']['app.locale']);
+});
+
+$app->extend('url', function ($service) use ($app) {
+    return new Liro\System\Routing\UrlGenerator($app['routes'], $app['request']);
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | Append basic loaders to modules
 |--------------------------------------------------------------------------
 */
 
-$app['modules']->append([
-    Liro\System\Modules\Loaders\ModuleLoader::class,
+$app['modules']->addLoaders([
     Liro\System\Modules\Loaders\ClassLoader::class,
     Liro\System\Modules\Loaders\AliasLoader::class,
-    Liro\System\Modules\Loaders\ViewLoader::class,
     Liro\System\Modules\Loaders\EventLoader::class,
-    Liro\System\Modules\Loaders\MiddlewareLoader::class,
-    Liro\System\Modules\Loaders\DefaultLoader::class,
+    Liro\System\Modules\Loaders\MiddlewareLoader::class
 ]);
 
-$app['modules']->register([
-    'app/system/modules/*/index.php', 'app/modules/*/index.php', 'modules/*/*/index.php'
+$app['modules']->loadPaths([
+    'app/system/modules/*/index.php',
+    'app/modules/*/index.php',
+    'modules/*/*/index.php'
 ]);
 
-$app->booted(function($app) {
-    $app['modules']->load(['system.bootstrap']);
+$app->booted(function () use ($app) {
+
+    $app['modules']->loadModule('system-modules');
+    $app['modules']->bootModule('system-modules');
+
+    $app['events']->fire('app.router.before');
+    $app['modules']->registerModuleRoutes()->bootModuleRoutes();
+    $app['events']->fire('app.router.after');
+
+    $app['events']->fire('app.view.before');
+    $app['modules']->registerModuleHints()->registerThemeHints();
+    $app['events']->fire('app.view.after');
+
+    $app['events']->fire('app.boot');
+
 });
 
 /*

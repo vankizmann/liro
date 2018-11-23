@@ -7,12 +7,12 @@ class RedirectRouter
 
     public function menu($router)
     {
-        $router->middleware('web', 'route')->get('/', 'Liro\Menus\Controllers\Backend\RedirectController@menu');
+        $router->middleware('web')->get('/', 'Liro\Menus\Controllers\RedirectController@menu');
     }
 
-    public function link($router)
+    public function url($router)
     {
-        $router->middleware('web', 'route')->get('/', 'Liro\Menus\Controllers\Backend\RedirectController@link');
+        $router->middleware('web')->get('/', 'Liro\Menus\Controllers\RedirectController@url');
     }
 
 }

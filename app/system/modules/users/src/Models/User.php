@@ -1,86 +1,77 @@
 <?php
 namespace Liro\System\Users\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Notifications\Notifiable;
+use Liro\System\Database\Castable;
 use Liro\System\Users\Models\UserRole;
-use Liro\System\Users\Models\UserRoleRoute;
+use Liro\System\Fields\Helpers\FieldHelper;
 
 class User extends \Illuminate\Foundation\Auth\User
 {
     use Notifiable;
+    use Castable;
 
     protected $table = 'users';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'state', 'name', 'email', 'password', 'image'
+    protected $appends = [
+        'role_ids'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    protected $fillable = [
+        'state', 'lock', 'name', 'email', 'password', 'image', 'role_ids'
+    ];
+
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token'
     ];
 
     protected $attributes = [
-        'state' => 0
+        'state'         => null,
+        'lock'          => null,
+        'name'          => null,
+        'email'         => null,
+        'password'      => null
+    ];
+
+    protected $casts = [
+        'state'         => 'integer',
+        'lock'          => 'integer',
+        'name'          => 'string',
+        'email'         => 'string',
+        'password'      => 'string'
     ];
 
     public function roles()
     {
-        return $this->belongsToMany(UserRole::class, 'user_role_link', 'user_id', 'user_role_id');
+        return $this->belongsToMany(UserRole::class, 'user_role_links', 'user_id', 'user_role_id');
     }
 
-    public function scopeGetRolesRoutes()
+    public function getRoleIdsAttribute()
     {
-        return $this->roles->map(function($role) {
-            return $role->routes->pluck('route');
-        })->flatten();
+        return $this->roles->pluck('id');
     }
 
-    public function hasRoles($roles = [])
+    public function setRoleIdsAttribute($value)
     {
-        return $this->roles()->whereIn('access', $roles)->count();
+        $this->saved(function($model) use ($value) {
+            $model->roles()->sync($value);
+        });
     }
 
-    public function hasRole($roles = [])
+    public function setPasswordAttribute($value)
     {
-        return $this->roles()->where('access', $roles)->count();
-    }
-
-    public function hasRoute($route)
-    {
-        return $this->getRolesRoutes()->intersect($route)->count();
-    }
-
-    public function hasRoutes($routes)
-    {
-        return $this->getRolesRoutes()->intersect($routes)->count();
-    }
-
-    public function setPasswordAttribute($password)
-    {
-        if ( $password != '' ) {
-            $this->attributes['password'] = Hash::make($password);
-        }
-    }
-
-    public function setImageAttribute($value)
-    {
-        $this->attributes['image'] = @json_encode($value) ?: $value;
+        if ($value) $this->attributes['password'] = Hash::make($value);
     }
 
     public function getImageAttribute()
     {
-        return @json_decode($this->attributes['image'], true) ?: [];
+        return FieldHelper::getModel($this, 'image', null);
+    }
+
+    public function setImageAttribute($value)
+    {
+        return FieldHelper::setModel($this, 'image', $value);
     }
 
 }

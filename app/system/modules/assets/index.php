@@ -2,19 +2,17 @@
 
 return [
 
-    'name' => 'system.assets',
+    'name'          => 'system-assets',
+    'version'       => '0.0.1',
+    'type'          => 'system-module',
 
     'autoload' => [
         'Liro\\System\\Assets\\' => 'src/'
     ],
 
     'alias' => [
-        'scripts' => Liro\System\Assets\ScriptManager::class,
-        'styles' => Liro\System\Assets\StyleManager::class
-    ],
-
-    'loader' => [
-        Liro\System\Assets\Loaders\AssetLoader::class
+        'scripts'       => Liro\System\Assets\Managers\ScriptManager::class,
+        'styles'        => Liro\System\Assets\Managers\StyleManager::class
     ]
 
 ];

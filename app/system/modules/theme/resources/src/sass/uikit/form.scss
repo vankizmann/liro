@@ -1,0 +1,57 @@
+
+.uk-form {
+
+    &-label {
+        color: $color-gray-60;
+    }
+
+    &-label, &-label-link {
+        display: inline-block;
+        margin-bottom: 6px;
+        font-size: 0.875rem;
+    }
+
+    &-controls:not(:last-child) {
+        margin-bottom: 16px;
+    }
+
+}
+
+.uk-input, .uk-textarea, .uk-select {
+
+    & {
+        border-color: $color-gray-15;
+        transition: all 0.15s;
+        border-radius: $global-border-radius;
+    }
+
+    &:focus, &.uk-open {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 0.1rem rgba($color-primary, 0.2);
+    }
+
+}
+
+.uk-checkbox {
+
+    & {
+        transition: all 0.15s;
+        margin-top: -3px;
+        border-radius: $global-border-radius;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.1rem rgba($color-primary, 0.2);
+    }
+
+    &-label {
+        cursor: pointer;
+        user-select: none;
+        font-size: 0.875rem;
+    }
+
+    &-label input {
+        margin-right: 6px;
+    }
+
+}

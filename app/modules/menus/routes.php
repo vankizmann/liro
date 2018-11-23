@@ -2,129 +2,36 @@
 
 return [
 
-    'groups' => [
-
-        'liro-menus.backend.menus' => [
-            'title' => 'liro-menus.backend.menus.group'
-        ],
-
-        'liro-menus.backend.types' => [
-            'title' => 'liro-menus.backend.types.group'
-        ],
-
-        'liro-menus.backend.redirect' => [
-            'title' => 'liro-menus.backend.redirect.group'
-        ]
-
+    'liro-menus.redirect.menu' => [
+        'liro-menus::module.redirect.menu', 'Liro\Menus\Routers\RedirectRouter@menu'
     ],
 
-    'routes' => [
+    'liro-menus.redirect.url' => [
+        'liro-menus::module.redirect.url', 'Liro\Menus\Routers\RedirectRouter@url'
+    ],
 
-        'liro-menus.backend.menus.index' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.menus',
-            'title'         => 'liro-menus.backend.menus.index',
-            'handler'       => 'Liro\Menus\Routers\MenuRouter@index'
-        ],
+    'liro-menus.menu.index' => [
+        'liro-menus::module.menu.index', 'Liro\Menus\Routers\MenuRouter@index'
+    ],
 
-        'liro-menus.backend.menus.order' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.menus',
-            'title'         => 'liro-menus.backend.menus.order',
-            'handler'       => 'Liro\Menus\Routers\MenuRouter@order'
-        ],
+    'liro-menus.menu.create' => [
+        'liro-menus::module.menu.create', 'Liro\Menus\Routers\MenuRouter@create'
+    ],
 
-        'liro-menus.backend.menus.create' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.menus',
-            'title'         => 'liro-menus.backend.menus.create',
-            'handler'       => 'Liro\Menus\Routers\MenuRouter@create'
-        ],
+    'liro-menus.menu.edit' => [
+        'liro-menus::module.menu.edit', 'Liro\Menus\Routers\MenuRouter@edit'
+    ],
 
-        'liro-menus.backend.menus.edit' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.menus',
-            'title'         => 'liro-menus.backend.menus.edit',
-            'handler'       => 'Liro\Menus\Routers\MenuRouter@edit'
-        ],
+    'liro-menus.type.index' => [
+        'liro-menus::module.type.index', 'Liro\Menus\Routers\TypeRouter@index'
+    ],
 
-        'liro-menus.backend.menus.delete' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.menus',
-            'title'         => 'liro-menus.backend.menus.delete',
-            'handler'       => 'Liro\Menus\Routers\MenuRouter@delete'
-        ],
+    'liro-menus.type.create' => [
+        'liro-menus::module.type.create', 'Liro\Menus\Routers\TypeRouter@create'
+    ],
 
-        'liro-menus.backend.menus.enable' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.menus',
-            'title'         => 'liro-menus.backend.menus.enable',
-            'handler'       => 'Liro\Menus\Routers\MenuRouter@enable'
-        ],
-
-        'liro-menus.backend.menus.disable' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.menus',
-            'title'         => 'liro-menus.backend.menus.disable',
-            'handler'       => 'Liro\Menus\Routers\MenuRouter@disable'
-        ],
-
-        'liro-menus.backend.menus.visible' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.menus',
-            'title'         => 'liro-menus.backend.menus.visible',
-            'handler'       => 'Liro\Menus\Routers\MenuRouter@visible'
-        ],
-
-        'liro-menus.backend.menus.hidden' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.menus',
-            'title'         => 'liro-menus.backend.menus.hidden',
-            'handler'       => 'Liro\Menus\Routers\MenuRouter@hidden'
-        ],
-
-        'liro-menus.backend.types.index' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.types',
-            'title'         => 'liro-menus.backend.types.index',
-            'handler'       => 'Liro\Menus\Routers\TypeRouter@index'
-        ],
-
-        'liro-menus.backend.types.create' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.types',
-            'title'         => 'liro-menus.backend.types.create',
-            'handler'       => 'Liro\Menus\Routers\TypeRouter@create'
-        ],
-
-        'liro-menus.backend.types.edit' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.types',
-            'title'         => 'liro-menus.backend.types.edit',
-            'handler'       => 'Liro\Menus\Routers\TypeRouter@edit'
-        ],
-
-        'liro-menus.backend.types.delete' => [
-            'hidden'        => true,
-            'group'         => 'liro-menus.backend.types',
-            'title'         => 'liro-menus.backend.types.delete',
-            'handler'       => 'Liro\Menus\Routers\TypeRouter@delete'
-        ],
-
-        'liro-menus.backend.redirect.menu' => [
-            'group'         => 'liro-menus.backend.redirect',
-            'title'         => 'liro-menus.backend.redirect.menu',
-            'handler'       => 'Liro\Menus\Routers\RedirectRouter@menu',
-            'option'        => 'Liro\Menus\Options\RedirectOption@menu'
-        ],
-
-        'liro-menus.backend.redirect.link' => [
-            'group'         => 'liro-menus.backend.redirect',
-            'title'         => 'liro-menus.backend.redirect.link',
-            'handler'       => 'Liro\Menus\Routers\RedirectRouter@link',
-            'option'        => 'Liro\Menus\Options\RedirectOption@link'
-        ]
-
+    'liro-menus.type.edit' => [
+        'liro-menus::module.type.edit', 'Liro\Menus\Routers\TypeRouter@edit'
     ]
 
 ];

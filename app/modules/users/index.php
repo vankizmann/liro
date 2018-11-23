@@ -1,16 +1,36 @@
 <?php
 
+use Liro\System\Modules\Models\Module;
+
 return [
 
-    'name' => 'liro-users',
+    'name'          => 'liro-users',
+    'version'       => '0.0.1',
+    'type'          => 'app-module',
 
     'autoload' => [
         'Liro\\Users\\' => 'src/'
     ],
 
-    'middleware' => [
-        'role' => Liro\Users\Middleware\CheckUserRole::class,
-        'route' => Liro\Users\Middleware\CheckUserRoute::class
+    'events' => [
+
+        'app.boot' => function () {
+
+            app('scripts')->addRoutes([
+                'liro-users.auth.login'
+            ]);
+    
+            app('scripts')->addMessages([
+                'liro-users::form',
+                'liro-users::message'
+            ]);
+    
+            app('scripts')->addLink(
+                'liro-auth', 'liro-users::dist/liro-auth.js', ['theme-script']
+            );
+
+        }
+
     ]
 
 ];

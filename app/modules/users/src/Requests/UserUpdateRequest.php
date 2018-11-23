@@ -2,7 +2,7 @@
 
 namespace Liro\Users\Requests;
 
-class UserUpdateRequest extends \Illuminate\Foundation\Http\FormRequest
+class UserUpdateRequest extends \Liro\System\Http\FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,31 +22,25 @@ class UserUpdateRequest extends \Illuminate\Foundation\Http\FormRequest
     public function rules()
     {
         return [
-            'name'          => 'required|min:4',
             'state'         => 'required|integer',
+            'name'          => 'required|min:4',
             'email'         => "required|unique:users,email,$this->id|email",
-            'password'      => 'nullable|min:6',
-            'role_ids'      => 'array'
+            'password'      => 'nullable|min:6'
         ];
     }
 
     /**
-     * Get the error messages for the defined validation rules.
+     * Get custom attributes for validator errors.
      *
      * @return array
      */
-    public function messages()
+    public function attributes()
     {
         return [
-            'state.required'        => trans('liro-users.messages.state.required'),
-            'state.integer'         => trans('liro-users.messages.state.integer'),
-            'name.required'         => trans('liro-users.messages.name.required'),
-            'name.min'              => trans('liro-users.messages.name.min'),
-            'email.required'        => trans('liro-users.messages.email.required'),
-            'email.unique'          => trans('liro-users.messages.email.unique'),
-            'email.email'           => trans('liro-users.messages.email.email'),
-            'password.min'          => trans('liro-users.messages.password.min'),
-            'role_ids.array'        => trans('liro-users.messages.role_ids.array')
+            'state'         => trans('liro-users::form.user.state'),
+            'name'          => trans('liro-users::form.user.name'),
+            'email'         => trans('liro-users::form.user.email'),
+            'password'      => trans('liro-users::form.user.password'),
         ];
     }
 

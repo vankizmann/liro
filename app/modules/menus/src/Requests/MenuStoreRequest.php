@@ -2,7 +2,7 @@
 
 namespace Liro\Menus\Requests;
 
-class MenuStoreRequest extends \Illuminate\Foundation\Http\FormRequest
+class MenuStoreRequest extends \Liro\System\Http\FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,26 +22,31 @@ class MenuStoreRequest extends \Illuminate\Foundation\Http\FormRequest
     public function rules()
     {
         return [
-            'title'         => 'required|min:1',
             'state'         => 'required|integer',
-            'hidden'        => 'required|integer',
-            'route'         => 'nullable|alpha_dash',
+            'hide'          => 'required|integer',
+            'title'         => 'required|min:1',
+            'route'         => 'nullable|regex:/^[a-z0-9\-\_\/]+$/i',
             'module'        => 'required',
-            'menu_type_id'  => 'required|integer',
+            'menu_type_id'  => 'required|integer|exists:menu_types,id',
             'query'         => 'nullable'
         ];
     }
 
     /**
-     * Get the error messages for the defined validation rules.
+     * Get custom attributes for validator errors.
      *
      * @return array
      */
-    public function messages()
+    public function attributes()
     {
         return [
-            'title.required'        => trans('liro-menus.messages.title.required'),
-            'title.min'             => trans('liro-menus.messages.title.min'),
+            'state'         => trans('liro-menus::form.menu.state'),
+            'hide'          => trans('liro-menus::form.menu.hide'),
+            'title'         => trans('liro-menus::form.menu.title'),
+            'route'         => trans('liro-menus::form.menu.route'),
+            'module'        => trans('liro-menus::form.menu.module'),
+            'menu_type_id'  => trans('liro-menus::form.menu.type'),
+            'query'         => trans('liro-menus::form.menu.query')
         ];
     }
 

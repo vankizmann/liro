@@ -2,54 +2,27 @@
 
 namespace Liro\Menus\Routers;
 
+use Liro\System\Menus\Models\MenuType;
+
 class MenuRouter
 {
 
     public function index($router)
     {
-        $router->middleware('web', 'route')->get('/', 'Liro\Menus\Controllers\Backend\MenuController@index');
-    }
-
-    public function order($router)
-    {
-        $router->middleware('ajax', 'route')->post('/', 'Liro\Menus\Controllers\Backend\MenuController@order');
+        $router->middleware('web', 'route')->get('{type?}', 'Liro\Menus\Controllers\MenuController@index')->defaults('type', MenuType::first()->id);
+        $router->middleware('ajax', 'route')->post('{type?}', 'Liro\Menus\Controllers\MenuController@order')->defaults('type', MenuType::first()->id);
     }
 
     public function create($router)
     {
-        $router->middleware('web', 'route')->get('/', 'Liro\Menus\Controllers\Backend\MenuController@create');
-        $router->middleware('ajax', 'route')->post('/', 'Liro\Menus\Controllers\Backend\MenuController@store');
+        $router->middleware('web', 'route')->get('/', 'Liro\Menus\Controllers\MenuController@create');
+        $router->middleware('ajax', 'route')->post('/', 'Liro\Menus\Controllers\MenuController@store');
     }
 
     public function edit($router)
     {
-        $router->middleware('web', 'route')->get('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@edit');
-        $router->middleware('ajax', 'route')->post('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@update');
-    }
-
-    public function delete($router)
-    {
-        $router->middleware('ajax', 'route')->any('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@delete');
-    }
-
-    public function enable($router)
-    {
-        $router->middleware('ajax', 'route')->any('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@enable');
-    }
-
-    public function disable($router)
-    {
-        $router->middleware('ajax', 'route')->any('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@disable');
-    }
-
-    public function visible($router)
-    {
-        $router->middleware('ajax', 'route')->any('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@visible');
-    }
-
-    public function hidden($router)
-    {
-        $router->middleware('ajax', 'route')->any('{menu}', 'Liro\Menus\Controllers\Backend\MenuController@hidden');
+        $router->middleware('web', 'route')->get('{menu}', 'Liro\Menus\Controllers\MenuController@edit');
+        $router->middleware('ajax', 'route')->post('{menu}', 'Liro\Menus\Controllers\MenuController@update');
     }
 
 }

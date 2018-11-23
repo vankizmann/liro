@@ -1,0 +1,16 @@
+
+@import "form";
+@import "button";
+@import "table";
+@import "notification";
+@import "dropdown";
+@import "label";
+@import "modal";
+
+a.uk-disabled {
+    color: $color-gray-25;
+}
+
+a.uk-disabled polyline {
+    stroke: $color-gray-25;
+}

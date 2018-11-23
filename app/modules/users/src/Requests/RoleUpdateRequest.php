@@ -2,7 +2,7 @@
 
 namespace Liro\Users\Requests;
 
-class RoleUpdateRequest extends \Illuminate\Foundation\Http\FormRequest
+class RoleUpdateRequest extends \Liro\System\Http\FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,20 +23,20 @@ class RoleUpdateRequest extends \Illuminate\Foundation\Http\FormRequest
     {
         return [
             'title'         => 'required|min:4',
-            'route_names'   => 'array'
+            'access'        => "required|unique:user_roles,access,$this->id|alpha|min:4"
         ];
     }
 
     /**
-     * Get the error messages for the defined validation rules.
+     * Get custom attributes for validator errors.
      *
      * @return array
      */
-    public function messages()
+    public function attributes()
     {
         return [
-            'title.required'    => 'liro-users.messages.title.required',
-            'title.min'         => 'liro-users.messages.title.min'
+            'title'         => trans('liro-users::form.role.title'),
+            'access'        => trans('liro-users::form.role.access')
         ];
     }
 

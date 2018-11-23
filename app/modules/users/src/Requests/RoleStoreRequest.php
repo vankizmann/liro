@@ -2,7 +2,7 @@
 
 namespace Liro\Users\Requests;
 
-class RoleStoreRequest extends \Illuminate\Foundation\Http\FormRequest
+class RoleStoreRequest extends \Liro\System\Http\FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,26 +23,20 @@ class RoleStoreRequest extends \Illuminate\Foundation\Http\FormRequest
     {
         return [
             'title'         => 'required|min:4',
-            'access'        => 'required|unique:user_roles|alpha|min:4',
-            'route_names'   => 'array'
+            'access'        => 'required|unique:user_roles|alpha|min:4'
         ];
     }
 
     /**
-     * Get the error messages for the defined validation rules.
+     * Get custom attributes for validator errors.
      *
      * @return array
      */
-    public function messages()
+    public function attributes()
     {
         return [
-            'title.required'        => trans('liro-users.messages.title.required'),
-            'title.min'             => trans('liro-users.messages.title.min'),
-            'access.required'       => trans('liro-users.messages.access.required'),
-            'access.unique'         => trans('liro-users.messages.access.unique'),
-            'access.alpha'          => trans('liro-users.messages.access.alpha'),
-            'access.min'            => trans('liro-users.messages.access.min'),
-            'route_names.array'     => trans('liro-users.messages.route_names.array')
+            'title'         => trans('liro-users::form.role.title'),
+            'access'        => trans('liro-users::form.role.access')
         ];
     }
 

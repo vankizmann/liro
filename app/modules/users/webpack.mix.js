@@ -30,7 +30,15 @@ mix.setResourceRoot(
  * Compile files
  */
 
-mix.js(['resources/src/auth/login.vue'], 'resources/dist/app-auth.js');
-mix.js(['resources/src/users/index.vue', 'resources/src/users/create.vue', 'resources/src/users/edit.vue'], 'resources/dist/app-users.js');
-mix.js(['resources/src/roles/index.vue', 'resources/src/roles/create.vue', 'resources/src/roles/edit.vue'], 'resources/dist/app-roles.js');
+mix.js([
+    'resources/src/auth/login.vue', 'resources/src/auth/modal.vue'
+], 'resources/dist/liro-auth.js');
 
+
+mix.js([
+    'resources/src/user/index.vue', 'resources/src/user/create.vue', 'resources/src/user/edit.vue'
+], 'resources/dist/liro-user.js');
+
+mix.js([
+    'resources/src/role/index.vue', 'resources/src/role/create.vue', 'resources/src/role/edit.vue'
+], 'resources/dist/liro-role.js');

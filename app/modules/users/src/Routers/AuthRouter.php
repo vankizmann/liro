@@ -7,13 +7,13 @@ class AuthRouter
 
     public function login($router)
     {
-        $router->middleware('web')->get('/', 'Liro\Users\Controllers\Backend\AuthController@login');
-        $router->middleware('web')->post('/', 'Liro\Users\Controllers\Backend\AuthController@submit');
+        $router->middleware('web', 'route')->get('/', 'Liro\Users\Controllers\AuthController@login');
+        $router->middleware('ajax', 'route')->post('/', 'Liro\Users\Controllers\AuthController@submit');
     }
 
     public function logout($router)
     {
-        $router->middleware('web')->get('/', 'Liro\Users\Controllers\Backend\AuthController@logout');
+        $router->middleware('web', 'route')->any('/', 'Liro\Users\Controllers\AuthController@logout');
     }
 
 }

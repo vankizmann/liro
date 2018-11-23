@@ -1,0 +1,19 @@
+
+.th-topbar {
+
+    & {
+        background-color: $color-white;
+        padding: 40px 0;
+        border-top: 1px solid $color-gray-5;
+    }
+
+    .uk-navbar-item {
+        padding: 0 20px;
+    }
+
+    .uk-navbar-item,
+    .uk-navbar-nav > li > a {
+        height: 40px;
+    }
+
+}

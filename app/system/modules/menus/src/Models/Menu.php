@@ -4,91 +4,90 @@ namespace Liro\System\Menus\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
-use Liro\System\Menus\Helpers\Walker;
+use Liro\System\Database\Castable;
 use Liro\System\Menus\Models\MenuType;
+use Liro\System\Fields\Helpers\FieldHelper;
 
 class Menu extends Model
 {
     use NodeTrait;
+    use Castable;
 
     protected $table = 'menus';
 
-    protected $appends = [
-        'title_fix', 'lang_fix',
+    protected $fillable = [
+        'state', 'hide', 'lock', 'title', 'route', 'module', 'query', 'menu_type_id', 'parent_id', '_lft', '_rgt'
     ];
 
-    public function parent()
-    {
-        return $this->hasOne(Menu::class, 'id', 'parent_id');
-    }
+    protected $hidden = [
+        '_lft', '_rgt', 'parent_id'
+    ];
 
-    public function type()
-    {
-        return $this->hasOne(MenuType::class, 'id', 'menu_type_id');
-    }
+    protected $attributes = [
+        'state'         => null,
+        'hide'          => null,
+        'lock'          => null,
+        'title'         => null,
+        'route'         => null,
+        'module'        => null,
+        'query'         => null,
+        'menu_type_id'  => null
+    ];
 
-    public function scopeGetEnabled($query)
-    {
-        return $query->where('state', 1)->defaultOrder();
-    }
-
-    public function scopeGetDisabled($query)
-    {
-        return $query->where('state', 0)->defaultOrder();
-    }
-
-    public function scopeGetType($query, $type)
-    {
-        return $query->where('menu_type_id', $type)->defaultOrder();
-    }
+    protected $casts = [
+        'state'         => 'integer',
+        'hide'          => 'integer',
+        'lock'          => 'integer',
+        'title'         => 'string',
+        'route'         => 'string',
+        'module'        => 'string',
+        'query'         => 'string',
+        'menu_type_id'  => 'integer'
+    ];
 
     protected function getScopeAttributes()
     {
         return ['menu_type_id'];
     }
 
-    public function setQueryAttribute($value)
+    public function menu_type()
     {
-        $this->attributes['query'] = @json_encode($value) ?: $value;
+        return $this->hasOne(MenuType::class, 'id', 'menu_type_id');
     }
 
-    public function getQueryAttribute()
+    public function scopeEnabled($query)
     {
-        return @json_decode($this->attributes['query'], true) ?: new \StdClass;
+        return $query->where('state', 1)->defaultOrder();
     }
 
-    public function getTitleFixAttribute()
+    public function scopeDisabled($query)
     {
-        return $this->title ? trans($this->title) : '';
+        return $query->where('state', 0)->defaultOrder();
     }
 
-    public function getLangFixAttribute()
+    public function scopeHidden($query)
     {
-        return $this->lang ?: app()->getLocale();
+        return $query->where('hide', 1)->defaultOrder();
     }
 
-    public function getActiveAttribute()
+    public function scopeVisible($query)
     {
-        $current = app('router')->currentRouteName();
-
-        $routes = (new Walker)->multiple($this, 'children', function ($result, $menu, $next) use ($current) {
-            return $next(array_merge($result, [$menu->module == $current]));
-        });
-
-        return array_intersect(array_merge([$this->prefixRoute == request()->path()], $routes), [true]);
+        return $query->where('hide', 0)->defaultOrder();
     }
 
-    public function getPrefixRouteAttribute()
+    public function getRoutePrefixAttribute()
     {
-        $segments = (new Walker)->single($this, 'parent', function ($result, $menu, $next) {
-            return $next(array_merge($result, [$menu->route]));
-        });
+        return app('menus')->getMenuPrefix($this);
+    }
 
-        $segments = array_filter(
-            array_merge([$this->lang_fix, @$this->type->route ?: ''], array_reverse($segments), [$this->route])
-        );
+    public function getRouteCurrentAttribute()
+    {
+        return app()->getMenuId() == $this->attributes['id'];
+    }
 
-        return implode('/', $segments);
+    public function getRouteActiveAttribute()
+    {
+        return app()->getMenuId() == $this->attributes['id'] || $this->children->pluck('route_current')->contains(true) || $this->children->pluck('route_active')->contains(true);
     }
 
 }

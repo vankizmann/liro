@@ -1,0 +1,26 @@
+
+.th-table-fake {
+
+    & {
+        margin-bottom: 20px;
+    }
+
+    .th-table-fake-tr > div {
+        padding: 16px 12px;
+    }
+
+    .th-table-fake-head .th-table-fake-tr {
+        font-size: 0.875rem;
+        border-bottom: 2px solid $color-primary;
+    }
+
+    .th-table-fake-body .th-table-fake-tr {
+        border-bottom: 1px solid $color-gray-10;
+    }
+
+    .uk-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+}

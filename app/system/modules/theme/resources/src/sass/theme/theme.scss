@@ -1,0 +1,21 @@
+@import "./components/navbar";
+@import "./components/topbar";
+@import "./components/body";
+@import "./components/form";
+@import "./components/table";
+
+* {
+    outline: none;
+}
+
+div, iframe {
+    box-sizing: border-box;
+}
+
+body, table {
+    font-size: 0.950rem;
+}
+
+iframe {
+    width: 100%;
+}

@@ -1,0 +1,62 @@
+
+
+.uk-notification-message {
+
+    & {
+        border-radius: 2px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    &.uk-notification-message-primary {
+        color: $color-white;
+        background-color: $color-primary;
+    }
+
+    &.uk-notification-message-primary .uk-notification-close {
+        color: mix($color-white, $color-primary, 60%);
+    }
+
+    &.uk-notification-message-primary .uk-notification-close:hover {
+        color: $color-white;
+    }
+
+    &.uk-notification-message-success {
+        color: $color-white;
+        background-color: $color-success;
+    }
+
+    &.uk-notification-message-success .uk-notification-close {
+        color: mix($color-white, $color-success, 60%);
+    }
+
+    &.uk-notification-message-success .uk-notification-close:hover {
+        color: $color-white;
+    }
+
+    &.uk-notification-message-warning {
+        color: $color-white;
+        background-color: $color-warning;
+    }
+
+    &.uk-notification-message-warning .uk-notification-close {
+        color: mix($color-white, $color-warning, 60%);
+    }
+
+    &.uk-notification-message-warning .uk-notification-close:hover {
+        color: $color-white;
+    }
+
+    &.uk-notification-message-danger {
+        color: $color-white;
+        background-color: $color-danger;
+    }
+
+    &.uk-notification-message-danger .uk-notification-close {
+        color: mix($color-white, $color-danger, 60%);
+    }
+
+    &.uk-notification-message-danger .uk-notification-close:hover {
+        color: $color-white;
+    }
+
+}

@@ -6,20 +6,16 @@ use Composer\Autoload\ClassLoader as Loader;
 
 class ClassLoader implements LoaderInterface
 {
-    protected $loader;
-
-    public function __construct(Loader $loader)
-    {
-        $this->loader = $loader;
-    }
 
     public function load($module)
     {
+        $loader = new Loader;
+
         foreach ($module->config('autoload', []) as $namespace => $hint) {
-            $this->loader->addPsr4($namespace, $module->path.'/'.$hint);
+            $loader->addPsr4($namespace, $module->config('path') . '/' . $hint);
         }
 
-        $this->loader->register();
+        $loader->register();
 
         return $module;
     }

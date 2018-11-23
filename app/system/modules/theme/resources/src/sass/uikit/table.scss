@@ -1,0 +1,21 @@
+
+.uk-table {
+
+    & {
+        background-color: $color-white;
+    }
+
+    th {
+        text-transform: none;
+    }
+
+    tbody tr:first-child {
+        border-top: 2px solid $color-primary;
+    }
+
+    .uk-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+}

@@ -30,6 +30,10 @@ mix.setResourceRoot(
  * Compile files
  */
 
-mix.js(['resources/src/types/index.vue', 'resources/src/types/create.vue', 'resources/src/types/edit.vue'], 'resources/dist/app-types.js');
-mix.js(['resources/src/menus/index.vue', 'resources/src/menus/create.vue', 'resources/src/menus/edit.vue'], 'resources/dist/app-menus.js');
-mix.js(['resources/src/options/menu.vue', 'resources/src/options/link.vue'], 'resources/dist/app-options.js');
+mix.js([
+    'resources/src/menu/index.vue', 'resources/src/menu/create.vue', 'resources/src/menu/edit.vue'
+], 'resources/dist/liro-menu.js');
+
+mix.js([
+    'resources/src/type/index.vue', 'resources/src/type/create.vue', 'resources/src/type/edit.vue'
+], 'resources/dist/liro-type.js');

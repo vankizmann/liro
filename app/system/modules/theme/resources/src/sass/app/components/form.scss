@@ -1,0 +1,52 @@
+
+.app-form-input {
+
+    &:last-child .uk-form-controls {
+        margin-bottom: 6px;
+    }
+
+}
+
+.app-form-select {
+
+    &.uk-margin-remove-bottom .uk-form-controls {
+        margin-bottom: 0 !important;
+    }
+
+    &:last-child .uk-form-controls {
+        margin-bottom: 6px;
+    }
+
+    .uk-select {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .uk-select > .uk-label {
+        text-transform: none;
+        margin: 8px 8px 8px 0;
+    }
+
+    .uk-dropdown {
+        padding: 0;
+        background-color: $color-primary;
+        max-height: 280px;
+        overflow-y: auto;
+    }
+
+    .uk-nav > li > a {
+        color: mix($color-white, $color-primary, 80%);
+        padding: 12px 20px;
+        transition: all 0.15s;
+    }
+
+    .uk-nav > li:hover > a {
+        background-color: lighten($color-primary, 5%);
+    }
+
+    .uk-nav > li.uk-active > a {
+        color: $color-white;
+        background-color: darken($color-primary, 10%);
+    }
+
+}

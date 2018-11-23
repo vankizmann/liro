@@ -1,0 +1,68 @@
+
+.app-list-sort {
+
+    & > a {
+        color: $color-black;
+    }
+
+    & > a.uk-active {
+        color: $color-primary;
+    }
+
+}
+
+.app-list-filter {
+
+    & > a {
+        color: $color-black;
+    }
+
+    & > a.uk-active {
+        color: $color-primary;
+    }
+
+}
+
+.app-list-switch {
+
+    & > a {
+        color: $color-gray-25;
+    }
+
+    &.uk-active  > a{
+        color: $color-primary;
+    }
+
+    &.is-state > a,
+    &.is-hide > a {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 500px;
+        background-color: $color-gray-25;
+    }
+
+    &.is-state.uk-active > a {
+        background-color: lighten($color-success, 15%);
+    }
+
+    &.is-hide.uk-active > a {
+        background-color: lighten($color-danger, 15%);
+    }
+
+}
+
+.app-list-pagination {
+
+    .uk-select {
+        font-size: 0.875rem;
+        padding: 0 8px;
+        background-size: 20px auto;
+    }
+
+    .uk-select:not([multiple]):not([size]) {
+        height: 28px;
+        padding-right: 15px;
+    }
+
+}

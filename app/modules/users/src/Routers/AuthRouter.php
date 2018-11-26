@@ -16,4 +16,9 @@ class AuthRouter
         $router->middleware('web', 'route')->any('/', 'Liro\Users\Controllers\AuthController@logout');
     }
 
+    public function token($router)
+    {
+        $router->middleware('ajax', 'route')->any('/', 'Liro\Users\Controllers\AuthController@token');
+    }
+
 }

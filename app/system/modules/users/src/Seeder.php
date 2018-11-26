@@ -41,6 +41,7 @@ class Seeder
         $routes = [
             'liro-users.auth.login',
             'liro-users.auth.logout',
+            'liro-users.auth.token',
             'liro-test.test.test',
             'liro-users.user.index',
             'liro-users.user.create',

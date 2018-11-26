@@ -1,31 +1,47 @@
 
-.th-index {
+body.th-index {
 
     & {
-        background-color: $color-gray-10;
+        background-color: $color-gray-5;
     }
 
-    &-body {
+    .th-index-header {
+        box-shadow: 0 0 20px rgba(#555, 0.05);
+    }
+
+    .th-index-body {
         padding: 40px 15px;
     }
 
 }
 
-.th-error {
+body.th-dark.th-index {
 
-    &-body {
+    // & {
+    //     background-color: darken($color-gray-90, 2.5);
+    // }
+
+    // .th-index-header {
+    //     box-shadow: 0 0 20px rgba(#000, 0.05);
+    // }
+
+}
+
+body.th-error {
+
+    .th-error-body {
         min-height: 100vh;
         padding: 40px 15px;
     }
 
-    &-form {
+    .th-error-form {
         width: 100%;
         max-width: 450px;
     }
 
 }
 
-.th-login {
+body.th-login {
 
     & {
         background-color: $color-gray-5;
@@ -33,12 +49,12 @@
         background-size: cover;
     }
 
-    &-body {
+    .th-login-body {
         min-height: 100vh;
         padding: 40px 15px;
     }
 
-    &-form {
+    .th-login-form {
         background-color: $color-white;
         width: 100%;
         border-radius: 3px;
@@ -47,13 +63,13 @@
 
 }
 
-.th-frame {
+body.th-frame {
 
     & {
         width: 100%;
     }
 
-    &-content {
+    .th-frame-content {
         padding: 30px;
     }
 

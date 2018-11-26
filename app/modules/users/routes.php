@@ -10,6 +10,11 @@ return [
         'liro-users::module.auth.logout', 'Liro\Users\Routers\AuthRouter@logout'
     ],
 
+    'liro-users.auth.token' => [
+        'liro-users::module.auth.token', 'Liro\Users\Routers\AuthRouter@token'
+    ],
+
+
     'liro-users.user.index' => [
         'liro-users::module.user.index', 'Liro\Users\Routers\UserRouter@index'
     ],

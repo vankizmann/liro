@@ -16,7 +16,7 @@ class Menu extends Model
     protected $table = 'menus';
 
     protected $fillable = [
-        'state', 'hide', 'lock', 'title', 'route', 'module', 'query', 'menu_type_id', 'parent_id', '_lft', '_rgt'
+        'state', 'hide', 'lock', 'title', 'route', 'module', 'query', 'default', 'menu_type_id', 'parent_id', '_lft', '_rgt', 'icon'
     ];
 
     protected $hidden = [
@@ -88,6 +88,16 @@ class Menu extends Model
     public function getRouteActiveAttribute()
     {
         return app()->getMenuId() == $this->attributes['id'] || $this->children->pluck('route_current')->contains(true) || $this->children->pluck('route_active')->contains(true);
+    }
+
+    public function getIconAttribute()
+    {
+        return FieldHelper::getModel($this, 'image', null);
+    }
+
+    public function setIconAttribute($value)
+    {
+        return FieldHelper::setModel($this, 'image', $value);
     }
 
 }

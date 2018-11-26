@@ -3,7 +3,12 @@
     <li class="{{ $menu->route_current ? 'uk-current' : '' }} {{ $menu->route_active ? 'uk-active' : '' }}">
 
         <a href="{{ url($menu->route_prefix) }}">
-            {{ trans($menu->title) }}
+            @if ($menu->icon)
+                <img class="uk-navbar-icon" src="{{ $menu->icon }}" alt="{{ trans($menu->title) }}">
+            @endif
+            <span class="uk-navbar-text">
+                {{ trans($menu->title) }}
+            </span>
         </a>
 
         @if ( $menu->children()->enabled()->visible()->count() )

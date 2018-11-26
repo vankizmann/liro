@@ -15,12 +15,20 @@
     }
 
     .th-table-fake-body .th-table-fake-tr {
-        border-bottom: 1px solid $color-gray-10;
+        border-bottom: 1px solid $color-gray-15;
     }
 
     .uk-icon svg {
         width: 16px;
         height: 16px;
+    }
+
+}
+
+body.th-dark .th-table-fake {
+    
+    .th-table-fake-body .th-table-fake-tr {
+        border-bottom-color: $color-gray-90;
     }
 
 }

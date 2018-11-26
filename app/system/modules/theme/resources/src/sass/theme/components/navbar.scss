@@ -6,6 +6,10 @@
         padding: 30px 0;
     }
 
+    .uk-logo {
+        color: $color-black;
+    }
+
     .uk-navbar-divider {
         display: flex;
         align-items: center;
@@ -16,7 +20,7 @@
         content: '\00a0';
         display: block;
         height: 20px;
-        border-left: 1px solid $color-gray-20;
+        border-left: 1px solid rgba($color-gray-50, 0.25);
     }
 
     .uk-navbar-search .uk-input {
@@ -48,19 +52,33 @@
         right: 5px;
     }
 
-    .uk-navbar-item, 
-    .uk-navbar-nav > li > a {
+    .uk-navbar-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+    } 
+
+    .uk-navbar-item {
         height: 40px;
         padding: 0 20px;
     }
 
-    .uk-navbar-nav > li > a {
-        font-size: 0.875rem;
-        color: $color-gray-55;
+    .uk-navbar-nav > li {
+        margin: 0 5px;
     }
 
-    .uk-navbar-nav > li.uk-active > a {
-        font-weight: 500;
+    .uk-navbar-nav > li > a {
+        height: 40px;
+        padding: 0 15px;
+    }
+
+    .uk-navbar-nav > li > a {
+        font-size: 0.925rem;
+        color: $color-gray-45;
+    }
+
+    .uk-navbar-nav.uk-text-small > li > a {
+        font-size: 0.825rem;
     }
 
     .uk-navbar-nav > li.uk-active > a,
@@ -75,7 +93,7 @@
 
     .uk-navbar-nav > li > a .uk-icon {
         transition: color 0.15s;
-        color: $color-gray-40;
+        color: $color-gray-35;
     }
 
     .uk-navbar-nav > li > a:hover .uk-icon {
@@ -86,5 +104,39 @@
         width: 16px;
         height: 16px;
     } 
+
+}
+
+body.th-dark .th-navbar {
+
+    & {
+        background-color: $color-gray-90;
+    }
+
+    .uk-logo {
+        color: $color-white;
+    }
+
+    .uk-navbar-nav > li > a {
+        color: $color-gray-65;
+    }
+
+    .uk-navbar-nav > li.uk-active > a,
+    .uk-navbar-nav > li > a:focus {
+        color: $color-white;
+    }
+
+    .uk-navbar-nav > li > a.uk-open,
+    .uk-navbar-nav > li > a:hover {
+        color: $color-primary;
+    }
+
+    .uk-navbar-nav > li > a .uk-icon {
+        color: $color-gray-75;
+    }
+
+    .uk-navbar-nav > li > a:hover .uk-icon {
+        color: darken($color-primary, 10%);
+    }
 
 }

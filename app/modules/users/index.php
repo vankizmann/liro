@@ -17,7 +17,8 @@ return [
         'app.boot' => function () {
 
             app('scripts')->addRoutes([
-                'liro-users.auth.login'
+                'liro-users.auth.login',
+                'liro-users.auth.token'
             ]);
     
             app('scripts')->addMessages([

@@ -38,6 +38,9 @@ class MenuTable extends Migration
             $table->string('query')
                 ->nullable();
 
+            $table->integer('default')
+                ->default(0);
+
             $table->integer('menu_type_id')
                 ->default(0);
 

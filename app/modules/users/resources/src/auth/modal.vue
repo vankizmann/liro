@@ -1,7 +1,7 @@
 <template>
 
 <div class="liro-auth-modal" ref="modal" uk-modal="esc-close: false; bg-close: false; container: false;">
-    <div class="uk-modal-dialog uk-padding">
+    <div class="uk-modal-dialog uk-margin-auto-vertical uk-padding">
 
         <!-- Form start -->
         <form class="uk-form uk-margin-remove" method="post" @submit.prevent="authUser">
@@ -26,7 +26,7 @@
 
         </form>
         <!-- Form end -->
-        
+
     </div>
 </div>
 
@@ -44,10 +44,18 @@ export default {
     },
 
     mounted: function () {
-        setInterval(() => UIkit.modal(this.$refs.modal).show(), 1000 * 60 * 60);
+        // Refresh token everey 30 minutes
+        setInterval(this.refreshToken, 1000 * 60 * 30);
+
+        // Show login form after 60 minutes
+        setInterval(this.showModal, 1000 * 60 * 60);
     },
 
     methods: {
+
+        showModal: function () {
+            UIkit.modal(this.$refs.modal).show();
+        },
 
         authUser: function () {
             var url = Liro.routes.get('liro-users.auth.login');
@@ -56,6 +64,15 @@ export default {
 
         authUserResponse: function (res) {
             UIkit.modal(this.$refs.modal).hide();
+        },
+
+        refreshToken: function () {
+            var url = Liro.routes.get('liro-users.auth.token');
+            Axios.post(url, this.user).then(this.refreshTokenResponse);
+        },
+
+        refreshTokenResponse: function (res) {
+            $('meta[csrf-token]').attr('content', res.data.token);
         }
 
     }

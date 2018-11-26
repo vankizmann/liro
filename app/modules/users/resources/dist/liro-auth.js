@@ -567,14 +567,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     mounted: function mounted() {
-        var _this = this;
+        // Refresh token everey 30 minutes
+        setInterval(this.refreshToken, 1000 * 60 * 30);
 
-        setInterval(function () {
-            return UIkit.modal(_this.$refs.modal).show();
-        }, 1000 * 60 * 60);
+        // Show login form after 60 minutes
+        setInterval(this.showModal, 1000 * 60 * 60);
     },
 
     methods: {
+
+        showModal: function showModal() {
+            UIkit.modal(this.$refs.modal).show();
+        },
 
         authUser: function authUser() {
             var url = Liro.routes.get('liro-users.auth.login');
@@ -583,6 +587,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         authUserResponse: function authUserResponse(res) {
             UIkit.modal(this.$refs.modal).hide();
+        },
+
+        refreshToken: function refreshToken() {
+            var url = Liro.routes.get('liro-users.auth.token');
+            Axios.post(url, this.user).then(this.refreshTokenResponse);
+        },
+
+        refreshTokenResponse: function refreshTokenResponse(res) {
+            $('meta[csrf-token]').attr('content', res.data.token);
         }
 
     }
@@ -611,111 +624,123 @@ var render = function() {
       }
     },
     [
-      _c("div", { staticClass: "uk-modal-dialog uk-padding" }, [
-        _c(
-          "form",
-          {
-            staticClass: "uk-form uk-margin-remove",
-            attrs: { method: "post" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.authUser($event)
+      _c(
+        "div",
+        { staticClass: "uk-modal-dialog uk-margin-auto-vertical uk-padding" },
+        [
+          _c(
+            "form",
+            {
+              staticClass: "uk-form uk-margin-remove",
+              attrs: { method: "post" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.authUser($event)
+                }
               }
-            }
-          },
-          [
-            _c("div", { staticClass: "uk-margin-small-bottom" }, [
-              _c(
-                "label",
-                { staticClass: "uk-form-label", attrs: { for: "email" } },
-                [
-                  _vm._v(
-                    _vm._s(_vm.Liro.messages.get("liro-users::form.auth.email"))
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "uk-form-controls" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.user.email,
-                      expression: "user.email"
-                    }
-                  ],
-                  staticClass: "uk-input",
-                  attrs: { id: "email", type: "email", name: "email" },
-                  domProps: { value: _vm.user.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.user, "email", $event.target.value)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-margin-small-bottom" }, [
-              _c(
-                "label",
-                { staticClass: "uk-form-label", attrs: { for: "password" } },
-                [
-                  _vm._v(
-                    _vm._s(
-                      _vm.Liro.messages.get("liro-users::form.auth.password")
+            },
+            [
+              _c("div", { staticClass: "uk-margin-small-bottom" }, [
+                _c(
+                  "label",
+                  { staticClass: "uk-form-label", attrs: { for: "email" } },
+                  [
+                    _vm._v(
+                      _vm._s(
+                        _vm.Liro.messages.get("liro-users::form.auth.email")
+                      )
                     )
-                  )
-                ]
-              ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "uk-form-controls" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.user.email,
+                        expression: "user.email"
+                      }
+                    ],
+                    staticClass: "uk-input",
+                    attrs: { id: "email", type: "email", name: "email" },
+                    domProps: { value: _vm.user.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.user, "email", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-margin-small-bottom" }, [
+                _c(
+                  "label",
+                  { staticClass: "uk-form-label", attrs: { for: "password" } },
+                  [
+                    _vm._v(
+                      _vm._s(
+                        _vm.Liro.messages.get("liro-users::form.auth.password")
+                      )
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "uk-form-controls" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.user.password,
+                        expression: "user.password"
+                      }
+                    ],
+                    staticClass: "uk-input",
+                    attrs: {
+                      id: "password",
+                      type: "password",
+                      name: "password"
+                    },
+                    domProps: { value: _vm.user.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.user, "password", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "uk-form-controls" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.user.password,
-                      expression: "user.password"
-                    }
-                  ],
-                  staticClass: "uk-input",
-                  attrs: { id: "password", type: "password", name: "password" },
-                  domProps: { value: _vm.user.password },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.user, "password", $event.target.value)
-                    }
-                  }
-                })
+                _c(
+                  "button",
+                  {
+                    staticClass: "uk-button uk-button-primary uk-width-1-1",
+                    attrs: { type: "submit" }
+                  },
+                  [
+                    _vm._v(
+                      _vm._s(
+                        _vm.Liro.messages.get("liro-users::form.auth.login")
+                      )
+                    )
+                  ]
+                )
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-form-controls" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "uk-button uk-button-primary uk-width-1-1",
-                  attrs: { type: "submit" }
-                },
-                [
-                  _vm._v(
-                    _vm._s(_vm.Liro.messages.get("liro-users::form.auth.login"))
-                  )
-                ]
-              )
-            ])
-          ]
-        )
-      ])
+            ]
+          )
+        ]
+      )
     ]
   )
 }

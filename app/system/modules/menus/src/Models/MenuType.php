@@ -53,6 +53,11 @@ class MenuType extends Model
         return $query->where('state', 0);
     }
 
+    public function getDefaultAttribute()
+    {
+        return $this->menus()->where('default', 1)->first();
+    }
+
     public function getLocaleFallbackAttribute()
     {
         return @$this->attributes['locale'] ?: app()->getLocale();

@@ -64,7 +64,7 @@ class RoleController extends \Liro\System\Http\Controller
 
         return response()->json([
             'role' => $role
-        ]);
+        ], 201);
     }
 
     public function edit(UserRole $role)
@@ -99,7 +99,7 @@ class RoleController extends \Liro\System\Http\Controller
 
         return response()->json([
             'role' => $role
-        ]);
+        ], 200);
     }
 
 }

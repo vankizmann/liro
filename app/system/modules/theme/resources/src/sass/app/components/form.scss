@@ -1,8 +1,8 @@
 
 .app-form-input {
 
-    &:last-child .uk-form-controls {
-        margin-bottom: 6px;
+    &:not(:last-child) {
+        margin-bottom: 16px !important;
     }
 
 }
@@ -13,8 +13,8 @@
         margin-bottom: 0 !important;
     }
 
-    &:last-child .uk-form-controls {
-        margin-bottom: 6px;
+    &:not(:last-child) {
+        margin-bottom: 16px !important;
     }
 
     .uk-select {

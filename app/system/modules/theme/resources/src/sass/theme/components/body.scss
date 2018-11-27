@@ -2,28 +2,16 @@
 body.th-index {
 
     & {
-        background-color: $color-gray-5;
+        background-color: $color-gray-10;
     }
 
     .th-index-header {
-        box-shadow: 0 0 20px rgba(#555, 0.05);
+        // box-shadow: 0 0 20px rgba(#555, 0.05);
     }
 
     .th-index-body {
         padding: 40px 15px;
     }
-
-}
-
-body.th-dark.th-index {
-
-    // & {
-    //     background-color: darken($color-gray-90, 2.5);
-    // }
-
-    // .th-index-header {
-    //     box-shadow: 0 0 20px rgba(#000, 0.05);
-    // }
 
 }
 

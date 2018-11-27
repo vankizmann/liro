@@ -1,11 +1,5 @@
 <html lang="{{ app()->getLocale() }}">
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-
-        <title>{{ app()->getTitleWithAffix() }}</title>
-
         @php
             app('scripts')->setData('states', [
                 ['value' => 1, 'label' => trans('theme::form.state.enabled')],
@@ -25,15 +19,7 @@
             app('scripts')->addMessage('theme::form');
         @endphp
 
-        @php
-            app('scripts')->addLink('theme-script', 'theme::dist/js/script.js');
-            echo app('scripts')->output();
-        @endphp
-
-        @php
-            app('styles')->addLink('theme-style', 'theme::dist/css/style.css');
-            echo app('styles')->output();
-        @endphp
+        @include('theme::partials/head')
 
     </head>
     <body class="th-index {{ request()->get('dark') ? 'th-dark' : 'th-light' }}">
@@ -50,16 +36,14 @@
 
                             <div class="uk-navbar-left">
                                 <div class="uk-navbar-item uk-logo uk-margin-large-right">
-                                    <img src="/app/system/modules/theme/resources/dist/images/liro.svg" width="80" height="20" :uk-svg="true">
+                                    <img src="{{ app('assets')->file('theme::dist/images/liro.svg') }}" width="80" height="20" :uk-svg="true">
                                 </div>
                             </div>
 
                             <div class="uk-navbar-right">
-                                <ul class="uk-navbar-nav uk-margin-large-right">
-                                    @include('theme::partials/menus', [
-                                        'menus' => app('menus')->getMenusByTypeId(2)->toTree()
-                                    ])
-                                </ul>
+                                @include('theme::menus/default', [
+                                    'menus' => app('menus')->getMenusByTypeId(2)->toTree(), 'style' => 'uk-navbar-nav uk-margin-large-right'
+                                ])
                                 <ul class="uk-navbar-nav uk-text-small">
                                     <li>
                                         <a href="{{ route('liro-users.auth.login') }}">

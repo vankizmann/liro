@@ -12,7 +12,8 @@ return [
 
     'alias' => [
         'scripts'       => Liro\System\Assets\Managers\ScriptManager::class,
-        'styles'        => Liro\System\Assets\Managers\StyleManager::class
+        'styles'        => Liro\System\Assets\Managers\StyleManager::class,
+        'assets'        => Liro\System\Assets\Managers\AssetManager::class
     ]
 
 ];

@@ -12914,36 +12914,6 @@ iframe.uk-cover {
   height: 16px;
 }
 
-body.th-dark .th-navbar {
-  background-color: #1f2028;
-}
-
-body.th-dark .th-navbar .uk-logo {
-  color: #ffffff;
-}
-
-body.th-dark .th-navbar .uk-navbar-nav > li > a {
-  color: #5a5b61;
-}
-
-body.th-dark .th-navbar .uk-navbar-nav > li.uk-active > a,
-body.th-dark .th-navbar .uk-navbar-nav > li > a:focus {
-  color: #ffffff;
-}
-
-body.th-dark .th-navbar .uk-navbar-nav > li > a.uk-open,
-body.th-dark .th-navbar .uk-navbar-nav > li > a:hover {
-  color: #4590f6;
-}
-
-body.th-dark .th-navbar .uk-navbar-nav > li > a .uk-icon {
-  color: #42434a;
-}
-
-body.th-dark .th-navbar .uk-navbar-nav > li > a:hover .uk-icon {
-  color: #1473f4;
-}
-
 .th-topbar {
   background-color: #ffffff;
   padding: 40px 0;
@@ -12960,12 +12930,7 @@ body.th-dark .th-navbar .uk-navbar-nav > li > a:hover .uk-icon {
 }
 
 body.th-index {
-  background-color: #f9f9f9;
-}
-
-body.th-index .th-index-header {
-  -webkit-box-shadow: 0 0 20px rgba(85, 85, 85, 0.05);
-          box-shadow: 0 0 20px rgba(85, 85, 85, 0.05);
+  background-color: #f3f3f4;
 }
 
 body.th-index .th-index-body {
@@ -13045,7 +13010,7 @@ body.th-frame .th-frame-content {
 }
 
 .th-table-fake .th-table-fake-body .th-table-fake-tr {
-  border-bottom: 1px solid #ededee;
+  border-bottom: 1px solid #f3f3f4;
 }
 
 .th-table-fake .uk-icon svg {

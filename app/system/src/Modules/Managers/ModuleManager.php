@@ -288,6 +288,10 @@ class ModuleManager
                 $module->config('name'), $module->config('path') . '/resources'
             );
 
+            $this->app['assets']->setNamespace(
+                $module->config('name'), $module->config('path') . '/resources'
+            );
+
         }
 
         return $this;
@@ -318,6 +322,10 @@ class ModuleManager
         );
 
         $this->app['styles']->setNamespace(
+            'theme', $module->config('path') . '/resources'
+        );
+
+        $this->app['assets']->setNamespace(
             'theme', $module->config('path') . '/resources'
         );
 

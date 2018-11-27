@@ -106,37 +106,3 @@
     } 
 
 }
-
-body.th-dark .th-navbar {
-
-    & {
-        background-color: $color-gray-90;
-    }
-
-    .uk-logo {
-        color: $color-white;
-    }
-
-    .uk-navbar-nav > li > a {
-        color: $color-gray-65;
-    }
-
-    .uk-navbar-nav > li.uk-active > a,
-    .uk-navbar-nav > li > a:focus {
-        color: $color-white;
-    }
-
-    .uk-navbar-nav > li > a.uk-open,
-    .uk-navbar-nav > li > a:hover {
-        color: $color-primary;
-    }
-
-    .uk-navbar-nav > li > a .uk-icon {
-        color: $color-gray-75;
-    }
-
-    .uk-navbar-nav > li > a:hover .uk-icon {
-        color: darken($color-primary, 10%);
-    }
-
-}

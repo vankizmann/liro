@@ -1,21 +1,6 @@
 <html lang="{{ app()->getLocale() }}">
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-
-        <title>{{ app()->getTitleWithAffix() }}</title>
-
-        @php
-            app('scripts')->addLink('theme-script', 'theme::dist/js/script.js');
-            echo app('scripts')->output();
-        @endphp
-
-        @php
-            app('styles')->addLink('theme-style', 'theme::dist/css/style.css');
-            echo app('styles')->output();
-        @endphp
-
+        @include('theme::partials/head')
     </head>
     <body class="th-frame">
 

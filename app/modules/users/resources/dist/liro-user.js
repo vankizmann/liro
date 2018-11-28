@@ -1387,6 +1387,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1575,8 +1579,15 @@ var render = function() {
                 },
                 expression: "user.role_ids"
               }
-            }),
-            _vm._v(" "),
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
             _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
               _vm._v(
                 "\n                " +

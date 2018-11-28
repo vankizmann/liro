@@ -1,6 +1,9 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <link rel="apple-touch-icon" sizes="57x57" href="{{ app('assets')->file('theme::dist/favicon/apple-icon-57x57.png') }}">
 <link rel="apple-touch-icon" sizes="60x60" href="{{ app('assets')->file('theme::dist/favicon/apple-icon-60x60.png') }}">
 <link rel="apple-touch-icon" sizes="72x72" href="{{ app('assets')->file('theme::dist/favicon/apple-icon-72x72.png') }}">

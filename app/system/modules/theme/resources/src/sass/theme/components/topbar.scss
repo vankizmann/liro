@@ -4,7 +4,6 @@
     & {
         background-color: $color-white;
         padding: 40px 0;
-        border-top: 1px solid $color-gray-5;
     }
 
     .uk-navbar-item {
@@ -15,14 +14,5 @@
     .uk-navbar-nav > li > a {
         height: 40px;
     }
-
-}
-
-body.th-dark .th-topbar {
-
-    // & {
-    //     color: $color-white;
-    //     background-color: darken($color-primary, 10%);
-    // }
 
 }

@@ -11,7 +11,7 @@
     <div class="uk-form-controls">
 
         <div class="uk-select" v-if="labels.length != 0">
-            <span :class="{ 'uk-label': multiple }" v-for="(option, index) in labels" :key="index">{{ option }}</span>
+            <span :class="{ 'uk-label uk-label-primary': multiple }" v-for="(option, index) in labels" :key="index">{{ option }}</span>
         </div>
 
         <div class="uk-select" v-if="labels.length == 0">

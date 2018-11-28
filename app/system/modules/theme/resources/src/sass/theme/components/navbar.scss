@@ -2,12 +2,20 @@
 .th-navbar {
 
     & {
-        background-color: $color-white;
+        background-color: darken($color-gray-95, 3%);
         padding: 30px 0;
     }
 
+    .th-fill-default path {
+        fill: $color-white !important;
+    }
+
+    .th-fill-primary path {
+        fill: $color-primary !important;
+    }
+
     .uk-logo {
-        color: $color-black;
+        color: $color-white;
     }
 
     .uk-navbar-divider {
@@ -74,30 +82,29 @@
 
     .uk-navbar-nav > li > a {
         font-size: 0.925rem;
-        color: $color-gray-45;
+        color: $color-gray-60;
     }
 
     .uk-navbar-nav.uk-text-small > li > a {
         font-size: 0.825rem;
     }
 
-    .uk-navbar-nav > li.uk-active > a,
-    .uk-navbar-nav > li > a:focus {
-        color: $color-black;
-    }
-
-    .uk-navbar-nav > li > a.uk-open,
-    .uk-navbar-nav > li > a:hover {
-        color: $color-primary;
-    }
-
-    .uk-navbar-nav > li > a .uk-icon {
-        transition: color 0.15s;
+    .uk-navbar-nav > li > a:hover,
+    .uk-navbar-nav > li > a:focus,
+    .uk-navbar-nav > li > a.uk-open {
         color: $color-gray-35;
     }
 
-    .uk-navbar-nav > li > a:hover .uk-icon {
-        color: lighten($color-primary, 10%);
+    .uk-navbar-nav > li.uk-active > a {
+        color: $color-white;
+    }
+
+    // .uk-navbar-nav > li.uk-active > a {
+    //     color: $color-primary;
+    // }
+
+    .uk-navbar-nav > li > a .uk-icon {
+        opacity: 0.7;
     }
 
     .uk-navbar-nav a .uk-icon > svg {

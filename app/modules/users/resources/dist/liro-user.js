@@ -324,6 +324,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -478,21 +489,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", [
-    _c(
-      "td",
-      { staticClass: "uk-text-center" },
-      [
-        _c("app-list-switch", {
-          staticClass: "is-state",
-          attrs: { active: _vm.value.state },
-          on: { click: _vm.updateUser }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("td", [
+  return _c("div", { staticClass: "th-table-tr uk-flex uk-flex-middle" }, [
+    _c("div", { staticClass: "uk-width-1-3" }, [
       _c(
         "a",
         {
@@ -506,14 +504,15 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("td", [
+    _c("div", { staticClass: "uk-width-1-3" }, [
       _c("span", [
         _vm._v("\n            " + _vm._s(_vm.value.email) + "\n        ")
       ])
     ]),
     _vm._v(" "),
     _c(
-      "td",
+      "div",
+      { staticClass: "uk-width-1-3" },
       _vm._l(
         _vm.Liro.helpers.map(
           _vm.value.role_ids,
@@ -523,14 +522,30 @@ var render = function() {
         function(role, index) {
           return _c(
             "span",
-            { key: index, staticClass: "uk-label uk-margin-small-right" },
+            {
+              key: index,
+              staticClass: "uk-label uk-label-primary uk-margin-small-right"
+            },
             [_vm._v("\n            " + _vm._s(role.title) + "\n        ")]
           )
         }
       )
     ),
     _vm._v(" "),
-    _c("td", { staticClass: "uk-text-center" }, [
+    _c(
+      "div",
+      { staticClass: "th-table-td-m uk-text-center" },
+      [
+        _c("app-list-switch", {
+          staticClass: "is-state",
+          attrs: { active: _vm.value.state },
+          on: { click: _vm.updateUser }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "th-table-td-m uk-text-center" }, [
       _c("span", [
         _vm._v("\n            " + _vm._s(_vm.value.id) + "\n        ")
       ])
@@ -598,48 +613,41 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "th-form is-table" }, [
-                _c(
-                  "table",
-                  {
-                    staticClass:
-                      "uk-table uk-table-divider uk-table-middle uk-margin-remove-bottom"
-                  },
-                  [
-                    _c("thead", [
-                      _c("tr", [
+              _c("div", { staticClass: "th-table-container" }, [
+                _c("div", { staticClass: "th-table uk-margin-remove-bottom" }, [
+                  _c("div", { staticClass: "th-table-head" }, [
+                    _c(
+                      "div",
+                      { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                      [
                         _c(
-                          "th",
-                          { staticClass: "uk-width-small uk-text-center" },
+                          "div",
+                          { staticClass: "uk-margin-auto-left" },
                           [
-                            _c(
-                              "app-list-filter",
-                              {
-                                attrs: {
-                                  column: "state",
-                                  config: config.filter,
-                                  filters: _vm.states
-                                },
-                                on: { filter: filter }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(
-                                      _vm.Liro.messages.get(
-                                        "liro-users::form.user.state"
-                                      )
-                                    ) +
-                                    "\n                            "
+                            _c("app-list-search", {
+                              attrs: {
+                                columns: ["name", "email"],
+                                config: config.search,
+                                placeholder: _vm.Liro.messages.get(
+                                  "theme::form.search.placeholder"
                                 )
-                              ]
-                            )
+                              },
+                              on: { search: search }
+                            })
                           ],
                           1
-                        ),
-                        _vm._v(" "),
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "th-table-filter" }, [
+                    _c(
+                      "div",
+                      { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                      [
                         _c(
-                          "th",
+                          "div",
                           { staticClass: "uk-width-1-3" },
                           [
                             _c(
@@ -665,7 +673,7 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c(
-                          "th",
+                          "div",
                           { staticClass: "uk-width-1-3" },
                           [
                             _c(
@@ -694,7 +702,7 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c(
-                          "th",
+                          "div",
                           { staticClass: "uk-width-1-3" },
                           [
                             _c(
@@ -726,8 +734,38 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c(
-                          "th",
-                          { staticClass: "uk-width-small uk-text-center" },
+                          "div",
+                          { staticClass: "th-table-td-m uk-text-center" },
+                          [
+                            _c(
+                              "app-list-filter",
+                              {
+                                attrs: {
+                                  column: "state",
+                                  config: config.filter,
+                                  filters: _vm.states
+                                },
+                                on: { filter: filter }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(
+                                      _vm.Liro.messages.get(
+                                        "liro-users::form.user.state"
+                                      )
+                                    ) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "th-table-td-m uk-text-center" },
                           [
                             _c(
                               "app-list-sort",
@@ -750,30 +788,32 @@ var render = function() {
                           ],
                           1
                         )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    items.length != 0
-                      ? _c(
-                          "tbody",
-                          _vm._l(items, function(item, index) {
-                            return _c("liro-user-index-item", {
-                              key: index,
-                              attrs: { value: item }
-                            })
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  items.length != 0
+                    ? _c(
+                        "div",
+                        { staticClass: "th-table-body" },
+                        _vm._l(items, function(item, index) {
+                          return _c("liro-user-index-item", {
+                            key: index,
+                            attrs: { value: item }
                           })
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    items.length == 0
-                      ? _c("tbody", [
-                          _c("tr", [
+                        })
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  items.length == 0
+                    ? _c("div", { staticClass: "th-table-body" }, [
+                        _c(
+                          "div",
+                          { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                          [
                             _c(
-                              "td",
-                              {
-                                staticClass: "uk-text-center",
-                                attrs: { colspan: "5" }
-                              },
+                              "div",
+                              { staticClass: "uk-width1-1 uk-text-center" },
                               [
                                 _vm._v(
                                   "\n                            " +
@@ -786,27 +826,25 @@ var render = function() {
                                 )
                               ]
                             )
-                          ])
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("tfoot", [
-                      _c("tr", [
-                        _c(
-                          "td",
-                          { attrs: { colspan: "5" } },
-                          [
-                            _c("app-list-pagination", {
-                              attrs: { pages: pages, config: config.paginate },
-                              on: { paginate: paginate }
-                            })
-                          ],
-                          1
+                          ]
                         )
                       ])
-                    ])
-                  ]
-                )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "th-table-footer" }, [
+                    _c(
+                      "div",
+                      { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                      [
+                        _c("app-list-pagination", {
+                          attrs: { pages: pages, config: config.paginate },
+                          on: { paginate: paginate }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ])
               ])
             ],
             1
@@ -929,6 +967,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -979,7 +1050,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "liro-user-create" },
+    {
+      staticClass: "liro-user-create uk-grid uk-flex",
+      attrs: { "uk-grid": "" }
+    },
     [
       _c("portal", { attrs: { to: "app-toolbar" } }, [
         _c("div", { staticClass: "uk-navbar-item" }, [
@@ -1024,94 +1098,157 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "th-form" },
-        [
-          _c("app-form-select", {
-            attrs: {
-              name: "state",
-              options: _vm.states,
-              label: _vm.Liro.messages.get("liro-users::form.user.state"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-users::form.user.select_state"
+      _c("div", { staticClass: "uk-flex-last uk-width-large" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-users::form.legend.general")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.user.state,
-              callback: function($$v) {
-                _vm.$set(_vm.user, "state", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-switch", {
+              staticClass: "is-state uk-width-1-1",
+              attrs: {
+                name: "state",
+                options: _vm.states,
+                label: _vm.Liro.messages.get("liro-users::form.user.state")
               },
-              expression: "user.state"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              name: "role_ids",
-              options: _vm.roles,
-              multiple: true,
-              "options-label": "title",
-              "options-value": "id",
-              label: _vm.Liro.messages.get("liro-users::form.user.role"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-users::form.user.select_role"
+              model: {
+                value: _vm.user.state,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "state", $$v)
+                },
+                expression: "user.state"
+              }
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-flex-first uk-flex-auto" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-users::form.legend.info")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.user.role_ids,
-              callback: function($$v) {
-                _vm.$set(_vm.user, "role_ids", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "name",
+                label: _vm.Liro.messages.get("liro-users::form.user.name")
               },
-              expression: "user.role_ids"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "name",
-              label: _vm.Liro.messages.get("liro-users::form.user.name")
-            },
-            model: {
-              value: _vm.user.name,
-              callback: function($$v) {
-                _vm.$set(_vm.user, "name", $$v)
+              model: {
+                value: _vm.user.name,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "name", $$v)
+                },
+                expression: "user.name"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "email",
+                label: _vm.Liro.messages.get("liro-users::form.user.email")
               },
-              expression: "user.name"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "email",
-              label: _vm.Liro.messages.get("liro-users::form.user.email")
-            },
-            model: {
-              value: _vm.user.email,
-              callback: function($$v) {
-                _vm.$set(_vm.user, "email", $$v)
+              model: {
+                value: _vm.user.email,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "email", $$v)
+                },
+                expression: "user.email"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-select", {
+              attrs: {
+                name: "role_ids",
+                options: _vm.roles,
+                multiple: true,
+                "options-label": "title",
+                "options-value": "id",
+                label: _vm.Liro.messages.get("liro-users::form.user.role"),
+                placeholder: _vm.Liro.messages.get(
+                  "liro-users::form.user.select_role"
+                )
               },
-              expression: "user.email"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              type: "password",
-              name: "password",
-              label: _vm.Liro.messages.get("liro-users::form.user.password")
-            },
-            model: {
-              value: _vm.user.password,
-              callback: function($$v) {
-                _vm.$set(_vm.user, "password", $$v)
+              model: {
+                value: _vm.user.role_ids,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "role_ids", $$v)
+                },
+                expression: "user.role_ids"
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-users::form.legend.password")
+                  ) +
+                  "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                type: "password",
+                name: "password",
+                label: _vm.Liro.messages.get("liro-users::form.user.password")
               },
-              expression: "user.password"
-            }
-          })
-        ],
-        1
-      )
+              model: {
+                value: _vm.user.password,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "password", $$v)
+                },
+                expression: "user.password"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                type: "password",
+                name: "password_confirm",
+                label: _vm.Liro.messages.get(
+                  "liro-users::form.user.password_confirm"
+                )
+              },
+              model: {
+                value: _vm.user.password_confirm,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "password_confirm", $$v)
+                },
+                expression: "user.password_confirm"
+              }
+            })
+          ],
+          1
+        )
+      ])
     ],
     1
   )
@@ -1222,6 +1359,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1268,7 +1433,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "liro-user-edit" },
+    { staticClass: "liro-user-edit uk-grid uk-flex", attrs: { "uk-grid": "" } },
     [
       _c("portal", { attrs: { to: "app-toolbar" } }, [
         _c("div", { staticClass: "uk-navbar-item" }, [
@@ -1313,94 +1478,150 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "th-form" },
-        [
-          _c("app-form-select", {
-            attrs: {
-              name: "state",
-              options: _vm.states,
-              label: _vm.Liro.messages.get("liro-users::form.user.state"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-users::form.user.select_state"
+      _c("div", { staticClass: "uk-flex-last uk-width-large" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-users::form.legend.general")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.user.state,
-              callback: function($$v) {
-                _vm.$set(_vm.user, "state", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-switch", {
+              staticClass: "is-state uk-width-1-1",
+              attrs: {
+                name: "state",
+                options: _vm.states,
+                label: _vm.Liro.messages.get("liro-users::form.user.state")
               },
-              expression: "user.state"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              name: "role_ids",
-              options: _vm.roles,
-              multiple: true,
-              "options-label": "title",
-              "options-value": "id",
-              label: _vm.Liro.messages.get("liro-users::form.user.role"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-users::form.user.select_role"
+              model: {
+                value: _vm.user.state,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "state", $$v)
+                },
+                expression: "user.state"
+              }
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-flex-first uk-flex-auto" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-users::form.legend.info")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.user.role_ids,
-              callback: function($$v) {
-                _vm.$set(_vm.user, "role_ids", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "name",
+                label: _vm.Liro.messages.get("liro-users::form.user.name")
               },
-              expression: "user.role_ids"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "name",
-              label: _vm.Liro.messages.get("liro-users::form.user.name")
-            },
-            model: {
-              value: _vm.user.name,
-              callback: function($$v) {
-                _vm.$set(_vm.user, "name", $$v)
+              model: {
+                value: _vm.user.name,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "name", $$v)
+                },
+                expression: "user.name"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "email",
+                label: _vm.Liro.messages.get("liro-users::form.user.email")
               },
-              expression: "user.name"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "email",
-              label: _vm.Liro.messages.get("liro-users::form.user.email")
-            },
-            model: {
-              value: _vm.user.email,
-              callback: function($$v) {
-                _vm.$set(_vm.user, "email", $$v)
+              model: {
+                value: _vm.user.email,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "email", $$v)
+                },
+                expression: "user.email"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-select", {
+              attrs: {
+                name: "role_ids",
+                options: _vm.roles,
+                multiple: true,
+                "options-label": "title",
+                "options-value": "id",
+                label: _vm.Liro.messages.get("liro-users::form.user.role"),
+                placeholder: _vm.Liro.messages.get(
+                  "liro-users::form.user.select_role"
+                )
               },
-              expression: "user.email"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              type: "password",
-              name: "password",
-              label: _vm.Liro.messages.get("liro-users::form.user.password")
-            },
-            model: {
-              value: _vm.user.password,
-              callback: function($$v) {
-                _vm.$set(_vm.user, "password", $$v)
+              model: {
+                value: _vm.user.role_ids,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "role_ids", $$v)
+                },
+                expression: "user.role_ids"
+              }
+            }),
+            _vm._v(" "),
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-users::form.legend.password")
+                  ) +
+                  "\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                type: "password",
+                name: "password",
+                label: _vm.Liro.messages.get("liro-users::form.user.password")
               },
-              expression: "user.password"
-            }
-          })
-        ],
-        1
-      )
+              model: {
+                value: _vm.user.password,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "password", $$v)
+                },
+                expression: "user.password"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                type: "password",
+                name: "password_confirm",
+                label: _vm.Liro.messages.get(
+                  "liro-users::form.user.password_confirm"
+                )
+              },
+              model: {
+                value: _vm.user.password_confirm,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "password_confirm", $$v)
+                },
+                expression: "user.password_confirm"
+              }
+            })
+          ],
+          1
+        )
+      ])
     ],
     1
   )

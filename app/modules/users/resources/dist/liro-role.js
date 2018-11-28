@@ -332,6 +332,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -456,8 +467,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", [
-    _c("td", [
+  return _c("div", { staticClass: "th-table-tr uk-flex uk-flex-middle" }, [
+    _c("div", { staticClass: "uk-width-1-3" }, [
       _c(
         "a",
         {
@@ -471,13 +482,13 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("td", [
+    _c("div", { staticClass: "uk-width-1-3" }, [
       _c("span", [
         _vm._v("\n            " + _vm._s(_vm.value.description) + "\n        ")
       ])
     ]),
     _vm._v(" "),
-    _c("td", [
+    _c("div", { staticClass: "uk-width-1-3" }, [
       _c("span", [
         _vm._v(
           "\n            " + _vm._s(_vm.value.route_names.length) + "\n        "
@@ -485,7 +496,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("td", { staticClass: "uk-text-center" }, [
+    _c("div", { staticClass: "uk-width-small uk-text-center" }, [
       _c("span", [
         _vm._v("\n            " + _vm._s(_vm.value.id) + "\n        ")
       ])
@@ -553,18 +564,41 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "th-form is-table" }, [
-                _c(
-                  "table",
-                  {
-                    staticClass:
-                      "uk-table uk-table-divider uk-table-middle uk-margin-remove-bottom"
-                  },
-                  [
-                    _c("thead", [
-                      _c("tr", [
+              _c("div", { staticClass: "th-table-container" }, [
+                _c("div", { staticClass: "th-table uk-margin-remove-bottom" }, [
+                  _c("div", { staticClass: "th-table-head" }, [
+                    _c(
+                      "div",
+                      { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                      [
                         _c(
-                          "th",
+                          "div",
+                          { staticClass: "uk-margin-auto-left" },
+                          [
+                            _c("app-list-search", {
+                              attrs: {
+                                columns: ["title", "route"],
+                                config: config.search,
+                                placeholder: _vm.Liro.messages.get(
+                                  "theme::form.search.placeholder"
+                                )
+                              },
+                              on: { search: search }
+                            })
+                          ],
+                          1
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "th-table-filter" }, [
+                    _c(
+                      "div",
+                      { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                      [
+                        _c(
+                          "div",
                           { staticClass: "uk-width-1-3" },
                           [
                             _c(
@@ -593,7 +627,7 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c(
-                          "th",
+                          "div",
                           { staticClass: "uk-width-1-3" },
                           [
                             _c(
@@ -621,7 +655,7 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _c("th", { staticClass: "uk-width-1-3" }, [
+                        _c("div", { staticClass: "uk-width-1-3" }, [
                           _c("span", [
                             _vm._v(
                               "\n                                " +
@@ -636,7 +670,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c(
-                          "th",
+                          "div",
                           { staticClass: "uk-width-small uk-text-center" },
                           [
                             _c(
@@ -660,63 +694,59 @@ var render = function() {
                           ],
                           1
                         )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    items.length != 0
-                      ? _c(
-                          "tbody",
-                          _vm._l(items, function(item, index) {
-                            return _c("liro-role-index-item", {
-                              key: index,
-                              attrs: { value: item }
-                            })
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  items.length != 0
+                    ? _c(
+                        "div",
+                        { staticClass: "th-table-body" },
+                        _vm._l(items, function(item, index) {
+                          return _c("liro-role-index-item", {
+                            key: index,
+                            attrs: { value: item }
                           })
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    items.length == 0
-                      ? _c("tbody", [
-                          _c("tr", [
-                            _c(
-                              "td",
-                              {
-                                staticClass: "uk-text-center",
-                                attrs: { colspan: "5" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(
-                                      _vm.Liro.messages.get(
-                                        "theme::form.list.empty"
-                                      )
-                                    ) +
-                                    "\n                        "
-                                )
-                              ]
-                            )
-                          ])
+                        })
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  items.length == 0
+                    ? _c("div", { staticClass: "th-table-body" }, [
+                        _c("div", { staticClass: "th-table-tr" }, [
+                          _c(
+                            "div",
+                            { staticClass: "uk-width-1-1 uk-text-center" },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(
+                                    _vm.Liro.messages.get(
+                                      "theme::form.list.empty"
+                                    )
+                                  ) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
                         ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("tfoot", [
-                      _c("tr", [
-                        _c(
-                          "td",
-                          { attrs: { colspan: "5" } },
-                          [
-                            _c("app-list-pagination", {
-                              attrs: { pages: pages, config: config.paginate },
-                              on: { paginate: paginate }
-                            })
-                          ],
-                          1
-                        )
                       ])
-                    ])
-                  ]
-                )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "th-table-footer" }, [
+                    _c(
+                      "div",
+                      { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                      [
+                        _c("app-list-pagination", {
+                          attrs: { pages: pages, config: config.paginate },
+                          on: { paginate: paginate }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ])
               ])
             ],
             1

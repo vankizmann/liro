@@ -12,66 +12,77 @@
         </portal>
 
         <!-- Table start -->
-        <div class="th-form is-table">
-            <table class="uk-table uk-table-divider uk-table-middle uk-margin-remove-bottom">
+        <div class="th-table-container">
+            <div class="th-table uk-margin-remove-bottom">
 
                 <!-- Table head -->
-                <thead>
-                    <tr>
-                        <th class="uk-width-small">
-                            <app-list-filter column="state" :config="config.filter" :filters="states" @filter="filter">
-                                {{ Liro.messages.get('liro-menus::form.type.state') }}
-                            </app-list-filter>
-                        </th>
-                        <th class="uk-width-1-3">
+                <div class="th-table-head">
+                    <div class="th-table-tr uk-flex uk-flex-middle">
+                        <div class="uk-margin-auto-left">
+                            <app-list-search
+                                :columns="['title', 'route']" :config="config.search" @search="search"
+                                :placeholder="Liro.messages.get('theme::form.search.placeholder')"
+                            ></app-list-search>
+                        </div>
+                    </div>
+                </div>
+                <!-- Table head end -->
+
+                <!-- Table filter -->
+                <div class="th-table-filter">
+                    <div class="th-table-tr uk-flex uk-flex-middle">
+                        <div class="uk-width-1-3">
                             <app-list-sort column="title" :config="config.order" @order="order">
                                 {{ Liro.messages.get('liro-menus::form.type.title') }}
                             </app-list-sort>
-                        </th>
-                        <th class="uk-width-1-3">
+                        </div>
+                        <div class="uk-width-1-3">
                             <app-list-sort column="route" :config="config.order" @order="order">
                                 {{ Liro.messages.get('liro-menus::form.type.route') }}
                             </app-list-sort>
-                        </th>
-                        <th class="uk-width-1-3">
+                        </div>
+                        <div class="uk-width-1-3">
                             <app-list-sort column="theme" :config="config.order" @order="order">
                                 {{ Liro.messages.get('liro-menus::form.type.theme') }}
                             </app-list-sort>
-                        </th>
-                        <th class="uk-width-small uk-text-center">
+                        </div>
+                        <div class="th-table-td-m uk-text-center">
+                            <app-list-filter column="state" :config="config.filter" :filters="states" @filter="filter">
+                                {{ Liro.messages.get('liro-menus::form.type.state') }}
+                            </app-list-filter>
+                        </div>
+                        <div class="th-table-td-m uk-text-center">
                             <app-list-sort column="id" :config="config.order" @order="order">
                                 {{ Liro.messages.get('liro-menus::form.type.id') }}
                             </app-list-sort>
-                        </th>
-                    </tr>
-                </thead>
-                <!-- Table head end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Table filter end -->
 
                 <!-- Table body -->
-                <tbody v-if="items.length != 0">
+                <div class="th-table-body" v-if="items.length != 0">
                     <liro-type-index-item v-for="(item, index) in items" :value="item" :key="index"></liro-type-index-item>
-                </tbody>
+                </div>
                 <!-- Table body end -->
 
                 <!-- Table body -->
-                <tbody v-if="items.length == 0">
-                    <tr>
-                        <td colspan="5" class="uk-text-center">
+                <div class="th-table-body" v-if="items.length == 0">
+                    <div class="th-table-tr">
+                        <div class="uk-width-1-1 uk-text-center">
                             {{ Liro.messages.get('theme::form.list.empty') }}
-                        </td>
-                    </tr>
-                </tbody>
+                        </div>
+                    </div>
+                </div>
                 <!-- Table body end -->
 
-                <tfoot>
-                    <tr>
-                        <td colspan="5">
-                            <app-list-pagination :pages="pages" :config="config.paginate" @paginate="paginate"></app-list-pagination>
-                        </td>
-                    </tr>
-                </tfoot>
+                <div class="th-table-footer">
+                    <div class="th-table-tr uk-flex uk-flex-middle">
+                        <app-list-pagination :pages="pages" :config="config.paginate" @paginate="paginate"></app-list-pagination>
+                    </div>
+                </div>
                 
-            </table>
+            </div>
         </div>
         <!-- Table end -->
 

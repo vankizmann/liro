@@ -4,24 +4,13 @@
     & {
         padding: 25px 30px 30px;
         border-radius: 3px;
-        background-color: $color-white;
         margin-bottom: 20px;
+        background-color: $color-white;
+        box-shadow: 0 1px 3px rgba($color-gray-25, 0.15);
     }
 
     &:last-child {
         margin-bottom: 0;
-    }
-
-    &.is-table {
-        padding: 10px 20px;
-    }
-
-    &.is-table .th-icon-hover .uk-icon {
-        display: none;
-    }
-
-    &.is-table .th-icon-hover:hover .uk-icon {
-        display: inline-block;
     }
 
 }

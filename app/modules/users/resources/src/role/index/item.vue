@@ -1,27 +1,27 @@
 <template>
 
-<tr>
-    <td>
+<div class="th-table-tr uk-flex uk-flex-middle">
+    <div class="uk-width-1-3">
         <a :href="Liro.routes.get('liro-users.role.edit', { role: value.id })">
             {{ value.title }}
         </a>
-    </td>
-    <td>
+    </div>
+    <div class="uk-width-1-3">
         <span>
             {{ value.description }}
         </span>
-    </td>
-    <td>
+    </div>
+    <div class="uk-width-1-3">
         <span>
             {{ value.route_names.length }}
         </span>
-    </td>
-    <td class="uk-text-center">
+    </div>
+    <div class="uk-width-small uk-text-center">
         <span>
             {{ value.id }}
         </span>
-    </td>
-</tr>
+    </div>
+</div>
 
 </template>
 <script>

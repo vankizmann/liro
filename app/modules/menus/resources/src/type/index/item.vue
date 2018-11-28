@@ -1,30 +1,30 @@
 <template>
 
-<tr>
-    <td class="uk-text-center">
-        <app-list-switch class="is-state" :active="value.state" @click="updateTypeState"></app-list-switch>
-    </td>
-    <td>
+<div class="th-table-tr uk-flex uk-flex-middle">
+    <div class="uk-width-1-3">
         <a :href="Liro.routes.get('liro-menus.type.edit', { type: value.id })">
             {{ value.title }}
         </a>
-    </td>
-    <td>
+    </div>
+    <div class="uk-width-1-3">
         <span>
             {{ value.route }}
         </span>
-    </td>
-    <td>
+    </div>
+    <div class="uk-width-1-3">
         <span>
             {{ value.theme }}
         </span>
-    </td>
-    <td class="uk-text-center">
+    </div>
+    <div class="th-table-td-m uk-text-center">
+        <app-list-switch class="is-state" :active="value.state" @click="updateTypeState"></app-list-switch>
+    </div>
+    <div class="th-table-td-m uk-text-center">
         <span>
             {{ value.id }}
         </span>
-    </td>
-</tr>
+    </div>
+</div>
 
 </template>
 <script>

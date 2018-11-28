@@ -2,11 +2,11 @@
 body.th-index {
 
     & {
-        background-color: $color-gray-10;
+        background-color: $color-gray-5;
     }
 
     .th-index-header {
-        // box-shadow: 0 0 20px rgba(#555, 0.05);
+        box-shadow: 0 0 3px rgba($color-gray-25, 0.15);
     }
 
     .th-index-body {
@@ -16,6 +16,10 @@ body.th-index {
 }
 
 body.th-error {
+
+    & {
+        background-color: $color-gray-5;
+    }
 
     .th-error-body {
         min-height: 100vh;

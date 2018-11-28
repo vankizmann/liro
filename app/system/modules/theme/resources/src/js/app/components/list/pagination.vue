@@ -1,6 +1,6 @@
 <template>
 
-<div class="app-list-pagination uk-flex uk-flex-middle">
+<div class="app-list-pagination uk-width-1-1 uk-flex uk-flex-middle">
 
     <!-- Limit start -->
     <div class="app-list-pagination-limit uk-margin-auto-right">
@@ -16,7 +16,7 @@
 
     <!-- Pages start -->
     <div class="app-list-pagination-pages uk-margin-auto-left">
-        <ul class="uk-pagination uk-margin-remove-bottom">
+        <ul class="uk-pagination uk-flex-middle uk-margin-remove-bottom">
 
             <!-- Prev start -->
             <li :class="{ 'uk-disabled': config.page == 1 }">

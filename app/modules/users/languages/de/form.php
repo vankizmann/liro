@@ -2,6 +2,12 @@
 
 return [
 
+    'legend' => [
+        'general'           => 'Allgemeines',
+        'info'              => 'Informationen',
+        'password'          => 'Password',
+    ],
+
     'user' => [
         'id'                => 'ID',
         'state'             => 'Status',
@@ -9,6 +15,7 @@ return [
         'name'              => 'Benutzername',
         'email'             => 'E-Mail-Adresse',
         'password'          => 'Passwort',
+        'password_confirm'  => 'Passwort bestätigen',
         'role'              => 'Benutzergruppe',
         'select_role'       => 'Benutzergruppe auswählen'
     ],

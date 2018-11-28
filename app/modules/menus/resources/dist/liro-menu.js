@@ -340,6 +340,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -663,7 +671,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "th-table-fake-tr uk-flex uk-flex-middle" }, [
+  return _c("div", { staticClass: "th-table-tr uk-flex uk-flex-middle" }, [
     _c("div", { staticClass: "uk-flex-0" }, [
       _c(
         "a",
@@ -778,24 +786,6 @@ var render = function() {
       _c("portal", { attrs: { to: "app-toolbar" } }, [
         _c("div", { staticClass: "uk-navbar-item" }, [
           _c(
-            "div",
-            { staticClass: "uk-width-medium uk-margin-small-left" },
-            [
-              _c("app-form-select", {
-                staticClass: "uk-margin-remove-bottom",
-                attrs: {
-                  value: _vm.active.id,
-                  options: _vm.types,
-                  "options-value": "id",
-                  "options-label": "title"
-                },
-                on: { input: _vm.redirectType }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
             "a",
             {
               staticClass: "uk-button uk-button-primary uk-margin-small-left",
@@ -814,11 +804,33 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "th-form is-table" }, [
-        _c("div", { staticClass: "th-table-fake uk-margin-remove-bottom" }, [
-          _c("div", { staticClass: "th-table-fake-head" }, [
-            _c("div", { staticClass: "th-table-fake-tr uk-flex" }, [
-              _c("div", { staticClass: "uk-flex-1" }, [
+      _c("div", { staticClass: "th-table-container" }, [
+        _c("div", { staticClass: "th-table uk-margin-remove-bottom" }, [
+          _c("div", { staticClass: "th-table-head" }, [
+            _c("div", { staticClass: "th-table-tr uk-flex" }, [
+              _c(
+                "div",
+                { staticClass: "uk-width-medium uk-margin-auto-left" },
+                [
+                  _c("app-form-select", {
+                    staticClass: "uk-margin-remove-bottom",
+                    attrs: {
+                      value: _vm.active.id,
+                      options: _vm.types,
+                      "options-value": "id",
+                      "options-label": "title"
+                    },
+                    on: { input: _vm.redirectType }
+                  })
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "th-table-filter" }, [
+            _c("div", { staticClass: "th-table-tr uk-flex" }, [
+              _c("div", { staticClass: "th-table-td uk-flex-1" }, [
                 _c("span", [
                   _vm._v(
                     "\n                            " +
@@ -830,7 +842,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "uk-width-medium" }, [
+              _c("div", { staticClass: "th-table-td uk-width-medium" }, [
                 _c("span", [
                   _vm._v(
                     "\n                            " +
@@ -842,48 +854,60 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "uk-width-small uk-text-center" }, [
-                _c("span", [
-                  _vm._v(
-                    "\n                            " +
-                      _vm._s(
-                        _vm.Liro.messages.get("liro-menus::form.menu.state")
-                      ) +
-                      "\n                        "
-                  )
-                ])
-              ]),
+              _c(
+                "div",
+                { staticClass: "th-table-td uk-width-small uk-text-center" },
+                [
+                  _c("span", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(
+                          _vm.Liro.messages.get("liro-menus::form.menu.state")
+                        ) +
+                        "\n                        "
+                    )
+                  ])
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "uk-width-small uk-text-center" }, [
-                _c("span", [
-                  _vm._v(
-                    "\n                            " +
-                      _vm._s(
-                        _vm.Liro.messages.get("liro-menus::form.menu.hide")
-                      ) +
-                      "\n                        "
-                  )
-                ])
-              ]),
+              _c(
+                "div",
+                { staticClass: "th-table-td uk-width-small uk-text-center" },
+                [
+                  _c("span", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(
+                          _vm.Liro.messages.get("liro-menus::form.menu.hide")
+                        ) +
+                        "\n                        "
+                    )
+                  ])
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "uk-width-small uk-text-center" }, [
-                _c("span", [
-                  _vm._v(
-                    "\n                            " +
-                      _vm._s(
-                        _vm.Liro.messages.get("liro-menus::form.menu.id")
-                      ) +
-                      "\n                        "
-                  )
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "th-table-td uk-width-small uk-text-center" },
+                [
+                  _c("span", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(
+                          _vm.Liro.messages.get("liro-menus::form.menu.id")
+                        ) +
+                        "\n                        "
+                    )
+                  ])
+                ]
+              )
             ])
           ]),
           _vm._v(" "),
           _vm.menus.length != 0
             ? _c(
                 "div",
-                { staticClass: "th-table-fake-body" },
+                { staticClass: "th-table-body" },
                 [
                   _c("vue-nestable", {
                     attrs: { threshold: 50, maxDepth: 5 },
@@ -926,8 +950,8 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _vm.menus.length == 0
-            ? _c("div", { staticClass: "th-table-fake-body" }, [
-                _c("div", { staticClass: "th-table-fake-tr" }, [
+            ? _c("div", { staticClass: "th-table-body" }, [
+                _c("div", { staticClass: "th-table-tr" }, [
                   _c("div", { staticClass: "uk-text-center" }, [
                     _vm._v(
                       "\n                        " +
@@ -941,9 +965,9 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c("div", { staticClass: "th-table-fake-footer" }, [
-            _c("div", { staticClass: "th-table-fake-tr uk-flex" }, [
-              _c("div", { staticClass: "uk-width-1-1 uk-text-right" }, [
+          _c("div", { staticClass: "th-table-footer" }, [
+            _c("div", { staticClass: "th-table-tr uk-flex" }, [
+              _c("div", { staticClass: "uk-margin-auto-left" }, [
                 _c(
                   "a",
                   {

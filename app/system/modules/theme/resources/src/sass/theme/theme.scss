@@ -3,6 +3,7 @@
 @import "./components/body";
 @import "./components/form";
 @import "./components/table";
+@import "./components/icon";
 @import "./components/liro";
 
 * {
@@ -19,4 +20,12 @@ body, table {
 
 iframe {
     width: 100%;
+}
+
+.th-fill-default path {
+    fill: $color-black !important;
+}
+
+.th-fill-primary path {
+    fill: $color-primary !important;
 }

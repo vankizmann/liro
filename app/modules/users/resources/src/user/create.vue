@@ -1,6 +1,6 @@
 <template>
 
-<div class="liro-user-create">
+<div class="liro-user-create uk-grid uk-flex" uk-grid>
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
@@ -13,33 +13,66 @@
         </div>
     </portal>
 
+    <!-- Sidebar start -->
+    <div class="uk-flex-last uk-width-large">
+        <div class="th-form">
+
+            <legend class="uk-legend uk-legend-small">
+                {{ Liro.messages.get('liro-users::form.legend.general') }}
+            </legend>
+
+            <app-form-switch 
+                class="is-state uk-width-1-1" name="state" v-model="user.state" :options="states" :label="Liro.messages.get('liro-users::form.user.state')"
+            ></app-form-switch>
+
+        </div>
+    </div>
+    <!-- Sidebar end -->
+
     <!-- Form start -->
-    <div class="th-form">
+    <div class="uk-flex-first uk-flex-auto">
 
-        <app-form-select 
-            name="state" v-model="user.state" :options="states" :label="Liro.messages.get('liro-users::form.user.state')" :placeholder="Liro.messages.get('liro-users::form.user.select_state')"
-        ></app-form-select>
+        <div class="th-form">
 
-        <app-form-select 
-            name="role_ids" v-model="user.role_ids" :options="roles" :multiple="true" options-label="title" options-value="id" :label="Liro.messages.get('liro-users::form.user.role')" :placeholder="Liro.messages.get('liro-users::form.user.select_role')"
-        ></app-form-select>
+            <legend class="uk-legend uk-legend-small">
+                {{ Liro.messages.get('liro-users::form.legend.info') }}
+            </legend>
 
-        <app-form-input 
-            name="name" v-model="user.name" :label="Liro.messages.get('liro-users::form.user.name')"
-        ></app-form-input>
+            <app-form-input 
+                name="name" v-model="user.name" :label="Liro.messages.get('liro-users::form.user.name')"
+            ></app-form-input>
 
-        <app-form-input 
-            name="email" v-model="user.email" :label="Liro.messages.get('liro-users::form.user.email')"
-        ></app-form-input>
+            <app-form-input 
+                name="email" v-model="user.email" :label="Liro.messages.get('liro-users::form.user.email')"
+            ></app-form-input>
 
-        <app-form-input 
-            type="password" name="password" v-model="user.password" :label="Liro.messages.get('liro-users::form.user.password')"
-        ></app-form-input>
+            <app-form-select 
+                name="role_ids" v-model="user.role_ids" :options="roles" :multiple="true" options-label="title" options-value="id" :label="Liro.messages.get('liro-users::form.user.role')" :placeholder="Liro.messages.get('liro-users::form.user.select_role')"
+            ></app-form-select>
+
+        </div>
+
+        <div class="th-form">
+
+            <legend class="uk-legend uk-legend-small">
+                {{ Liro.messages.get('liro-users::form.legend.password') }}
+            </legend>
+
+            <app-form-input 
+                type="password" name="password" v-model="user.password" :label="Liro.messages.get('liro-users::form.user.password')"
+            ></app-form-input>
+            
+            <app-form-input 
+                type="password" name="password_confirm" v-model="user.password_confirm" :label="Liro.messages.get('liro-users::form.user.password_confirm')"
+            ></app-form-input>
+
+        </div>
 
     </div>
     <!-- Form end -->
 
 </div>
+
 </template>
 <script>
 

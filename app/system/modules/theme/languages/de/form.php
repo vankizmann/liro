@@ -2,6 +2,11 @@
 
 return [
 
+    'search' => [
+        'label'         => 'Suche',
+        'placeholder'   => 'Suchbegriff eingeben'
+    ],
+
     'language' => [
         'all'           => 'Alle Sprachen'
     ],

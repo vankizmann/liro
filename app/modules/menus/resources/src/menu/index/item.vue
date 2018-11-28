@@ -1,6 +1,6 @@
 <template>
 
-<div class="th-table-fake-tr uk-flex uk-flex-middle">
+<div class="th-table-tr uk-flex uk-flex-middle">
 
     <div class="uk-flex-0">
         <a :class="{ 'uk-disabled': value.children.length == 0 }" href="javascript:void(0)" @click="toggleCollapsed">

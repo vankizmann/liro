@@ -22,7 +22,9 @@ require('./components/list');
 require('./components/form/input');
 require('./components/form/textarea');
 require('./components/form/select');
+require('./components/form/switch');
 
+require('./components/list/search');
 require('./components/list/sort');
 require('./components/list/filter');
 require('./components/list/switch');

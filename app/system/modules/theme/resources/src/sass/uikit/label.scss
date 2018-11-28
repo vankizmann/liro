@@ -1,4 +1,32 @@
 
 .uk-label {
+    line-height: 1.5;
+    font-size: 0.825rem;
     text-transform: none;
+    padding: 0 9px;
+}
+
+.uk-label,
+.uk-label-default {
+    color: $color-gray-50;
+    background-color: rgba($color-gray-50, 0.20);
+    border: 1px solid rgba($color-gray-50, 0.25);
+}
+
+.uk-label-primary {
+    color: $color-primary;
+    background-color: rgba($color-primary, 0.20);
+    border: 1px solid rgba($color-primary, 0.25);
+}
+
+.uk-label-warning {
+    color: $color-warning;
+    background-color: rgba($color-warning, 0.20);
+    border: 1px solid rgba($color-warning, 0.25);
+}
+
+.uk-label-danger {
+    color: $color-danger;
+    background-color: rgba($color-danger, 0.20);
+    border: 1px solid rgba($color-danger, 0.25);
 }

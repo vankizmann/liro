@@ -1,30 +1,30 @@
 <template>
 
-<tr>
-    <td class="uk-text-center">
-        <app-list-switch class="is-state" :active="value.state" @click="updateUser"></app-list-switch>
-    </td>
-    <td>
+<div class="th-table-tr uk-flex uk-flex-middle">
+    <div class="uk-width-1-3">
         <a :href="Liro.routes.get('liro-users.user.edit', { user: value.id })">
             {{ value.name }}
         </a>
-    </td>
-    <td>
+    </div>
+    <div class="uk-width-1-3">
         <span>
             {{ value.email }}
         </span>
-    </td>
-    <td>
-        <span class="uk-label uk-margin-small-right" v-for="(role, index) in Liro.helpers.map(value.role_ids, 'id', $parent.$parent.roles)" :key="index">
+    </div>
+    <div class="uk-width-1-3">
+        <span class="uk-label uk-label-primary uk-margin-small-right" v-for="(role, index) in Liro.helpers.map(value.role_ids, 'id', $parent.$parent.roles)" :key="index">
             {{ role.title }}
         </span>
-    </td>
-    <td class="uk-text-center">
+    </div>
+    <div class="th-table-td-m uk-text-center">
+        <app-list-switch class="is-state" :active="value.state" @click="updateUser"></app-list-switch>
+    </div>
+    <div class="th-table-td-m uk-text-center">
         <span>
             {{ value.id }}
         </span>
-    </td>
-</tr>
+    </div>
+</div>
 
 </template>
 <script>

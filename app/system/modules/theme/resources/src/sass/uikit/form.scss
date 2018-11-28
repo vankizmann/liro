@@ -2,7 +2,7 @@
 .uk-form {
 
     &-label {
-        color: $color-gray-60;
+        color: $color-gray-50;
     }
 
     &-label, &-label-link {
@@ -12,7 +12,7 @@
     }
 
     &-controls:not(:last-child) {
-        margin-bottom: 16px;
+        margin-bottom: 20px;
     }
 
 }
@@ -20,14 +20,15 @@
 .uk-input, .uk-textarea, .uk-select {
 
     & {
-        border-color: $color-gray-15;
+        font-size: 0.875rem;
+        border-color: $color-gray-10;
         transition: all 0.15s;
         border-radius: $global-border-radius;
     }
 
     &:focus, &.uk-open {
-        border-color: $color-primary;
-        box-shadow: 0 0 0 0.1rem rgba($color-primary, 0.2);
+        border-color: mix($color-primary, $color-white, 75%);
+        box-shadow: 0 0 0 0.15rem rgba($color-primary, 0.2);
     }
 
 }
@@ -41,7 +42,8 @@
     }
 
     &:focus {
-        box-shadow: 0 0 0 0.1rem rgba($color-primary, 0.2);
+        border-color: mix($color-primary, $color-white, 75%);
+        box-shadow: 0 0 0 0.15rem rgba($color-primary, 0.2);
     }
 
     &-label {

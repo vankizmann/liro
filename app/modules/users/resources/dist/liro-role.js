@@ -1220,6 +1220,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1375,14 +1378,15 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "uk-flex uk-flex-wrap uk-child-width-1-2" },
+            {
+              staticClass:
+                "uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l",
+              attrs: { "uk-grid": "" }
+            },
             _vm._l(routes, function(name, index) {
               return _c(
                 "label",
-                {
-                  key: index,
-                  staticClass: "uk-checkbox-label uk-margin-small-bottom"
-                },
+                { key: index, staticClass: "uk-checkbox-label" },
                 [
                   _c("input", {
                     directives: [
@@ -1430,7 +1434,8 @@ var render = function() {
                       }
                     }
                   }),
-                  _vm._v(_vm._s(name))
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(name))])
                 ]
               )
             })

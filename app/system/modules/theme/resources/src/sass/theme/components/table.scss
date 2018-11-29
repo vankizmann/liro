@@ -112,7 +112,7 @@
     }
 
     .th-table-filter a.uk-active {
-        color: $color-gray-90;
+        color: $color-primary;
     }
 
     .th-table-filter .uk-dropdown a {
@@ -129,6 +129,10 @@
 
     &.th-table-highlight .th-table-body .th-table-tr:hover {
         background-color: lighten($color-gray-5, 3%);
+    }
+
+    .uk-icon {
+        opacity: 0.7;
     }
 
     .uk-icon svg {

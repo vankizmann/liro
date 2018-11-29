@@ -2,3 +2,9 @@
 .uk-button {
     border-radius: $global-border-radius;
 }
+
+
+.uk-button-default:hover,
+.uk-button-default:focus {
+    border-color: $color-primary;
+}

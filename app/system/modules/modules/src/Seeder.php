@@ -50,6 +50,13 @@ class Seeder
             'lock'      => 1,
             'module'    => 'system-theme'
         ]);
+
+        Module::create([
+            'state'     => 1,
+            'hide'      => 0,
+            'lock'      => 1,
+            'module'    => 'liro-languages'
+        ]);
         
         Module::create([
             'state'     => 1,

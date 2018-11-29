@@ -14,6 +14,8 @@ return [
         'select_state'      => 'Status auswählen',
         'hide'              => 'Versteckt',
         'select_hide'       => 'Sichtbarkeit auswählen',
+        'default'           => 'Standard',
+        'select_default'    => 'Standard auswählen',
         'title'             => 'Titel',
         'route'             => 'Route',
         'type'              => 'Menütyp',

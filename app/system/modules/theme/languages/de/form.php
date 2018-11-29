@@ -2,6 +2,11 @@
 
 return [
 
+    'modal' => [
+        'ok'            => 'Ok',
+        'cancel'        => 'Abbrechen'
+    ],
+
     'search' => [
         'label'         => 'Suche',
         'placeholder'   => 'Suchbegriff eingeben'
@@ -29,6 +34,11 @@ return [
     'hide' => [
         'hidden'        => 'Versteckt',
         'visible'       => 'Sichtbar',
+    ],
+
+    'default' => [
+        'enabled'       => 'Aktiviert',
+        'disabled'      => 'Deaktiviert',
     ],
 
     'list' => [

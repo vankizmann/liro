@@ -14,13 +14,17 @@
         </a>
     </div>
 
-    <div class="uk-width-1-2 th-icon-hover uk-flex uk-flex-left uk-flex-middle">
+    <div class="th-table-td-xl th-icon-hover uk-flex uk-flex-left uk-flex-middle">
         <span class="uk-margin-small-right">
             {{ value.route }}
         </span>
         <a href="javascript:void(0)" @click="updateMenuRoute">
             <i uk-icon="pencil"></i>
         </a>
+    </div>
+
+    <div class="th-table-td-m uk-text-center">
+        <app-list-switch class="is-default" :active="value.default" @click="updateMenuDefault"></app-list-switch>
     </div>
 
     <div class="th-table-td-m uk-text-center">
@@ -122,6 +126,22 @@ export default {
 
             var menu = _.merge(this.value, {
                 hide: this.value.hide ? 0 : 1
+            });
+
+            Axios.post(url, menu).then(this.updateMenuResponse);
+        },
+
+        /**
+         * Submit ajax request with changed default
+         */
+        updateMenuDefault: function () {
+
+            var url = Liro.routes.get('liro-menus.menu.edit', {
+                menu: this.value.id
+            });
+
+            var menu = _.merge(this.value, {
+                default: this.value.default ? 0 : 1
             });
 
             Axios.post(url, menu).then(this.updateMenuResponse);

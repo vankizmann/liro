@@ -36,6 +36,10 @@
                 class="is-hide uk-width-1-1" name="hide" v-model="menu.hide" :options="hides" :label="Liro.messages.get('liro-menus::form.menu.hide')"
             ></app-form-switch>
 
+            <app-form-switch 
+                class="is-default uk-width-1-1" name="default" v-model="menu.default" :options="defaults" :label="Liro.messages.get('liro-menus::form.menu.default')"
+            ></app-form-switch>
+
             <app-form-select-single 
             name="menu_type_id" v-model="menu.menu_type_id" :options="types" options-value="id" options-label="title" :label="Liro.messages.get('liro-menus::form.menu.type')" :placeholder="Liro.messages.get('liro-menus::form.menu.select_type')"
         ></app-form-select-single>
@@ -85,6 +89,7 @@ export default {
         return {
             states: this.Liro.data.get('states'),
             hides: this.Liro.data.get('hides'),
+            defaults: this.Liro.data.get('defaults'),
             types: this.Liro.data.get('types'),
             modules: this.Liro.data.get('modules'),
             menu: this.Liro.data.get('menu')

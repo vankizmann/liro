@@ -19,7 +19,7 @@
     border-radius: $global-border-radius;
 }
 
-.uk-input:focus, .uk-textarea:focus, .uk-select:focus, .uk-select.uk-open {
+.uk-input:focus, .uk-textarea:focus, .uk-select:focus {
     border-color: mix($color-primary, $color-white, 75%);
 }
 

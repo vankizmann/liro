@@ -60,6 +60,11 @@ class UserManager
         $this->routes = $guest_role->routes->pluck('route')->toArray();
     }
 
+    public function getId($default = 0)
+    {
+        return @$this->app['auth']->user()->id ?: $default;
+    }
+
     public function getName($default = '')
     {
         return @$this->app['auth']->user()->name ?: $default;

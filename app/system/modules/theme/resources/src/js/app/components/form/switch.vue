@@ -12,7 +12,7 @@
 
         <ul class="uk-nav" :data-value="$value">
             <li v-for="(option, index) in options" :key="index" :class="{ 'uk-active': $value == option[optionsValue] }">
-                <a href="javascript:void(0)" @click="switchOption(option[optionsValue])">{{ option[optionsLabel] }}</a>
+                <a class="uk-display-block uk-text-center" href="javascript:void(0)" @click="switchOption(option[optionsValue])">{{ option[optionsLabel] }}</a>
             </li>
         </ul>
 

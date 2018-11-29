@@ -354,6 +354,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -561,6 +567,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -651,6 +661,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         /**
+         * Submit ajax request with changed default
+         */
+        updateMenuDefault: function updateMenuDefault() {
+
+            var url = Liro.routes.get('liro-menus.menu.edit', {
+                menu: this.value.id
+            });
+
+            var menu = _.merge(this.value, {
+                default: this.value.default ? 0 : 1
+            });
+
+            Axios.post(url, menu).then(this.updateMenuResponse);
+        },
+
+        /**
          * Show success message and save value
          */
         updateMenuResponse: function updateMenuResponse(res) {
@@ -718,7 +744,7 @@ var render = function() {
       "div",
       {
         staticClass:
-          "uk-width-1-2 th-icon-hover uk-flex uk-flex-left uk-flex-middle"
+          "th-table-td-xl th-icon-hover uk-flex uk-flex-left uk-flex-middle"
       },
       [
         _c("span", { staticClass: "uk-margin-small-right" }, [
@@ -734,6 +760,19 @@ var render = function() {
           [_c("i", { attrs: { "uk-icon": "pencil" } })]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "th-table-td-m uk-text-center" },
+      [
+        _c("app-list-switch", {
+          staticClass: "is-default",
+          attrs: { active: _vm.value.default },
+          on: { click: _vm.updateMenuDefault }
+        })
+      ],
+      1
     ),
     _vm._v(" "),
     _c(
@@ -850,7 +889,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "th-table-td uk-width-1-2" }, [
+              _c("div", { staticClass: "th-table-td th-table-td-xl" }, [
                 _c("span", [
                   _vm._v(
                     "\n                            " +
@@ -861,6 +900,22 @@ var render = function() {
                   )
                 ])
               ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "th-table-td th-table-td-m uk-text-center" },
+                [
+                  _c("span", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(
+                          _vm.Liro.messages.get("liro-menus::form.menu.default")
+                        ) +
+                        "\n                        "
+                    )
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -1161,6 +1216,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1172,6 +1231,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             states: this.Liro.data.get('states'),
             hides: this.Liro.data.get('hides'),
+            defaults: this.Liro.data.get('defaults'),
             types: this.Liro.data.get('types'),
             modules: this.Liro.data.get('modules'),
             menu: this.Liro.data.get('menu')
@@ -1311,6 +1371,22 @@ var render = function() {
                   _vm.$set(_vm.menu, "hide", $$v)
                 },
                 expression: "menu.hide"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-switch", {
+              staticClass: "is-default uk-width-1-1",
+              attrs: {
+                name: "default",
+                options: _vm.defaults,
+                label: _vm.Liro.messages.get("liro-menus::form.menu.default")
+              },
+              model: {
+                value: _vm.menu.default,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "default", $$v)
+                },
+                expression: "menu.default"
               }
             }),
             _vm._v(" "),
@@ -1559,6 +1635,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1570,6 +1650,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             states: this.Liro.data.get('states'),
             hides: this.Liro.data.get('hides'),
+            defaults: this.Liro.data.get('defaults'),
             types: this.Liro.data.get('types'),
             modules: this.Liro.data.get('modules'),
             menu: this.Liro.data.get('menu')
@@ -1709,6 +1790,22 @@ var render = function() {
                   _vm.$set(_vm.menu, "hide", $$v)
                 },
                 expression: "menu.hide"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-switch", {
+              staticClass: "is-default uk-width-1-1",
+              attrs: {
+                name: "default",
+                options: _vm.defaults,
+                label: _vm.Liro.messages.get("liro-menus::form.menu.default")
+              },
+              model: {
+                value: _vm.menu.default,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "default", $$v)
+                },
+                expression: "menu.default"
               }
             }),
             _vm._v(" "),

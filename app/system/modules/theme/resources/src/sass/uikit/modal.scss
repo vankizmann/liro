@@ -1,6 +1,16 @@
 
+
+.uk-modal-dialog {
+    overflow: hidden;
+    border-radius: $global-border-radius;
+}
+
 .uk-modal-dialog .uk-modal-body label {
     display: block;
     margin-bottom: 6px;
     font-size: 0.875rem;
+}
+
+.uk-modal-dialog .uk-modal-footer {
+    border-top-color: $color-gray-5;
 }

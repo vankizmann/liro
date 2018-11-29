@@ -22,6 +22,10 @@ iframe {
     width: 100%;
 }
 
+form:last-child {
+    margin-bottom: 0 !important;
+}
+
 .th-fill-default path {
     fill: $color-black !important;
 }

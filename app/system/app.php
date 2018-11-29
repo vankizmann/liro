@@ -90,6 +90,8 @@ $app->booted(function () use ($app) {
 
     $app['events']->fire('app.boot');
 
+    // dd($app['router']);
+
 });
 
 /*

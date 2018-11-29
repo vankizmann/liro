@@ -1,6 +1,6 @@
 <template>
 
-<div class="app-form-select">
+<div class="app-form-select is-multiple">
 
     <!-- Label start -->
     <label v-show="label" class="uk-form-label" :for="id">

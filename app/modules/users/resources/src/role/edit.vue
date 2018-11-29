@@ -42,8 +42,11 @@
             {{ index }}
         </legend>
 
-        <div class="uk-flex uk-flex-wrap uk-child-width-1-2">
-            <label v-for="(name, index) in routes" :key="index" class="uk-checkbox-label uk-margin-small-bottom"><input class="uk-checkbox" type="checkbox" v-model="role.route_names" :value="index">{{ name }}</label>
+        <div class="uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l" uk-grid>
+            <label v-for="(name, index) in routes" :key="index" class="uk-checkbox-label">
+                <input class="uk-checkbox" type="checkbox" v-model="role.route_names" :value="index">
+                <span>{{ name }}</span>
+            </label>
         </div>
         
     </div>

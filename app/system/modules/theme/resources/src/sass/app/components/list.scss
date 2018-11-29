@@ -42,7 +42,8 @@
     }
 
     &.is-state > a,
-    &.is-hide > a {
+    &.is-hide > a,
+    &.is-default > a {
         display: inline-block;
         width: 14px;
         height: 14px;
@@ -51,11 +52,15 @@
     }
 
     &.is-state.uk-active > a {
-        background-color: lighten($color-success, 15%);
+        background-color: $color-success;
     }
 
     &.is-hide.uk-active > a {
-        background-color: lighten($color-danger, 15%);
+        background-color: $color-danger;
+    }
+
+    &.is-default.uk-active > a {
+        background-color: $color-primary;
     }
 
 }

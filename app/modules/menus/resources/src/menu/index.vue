@@ -48,9 +48,15 @@
                         </span>
                     </div>
 
-                    <div class="th-table-td uk-width-1-2">
+                    <div class="th-table-td th-table-td-xl">
                         <span>
                             {{ Liro.messages.get('liro-menus::form.menu.route') }}
+                        </span>
+                    </div>
+
+                    <div class="th-table-td th-table-td-m uk-text-center">
+                        <span>
+                            {{ Liro.messages.get('liro-menus::form.menu.default') }}
                         </span>
                     </div>
 

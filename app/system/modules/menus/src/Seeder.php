@@ -262,6 +262,41 @@ class Seeder
             'menu_type_id'  => $menu_type_backend->id
         ]);
 
+        $menu_backend_languages = Menu::create([
+            'state'         => 1,
+            'hide'          => 0,
+            'lock'          => 0,
+            'title'         => 'liro-languages::module.language.index',
+            'route'         => 'languages',
+            'module'        => 'liro-languages.language.index',
+            'default'       => 0,
+            'menu_type_id'  => $menu_type_backend->id
+        ]);
+
+        $menu_backend_language_create = Menu::create([
+            'state'         => 1,
+            'hide'          => 1,
+            'lock'          => 0,
+            'title'         => 'liro-languages::module.language.create',
+            'route'         => 'create',
+            'module'        => 'liro-languages.language.create',
+            'default'       => 0,
+            'menu_type_id'  => $menu_type_backend->id,
+            'parent_id'     => $menu_backend_languages->id
+        ]);
+
+        $menu_backend_language_edit = Menu::create([
+            'state'         => 1,
+            'hide'          => 1,
+            'lock'          => 0,
+            'title'         => 'liro-languages::module.language.edit',
+            'route'         => 'edit',
+            'module'        => 'liro-languages.language.edit',
+            'default'       => 0,
+            'menu_type_id'  => $menu_type_backend->id,
+            'parent_id'     => $menu_backend_languages->id
+        ]);
+
         $menu_backend_modules = Menu::create([
             'state'         => 1,
             'hide'          => 0,

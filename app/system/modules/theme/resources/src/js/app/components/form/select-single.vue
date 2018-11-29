@@ -1,6 +1,6 @@
 <template>
 
-<div class="app-form-select">
+<div class="app-form-select is-single">
 
     <!-- Label start -->
     <label v-show="label" class="uk-form-label" :for="id">
@@ -21,7 +21,7 @@
         <div ref="dropdown" uk-dropdown="mode: click; pos: bottom-justify;">
             <ul class="uk-nav uk-dropdown-nav">
                 <li v-for="(option, index) in options" :key="index" :class="{ 'uk-active': _value == option[optionsValue] }">
-                    <label class="uk-radio-label">
+                    <label class="uk-radio-label" @click="hideDropdown">
                         <input class="uk-radio" type="radio" :value="option[optionsValue]" v-model="_value">
                         <span>{{ option[optionsLabel] }}</span>
                     </label>
@@ -71,7 +71,7 @@ export default {
             type: String
         },
         id: {
-            default: '',
+            default: () => _.uniqueId('form-input-'),
             type: String
         },
         name: {
@@ -101,6 +101,10 @@ export default {
     },
 
     methods: {
+
+        hideDropdown: function () {
+            UIkit.dropdown(this.$refs.dropdown).hide();
+        },
         
         getOptions: function () {
             return _.filter(this.options, (option) => {

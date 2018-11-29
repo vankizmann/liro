@@ -29,7 +29,9 @@
 
     .uk-select > .uk-label {
         text-transform: none;
-        margin: 8px 8px 8px 0;
+        padding: 4px 9px;
+        margin: 5px 5px 5px 0;
+        // border-radius: 2px;
     }
 
     .uk-dropdown {
@@ -37,6 +39,10 @@
         background-color: $color-white;
         max-height: 280px;
         overflow-y: auto;
+    }
+
+    .uk-nav > li:not(:last-child) {
+        border-bottom: 1px solid $color-gray-5;
     }
 
     .uk-nav > li > .uk-checkbox-label,
@@ -50,12 +56,12 @@
     .uk-nav > li:hover > .uk-checkbox-label,
     .uk-nav > li:hover > .uk-radio-label {
         color: $color-gray-65;
+        background-color: lighten($color-gray-5, 3%);
     }
 
     .uk-nav > li.uk-active > .uk-checkbox-label,
     .uk-nav > li.uk-active > .uk-radio-label {
         color: $color-gray-90;
-        background-color: lighten($color-gray-5, 3%);
     }
 
 }
@@ -68,8 +74,10 @@
 
     .uk-nav {
         display: inline-flex;
-        border-radius: 3px;
-        background-color: $color-gray-10;
+        padding: 2px;
+        border-radius: 500px;
+        background-color: $color-white;
+        border: 1px solid $color-gray-10;
     }
 
     &.uk-width-1-1 .uk-nav {
@@ -79,54 +87,74 @@
     .uk-nav > li {
         flex: 1 1 auto;
         font-size: 0.875rem;
-        border-radius: 3px;
+        border: 1px solid transparent;
+        border-radius: 500px;
         transition: background 0.3s;
     }
 
     .uk-nav > li > a {
-        text-align: center;
-        display: block;
-        padding: 0 20px;
-        height: 36px;
-        line-height: 36px;
+        border-radius: 500px;
+        line-height: 1.2;
+        padding: 7px 9px;
         color: $color-gray-50;
-        transition: color 0.3s;
+        transition: all 0.3s;
     }
 
     .uk-nav > li:not(:first-child) {
-        margin-left: 4px;
+        margin-left: 1px;
     }
 
     .uk-nav > li:not(:last-child) {
-        margin-right: 4px;
-    }
-
-    .uk-nav > li:hover {
-        background-color: darken($color-gray-10, 3%);
+        margin-right: 1px;
     }
 
     .uk-nav > li.uk-active {
-        background-color: $color-primary;
+        background-color: rgba($color-primary, 0.20);
+        border-color: rgba($color-primary, 0.25);
+    }
+
+    .uk-nav > li:hover a {
+        color: $color-gray-75;
     }
 
     .uk-nav > li.uk-active a {
-        color: $color-white;
+        color: $color-primary;
     }
 
     &.is-state .uk-nav[data-value="0"] > li.uk-active {
-        background-color: $color-danger;
+        background-color: rgba($color-danger, 0.20);
+        border-color: rgba($color-danger, 0.25);
+    }
+
+    &.is-state .uk-nav[data-value="0"] > li.uk-active a {
+        color: $color-danger;
     }
 
     &.is-state .uk-nav[data-value="1"] > li.uk-active {
-        background-color: $color-success;
+        background-color: rgba($color-success, 0.20);
+        border-color: rgba($color-success, 0.25);
     }
 
-    &.is-hide .uk-nav[data-value="0"] > li.uk-active {
-        background-color: $color-gray-40;
+    &.is-state .uk-nav[data-value="1"] > li.uk-active a {
+        color: $color-success;
     }
 
     &.is-hide .uk-nav[data-value="1"] > li.uk-active {
-        background-color: $color-danger;
+        background-color: rgba($color-danger, 0.20);
+        border-color: rgba($color-danger, 0.25);
+    }
+
+    &.is-hide .uk-nav[data-value="1"] > li.uk-active a {
+        color: $color-danger;
+    }
+
+    &.is-default .uk-nav[data-value="0"] > li.uk-active {
+        background-color: rgba($color-gray-25, 0.20);
+        border-color: rgba($color-gray-25, 0.25);
+    }
+
+    &.is-default .uk-nav[data-value="0"] > li.uk-active a {
+        color: $color-gray-75;
     }
 
 }

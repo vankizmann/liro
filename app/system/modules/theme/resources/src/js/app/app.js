@@ -33,6 +33,9 @@ require('./components/list/pagination');
 
 Vue.ready(function () {
 
+    UIkit.modal.labels.ok = Liro.messages.get('theme::form.modal.ok');
+    UIkit.modal.labels.cancel = Liro.messages.get('theme::form.modal.cancel');
+
     Vue.prototype.Liro = Liro;
     Vue.prototype.Axios = Axios;
     Vue.prototype.UIkit = UIkit;

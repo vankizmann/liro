@@ -16,6 +16,11 @@
                 ['value' => 1, 'label' => trans('theme::form.hide.hidden')]
             ]);
 
+            app('scripts')->setData('defaults', [
+                ['value' => 1, 'label' => trans('theme::form.default.enabled')],
+                ['value' => 0, 'label' => trans('theme::form.default.disabled')]
+            ]);
+
             app('scripts')->addMessage('theme::form');
         @endphp
 
@@ -46,8 +51,9 @@
                                 ])
                                 <ul class="uk-navbar-nav uk-text-small">
                                     <li>
-                                        <a href="{{ route('liro-users.auth.login') }}">
-                                            <i class="uk-margin-small-right" :uk-icon="'user'"></i>{{ app('users')->getName() }}
+                                        <a class="uk-inline" href="{{ route('liro-users.auth.login') }}">
+                                            <img class="uk-border-circle uk-margin-small-right" src="https://api.adorable.io/avatars/50/{{ app('users')->getId() }}" width="25" height="25" alt="">
+                                            <span>{{ app('users')->getName() }}</span>
                                         </a>
                                     </li>
                                     <li>

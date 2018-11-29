@@ -11,9 +11,6 @@
     }
 
     .th-table-tr > div {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         padding: 20px 16px;
     }
 
@@ -26,9 +23,6 @@
     }
 
     .th-table-td {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         padding: 20px 16px;
     }
 
@@ -57,17 +51,17 @@
 
     .th-table-td-l {
         flex-shrink: 0;
-        width: 180px;
+        width: 200px;
     }
 
     .th-table-td-xl {
         flex-shrink: 0;
-        width: 240px;
+        width: 340px;
     }
 
     .th-table-head .th-table-tr {
         font-size: 0.875rem;
-        border-bottom: 1px solid darken($color-gray-5, 3%);
+        border-bottom: 1px solid $color-gray-5;
     }
 
     .th-table-filter {
@@ -76,7 +70,7 @@
 
     .th-table-filter .th-table-tr {
         font-size: 0.875rem;
-        border-bottom: 1px solid darken($color-gray-5, 3%);
+        border-bottom: 1px solid $color-gray-5;
     }
 
     .th-table-filter .th-table-tr > div:not(.th-table-td) {
@@ -85,9 +79,6 @@
 
     .th-table-filter .th-table-tr > div .app-list-filter > a,
     .th-table-filter .th-table-tr > div .app-list-sort > a {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         display: block;
         padding: 20px 16px;
     }

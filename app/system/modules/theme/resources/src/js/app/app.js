@@ -21,8 +21,9 @@ require('./components/list');
 
 require('./components/form/input');
 require('./components/form/textarea');
-require('./components/form/select');
 require('./components/form/switch');
+require('./components/form/select-single');
+require('./components/form/select-multiple');
 
 require('./components/list/search');
 require('./components/list/sort');

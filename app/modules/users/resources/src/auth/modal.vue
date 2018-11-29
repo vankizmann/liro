@@ -6,14 +6,14 @@
         <!-- Form start -->
         <form class="uk-form uk-margin-remove" method="post" @submit.prevent="authUser">
 
-            <div class="uk-margin-small-bottom">
+            <div class="uk-margin-bottom">
                 <label class="uk-form-label" for="email">{{ Liro.messages.get('liro-users::form.auth.email') }}</label>
                 <div class="uk-form-controls">
                     <input class="uk-input" id="email" type="email" name="email" v-model="user.email">
                 </div>
             </div>
 
-            <div class="uk-margin-small-bottom">
+            <div class="uk-margin-bottom">
                 <label class="uk-form-label" for="password">{{ Liro.messages.get('liro-users::form.auth.password') }}</label>
                 <div class="uk-form-controls">
                     <input class="uk-input" id="password" type="password" name="password" v-model="user.password">

@@ -483,7 +483,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "uk-width-1-3" }, [
-      _c("span", [
+      _c("span", { staticClass: "uk-text-muted" }, [
         _vm._v("\n            " + _vm._s(_vm.value.description) + "\n        ")
       ])
     ]),
@@ -875,6 +875,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -973,6 +977,14 @@ var render = function() {
         "div",
         { staticClass: "th-form" },
         [
+          _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.Liro.messages.get("liro-users::form.legend.info")) +
+                "\n        "
+            )
+          ]),
+          _vm._v(" "),
           _c("app-form-input", {
             attrs: {
               name: "title",
@@ -1020,14 +1032,8 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.modules, function(routes, index) {
         return _c("div", { key: index, staticClass: "th-form" }, [
-          _c("div", { staticClass: "uk-margin-bottom" }, [
-            _c(
-              "span",
-              {
-                staticClass: "uk-text-primary uk-text-small uk-text-uppercase"
-              },
-              [_vm._v(_vm._s(index))]
-            )
+          _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+            _vm._v("\n            " + _vm._s(index) + "\n        ")
           ]),
           _vm._v(" "),
           _c(
@@ -1210,6 +1216,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1304,6 +1314,14 @@ var render = function() {
         "div",
         { staticClass: "th-form" },
         [
+          _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.Liro.messages.get("liro-users::form.legend.info")) +
+                "\n        "
+            )
+          ]),
+          _vm._v(" "),
           _c("app-form-input", {
             attrs: {
               name: "title",
@@ -1351,14 +1369,8 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.modules, function(routes, index) {
         return _c("div", { key: index, staticClass: "th-form" }, [
-          _c("div", { staticClass: "uk-margin-bottom" }, [
-            _c(
-              "span",
-              {
-                staticClass: "uk-text-primary uk-text-small uk-text-uppercase"
-              },
-              [_vm._v(_vm._s(index))]
-            )
+          _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+            _vm._v("\n            " + _vm._s(index) + "\n        ")
           ]),
           _vm._v(" "),
           _c(

@@ -1,33 +1,4 @@
 
 .uk-button {
-
-    & {
-        transition: all 0.15s;
-        border-radius: $global-border-radius;
-    }
-
-    &-round {
-        border-radius: 500px;
-    }
-
-    &-primary:focus {
-        box-shadow: 0 0 0 0.15rem rgba($color-primary, 0.2);
-    }
-
-    &-secondary:focus {
-        box-shadow: 0 0 0 0.15rem rgba($color-secondary, 0.2);
-    }
-
-    &-success:focus {
-        box-shadow: 0 0 0 0.15rem rgba($color-success, 0.2);
-    }
-
-    &-warning:focus {
-        box-shadow: 0 0 0 0.15rem rgba($color-warning, 0.2);
-    }
-    
-    &-danger:focus {
-        box-shadow: 0 0 0 0.15rem rgba($color-danger, 0.2);
-    }
-
+    border-radius: $global-border-radius;
 }

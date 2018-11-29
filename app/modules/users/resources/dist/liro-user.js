@@ -1050,10 +1050,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "liro-user-create uk-grid uk-flex",
-      attrs: { "uk-grid": "" }
-    },
+    { staticClass: "liro-user-create uk-flex", attrs: { "uk-grid": "" } },
     [
       _c("portal", { attrs: { to: "app-toolbar" } }, [
         _c("div", { staticClass: "uk-navbar-item" }, [
@@ -1176,7 +1173,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("app-form-select", {
+            _c("app-form-select-multiple", {
               attrs: {
                 name: "role_ids",
                 options: _vm.roles,
@@ -1437,7 +1434,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "liro-user-edit uk-grid uk-flex", attrs: { "uk-grid": "" } },
+    { staticClass: "liro-user-edit uk-flex", attrs: { "uk-grid": "" } },
     [
       _c("portal", { attrs: { to: "app-toolbar" } }, [
         _c("div", { staticClass: "uk-navbar-item" }, [
@@ -1560,7 +1557,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("app-form-select", {
+            _c("app-form-select-multiple", {
               attrs: {
                 name: "role_ids",
                 options: _vm.roles,

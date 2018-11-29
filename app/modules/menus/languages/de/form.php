@@ -2,6 +2,12 @@
 
 return [
 
+    'legend' => [
+        'general'           => 'Allgemeines',
+        'info'              => 'Informationen',
+        'password'          => 'Password',
+    ],
+
     'menu' => [
         'id'                => 'ID',
         'state'             => 'Status',

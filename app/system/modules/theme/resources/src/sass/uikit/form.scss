@@ -1,59 +1,56 @@
 
-.uk-form {
+.uk-form-label {
+    color: $color-gray-50;
+}
 
-    &-label {
-        color: $color-gray-50;
-    }
+.uk-form-label, .uk-form-label-link {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 0.875rem;
+}
 
-    &-label, &-label-link {
-        display: inline-block;
-        margin-bottom: 6px;
-        font-size: 0.875rem;
-    }
-
-    &-controls:not(:last-child) {
-        margin-bottom: 20px;
-    }
-
+.uk-form-controls:not(:last-child) {
+    margin-bottom: 20px;
 }
 
 .uk-input, .uk-textarea, .uk-select {
+    font-size: 0.875rem;
+    border-color: $color-gray-10;
+    border-radius: $global-border-radius;
+}
 
-    & {
-        font-size: 0.875rem;
-        border-color: $color-gray-10;
-        transition: all 0.15s;
-        border-radius: $global-border-radius;
-    }
+.uk-input:focus, .uk-textarea:focus, .uk-select:focus, .uk-select.uk-open {
+    border-color: mix($color-primary, $color-white, 75%);
+}
 
-    &:focus, &.uk-open {
-        border-color: mix($color-primary, $color-white, 75%);
-        box-shadow: 0 0 0 0.15rem rgba($color-primary, 0.2);
-    }
+// .uk-select {
+//     border-color: transparent !important;
+//     font-size: 0.875rem;
+//     background-color: $color-gray-5;
+//     border-radius: $global-border-radius;
+// }
 
+// .uk-select:hover, .uk-select.uk-open {
+//     background-color: darken($color-gray-5, 3%);
+// }
+
+// Checkbox & Radio
+
+.uk-checkbox, .uk-radio {
+    transition: all 0.15s;
 }
 
 .uk-checkbox {
+    border-radius: $global-border-radius;
+}
 
-    & {
-        transition: all 0.15s;
-        margin-top: -3px;
-        border-radius: $global-border-radius;
-    }
+.uk-checkbox-label, .uk-radio-label {
+    user-select: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
 
-    &:focus {
-        border-color: mix($color-primary, $color-white, 75%);
-        box-shadow: 0 0 0 0.15rem rgba($color-primary, 0.2);
-    }
-
-    &-label {
-        cursor: pointer;
-        user-select: none;
-        font-size: 0.875rem;
-    }
-
-    &-label input {
-        margin-right: 6px;
-    }
-
+.uk-checkbox-label input[type="checkbox"], 
+.uk-radio-label input[type="radio"] {
+    margin-right: 6px;
 }

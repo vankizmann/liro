@@ -963,6 +963,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1022,7 +1040,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "liro-type-create" },
+    { staticClass: "liro-type-create uk-flex", attrs: { "uk-grid": "" } },
     [
       _c("portal", { attrs: { to: "app-toolbar" } }, [
         _c("div", { staticClass: "uk-navbar-item" }, [
@@ -1059,90 +1077,119 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "th-form" },
-        [
-          _c("app-form-select", {
-            attrs: {
-              name: "state",
-              options: _vm.states,
-              label: _vm.Liro.messages.get("liro-menus::form.type.state"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.type.select_state"
+      _c("div", { staticClass: "uk-flex-last uk-width-large" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-menus::form.legend.general")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.type.state,
-              callback: function($$v) {
-                _vm.$set(_vm.type, "state", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-switch", {
+              staticClass: "is-state uk-width-1-1",
+              attrs: {
+                name: "state",
+                options: _vm.states,
+                label: _vm.Liro.messages.get("liro-menus::form.type.state")
               },
-              expression: "type.state"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              name: "locale",
-              options: _vm.locales,
-              label: _vm.Liro.messages.get("liro-menus::form.type.locale"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.type.select_locale"
+              model: {
+                value: _vm.type.state,
+                callback: function($$v) {
+                  _vm.$set(_vm.type, "state", $$v)
+                },
+                expression: "type.state"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-select-single", {
+              attrs: {
+                name: "locale",
+                options: _vm.locales,
+                label: _vm.Liro.messages.get("liro-menus::form.type.locale"),
+                placeholder: _vm.Liro.messages.get(
+                  "liro-menus::form.type.select_locale"
+                )
+              },
+              model: {
+                value: _vm.type.locale,
+                callback: function($$v) {
+                  _vm.$set(_vm.type, "locale", $$v)
+                },
+                expression: "type.locale"
+              }
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-flex-first uk-flex-auto" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-menus::form.legend.info")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.type.locale,
-              callback: function($$v) {
-                _vm.$set(_vm.type, "locale", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "title",
+                label: _vm.Liro.messages.get("liro-menus::form.type.title")
               },
-              expression: "type.locale"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "title",
-              label: _vm.Liro.messages.get("liro-menus::form.type.title")
-            },
-            model: {
-              value: _vm.type.title,
-              callback: function($$v) {
-                _vm.$set(_vm.type, "title", $$v)
+              model: {
+                value: _vm.type.title,
+                callback: function($$v) {
+                  _vm.$set(_vm.type, "title", $$v)
+                },
+                expression: "type.title"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "route",
+                label: _vm.Liro.messages.get("liro-menus::form.type.route")
               },
-              expression: "type.title"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "route",
-              label: _vm.Liro.messages.get("liro-menus::form.type.route")
-            },
-            model: {
-              value: _vm.type.route,
-              callback: function($$v) {
-                _vm.$set(_vm.type, "route", $$v)
+              model: {
+                value: _vm.type.route,
+                callback: function($$v) {
+                  _vm.$set(_vm.type, "route", $$v)
+                },
+                expression: "type.route"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "theme",
+                label: _vm.Liro.messages.get("liro-menus::form.type.theme")
               },
-              expression: "type.route"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "theme",
-              label: _vm.Liro.messages.get("liro-menus::form.type.theme")
-            },
-            model: {
-              value: _vm.type.theme,
-              callback: function($$v) {
-                _vm.$set(_vm.type, "theme", $$v)
-              },
-              expression: "type.theme"
-            }
-          })
-        ],
-        1
-      )
+              model: {
+                value: _vm.type.theme,
+                callback: function($$v) {
+                  _vm.$set(_vm.type, "theme", $$v)
+                },
+                expression: "type.theme"
+              }
+            })
+          ],
+          1
+        )
+      ])
     ],
     1
   )
@@ -1260,6 +1307,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1315,7 +1380,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "liro-type-edit" },
+    { staticClass: "liro-type-edit uk-flex", attrs: { "uk-grid": "" } },
     [
       _c("portal", { attrs: { to: "app-toolbar" } }, [
         _c("div", { staticClass: "uk-navbar-item" }, [
@@ -1352,90 +1417,119 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "th-form" },
-        [
-          _c("app-form-select", {
-            attrs: {
-              name: "state",
-              options: _vm.states,
-              label: _vm.Liro.messages.get("liro-menus::form.type.state"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.type.select_state"
+      _c("div", { staticClass: "uk-flex-last uk-width-large" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-menus::form.legend.general")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.type.state,
-              callback: function($$v) {
-                _vm.$set(_vm.type, "state", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-switch", {
+              staticClass: "is-state uk-width-1-1",
+              attrs: {
+                name: "state",
+                options: _vm.states,
+                label: _vm.Liro.messages.get("liro-menus::form.type.state")
               },
-              expression: "type.state"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              name: "locale",
-              options: _vm.locales,
-              label: _vm.Liro.messages.get("liro-menus::form.type.locale"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.type.select_locale"
+              model: {
+                value: _vm.type.state,
+                callback: function($$v) {
+                  _vm.$set(_vm.type, "state", $$v)
+                },
+                expression: "type.state"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-select-single", {
+              attrs: {
+                name: "locale",
+                options: _vm.locales,
+                label: _vm.Liro.messages.get("liro-menus::form.type.locale"),
+                placeholder: _vm.Liro.messages.get(
+                  "liro-menus::form.type.select_locale"
+                )
+              },
+              model: {
+                value: _vm.type.locale,
+                callback: function($$v) {
+                  _vm.$set(_vm.type, "locale", $$v)
+                },
+                expression: "type.locale"
+              }
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-flex-first uk-flex-auto" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-menus::form.legend.info")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.type.locale,
-              callback: function($$v) {
-                _vm.$set(_vm.type, "locale", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "title",
+                label: _vm.Liro.messages.get("liro-menus::form.type.title")
               },
-              expression: "type.locale"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "title",
-              label: _vm.Liro.messages.get("liro-menus::form.type.title")
-            },
-            model: {
-              value: _vm.type.title,
-              callback: function($$v) {
-                _vm.$set(_vm.type, "title", $$v)
+              model: {
+                value: _vm.type.title,
+                callback: function($$v) {
+                  _vm.$set(_vm.type, "title", $$v)
+                },
+                expression: "type.title"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "route",
+                label: _vm.Liro.messages.get("liro-menus::form.type.route")
               },
-              expression: "type.title"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "route",
-              label: _vm.Liro.messages.get("liro-menus::form.type.route")
-            },
-            model: {
-              value: _vm.type.route,
-              callback: function($$v) {
-                _vm.$set(_vm.type, "route", $$v)
+              model: {
+                value: _vm.type.route,
+                callback: function($$v) {
+                  _vm.$set(_vm.type, "route", $$v)
+                },
+                expression: "type.route"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "theme",
+                label: _vm.Liro.messages.get("liro-menus::form.type.theme")
               },
-              expression: "type.route"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "theme",
-              label: _vm.Liro.messages.get("liro-menus::form.type.theme")
-            },
-            model: {
-              value: _vm.type.theme,
-              callback: function($$v) {
-                _vm.$set(_vm.type, "theme", $$v)
-              },
-              expression: "type.theme"
-            }
-          })
-        ],
-        1
-      )
+              model: {
+                value: _vm.type.theme,
+                callback: function($$v) {
+                  _vm.$set(_vm.type, "theme", $$v)
+                },
+                expression: "type.theme"
+              }
+            })
+          ],
+          1
+        )
+      ])
     ],
     1
   )

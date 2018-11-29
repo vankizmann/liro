@@ -328,7 +328,7 @@ var render = function() {
         }
       },
       [
-        _c("div", { staticClass: "uk-margin-small-bottom" }, [
+        _c("div", { staticClass: "uk-margin-bottom" }, [
           _c("div", { staticClass: "uk-flex" }, [
             _c(
               "label",
@@ -366,7 +366,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "uk-margin-small-bottom" }, [
+        _c("div", { staticClass: "uk-margin-bottom" }, [
           _c("div", { staticClass: "uk-flex" }, [
             _c(
               "label",
@@ -423,7 +423,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "uk-margin-small-bottom" }, [
+        _c("div", { staticClass: "uk-margin-bottom" }, [
           _c("div", { staticClass: "uk-form-controls" }, [
             _c("label", { staticClass: "uk-checkbox-label" }, [
               _c("input", {
@@ -641,7 +641,7 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "uk-margin-small-bottom" }, [
+              _c("div", { staticClass: "uk-margin-bottom" }, [
                 _c(
                   "label",
                   { staticClass: "uk-form-label", attrs: { for: "email" } },
@@ -679,7 +679,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "uk-margin-small-bottom" }, [
+              _c("div", { staticClass: "uk-margin-bottom" }, [
                 _c(
                   "label",
                   { staticClass: "uk-form-label", attrs: { for: "password" } },

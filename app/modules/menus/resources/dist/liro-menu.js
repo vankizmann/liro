@@ -348,6 +348,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -672,7 +678,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "th-table-tr uk-flex uk-flex-middle" }, [
-    _c("div", { staticClass: "uk-flex-0" }, [
+    _c("div", { staticClass: "th-table-td-xs" }, [
       _c(
         "a",
         {
@@ -694,7 +700,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "uk-flex-1" }, [
+    _c("div", { staticClass: "uk-width-1-2" }, [
       _c(
         "a",
         {
@@ -712,7 +718,7 @@ var render = function() {
       "div",
       {
         staticClass:
-          "th-icon-hover uk-width-medium uk-flex uk-flex-left uk-flex-middle"
+          "uk-width-1-2 th-icon-hover uk-flex uk-flex-left uk-flex-middle"
       },
       [
         _c("span", { staticClass: "uk-margin-small-right" }, [
@@ -732,7 +738,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "uk-width-small uk-text-center" },
+      { staticClass: "th-table-td-m uk-text-center" },
       [
         _c("app-list-switch", {
           staticClass: "is-state",
@@ -745,7 +751,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "uk-width-small uk-text-center" },
+      { staticClass: "th-table-td-m uk-text-center" },
       [
         _c("app-list-switch", {
           staticClass: "is-hide",
@@ -756,7 +762,7 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "uk-width-small uk-text-center" }, [
+    _c("div", { staticClass: "th-table-td-m uk-text-center" }, [
       _c("span", [_vm._v(_vm._s(_vm.value.id))])
     ])
   ])
@@ -812,7 +818,7 @@ var render = function() {
                 "div",
                 { staticClass: "uk-width-medium uk-margin-auto-left" },
                 [
-                  _c("app-form-select", {
+                  _c("app-form-select-single", {
                     staticClass: "uk-margin-remove-bottom",
                     attrs: {
                       value: _vm.active.id,
@@ -830,7 +836,9 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "th-table-filter" }, [
             _c("div", { staticClass: "th-table-tr uk-flex" }, [
-              _c("div", { staticClass: "th-table-td uk-flex-1" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "th-table-td uk-width-1-2" }, [
                 _c("span", [
                   _vm._v(
                     "\n                            " +
@@ -842,7 +850,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "th-table-td uk-width-medium" }, [
+              _c("div", { staticClass: "th-table-td uk-width-1-2" }, [
                 _c("span", [
                   _vm._v(
                     "\n                            " +
@@ -856,7 +864,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "th-table-td uk-width-small uk-text-center" },
+                { staticClass: "th-table-td th-table-td-m uk-text-center" },
                 [
                   _c("span", [
                     _vm._v(
@@ -872,7 +880,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "th-table-td uk-width-small uk-text-center" },
+                { staticClass: "th-table-td th-table-td-m uk-text-center" },
                 [
                   _c("span", [
                     _vm._v(
@@ -888,7 +896,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "th-table-td uk-width-small uk-text-center" },
+                { staticClass: "th-table-td th-table-td-m uk-text-center" },
                 [
                   _c("span", [
                     _vm._v(
@@ -1005,7 +1013,16 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "th-table-td th-table-td-xs" }, [
+      _c("span")
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -1126,6 +1143,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1187,7 +1222,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "liro-menu-create" },
+    { staticClass: "liro-menu-create uk-flex", attrs: { "uk-grid": "" } },
     [
       _c("portal", { attrs: { to: "app-toolbar" } }, [
         _c("div", { staticClass: "uk-navbar-item" }, [
@@ -1232,128 +1267,155 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "th-form" },
-        [
-          _c("app-form-select", {
-            attrs: {
-              name: "state",
-              options: _vm.states,
-              label: _vm.Liro.messages.get("liro-menus::form.menu.state"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.menu.select_state"
+      _c("div", { staticClass: "uk-flex-last uk-width-large" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-menus::form.legend.general")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.menu.state,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "state", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-switch", {
+              staticClass: "is-state uk-width-1-1",
+              attrs: {
+                name: "state",
+                options: _vm.states,
+                label: _vm.Liro.messages.get("liro-menus::form.menu.state")
               },
-              expression: "menu.state"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              name: "hide",
-              options: _vm.hides,
-              label: _vm.Liro.messages.get("liro-menus::form.menu.hide"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.menu.select_hide"
+              model: {
+                value: _vm.menu.state,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "state", $$v)
+                },
+                expression: "menu.state"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-switch", {
+              staticClass: "is-hide uk-width-1-1",
+              attrs: {
+                name: "hide",
+                options: _vm.hides,
+                label: _vm.Liro.messages.get("liro-menus::form.menu.hide")
+              },
+              model: {
+                value: _vm.menu.hide,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "hide", $$v)
+                },
+                expression: "menu.hide"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-select-single", {
+              attrs: {
+                name: "menu_type_id",
+                options: _vm.types,
+                "options-value": "id",
+                "options-label": "title",
+                label: _vm.Liro.messages.get("liro-menus::form.menu.type"),
+                placeholder: _vm.Liro.messages.get(
+                  "liro-menus::form.menu.select_type"
+                )
+              },
+              model: {
+                value: _vm.menu.menu_type_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "menu_type_id", $$v)
+                },
+                expression: "menu.menu_type_id"
+              }
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-flex-first uk-flex-auto" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-menus::form.legend.info")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.menu.hide,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "hide", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "title",
+                label: _vm.Liro.messages.get("liro-menus::form.menu.title")
               },
-              expression: "menu.hide"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              name: "menu_type_id",
-              options: _vm.types,
-              "options-value": "id",
-              "options-label": "title",
-              label: _vm.Liro.messages.get("liro-menus::form.menu.type"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.menu.select_type"
-              )
-            },
-            model: {
-              value: _vm.menu.menu_type_id,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "menu_type_id", $$v)
+              model: {
+                value: _vm.menu.title,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "title", $$v)
+                },
+                expression: "menu.title"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "route",
+                label: _vm.Liro.messages.get("liro-menus::form.menu.route")
               },
-              expression: "menu.menu_type_id"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "title",
-              label: _vm.Liro.messages.get("liro-menus::form.menu.title")
-            },
-            model: {
-              value: _vm.menu.title,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "title", $$v)
+              model: {
+                value: _vm.menu.route,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "route", $$v)
+                },
+                expression: "menu.route"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-select-single", {
+              attrs: {
+                name: "module",
+                options: _vm.modules,
+                label: _vm.Liro.messages.get("liro-menus::form.menu.module"),
+                placeholder: _vm.Liro.messages.get(
+                  "liro-menus::form.menu.select_module"
+                )
               },
-              expression: "menu.title"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "route",
-              label: _vm.Liro.messages.get("liro-menus::form.menu.route")
-            },
-            model: {
-              value: _vm.menu.route,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "route", $$v)
+              model: {
+                value: _vm.menu.module,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "module", $$v)
+                },
+                expression: "menu.module"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "query",
+                label: _vm.Liro.messages.get("liro-menus::form.menu.query")
               },
-              expression: "menu.route"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              name: "module",
-              options: _vm.modules,
-              label: _vm.Liro.messages.get("liro-menus::form.menu.module"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.menu.select_module"
-              )
-            },
-            model: {
-              value: _vm.menu.module,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "module", $$v)
-              },
-              expression: "menu.module"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "query",
-              label: _vm.Liro.messages.get("liro-menus::form.menu.query")
-            },
-            model: {
-              value: _vm.menu.query,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "query", $$v)
-              },
-              expression: "menu.query"
-            }
-          })
-        ],
-        1
-      )
+              model: {
+                value: _vm.menu.query,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "query", $$v)
+                },
+                expression: "menu.query"
+              }
+            })
+          ],
+          1
+        )
+      ])
     ],
     1
   )
@@ -1479,6 +1541,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1536,7 +1616,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "liro-menu-edit" },
+    { staticClass: "liro-menu-edit uk-flex", attrs: { "uk-grid": "" } },
     [
       _c("portal", { attrs: { to: "app-toolbar" } }, [
         _c("div", { staticClass: "uk-navbar-item" }, [
@@ -1585,128 +1665,155 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "th-form" },
-        [
-          _c("app-form-select", {
-            attrs: {
-              name: "state",
-              options: _vm.states,
-              label: _vm.Liro.messages.get("liro-menus::form.menu.state"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.menu.select_state"
+      _c("div", { staticClass: "uk-flex-last uk-width-large" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-menus::form.legend.general")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.menu.state,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "state", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-switch", {
+              staticClass: "is-state uk-width-1-1",
+              attrs: {
+                name: "state",
+                options: _vm.states,
+                label: _vm.Liro.messages.get("liro-menus::form.menu.state")
               },
-              expression: "menu.state"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              name: "hide",
-              options: _vm.hides,
-              label: _vm.Liro.messages.get("liro-menus::form.menu.hide"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.menu.select_hide"
+              model: {
+                value: _vm.menu.state,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "state", $$v)
+                },
+                expression: "menu.state"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-switch", {
+              staticClass: "is-hide uk-width-1-1",
+              attrs: {
+                name: "hide",
+                options: _vm.hides,
+                label: _vm.Liro.messages.get("liro-menus::form.menu.hide")
+              },
+              model: {
+                value: _vm.menu.hide,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "hide", $$v)
+                },
+                expression: "menu.hide"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-select-single", {
+              attrs: {
+                name: "menu_type_id",
+                options: _vm.types,
+                "options-value": "id",
+                "options-label": "title",
+                label: _vm.Liro.messages.get("liro-menus::form.menu.type"),
+                placeholder: _vm.Liro.messages.get(
+                  "liro-menus::form.menu.select_type"
+                )
+              },
+              model: {
+                value: _vm.menu.menu_type_id,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "menu_type_id", $$v)
+                },
+                expression: "menu.menu_type_id"
+              }
+            })
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-flex-first uk-flex-auto" }, [
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
+            _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(
+                    _vm.Liro.messages.get("liro-menus::form.legend.info")
+                  ) +
+                  "\n            "
               )
-            },
-            model: {
-              value: _vm.menu.hide,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "hide", $$v)
+            ]),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "title",
+                label: _vm.Liro.messages.get("liro-menus::form.menu.title")
               },
-              expression: "menu.hide"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              name: "menu_type_id",
-              options: _vm.types,
-              "options-value": "id",
-              "options-label": "title",
-              label: _vm.Liro.messages.get("liro-menus::form.menu.type"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.menu.select_type"
-              )
-            },
-            model: {
-              value: _vm.menu.menu_type_id,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "menu_type_id", $$v)
+              model: {
+                value: _vm.menu.title,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "title", $$v)
+                },
+                expression: "menu.title"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "route",
+                label: _vm.Liro.messages.get("liro-menus::form.menu.route")
               },
-              expression: "menu.menu_type_id"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "title",
-              label: _vm.Liro.messages.get("liro-menus::form.menu.title")
-            },
-            model: {
-              value: _vm.menu.title,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "title", $$v)
+              model: {
+                value: _vm.menu.route,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "route", $$v)
+                },
+                expression: "menu.route"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-select-single", {
+              attrs: {
+                name: "module",
+                options: _vm.modules,
+                label: _vm.Liro.messages.get("liro-menus::form.menu.module"),
+                placeholder: _vm.Liro.messages.get(
+                  "liro-menus::form.menu.select_module"
+                )
               },
-              expression: "menu.title"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "route",
-              label: _vm.Liro.messages.get("liro-menus::form.menu.route")
-            },
-            model: {
-              value: _vm.menu.route,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "route", $$v)
+              model: {
+                value: _vm.menu.module,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "module", $$v)
+                },
+                expression: "menu.module"
+              }
+            }),
+            _vm._v(" "),
+            _c("app-form-input", {
+              attrs: {
+                name: "query",
+                label: _vm.Liro.messages.get("liro-menus::form.menu.query")
               },
-              expression: "menu.route"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-select", {
-            attrs: {
-              name: "module",
-              options: _vm.modules,
-              label: _vm.Liro.messages.get("liro-menus::form.menu.module"),
-              placeholder: _vm.Liro.messages.get(
-                "liro-menus::form.menu.select_module"
-              )
-            },
-            model: {
-              value: _vm.menu.module,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "module", $$v)
-              },
-              expression: "menu.module"
-            }
-          }),
-          _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "query",
-              label: _vm.Liro.messages.get("liro-menus::form.menu.query")
-            },
-            model: {
-              value: _vm.menu.query,
-              callback: function($$v) {
-                _vm.$set(_vm.menu, "query", $$v)
-              },
-              expression: "menu.query"
-            }
-          })
-        ],
-        1
-      )
+              model: {
+                value: _vm.menu.query,
+                callback: function($$v) {
+                  _vm.$set(_vm.menu, "query", $$v)
+                },
+                expression: "menu.query"
+              }
+            })
+          ],
+          1
+        )
+      ])
     ],
     1
   )

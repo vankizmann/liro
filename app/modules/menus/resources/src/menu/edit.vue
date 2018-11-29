@@ -1,6 +1,6 @@
 <template>
 
-<div class="liro-menu-edit">
+<div class="liro-menu-edit uk-flex" uk-grid>
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
@@ -20,37 +20,55 @@
         </div>
     </portal>
 
-    <!-- Form start -->
-    <div class="th-form">
+    <!-- Sidebar start -->
+    <div class="uk-flex-last uk-width-large">
+        <div class="th-form">
 
-        <app-form-select 
-            name="state" v-model="menu.state" :options="states" :label="Liro.messages.get('liro-menus::form.menu.state')" :placeholder="Liro.messages.get('liro-menus::form.menu.select_state')"
-        ></app-form-select>
+            <legend class="uk-legend uk-legend-small">
+                {{ Liro.messages.get('liro-menus::form.legend.general') }}
+            </legend>
 
-        <app-form-select 
-            name="hide" v-model="menu.hide" :options="hides" :label="Liro.messages.get('liro-menus::form.menu.hide')" :placeholder="Liro.messages.get('liro-menus::form.menu.select_hide')"
-        ></app-form-select>
+            <app-form-switch 
+                class="is-state uk-width-1-1" name="state" v-model="menu.state" :options="states" :label="Liro.messages.get('liro-menus::form.menu.state')"
+            ></app-form-switch>
 
-        <app-form-select 
+            <app-form-switch 
+                class="is-hide uk-width-1-1" name="hide" v-model="menu.hide" :options="hides" :label="Liro.messages.get('liro-menus::form.menu.hide')"
+            ></app-form-switch>
+
+            <app-form-select-single 
             name="menu_type_id" v-model="menu.menu_type_id" :options="types" options-value="id" options-label="title" :label="Liro.messages.get('liro-menus::form.menu.type')" :placeholder="Liro.messages.get('liro-menus::form.menu.select_type')"
-        ></app-form-select>
+        ></app-form-select-single>
 
-        <app-form-input 
-            name="title" v-model="menu.title" :label="Liro.messages.get('liro-menus::form.menu.title')"
-        ></app-form-input>
+        </div>
+    </div>
+    <!-- Sidebar end -->
 
-        <app-form-input 
-            name="route" v-model="menu.route" :label="Liro.messages.get('liro-menus::form.menu.route')"
-        ></app-form-input>
+    <!-- Form start -->
+    <div class="uk-flex-first uk-flex-auto">
+        <div class="th-form">
 
-        <app-form-select 
-            name="module" v-model="menu.module" :options="modules" :label="Liro.messages.get('liro-menus::form.menu.module')" :placeholder="Liro.messages.get('liro-menus::form.menu.select_module')"
-        ></app-form-select>
+            <legend class="uk-legend uk-legend-small">
+                {{ Liro.messages.get('liro-menus::form.legend.info') }}
+            </legend>
 
-        <app-form-input 
-            name="query" v-model="menu.query" :label="Liro.messages.get('liro-menus::form.menu.query')"
-        ></app-form-input>
+            <app-form-input 
+                name="title" v-model="menu.title" :label="Liro.messages.get('liro-menus::form.menu.title')"
+            ></app-form-input>
 
+            <app-form-input 
+                name="route" v-model="menu.route" :label="Liro.messages.get('liro-menus::form.menu.route')"
+            ></app-form-input>
+
+            <app-form-select-single 
+                name="module" v-model="menu.module" :options="modules" :label="Liro.messages.get('liro-menus::form.menu.module')" :placeholder="Liro.messages.get('liro-menus::form.menu.select_module')"
+            ></app-form-select-single>
+
+            <app-form-input 
+                name="query" v-model="menu.query" :label="Liro.messages.get('liro-menus::form.menu.query')"
+            ></app-form-input>
+
+        </div>
     </div>
     <!-- Form end -->
 

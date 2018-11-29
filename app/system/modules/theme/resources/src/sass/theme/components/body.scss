@@ -36,9 +36,11 @@ body.th-error {
 body.th-login {
 
     & {
-        background-color: $color-gray-5;
-        background-image: url('../images/background.jpg');
-        background-size: cover;
+        background-color: darken($color-gray-95, 5%);
+    }
+
+    .th-login-background {
+        opacity: 0.2;
     }
 
     .th-login-body {

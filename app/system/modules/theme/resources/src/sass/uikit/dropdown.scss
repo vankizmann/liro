@@ -1,9 +1,15 @@
 
 .uk-dropdown {
     overflow: hidden;
+    border: 1px solid $color-gray-10;
     border-radius: 2px;
+    box-shadow: 0 1px 3px rgba($color-gray-25, 0.15);
+}
+
+[class*='uk-dropdown-top'] {
+    margin-top: -7px;
 }
 
 [class*='uk-dropdown-bottom'] {
-    margin-top: 5px;
+    margin-top: 7px;
 }

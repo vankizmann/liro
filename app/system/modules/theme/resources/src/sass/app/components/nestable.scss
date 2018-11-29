@@ -11,6 +11,11 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
+    background-color: lighten($color-gray-5, 3%);
+}
+
+.nestable .nestable-item {
+    background-color: $color-white;
 }
 
 .nestable .nestable-item > .nestable-list > .nestable-item {
@@ -48,8 +53,6 @@
     left: 0;
     right: 0;
     background-color: rgba($color-primary, 0.3);
-    border: 1px dashed rgba($color-primary, 0.7);
-    border-radius: 4px;
 }
 
 .nestable-item.is-dragging .nestable-list,
@@ -69,8 +72,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(mix($color-white, $color-primary, 90%), 0.8);
-    border-radius: 3px;
+    background-color: rgba($color-light-20, 0.9);
 }
 
 .nestable [draggable="true"] {

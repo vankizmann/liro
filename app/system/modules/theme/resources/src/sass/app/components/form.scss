@@ -34,24 +34,28 @@
 
     .uk-dropdown {
         padding: 0;
-        background-color: $color-primary;
+        background-color: $color-white;
         max-height: 280px;
         overflow-y: auto;
     }
 
-    .uk-nav > li > a {
-        color: mix($color-white, $color-primary, 80%);
+    .uk-nav > li > .uk-checkbox-label,
+    .uk-nav > li > .uk-radio-label {
+        display: block;
+        color: $color-gray-40;
         padding: 12px 20px;
         transition: all 0.15s;
     }
 
-    .uk-nav > li:hover > a {
-        background-color: lighten($color-primary, 5%);
+    .uk-nav > li:hover > .uk-checkbox-label,
+    .uk-nav > li:hover > .uk-radio-label {
+        color: $color-gray-65;
     }
 
-    .uk-nav > li.uk-active > a {
-        color: $color-white;
-        background-color: darken($color-primary, 10%);
+    .uk-nav > li.uk-active > .uk-checkbox-label,
+    .uk-nav > li.uk-active > .uk-radio-label {
+        color: $color-gray-90;
+        background-color: lighten($color-gray-5, 3%);
     }
 
 }
@@ -65,7 +69,7 @@
     .uk-nav {
         display: inline-flex;
         border-radius: 3px;
-        background-color: $color-gray-5;
+        background-color: $color-gray-10;
     }
 
     &.uk-width-1-1 .uk-nav {
@@ -76,6 +80,7 @@
         flex: 1 1 auto;
         font-size: 0.875rem;
         border-radius: 3px;
+        transition: background 0.3s;
     }
 
     .uk-nav > li > a {
@@ -85,25 +90,26 @@
         height: 36px;
         line-height: 36px;
         color: $color-gray-50;
+        transition: color 0.3s;
     }
 
     .uk-nav > li:not(:first-child) {
-        margin-left: 2px;
+        margin-left: 4px;
     }
 
     .uk-nav > li:not(:last-child) {
-        margin-right: 2px;
+        margin-right: 4px;
+    }
+
+    .uk-nav > li:hover {
+        background-color: darken($color-gray-10, 3%);
     }
 
     .uk-nav > li.uk-active {
-        background-color: $color-white;
+        background-color: $color-primary;
     }
 
     .uk-nav > li.uk-active a {
-        color: $color-primary;
-    }
-
-    &.is-state .uk-nav > li.uk-active a {
         color: $color-white;
     }
 
@@ -113,6 +119,14 @@
 
     &.is-state .uk-nav[data-value="1"] > li.uk-active {
         background-color: $color-success;
+    }
+
+    &.is-hide .uk-nav[data-value="0"] > li.uk-active {
+        background-color: $color-gray-40;
+    }
+
+    &.is-hide .uk-nav[data-value="1"] > li.uk-active {
+        background-color: $color-danger;
     }
 
 }

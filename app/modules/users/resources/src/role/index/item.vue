@@ -7,7 +7,7 @@
         </a>
     </div>
     <div class="uk-width-1-3">
-        <span>
+        <span class="uk-text-muted">
             {{ value.description }}
         </span>
     </div>

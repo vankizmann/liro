@@ -24,7 +24,7 @@
 
                     <!-- Type select -->
                     <div class="uk-width-medium uk-margin-auto-left">
-                        <app-form-select class="uk-margin-remove-bottom" :value="active.id" :options="types" options-value="id" options-label="title" @input="redirectType"></app-form-select>
+                        <app-form-select-single class="uk-margin-remove-bottom" :value="active.id" :options="types" options-value="id" options-label="title" @input="redirectType"></app-form-select-single>
                     </div>
                     <!-- Type select end -->
 
@@ -36,31 +36,37 @@
             <div class="th-table-filter">
                 <div class="th-table-tr uk-flex">
 
-                    <div class="th-table-td uk-flex-1">
+                    <div class="th-table-td th-table-td-xs">
+                        <span>
+                            <!--  -->
+                        </span>
+                    </div>
+
+                    <div class="th-table-td uk-width-1-2">
                         <span>
                             {{ Liro.messages.get('liro-menus::form.menu.title') }}
                         </span>
                     </div>
 
-                    <div class="th-table-td uk-width-medium">
+                    <div class="th-table-td uk-width-1-2">
                         <span>
                             {{ Liro.messages.get('liro-menus::form.menu.route') }}
                         </span>
                     </div>
 
-                    <div class="th-table-td uk-width-small uk-text-center">
+                    <div class="th-table-td th-table-td-m uk-text-center">
                         <span>
                             {{ Liro.messages.get('liro-menus::form.menu.state') }}
                         </span>
                     </div>
 
-                    <div class="th-table-td uk-width-small uk-text-center">
+                    <div class="th-table-td th-table-td-m uk-text-center">
                         <span>
                             {{ Liro.messages.get('liro-menus::form.menu.hide') }}
                         </span>
                     </div>
 
-                    <div class="th-table-td uk-width-small uk-text-center">
+                    <div class="th-table-td th-table-td-m uk-text-center">
                         <span>
                             {{ Liro.messages.get('liro-menus::form.menu.id') }}
                         </span>

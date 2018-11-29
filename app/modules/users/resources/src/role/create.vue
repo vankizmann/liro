@@ -16,6 +16,10 @@
     <!-- Form start -->
     <div class="th-form">
 
+        <legend class="uk-legend uk-legend-small">
+            {{ Liro.messages.get('liro-users::form.legend.info') }}
+        </legend>
+
         <app-form-input 
             name="title" v-model="role.title" :label="Liro.messages.get('liro-users::form.role.title')"
         ></app-form-input>
@@ -34,9 +38,9 @@
     <!-- Module start -->
     <div class="th-form" v-for="(routes, index) in modules" :key="index">
 
-        <div class="uk-margin-bottom">
-            <span class="uk-text-primary uk-text-small uk-text-uppercase">{{ index }}</span>
-        </div>
+        <legend class="uk-legend uk-legend-small">
+            {{ index }}
+        </legend>
 
         <div class="uk-flex uk-flex-wrap uk-child-width-1-2">
             <label v-for="(name, index) in routes" :key="index" class="uk-checkbox-label uk-margin-small-bottom"><input class="uk-checkbox" type="checkbox" v-model="role.route_names" :value="index">{{ name }}</label>

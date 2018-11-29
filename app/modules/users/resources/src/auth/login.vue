@@ -5,7 +5,7 @@
     <!-- Form start -->
     <form class="uk-form uk-margin-remove" method="post" @submit.prevent="authUser">
 
-        <div class="uk-margin-small-bottom">
+        <div class="uk-margin-bottom">
             <div class="uk-flex">
                 <label class="uk-form-label" for="email">{{ Liro.messages.get('liro-users::form.auth.email') }}</label>
             </div>
@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div class="uk-margin-small-bottom">
+        <div class="uk-margin-bottom">
             <div class="uk-flex">
                 <label class="uk-form-label uk-margin-auto-right" for="password">{{ Liro.messages.get('liro-users::form.auth.password') }}</label>
                 <a class="uk-form-label-link" href="#">{{ Liro.messages.get('liro-users::form.auth.password_forget') }}</a>
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="uk-margin-small-bottom">
+        <div class="uk-margin-bottom">
             <div class="uk-form-controls">
                 <label class="uk-checkbox-label"><input class="uk-checkbox" type="checkbox" name="remember"> {{ Liro.messages.get('liro-users::form.auth.remember_me') }}</label>
             </div>

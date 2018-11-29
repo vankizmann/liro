@@ -1,6 +1,6 @@
 <template>
 
-<div class="liro-user-edit uk-grid uk-flex" uk-grid>
+<div class="liro-user-edit uk-flex" uk-grid>
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
@@ -46,9 +46,9 @@
                 name="email" v-model="user.email" :label="Liro.messages.get('liro-users::form.user.email')"
             ></app-form-input>
 
-            <app-form-select 
+            <app-form-select-multiple 
                 name="role_ids" v-model="user.role_ids" :options="roles" :multiple="true" options-label="title" options-value="id" :label="Liro.messages.get('liro-users::form.user.role')" :placeholder="Liro.messages.get('liro-users::form.user.select_role')"
-            ></app-form-select>
+            ></app-form-select-multiple>
 
         </div>
 

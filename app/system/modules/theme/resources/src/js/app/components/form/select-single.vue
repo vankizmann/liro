@@ -11,22 +11,25 @@
     <div class="uk-form-controls">
 
         <div class="uk-select" v-if="labels.length != 0">
-            <span :class="{ 'uk-label uk-label-primary': multiple }" v-for="(option, index) in labels" :key="index">{{ option }}</span>
+            <span v-for="(option, index) in labels" :key="index">{{ option }}</span>
         </div>
 
         <div class="uk-select" v-if="labels.length == 0">
             <span class="uk-text-muted">{{ placeholder }}</span>
         </div>
 
-        <div ref="dropdown" uk-dropdown="mode: click; pos: bottom-justify;" :uk-toggle="! multiple">
+        <div ref="dropdown" uk-dropdown="mode: click; pos: bottom-justify;">
             <ul class="uk-nav uk-dropdown-nav">
-                <li v-for="(option, index) in options" :key="index" :class="{ 'uk-active': $value.indexOf(option[optionsValue]) != -1 }">
-                    <a href="javascript:void(0)" @click="switchOption(option[optionsValue])">{{ option[optionsLabel] }}</a>
+                <li v-for="(option, index) in options" :key="index" :class="{ 'uk-active': _value == option[optionsValue] }">
+                    <label class="uk-radio-label">
+                        <input class="uk-radio" type="radio" :value="option[optionsValue]" v-model="_value">
+                        <span>{{ option[optionsLabel] }}</span>
+                    </label>
                 </li>
             </ul>
         </div>
 
-        <input type="hidden" name="name" :value="$value.join(',')">
+        <input type="hidden" name="name" :value="_value">
 
     </div>
 
@@ -39,13 +42,12 @@ export default {
 
     computed: {
 
-        $value: {
+        _value: {
             get: function () {
-                return this.multiple ? this.value : [this.value];
+                return this.value;
             },
             set: function (value) {
-                var $value = this.multiple ? value : value[0];
-                if ( $value != this.value ) this.$emit('input', $value);
+                this.$emit('input', value);
             }
         },
 
@@ -94,11 +96,15 @@ export default {
         }
     },
 
+    mounted: function () {
+        this.$watch('value', () => this.$emit('change', this.value));
+    },
+
     methods: {
         
         getOptions: function () {
             return _.filter(this.options, (option) => {
-                return this.$value.indexOf(option[this.optionsValue]) != -1;
+                return this._value == option[this.optionsValue];
             });
         },
 
@@ -112,21 +118,6 @@ export default {
             return this.getOptions().map((option) => {
                 return option[this.optionsLabel];
             });
-        },
-
-        switchOption: function (option) {
-
-            var $value = this.$value;
-
-            if ( this.multiple ) {
-                $value = _.xor($value, [option]);
-            }
-
-            if ( ! this.multiple ) {
-                $value = [option];
-            }
-
-            this.$value = $value;
         }
 
     }
@@ -134,7 +125,7 @@ export default {
 }
 
 if (window.Liro) {
-    Liro.vue.component('app-form-select', this.default);
+    Liro.vue.component('app-form-select-single', this.default);
 }
 
 </script>

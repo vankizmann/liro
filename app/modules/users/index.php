@@ -16,17 +16,17 @@ return [
 
         'app.boot' => function () {
 
-            app('scripts')->addRoutes([
+            app('assets')->routes([
                 'liro-users.auth.login',
                 'liro-users.auth.token'
             ]);
     
-            app('scripts')->addMessages([
+            app('assets')->messages([
                 'liro-users::form',
                 'liro-users::message'
             ]);
     
-            app('scripts')->addLink(
+            app('assets')->script(
                 'liro-auth', 'liro-users::dist/liro-auth.js', ['theme-script']
             );
 

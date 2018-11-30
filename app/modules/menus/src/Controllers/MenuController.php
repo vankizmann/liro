@@ -20,27 +20,27 @@ class MenuController extends \Liro\System\Http\Controller
      */
     public function index(MenuType $type)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-menus.menu.index',
             'liro-menus.menu.create',
             'liro-menus.menu.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-menus::module',
             'liro-menus::form',
             'liro-menus::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'types', $type->all()
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'active', $type
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'menus', $type->menus()->defaultOrder()->get()->toTree()
         );
 
@@ -75,27 +75,27 @@ class MenuController extends \Liro\System\Http\Controller
      */
     public function create(Menu $menu, MenuType $type)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-menus.menu.index',
             'liro-menus.menu.create',
             'liro-menus.menu.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-menus::module',
             'liro-menus::form',
             'liro-menus::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'menu', $menu
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'types', $type->all()
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'modules', app('menus')->getRoutesArray()
         );
 
@@ -129,26 +129,26 @@ class MenuController extends \Liro\System\Http\Controller
      */
     public function edit(Menu $menu, MenuType $type)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-menus.menu.index',
             'liro-menus.menu.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-menus::module',
             'liro-menus::form',
             'liro-menus::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'menu', $menu
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'types', $type->all()
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'modules', app('menus')->getRoutesArray()
         );
 

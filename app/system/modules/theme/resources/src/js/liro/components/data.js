@@ -1,33 +1,24 @@
 export default function () {
 
-    /**
-     * Data
-     */
+    var Data = this;
 
-    this.data = window.$data || {};
+    Data.store = window.$data || {};
 
-    /**
-     * Init data function
-     */
-
-    this.$init = this.init = function(value) {
-        this.data = value;
+    Data.init = function(value) {
+        Data.store = value;
     }.bind(this);
 
-    /**
-     * Set data function
-     */
+    Data.set = function(key, value) {
+        Data.store[key] = value;
+    }
 
-    this.$set = this.set = function(key, value) {
-        this.data[key] = value;
-    }.bind(this);
+    Data.get = function(key, fallback) {
+        return Data.store[key] || fallback;
+    }
 
-    /**
-     * Get data function
-     */
+    Data.all = function(key, fallback) {
+        return Data.store;
+    }
 
-    this.$get = this.get = function(key, fallback) {
-        return this.data[key] || fallback;
-    }.bind(this);
-
+    return Data;
 }

@@ -17,6 +17,9 @@ Vue.use(ScopedSlotsPolyfill);
 import VueReady from './plugins/ready';
 Vue.use(VueReady);
 
+import VueSync from './plugins/sync';
+Vue.use(VueSync);
+
 require('./components/list');
 
 require('./components/form/input');
@@ -55,6 +58,10 @@ Vue.ready(function () {
         Vue.component(component.name, component.options);
     });
 
+    Liro.vue.apis.map(function (api) {
+        Vue.sync(api.name, api.options);
+    });
+
     Liro.events.watch('axios.error', function (event, res) {
 
         if ( res.data.errors != undefined ) {
@@ -68,5 +75,7 @@ Vue.ready(function () {
         return UIkit.notification('Unexpected error, please contact support.', 'danger');
     });
 
-    new Vue({}).$mount('#app');
+    window.App = new Vue({
+        data: Liro.data.all()
+    }).$mount('#app');
 });

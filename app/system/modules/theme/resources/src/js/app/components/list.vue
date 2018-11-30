@@ -44,8 +44,16 @@ export default {
         this.list = new List(this.items, this.database);
     },
 
-    mounted() { 
+    mounted() {
         this.refresh();
+    },
+
+    watch: {
+
+        value: function () {
+            this.list = new List(this.value, this.database); this.refresh();
+        }
+
     },
 
     methods: {

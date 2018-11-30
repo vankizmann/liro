@@ -332,18 +332,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-    data: function data() {
-        return {
-            states: this.Liro.data.get('states'),
-            defaults: this.Liro.data.get('defaults'),
-            roles: this.Liro.data.get('roles'),
-            languages: this.Liro.data.get('languages')
-        };
-    }
-
-});
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 if (window.Liro) {
     Liro.vue.component('liro-language-index', this.default);
@@ -446,7 +435,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         updateLanguageState: function updateLanguageState() {
 
-            var url = Liro.routes.get('liro-languages.language.edit', {
+            var url = Liro.routes.get('liro-languages.language.api.update', {
                 language: this.value.id
             });
 
@@ -454,12 +443,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 state: this.value.state ? 0 : 1
             });
 
-            Axios.post(url, language).then(this.updateLanguageResponse);
+            Axios.put(url, language).then(this.updateLanguageResponse);
         },
 
         updateLanguageDefault: function updateLanguageDefault() {
 
-            var url = Liro.routes.get('liro-languages.language.edit', {
+            var url = Liro.routes.get('liro-languages.language.api.update', {
                 language: this.value.id
             });
 
@@ -467,15 +456,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 default: this.value.default ? 0 : 1
             });
 
-            Axios.post(url, language).then(this.updateLanguageResponse);
+            Axios.put(url, language).then(this.updateLanguageResponse);
         },
 
         updateLanguageResponse: function updateLanguageResponse(res) {
-
             var message = Liro.messages.get('liro-languages::message.language.saved');
             UIkit.notification(message, 'success');
-
-            this.$emit('input', res.data.language);
         }
 
     }
@@ -712,7 +698,7 @@ var render = function() {
                                 attrs: {
                                   column: "default",
                                   config: config.filter,
-                                  filters: _vm.defaults
+                                  filters: _vm.$root.defaults
                                 },
                                 on: { filter: filter }
                               },
@@ -742,7 +728,7 @@ var render = function() {
                                 attrs: {
                                   column: "state",
                                   config: config.filter,
-                                  filters: _vm.states
+                                  filters: _vm.$root.states
                                 },
                                 on: { filter: filter }
                               },
@@ -852,11 +838,11 @@ var render = function() {
       }
     ]),
     model: {
-      value: _vm.languages,
+      value: _vm.$root.languages,
       callback: function($$v) {
-        _vm.languages = $$v
+        _vm.$set(_vm.$root, "languages", $$v)
       },
-      expression: "languages"
+      expression: "$root.languages"
     }
   })
 }
@@ -984,27 +970,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            states: this.Liro.data.get('states'),
-            defaults: this.Liro.data.get('defaults'),
-            roles: this.Liro.data.get('roles'),
-            language: this.Liro.data.get('language')
-        };
-    },
-
 
     methods: {
 
         storeLanguage: function storeLanguage() {
-            var url = Liro.routes.get('liro-languages.language.create');
-            Axios.post(url, this.language).then(this.storeLanguageResponse);
+            var url = Liro.routes.get('liro-languages.language.api.store');
+            Axios.post(url, this.$root.language).then(this.storeLanguageResponse);
         },
 
         storeLanguageResponse: function storeLanguageResponse(res) {
 
             var values = {
-                language: res.data.language.id
+                language: res.data.id
             };
 
             var query = {
@@ -1098,17 +1075,17 @@ var render = function() {
               staticClass: "is-state uk-width-1-1",
               attrs: {
                 name: "state",
-                options: _vm.states,
+                options: _vm.$root.states,
                 label: _vm.Liro.messages.get(
                   "liro-languages::form.language.state"
                 )
               },
               model: {
-                value: _vm.language.state,
+                value: _vm.$root.language.state,
                 callback: function($$v) {
-                  _vm.$set(_vm.language, "state", $$v)
+                  _vm.$set(_vm.$root.language, "state", $$v)
                 },
-                expression: "language.state"
+                expression: "$root.language.state"
               }
             }),
             _vm._v(" "),
@@ -1116,17 +1093,17 @@ var render = function() {
               staticClass: "is-default uk-width-1-1",
               attrs: {
                 name: "default",
-                options: _vm.defaults,
+                options: _vm.$root.defaults,
                 label: _vm.Liro.messages.get(
                   "liro-languages::form.language.default"
                 )
               },
               model: {
-                value: _vm.language.default,
+                value: _vm.$root.language.default,
                 callback: function($$v) {
-                  _vm.$set(_vm.language, "default", $$v)
+                  _vm.$set(_vm.$root.language, "default", $$v)
                 },
-                expression: "language.default"
+                expression: "$root.language.default"
               }
             })
           ],
@@ -1157,11 +1134,11 @@ var render = function() {
                 )
               },
               model: {
-                value: _vm.language.title,
+                value: _vm.$root.language.title,
                 callback: function($$v) {
-                  _vm.$set(_vm.language, "title", $$v)
+                  _vm.$set(_vm.$root.language, "title", $$v)
                 },
-                expression: "language.title"
+                expression: "$root.language.title"
               }
             }),
             _vm._v(" "),
@@ -1173,11 +1150,11 @@ var render = function() {
                 )
               },
               model: {
-                value: _vm.language.locale,
+                value: _vm.$root.language.locale,
                 callback: function($$v) {
-                  _vm.$set(_vm.language, "locale", $$v)
+                  _vm.$set(_vm.$root.language, "locale", $$v)
                 },
-                expression: "language.locale"
+                expression: "$root.language.locale"
               }
             })
           ],
@@ -1311,24 +1288,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            states: this.Liro.data.get('states'),
-            defaults: this.Liro.data.get('defaults'),
-            language: this.Liro.data.get('language')
-        };
-    },
-
 
     methods: {
 
         updateLanguage: function updateLanguage() {
 
-            var url = Liro.routes.get('liro-languages.language.edit', {
-                language: this.language.id
+            var url = Liro.routes.get('liro-languages.language.api.update', {
+                language: this.$root.language.id
             });
 
-            Axios.post(url, this.language).then(this.updateLanguageResponse);
+            Axios.put(url, this.$root.language).then(this.updateLanguageResponse);
         },
 
         updateLanguageResponse: function updateLanguageResponse(res) {
@@ -1420,17 +1389,17 @@ var render = function() {
               staticClass: "is-state uk-width-1-1",
               attrs: {
                 name: "state",
-                options: _vm.states,
+                options: _vm.$root.states,
                 label: _vm.Liro.messages.get(
                   "liro-languages::form.language.state"
                 )
               },
               model: {
-                value: _vm.language.state,
+                value: _vm.$root.language.state,
                 callback: function($$v) {
-                  _vm.$set(_vm.language, "state", $$v)
+                  _vm.$set(_vm.$root.language, "state", $$v)
                 },
-                expression: "language.state"
+                expression: "$root.language.state"
               }
             }),
             _vm._v(" "),
@@ -1438,17 +1407,17 @@ var render = function() {
               staticClass: "is-default uk-width-1-1",
               attrs: {
                 name: "default",
-                options: _vm.defaults,
+                options: _vm.$root.defaults,
                 label: _vm.Liro.messages.get(
                   "liro-languages::form.language.default"
                 )
               },
               model: {
-                value: _vm.language.default,
+                value: _vm.$root.language.default,
                 callback: function($$v) {
-                  _vm.$set(_vm.language, "default", $$v)
+                  _vm.$set(_vm.$root.language, "default", $$v)
                 },
-                expression: "language.default"
+                expression: "$root.language.default"
               }
             })
           ],
@@ -1479,11 +1448,11 @@ var render = function() {
                 )
               },
               model: {
-                value: _vm.language.title,
+                value: _vm.$root.language.title,
                 callback: function($$v) {
-                  _vm.$set(_vm.language, "title", $$v)
+                  _vm.$set(_vm.$root.language, "title", $$v)
                 },
-                expression: "language.title"
+                expression: "$root.language.title"
               }
             }),
             _vm._v(" "),
@@ -1495,11 +1464,11 @@ var render = function() {
                 )
               },
               model: {
-                value: _vm.language.locale,
+                value: _vm.$root.language.locale,
                 callback: function($$v) {
-                  _vm.$set(_vm.language, "locale", $$v)
+                  _vm.$set(_vm.$root.language, "locale", $$v)
                 },
-                expression: "language.locale"
+                expression: "$root.language.locale"
               }
             })
           ],

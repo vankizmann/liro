@@ -12383,6 +12383,23 @@ __WEBPACK_IMPORTED_MODULE_2_axios___default.a.interceptors.response.use(function
     return Promise.reject(error);
 });
 
+__WEBPACK_IMPORTED_MODULE_5__liro_liro__["a" /* default */].events.watch('axios.load', function () {
+    clearTimeout(window.$busy);
+    $('body').addClass('is-busy');
+});
+
+__WEBPACK_IMPORTED_MODULE_5__liro_liro__["a" /* default */].events.watch('axios.done', function () {
+    window.$busy = setTimeout(function () {
+        return $('body').removeClass('is-busy');
+    }, 100);
+});
+
+__WEBPACK_IMPORTED_MODULE_5__liro_liro__["a" /* default */].events.watch('axios.error', function () {
+    window.$busy = setTimeout(function () {
+        return $('body').removeClass('is-busy');
+    }, 100);
+});
+
 __webpack_require__(47);
 
 /***/ }),
@@ -52426,11 +52443,11 @@ return UIkit;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_vue__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_event__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_data__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_event__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_message__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_route__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_message__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_route__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_vue__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_helper__ = __webpack_require__(45);
 
 
@@ -52440,13 +52457,21 @@ return UIkit;
 
 
 
+
+var LiroEvents = new __WEBPACK_IMPORTED_MODULE_0__components_event__["a" /* default */]();
+var LiroData = new __WEBPACK_IMPORTED_MODULE_1__components_data__["a" /* default */]();
+var LiroMessages = new __WEBPACK_IMPORTED_MODULE_2__components_message__["a" /* default */]();
+var LiroRoutes = new __WEBPACK_IMPORTED_MODULE_3__components_route__["a" /* default */]();
+var LiroHelpers = new __WEBPACK_IMPORTED_MODULE_5__components_helper__["a" /* default */]();
+var LiroVue = new __WEBPACK_IMPORTED_MODULE_4__components_vue__["a" /* default */](LiroEvents, LiroRoutes);
+
 /* harmony default export */ __webpack_exports__["a"] = ({
-    vue: new __WEBPACK_IMPORTED_MODULE_0__components_vue__["a" /* default */](),
-    data: new __WEBPACK_IMPORTED_MODULE_1__components_data__["a" /* default */](),
-    events: new __WEBPACK_IMPORTED_MODULE_2__components_event__["a" /* default */](),
-    messages: new __WEBPACK_IMPORTED_MODULE_3__components_message__["a" /* default */](),
-    routes: new __WEBPACK_IMPORTED_MODULE_4__components_route__["a" /* default */](),
-    helpers: new __WEBPACK_IMPORTED_MODULE_5__components_helper__["a" /* default */]()
+    data: LiroData,
+    events: LiroEvents,
+    messages: LiroMessages,
+    routes: LiroRoutes,
+    helpers: LiroHelpers,
+    vue: LiroVue
 });
 
 /***/ }),
@@ -52454,49 +52479,39 @@ return UIkit;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = (function () {
+/* harmony default export */ __webpack_exports__["a"] = (function (Events, Routes) {
 
-  /**
-   * Components
-   */
+    var Vue = this;
 
-  this.components = [];
+    // Define vue components
+    Vue.components = [];
 
-  /**
-   * Set store function
-   */
+    // Define vue filters
+    Vue.filters = [];
 
-  this.$component = this.component = function (name, options) {
-    this.components.push({ name: name, options: options });
-  }.bind(this);
+    // Define vue directives
+    Vue.directives = [];
 
-  /**
-   * Filters
-   */
+    // Define vue directives
+    Vue.apis = [];
 
-  this.filters = [];
+    Vue.component = function (name, options) {
+        Vue.components.push({ name: name, options: options });
+    };
 
-  /**
-   * Set filter function
-   */
+    Vue.filter = function (name, options) {
+        Vue.filters.push({ name: name, options: options });
+    };
 
-  this.$filter = this.filter = function (name, options) {
-    this.filters.push({ name: name, options: options });
-  }.bind(this);
+    Vue.directive = function (name, options) {
+        Vue.directives.push({ name: name, options: options });
+    };
 
-  /**
-   * Filters
-   */
+    Vue.sync = function (name, options) {
+        Vue.apis.push({ name: name, options: options });
+    };
 
-  this.directives = [];
-
-  /**
-   * Set filter function
-   */
-
-  this.$directive = this.directive = function (name, options) {
-    this.directives.push({ name: name, options: options });
-  }.bind(this);
+    return Vue;
 });
 
 /***/ }),
@@ -52506,35 +52521,27 @@ return UIkit;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = (function () {
 
-  /**
-   * Data
-   */
+    var Data = this;
 
-  this.data = window.$data || {};
+    Data.store = window.$data || {};
 
-  /**
-   * Init data function
-   */
+    Data.init = function (value) {
+        Data.store = value;
+    }.bind(this);
 
-  this.$init = this.init = function (value) {
-    this.data = value;
-  }.bind(this);
+    Data.set = function (key, value) {
+        Data.store[key] = value;
+    };
 
-  /**
-   * Set data function
-   */
+    Data.get = function (key, fallback) {
+        return Data.store[key] || fallback;
+    };
 
-  this.$set = this.set = function (key, value) {
-    this.data[key] = value;
-  }.bind(this);
+    Data.all = function (key, fallback) {
+        return Data.store;
+    };
 
-  /**
-   * Get data function
-   */
-
-  this.$get = this.get = function (key, fallback) {
-    return this.data[key] || fallback;
-  }.bind(this);
+    return Data;
 });
 
 /***/ }),
@@ -53016,6 +53023,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_shortkey___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_shortkey__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_nestable_lib_scoped_slots_polyfill__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__plugins_ready__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugins_sync__ = __webpack_require__(127);
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_portal_vue___default.a);
@@ -53034,6 +53042,9 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_4_vue_nestable_lib_scoped_slots_polyfill__["a"
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_5__plugins_ready__["a" /* default */]);
+
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_6__plugins_sync__["a" /* default */]);
 
 __webpack_require__(54);
 
@@ -53073,6 +53084,10 @@ Vue.ready(function () {
         Vue.component(component.name, component.options);
     });
 
+    Liro.vue.apis.map(function (api) {
+        Vue.sync(api.name, api.options);
+    });
+
     Liro.events.watch('axios.error', function (event, res) {
 
         if (res.data.errors != undefined) {
@@ -53088,7 +53103,9 @@ Vue.ready(function () {
         return UIkit.notification('Unexpected error, please contact support.', 'danger');
     });
 
-    new Vue({}).$mount('#app');
+    window.App = new Vue({
+        data: Liro.data.all()
+    }).$mount('#app');
 });
 
 /***/ }),
@@ -54529,7 +54546,7 @@ return index;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = (function (Vue, options) {
+/* harmony default export */ __webpack_exports__["a"] = (function (Vue) {
 
     var readyFunction = function readyFunction(callback) {
 
@@ -54655,6 +54672,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.refresh();
     },
 
+
+    watch: {
+
+        value: function value() {
+            this.list = new __WEBPACK_IMPORTED_MODULE_0__libraries_list_js__["a" /* default */](this.value, this.database);this.refresh();
+        }
+
+    },
 
     methods: {
         refresh: function refresh() {
@@ -57654,6 +57679,64 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = (function (Vue, options) {
+
+    var syncFunction = function syncFunction(name, options) {
+
+        var fetchList = function fetchList() {
+            window.Axios.get(options.url).then(function (res) {
+                return window.App[name] = res.data;
+            });
+        };
+
+        window.Liro.events.watch('sync.' + name, fetchList);
+    };
+
+    Vue.sync = syncFunction;
+});
 
 /***/ })
 /******/ ]);

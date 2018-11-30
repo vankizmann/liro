@@ -42,7 +42,7 @@ export default {
 
         updateLanguageState: function () {
 
-            var url = Liro.routes.get('liro-languages.language.edit', {
+            var url = Liro.routes.get('liro-languages.language.api.update', {
                 language: this.value.id
             });
 
@@ -50,12 +50,12 @@ export default {
                 state: this.value.state ? 0 : 1
             });
 
-            Axios.post(url, language).then(this.updateLanguageResponse);
+            Axios.put(url, language).then(this.updateLanguageResponse);
         },
 
         updateLanguageDefault: function () {
 
-            var url = Liro.routes.get('liro-languages.language.edit', {
+            var url = Liro.routes.get('liro-languages.language.api.update', {
                 language: this.value.id
             });
 
@@ -63,15 +63,12 @@ export default {
                 default: this.value.default ? 0 : 1
             });
 
-            Axios.post(url, language).then(this.updateLanguageResponse);
+            Axios.put(url, language).then(this.updateLanguageResponse);
         },
 
         updateLanguageResponse: function (res) {
-
             var message = Liro.messages.get('liro-languages::message.language.saved');
             UIkit.notification(message, 'success');
-
-            this.$emit('input', res.data.language);
         }
 
     }

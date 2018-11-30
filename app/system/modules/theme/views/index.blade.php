@@ -1,33 +1,33 @@
 <html lang="{{ app()->getLocale() }}">
     <head>
         @php
-            app('scripts')->setData('states', [
+            app('assets')->data('states', [
                 ['value' => 1, 'label' => trans('theme::form.state.enabled')],
                 ['value' => 0, 'label' => trans('theme::form.state.disabled')]
             ]);
 
-            app('scripts')->setData('locks', [
+            app('assets')->data('locks', [
                 ['value' => 0, 'label' => trans('theme::form.lock.unlocked')],
                 ['value' => 1, 'label' => trans('theme::form.lock.locked')]
             ]);
 
-            app('scripts')->setData('hides', [
+            app('assets')->data('hides', [
                 ['value' => 0, 'label' => trans('theme::form.hide.visible')],
                 ['value' => 1, 'label' => trans('theme::form.hide.hidden')]
             ]);
 
-            app('scripts')->setData('defaults', [
+            app('assets')->data('defaults', [
                 ['value' => 1, 'label' => trans('theme::form.default.enabled')],
                 ['value' => 0, 'label' => trans('theme::form.default.disabled')]
             ]);
 
-            app('scripts')->addMessage('theme::form');
+            app('assets')->message('theme::form');
         @endphp
 
         @include('theme::partials/head')
 
     </head>
-    <body class="th-index {{ request()->get('dark') ? 'th-dark' : 'th-light' }}">
+    <body class="th-index">
 
         @include('theme::partials/notification')
 
@@ -97,6 +97,10 @@
 
             <liro-auth-modal></liro-auth-modal>
 
+        </div>
+
+        <div class="th-spinner uk-position-cover">
+            <div class="uk-position-center" uk-spinner="ratio: 2;"></div>
         </div>
 
         <script>

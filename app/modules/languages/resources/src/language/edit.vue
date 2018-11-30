@@ -22,11 +22,11 @@
             </legend>
 
             <app-form-switch 
-                class="is-state uk-width-1-1" name="state" v-model="language.state" :options="states" :label="Liro.messages.get('liro-languages::form.language.state')"
+                class="is-state uk-width-1-1" name="state" v-model="$root.language.state" :options="$root.states" :label="Liro.messages.get('liro-languages::form.language.state')"
             ></app-form-switch>
 
             <app-form-switch 
-                class="is-default uk-width-1-1" name="default" v-model="language.default" :options="defaults" :label="Liro.messages.get('liro-languages::form.language.default')"
+                class="is-default uk-width-1-1" name="default" v-model="$root.language.default" :options="$root.defaults" :label="Liro.messages.get('liro-languages::form.language.default')"
             ></app-form-switch>
 
         </div>
@@ -42,11 +42,11 @@
             </legend>
 
             <app-form-input 
-                name="title" v-model="language.title" :label="Liro.messages.get('liro-languages::form.language.title')"
+                name="title" v-model="$root.language.title" :label="Liro.messages.get('liro-languages::form.language.title')"
             ></app-form-input>
 
             <app-form-input 
-                name="locale" v-model="language.locale" :label="Liro.messages.get('liro-languages::form.language.locale')"
+                name="locale" v-model="$root.language.locale" :label="Liro.messages.get('liro-languages::form.language.locale')"
             ></app-form-input>
 
         </div>
@@ -59,23 +59,15 @@
 
 export default {
 
-    data() {
-        return {
-            states: this.Liro.data.get('states'),
-            defaults: this.Liro.data.get('defaults'),
-            language: this.Liro.data.get('language')
-        };
-    },
-
     methods: {
 
         updateLanguage: function () {
 
-            var url = Liro.routes.get('liro-languages.language.edit', {
-                language: this.language.id
+            var url = Liro.routes.get('liro-languages.language.api.update', {
+                language: this.$root.language.id
             });
 
-            Axios.post(url, this.language).then(this.updateLanguageResponse);
+            Axios.put(url, this.$root.language).then(this.updateLanguageResponse);
         },
 
         updateLanguageResponse: function (res) {

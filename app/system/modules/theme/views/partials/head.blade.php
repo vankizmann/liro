@@ -28,11 +28,23 @@
 <title>{{ app()->getTitleWithAffix() }}</title>
 
 @php
-    app('scripts')->addLink('theme-script', 'theme::dist/js/script.js');
-    echo app('scripts')->output();
+    echo app('assets')->output('routes');
 @endphp
 
 @php
-    app('styles')->addLink('theme-style', 'theme::dist/css/style.css');
-    echo app('styles')->output();
+    echo app('assets')->output('messages');
+@endphp
+
+@php
+    echo app('assets')->output('data');
+@endphp
+
+@php
+    app('assets')->script('theme-script', 'theme::dist/js/script.js');
+    echo app('assets')->scripts();
+@endphp
+
+@php
+    app('assets')->style('theme-style', 'theme::dist/css/style.css');
+    echo app('assets')->styles();
 @endphp

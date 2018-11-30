@@ -1,0 +1,14 @@
+
+.th-spinner {
+    color: $color-white;
+    background-color: rgba($color-dark-20, 0.3);
+    display: none;
+}
+
+body.is-busy .th-spinner {
+    display: block;
+}
+
+.th-spinner circle {
+    stroke-width: 1 !important;
+}

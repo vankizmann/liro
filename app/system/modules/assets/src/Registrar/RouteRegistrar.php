@@ -29,17 +29,21 @@ class RouteRegistrar
      */
     public function addByName($name)
     {
-        $route = app('router')->getRoutes()->getByName(
-            app('menus')->addKeyLocale($name)
+        // Get real locale names
+        $namePattern = str_replace(
+            '\*', '(.*)', preg_quote( app('menus')->addKeyLocale($name) )
         );
 
-        if ( $route == null ) {
-            throw new \Exception("Route with given name does not exist: $name");
+        // Get all routes from router
+        $routeNames = app('router')->getRoutes()->getRoutesByName();
+
+        foreach ( $routeNames as $routeName => $route) {
+            if ( preg_match('/^' . $namePattern . '$/', $routeName) ) {
+                $this->routes->put( app('menus')->removeKeyLocale($routeName), app('url')->to($route->uri) );
+            }
         }
 
-        $this->routes->put(
-            $name, app('url')->to($route->uri())
-        );
+        return;
     }
 
     /**

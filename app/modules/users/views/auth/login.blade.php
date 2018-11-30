@@ -1,7 +1,7 @@
 @extends('theme::login')
 
 @php
-    app('scripts')->addLink('liro-auth', 'liro-users::dist/liro-auth.js', ['theme-script']);
+    app('assets')->script('liro-auth', 'liro-users::dist/liro-auth.js', ['theme-script']);
 @endphp
 
 @section('content')

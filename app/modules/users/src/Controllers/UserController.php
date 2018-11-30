@@ -13,23 +13,23 @@ class UserController extends \Liro\System\Http\Controller
 
     public function index(User $user, UserRole $role)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-users.user.index',
             'liro-users.user.create',
             'liro-users.user.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-users::module',
             'liro-users::form',
             'liro-users::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'users', $user->all()
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'roles', $role->all()
         );
 
@@ -38,23 +38,23 @@ class UserController extends \Liro\System\Http\Controller
 
     public function create(User $user, UserRole $role)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-users.user.index',
             'liro-users.user.create',
             'liro-users.user.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-users::module',
             'liro-users::form',
             'liro-users::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'user', $user
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'roles', $role->all()
         );
 
@@ -74,22 +74,22 @@ class UserController extends \Liro\System\Http\Controller
 
     public function edit(User $user, UserRole $role)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-users.user.index',
             'liro-users.user.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-users::module',
             'liro-users::form',
             'liro-users::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'user', $user
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'roles', $role->all()
         );
 

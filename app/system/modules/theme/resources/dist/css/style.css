@@ -12985,6 +12985,20 @@ body.th-frame .th-frame-content {
   padding: 30px;
 }
 
+.th-spinner {
+  color: #ffffff;
+  background-color: rgba(17, 30, 54, 0.3);
+  display: none;
+}
+
+body.is-busy .th-spinner {
+  display: block;
+}
+
+.th-spinner circle {
+  stroke-width: 1 !important;
+}
+
 .th-form {
   overflow: hidden;
   padding: 20px 24px;

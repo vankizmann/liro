@@ -19,6 +19,8 @@
         "jquery": "^3.3.1",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.11",
+        "pace": "^0.0.4",
+        "pace-js": "^1.0.2",
         "portal-vue": "^1.4.0",
         "uikit": "vankizmann/uikit",
         "vue": "^2.5.17",

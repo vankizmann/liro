@@ -1,4 +1,4 @@
-export default function (Vue, options) {
+export default function (Vue) {
 
     var readyFunction = function (callback) {
 

@@ -1,45 +1,34 @@
-export default function () {
+export default function (Events, Routes) {
 
-    /**
-     * Components
-     */
+    var Vue = this;
 
-    this.components = [];
+    // Define vue components
+    Vue.components = [];
 
-    /**
-     * Set store function
-     */
+    // Define vue filters
+    Vue.filters = [];
 
-    this.$component = this.component = function(name, options) {
-        this.components.push({ name, options });
-    }.bind(this);
+    // Define vue directives
+    Vue.directives = [];
 
-    /**
-     * Filters
-     */
+    // Define vue directives
+    Vue.apis = [];
 
-    this.filters = [];
+    Vue.component = function (name, options) {
+        Vue.components.push({ name, options });
+    }
 
-    /**
-     * Set filter function
-     */
+    Vue.filter = function (name, options) {
+        Vue.filters.push({ name, options });
+    }
 
-    this.$filter = this.filter = function(name, options) {
-        this.filters.push({ name, options });
-    }.bind(this);
+    Vue.directive = function (name, options) {
+        Vue.directives.push({ name, options });
+    }
 
-    /**
-     * Filters
-     */
+    Vue.sync = function (name, options) {
+        Vue.apis.push({ name, options });
+    }
 
-    this.directives = [];
-
-    /**
-     * Set filter function
-     */
-
-    this.$directive = this.directive = function(name, options) {
-        this.directives.push({ name, options });
-    }.bind(this);
-
+    return Vue;
 }

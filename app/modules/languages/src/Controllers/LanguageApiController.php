@@ -14,75 +14,30 @@ class LanguageApiController extends \Liro\System\Http\Controller
     {
         $response = $language->all();
 
-        return response()->json($response);
+        return response()->json($response, 200);
     }
 
     public function show(Language $language)
     {
-        return response()->json($language);
+        return response()->json($language, 200);
     }
 
     public function store(LanguageStoreRequest $request, Language $language)
     {
-        $language = $language->create(
-            $request->only(['state', 'title', 'locale', 'default'])
+        $response = $language->create(
+            $request->all()
         );
 
-        return response()->json($language);
+        return response()->json($response, 201);
     }
 
     public function update(LanguageUpdateRequest $request, Language $language)
     {
         $language->update(
-            $request->only(['state', 'title', 'locale', 'default'])
+            $request->all()
         );
 
-        return response()->json($language);
-    }
-
-    public function defaultEnable(Language $language)
-    {
-        $language->update([
-            'default' => 1
-        ]);
-
-        return response()->json($language);
-    }
-
-    public function stateEnable(Language $language)
-    {
-        $language->update([
-            'state' => 1
-        ]);
-
-        return response()->json($language);
-    }
-
-    public function stateDisable(Language $language)
-    {
-        $language->update([
-            'state' => 0
-        ]);
-
-        return response()->json($language);
-    }
-
-    public function hideEnable(Language $language)
-    {
-        $language->update([
-            'hide' => 1
-        ]);
-
-        return response()->json($language);
-    }
-
-    public function hideDisable(Language $language)
-    {
-        $language->update([
-            'hide' => 0
-        ]);
-
-        return response()->json($language);
+        return response()->json($language, 200);
     }
 
 }

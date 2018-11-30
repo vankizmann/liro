@@ -13,19 +13,19 @@ class TypeController extends \Liro\System\Http\Controller
 
     public function index(MenuType $type)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-menus.type.index',
             'liro-menus.type.create',
             'liro-menus.type.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-menus::module',
             'liro-menus::form',
             'liro-menus::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'types', $type->all()
         );
 
@@ -34,27 +34,27 @@ class TypeController extends \Liro\System\Http\Controller
 
     public function create(MenuType $type)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-menus.type.index',
             'liro-menus.type.create',
             'liro-menus.type.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-menus::module',
             'liro-menus::form',
             'liro-menus::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'type', $type
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'locales', app('languages')->getLocalesArray()
         );
 
-        // app('scripts')->setData(
+        // app('assets')->data(
         //     'modules', app('modules')->getRoutesArray()
         // );
 
@@ -74,26 +74,26 @@ class TypeController extends \Liro\System\Http\Controller
 
     public function edit(MenuType $type)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-menus.type.index',
             'liro-menus.type.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-menus::module',
             'liro-menus::form',
             'liro-menus::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'type', $type->toArray()
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'locales', app('languages')->getLocalesArray()
         );
 
-        // app('scripts')->setData(
+        // app('assets')->data(
         //     'modules', app('menus')->getRoutesArray()
         // );
 

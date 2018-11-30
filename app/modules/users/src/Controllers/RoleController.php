@@ -12,19 +12,19 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function index(UserRole $role)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-users.role.index',
             'liro-users.role.create',
             'liro-users.role.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-users::module',
             'liro-users::form',
             'liro-users::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'roles', $role->all()
         );
 
@@ -33,23 +33,23 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function create(UserRole $role)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-users.role.index',
             'liro-users.role.create',
             'liro-users.role.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-users::module',
             'liro-users::form',
             'liro-users::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'modules', app('menus')->getModuleNames()
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'role', $role
         );
 
@@ -69,22 +69,22 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function edit(UserRole $role)
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-users.role.index',
             'liro-users.role.edit'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-users::module',
             'liro-users::form',
             'liro-users::message'
         ]);
 
-        app('scripts')->setData(
+        app('assets')->data(
             'modules', app('menus')->getModuleNames()
         );
 
-        app('scripts')->setData(
+        app('assets')->data(
             'role', $role
         );
 

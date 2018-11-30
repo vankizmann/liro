@@ -11,11 +11,11 @@ class AuthController extends \Liro\System\Http\Controller
 
     public function login()
     {
-        app('scripts')->addRoutes([
+        app('assets')->routes([
             'liro-users.auth.login'
         ]);
 
-        app('scripts')->addMessages([
+        app('assets')->messages([
             'liro-users::form',
             'liro-users::message'
         ]);

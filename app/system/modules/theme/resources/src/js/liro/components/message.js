@@ -4,7 +4,7 @@ export default function () {
      * Data
      */
 
-    this.messages = window.$messages || {};
+    this.messages = window.$messages || {};
 
     /**
      * Init messages function

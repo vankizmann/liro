@@ -34,9 +34,11 @@ class RouteRegistrar
         // Get module or create new collection
         $collection = $this->modules->get($module, new Collection);
 
+        $realRoute = ltrim($route, '!');
+
         $collection->put(
-            $route, new Collection([
-                'alias' => $route, 'name' => $options[0], 'uses' => $options[1]
+            $realRoute, new Collection([
+                'alias' => $realRoute, 'hide' => $realRoute != $route, 'name' => $options[0], 'uses' => $options[1]
             ])
         );
 
@@ -73,7 +75,7 @@ class RouteRegistrar
      */
     public function getRoutesArray()
     {
-        return $this->modules->flatMap(function ($routes) {
+        return $this->modules->where('hide', false)->flatMap(function ($routes) {
             return $routes->map(function ($route) {
                 return [
                     'label' => $route->trans('name'), 'value' => $route->get('alias')

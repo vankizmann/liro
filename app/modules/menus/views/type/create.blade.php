@@ -1,7 +1,7 @@
 @extends('theme::index')
 
 @php
-    app('scripts')->addLink('liro-type', 'liro-menus::dist/liro-type.js', ['theme-script']);
+    app('assets')->script('liro-type', 'liro-menus::dist/liro-type.js', ['theme-script']);
 @endphp
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('theme::index')
 
 @php
-    app('scripts')->addLink('liro-user', 'liro-users::dist/liro-user.js', ['theme-script']);
+    app('assets')->script('liro-user', 'liro-users::dist/liro-user.js', ['theme-script']);
 @endphp
 
 @section('content')

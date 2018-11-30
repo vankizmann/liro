@@ -132,6 +132,17 @@ class MenuManager
     }
 
     /**
+     * Add locale to given key
+     *
+     * @param string $key
+     * @return string
+     */
+    public function removeKeyLocale($key)
+    {
+        return preg_replace('/^[a-z]{2}\./', '', $key);
+    }
+
+    /**
      * Add segment at the end of an array
      *
      * @param array $segments

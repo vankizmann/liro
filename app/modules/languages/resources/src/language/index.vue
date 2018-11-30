@@ -1,6 +1,6 @@
 <template>
 
-<app-list class="liro-language-index" v-model="languages" database="languages.language.index">
+<app-list class="liro-language-index" v-model="$root.languages" database="languages.language.index">
     <div slot-scope="{ items, pages, config, order, search, paginate, filter }">
 
         <portal to="app-toolbar">
@@ -42,12 +42,12 @@
                             </app-list-sort>
                         </div>
                         <div class="th-table-td-m uk-text-center">
-                            <app-list-filter column="default" :config="config.filter" :filters="defaults" @filter="filter">
+                            <app-list-filter column="default" :config="config.filter" :filters="$root.defaults" @filter="filter">
                                 {{ Liro.messages.get('liro-languages::form.language.default') }}
                             </app-list-filter>
                         </div>
                         <div class="th-table-td-m uk-text-center">
-                            <app-list-filter column="state" :config="config.filter" :filters="states" @filter="filter">
+                            <app-list-filter column="state" :config="config.filter" :filters="$root.states" @filter="filter">
                                 {{ Liro.messages.get('liro-languages::form.language.state') }}
                             </app-list-filter>
                         </div>
@@ -95,15 +95,6 @@
 import IndexItem from './index/item';
 
 export default {
-
-    data: function () {
-        return {
-            states: this.Liro.data.get('states'),
-            defaults: this.Liro.data.get('defaults'),
-            roles: this.Liro.data.get('roles'),
-            languages: this.Liro.data.get('languages')
-        };
-    }
 
 }
 

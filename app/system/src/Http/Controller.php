@@ -13,11 +13,4 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;
-
-    public function __construct(Application $app)
-    {
-        // $app['view']->addNamespace('theme', "app/modules/backend/views");
-
-        // $app['modules']->load(['liro-backend']);
-    }
 }

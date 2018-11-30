@@ -46,4 +46,17 @@ Axios.interceptors.response.use(
     }
 );
 
+Liro.events.watch('axios.load', function () {
+    clearTimeout(window.$busy);
+    $('body').addClass('is-busy');
+});
+
+Liro.events.watch('axios.done', function () {
+    window.$busy = setTimeout(() => $('body').removeClass('is-busy'), 100);
+});
+
+Liro.events.watch('axios.error', function () {
+    window.$busy = setTimeout(() => $('body').removeClass('is-busy'), 100);
+});
+
 require('./app/app');

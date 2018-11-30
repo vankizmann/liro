@@ -22,6 +22,7 @@ class Seeder
             'title'     => 'Deutsch',
             'locale'    => 'de'
         ]);
+
     }
 
 }

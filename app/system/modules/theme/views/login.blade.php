@@ -27,5 +27,9 @@
             </div>
         </div>
 
+        <div class="th-spinner uk-position-cover">
+            <div class="uk-position-center" uk-spinner="ratio: 2;"></div>
+        </div>
+
     </body>
 </html>

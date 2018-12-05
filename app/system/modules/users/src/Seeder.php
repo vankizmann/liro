@@ -92,6 +92,22 @@ class Seeder
         ]);
 
         $user_test->roles()->attach($user_role_admin->id);
+
+        $user_test = User::create([
+            'state'         => 0,
+            'lock'          => 0,
+            'name'          => 'Testuser',
+            'email'         => 'test1@gmail.com',
+            'password'      => 'password'
+        ]);
+
+        $user_test = User::create([
+            'state'         => 0,
+            'lock'          => 0,
+            'name'          => 'Testuser',
+            'email'         => 'test2@gmail.com',
+            'password'      => 'password'
+        ]);
     }
 
 }

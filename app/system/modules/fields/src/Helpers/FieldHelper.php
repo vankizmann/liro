@@ -6,9 +6,11 @@ use Liro\System\Fields\Models\Field;
 
 class FieldHelper
 {
+    protected static $fields;
+
     public static function get($label, $default = null)
     {
-        $field = Field::where('label', $label)->first();
+        $field = (self::$fields ?: self::$fields = Field::all())->where('label', $label)->first();
 
         return $field ? $field->value : $default;
     }
@@ -24,7 +26,7 @@ class FieldHelper
 
     public static function getModel($model, $label, $default = null)
     {
-        if ( ! $model->id ) {
+        if ( ! @$model->id ) {
             return $default;
         }
 
@@ -34,7 +36,6 @@ class FieldHelper
     public static function setModel($model, $label, $value)
     {
         $model->saved(function () use ($model, $label, $value) {
-            // dd($model);
             self::set("{$model->getTable()}.{$model->id}.{$label}", $value);
         });
 

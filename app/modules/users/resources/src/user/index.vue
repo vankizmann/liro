@@ -1,7 +1,7 @@
 <template>
 
 <app-list class="liro-user-index" v-model="users" database="users.user.index">
-    <div slot-scope="{ items, pages, config, order, search, paginate, filter }">
+    <div slot-scope="{ items, pages, config, order, search, paginate, filter, check }">
 
         <portal to="app-toolbar">
             <div class="uk-navbar-item">
@@ -62,7 +62,9 @@
 
                 <!-- Table body -->
                 <div class="th-table-body" v-if="items.length != 0">
-                    <liro-user-index-item v-for="(item, index) in items" :value="item" :key="index"></liro-user-index-item>
+                    <liro-user-index-item v-for="(item, index) in items" :value="item" :key="index">
+                        <app-list-checkbox slot="checkbox" :item="item" :config="config.checked" @check="check"></app-list-checkbox>
+                    </liro-user-index-item>
                 </div>
                 <!-- Table body end -->
 

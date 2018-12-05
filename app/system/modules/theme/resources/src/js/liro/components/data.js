@@ -2,7 +2,7 @@ export default function () {
 
     var Data = this;
 
-    Data.store = window.$data || {};
+    Data.store = _.isPlainObject(window.$data) ? window.$data : {};
 
     Data.init = function(value) {
         Data.store = value;

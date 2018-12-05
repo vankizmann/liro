@@ -80,9 +80,9 @@ class MenuManager
      *
      * @return Illuminate\Support\Collection
      */
-    public function getRoutes()
+    public function getRoutes($types = null)
     {
-        return $this->routes->getRoutes();
+        return $this->routes->getRoutes($types);
     }
 
     /**
@@ -90,9 +90,9 @@ class MenuManager
      *
      * @return Illuminate\Support\Collection
      */
-    public function getRoutesArray()
+    public function getRoutesArray($types = null)
     {
-        return $this->routes->getRoutesArray();
+        return $this->routes->getRoutesArray($types);
     }
 
     /**
@@ -100,9 +100,9 @@ class MenuManager
      *
      * @return Illuminate\Support\Collection
      */
-    public function getModuleRoutes()
+    public function getModuleRoutes($types = null)
     {
-        return $this->routes->getModuleRoutes();
+        return $this->routes->getModuleRoutes($types);
     }
 
     /**
@@ -110,9 +110,9 @@ class MenuManager
      *
      * @return Illuminate\Support\Collection
      */
-    public function getModuleNames()
+    public function getModuleNames($types = null)
     {
-        return $this->routes->getModuleNames();
+        return $this->routes->getModuleNames($types);
     }
 
 

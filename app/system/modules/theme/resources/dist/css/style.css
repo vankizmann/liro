@@ -12986,6 +12986,8 @@ body.th-frame .th-frame-content {
 }
 
 .th-spinner {
+  z-index: 9999;
+  position: fixed;
   color: #ffffff;
   background-color: rgba(17, 30, 54, 0.3);
   display: none;

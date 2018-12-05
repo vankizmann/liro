@@ -1,5 +1,7 @@
 
 .th-spinner {
+    z-index: 9999;
+    position: fixed;
     color: $color-white;
     background-color: rgba($color-dark-20, 0.3);
     display: none;

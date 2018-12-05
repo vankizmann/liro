@@ -33,6 +33,7 @@ require('./components/list/sort');
 require('./components/list/filter');
 require('./components/list/switch');
 require('./components/list/pagination');
+require('./components/list/checkbox');
 
 Vue.ready(function () {
 
@@ -76,6 +77,8 @@ Vue.ready(function () {
     });
 
     window.App = new Vue({
-        data: Liro.data.all()
+        data: function () {
+            return Liro.data.all()
+        }
     }).$mount('#app');
 });

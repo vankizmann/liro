@@ -19,16 +19,13 @@
         "jquery": "^3.3.1",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.11",
-        "pace": "^0.0.4",
-        "pace-js": "^1.0.2",
         "portal-vue": "^1.4.0",
+        "shiftcheckbox": "nylen/shiftcheckbox",
         "uikit": "vankizmann/uikit",
         "vue": "^2.5.17",
         "vue-nestable": "^0.0.8",
         "vue-shortkey": "^3.1.6",
-        "vue-smooth-dnd": "^0.2.7"
-    },
-    "dependencies": {
+        "vue-smooth-dnd": "^0.2.7",
         "fuzzy-search": "^2.1.0"
     }
 }

@@ -42,13 +42,6 @@ export default {
             type: String
         },
 
-        display: {
-            default() {
-                return '';
-            },
-            type: String
-        },
-
         label: {
             default() {
                 return '';

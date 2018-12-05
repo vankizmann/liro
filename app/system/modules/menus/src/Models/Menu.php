@@ -5,12 +5,14 @@ namespace Liro\System\Menus\Models;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
 use Liro\System\Database\Castable;
+use Liro\System\Fields\Traits\FieldTrait;
 use Liro\System\Menus\Models\MenuType;
 use Liro\System\Fields\Helpers\FieldHelper;
 
 class Menu extends Model
 {
     use NodeTrait;
+    use FieldTrait;
     use Castable;
 
     protected $table = 'menus';
@@ -48,6 +50,11 @@ class Menu extends Model
     protected function getScopeAttributes()
     {
         return ['menu_type_id'];
+    }
+
+    public function getRebuildFields()
+    {
+        return ['route'];
     }
 
     public function menu_type()
@@ -88,16 +95,6 @@ class Menu extends Model
     public function getRouteActiveAttribute()
     {
         return app()->getMenuId() == $this->attributes['id'] || $this->children->pluck('route_current')->contains(true) || $this->children->pluck('route_active')->contains(true);
-    }
-
-    public function getIconAttribute()
-    {
-        return FieldHelper::getModel($this, 'image', null);
-    }
-
-    public function setIconAttribute($value)
-    {
-        return FieldHelper::setModel($this, 'image', $value);
     }
 
 }

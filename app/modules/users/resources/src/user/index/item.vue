@@ -1,6 +1,9 @@
 <template>
 
 <div class="th-table-tr uk-flex uk-flex-middle">
+    <div class="th-table-td-xs">
+        <slot name="checkbox"></slot>
+    </div>
     <div class="uk-width-1-3">
         <a :href="Liro.routes.get('liro-users.user.edit', { user: value.id })">
             {{ value.name }}

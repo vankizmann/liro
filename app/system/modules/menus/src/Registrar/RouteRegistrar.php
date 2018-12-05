@@ -18,7 +18,47 @@ class RouteRegistrar
      */
     public function __construct()
     {
-        $this->modules = new Collection;
+        $this->modules = new Collection([
+            'ajax' => new Collection, 'admin' => new Collection, 'user' => new Collection
+        ]);
+    }
+
+    public function flatMap($route)
+    {
+        return $route;
+    }
+
+    public function setAjaxRoute($module, $route, $options)
+    {
+        $collection = $this->modules['ajax']->get($module, new Collection);
+
+        $collection->put($route, new Collection([
+            'alias' => $route, 'name' => $options[0], 'uses' => $options[1]
+        ]));
+
+        $this->modules['ajax']->put($module, $collection);
+    }
+
+    public function setAdminRoute($module, $route, $options)
+    {
+        $collection = $this->modules['admin']->get($module, new Collection);
+
+        $collection->put($route, new Collection([
+            'alias' => $route, 'name' => $options[0], 'uses' => $options[1]
+        ]));
+
+        $this->modules['admin']->put($module, $collection);
+    }
+
+    public function setUserRoute($module, $route, $options)
+    {
+        $collection = $this->modules['user']->get($module, new Collection);
+
+        $collection->put($route, new Collection([
+            'alias' => $route, 'name' => $options[0], 'uses' => $options[1]
+        ]));
+
+        $this->modules['user']->put($module, $collection);
     }
 
     /**
@@ -31,18 +71,24 @@ class RouteRegistrar
      */
     public function setRoute($module, $route, $options)
     {
-        // Get module or create new collection
-        $collection = $this->modules->get($module, new Collection);
+        // Replace ajax match
+        $route = preg_replace('/^ajax@/', '', $route, -1, $ajaxMatch);
 
-        $realRoute = ltrim($route, '!');
+        if ( $ajaxMatch ) {
+            return $this->setAjaxRoute($module, $route, $options);
+        }
 
-        $collection->put(
-            $realRoute, new Collection([
-                'alias' => $realRoute, 'hide' => $realRoute != $route, 'name' => $options[0], 'uses' => $options[1]
-            ])
-        );
+        // Replace admin match
+        $route = preg_replace('/^admin@/', '', $route, -1, $adminMatch);
 
-        $this->modules->put($module, $collection);
+        if ( $adminMatch ) {
+            return $this->setAdminRoute($module, $route, $options);
+        }
+
+        // Replace user match
+        $route = preg_replace('/^user@/', '', $route, -1, $userMatch);
+
+        return $this->setUserRoute($module, $route, $options);
     }
 
     /**
@@ -51,9 +97,9 @@ class RouteRegistrar
      * @param string $route
      * @return Illuminate\Support\Collection
      */
-    public function getRoute($route)
+    public function getRoute($route, $types = null)
     {
-        return $this->getRoutes()->get($route, null);
+        return $this->getRoutes($types)->get($route, null);
     }
 
     /**
@@ -61,10 +107,10 @@ class RouteRegistrar
      *
      * @return Illuminate\Support\Collection
      */
-    public function getRoutes()
+    public function getRoutes($types = null)
     {
-        return $this->modules->flatMap(function ($route) {
-            return $route;
+        return $this->modules->only($types ?: ['ajax', 'admin', 'user'])->flatMap(function ($module) {
+            return $module->flatMap([$this, 'flatMap']);
         });
     }
 
@@ -73,14 +119,12 @@ class RouteRegistrar
      *
      * @return Illuminate\Support\Collection
      */
-    public function getRoutesArray()
+    public function getRoutesArray($types = null)
     {
-        return $this->modules->where('hide', false)->flatMap(function ($routes) {
-            return $routes->map(function ($route) {
-                return [
-                    'label' => $route->trans('name'), 'value' => $route->get('alias')
-                ];
-            });
+        return $this->getRoutes($types)->map(function ($route) {
+            return new Collection([
+                'label' => $route->trans('name'), 'value' => $route->get('alias')
+            ]);
         });
     }
 
@@ -89,10 +133,10 @@ class RouteRegistrar
      *
      * @return Illuminate\Support\Collection
      */
-    public function getModuleAliases()
+    public function getModuleAliases($types = null)
     {
-        return $this->modules->map(function ($routes) {
-            return $routes->map(function ($route) {
+        return $this->modules->only($types ?: ['ajax', 'admin', 'user'])->map(function ($module) {
+            return $module->map(function ($route) {
                 return $route->get('alias');
             });
         });
@@ -103,11 +147,13 @@ class RouteRegistrar
      *
      * @return Illuminate\Support\Collection
      */
-    public function getModuleNames()
+    public function getModuleNames($types = null)
     {
-        return $this->modules->map(function ($routes) {
-            return $routes->map(function ($route) {
-                return $route->trans('name');
+        return $this->modules->only($types ?: ['ajax', 'admin', 'user'])->map(function ($type) {
+            return $type->map(function ($module) {
+                return $module->map(function ($route) {
+                    return $route->trans('name');
+                });
             });
         });
     }
@@ -117,10 +163,10 @@ class RouteRegistrar
      *
      * @return Illuminate\Support\Collection
      */
-    public function getModuleUses()
+    public function getModuleUses($types = null)
     {
-        return $this->modules->map(function ($routes) {
-            return $routes->map(function ($route) {
+        return $this->modules->only($types ?: ['ajax', 'admin', 'user'])->map(function ($module) {
+            return $module->map(function ($route) {
                 return $route->get('uses');
             });
         });

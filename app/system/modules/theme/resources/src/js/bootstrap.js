@@ -14,11 +14,11 @@ window.Vue = Vue;
 import UIkit from 'uikit';
 window.UIkit = UIkit;
 
-import Liro from './liro/liro';
-window.Liro = Liro;
-
 import Icons from 'uikit/dist/js/uikit-icons';
 UIkit.use(Icons);
+
+import Liro from './liro/liro';
+window.Liro = Liro;
 
 Axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
@@ -58,5 +58,9 @@ Liro.events.watch('axios.done', function () {
 Liro.events.watch('axios.error', function () {
     window.$busy = setTimeout(() => $('body').removeClass('is-busy'), 100);
 });
+
+window.setHeight = function (selector, height) {
+    $(selector).height(height);
+}
 
 require('./app/app');

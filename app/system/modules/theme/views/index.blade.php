@@ -103,11 +103,5 @@
             <div class="uk-position-center" uk-spinner="ratio: 2;"></div>
         </div>
 
-        <script>
-            window.setHeight = function (selector, height) {
-                $(selector).height(height);
-            }
-        </script>
-
     </body>
 </html>

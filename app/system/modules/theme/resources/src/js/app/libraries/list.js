@@ -7,6 +7,7 @@ function List (initial, database) {
     this.initial = this.items = initial || [];
 
     this.pages = 1;
+    this.checked = [];
 
 }
 
@@ -149,6 +150,15 @@ List.prototype.getItems = function () {
 
 List.prototype.getPages = function () {
     return this.pages;
+}
+
+List.prototype.check = function (value) {
+    this.checked = _.xor(this.checked, [value]);
+    return this.checked;
+}
+
+List.prototype.checkData = function () {
+    return this.checked;
 }
 
 export default List;

@@ -24,7 +24,7 @@
 
                     <!-- Type select -->
                     <div class="uk-width-medium uk-margin-auto-left">
-                        <app-form-select-single class="uk-margin-remove-bottom" :value="active.id" :options="types" options-value="id" options-label="title" @input="redirectType"></app-form-select-single>
+                        <app-form-select-single class="uk-margin-remove-bottom" :value="$root.active.id" :options="$root.types" options-value="id" options-label="title" @input="redirectType"></app-form-select-single>
                     </div>
                     <!-- Type select end -->
 
@@ -83,8 +83,8 @@
             <!-- Table filter end -->
 
             <!-- Table body -->
-            <div class="th-table-body" v-if="menus.length != 0">
-                <vue-nestable v-model="menus" :threshold="50" :maxDepth="5">
+            <div class="th-table-body" v-if="$root.menus.length != 0">
+                <vue-nestable v-model="$root.menus" :threshold="50" :maxDepth="5">
                     <vue-nestable-handle slot-scope="{ item }" :item="item" :data-id="item.id">
                         <liro-menu-index-item v-model="item" :collapsed="collapsed"></liro-menu-index-item>
                     </vue-nestable-handle>
@@ -93,7 +93,7 @@
             <!-- Table body end -->
 
             <!-- Table body -->
-            <div class="th-table-body" v-if="menus.length == 0">
+            <div class="th-table-body" v-if="$root.menus.length == 0">
                 <div class="th-table-tr">
                     <div class="uk-text-center">
                         {{ Liro.messages.get('theme::form.list.empty') }}
@@ -129,19 +129,6 @@ import IndexItem from './index/item';
 export default {
 
     /**
-     * Get data from liro framework
-     */
-    data: function () {
-        return {
-            states: this.Liro.data.get('states'),
-            hides: this.Liro.data.get('hides'),
-            types: this.Liro.data.get('types'),
-            active: this.Liro.data.get('active'),
-            menus: this.Liro.data.get('menus')
-        };
-    },
-
-    /**
      * Create new collapsed instance on creation
      */
     created: function () {
@@ -163,10 +150,10 @@ export default {
         updateMenuOrder: function () {
 
             var url = Liro.routes.get('liro-menus.menu.index', {
-                type: this.active.id
+                type: this.$root.active.id
             });
 
-            Axios.post(url, { menus: this.menus }).then(this.updateMenuOrderResponse);
+            Axios.post(url, { menus: this.$root.menus }).then(this.updateMenuOrderResponse);
         },
 
         /**

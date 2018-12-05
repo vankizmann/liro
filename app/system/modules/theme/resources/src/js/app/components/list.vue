@@ -35,7 +35,8 @@ export default {
             order:          this.order,
             search:         this.search,
             filter:         this.filter,
-            paginate:       this.paginate
+            paginate:       this.paginate,
+            check:          this.check
         });
 
     },
@@ -64,7 +65,8 @@ export default {
                 order:          this.list.orderData(), 
                 search:         this.list.searchData(), 
                 filter:         this.list.filterData(), 
-                paginate:       this.list.paginateData()
+                paginate:       this.list.paginateData(),
+                checked:        this.list.checkData()
             };
 
             this.items = this.list.getItems();
@@ -88,6 +90,11 @@ export default {
 
         paginate(page, limit) {
             this.list.paginate(page, limit);
+            this.refresh();
+        },
+
+        check: function (value) {
+            this.list.check(value);
             this.refresh();
         }
 

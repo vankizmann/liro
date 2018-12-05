@@ -96,7 +96,7 @@ class MenuController extends \Liro\System\Http\Controller
         );
 
         app('assets')->data(
-            'modules', app('menus')->getRoutesArray()
+            'modules', app('menus')->getRoutesArray('user')
         );
 
         return view('liro-menus::menu/create');
@@ -149,7 +149,7 @@ class MenuController extends \Liro\System\Http\Controller
         );
 
         app('assets')->data(
-            'modules', app('menus')->getRoutesArray()
+            'modules', app('menus')->getRoutesArray(['user', 'admin'])
         );
 
         return view('liro-menus::menu/edit');

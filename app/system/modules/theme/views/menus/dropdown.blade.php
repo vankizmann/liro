@@ -4,7 +4,7 @@
             <li class="{{ $menu->route_current ? 'uk-current' : '' }} {{ $menu->route_active ? 'uk-active' : '' }}">
 
                 <a href="{{ url($menu->route_prefix) }}">
-                    @if ($menu->icon && true == false)
+                    @if ($menu->icon)
                         <img class="uk-navbar-icon" src="{{ $menu->icon }}" alt="{{ trans($menu->title) }}">
                     @endif
                     <span class="uk-navbar-text">

@@ -368,19 +368,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     /**
-     * Get data from liro framework
-     */
-    data: function data() {
-        return {
-            states: this.Liro.data.get('states'),
-            hides: this.Liro.data.get('hides'),
-            types: this.Liro.data.get('types'),
-            active: this.Liro.data.get('active'),
-            menus: this.Liro.data.get('menus')
-        };
-    },
-
-    /**
      * Create new collapsed instance on creation
      */
     created: function created() {
@@ -402,10 +389,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         updateMenuOrder: function updateMenuOrder() {
 
             var url = Liro.routes.get('liro-menus.menu.index', {
-                type: this.active.id
+                type: this.$root.active.id
             });
 
-            Axios.post(url, { menus: this.menus }).then(this.updateMenuOrderResponse);
+            Axios.post(url, { menus: this.$root.menus }).then(this.updateMenuOrderResponse);
         },
 
         /**
@@ -860,8 +847,8 @@ var render = function() {
                   _c("app-form-select-single", {
                     staticClass: "uk-margin-remove-bottom",
                     attrs: {
-                      value: _vm.active.id,
-                      options: _vm.types,
+                      value: _vm.$root.active.id,
+                      options: _vm.$root.types,
                       "options-value": "id",
                       "options-label": "title"
                     },
@@ -967,7 +954,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm.menus.length != 0
+          _vm.$root.menus.length != 0
             ? _c(
                 "div",
                 { staticClass: "th-table-body" },
@@ -1000,11 +987,11 @@ var render = function() {
                       }
                     ]),
                     model: {
-                      value: _vm.menus,
+                      value: _vm.$root.menus,
                       callback: function($$v) {
-                        _vm.menus = $$v
+                        _vm.$set(_vm.$root, "menus", $$v)
                       },
-                      expression: "menus"
+                      expression: "$root.menus"
                     }
                   })
                 ],
@@ -1012,7 +999,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.menus.length == 0
+          _vm.$root.menus.length == 0
             ? _c("div", { staticClass: "th-table-body" }, [
                 _c("div", { staticClass: "th-table-tr" }, [
                   _c("div", { staticClass: "uk-text-center" }, [

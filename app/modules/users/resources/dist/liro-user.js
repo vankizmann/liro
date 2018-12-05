@@ -335,6 +335,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -437,6 +439,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -490,6 +495,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "th-table-tr uk-flex uk-flex-middle" }, [
+    _c("div", { staticClass: "th-table-td-xs" }, [_vm._t("checkbox")], 2),
+    _vm._v(" "),
     _c("div", { staticClass: "uk-width-1-3" }, [
       _c(
         "a",
@@ -584,6 +591,7 @@ var render = function() {
           var search = ref.search
           var paginate = ref.paginate
           var filter = ref.filter
+          var check = ref.check
           return _c(
             "div",
             {},
@@ -797,10 +805,22 @@ var render = function() {
                         "div",
                         { staticClass: "th-table-body" },
                         _vm._l(items, function(item, index) {
-                          return _c("liro-user-index-item", {
-                            key: index,
-                            attrs: { value: item }
-                          })
+                          return _c(
+                            "liro-user-index-item",
+                            { key: index, attrs: { value: item } },
+                            [
+                              _c("app-list-checkbox", {
+                                attrs: {
+                                  slot: "checkbox",
+                                  item: item,
+                                  config: config.checked
+                                },
+                                on: { check: check },
+                                slot: "checkbox"
+                              })
+                            ],
+                            1
+                          )
                         })
                       )
                     : _vm._e(),

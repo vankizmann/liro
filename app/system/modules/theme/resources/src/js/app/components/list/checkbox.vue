@@ -2,7 +2,7 @@
 
 <div class="app-list-checkbox">
     <!-- Label start -->
-   <input type="checkbox" class="uk-checkbox" :value="item[column]" :checked="config.indexOf(item[column]) != -1" @input="checkItem" :data-shift-group="group">
+   <input type="checkbox" class="uk-checkbox" :value="value" :checked="config.selected.indexOf(value) != -1" @input="checkItem" :data-shift-group="group">
     <!-- Label end -->
 </div>
 
@@ -14,37 +14,26 @@ export default {
     props: {
 
         config: {
-            default: function () {
-                return [];
-            },
-            type: Array
+            required: true,
+            type: Object
         },
 
-        column: {
-            default: function () {
-                return 'id'
-            },
-            type: String
+        value: {
+            required: true,
+            type: Number
         },
 
         group: {
-            default: function () {
-                return 'app-list'
-            },
+            default: 'app-list',
             type: String
-        },
-
-        item: {
-            required: true,
-            type: Object
         }
 
     },
 
     methods: {
-        
+
         checkItem: function () {
-            this.$emit('check',this.item[this.column]);
+            this.$emit('select',this.value);
         }
 
     }

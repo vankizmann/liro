@@ -81,15 +81,11 @@ export default {
 
     data() {
         return {
-            values: []
+            values: this.config.filters[this.column] || []
         };
     },
 
     mounted() {
-
-        this.$watch('config', () => {
-            this.values = this.config[this.column] || []
-        });
 
         this.$watch('values', () => {
             this.$emit('filter', this.column, this.values);

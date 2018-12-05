@@ -28,11 +28,7 @@ export default {
     props: {
 
         config: {
-            default() {
-                return {
-                    column: 'id', direction: 'desc'
-                };
-            },
+            required: true,
             type: Object
         },
 

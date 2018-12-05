@@ -16,88 +16,23 @@ export default {
 
     },
 
-    data() {
-
-        return {
-            items:          this.value,
-            pages:          1,
-            config:         {}
-        }
-
+    provide: function () {
+        return this.listData;
     },
 
-    render() {
+    render: function () {
+        return this.$scopedSlots.default(this.listData);
+    },
 
-        return this.$scopedSlots.default({
-            items:          this.items,
-            pages:          this.pages,
-            config:         this.config,
-            order:          this.order,
-            search:         this.search,
-            filter:         this.filter,
-            paginate:       this.paginate,
-            check:          this.check
+    data: function () {
+
+        var list = new List(this.value, this.database, (list) => {
+            this.listData = list.getData();
         });
 
-    },
-
-    created() {
-        this.list = new List(this.items, this.database);
-    },
-
-    mounted() {
-        this.refresh();
-    },
-
-    watch: {
-
-        value: function () {
-            this.list = new List(this.value, this.database); this.refresh();
-        }
-
-    },
-
-    methods: {
-
-        refresh() {
-
-            this.config = {
-                order:          this.list.orderData(), 
-                search:         this.list.searchData(), 
-                filter:         this.list.filterData(), 
-                paginate:       this.list.paginateData(),
-                checked:        this.list.checkData()
-            };
-
-            this.items = this.list.getItems();
-            this.pages = this.list.getPages();
-        },
-
-        order(column, direction) {
-            this.list.order(column, direction);
-            this.refresh();
-        },
-
-        search(query, columns) {
-            this.list.search(query, columns);
-            this.refresh();
-        },
-
-        filter(column, values) {
-            this.list.filter(column, values);
-            this.refresh();
-        },
-
-        paginate(page, limit) {
-            this.list.paginate(page, limit);
-            this.refresh();
-        },
-
-        check: function (value) {
-            this.list.check(value);
-            this.refresh();
-        }
-
+        return {
+            list: list , listData: list.getData()
+        };
     }
 
 }

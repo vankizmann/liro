@@ -337,6 +337,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -587,11 +598,7 @@ var render = function() {
           var items = ref.items
           var pages = ref.pages
           var config = ref.config
-          var order = ref.order
-          var search = ref.search
-          var paginate = ref.paginate
-          var filter = ref.filter
-          var check = ref.check
+          var methods = ref.methods
           return _c(
             "div",
             {},
@@ -628,6 +635,48 @@ var render = function() {
                       "div",
                       { staticClass: "th-table-tr uk-flex uk-flex-middle" },
                       [
+                        _c("div", { staticClass: "uk-margin-auto-right" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "uk-button uk-button-primary uk-button-small",
+                              attrs: { href: "javascript:void(0)" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(
+                                    _vm.Liro.messages.get(
+                                      "theme::form.toolbar.clone"
+                                    )
+                                  ) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "uk-button uk-button-warning uk-button-small",
+                              attrs: { href: "javascript:void(0)" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(
+                                    _vm.Liro.messages.get(
+                                      "theme::form.toolbar.delete"
+                                    )
+                                  ) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
                         _c(
                           "div",
                           { staticClass: "uk-margin-auto-left" },
@@ -640,7 +689,7 @@ var render = function() {
                                   "theme::form.search.placeholder"
                                 )
                               },
-                              on: { search: search }
+                              on: { search: methods.search }
                             })
                           ],
                           1
@@ -654,6 +703,10 @@ var render = function() {
                       "div",
                       { staticClass: "th-table-tr uk-flex uk-flex-middle" },
                       [
+                        _c("div", {
+                          staticClass: "th-table-td th-table-td-xs"
+                        }),
+                        _vm._v(" "),
                         _c(
                           "div",
                           { staticClass: "uk-width-1-3" },
@@ -662,7 +715,7 @@ var render = function() {
                               "app-list-sort",
                               {
                                 attrs: { column: "name", config: config.order },
-                                on: { order: order }
+                                on: { order: methods.order }
                               },
                               [
                                 _vm._v(
@@ -691,7 +744,7 @@ var render = function() {
                                   column: "email",
                                   config: config.order
                                 },
-                                on: { order: order }
+                                on: { order: methods.order }
                               },
                               [
                                 _vm._v(
@@ -723,7 +776,7 @@ var render = function() {
                                   "filters-value": "id",
                                   "filters-label": "title"
                                 },
-                                on: { filter: filter }
+                                on: { filter: methods.filter }
                               },
                               [
                                 _vm._v(
@@ -753,7 +806,7 @@ var render = function() {
                                   config: config.filter,
                                   filters: _vm.states
                                 },
-                                on: { filter: filter }
+                                on: { filter: methods.filter }
                               },
                               [
                                 _vm._v(
@@ -779,7 +832,7 @@ var render = function() {
                               "app-list-sort",
                               {
                                 attrs: { column: "id", config: config.order },
-                                on: { order: order }
+                                on: { order: methods.order }
                               },
                               [
                                 _vm._v(
@@ -812,10 +865,10 @@ var render = function() {
                               _c("app-list-checkbox", {
                                 attrs: {
                                   slot: "checkbox",
-                                  item: item,
-                                  config: config.checked
+                                  value: item.id,
+                                  config: config.select
                                 },
-                                on: { check: check },
+                                on: { select: methods.select },
                                 slot: "checkbox"
                               })
                             ],
@@ -858,7 +911,7 @@ var render = function() {
                       [
                         _c("app-list-pagination", {
                           attrs: { pages: pages, config: config.paginate },
-                          on: { paginate: paginate }
+                          on: { paginate: methods.paginate }
                         })
                       ],
                       1

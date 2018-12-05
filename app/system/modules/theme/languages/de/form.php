@@ -19,6 +19,8 @@ return [
     'toolbar' => [
         'save'          => 'Speichern',
         'close'         => 'Schliessen',
+        'clone'         => 'Kopieren',
+        'delete'        => 'Löschen'
     ],
 
     'state' => [

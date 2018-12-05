@@ -41,7 +41,7 @@
 
                             <div class="uk-navbar-left">
                                 <div class="uk-navbar-item uk-logo uk-margin-large-right">
-                                    <img src="{{ app('assets')->file('theme::dist/images/liro.svg') }}" width="80" height="20" :uk-svg="true">
+                                    <img src="{{ app('assets')->file('theme::dist/images/liro.svg') }}" width="80" height="20" uk-svg>
                                 </div>
                             </div>
 

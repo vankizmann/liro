@@ -101,8 +101,8 @@ import IndexItem from './index/item';
 export default {
     
     mounted: function () {
-        Liro.events.emit('users@sync')
-        Liro.events.emit('roles@sync')
+        Liro.events.emit('roles@sync');
+        Liro.events.emit('users@sync');
     }
 }
 

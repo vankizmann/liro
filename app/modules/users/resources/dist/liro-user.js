@@ -346,8 +346,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     mounted: function mounted() {
-        Liro.events.emit('users@sync');
         Liro.events.emit('roles@sync');
+        Liro.events.emit('users@sync');
     }
 });
 

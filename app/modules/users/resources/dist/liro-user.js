@@ -354,11 +354,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 if (window.Liro) {
 
     Liro.vue.sync('users', {
-        url: Liro.routes.get('liro-users.api.user.index')
+        url: Liro.routes.get('liro-users.api.user.index'), default: []
     });
 
     Liro.vue.sync('roles', {
-        url: Liro.routes.get('liro-users.api.role.index')
+        url: Liro.routes.get('liro-users.api.role.index'), default: []
     });
 
     Liro.vue.component('liro-user-index', this.default);

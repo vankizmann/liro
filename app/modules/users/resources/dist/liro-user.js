@@ -339,15 +339,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -596,7 +587,6 @@ var render = function() {
         key: "default",
         fn: function(ref) {
           var items = ref.items
-          var pages = ref.pages
           var config = ref.config
           var methods = ref.methods
           return _c(
@@ -635,53 +625,12 @@ var render = function() {
                       "div",
                       { staticClass: "th-table-tr uk-flex uk-flex-middle" },
                       [
-                        _c("div", { staticClass: "uk-margin-auto-right" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass:
-                                "uk-button uk-button-primary uk-button-small",
-                              attrs: { href: "javascript:void(0)" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(
-                                    _vm.Liro.messages.get(
-                                      "theme::form.toolbar.clone"
-                                    )
-                                  ) +
-                                  "\n                            "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass:
-                                "uk-button uk-button-warning uk-button-small",
-                              attrs: { href: "javascript:void(0)" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(
-                                    _vm.Liro.messages.get(
-                                      "theme::form.toolbar.delete"
-                                    )
-                                  ) +
-                                  "\n                            "
-                              )
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
                         _c(
                           "div",
                           { staticClass: "uk-margin-auto-left" },
                           [
                             _c("app-list-search", {
+                              staticClass: "uk-display-inline-block",
                               attrs: {
                                 columns: ["name", "email"],
                                 config: config.search,
@@ -703,9 +652,19 @@ var render = function() {
                       "div",
                       { staticClass: "th-table-tr uk-flex uk-flex-middle" },
                       [
-                        _c("div", {
-                          staticClass: "th-table-td th-table-td-xs"
-                        }),
+                        _c(
+                          "div",
+                          { staticClass: "th-table-td th-table-td-xs" },
+                          [
+                            _c("app-list-select-all", {
+                              staticClass:
+                                "uk-display-inline-block uk-margin-right",
+                              attrs: { config: config.select },
+                              on: { select: methods.selectAll }
+                            })
+                          ],
+                          1
+                        ),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -862,13 +821,13 @@ var render = function() {
                             "liro-user-index-item",
                             { key: index, attrs: { value: item } },
                             [
-                              _c("app-list-checkbox", {
+                              _c("app-list-select", {
                                 attrs: {
                                   slot: "checkbox",
                                   value: item.id,
-                                  config: config.select
+                                  config: config,
+                                  methods: methods
                                 },
-                                on: { select: methods.select },
                                 slot: "checkbox"
                               })
                             ],
@@ -910,7 +869,7 @@ var render = function() {
                       { staticClass: "th-table-tr uk-flex uk-flex-middle" },
                       [
                         _c("app-list-pagination", {
-                          attrs: { pages: pages, config: config.paginate },
+                          attrs: { config: config.paginate },
                           on: { paginate: methods.paginate }
                         })
                       ],
@@ -997,6 +956,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -1261,8 +1223,15 @@ var render = function() {
                 },
                 expression: "user.role_ids"
               }
-            }),
-            _vm._v(" "),
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
             _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
               _vm._v(
                 "\n                " +
@@ -1375,6 +1344,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -1634,8 +1606,15 @@ var render = function() {
                 },
                 expression: "user.role_ids"
               }
-            }),
-            _vm._v(" "),
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "th-form" },
+          [
             _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
               _vm._v(
                 "\n                " +

@@ -46,13 +46,17 @@
     border-radius: $global-border-radius;
 }
 
+.uk-radio {
+    border-radius: 500px;
+}
+
 .uk-checkbox-label, .uk-radio-label {
     user-select: none;
     cursor: pointer;
     font-size: 0.875rem;
 }
 
-.uk-checkbox-label input[type="checkbox"], 
-.uk-radio-label input[type="radio"] {
+.uk-checkbox-label input[type="checkbox"]:not(:last-child), 
+.uk-radio-label input[type="radio"]:not(:last-child) {
     margin-right: 6px;
 }

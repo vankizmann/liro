@@ -6,13 +6,6 @@ use Liro\System\Fields\Helpers\FieldHelper;
 
 trait FieldTrait
 {
-    protected $columns;
-
-    // public function __construct()
-    // {
-    //     $this->columns = $this->getConnection()->getSchemaBuilder()->getColumnListing($this->table);
-    // }
-
     // public function getAttributes()
     // {
     //     return array_filter(parent::getAttributes(), function ($key) {
@@ -20,22 +13,32 @@ trait FieldTrait
     //     }, ARRAY_FILTER_USE_KEY);
     // }
 
-    // public function setAttribute($key, $value)
-    // {
-    //     if ( ! in_array($key, $this->getTableColumns()) && ! $this->hasSetMutator($key) ) {
-    //         return FieldHelper::setModel($this, $key, $value);
-    //     }
+    public function getFillable()
+    {
+        return array_merge($this->getFields(), $this->fillable);
+    }
 
-    //     return parent::setAttribute($key, $value);
-    // }
+    public function getFields()
+    {
+        return isset($this->fields) ? $this->fields : [];
+    }
 
-    // public function getAttribute($key)
-    // {
-    //     if ( ! array_key_exists($key, $this->attributes) && ! $this->hasGetMutator($key) && ! method_exists(self::class, $key) ) {
-    //         return FieldHelper::getModel($this, $key);
-    //     }
+    public function setAttribute($key, $value)
+    {
+        if ( in_array($key, $this->getFields()) && ! $this->hasSetMutator($key) ) {
+            return FieldHelper::setModel($this, $key, $value);
+        }
 
-    //     return parent::getAttribute($key);
-    // }
+        return parent::setAttribute($key, $value);
+    }
+
+    public function getAttribute($key)
+    {
+        if ( in_array($key, $this->getFields()) && ! $this->hasGetMutator($key) ) {
+            return FieldHelper::getModel($this, $key, null);
+        }
+
+        return parent::getAttribute($key);
+    }
 
 }

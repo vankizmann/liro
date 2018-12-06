@@ -3,7 +3,7 @@
 <div class="app-list-search">
     <!-- Input start -->
     <div class="uk-inline uk-width-medium">
-        <a class="uk-form-icon uk-form-icon-flip" @click="setQuery('')"><span :uk-icon="'close'"></span></a>
+        <a class="uk-form-icon uk-form-icon-flip" @click="setQuery('')"><span uk-icon="times"></span></a>
         <input id="list-filter-search" class="uk-input" type="search" v-model="query" @keyup="setQuery(query)" :placeholder="placeholder">
     </div>
     <!-- Input end -->
@@ -13,28 +13,20 @@
 <script>
 
 export default {
+
+    inject: [
+        'config', 'methods'
+    ],
+
     props: {
 
-        config: {
-            default: function () {
-                return {
-                    query: '', columns: []
-                };
-            },
-            type: Object
-        },
-
         placeholder: {
-            default: function () {
-                return '';
-            },
+            default: '',
             type: String
         },
 
         columns: {
-            default: function () {
-                return [];
-            },
+            required: true,
             type: Array
         }
 
@@ -42,18 +34,14 @@ export default {
 
     data: function () {
         return {
-            query: ''
+            query: this.config.search.query
         };
-    },
-
-    mounted: function () {
-        this.$watch('config', () => this.query = this.config.query || '');
     },
 
     methods: {
 
         setQuery: function (query) {
-            this.$emit('search', query, this.columns);
+            this.methods.search(query, this.columns);
         }
 
     }

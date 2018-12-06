@@ -4,7 +4,7 @@
     
     <!-- Label start -->
     <a href="javascript:void(0)" :class="{ 'uk-text-nowrap': true, 'uk-active': values.length != 0 }">
-        <i :uk-icon="'triangle-down'"></i> <span v-if="$slots.default"><slot></slot></span>
+        <i uk-icon="check-square"></i> <span v-if="$slots.default"><slot></slot></span>
     </a>
     <!-- Label end -->
 
@@ -33,62 +33,59 @@
 
 export default {
 
+    inject: [
+        'config', 'methods'
+    ],
+
     props: {
 
         column: {
-            default() {
+            default: function () {
                 return '';
             },
             type: String
         },
 
         label: {
-            default() {
+            default: function () {
                 return '';
             },
             type: String
         },
 
         filters: {
-            default() {
+            default: function () {
                 return [];
             },
             type: [Array, Object]
         },
 
         filtersValue: {
-            default() {
+            default: function () {
                 return 'value';
             },
             type: String
         },
 
         filtersLabel: {
-            default() {
+            default: function () {
                 return 'label';
             },
             type: String
-        },
-
-        config: {
-            default() {
-                return {};
-            },
-            type: Object
         }
 
     },
 
     data() {
         return {
-            values: this.config.filters[this.column] || []
+            values: this.config.filter.filters[this.column] || []
         };
     },
 
     mounted() {
 
-        this.$watch('values', () => {
-            this.$emit('filter', this.column, this.values);
+        this.$watch('values', function () {
+            this.methods.filter(this.column, this.values);
         });
 
     }

@@ -2,11 +2,11 @@
 body.th-index {
 
     & {
-        background-color: $color-gray-5;
+        background-color: $color-gray-10;
     }
 
     .th-index-header {
-        box-shadow: 0 0 3px rgba($color-gray-25, 0.15);
+        box-shadow: 0 0 3px rgba($color-gray-50, 0.15);
     }
 
     .th-index-body {
@@ -18,7 +18,7 @@ body.th-index {
 body.th-error {
 
     & {
-        background-color: $color-gray-5;
+        background-color: $color-gray-10;
     }
 
     .th-error-body {

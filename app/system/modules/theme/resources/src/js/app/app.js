@@ -20,6 +20,8 @@ Vue.use(VueReady);
 import VueSync from './plugins/sync';
 Vue.use(VueSync);
 
+require('./directives/confirm');
+
 require('./components/list');
 
 require('./components/form/input');
@@ -33,7 +35,8 @@ require('./components/list/sort');
 require('./components/list/filter');
 require('./components/list/switch');
 require('./components/list/pagination');
-require('./components/list/checkbox');
+require('./components/list/select');
+require('./components/list/select-all');
 
 Vue.ready(function () {
 

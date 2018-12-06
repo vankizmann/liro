@@ -21,7 +21,7 @@
                 ['value' => 0, 'label' => trans('theme::form.default.disabled')]
             ]);
 
-            app('assets')->message('theme::form');
+            app('assets')->message('theme');
         @endphp
 
         @include('theme::partials/head')

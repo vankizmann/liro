@@ -2,6 +2,7 @@
 
 namespace Liro\System\Users;
 
+use Faker\Generator as Faker;
 use Liro\System\Users\Models\User;
 use Liro\System\Users\Models\UserRole;
 use Liro\System\Users\Models\UserRoleRoute;
@@ -9,7 +10,7 @@ use Liro\System\Users\Models\UserRoleRoute;
 class Seeder
 {
 
-    public function install()
+    public function install(Faker $faker)
     {
         $user_role_guest = UserRole::create([
             'lock'          => 0,
@@ -93,21 +94,15 @@ class Seeder
 
         $user_test->roles()->attach($user_role_admin->id);
 
-        $user_test = User::create([
-            'state'         => 0,
-            'lock'          => 0,
-            'name'          => 'Testuser',
-            'email'         => 'test1@gmail.com',
-            'password'      => 'password'
-        ]);
-
-        $user_test = User::create([
-            'state'         => 0,
-            'lock'          => 0,
-            'name'          => 'Testuser',
-            'email'         => 'test2@gmail.com',
-            'password'      => 'password'
-        ]);
+        for ($i = 0; $i <= 10; $i++) {
+            User::create([
+                'state'         => 0,
+                'lock'          => 0,
+                'name'          => $faker->name,
+                'email'         => $faker->email,
+                'password'      => 'password'
+            ]);
+        }
     }
 
 }

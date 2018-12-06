@@ -560,12 +560,8 @@ var render = function() {
         key: "default",
         fn: function(ref) {
           var items = ref.items
-          var pages = ref.pages
           var config = ref.config
-          var order = ref.order
-          var search = ref.search
-          var paginate = ref.paginate
-          var filter = ref.filter
+          var methods = ref.methods
           return _c(
             "div",
             {},
@@ -616,7 +612,7 @@ var render = function() {
                                   "theme::form.search.placeholder"
                                 )
                               },
-                              on: { search: search }
+                              on: { search: methods.search }
                             })
                           ],
                           1
@@ -641,7 +637,7 @@ var render = function() {
                                   column: "title",
                                   config: config.order
                                 },
-                                on: { order: order }
+                                on: { order: methods.order }
                               },
                               [
                                 _vm._v(
@@ -670,7 +666,7 @@ var render = function() {
                                   column: "locale",
                                   config: config.order
                                 },
-                                on: { order: order }
+                                on: { order: methods.order }
                               },
                               [
                                 _vm._v(
@@ -700,7 +696,7 @@ var render = function() {
                                   config: config.filter,
                                   filters: _vm.$root.defaults
                                 },
-                                on: { filter: filter }
+                                on: { filter: methods.filter }
                               },
                               [
                                 _vm._v(
@@ -730,7 +726,7 @@ var render = function() {
                                   config: config.filter,
                                   filters: _vm.$root.states
                                 },
-                                on: { filter: filter }
+                                on: { filter: methods.filter }
                               },
                               [
                                 _vm._v(
@@ -756,7 +752,7 @@ var render = function() {
                               "app-list-sort",
                               {
                                 attrs: { column: "id", config: config.order },
-                                on: { order: order }
+                                on: { order: methods.order }
                               },
                               [
                                 _vm._v(
@@ -822,8 +818,8 @@ var render = function() {
                       { staticClass: "th-table-tr uk-flex uk-flex-middle" },
                       [
                         _c("app-list-pagination", {
-                          attrs: { pages: pages, config: config.paginate },
-                          on: { paginate: paginate }
+                          attrs: { config: config.paginate },
+                          on: { paginate: methods.paginate }
                         })
                       ],
                       1

@@ -20,7 +20,8 @@ return [
         'save'          => 'Speichern',
         'close'         => 'Schliessen',
         'clone'         => 'Kopieren',
-        'delete'        => 'Löschen'
+        'delete'        => 'Löschen',
+        'select_all'    => 'Alle Einträge auswählen'
     ],
 
     'state' => [

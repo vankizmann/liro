@@ -10,7 +10,7 @@ class FieldHelper
 
     public static function get($label, $default = null)
     {
-        $field = (self::$fields ?: self::$fields = Field::all())->where('label', $label)->first();
+        $field = Field::where('label', $label)->first();
 
         return $field ? $field->value : $default;
     }

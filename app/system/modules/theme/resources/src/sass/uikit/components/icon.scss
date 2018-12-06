@@ -1,0 +1,16 @@
+
+$icon-image-size: 20px !default;
+
+.uk-icon {
+    position: relative;
+    top: -1px;
+}
+
+.uk-icon:first-child:last-child {
+    top: 0;
+}
+
+.uk-icon svg {
+    width: $icon-image-size;
+    height: $icon-image-size;
+}

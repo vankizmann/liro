@@ -1,7 +1,7 @@
 <template>
 
 <app-list class="liro-user-index" v-model="users" database="users.user.index">
-    <div slot-scope="{ items, pages, config, methods }">
+    <div slot-scope="{ items, config, methods }">
 
         <portal to="app-toolbar">
             <div class="uk-navbar-item">
@@ -18,20 +18,11 @@
                 <!-- Table head -->
                 <div class="th-table-head">
                     <div class="th-table-tr uk-flex uk-flex-middle">
-                        <div class="uk-margin-auto-right">
-                            <a class="uk-button uk-button-primary uk-button-small" href="javascript:void(0)">
-                                {{ Liro.messages.get('theme::form.toolbar.clone') }}
-                            </a>
-                            <a class="uk-button uk-button-warning uk-button-small" href="javascript:void(0)">
-                                {{ Liro.messages.get('theme::form.toolbar.delete') }}
-                            </a>
-                        </div>
+
                         <div class="uk-margin-auto-left">
-                            <app-list-search
-                                :columns="['name', 'email']" :config="config.search" @search="methods.search"
-                                :placeholder="Liro.messages.get('theme::form.search.placeholder')"
-                            ></app-list-search>
+                            <app-list-search class="uk-display-inline-block" :columns="['name', 'email']" :config="config.search" @search="methods.search" :placeholder="Liro.messages.get('theme::form.search.placeholder')"></app-list-search>
                         </div>
+
                     </div>
                 </div>
                 <!-- Table head end -->
@@ -40,7 +31,7 @@
                 <div class="th-table-filter">
                     <div class="th-table-tr uk-flex uk-flex-middle">
                         <div class="th-table-td th-table-td-xs">
-                            <!-- Check all maybe -->
+                            <app-list-select-all class="uk-display-inline-block uk-margin-right" :config="config.select" @select="methods.selectAll"></app-list-select-all>
                         </div>
                         <div class="uk-width-1-3">
                             <app-list-sort column="name" :config="config.order" @order="methods.order">
@@ -74,7 +65,7 @@
                 <!-- Table body -->
                 <div class="th-table-body" v-if="items.length != 0">
                     <liro-user-index-item v-for="(item, index) in items" :value="item" :key="index">
-                        <app-list-checkbox slot="checkbox" :value="item.id" :config="config.select" @select="methods.select"></app-list-checkbox>
+                        <app-list-select slot="checkbox" :value="item.id" :config="config" :methods="methods"></app-list-select>
                     </liro-user-index-item>
                 </div>
                 <!-- Table body end -->
@@ -91,7 +82,7 @@
 
                 <div class="th-table-footer">
                     <div class="th-table-tr uk-flex uk-flex-middle">
-                        <app-list-pagination :pages="pages" :config="config.paginate" @paginate="methods.paginate"></app-list-pagination>
+                        <app-list-pagination :config="config.paginate" @paginate="methods.paginate"></app-list-pagination>
                     </div>
                 </div>
                 

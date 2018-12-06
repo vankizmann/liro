@@ -7,7 +7,7 @@
         border-radius: 3px;
         margin-bottom: 20px;
         background-color: $color-white;
-        box-shadow: 0 1px 3px rgba($color-gray-25, 0.15);
+        box-shadow: 0 1px 3px rgba($color-gray-50, 0.15);
     }
 
     &:last-child {
@@ -17,7 +17,7 @@
     .uk-legend {
         margin: 30px -24px 20px -24px;
         padding: 20px 24px;
-        background-color: lighten($color-gray-5, 3%);
+        background-color: $color-gray-5;
     }
 
     .uk-legend:first-child {
@@ -29,11 +29,11 @@
     }
 
     .uk-legend:not(:first-child) {
-        border-top: 1px solid $color-gray-5;
+        // border-top: 1px solid darken($color-gray-5, 3%);
     }
 
     .uk-legend:not(:last-child) {
-        border-bottom: 1px solid $color-gray-5;
+        // border-bottom: 1px solid darken($color-gray-5, 3%);
     }
 
 }

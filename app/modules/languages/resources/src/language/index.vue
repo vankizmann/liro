@@ -1,7 +1,7 @@
 <template>
 
 <app-list class="liro-language-index" v-model="$root.languages" database="languages.language.index">
-    <div slot-scope="{ items, pages, config, order, search, paginate, filter }">
+    <div slot-scope="{ items, config, methods }">
 
         <portal to="app-toolbar">
             <div class="uk-navbar-item">
@@ -20,7 +20,7 @@
                     <div class="th-table-tr uk-flex uk-flex-middle">
                         <div class="uk-margin-auto-left">
                             <app-list-search
-                                :columns="['title', 'locale']" :config="config.search" @search="search"
+                                :columns="['title', 'locale']" :config="config.search" @search="methods.search"
                                 :placeholder="Liro.messages.get('theme::form.search.placeholder')"
                             ></app-list-search>
                         </div>
@@ -32,27 +32,27 @@
                 <div class="th-table-filter">
                     <div class="th-table-tr uk-flex uk-flex-middle">
                         <div class="uk-width-1-2">
-                            <app-list-sort column="title" :config="config.order" @order="order">
+                            <app-list-sort column="title" :config="config.order" @order="methods.order">
                                 {{ Liro.messages.get('liro-languages::form.language.title') }}
                             </app-list-sort>
                         </div>
                         <div class="uk-width-1-2">
-                            <app-list-sort column="locale" :config="config.order" @order="order">
+                            <app-list-sort column="locale" :config="config.order" @order="methods.order">
                                 {{ Liro.messages.get('liro-languages::form.language.locale') }}
                             </app-list-sort>
                         </div>
                         <div class="th-table-td-m uk-text-center">
-                            <app-list-filter column="default" :config="config.filter" :filters="$root.defaults" @filter="filter">
+                            <app-list-filter column="default" :config="config.filter" :filters="$root.defaults" @filter="methods.filter">
                                 {{ Liro.messages.get('liro-languages::form.language.default') }}
                             </app-list-filter>
                         </div>
                         <div class="th-table-td-m uk-text-center">
-                            <app-list-filter column="state" :config="config.filter" :filters="$root.states" @filter="filter">
+                            <app-list-filter column="state" :config="config.filter" :filters="$root.states" @filter="methods.filter">
                                 {{ Liro.messages.get('liro-languages::form.language.state') }}
                             </app-list-filter>
                         </div>
                         <div class="th-table-td-m uk-text-center">
-                            <app-list-sort column="id" :config="config.order" @order="order">
+                            <app-list-sort column="id" :config="config.order" @order="methods.order">
                                 {{ Liro.messages.get('liro-languages::form.language.id') }}
                             </app-list-sort>
                         </div>
@@ -78,7 +78,7 @@
 
                 <div class="th-table-footer">
                     <div class="th-table-tr uk-flex uk-flex-middle">
-                        <app-list-pagination :pages="pages" :config="config.paginate" @paginate="paginate"></app-list-pagination>
+                        <app-list-pagination :config="config.paginate" @paginate="methods.paginate"></app-list-pagination>
                     </div>
                 </div>
                 

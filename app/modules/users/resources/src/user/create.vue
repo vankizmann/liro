@@ -50,6 +50,9 @@
                 name="role_ids" v-model="user.role_ids" :options="roles" :multiple="true" options-label="title" options-value="id" :label="Liro.messages.get('liro-users::form.user.role')" :placeholder="Liro.messages.get('liro-users::form.user.select_role')"
             ></app-form-select-multiple>
 
+        </div>
+        <div class="th-form">
+
             <legend class="uk-legend uk-legend-small">
                 {{ Liro.messages.get('liro-users::form.legend.password') }}
             </legend>

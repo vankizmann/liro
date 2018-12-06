@@ -17,6 +17,9 @@ window.UIkit = UIkit;
 import Icons from 'uikit/dist/js/uikit-icons';
 UIkit.use(Icons);
 
+import FontAwesome from '../icons/font-awesome';
+UIkit.icon.add(FontAwesome);
+
 import Liro from './liro/liro';
 window.Liro = Liro;
 

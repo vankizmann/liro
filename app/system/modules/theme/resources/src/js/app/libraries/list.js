@@ -50,8 +50,6 @@ class List {
         this.getPaginateData();
         this.getSelectData();
 
-        console.log(this.session.data)
-
         this.filterItems();
     }
 
@@ -89,6 +87,8 @@ class List {
             'search.query': query, 'search.columns': columns
         });
 
+        this.allSelectData(false);
+
         return this.filterItems();
     }
 
@@ -119,6 +119,8 @@ class List {
             'filter.filters': _.set(this.config.filter.filters, column, values)
         });
 
+        this.allSelectData(false);
+
         return this.filterItems();
     }
 
@@ -134,6 +136,8 @@ class List {
             'paginate.page': page, 'paginate.limit': limit
         });
 
+        this.allSelectData(false);
+
         return this.filterItems();
     }
 
@@ -147,6 +151,36 @@ class List {
 
         this.setSessionData(this.config, {
             'select.selected': [selected]
+        });
+
+        this.setSessionData(this.config, {
+            'select.all': this.config.select.selected.length == this.items.length
+        });
+
+        return this.filterItems();
+    }
+
+    toggleSelectData (selected) {
+
+        this.setSessionData(this.config, {
+            'select.selected': _.xor(this.config.select.selected, [selected])
+        });
+
+        this.setSessionData(this.config, {
+            'select.all': this.config.select.selected.length == this.items.length
+        });
+
+        return this.filterItems();
+    }
+
+    allSelectData (value) {
+
+        this.setSessionData(this.config, {
+            'select.all': value
+        });
+
+        this.setSessionData(this.config, {
+            'select.selected': this.config.select.all ? _.map(this.items, 'id') : []
         });
 
         return this.filterItems();
@@ -207,7 +241,9 @@ class List {
             search: this.setSearchData.bind(this),
             filter: this.setFilterData.bind(this),
             paginate: this.setPaginateData.bind(this),
-            select: this.setSelectData.bind(this)
+            select: this.setSelectData.bind(this),
+            selectToggle: this.toggleSelectData.bind(this),
+            selectAll: this.allSelectData.bind(this)
         };
     }
 

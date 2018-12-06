@@ -2,8 +2,8 @@
 
 <div class="app-list-sort">
     <!-- Label start -->
-    <a href="javascript:void(0)" :class="{ 'uk-text-nowrap': true, 'uk-active': column == config.column }" @click="setOrder">
-        <i :uk-icon="icon"></i> <span v-if="$slots.default"><slot></slot></span>
+    <a href="javascript:void(0)" :class="{ 'uk-text-nowrap': true, 'uk-active': column == config.order.column }" @click="setOrder">
+        <i :uk-icon="this.config.order.direction == 'asc' ? 'sort-amount-up' : 'sort-amount-down'"></i> <span v-if="$slots.default"><slot></slot></span>
     </a>
     <!-- Label end -->
 </div>
@@ -13,18 +13,10 @@
 
 export default {
 
-    /**
-     * Computed properties
-     */
-    computed: {
-        icon() {
-            return this.config.direction == 'asc' ? 'triangle-up' : 'triangle-down';
-        }
-    },
+    inject: [
+        'config', 'methods'
+    ],
 
-    /**
-     * Changable properties
-     */
     props: {
 
         config: {
@@ -40,22 +32,14 @@ export default {
         label: {
             default: '',
             type: String
-        },
-
-        reverse: {
-            default: false,
-            type: Boolean
         }
 
     },
 
-    /**
-     * Component methods
-     */
     methods: {
 
         setOrder() {
-            this.$emit('order', this.column, this.config.direction == 'desc' ? 'asc' : 'desc');
+            this.methods.order(this.column, this.config.order.direction == 'desc' ? 'asc' : 'desc');
         }
 
     }

@@ -271,21 +271,29 @@ class AssetManager
         return $this->styles->sort($sorter)->pluck(0)->implode("\n");
     }
 
-    public function output($key) {
+    public function output($keys) {
 
-        if ( $key == 'routes' ) {
-            return '<script>window.$routes = ' . $this->routes->all()->toJson() . ';</script>';
+        if ( ! is_array($keys) ) {
+            $keys = [$keys];
         }
 
-        if ( $key == 'messages' ) {
-            return '<script>window.$messages = ' . $this->messages->all()->toJson() . ';</script>';
+        $output = '<script>' . "\n";
+
+        if ( in_array('routes', $keys) ) {
+            $output .= 'window.$routes = ' . $this->routes->all()->toJson() . ';' . "\n";
         }
 
-        if ( $key == 'data' ) {
-            return '<script>window.$data = ' . $this->data->all()->toJson() . ';</script>';
+        if ( in_array('messages', $keys) ) {
+            $output .= 'window.$messages = ' . $this->messages->all()->toJson() . ';' . "\n";
         }
 
-        throw new \Exception('Accepted keys for asset output: routes, messages, data');
+        if ( in_array('data', $keys) ) {
+            $output .= 'window.$data = ' . $this->data->all()->toJson() . ';' . "\n";
+        }
+
+        $output .= '</script>';
+
+        return $output;
     }
 
 }

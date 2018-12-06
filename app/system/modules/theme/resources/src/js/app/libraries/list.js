@@ -57,6 +57,11 @@ class List {
         console.log('Items updated!');
     }
 
+    setInitial (initial) {
+        this.initial = initial;
+        this.filterItems();
+    }
+
     getSessionData (scope, values) {
 
         _.each(values, (value, key) => {

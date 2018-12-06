@@ -36,17 +36,23 @@
     <!-- Form end -->
 
     <!-- Module start -->
-    <div class="th-form" v-for="(routes, index) in modules" :key="index">
+    <template v-for="(module, type) in modules" v-if="module.length != 0">
+        <div class="th-form" v-for="(routes, index) in module" :key="index">
 
-        <legend class="uk-legend uk-legend-small">
-            {{ index }}
-        </legend>
+            <legend class="uk-legend uk-legend-small">
+                <span class="uk-label uk-label-primary">{{ type }}</span>
+                <span class="uk-margin-small-left">{{ index }}</span>
+            </legend>
 
-        <div class="uk-flex uk-flex-wrap uk-child-width-1-2">
-            <label v-for="(name, index) in routes" :key="index" class="uk-checkbox-label uk-margin-small-bottom"><input class="uk-checkbox" type="checkbox" v-model="role.route_names" :value="index">{{ name }}</label>
+            <div class="uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l" uk-grid>
+                <label v-for="(name, index) in routes" :key="index" class="uk-checkbox-label">
+                    <input class="uk-checkbox" type="checkbox" v-model="role.route_names" :value="index">
+                    <span>{{ name }}</span>
+                </label>
+            </div>
+
         </div>
-        
-    </div>
+    </template>
     <!-- Module end -->
 
 </div>

@@ -11,45 +11,18 @@ use Liro\Users\Requests\UserUpdateRequest;
 class UserController extends \Liro\System\Http\Controller
 {
 
+    public function __construct()
+    {
+        app('assets')->module('liro-users');
+    }
+
     public function index(User $user, UserRole $role)
     {
-        app('assets')->routes([
-            'liro-users.user.index',
-            'liro-users.user.create',
-            'liro-users.user.edit'
-        ]);
-
-        app('assets')->messages([
-            'liro-users::module',
-            'liro-users::form',
-            'liro-users::message'
-        ]);
-
-        app('assets')->data(
-            'users', $user->all()
-        );
-
-        app('assets')->data(
-            'roles', $role->all()
-        );
-
         return view('liro-users::user/index');
     }
 
     public function create(User $user, UserRole $role)
     {
-        app('assets')->routes([
-            'liro-users.user.index',
-            'liro-users.user.create',
-            'liro-users.user.edit'
-        ]);
-
-        app('assets')->messages([
-            'liro-users::module',
-            'liro-users::form',
-            'liro-users::message'
-        ]);
-
         app('assets')->data(
             'user', $user
         );
@@ -64,27 +37,16 @@ class UserController extends \Liro\System\Http\Controller
     public function store(UserStoreRequest $request, User $user)
     {
         $user = $user->create(
-            $request->only(['state', 'name', 'email', 'password', 'role_ids'])
+            $request->all()
         );
 
         return response()->json([
             'user' => $user
-        ]);
+        ], 201);
     }
 
     public function edit(User $user, UserRole $role)
     {
-        app('assets')->routes([
-            'liro-users.user.index',
-            'liro-users.user.edit'
-        ]);
-
-        app('assets')->messages([
-            'liro-users::module',
-            'liro-users::form',
-            'liro-users::message'
-        ]);
-
         app('assets')->data(
             'user', $user
         );
@@ -99,12 +61,12 @@ class UserController extends \Liro\System\Http\Controller
     public function update(UserUpdateRequest $request, User $user)
     {
         $user->update(
-            $request->only(['state', 'name', 'email', 'password', 'role_ids'])
+            $request->all()
         );
 
         return response()->json([
             'user' => $user
-        ]);
+        ], 200);
     }
 
 }

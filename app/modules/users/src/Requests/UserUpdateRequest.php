@@ -22,10 +22,11 @@ class UserUpdateRequest extends \Liro\System\Http\FormRequest
     public function rules()
     {
         return [
-            'state'         => 'required|integer',
-            'name'          => 'required|min:4',
-            'email'         => "required|unique:users,email,$this->id|email",
-            'password'      => 'nullable|min:6'
+            'state'             => 'required|integer',
+            'name'              => 'required|min:4',
+            'email'             => "required|unique:users,email,$this->id|email",
+            'password'          => 'nullable|min:6',
+            'password_confirm'  => 'required_with:password|min:6|same:password'
         ];
     }
 
@@ -37,10 +38,11 @@ class UserUpdateRequest extends \Liro\System\Http\FormRequest
     public function attributes()
     {
         return [
-            'state'         => trans('liro-users::form.user.state'),
-            'name'          => trans('liro-users::form.user.name'),
-            'email'         => trans('liro-users::form.user.email'),
-            'password'      => trans('liro-users::form.user.password'),
+            'state'             => trans('liro-users::form.user.state'),
+            'name'              => trans('liro-users::form.user.name'),
+            'email'             => trans('liro-users::form.user.email'),
+            'password'          => trans('liro-users::form.user.password'),
+            'password_confirm'  => trans('liro-users::form.user.password_confirm')
         ];
     }
 

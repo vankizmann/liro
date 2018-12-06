@@ -875,6 +875,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1026,75 +1032,89 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._l(_vm.modules, function(routes, index) {
-        return _c("div", { key: index, staticClass: "th-form" }, [
-          _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
-            _vm._v("\n            " + _vm._s(index) + "\n        ")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "uk-flex uk-flex-wrap uk-child-width-1-2" },
-            _vm._l(routes, function(name, index) {
-              return _c(
-                "label",
-                {
-                  key: index,
-                  staticClass: "uk-checkbox-label uk-margin-small-bottom"
-                },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.role.route_names,
-                        expression: "role.route_names"
-                      }
-                    ],
-                    staticClass: "uk-checkbox",
-                    attrs: { type: "checkbox" },
-                    domProps: {
-                      value: index,
-                      checked: Array.isArray(_vm.role.route_names)
-                        ? _vm._i(_vm.role.route_names, index) > -1
-                        : _vm.role.route_names
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.role.route_names,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = index,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.role,
-                                "route_names",
-                                $$a.concat([$$v])
-                              )
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.role,
-                                "route_names",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
+      _vm._l(_vm.modules, function(module, type) {
+        return module.length != 0
+          ? _vm._l(module, function(routes, index) {
+              return _c("div", { key: index, staticClass: "th-form" }, [
+                _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+                  _c("span", { staticClass: "uk-label uk-label-primary" }, [
+                    _vm._v(_vm._s(type))
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "uk-margin-small-left" }, [
+                    _vm._v(_vm._s(index))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l",
+                    attrs: { "uk-grid": "" }
+                  },
+                  _vm._l(routes, function(name, index) {
+                    return _c(
+                      "label",
+                      { key: index, staticClass: "uk-checkbox-label" },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.role.route_names,
+                              expression: "role.route_names"
+                            }
+                          ],
+                          staticClass: "uk-checkbox",
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            value: index,
+                            checked: Array.isArray(_vm.role.route_names)
+                              ? _vm._i(_vm.role.route_names, index) > -1
+                              : _vm.role.route_names
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.role.route_names,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = index,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.role,
+                                      "route_names",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.role,
+                                      "route_names",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(_vm.role, "route_names", $$c)
+                              }
+                            }
                           }
-                        } else {
-                          _vm.$set(_vm.role, "route_names", $$c)
-                        }
-                      }
-                    }
-                  }),
-                  _vm._v(_vm._s(name))
-                ]
-              )
+                        }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v(_vm._s(name))])
+                      ]
+                    )
+                  })
+                )
+              ])
             })
-          )
-        ])
+          : _vm._e()
       })
     ],
     2

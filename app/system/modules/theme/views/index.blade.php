@@ -100,7 +100,7 @@
         </div>
 
         <div class="th-spinner uk-position-cover">
-            <div class="uk-position-center" uk-spinner="ratio: 2;"></div>
+            <div class="uk-position-center" uk-spinner="icon: spinner-third; ratio: 0.125;"></div>
         </div>
 
     </body>

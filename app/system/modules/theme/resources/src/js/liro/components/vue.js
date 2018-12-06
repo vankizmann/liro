@@ -30,5 +30,15 @@ export default function (Events, Routes) {
         Vue.apis.push({ name, options });
     }
 
+    Vue.data = function () {
+        var data = {};
+
+        _.each(Vue.apis, function (value) {
+            data[value.name] = value.default || [];
+        });
+
+        return data;
+    }
+
     return Vue;
 }

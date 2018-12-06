@@ -51,9 +51,17 @@ class Seeder
             'liro-languages.language.index',
             'liro-languages.language.create',
             'liro-languages.language.edit',
+            'liro-users.api.user.index',
+            'liro-users.api.user.show',
+            'liro-users.api.user.store',
+            'liro-users.api.user.update',
             'liro-users.user.index',
             'liro-users.user.create',
             'liro-users.user.edit',
+            'liro-users.api.role.index',
+            'liro-users.api.role.show',
+            'liro-users.api.role.store',
+            'liro-users.api.role.update',
             'liro-users.role.index',
             'liro-users.role.create',
             'liro-users.role.edit',
@@ -84,24 +92,16 @@ class Seeder
 
         $user_admin->roles()->attach($user_role_admin->id);
 
-        $user_test = User::create([
-            'state'         => 0,
-            'lock'          => 0,
-            'name'          => 'Testuser',
-            'email'         => 'test@gmail.com',
-            'password'      => 'password'
-        ]);
-
-        $user_test->roles()->attach($user_role_admin->id);
-
-        for ($i = 0; $i <= 10; $i++) {
-            User::create([
-                'state'         => 0,
+        for ($i = 1; $i <= 3; $i++) {
+            $user_test = User::create([
+                'state'         => 1,
                 'lock'          => 0,
                 'name'          => $faker->name,
                 'email'         => $faker->email,
                 'password'      => 'password'
             ]);
+
+            $user_test->roles()->attach($user_role_guest->id);
         }
     }
 

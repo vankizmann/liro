@@ -1,6 +1,6 @@
 <template>
 
-<div class="liro-auth-login">
+<div class="liro-auth-login" ref="form">
 
     <!-- Form start -->
     <form class="uk-form uk-margin-remove" method="post" @submit.prevent="authUser">
@@ -24,14 +24,18 @@
             </div>
         </div>
 
+        <!--
         <div class="uk-margin-bottom">
             <div class="uk-form-controls">
                 <label class="uk-checkbox-label"><input class="uk-checkbox" type="checkbox" name="remember"> {{ Liro.messages.get('liro-users::form.auth.remember_me') }}</label>
             </div>
         </div>
+        -->
 
         <div class="uk-form-controls">
-            <button class="uk-button uk-button-primary uk-width-1-1" type="submit">{{ Liro.messages.get('liro-users::form.auth.login') }}</button>
+            <button class="uk-button uk-button-primary uk-width-1-1" type="submit">
+                <i uk-icon="key"></i> <span>{{ Liro.messages.get('liro-users::form.auth.login') }}</span>
+            </button>
         </div>
 
     </form>
@@ -56,7 +60,16 @@ export default {
 
         authUser: function () {
             var url = Liro.routes.get('liro-users.auth.login');
-            Axios.post(url, this.user).then(this.authUserResponse);
+            Axios.post(url, this.user).then(this.authUserResponse, this.authUserError);
+        },
+
+        authUserError: function (res) {
+
+            setTimeout(() => {
+                $(this.$refs.form).removeClass('uk-animation-shake');
+            }, 1000);
+
+            $(this.$refs.form).addClass('uk-animation-shake');
         },
 
         authUserResponse: function (res) {

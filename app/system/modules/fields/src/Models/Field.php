@@ -3,11 +3,11 @@
 namespace Liro\System\Fields\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Liro\System\Database\Castable;
+use Liro\System\Database\CastableTrait;
 
 class Field extends Model
 {
-    use Castable;
+    use CastableTrait;
 
     protected $table = 'fields';
 

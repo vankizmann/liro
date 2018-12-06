@@ -275,6 +275,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -291,7 +295,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         authUser: function authUser() {
             var url = Liro.routes.get('liro-users.auth.login');
-            Axios.post(url, this.user).then(this.authUserResponse);
+            Axios.post(url, this.user).then(this.authUserResponse, this.authUserError);
+        },
+
+        authUserError: function authUserError(res) {
+            var _this = this;
+
+            setTimeout(function () {
+                $(_this.$refs.form).removeClass('uk-animation-shake');
+            }, 1000);
+
+            $(this.$refs.form).addClass('uk-animation-shake');
         },
 
         authUserResponse: function authUserResponse(res) {
@@ -314,7 +328,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "liro-auth-login" }, [
+  return _c("div", { ref: "form", staticClass: "liro-auth-login" }, [
     _c(
       "form",
       {
@@ -423,23 +437,6 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "uk-margin-bottom" }, [
-          _c("div", { staticClass: "uk-form-controls" }, [
-            _c("label", { staticClass: "uk-checkbox-label" }, [
-              _c("input", {
-                staticClass: "uk-checkbox",
-                attrs: { type: "checkbox", name: "remember" }
-              }),
-              _vm._v(
-                " " +
-                  _vm._s(
-                    _vm.Liro.messages.get("liro-users::form.auth.remember_me")
-                  )
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
         _c("div", { staticClass: "uk-form-controls" }, [
           _c(
             "button",
@@ -448,9 +445,13 @@ var render = function() {
               attrs: { type: "submit" }
             },
             [
-              _vm._v(
-                _vm._s(_vm.Liro.messages.get("liro-users::form.auth.login"))
-              )
+              _c("i", { attrs: { "uk-icon": "key" } }),
+              _vm._v(" "),
+              _c("span", [
+                _vm._v(
+                  _vm._s(_vm.Liro.messages.get("liro-users::form.auth.login"))
+                )
+              ])
             ]
           )
         ])
@@ -554,6 +555,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -582,11 +585,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         authUser: function authUser() {
             var url = Liro.routes.get('liro-users.auth.login');
-            Axios.post(url, this.user).then(this.authUserResponse);
+            Axios.post(url, this.user).then(this.authUserResponse, this.authUserError);
         },
 
         authUserResponse: function authUserResponse(res) {
             UIkit.modal(this.$refs.modal).hide();
+        },
+
+        authUserError: function authUserError(res) {
+            var _this = this;
+
+            setTimeout(function () {
+                $(_this.$refs.form).removeClass('uk-animation-shake');
+            }, 1000);
+
+            $(this.$refs.form).addClass('uk-animation-shake');
         },
 
         refreshToken: function refreshToken() {
@@ -631,6 +644,7 @@ var render = function() {
           _c(
             "form",
             {
+              ref: "form",
               staticClass: "uk-form uk-margin-remove",
               attrs: { method: "post" },
               on: {
@@ -729,11 +743,15 @@ var render = function() {
                     attrs: { type: "submit" }
                   },
                   [
-                    _vm._v(
-                      _vm._s(
-                        _vm.Liro.messages.get("liro-users::form.auth.login")
+                    _c("i", { attrs: { "uk-icon": "key" } }),
+                    _vm._v(" "),
+                    _c("span", [
+                      _vm._v(
+                        _vm._s(
+                          _vm.Liro.messages.get("liro-users::form.auth.login")
+                        )
                       )
-                    )
+                    ])
                   ]
                 )
               ])

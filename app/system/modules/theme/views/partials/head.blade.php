@@ -28,15 +28,7 @@
 <title>{{ app()->getTitleWithAffix() }}</title>
 
 @php
-    echo app('assets')->output('routes');
-@endphp
-
-@php
-    echo app('assets')->output('messages');
-@endphp
-
-@php
-    echo app('assets')->output('data');
+    echo app('assets')->output(['routes', 'messages', 'data']);
 @endphp
 
 @php

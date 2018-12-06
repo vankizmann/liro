@@ -10,20 +10,13 @@ use Liro\Users\Requests\RoleUpdateRequest;
 class RoleController extends \Liro\System\Http\Controller
 {
 
+    public function __construct()
+    {
+        app('assets')->module('liro-users');
+    }
+
     public function index(UserRole $role)
     {
-        app('assets')->routes([
-            'liro-users.role.index',
-            'liro-users.role.create',
-            'liro-users.role.edit'
-        ]);
-
-        app('assets')->messages([
-            'liro-users::module',
-            'liro-users::form',
-            'liro-users::message'
-        ]);
-
         app('assets')->data(
             'roles', $role->all()
         );
@@ -33,18 +26,6 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function create(UserRole $role)
     {
-        app('assets')->routes([
-            'liro-users.role.index',
-            'liro-users.role.create',
-            'liro-users.role.edit'
-        ]);
-
-        app('assets')->messages([
-            'liro-users::module',
-            'liro-users::form',
-            'liro-users::message'
-        ]);
-
         app('assets')->data(
             'modules', app('menus')->getModuleNames()
         );
@@ -59,7 +40,7 @@ class RoleController extends \Liro\System\Http\Controller
     public function store(RoleStoreRequest $request, UserRole $role)
     {
         $role = $role->create(
-            $request->only(['title', 'description', 'access', 'route_names'])
+            $request->all()
         );
 
         return response()->json([
@@ -69,17 +50,6 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function edit(UserRole $role)
     {
-        app('assets')->routes([
-            'liro-users.role.index',
-            'liro-users.role.edit'
-        ]);
-
-        app('assets')->messages([
-            'liro-users::module',
-            'liro-users::form',
-            'liro-users::message'
-        ]);
-
         app('assets')->data(
             'modules', app('menus')->getModuleNames()
         );
@@ -94,7 +64,7 @@ class RoleController extends \Liro\System\Http\Controller
     public function update(RoleUpdateRequest $request, UserRole $role)
     {
         $role->update(
-            $request->only(['title', 'description', 'access', 'route_names'])
+            $request->all()
         );
 
         return response()->json([

@@ -69,7 +69,9 @@ Vue.ready(function () {
     Liro.events.watch('axios.error', function (event, res) {
 
         if ( res.data.errors != undefined ) {
-            return _.each(res.data.errors, error => UIkit.notification(error, 'danger'));
+            return _.each(res.data.errors, 
+                errors => _.each(errors, error => UIkit.notification(error, 'danger'))
+            );
         }
 
         if ( res.data.message != undefined ) {
@@ -81,7 +83,7 @@ Vue.ready(function () {
 
     window.App = new Vue({
         data: function () {
-            return Liro.data.all()
+            return _.merge(Liro.data.all(), Liro.vue.data());
         }
     }).$mount('#app');
 });

@@ -4,7 +4,7 @@
 
             <a href="{{ url($menu->route_prefix) }}">
                 @if ($menu->icon)
-                    <img class="uk-navbar-icon" src="{{ $menu->icon }}" alt="{{ trans($menu->title) }}">
+                    <i class="uk-margin-small-right" uk-icon="{{ $menu->icon }}"></i>
                 @endif
                 <span class="uk-navbar-text">
                     {{ trans($menu->title) }}

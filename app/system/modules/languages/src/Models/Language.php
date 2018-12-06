@@ -3,11 +3,11 @@
 namespace Liro\System\Languages\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Liro\System\Database\Castable;
+use Liro\System\Database\CastableTrait;
 
 class Language extends Model
 {
-    use Castable;
+    use CastableTrait;
 
     protected $table = 'languages';
 

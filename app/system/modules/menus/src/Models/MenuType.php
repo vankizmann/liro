@@ -3,13 +3,13 @@
 namespace Liro\System\Menus\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Liro\System\Database\Castable;
+use Liro\System\Database\CastableTrait;
 use Liro\System\Menus\Models\Menu;
 use Liro\System\Languages\Models\Language;
 
 class MenuType extends Model
 {
-    use Castable;
+    use CastableTrait;
 
     protected $table = 'menu_types';
 

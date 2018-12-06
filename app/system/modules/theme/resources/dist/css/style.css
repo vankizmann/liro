@@ -12399,6 +12399,14 @@ body.is-busy .th-spinner {
   margin: 20px -24px -20px -24px;
 }
 
+.th-form .uk-legend:not(:first-child) {
+  border-top: 1px solid #e1e7ef;
+}
+
+.th-form .uk-legend:not(:last-child) {
+  border-bottom: 1px solid #e1e7ef;
+}
+
 .th-table {
   margin-bottom: 20px;
   width: 100%;
@@ -12464,6 +12472,7 @@ body.is-busy .th-spinner {
 
 .th-table .th-table-head .th-table-tr {
   font-size: 0.875rem;
+  border-bottom: 1px solid #e1e7ef;
 }
 
 .th-table .th-table-filter {
@@ -12472,6 +12481,7 @@ body.is-busy .th-spinner {
 
 .th-table .th-table-filter .th-table-tr {
   font-size: 0.875rem;
+  border-bottom: 1px solid #e1e7ef;
 }
 
 .th-table .th-table-filter .th-table-tr > div:not(.th-table-td) {
@@ -12830,7 +12840,7 @@ form:last-child {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  background-color: #f5f7f9;
+  background-color: #ebeff4;
 }
 
 .nestable .nestable-item {
@@ -13327,7 +13337,6 @@ form:last-child {
   font-size: 0.825rem;
   text-transform: none;
   padding: 4px 9px;
-  border-radius: 500px;
 }
 
 .uk-label,
@@ -13386,16 +13395,7 @@ form:last-child {
   margin-bottom: 15px;
 }
 
-.uk-icon {
-  position: relative;
-  top: -1px;
-}
-
-.uk-icon:first-child:last-child {
-  top: 0;
-}
-
-.uk-icon svg {
+.uk-icon:not(.uk-spinner) svg {
   width: 14px;
   height: 14px;
 }

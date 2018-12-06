@@ -3,14 +3,14 @@ namespace Liro\System\Users\Models;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
-use Liro\System\Database\Castable;
+use Liro\System\Database\CastableTrait;
 use Liro\System\Users\Models\UserRole;
 use Liro\System\Fields\Helpers\FieldHelper;
 
 class User extends \Illuminate\Foundation\Auth\User
 {
     use Notifiable;
-    use Castable;
+    use CastableTrait;
 
     protected $table = 'users';
 

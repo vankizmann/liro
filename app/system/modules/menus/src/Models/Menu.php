@@ -4,19 +4,24 @@ namespace Liro\System\Menus\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
-use Liro\System\Database\Castable;
+use Liro\System\Database\CastableTrait;
+use Liro\System\Fields\Traits\FieldTrait;
 use Liro\System\Menus\Models\MenuType;
-use Liro\System\Fields\Helpers\FieldHelper;
 
 class Menu extends Model
 {
     use NodeTrait;
-    use Castable;
+    use FieldTrait;
+    use CastableTrait;
 
     protected $table = 'menus';
 
     protected $fillable = [
         'state', 'hide', 'lock', 'title', 'route', 'module', 'query', 'default', 'menu_type_id', 'parent_id', '_lft', '_rgt'
+    ];
+
+    protected $fields = [
+        'icon'
     ];
 
     protected $hidden = [

@@ -15,7 +15,7 @@
         </span>
     </div>
     <div class="uk-width-1-3">
-        <span class="uk-label uk-label-primary uk-margin-small-right" v-for="(role, index) in Liro.helpers.map(value.role_ids, 'id', $parent.$parent.roles)" :key="index">
+        <span class="uk-label uk-label-primary uk-margin-small-right" v-for="(role, index) in Liro.helpers.map(value.role_ids, 'id', $root.roles)" :key="index">
             {{ role.title }}
         </span>
     </div>

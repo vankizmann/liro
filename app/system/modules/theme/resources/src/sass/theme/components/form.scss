@@ -29,11 +29,11 @@
     }
 
     .uk-legend:not(:first-child) {
-        // border-top: 1px solid darken($color-gray-5, 3%);
+        border-top: 1px solid darken($color-gray-5, 3%);
     }
 
     .uk-legend:not(:last-child) {
-        // border-bottom: 1px solid darken($color-gray-5, 3%);
+        border-bottom: 1px solid darken($color-gray-5, 3%);
     }
 
 }

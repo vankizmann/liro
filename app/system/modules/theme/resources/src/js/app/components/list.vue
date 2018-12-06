@@ -33,8 +33,11 @@ export default {
         return {
             list: list , listData: list.getData()
         };
-    }
+    },
 
+    mounted: function () {
+        this.$watch('value', () => this.list.setInitial(this.value))
+    }
 }
 
 if (window.Liro) {

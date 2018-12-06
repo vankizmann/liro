@@ -345,17 +345,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    data: function data() {
-        return {
-            states: this.Liro.data.get('states'),
-            roles: this.Liro.data.get('roles'),
-            users: this.Liro.data.get('users')
-        };
+    mounted: function mounted() {
+        Liro.events.emit('users@sync');
+        Liro.events.emit('roles@sync');
     }
-
 });
 
 if (window.Liro) {
+
+    Liro.vue.sync('users', {
+        url: Liro.routes.get('liro-users.api.user.index')
+    });
+
+    Liro.vue.sync('roles', {
+        url: Liro.routes.get('liro-users.api.role.index')
+    });
+
     Liro.vue.component('liro-user-index', this.default);
 }
 
@@ -523,11 +528,7 @@ var render = function() {
       "div",
       { staticClass: "uk-width-1-3" },
       _vm._l(
-        _vm.Liro.helpers.map(
-          _vm.value.role_ids,
-          "id",
-          _vm.$parent.$parent.roles
-        ),
+        _vm.Liro.helpers.map(_vm.value.role_ids, "id", _vm.$root.roles),
         function(role, index) {
           return _c(
             "span",
@@ -633,12 +634,12 @@ var render = function() {
                               staticClass: "uk-display-inline-block",
                               attrs: {
                                 columns: ["name", "email"],
-                                config: config.search,
                                 placeholder: _vm.Liro.messages.get(
                                   "theme::form.search.placeholder"
-                                )
-                              },
-                              on: { search: methods.search }
+                                ),
+                                config: config,
+                                methods: methods
+                              }
                             })
                           ],
                           1
@@ -659,8 +660,7 @@ var render = function() {
                             _c("app-list-select-all", {
                               staticClass:
                                 "uk-display-inline-block uk-margin-right",
-                              attrs: { config: config.select },
-                              on: { select: methods.selectAll }
+                              attrs: { config: config, methods: methods }
                             })
                           ],
                           1
@@ -673,8 +673,11 @@ var render = function() {
                             _c(
                               "app-list-sort",
                               {
-                                attrs: { column: "name", config: config.order },
-                                on: { order: methods.order }
+                                attrs: {
+                                  column: "name",
+                                  config: config,
+                                  methods: methods
+                                }
                               },
                               [
                                 _vm._v(
@@ -701,9 +704,9 @@ var render = function() {
                               {
                                 attrs: {
                                   column: "email",
-                                  config: config.order
-                                },
-                                on: { order: methods.order }
+                                  config: config,
+                                  methods: methods
+                                }
                               },
                               [
                                 _vm._v(
@@ -730,12 +733,12 @@ var render = function() {
                               {
                                 attrs: {
                                   column: "role_ids",
-                                  config: config.filter,
-                                  filters: _vm.roles,
+                                  filters: _vm.$root.roles,
                                   "filters-value": "id",
-                                  "filters-label": "title"
-                                },
-                                on: { filter: methods.filter }
+                                  "filters-label": "title",
+                                  config: config,
+                                  methods: methods
+                                }
                               },
                               [
                                 _vm._v(
@@ -762,10 +765,10 @@ var render = function() {
                               {
                                 attrs: {
                                   column: "state",
-                                  config: config.filter,
-                                  filters: _vm.states
-                                },
-                                on: { filter: methods.filter }
+                                  filters: _vm.$root.states,
+                                  config: config,
+                                  methods: methods
+                                }
                               },
                               [
                                 _vm._v(
@@ -790,8 +793,11 @@ var render = function() {
                             _c(
                               "app-list-sort",
                               {
-                                attrs: { column: "id", config: config.order },
-                                on: { order: methods.order }
+                                attrs: {
+                                  column: "id",
+                                  config: config,
+                                  methods: methods
+                                }
                               },
                               [
                                 _vm._v(
@@ -869,8 +875,7 @@ var render = function() {
                       { staticClass: "th-table-tr uk-flex uk-flex-middle" },
                       [
                         _c("app-list-pagination", {
-                          attrs: { config: config.paginate },
-                          on: { paginate: methods.paginate }
+                          attrs: { config: config, methods: methods }
                         })
                       ],
                       1
@@ -885,11 +890,11 @@ var render = function() {
       }
     ]),
     model: {
-      value: _vm.users,
+      value: _vm.$root.users,
       callback: function($$v) {
-        _vm.users = $$v
+        _vm.$set(_vm.$root, "users", $$v)
       },
-      expression: "users"
+      expression: "$root.users"
     }
   })
 }

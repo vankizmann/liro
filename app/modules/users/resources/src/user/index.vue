@@ -1,6 +1,6 @@
 <template>
 
-<app-list class="liro-user-index" v-model="users" database="users.user.index">
+<app-list class="liro-user-index" v-model="$root.users" database="users.user.index">
     <div slot-scope="{ items, config, methods }">
 
         <portal to="app-toolbar">
@@ -20,7 +20,7 @@
                     <div class="th-table-tr uk-flex uk-flex-middle">
 
                         <div class="uk-margin-auto-left">
-                            <app-list-search class="uk-display-inline-block" :columns="['name', 'email']" :config="config.search" @search="methods.search" :placeholder="Liro.messages.get('theme::form.search.placeholder')"></app-list-search>
+                            <app-list-search class="uk-display-inline-block" :columns="['name', 'email']" :placeholder="Liro.messages.get('theme::form.search.placeholder')" :config="config" :methods="methods"></app-list-search>
                         </div>
 
                     </div>
@@ -31,30 +31,30 @@
                 <div class="th-table-filter">
                     <div class="th-table-tr uk-flex uk-flex-middle">
                         <div class="th-table-td th-table-td-xs">
-                            <app-list-select-all class="uk-display-inline-block uk-margin-right" :config="config.select" @select="methods.selectAll"></app-list-select-all>
+                            <app-list-select-all class="uk-display-inline-block uk-margin-right" :config="config" :methods="methods"></app-list-select-all>
                         </div>
                         <div class="uk-width-1-3">
-                            <app-list-sort column="name" :config="config.order" @order="methods.order">
+                            <app-list-sort column="name" :config="config" :methods="methods">
                                 {{ Liro.messages.get('liro-users::form.user.name') }}
                             </app-list-sort>
                         </div>
                         <div class="uk-width-1-3">
-                            <app-list-sort column="email" :config="config.order" @order="methods.order">
+                            <app-list-sort column="email" :config="config" :methods="methods">
                                 {{ Liro.messages.get('liro-users::form.user.email') }}
                             </app-list-sort>
                         </div>
                         <div class="uk-width-1-3">
-                            <app-list-filter column="role_ids" :config="config.filter" :filters="roles" filters-value="id" filters-label="title" @filter="methods.filter">
+                            <app-list-filter column="role_ids" :filters="$root.roles" filters-value="id" filters-label="title" :config="config" :methods="methods">
                                 {{ Liro.messages.get('liro-users::form.user.role') }}
                             </app-list-filter>
                         </div>
                         <div class="th-table-td-m uk-text-center">
-                            <app-list-filter column="state" :config="config.filter" :filters="states" @filter="methods.filter">
+                            <app-list-filter column="state" :filters="$root.states" :config="config" :methods="methods">
                                 {{ Liro.messages.get('liro-users::form.user.state') }}
                             </app-list-filter>
                         </div>
                         <div class="th-table-td-m uk-text-center">
-                            <app-list-sort column="id" :config="config.order" @order="methods.order">
+                            <app-list-sort column="id" :config="config" :methods="methods">
                                 {{ Liro.messages.get('liro-users::form.user.id') }}
                             </app-list-sort>
                         </div>
@@ -82,7 +82,7 @@
 
                 <div class="th-table-footer">
                     <div class="th-table-tr uk-flex uk-flex-middle">
-                        <app-list-pagination :config="config.paginate" @paginate="methods.paginate"></app-list-pagination>
+                        <app-list-pagination :config="config" :methods="methods"></app-list-pagination>
                     </div>
                 </div>
                 
@@ -99,18 +99,23 @@
 import IndexItem from './index/item';
 
 export default {
-
-    data: function () {
-        return {
-            states: this.Liro.data.get('states'),
-            roles: this.Liro.data.get('roles'),
-            users: this.Liro.data.get('users')
-        };
+    
+    mounted: function () {
+        Liro.events.emit('users@sync')
+        Liro.events.emit('roles@sync')
     }
-
 }
 
 if (window.Liro) {
+
+    Liro.vue.sync('users', {
+        url: Liro.routes.get('liro-users.api.user.index')
+    });
+
+    Liro.vue.sync('roles', {
+        url: Liro.routes.get('liro-users.api.role.index')
+    });
+
     Liro.vue.component('liro-user-index', this.default);
 }
 

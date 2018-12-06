@@ -2,13 +2,13 @@
 namespace Liro\System\Users\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Liro\System\Database\Castable;
+use Liro\System\Database\CastableTrait;
 use Liro\System\Users\Models\User;
 use Liro\System\Users\Models\UserRoleRoute;
 
 class UserRole extends Model
 {
-    use Castable;
+    use CastableTrait;
 
     protected $table = 'user_roles';
 

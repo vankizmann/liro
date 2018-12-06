@@ -3,11 +3,11 @@
 namespace Liro\System\Modules\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Liro\System\Database\Castable;
+use Liro\System\Database\CastableTrait;
 
 class Module extends Model
 {
-    use Castable;
+    use CastableTrait;
 
     protected $table = 'modules';
 

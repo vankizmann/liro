@@ -6,7 +6,7 @@ export default function (Vue, options) {
             window.Axios.get(options.url).then(res => window.App[name] = res.data);
         }
 
-        window.Liro.events.watch('sync.' + name, fetchList);
+        window.Liro.events.watch(name + '@sync', fetchList);
     }
 
     Vue.sync = syncFunction;

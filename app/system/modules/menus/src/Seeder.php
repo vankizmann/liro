@@ -60,7 +60,7 @@ class Seeder
             'route'         => '/',
             'module'        => 'liro-test.test.test',
             'default'       => 1,
-            'icon'          => '/app/modules/test/resources/dist/images/icon-dashboard.svg',
+            'icon'          => 'tachometer',
             'menu_type_id'  => $menu_type_backend->id
         ]);
 
@@ -72,7 +72,7 @@ class Seeder
             'route'         => 'users',
             'module'        => 'liro-menus.redirect.menu',
             'default'       => 0,
-            'icon'          => '/app/modules/users/resources/dist/images/icon-users.svg',
+            'icon'          => 'users',
             'menu_type_id'  => $menu_type_backend->id
         ]);
 
@@ -160,6 +160,7 @@ class Seeder
             'route'         => 'menus',
             'module'        => 'liro-menus.redirect.menu',
             'default'       => 0,
+            'icon'          => 'list',
             'menu_type_id'  => $menu_type_backend->id
         ]);
 
@@ -247,7 +248,7 @@ class Seeder
             'route'         => 'pages',
             'module'        => 'liro-pages.page.index',
             'default'       => 0,
-            'icon'          => '/app/modules/pages/resources/dist/images/icon-pages.svg',
+            'icon'          => 'file',
             'menu_type_id'  => $menu_type_backend->id
         ]);
 
@@ -259,6 +260,19 @@ class Seeder
             'route'         => 'media',
             'module'        => 'liro-media.media.index',
             'default'       => 0,
+            'icon'          => 'camera',
+            'menu_type_id'  => $menu_type_backend->id
+        ]);
+
+        $menu_backend_system = Menu::create([
+            'state'         => 1,
+            'hide'          => 0,
+            'lock'          => 0,
+            'title'         => 'System',
+            'route'         => 'system',
+            'module'        => 'liro-modules.system.index',
+            'default'       => 0,
+            'icon'          => 'cog',
             'menu_type_id'  => $menu_type_backend->id
         ]);
 
@@ -270,8 +284,9 @@ class Seeder
             'route'         => 'languages',
             'module'        => 'liro-languages.language.index',
             'default'       => 0,
+            'icon'          => 'globe',
             'menu_type_id'  => $menu_type_backend->id
-        ]);
+        ], $menu_backend_system);
 
         $menu_backend_language_create = Menu::create([
             'state'         => 1,
@@ -281,9 +296,8 @@ class Seeder
             'route'         => 'create',
             'module'        => 'liro-languages.language.create',
             'default'       => 0,
-            'menu_type_id'  => $menu_type_backend->id,
-            'parent_id'     => $menu_backend_languages->id
-        ]);
+            'menu_type_id'  => $menu_type_backend->id
+        ], $menu_backend_languages);
 
         $menu_backend_language_edit = Menu::create([
             'state'         => 1,
@@ -293,20 +307,8 @@ class Seeder
             'route'         => 'edit',
             'module'        => 'liro-languages.language.edit',
             'default'       => 0,
-            'menu_type_id'  => $menu_type_backend->id,
-            'parent_id'     => $menu_backend_languages->id
-        ]);
-
-        $menu_backend_modules = Menu::create([
-            'state'         => 1,
-            'hide'          => 0,
-            'lock'          => 0,
-            'title'         => 'System',
-            'route'         => 'system',
-            'module'        => 'liro-modules.system.index',
-            'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id
-        ]);
+        ], $menu_backend_languages);
 
         $menu_backend_login = Menu::create([
             'state'         => 1,

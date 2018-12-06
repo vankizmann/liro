@@ -12,6 +12,10 @@
             </div>
         </div>
 
+        <div class="th-spinner uk-position-cover">
+            <div class="uk-position-center" uk-spinner="icon: spinner-third; ratio: 0.125;"></div>
+        </div>
+
         <script>
             Vue.ready(function () {
                 if ( window.parent.setHeight != undefined ) {

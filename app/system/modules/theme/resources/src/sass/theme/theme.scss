@@ -11,6 +11,10 @@
     outline: none;
 }
 
+body {
+    min-height: 100vh;
+}
+
 div, iframe {
     box-sizing: border-box;
 }

@@ -59,7 +59,7 @@ export default {
     methods: {
 
         authUser: function () {
-            var url = Liro.routes.get('liro-users.auth.login');
+            var url = Liro.routes.get('liro-users.api.auth.login');
             Axios.post(url, this.user).then(this.authUserResponse, this.authUserError);
         },
 

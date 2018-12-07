@@ -112,7 +112,7 @@ class MenuController extends \Liro\System\Http\Controller
     public function store(MenuStoreRequest $request, Menu $menu)
     {
         $menu = $menu->create(
-            $request->only(['state', 'hide', 'title', 'route', 'module', 'query', 'menu_type_id'])
+            $request->all()
         );
 
         return response()->json([
@@ -165,7 +165,7 @@ class MenuController extends \Liro\System\Http\Controller
     public function update(MenuUpdateRequest $request, Menu $menu)
     {
         $menu->update(
-            $request->only(['state', 'hide', 'title', 'route', 'module', 'query', 'menu_type_id'])
+            $request->all()
         );
 
         return response()->json([

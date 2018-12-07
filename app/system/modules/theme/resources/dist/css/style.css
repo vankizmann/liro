@@ -12576,6 +12576,10 @@ body.is-busy .th-spinner {
   outline: none;
 }
 
+body {
+  min-height: 100vh;
+}
+
 div, iframe {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

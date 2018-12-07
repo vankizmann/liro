@@ -235,7 +235,7 @@ class MenuManager
         if ( $matches->count() != 0 ) {
 
             // Set active menu
-            $this->app->setMenu($menu);
+            $this->app->setMenu($menu)->setMenuType($menu->menu_type);
 
             // Define page title
             $this->app->setTitle($menu->title);

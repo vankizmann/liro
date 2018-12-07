@@ -44,7 +44,7 @@
                 <span class="uk-margin-small-left">{{ index }}</span>
             </legend>
 
-            <div class="uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l" uk-grid>
+            <div class="uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-4@l" uk-grid>
                 <label v-for="(name, index) in routes" :key="index" class="uk-checkbox-label">
                     <input class="uk-checkbox" type="checkbox" v-model="role.route_names" :value="index">
                     <span>{{ name }}</span>
@@ -61,22 +61,27 @@
 
 export default {
 
-    data() {
-        return {
-            modules: this.Liro.data.get('modules'),
-            role: this.Liro.data.get('role')
-        };
+    computed: {
+
+        modules: function () {
+            return this.$root.modules;
+        },
+
+        role: function () {
+            return this.$root.role;
+        }
+
     },
 
     methods: {
 
         updateRole: function () {
 
-            var url = Liro.routes.get('liro-users.role.edit', {
+            var url = Liro.routes.get('liro-users.api.role.update', {
                 role: this.role.id
             });
 
-            Axios.post(url, this.role).then(this.updateRoleResponse);
+            Axios.put(url, this.role).then(this.updateRoleResponse);
         },
 
         updateRoleResponse: function (res) {

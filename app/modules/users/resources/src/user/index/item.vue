@@ -47,7 +47,7 @@ export default {
 
         updateUser: function () {
 
-            var url = Liro.routes.get('liro-users.user.edit', {
+            var url = Liro.routes.get('liro-users.api.user.update', {
                 user: this.value.id
             });
 
@@ -55,15 +55,12 @@ export default {
                 state: this.value.state ? 0 : 1
             });
 
-            Axios.post(url, user).then(this.updateUserResponse);
+            Axios.put(url, user).then(this.updateUserResponse);
         },
 
         updateUserResponse: function (res) {
-
             var message = Liro.messages.get('liro-users::message.user.saved');
             UIkit.notification(message, 'success');
-
-            this.$emit('input', res.data.user);
         }
 
     }

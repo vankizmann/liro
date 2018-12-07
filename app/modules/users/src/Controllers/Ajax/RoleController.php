@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\Users\Controllers;
+namespace Liro\Users\Controllers\Ajax;
 
 use Illuminate\Http\Request;
 use Liro\System\Users\Models\UserRole;
@@ -12,9 +12,7 @@ class RoleApiController extends \Liro\System\Http\Controller
 
     public function index(UserRole $role)
     {
-        $response = $role->all();
-
-        return response()->json($response, 200);
+        return response()->json($role->all(), 200);
     }
 
     public function show(UserRole $role)

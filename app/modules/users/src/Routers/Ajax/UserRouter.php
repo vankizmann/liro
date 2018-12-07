@@ -1,8 +1,8 @@
 <?php
 
-namespace Liro\Users\Routers;
+namespace Liro\Users\Routers\Ajax;
 
-class UserApiRouter
+class UserRouter
 {
 
     public function index($router)

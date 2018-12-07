@@ -1,6 +1,6 @@
 <template>
 
-<app-list class="liro-user-index" v-model="$root.users" database="users.user.index">
+<app-list class="liro-user-index" v-model="users" database="users.user.index">
     <div slot-scope="{ items, config, methods }">
 
         <portal to="app-toolbar">
@@ -44,12 +44,12 @@
                             </app-list-sort>
                         </div>
                         <div class="uk-width-1-3">
-                            <app-list-filter column="role_ids" :filters="$root.roles" filters-value="id" filters-label="title" :config="config" :methods="methods">
+                            <app-list-filter column="role_ids" :filters="roles" filters-value="id" filters-label="title" :config="config" :methods="methods">
                                 {{ Liro.messages.get('liro-users::form.user.role') }}
                             </app-list-filter>
                         </div>
                         <div class="th-table-td-m uk-text-center">
-                            <app-list-filter column="state" :filters="$root.states" :config="config" :methods="methods">
+                            <app-list-filter column="state" :filters="states" :config="config" :methods="methods">
                                 {{ Liro.messages.get('liro-users::form.user.state') }}
                             </app-list-filter>
                         </div>
@@ -99,23 +99,26 @@
 import IndexItem from './index/item';
 
 export default {
-    
-    mounted: function () {
-        Liro.events.emit('roles@sync');
-        Liro.events.emit('users@sync');
+
+    computed: {
+
+        states: function () {
+            return this.$root.states;
+        },
+
+        roles: function () {
+            return this.$root.roles;
+        },
+
+        users: function () {
+            return this.$root.users;
+        }
+
     }
+
 }
 
 if (window.Liro) {
-
-    Liro.vue.sync('users', {
-        url: Liro.routes.get('liro-users.api.user.index'), default: []
-    });
-
-    Liro.vue.sync('roles', {
-        url: Liro.routes.get('liro-users.api.role.index'), default: []
-    });
-
     Liro.vue.component('liro-user-index', this.default);
 }
 

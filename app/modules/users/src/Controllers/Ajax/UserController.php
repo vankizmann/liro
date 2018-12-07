@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\Users\Controllers;
+namespace Liro\Users\Controllers\Ajax;
 
 use Illuminate\Http\Request;
 use Liro\System\Users\Models\User;
@@ -12,9 +12,7 @@ class UserApiController extends \Liro\System\Http\Controller
 
     public function index(User $user)
     {
-        $response = $user->all();
-
-        return response()->json($response, 200);
+        return response()->json($user->all(), 200);
     }
 
     public function show(User $user)

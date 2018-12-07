@@ -92,12 +92,12 @@ class Menu extends Model
 
     public function getRouteCurrentAttribute()
     {
-        return app()->getMenuId() == $this->attributes['id'];
+        return app()->getMenuKey('id') == $this->attributes['id'];
     }
 
     public function getRouteActiveAttribute()
     {
-        return app()->getMenuId() == $this->attributes['id'] || $this->children->pluck('route_current')->contains(true) || $this->children->pluck('route_active')->contains(true);
+        return app()->getMenuKey('id') == $this->attributes['id'] || $this->children->pluck('route_current')->contains(true) || $this->children->pluck('route_active')->contains(true);
     }
 
 }

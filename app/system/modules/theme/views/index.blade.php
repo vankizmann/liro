@@ -1,6 +1,8 @@
 <html lang="{{ app()->getLocale() }}">
     <head>
         @php
+            $defaultUrl = app()->getMenuTypeKey('default.route_prefix');
+
             app('assets')->data('states', [
                 ['value' => 1, 'label' => trans('theme::form.state.enabled')],
                 ['value' => 0, 'label' => trans('theme::form.state.disabled')]
@@ -41,7 +43,9 @@
 
                             <div class="uk-navbar-left">
                                 <div class="uk-navbar-item uk-logo uk-margin-large-right">
-                                    <img src="{{ app('assets')->file('theme::dist/images/liro.svg') }}" width="80" height="20" uk-svg>
+                                    <a class="uk-display-inline-block" href="{{ url($defaultUrl ?: '/') }}">
+                                        <img src="{{ app('assets')->file('theme::dist/images/liro.svg') }}" width="80" height="20" uk-svg>
+                                    </a>
                                 </div>
                             </div>
 

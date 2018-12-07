@@ -158,6 +158,20 @@ class AssetManager
     }
 
     /**
+     * Add data array to registrar
+     *
+     * @param string $key
+     * @param void $value
+     * @return void
+     */
+    public function dataArray($values)
+    {
+        foreach ($values as $key => $value) {
+            $this->data($key, $value);
+        }
+    }
+
+    /**
      * Get file path with replaced namespace
      *
      * @param string $path

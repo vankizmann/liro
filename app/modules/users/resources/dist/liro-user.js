@@ -345,22 +345,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    mounted: function mounted() {
-        Liro.events.emit('roles@sync');
-        Liro.events.emit('users@sync');
+    computed: {
+
+        states: function states() {
+            return this.$root.states;
+        },
+
+        roles: function roles() {
+            return this.$root.roles;
+        },
+
+        users: function users() {
+            return this.$root.users;
+        }
+
     }
+
 });
 
 if (window.Liro) {
-
-    Liro.vue.sync('users', {
-        url: Liro.routes.get('liro-users.api.user.index'), default: []
-    });
-
-    Liro.vue.sync('roles', {
-        url: Liro.routes.get('liro-users.api.role.index'), default: []
-    });
-
     Liro.vue.component('liro-user-index', this.default);
 }
 
@@ -466,7 +469,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         updateUser: function updateUser() {
 
-            var url = Liro.routes.get('liro-users.user.edit', {
+            var url = Liro.routes.get('liro-users.api.user.update', {
                 user: this.value.id
             });
 
@@ -474,15 +477,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 state: this.value.state ? 0 : 1
             });
 
-            Axios.post(url, user).then(this.updateUserResponse);
+            Axios.put(url, user).then(this.updateUserResponse);
         },
 
         updateUserResponse: function updateUserResponse(res) {
-
             var message = Liro.messages.get('liro-users::message.user.saved');
             UIkit.notification(message, 'success');
-
-            this.$emit('input', res.data.user);
         }
 
     }
@@ -733,7 +733,7 @@ var render = function() {
                               {
                                 attrs: {
                                   column: "role_ids",
-                                  filters: _vm.$root.roles,
+                                  filters: _vm.roles,
                                   "filters-value": "id",
                                   "filters-label": "title",
                                   config: config,
@@ -765,7 +765,7 @@ var render = function() {
                               {
                                 attrs: {
                                   column: "state",
-                                  filters: _vm.$root.states,
+                                  filters: _vm.states,
                                   config: config,
                                   methods: methods
                                 }
@@ -890,11 +890,11 @@ var render = function() {
       }
     ]),
     model: {
-      value: _vm.$root.users,
+      value: _vm.users,
       callback: function($$v) {
-        _vm.$set(_vm.$root, "users", $$v)
+        _vm.users = $$v
       },
-      expression: "$root.users"
+      expression: "users"
     }
   })
 }
@@ -1039,26 +1039,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            states: this.Liro.data.get('states'),
-            roles: this.Liro.data.get('roles'),
-            user: this.Liro.data.get('user')
-        };
-    },
 
+    computed: {
+
+        states: function states() {
+            return this.$root.states;
+        },
+
+        roles: function roles() {
+            return this.$root.roles;
+        },
+
+        user: function user() {
+            return this.$root.user;
+        }
+
+    },
 
     methods: {
 
         storeUser: function storeUser() {
-            var url = Liro.routes.get('liro-users.user.create');
+            var url = Liro.routes.get('liro-users.api.user.store');
             Axios.post(url, this.user).then(this.storeUserResponse);
         },
 
         storeUserResponse: function storeUserResponse(res) {
 
             var values = {
-                user: res.data.user.id
+                user: res.data.id
             };
 
             var query = {
@@ -1426,24 +1434,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            states: this.Liro.data.get('states'),
-            roles: this.Liro.data.get('roles'),
-            user: this.Liro.data.get('user')
-        };
-    },
 
+    computed: {
+
+        states: function states() {
+            return this.$root.states;
+        },
+
+        roles: function roles() {
+            return this.$root.roles;
+        },
+
+        user: function user() {
+            return this.$root.user;
+        }
+
+    },
 
     methods: {
 
         updateUser: function updateUser() {
 
-            var url = Liro.routes.get('liro-users.user.edit', {
+            var url = Liro.routes.get('liro-users.api.user.update', {
                 user: this.user.id
             });
 
-            Axios.post(url, this.user).then(this.updateUserResponse);
+            Axios.put(url, this.user).then(this.updateUserResponse);
         },
 
         updateUserResponse: function updateUserResponse(res) {

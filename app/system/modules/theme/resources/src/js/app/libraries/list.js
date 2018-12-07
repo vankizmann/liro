@@ -82,7 +82,7 @@ class List {
 
     getSearchData () {
         return this.config.search || this.getSessionData(this.config, {
-            'search.query': '', 'search.column': []
+            'search.query': '', 'search.columns': []
         });
     }
 

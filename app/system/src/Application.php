@@ -2,6 +2,8 @@
 
 namespace Liro\System;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Application as FoundationApplication;
 
 class Application extends FoundationApplication
@@ -9,6 +11,8 @@ class Application extends FoundationApplication
     protected $namespace = 'Liro\\System\\';
 
     protected $menu = null;
+
+    protected $menu_type = null;
 
     protected $title = null;
 
@@ -34,32 +38,51 @@ class Application extends FoundationApplication
 
     public function setMenu($menu)
     {
-        $this->menu = $menu;
+        Session::put('menu', $this->menu = $menu);
+
+        return $this;
     }
 
-    public function getMenu($default = null)
+    public function getMenu($session = false, $default = null)
     {
-        return $this->menu ?: $default;
+        if ( $session == true ) {
+            $default = Session::get('menu', $default);
+        }
+
+        return isset($this->menu) ? $this->menu : $default;
     }
 
-    public function getMenuId($default = null)
+    public function getMenuKey($key, $default = null)
     {
-        return $this->menu ? $this->menu->id : $default;
+        return Arr::get($this->getMenu(), $key, $default);
     }
 
-    public function getMenuType($default = null)
+    public function setMenuType($menu_type)
     {
-        return $this->menu ? $this->menu->menu_type: $default;
+        Session::put('menu_type', $this->menu_type = $menu_type);
+
+        return $this;
     }
 
-    public function getMenuChildren($default = null)
+    public function getMenuType($session = true, $default = null)
     {
-        return $this->menu ? $this->menu->children: $default;
+        if ( $session == true ) {
+            $default = Session::get('menu_type', $default);
+        }
+
+        return isset($this->menu_type) ? $this->menu_type : $default;
+    }
+
+    public function getMenuTypeKey($key, $default = null)
+    {
+        return Arr::get($this->getMenuType(), $key, $default);
     }
 
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
     }
 
     public function getTitle($default = '')

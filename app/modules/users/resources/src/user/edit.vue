@@ -76,23 +76,31 @@
 
 export default {
 
-    data() {
-        return {
-            states: this.Liro.data.get('states'),
-            roles: this.Liro.data.get('roles'),
-            user: this.Liro.data.get('user')
-        };
+    computed: {
+
+        states: function () {
+            return this.$root.states;
+        },
+
+        roles: function () {
+            return this.$root.roles;
+        },
+
+        user: function () {
+            return this.$root.user;
+        }
+
     },
 
     methods: {
 
         updateUser: function () {
 
-            var url = Liro.routes.get('liro-users.user.edit', {
+            var url = Liro.routes.get('liro-users.api.user.update', {
                 user: this.user.id
             });
 
-            Axios.post(url, this.user).then(this.updateUserResponse);
+            Axios.put(url, this.user).then(this.updateUserResponse);
         },
 
         updateUserResponse: function (res) {

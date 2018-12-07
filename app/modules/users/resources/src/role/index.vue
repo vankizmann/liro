@@ -91,10 +91,12 @@ import IndexItem from './index/item';
 
 export default {
 
-    data: function () {
-        return {
-            roles: this.Liro.data.get('roles')
-        };
+    computed: {
+
+        roles: function () {
+            return this.$root.roles;
+        }
+
     }
 
 }

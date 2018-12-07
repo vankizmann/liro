@@ -20,6 +20,7 @@ class Seeder
         ]);
 
         $routes = [
+            'liro-users.api.auth.login',
             'liro-users.auth.login',
             'liro-menus.redirect.menu',
             'liro-menus.redirect.route',
@@ -40,9 +41,10 @@ class Seeder
         ]);
 
         $routes = [
+            'liro-users.api.auth.login',
+            'liro-users.api.auth.token',
             'liro-users.auth.login',
             'liro-users.auth.logout',
-            'liro-users.auth.token',
             'liro-test.test.test',
             'liro-languages.language.api.index',
             'liro-languages.language.api.show',

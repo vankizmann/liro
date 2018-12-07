@@ -349,10 +349,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    data: function data() {
-        return {
-            roles: this.Liro.data.get('roles')
-        };
+    computed: {
+
+        roles: function roles() {
+            return this.$root.roles;
+        }
+
     }
 
 });
@@ -884,18 +886,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            modules: this.Liro.data.get('modules'),
-            role: this.Liro.data.get('role')
-        };
-    },
 
+    computed: {
+
+        modules: function modules() {
+            return this.$root.modules;
+        },
+
+        role: function role() {
+            return this.$root.role;
+        }
+
+    },
 
     methods: {
 
         storeRole: function storeRole() {
-            var url = Liro.routes.get('liro-users.role.create');
+            var url = Liro.routes.get('liro-users.api.role.store');
             Axios.post(url, this.role).then(this.storeRoleResponse);
         },
 
@@ -1050,7 +1057,7 @@ var render = function() {
                   "div",
                   {
                     staticClass:
-                      "uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l",
+                      "uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-4@l",
                     attrs: { "uk-grid": "" }
                   },
                   _vm._l(routes, function(name, index) {
@@ -1245,23 +1252,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            modules: this.Liro.data.get('modules'),
-            role: this.Liro.data.get('role')
-        };
-    },
 
+    computed: {
+
+        modules: function modules() {
+            return this.$root.modules;
+        },
+
+        role: function role() {
+            return this.$root.role;
+        }
+
+    },
 
     methods: {
 
         updateRole: function updateRole() {
 
-            var url = Liro.routes.get('liro-users.role.edit', {
+            var url = Liro.routes.get('liro-users.api.role.update', {
                 role: this.role.id
             });
 
-            Axios.post(url, this.role).then(this.updateRoleResponse);
+            Axios.put(url, this.role).then(this.updateRoleResponse);
         },
 
         updateRoleResponse: function updateRoleResponse(res) {
@@ -1407,7 +1419,7 @@ var render = function() {
                   "div",
                   {
                     staticClass:
-                      "uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l",
+                      "uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-4@l",
                     attrs: { "uk-grid": "" }
                   },
                   _vm._l(routes, function(name, index) {

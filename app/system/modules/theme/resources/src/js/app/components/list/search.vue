@@ -41,7 +41,7 @@ export default {
     methods: {
 
         setQuery: function (query) {
-            this.methods.search(query, this.columns);
+            this.methods.search(this.query = query, this.columns);
         }
 
     }

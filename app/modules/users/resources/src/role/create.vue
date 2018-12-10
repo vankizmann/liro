@@ -76,7 +76,7 @@ export default {
     methods: {
 
         storeRole: function () {
-            var url = Liro.routes.get('liro-users.api.role.store');
+            var url = Liro.routes.get('liro-users.ajax.role.store');
             Axios.post(url, this.role).then(this.storeRoleResponse);
         },
 

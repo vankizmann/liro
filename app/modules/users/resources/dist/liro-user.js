@@ -469,7 +469,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         updateUser: function updateUser() {
 
-            var url = Liro.routes.get('liro-users.api.user.update', {
+            var url = Liro.routes.get('liro-users.ajax.user.update', {
                 user: this.value.id
             });
 
@@ -509,7 +509,7 @@ var render = function() {
         "a",
         {
           attrs: {
-            href: _vm.Liro.routes.get("liro-users.user.edit", {
+            href: _vm.Liro.routes.get("liro-users.admin.user.edit", {
               user: _vm.value.id
             })
           }
@@ -601,7 +601,9 @@ var render = function() {
                     {
                       staticClass: "uk-button uk-button-primary",
                       attrs: {
-                        href: _vm.Liro.routes.get("liro-users.user.create")
+                        href: _vm.Liro.routes.get(
+                          "liro-users.admin.user.create"
+                        )
                       }
                     },
                     [
@@ -1059,7 +1061,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
 
         storeUser: function storeUser() {
-            var url = Liro.routes.get('liro-users.api.user.store');
+            var url = Liro.routes.get('liro-users.ajax.user.store');
             Axios.post(url, this.user).then(this.storeUserResponse);
         },
 
@@ -1102,7 +1104,9 @@ var render = function() {
             "a",
             {
               staticClass: "uk-button uk-button-primary uk-margin-small-left",
-              attrs: { href: _vm.Liro.routes.get("liro-users.user.index") }
+              attrs: {
+                href: _vm.Liro.routes.get("liro-users.admin.user.index")
+              }
             },
             [
               _vm._v(
@@ -1455,7 +1459,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         updateUser: function updateUser() {
 
-            var url = Liro.routes.get('liro-users.api.user.update', {
+            var url = Liro.routes.get('liro-users.ajax.user.update', {
                 user: this.user.id
             });
 
@@ -1493,7 +1497,9 @@ var render = function() {
             "a",
             {
               staticClass: "uk-button uk-button-primary uk-margin-small-left",
-              attrs: { href: _vm.Liro.routes.get("liro-users.user.index") }
+              attrs: {
+                href: _vm.Liro.routes.get("liro-users.admin.user.index")
+              }
             },
             [
               _vm._v(

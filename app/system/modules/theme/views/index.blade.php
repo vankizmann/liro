@@ -55,7 +55,7 @@
                                 ])
                                 <ul class="uk-navbar-nav uk-text-small">
                                     <li>
-                                        <a class="uk-inline" href="{{ route('liro-users.auth.login') }}">
+                                        <a class="uk-inline" href="{{ route('liro-users.admin.auth.login') }}">
                                             <img class="uk-border-circle uk-margin-small-right" src="https://api.adorable.io/avatars/50/{{ app('users')->getId() }}" width="25" height="25" alt="">
                                             <span>{{ app('users')->getName() }}</span>
                                         </a>
@@ -64,7 +64,7 @@
                                         <span class="uk-navbar-divider"></span>
                                     </li>
                                     <li>
-                                        <a href="{{ route('liro-users.auth.logout') }}">{{ trans('liro-users::form.auth.logout') }}</a>
+                                        <a href="{{ route('liro-users.admin.auth.logout') }}">{{ trans('liro-users::form.auth.logout') }}</a>
                                     </li>
                                 </ul>
                             </div>

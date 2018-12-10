@@ -36,7 +36,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'Home',
             'route'         => '/',
-            'module'        => 'liro-test.test.test',
+            'module'        => 'liro-test.user.test.test',
             'default'       => 1,
             'menu_type_id'  => $menu_type_frontend->id
         ]);
@@ -47,7 +47,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'Test',
             'route'         => 'test',
-            'module'        => 'liro-test.test.test',
+            'module'        => 'liro-test.user.test.test',
             'default'       => 0,
             'menu_type_id'  => $menu_type_frontend->id
         ]);
@@ -58,7 +58,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'Dashboard',
             'route'         => '/',
-            'module'        => 'liro-test.test.test',
+            'module'        => 'liro-test.user.test.test',
             'default'       => 1,
             'icon'          => 'tachometer',
             'menu_type_id'  => $menu_type_backend->id
@@ -70,7 +70,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-users::module.user.index',
             'route'         => 'users',
-            'module'        => 'liro-menus.redirect.menu',
+            'module'        => 'liro-menus.user.redirect.menu',
             'default'       => 0,
             'icon'          => 'users',
             'menu_type_id'  => $menu_type_backend->id
@@ -82,7 +82,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-users::module.user.index',
             'route'         => 'users',
-            'module'        => 'liro-users.user.index',
+            'module'        => 'liro-users.admin.user.index',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_users_alias->id
@@ -98,7 +98,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-users::module.user.create',
             'route'         => 'create',
-            'module'        => 'liro-users.user.create',
+            'module'        => 'liro-users.admin.user.create',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_users->id
@@ -110,7 +110,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-users::module.user.edit',
             'route'         => 'edit',
-            'module'        => 'liro-users.user.edit',
+            'module'        => 'liro-users.admin.user.edit',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_users->id
@@ -122,7 +122,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-users::module.role.index',
             'route'         => 'roles',
-            'module'        => 'liro-users.role.index',
+            'module'        => 'liro-users.admin.role.index',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_users_alias->id
@@ -134,7 +134,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-users::module.role.create',
             'route'         => 'create',
-            'module'        => 'liro-users.role.create',
+            'module'        => 'liro-users.admin.role.create',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_roles->id
@@ -146,7 +146,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-users::module.role.edit',
             'route'         => 'edit',
-            'module'        => 'liro-users.role.edit',
+            'module'        => 'liro-users.admin.role.edit',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_roles->id
@@ -158,7 +158,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-menus::module.menu.index',
             'route'         => 'menus',
-            'module'        => 'liro-menus.redirect.menu',
+            'module'        => 'liro-menus.user.redirect.menu',
             'default'       => 0,
             'icon'          => 'list',
             'menu_type_id'  => $menu_type_backend->id
@@ -170,7 +170,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-menus::module.menu.index',
             'route'         => 'menus',
-            'module'        => 'liro-menus.menu.index',
+            'module'        => 'liro-menus.admin.menu.index',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_menus_alias->id
@@ -186,7 +186,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-menus::module.menu.create',
             'route'         => 'create',
-            'module'        => 'liro-menus.menu.create',
+            'module'        => 'liro-menus.admin.menu.create',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_menus->id
@@ -198,7 +198,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-menus::module.menu.edit',
             'route'         => 'edit',
-            'module'        => 'liro-menus.menu.edit',
+            'module'        => 'liro-menus.admin.menu.edit',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_menus->id
@@ -210,7 +210,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-menus::module.type.index',
             'route'         => 'types',
-            'module'        => 'liro-menus.type.index',
+            'module'        => 'liro-menus.admin.type.index',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_menus_alias->id
@@ -222,7 +222,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-menus::module.type.create',
             'route'         => 'create',
-            'module'        => 'liro-menus.type.create',
+            'module'        => 'liro-menus.admin.type.create',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_types->id
@@ -234,7 +234,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-menus::module.type.edit',
             'route'         => 'edit',
-            'module'        => 'liro-menus.type.edit',
+            'module'        => 'liro-menus.admin.type.edit',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_types->id
@@ -246,7 +246,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-pages::page.page_index',
             'route'         => 'pages',
-            'module'        => 'liro-pages.page.index',
+            'module'        => 'liro-pages.admin.page.index',
             'default'       => 0,
             'icon'          => 'file',
             'menu_type_id'  => $menu_type_backend->id
@@ -258,7 +258,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'Media',
             'route'         => 'media',
-            'module'        => 'liro-media.media.index',
+            'module'        => 'liro-media.admin.media.index',
             'default'       => 0,
             'icon'          => 'camera',
             'menu_type_id'  => $menu_type_backend->id
@@ -270,7 +270,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'System',
             'route'         => 'system',
-            'module'        => 'liro-modules.system.index',
+            'module'        => 'liro-modules.admin.system.index',
             'default'       => 0,
             'icon'          => 'cog',
             'menu_type_id'  => $menu_type_backend->id
@@ -282,7 +282,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-languages::module.language.index',
             'route'         => 'languages',
-            'module'        => 'liro-languages.language.index',
+            'module'        => 'liro-languages.admin.language.index',
             'default'       => 0,
             'icon'          => 'globe',
             'menu_type_id'  => $menu_type_backend->id
@@ -294,7 +294,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-languages::module.language.create',
             'route'         => 'create',
-            'module'        => 'liro-languages.language.create',
+            'module'        => 'liro-languages.admin.language.create',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id
         ], $menu_backend_languages);
@@ -305,7 +305,7 @@ class Seeder
             'lock'          => 0,
             'title'         => 'liro-languages::module.language.edit',
             'route'         => 'edit',
-            'module'        => 'liro-languages.language.edit',
+            'module'        => 'liro-languages.admin.language.edit',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id
         ], $menu_backend_languages);
@@ -316,7 +316,7 @@ class Seeder
             'lock'          => 1,
             'title'         => 'liro-users::module.auth.login',
             'route'         => 'login',
-            'module'        => 'liro-users.auth.login',
+            'module'        => 'liro-users.admin.auth.login',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id
         ]);
@@ -327,7 +327,7 @@ class Seeder
             'lock'          => 1,
             'title'         => 'liro-users::module.auth.logout',
             'route'         => 'logout',
-            'module'        => 'liro-users.auth.logout',
+            'module'        => 'liro-users.admin.auth.logout',
             'default'       => 0,
             'menu_type_id'  => $menu_type_backend->id
         ]);

@@ -475,7 +475,7 @@ var render = function() {
         "a",
         {
           attrs: {
-            href: _vm.Liro.routes.get("liro-users.role.edit", {
+            href: _vm.Liro.routes.get("liro-users.admin.role.edit", {
               role: _vm.value.id
             })
           }
@@ -544,7 +544,9 @@ var render = function() {
                     {
                       staticClass: "uk-button uk-button-primary",
                       attrs: {
-                        href: _vm.Liro.routes.get("liro-users.role.create")
+                        href: _vm.Liro.routes.get(
+                          "liro-users.admin.role.create"
+                        )
                       }
                     },
                     [
@@ -902,7 +904,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
 
         storeRole: function storeRole() {
-            var url = Liro.routes.get('liro-users.api.role.store');
+            var url = Liro.routes.get('liro-users.ajax.role.store');
             Axios.post(url, this.role).then(this.storeRoleResponse);
         },
 
@@ -1249,6 +1251,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1269,7 +1279,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         updateRole: function updateRole() {
 
-            var url = Liro.routes.get('liro-users.api.role.update', {
+            var url = Liro.routes.get('liro-users.ajax.role.update', {
                 role: this.role.id
             });
 
@@ -1401,92 +1411,76 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._l(_vm.modules, function(module, type) {
-        return module.length != 0
-          ? _vm._l(module, function(routes, index) {
-              return _c("div", { key: index, staticClass: "th-form" }, [
-                _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
-                  _c("span", { staticClass: "uk-label uk-label-primary" }, [
+      _vm.modules.length != 0
+        ? _c("div", [
+            _c(
+              "ul",
+              { attrs: { "uk-tab": "" } },
+              _vm._l(_vm.modules, function(module, type) {
+                return _c("li", { key: type }, [
+                  _c("a", { attrs: { href: "javascript:void(0)" } }, [
                     _vm._v(_vm._s(type))
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "uk-margin-small-left" }, [
-                    _vm._v(_vm._s(index))
                   ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-4@l",
-                    attrs: { "uk-grid": "" }
-                  },
-                  _vm._l(routes, function(name, index) {
+                ])
+              })
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "uk-switcher uk-margin" },
+              _vm._l(_vm.modules, function(module, type) {
+                return _c(
+                  "li",
+                  { key: type },
+                  _vm._l(module, function(routes, index) {
                     return _c(
-                      "label",
-                      { key: index, staticClass: "uk-checkbox-label" },
+                      "div",
+                      { key: type + "-" + index, staticClass: "th-form" },
                       [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.role.route_names,
-                              expression: "role.route_names"
-                            }
-                          ],
-                          staticClass: "uk-checkbox",
-                          attrs: { type: "checkbox" },
-                          domProps: {
-                            value: index,
-                            checked: Array.isArray(_vm.role.route_names)
-                              ? _vm._i(_vm.role.route_names, index) > -1
-                              : _vm.role.route_names
-                          },
-                          on: {
-                            change: function($event) {
-                              var $$a = _vm.role.route_names,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = index,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    _vm.$set(
-                                      _vm.role,
-                                      "route_names",
-                                      $$a.concat([$$v])
-                                    )
-                                } else {
-                                  $$i > -1 &&
-                                    _vm.$set(
-                                      _vm.role,
-                                      "route_names",
-                                      $$a
-                                        .slice(0, $$i)
-                                        .concat($$a.slice($$i + 1))
-                                    )
-                                }
-                              } else {
-                                _vm.$set(_vm.role, "route_names", $$c)
-                              }
-                            }
-                          }
-                        }),
+                        _c(
+                          "legend",
+                          { staticClass: "uk-legend uk-legend-small" },
+                          [_c("span", [_vm._v(_vm._s(index))])]
+                        ),
                         _vm._v(" "),
-                        _c("span", [_vm._v(_vm._s(name))])
+                        _c("div", { staticClass: "uk-margin" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l",
+                              attrs: { "uk-grid": "" }
+                            },
+                            [
+                              _vm._l(routes, function(name, index) {
+                                return [
+                                  _c("app-checkbox", {
+                                    key: index,
+                                    attrs: { label: name, value: index },
+                                    model: {
+                                      value: _vm.role.route_names,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.role, "route_names", $$v)
+                                      },
+                                      expression: "role.route_names"
+                                    }
+                                  })
+                                ]
+                              })
+                            ],
+                            2
+                          )
+                        ])
                       ]
                     )
                   })
                 )
-              ])
-            })
-          : _vm._e()
-      })
+              })
+            )
+          ])
+        : _vm._e()
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []

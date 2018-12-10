@@ -22,6 +22,10 @@ Vue.use(VueSync);
 
 require('./directives/confirm');
 
+require('./components/default/input');
+require('./components/default/textarea');
+require('./components/default/checkbox');
+
 require('./components/list');
 
 require('./components/form/input');

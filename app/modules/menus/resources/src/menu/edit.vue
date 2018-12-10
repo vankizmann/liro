@@ -103,11 +103,11 @@ export default {
          */
         updateMenu: function () {
 
-            var url = Liro.routes.get('liro-menus.menu.edit', {
+            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
                 menu: this.menu.id
             });
 
-            Axios.post(url, this.menu).then(this.updateMenuResponse);
+            Axios.put(url, this.menu).then(this.updateMenuResponse);
         },
 
         /**

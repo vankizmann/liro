@@ -367,6 +367,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
+    computed: {
+
+        type: function type() {
+            return this.$root.type;
+        },
+
+        types: function types() {
+            return this.$root.types;
+        }
+
+    },
+
     /**
      * Create new collapsed instance on creation
      */
@@ -380,7 +392,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Redirect to type on select change
          */
         redirectType: function redirectType(type) {
-            Liro.routes.redirect('liro-menus.menu.index', { type: type });
+            Liro.routes.redirect('liro-menus.admin.menu.index', { type: type });
         },
 
         /**
@@ -388,11 +400,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         updateMenuOrder: function updateMenuOrder() {
 
-            var url = Liro.routes.get('liro-menus.menu.index', {
-                type: this.$root.active.id
+            var url = Liro.routes.get('liro-menus.ajax.menu.order', {
+                type: this.type.id
             });
 
-            Axios.post(url, { menus: this.$root.menus }).then(this.updateMenuOrderResponse);
+            Axios.post(url, this.type).then(this.updateMenuOrderResponse);
         },
 
         /**
@@ -620,7 +632,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         updateMenuState: function updateMenuState() {
 
-            var url = Liro.routes.get('liro-menus.menu.edit', {
+            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
                 menu: this.value.id
             });
 
@@ -628,7 +640,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 state: this.value.state ? 0 : 1
             });
 
-            Axios.post(url, menu).then(this.updateMenuResponse);
+            Axios.put(url, menu).then(this.updateMenuResponse);
         },
 
         /**
@@ -636,7 +648,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         updateMenuHide: function updateMenuHide() {
 
-            var url = Liro.routes.get('liro-menus.menu.edit', {
+            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
                 menu: this.value.id
             });
 
@@ -644,7 +656,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 hide: this.value.hide ? 0 : 1
             });
 
-            Axios.post(url, menu).then(this.updateMenuResponse);
+            Axios.put(url, menu).then(this.updateMenuResponse);
         },
 
         /**
@@ -652,7 +664,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         updateMenuDefault: function updateMenuDefault() {
 
-            var url = Liro.routes.get('liro-menus.menu.edit', {
+            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
                 menu: this.value.id
             });
 
@@ -660,7 +672,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 default: this.value.default ? 0 : 1
             });
 
-            Axios.post(url, menu).then(this.updateMenuResponse);
+            Axios.put(url, menu).then(this.updateMenuResponse);
         },
 
         /**
@@ -718,7 +730,7 @@ var render = function() {
         "a",
         {
           attrs: {
-            href: _vm.Liro.routes.get("liro-menus.menu.edit", {
+            href: _vm.Liro.routes.get("liro-menus.admin.menu.edit", {
               menu: _vm.value.id
             })
           }
@@ -847,8 +859,8 @@ var render = function() {
                   _c("app-form-select-single", {
                     staticClass: "uk-margin-remove-bottom",
                     attrs: {
-                      value: _vm.$root.active.id,
-                      options: _vm.$root.types,
+                      value: _vm.type.id,
+                      options: _vm.types,
                       "options-value": "id",
                       "options-label": "title"
                     },
@@ -954,7 +966,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm.$root.menus.length != 0
+          _vm.type.menus.length != 0
             ? _c(
                 "div",
                 { staticClass: "th-table-body" },
@@ -987,11 +999,11 @@ var render = function() {
                       }
                     ]),
                     model: {
-                      value: _vm.$root.menus,
+                      value: _vm.type.menus,
                       callback: function($$v) {
-                        _vm.$set(_vm.$root, "menus", $$v)
+                        _vm.$set(_vm.type, "menus", $$v)
                       },
-                      expression: "$root.menus"
+                      expression: "type.menus"
                     }
                   })
                 ],
@@ -999,7 +1011,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.$root.menus.length == 0
+          _vm.type.menus.length == 0
             ? _c("div", { staticClass: "th-table-body" }, [
                 _c("div", { staticClass: "th-table-tr" }, [
                   _c("div", { staticClass: "uk-text-center" }, [
@@ -1231,7 +1243,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * Submit ajax request to create menu
          */
         storeMenu: function storeMenu() {
-            var url = Liro.routes.get('liro-menus.menu.create');
+            var url = Liro.routes.get('liro-menus.ajax.menu.store');
             Axios.post(url, this.menu).then(this.storeMenuResponse);
         },
 
@@ -1651,11 +1663,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          */
         updateMenu: function updateMenu() {
 
-            var url = Liro.routes.get('liro-menus.menu.edit', {
+            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
                 menu: this.menu.id
             });
 
-            Axios.post(url, this.menu).then(this.updateMenuResponse);
+            Axios.put(url, this.menu).then(this.updateMenuResponse);
         },
 
         /**

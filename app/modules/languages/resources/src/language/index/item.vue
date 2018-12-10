@@ -2,7 +2,7 @@
 
 <div class="th-table-tr uk-flex uk-flex-middle">
     <div class="uk-width-1-2">
-        <a :href="Liro.routes.get('liro-languages.language.edit', { language: value.id })">
+        <a :href="Liro.routes.get('liro-languages.admin.language.edit', { language: value.id })">
             {{ value.title }}
         </a>
     </div>
@@ -42,7 +42,7 @@ export default {
 
         updateLanguageState: function () {
 
-            var url = Liro.routes.get('liro-languages.language.api.update', {
+            var url = Liro.routes.get('liro-languages.ajax.language.update', {
                 language: this.value.id
             });
 
@@ -55,7 +55,7 @@ export default {
 
         updateLanguageDefault: function () {
 
-            var url = Liro.routes.get('liro-languages.language.api.update', {
+            var url = Liro.routes.get('liro-languages.ajax.language.update', {
                 language: this.value.id
             });
 

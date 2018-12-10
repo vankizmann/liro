@@ -1,11 +1,11 @@
 <template>
 
 <div class="app-form-input">
-    <label v-show="label" class="uk-form-label" :for="id">
+    <label v-if="label" class="uk-form-label" :for="id">
         <span v-html="label"></span>
     </label>
     <div class="uk-form-controls">
-        <input class="uk-input" :type="type" :id="id" :name="name" v-model="$value" :disabled="disabled" :placeholder="placeholder">
+        <app-input :type="type" :id="id" :name="name" v-model="ghost" :disabled="disabled" :placeholder="placeholder"></app-input>
     </div>
 </div>
 
@@ -14,11 +14,16 @@
 
 export default {
 
+    model: {
+        prop: 'model',
+        event: 'input'
+    },
+
     computed: {
 
-        $value: {
+        ghost: {
             get: function () {
-                return this.value;
+                return this.model;
             },
             set: function (value) {
                 this.$emit('input', value);
@@ -29,39 +34,44 @@ export default {
 
     props: {
 
-        value: {
-            default: '',
-            type: [String, Number]
-        },
-
-        label: {
-            default: '',
-            type: String
+        model: {
+            required: true
         },
 
         id: {
-            default: () => _.uniqueId('form-input-'),
-            type: String
-        },
-
-        name: {
-            default: '',
-            type: String
-        },
-
-        placeholder: {
-            default: '',
-            type: String
+            default: function () {
+                return _.uniqueId('app-form-');
+            },
         },
 
         type: {
-            default: 'text',
-            type: String
+            default: function () {
+                return null;
+            }
+        },
+
+        label: {
+            default: function () {
+                return null;
+            }
+        },
+
+        name: {
+            default: function () {
+                return null;
+            }
+        },
+
+        placeholder: {
+            default: function () {
+                return null;
+            }
         },
 
         disabled: {
-            default: false,
-            type: Boolean
+            default: function () {
+                return null;
+            }
         }
 
     }

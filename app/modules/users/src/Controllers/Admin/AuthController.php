@@ -27,7 +27,7 @@ class AuthController extends \Liro\System\Http\Controller
     public function logout()
     {
         app('users')->logoutUser();
-        return redirect()->route('liro-users.auth.login');
+        return redirect()->route('liro-users.admin.auth.login');
     }
 
 }

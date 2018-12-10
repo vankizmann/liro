@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\Languages\Controllers;
+namespace Liro\Languages\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;

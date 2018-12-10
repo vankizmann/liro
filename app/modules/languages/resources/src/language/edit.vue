@@ -4,7 +4,7 @@
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
-            <a class="uk-button uk-button-primary uk-margin-small-left" :href="Liro.routes.get('liro-languages.language.index')">
+            <a class="uk-button uk-button-primary uk-margin-small-left" :href="Liro.routes.get('liro-languages.admin.language.index')">
                 {{ Liro.messages.get('theme::form.toolbar.close') }}
             </a>
             <a class="uk-button uk-button-success uk-margin-small-left" href="javascript:void(0)" @click="updateLanguage" v-shortkey="['meta', 's']" @shortkey="updateLanguage">
@@ -22,11 +22,11 @@
             </legend>
 
             <app-form-switch 
-                class="is-state uk-width-1-1" name="state" v-model="$root.language.state" :options="$root.states" :label="Liro.messages.get('liro-languages::form.language.state')"
+                class="is-state uk-width-1-1" name="state" v-model="language.state" :options="states" :label="Liro.messages.get('liro-languages::form.language.state')"
             ></app-form-switch>
 
             <app-form-switch 
-                class="is-default uk-width-1-1" name="default" v-model="$root.language.default" :options="$root.defaults" :label="Liro.messages.get('liro-languages::form.language.default')"
+                class="is-default uk-width-1-1" name="default" v-model="language.default" :options="defaults" :label="Liro.messages.get('liro-languages::form.language.default')"
             ></app-form-switch>
 
         </div>
@@ -42,11 +42,11 @@
             </legend>
 
             <app-form-input 
-                name="title" v-model="$root.language.title" :label="Liro.messages.get('liro-languages::form.language.title')"
+                name="title" v-model="language.title" :label="Liro.messages.get('liro-languages::form.language.title')"
             ></app-form-input>
 
             <app-form-input 
-                name="locale" v-model="$root.language.locale" :label="Liro.messages.get('liro-languages::form.language.locale')"
+                name="locale" v-model="language.locale" :label="Liro.messages.get('liro-languages::form.language.locale')"
             ></app-form-input>
 
         </div>
@@ -59,15 +59,31 @@
 
 export default {
 
+    computed: {
+
+        defaults: function () {
+            return this.$root.defaults;
+        },
+
+        states: function () {
+            return this.$root.states;
+        },
+
+        language: function () {
+            return this.$root.language;
+        }
+
+    },
+
     methods: {
 
         updateLanguage: function () {
 
-            var url = Liro.routes.get('liro-languages.language.api.update', {
-                language: this.$root.language.id
+            var url = Liro.routes.get('liro-languages.ajax.language.update', {
+                language: this.language.id
             });
 
-            Axios.put(url, this.$root.language).then(this.updateLanguageResponse);
+            Axios.put(url, this.language).then(this.updateLanguageResponse);
         },
 
         updateLanguageResponse: function (res) {

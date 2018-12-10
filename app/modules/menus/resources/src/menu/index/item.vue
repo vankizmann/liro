@@ -9,7 +9,7 @@
     </div>
 
     <div class="uk-width-1-2">
-        <a :href="Liro.routes.get('liro-menus.menu.edit', { menu: value.id })">
+        <a :href="Liro.routes.get('liro-menus.admin.menu.edit', { menu: value.id })">
             {{ value.title }}
         </a>
     </div>
@@ -104,7 +104,7 @@ export default {
          */
         updateMenuState: function () {
 
-            var url = Liro.routes.get('liro-menus.menu.edit', {
+            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
                 menu: this.value.id
             });
 
@@ -112,7 +112,7 @@ export default {
                 state: this.value.state ? 0 : 1
             });
 
-            Axios.post(url, menu).then(this.updateMenuResponse);
+            Axios.put(url, menu).then(this.updateMenuResponse);
         },
 
         /**
@@ -120,7 +120,7 @@ export default {
          */
         updateMenuHide: function () {
 
-            var url = Liro.routes.get('liro-menus.menu.edit', {
+            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
                 menu: this.value.id
             });
 
@@ -128,7 +128,7 @@ export default {
                 hide: this.value.hide ? 0 : 1
             });
 
-            Axios.post(url, menu).then(this.updateMenuResponse);
+            Axios.put(url, menu).then(this.updateMenuResponse);
         },
 
         /**
@@ -136,7 +136,7 @@ export default {
          */
         updateMenuDefault: function () {
 
-            var url = Liro.routes.get('liro-menus.menu.edit', {
+            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
                 menu: this.value.id
             });
 
@@ -144,7 +144,7 @@ export default {
                 default: this.value.default ? 0 : 1
             });
 
-            Axios.post(url, menu).then(this.updateMenuResponse);
+            Axios.put(url, menu).then(this.updateMenuResponse);
         },
 
         /**

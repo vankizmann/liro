@@ -1,20 +1,18 @@
 <?php
 
-namespace Liro\Languages\Controllers;
+namespace Liro\Languages\Controllers\Ajax;
 
 use Illuminate\Http\Request;
 use Liro\System\Languages\Models\Language;
 use Liro\Languages\Requests\LanguageStoreRequest;
 use Liro\Languages\Requests\LanguageUpdateRequest;
 
-class LanguageApiController extends \Liro\System\Http\Controller
+class LanguageController extends \Liro\System\Http\Controller
 {
 
     public function index(Language $language)
     {
-        $response = $language->all();
-
-        return response()->json($response, 200);
+        return response()->json($language->all(), 200);
     }
 
     public function show(Language $language)

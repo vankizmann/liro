@@ -24,7 +24,7 @@
 
                     <!-- Type select -->
                     <div class="uk-width-medium uk-margin-auto-left">
-                        <app-form-select-single class="uk-margin-remove-bottom" :value="$root.active.id" :options="$root.types" options-value="id" options-label="title" @input="redirectType"></app-form-select-single>
+                        <app-form-select-single class="uk-margin-remove-bottom" :value="type.id" :options="types" options-value="id" options-label="title" @input="redirectType"></app-form-select-single>
                     </div>
                     <!-- Type select end -->
 
@@ -83,8 +83,8 @@
             <!-- Table filter end -->
 
             <!-- Table body -->
-            <div class="th-table-body" v-if="$root.menus.length != 0">
-                <vue-nestable v-model="$root.menus" :threshold="50" :maxDepth="5">
+            <div class="th-table-body" v-if="type.menus.length != 0">
+                <vue-nestable v-model="type.menus" :threshold="50" :maxDepth="5">
                     <vue-nestable-handle slot-scope="{ item }" :item="item" :data-id="item.id">
                         <liro-menu-index-item v-model="item" :collapsed="collapsed"></liro-menu-index-item>
                     </vue-nestable-handle>
@@ -93,7 +93,7 @@
             <!-- Table body end -->
 
             <!-- Table body -->
-            <div class="th-table-body" v-if="$root.menus.length == 0">
+            <div class="th-table-body" v-if="type.menus.length == 0">
                 <div class="th-table-tr">
                     <div class="uk-text-center">
                         {{ Liro.messages.get('theme::form.list.empty') }}
@@ -128,6 +128,18 @@ import IndexItem from './index/item';
 
 export default {
 
+    computed: {
+
+        type: function () {
+            return this.$root.type;
+        },
+
+        types: function () {
+            return this.$root.types;
+        }
+
+    },
+
     /**
      * Create new collapsed instance on creation
      */
@@ -141,7 +153,7 @@ export default {
          * Redirect to type on select change
          */
         redirectType: function (type) {
-            Liro.routes.redirect('liro-menus.menu.index', { type: type });
+            Liro.routes.redirect('liro-menus.admin.menu.index', { type: type });
         },
 
         /**
@@ -149,11 +161,11 @@ export default {
          */
         updateMenuOrder: function () {
 
-            var url = Liro.routes.get('liro-menus.menu.index', {
-                type: this.$root.active.id
+            var url = Liro.routes.get('liro-menus.ajax.menu.order', {
+                type: this.type.id
             });
 
-            Axios.post(url, { menus: this.$root.menus }).then(this.updateMenuOrderResponse);
+            Axios.post(url, this.type).then(this.updateMenuOrderResponse);
         },
 
         /**

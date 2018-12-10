@@ -2,7 +2,7 @@
 
 <div class="th-table-tr uk-flex uk-flex-middle">
     <div class="uk-width-1-3">
-        <a :href="Liro.routes.get('liro-users.role.edit', { role: value.id })">
+        <a :href="Liro.routes.get('liro-users.admin.role.edit', { role: value.id })">
             {{ value.title }}
         </a>
     </div>

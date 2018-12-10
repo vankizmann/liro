@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\Menus\Controllers;
+namespace Liro\Menus\Controllers\User;
 
 use Liro\System\Menus\Models\Menu;
 
@@ -9,13 +9,7 @@ class RedirectController extends \Liro\System\Http\Controller
 
     public function menu(Menu $menu)
     {
-        $menu = app()->getMenu();
-
-        if ( $menu == null ) {
-            throw new \Exception('Redirect can only be called from menu.');
-        }
-
-        parse_str($menu->query, $params);
+        parse_str(app()->getMenuKey('query', ''), $params);
 
         if ( ! array_key_exists('menu', $params) ) {
             throw new \Exception('Redirect requires a menu parameter.');
@@ -28,13 +22,7 @@ class RedirectController extends \Liro\System\Http\Controller
 
     public function url()
     {
-        $menu = app()->getMenu();
-
-        if ($menu == null) {
-            throw new \Exception('Redirect can only be called from menu.');
-        }
-
-        parse_str($menu->query, $params);
+        parse_str(app()->getMenuKey('query', ''), $params);
 
         if ( ! array_key_exists('url', $params) ) {
             throw new \Exception('Redirect requires a url parameter.');

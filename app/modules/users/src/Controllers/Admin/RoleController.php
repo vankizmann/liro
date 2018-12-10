@@ -26,7 +26,7 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function create(UserRole $role)
     {
-        $modules = app('menus')->getModuleNames();
+        $modules = app('menus')->getModuleNames(['ajax', 'admin', 'user']);
 
         app('assets')->dataArray([
             'modules' => $modules, 'role' => $role
@@ -37,7 +37,7 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function edit(UserRole $role)
     {
-        $modules = app('menus')->getModuleNames();
+        $modules = app('menus')->getModuleNames(['ajax', 'admin', 'user']);
 
         app('assets')->dataArray([
             'modules' => $modules, 'role' => $role

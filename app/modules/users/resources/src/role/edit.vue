@@ -20,40 +20,48 @@
             {{ Liro.messages.get('liro-users::form.legend.info') }}
         </legend>
 
-        <app-form-input 
+        <app-form-input
             name="title" v-model="role.title" :label="Liro.messages.get('liro-users::form.role.title')"
         ></app-form-input>
 
-        <app-form-input 
+        <app-form-input
             name="description" v-model="role.description" :label="Liro.messages.get('liro-users::form.role.description')"
         ></app-form-input>
 
-        <app-form-input 
+        <app-form-input
             name="access" v-model="role.access" :label="Liro.messages.get('liro-users::form.role.access')"
         ></app-form-input>
 
     </div>
     <!-- Form end -->
 
-    <!-- Module start -->
-    <template v-for="(module, type) in modules" v-if="module.length != 0">
-        <div class="th-form" v-for="(routes, index) in module" :key="index">
+    <!-- Form start -->
+    <div v-if="modules.length != 0">
 
-            <legend class="uk-legend uk-legend-small">
-                <span class="uk-label uk-label-primary">{{ type }}</span>
-                <span class="uk-margin-small-left">{{ index }}</span>
-            </legend>
+        <ul uk-tab>
+            <li v-for="(module, type) in modules" :key="type">
+                <a href="javascript:void(0)">{{ type }}</a>
+            </li>
+        </ul>
 
-            <div class="uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-4@l" uk-grid>
-                <label v-for="(name, index) in routes" :key="index" class="uk-checkbox-label">
-                    <input class="uk-checkbox" type="checkbox" v-model="role.route_names" :value="index">
-                    <span>{{ name }}</span>
-                </label>
-            </div>
+        <ul class="uk-switcher uk-margin">
+            <li v-for="(module, type) in modules" :key="type">
+                <div class="th-form" v-for="(routes, index) in module" :key="type + '-' + index">
+                    <legend class="uk-legend uk-legend-small">
+                        <span>{{ index }}</span>
+                    </legend>
+                    <div class="uk-margin">
+                        <div class="uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l" uk-grid>
+                            <template v-for="(name, index) in routes">
+                                <app-checkbox :key="index" :label="name" :value="index" v-model="role.route_names"></app-checkbox>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
 
-        </div>
-    </template>
-    <!-- Module end -->
+    </div>
 
 </div>
 </template>
@@ -77,7 +85,7 @@ export default {
 
         updateRole: function () {
 
-            var url = Liro.routes.get('liro-users.api.role.update', {
+            var url = Liro.routes.get('liro-users.ajax.role.update', {
                 role: this.role.id
             });
 

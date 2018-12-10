@@ -5,7 +5,7 @@
         <slot name="checkbox"></slot>
     </div>
     <div class="uk-width-1-3">
-        <a :href="Liro.routes.get('liro-users.user.edit', { user: value.id })">
+        <a :href="Liro.routes.get('liro-users.admin.user.edit', { user: value.id })">
             {{ value.name }}
         </a>
     </div>
@@ -47,7 +47,7 @@ export default {
 
         updateUser: function () {
 
-            var url = Liro.routes.get('liro-users.api.user.update', {
+            var url = Liro.routes.get('liro-users.ajax.user.update', {
                 user: this.value.id
             });
 

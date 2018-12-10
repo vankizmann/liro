@@ -102,7 +102,7 @@ export default {
          * Submit ajax request to create menu
          */
         storeMenu: function () {
-            var url = Liro.routes.get('liro-menus.menu.create');
+            var url = Liro.routes.get('liro-menus.ajax.menu.store');
             Axios.post(url, this.menu).then(this.storeMenuResponse);
         },
 

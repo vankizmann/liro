@@ -2,8 +2,8 @@
 
 return [
 
-    'admin@liro-test.test.test' => [
-        'liro-test.routes.test.test', 'Liro\Test\Routers\TestRouter@test'
+    'admin@liro-test.user.test.test' => [
+        'liro-test::module.test.test', 'Liro\Test\Routers\TestRouter@test'
     ]
 
 ];

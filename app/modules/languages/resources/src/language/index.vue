@@ -1,11 +1,11 @@
 <template>
 
-<app-list class="liro-language-index" v-model="$root.languages" database="languages.language.index">
+<app-list class="liro-language-index" v-model="languages" database="languages.language.index">
     <div slot-scope="{ items, config, methods }">
 
         <portal to="app-toolbar">
             <div class="uk-navbar-item">
-                <a class="uk-button uk-button-primary" :href="Liro.routes.get('liro-languages.language.create')">
+                <a class="uk-button uk-button-primary" :href="Liro.routes.get('liro-languages.admin.language.create')">
                     {{ Liro.messages.get('liro-languages::module.language.create') }}
                 </a>
             </div>
@@ -42,12 +42,12 @@
                             </app-list-sort>
                         </div>
                         <div class="th-table-td-m uk-text-center">
-                            <app-list-filter column="default" :config="config.filter" :filters="$root.defaults" @filter="methods.filter">
+                            <app-list-filter column="default" :config="config.filter" :filters="defaults" @filter="methods.filter">
                                 {{ Liro.messages.get('liro-languages::form.language.default') }}
                             </app-list-filter>
                         </div>
                         <div class="th-table-td-m uk-text-center">
-                            <app-list-filter column="state" :config="config.filter" :filters="$root.states" @filter="methods.filter">
+                            <app-list-filter column="state" :config="config.filter" :filters="states" @filter="methods.filter">
                                 {{ Liro.messages.get('liro-languages::form.language.state') }}
                             </app-list-filter>
                         </div>
@@ -95,6 +95,22 @@
 import IndexItem from './index/item';
 
 export default {
+
+    computed: {
+
+        defaults: function () {
+            return this.$root.defaults;
+        },
+
+        states: function () {
+            return this.$root.states;
+        },
+
+        languages: function () {
+            return this.$root.languages;
+        }
+
+    }
 
 }
 

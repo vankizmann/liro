@@ -463,7 +463,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         updateTypeState: function updateTypeState() {
 
-            var url = Liro.routes.get('liro-menus.type.edit', {
+            var url = Liro.routes.get('liro-menus.ajax.type.update', {
                 type: this.value.id
             });
 
@@ -471,7 +471,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 state: this.value.state ? 0 : 1
             });
 
-            Axios.post(url, menu).then(this.updateTypeResponse);
+            Axios.put(url, menu).then(this.updateTypeResponse);
         },
 
         updateTypeResponse: function updateTypeResponse(res) {
@@ -504,7 +504,7 @@ var render = function() {
         "a",
         {
           attrs: {
-            href: _vm.Liro.routes.get("liro-menus.type.edit", {
+            href: _vm.Liro.routes.get("liro-menus.admin.type.edit", {
               type: _vm.value.id
             })
           }

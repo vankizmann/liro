@@ -5,7 +5,7 @@
 
         <portal to="app-toolbar">
             <div class="uk-navbar-item">
-                <a class="uk-button uk-button-primary" :href="Liro.routes.get('liro-users.user.create')">
+                <a class="uk-button uk-button-primary" :href="Liro.routes.get('liro-users.admin.user.create')">
                     {{ Liro.messages.get('liro-users::module.user.create') }}
                 </a>
             </div>

@@ -19,13 +19,24 @@ class RouteRegistrar
     public function __construct()
     {
         $this->modules = new Collection([
-            'ajax' => new Collection, 'admin' => new Collection, 'user' => new Collection
+            'hide' => new Collection, 'ajax' => new Collection, 'admin' => new Collection, 'user' => new Collection
         ]);
     }
 
     public function flatMap($route)
     {
         return $route;
+    }
+
+    public function setHideRoute($module, $route, $options)
+    {
+        $collection = $this->modules['hide']->get($module, new Collection);
+
+        $collection->put($route, new Collection([
+            'alias' => $route, 'name' => $options[0], 'uses' => $options[1]
+        ]));
+
+        $this->modules['hide']->put($module, $collection);
     }
 
     public function setAjaxRoute($module, $route, $options)
@@ -72,6 +83,13 @@ class RouteRegistrar
     public function setRoute($module, $route, $options)
     {
         // Replace ajax match
+        $route = preg_replace('/^!(ajax@|admin@|user@)/', '', $route, -1, $hideMatch);
+
+        if ( $hideMatch ) {
+            return $this->setHideRoute($module, $route, $options);
+        }
+
+        // Replace ajax match
         $route = preg_replace('/^ajax@/', '', $route, -1, $ajaxMatch);
 
         if ( $ajaxMatch ) {
@@ -109,7 +127,7 @@ class RouteRegistrar
      */
     public function getRoutes($types = null)
     {
-        return $this->modules->only($types ?: ['ajax', 'admin', 'user'])->flatMap(function ($module) {
+        return $this->modules->only($types ?: ['hide', 'ajax', 'admin', 'user'])->flatMap(function ($module) {
             return $module->flatMap([$this, 'flatMap']);
         });
     }
@@ -135,7 +153,7 @@ class RouteRegistrar
      */
     public function getModuleAliases($types = null)
     {
-        return $this->modules->only($types ?: ['ajax', 'admin', 'user'])->map(function ($module) {
+        return $this->modules->only($types ?: ['hide', 'ajax', 'admin', 'user'])->map(function ($module) {
             return $module->map(function ($route) {
                 return $route->get('alias');
             });
@@ -149,7 +167,7 @@ class RouteRegistrar
      */
     public function getModuleNames($types = null)
     {
-        return $this->modules->only($types ?: ['ajax', 'admin', 'user'])->map(function ($type) {
+        return $this->modules->only($types ?: ['hide', 'ajax', 'admin', 'user'])->map(function ($type) {
             return $type->map(function ($module) {
                 return $module->map(function ($route) {
                     return $route->trans('name');
@@ -165,7 +183,7 @@ class RouteRegistrar
      */
     public function getModuleUses($types = null)
     {
-        return $this->modules->only($types ?: ['ajax', 'admin', 'user'])->map(function ($module) {
+        return $this->modules->only($types ?: ['hide', 'ajax', 'admin', 'user'])->map(function ($module) {
             return $module->map(function ($route) {
                 return $route->get('uses');
             });

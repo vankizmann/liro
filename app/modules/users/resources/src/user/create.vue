@@ -4,7 +4,7 @@
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
-            <a class="uk-button uk-button-primary uk-margin-small-left" :href="Liro.routes.get('liro-users.user.index')">
+            <a class="uk-button uk-button-primary uk-margin-small-left" :href="Liro.routes.get('liro-users.admin.user.index')">
                 {{ Liro.messages.get('theme::form.toolbar.close') }}
             </a>
             <a class="uk-button uk-button-success uk-margin-small-left" href="javascript:void(0)" @click="storeUser" v-shortkey="['meta', 's']" @shortkey="storeUser">
@@ -96,7 +96,7 @@ export default {
     methods: {
 
         storeUser: function () {
-            var url = Liro.routes.get('liro-users.api.user.store');
+            var url = Liro.routes.get('liro-users.ajax.user.store');
             Axios.post(url, this.user).then(this.storeUserResponse);
         },
 

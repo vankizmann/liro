@@ -72,6 +72,7 @@ $color-gray-95:             mix($color-light-20, $color-dark-10, 5%);
 @import '~uikit/src/scss/mixins-theme';
 @import "~uikit/src/scss/uikit-theme";
 
+
 @import "theme/theme";
 @import "app/app";
 @import "uikit/uikit";

@@ -22,9 +22,15 @@ Vue.use(VueSync);
 
 require('./directives/confirm');
 
+require('./filters/filter');
+
+require('./components/default/label');
 require('./components/default/input');
 require('./components/default/textarea');
 require('./components/default/checkbox');
+require('./components/default/select');
+require('./components/default/select-option');
+require('./components/default/select-group');
 
 require('./components/list');
 
@@ -50,6 +56,9 @@ Vue.ready(function () {
     Vue.prototype.Liro = Liro;
     Vue.prototype.Axios = Axios;
     Vue.prototype.UIkit = UIkit;
+
+    Vue.prototype.trans = Liro.messages.get;
+    Vue.prototype.route = Liro.routes.get;
 
     Vue.component('app-container', VueContainer);
     Vue.component('app-draggable', VueDraggable);

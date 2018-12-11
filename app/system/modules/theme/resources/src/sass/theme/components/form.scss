@@ -14,26 +14,26 @@
         margin-bottom: 0;
     }
 
-    .uk-legend {
-        margin: 30px -24px 20px -24px;
-        padding: 20px 24px;
-        background-color: $color-gray-5;
-    }
+    // .uk-legend {
+    //     margin: 30px -24px 20px -24px;
+    //     padding: 20px 24px;
+    //     background-color: $color-gray-5;
+    // }
 
-    .uk-legend:first-child {
-        margin: -20px -24px 20px -24px;
-    }
+    // .uk-legend:first-child {
+    //     margin: -20px -24px 20px -24px;
+    // }
 
-    .uk-legend:last-child {
-        margin: 20px -24px -20px -24px;
-    }
+    // .uk-legend:last-child {
+    //     margin: 20px -24px -20px -24px;
+    // }
 
-    .uk-legend:not(:first-child) {
-        border-top: 1px solid darken($color-gray-5, 3%);
-    }
+    // .uk-legend:not(:first-child) {
+    //     border-top: 1px solid darken($color-gray-5, 3%);
+    // }
 
-    .uk-legend:not(:last-child) {
-        border-bottom: 1px solid darken($color-gray-5, 3%);
-    }
+    // .uk-legend:not(:last-child) {
+    //     border-bottom: 1px solid darken($color-gray-5, 3%);
+    // }
 
 }

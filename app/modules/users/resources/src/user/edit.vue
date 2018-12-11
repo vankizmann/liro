@@ -4,11 +4,11 @@
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
-            <a class="uk-button uk-button-primary uk-margin-small-left" :href="Liro.routes.get('liro-users.admin.user.index')">
-                {{ Liro.messages.get('theme::form.toolbar.close') }}
+            <a class="uk-button uk-button-primary uk-margin-small-left" :href="route('liro-users.admin.user.index')">
+                {{ trans('theme::form.toolbar.close') }}
             </a>
             <a class="uk-button uk-button-success uk-margin-small-left" href="javascript:void(0)" @click="updateUser" v-shortkey="['meta', 's']" @shortkey="updateUser">
-                {{ Liro.messages.get('theme::form.toolbar.save') }}
+                {{ trans('theme::form.toolbar.save') }}
             </a>
         </div>
     </portal>
@@ -18,11 +18,11 @@
         <div class="th-form">
 
             <legend class="uk-legend uk-legend-small">
-                {{ Liro.messages.get('liro-users::form.legend.general') }}
+                {{ trans('liro-users::form.legend.general') }}
             </legend>
 
             <app-form-switch 
-                class="is-state uk-width-1-1" name="state" v-model="user.state" :options="states" :label="Liro.messages.get('liro-users::form.user.state')"
+                class="is-state uk-width-1-1" name="state" v-model="user.state" :options="states" :label="trans('liro-users::form.user.state')"
             ></app-form-switch>
 
         </div>
@@ -35,35 +35,37 @@
         <div class="th-form">
 
             <legend class="uk-legend uk-legend-small">
-                {{ Liro.messages.get('liro-users::form.legend.info') }}
+                {{ trans('liro-users::form.legend.info') }}
             </legend>
 
-            <app-form-input 
-                name="name" v-model="user.name" :label="Liro.messages.get('liro-users::form.user.name')"
-            ></app-form-input>
+            <app-label :label="trans('liro-users::form.user.name')">
+                <app-input v-model="user.name"></app-input>
+            </app-label>
 
-            <app-form-input 
-                name="email" v-model="user.email" :label="Liro.messages.get('liro-users::form.user.email')"
-            ></app-form-input>
+            <app-label :label="trans('liro-users::form.user.email')">
+                <app-input v-model="user.email"></app-input>
+            </app-label>
 
-            <app-form-select-multiple 
-                name="role_ids" v-model="user.role_ids" :options="roles" :multiple="true" options-label="title" options-value="id" :label="Liro.messages.get('liro-users::form.user.role')" :placeholder="Liro.messages.get('liro-users::form.user.select_role')"
-            ></app-form-select-multiple>
+            <app-label :label="trans('liro-users::form.user.role')">
+                <app-select v-model="user.role_ids" :multiple="true" :placeholder="trans('liro-users::form.user.select_role')">
+                    <app-select-option v-for="role in roles" :key="role.id" :value="role.id" :label="role.title"></app-select-option>
+                </app-select>
+            </app-label>
 
         </div>
         <div class="th-form">
 
             <legend class="uk-legend uk-legend-small">
-                {{ Liro.messages.get('liro-users::form.legend.password') }}
+                {{ trans('liro-users::form.legend.password') }}
             </legend>
 
-            <app-form-input 
-                type="password" name="password" v-model="user.password" :label="Liro.messages.get('liro-users::form.user.password')"
-            ></app-form-input>
-            
-            <app-form-input 
-                type="password" name="password_confirm" v-model="user.password_confirm" :label="Liro.messages.get('liro-users::form.user.password_confirm')"
-            ></app-form-input>
+            <app-label :label="trans('liro-users::form.user.password')">
+                <app-input type="password" v-model="user.password"></app-input>
+            </app-label>
+
+            <app-label :label="trans('liro-users::form.user.password_confirm')">
+                <app-input type="password" v-model="user.password_confirm"></app-input>
+            </app-label>
 
         </div>
 

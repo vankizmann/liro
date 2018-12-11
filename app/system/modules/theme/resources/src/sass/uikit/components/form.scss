@@ -6,7 +6,6 @@
 .uk-form-label, .uk-form-label-link {
     display: inline-block;
     margin-bottom: 6px;
-    font-size: 0.875rem;
 }
 
 .uk-form-controls:not(:last-child) {
@@ -14,10 +13,10 @@
 }
 
 .uk-input, .uk-textarea, .uk-select, .uk-checkbox, .uk-radio {
-    font-size: 0.875rem;
-    border-color: $color-gray-10;
+    // font-size: 0.875rem;
+    // border-color: $color-gray-10;
     border-radius: $global-border-radius;
-    background-color: $color-white;
+    // background-color: $color-white;
 }
 
 .uk-input:focus, .uk-textarea:focus, .uk-select:focus {
@@ -59,4 +58,19 @@
 .uk-checkbox-label input[type="checkbox"]:not(:last-child), 
 .uk-radio-label input[type="radio"]:not(:last-child) {
     margin-right: 6px;
+}
+
+.uk-legend {
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+.uk-select:not([multiple]):not([size]) {
+    @include svg-fill($internal-form-select-image, "#000", $form-select-icon-color);
+    background-size: 30px $icon-small-image-size;
+    padding-right: 30px;
 }

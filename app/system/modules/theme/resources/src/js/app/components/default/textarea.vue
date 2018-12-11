@@ -14,17 +14,8 @@ export default {
         event: 'input'
     },
 
-    computed: {
-
-        ghost: {
-            get: function () {
-                return this.model;
-            },
-            set: function (value) {
-                this.$emit('input', value);
-            }
-        }
-
+    inject: {
+        id: { default: null }
     },
 
     props: {
@@ -67,6 +58,20 @@ export default {
                 return false;
             },
             type: [Boolean, Number]
+        }
+
+    },
+
+    data: function () {
+        return {
+            ghost: this.model
+        };
+    },
+
+    watch: {
+
+        ghost: function () {
+            this.$emit('input', this.ghost);
         }
 
     }

@@ -5,6 +5,8 @@ window.$ = window.jQuery = jQuery;
 import lodash from 'lodash';
 window._ = window.lodash = lodash;
 
+require('./lodash');
+
 import Axios from 'axios';
 window.Axios = Axios;
 

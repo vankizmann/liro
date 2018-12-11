@@ -1435,6 +1435,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1497,14 +1499,12 @@ var render = function() {
             "a",
             {
               staticClass: "uk-button uk-button-primary uk-margin-small-left",
-              attrs: {
-                href: _vm.Liro.routes.get("liro-users.admin.user.index")
-              }
+              attrs: { href: _vm.route("liro-users.admin.user.index") }
             },
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.Liro.messages.get("theme::form.toolbar.close")) +
+                  _vm._s(_vm.trans("theme::form.toolbar.close")) +
                   "\n            "
               )
             ]
@@ -1528,7 +1528,7 @@ var render = function() {
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.Liro.messages.get("theme::form.toolbar.save")) +
+                  _vm._s(_vm.trans("theme::form.toolbar.save")) +
                   "\n            "
               )
             ]
@@ -1544,9 +1544,7 @@ var render = function() {
             _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
               _vm._v(
                 "\n                " +
-                  _vm._s(
-                    _vm.Liro.messages.get("liro-users::form.legend.general")
-                  ) +
+                  _vm._s(_vm.trans("liro-users::form.legend.general")) +
                   "\n            "
               )
             ]),
@@ -1556,7 +1554,7 @@ var render = function() {
               attrs: {
                 name: "state",
                 options: _vm.states,
-                label: _vm.Liro.messages.get("liro-users::form.user.state")
+                label: _vm.trans("liro-users::form.user.state")
               },
               model: {
                 value: _vm.user.state,
@@ -1579,61 +1577,76 @@ var render = function() {
             _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
               _vm._v(
                 "\n                " +
-                  _vm._s(
-                    _vm.Liro.messages.get("liro-users::form.legend.info")
-                  ) +
+                  _vm._s(_vm.trans("liro-users::form.legend.info")) +
                   "\n            "
               )
             ]),
             _vm._v(" "),
-            _c("app-form-input", {
-              attrs: {
-                name: "name",
-                label: _vm.Liro.messages.get("liro-users::form.user.name")
-              },
-              model: {
-                value: _vm.user.name,
-                callback: function($$v) {
-                  _vm.$set(_vm.user, "name", $$v)
-                },
-                expression: "user.name"
-              }
-            }),
+            _c(
+              "app-label",
+              { attrs: { label: _vm.trans("liro-users::form.user.name") } },
+              [
+                _c("app-input", {
+                  model: {
+                    value: _vm.user.name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "name", $$v)
+                    },
+                    expression: "user.name"
+                  }
+                })
+              ],
+              1
+            ),
             _vm._v(" "),
-            _c("app-form-input", {
-              attrs: {
-                name: "email",
-                label: _vm.Liro.messages.get("liro-users::form.user.email")
-              },
-              model: {
-                value: _vm.user.email,
-                callback: function($$v) {
-                  _vm.$set(_vm.user, "email", $$v)
-                },
-                expression: "user.email"
-              }
-            }),
+            _c(
+              "app-label",
+              { attrs: { label: _vm.trans("liro-users::form.user.email") } },
+              [
+                _c("app-input", {
+                  model: {
+                    value: _vm.user.email,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "email", $$v)
+                    },
+                    expression: "user.email"
+                  }
+                })
+              ],
+              1
+            ),
             _vm._v(" "),
-            _c("app-form-select-multiple", {
-              attrs: {
-                name: "role_ids",
-                options: _vm.roles,
-                multiple: true,
-                "options-label": "title",
-                "options-value": "id",
-                label: _vm.Liro.messages.get("liro-users::form.user.role"),
-                placeholder: _vm.Liro.messages.get(
-                  "liro-users::form.user.select_role"
+            _c(
+              "app-label",
+              { attrs: { label: _vm.trans("liro-users::form.user.role") } },
+              [
+                _c(
+                  "app-select",
+                  {
+                    attrs: {
+                      multiple: true,
+                      placeholder: _vm.trans(
+                        "liro-users::form.user.select_role"
+                      )
+                    },
+                    model: {
+                      value: _vm.user.role_ids,
+                      callback: function($$v) {
+                        _vm.$set(_vm.user, "role_ids", $$v)
+                      },
+                      expression: "user.role_ids"
+                    }
+                  },
+                  _vm._l(_vm.roles, function(role) {
+                    return _c("app-select-option", {
+                      key: role.id,
+                      attrs: { value: role.id, label: role.title }
+                    })
+                  })
                 )
-              },
-              model: {
-                value: _vm.user.role_ids,
-                callback: function($$v) {
-                  _vm.$set(_vm.user, "role_ids", $$v)
-                },
-                expression: "user.role_ids"
-              }
-            })
+              ],
+              1
+            )
           ],
           1
         ),
@@ -1645,44 +1658,50 @@ var render = function() {
             _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
               _vm._v(
                 "\n                " +
-                  _vm._s(
-                    _vm.Liro.messages.get("liro-users::form.legend.password")
-                  ) +
+                  _vm._s(_vm.trans("liro-users::form.legend.password")) +
                   "\n            "
               )
             ]),
             _vm._v(" "),
-            _c("app-form-input", {
-              attrs: {
-                type: "password",
-                name: "password",
-                label: _vm.Liro.messages.get("liro-users::form.user.password")
-              },
-              model: {
-                value: _vm.user.password,
-                callback: function($$v) {
-                  _vm.$set(_vm.user, "password", $$v)
-                },
-                expression: "user.password"
-              }
-            }),
+            _c(
+              "app-label",
+              { attrs: { label: _vm.trans("liro-users::form.user.password") } },
+              [
+                _c("app-input", {
+                  attrs: { type: "password" },
+                  model: {
+                    value: _vm.user.password,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "password", $$v)
+                    },
+                    expression: "user.password"
+                  }
+                })
+              ],
+              1
+            ),
             _vm._v(" "),
-            _c("app-form-input", {
-              attrs: {
-                type: "password",
-                name: "password_confirm",
-                label: _vm.Liro.messages.get(
-                  "liro-users::form.user.password_confirm"
-                )
+            _c(
+              "app-label",
+              {
+                attrs: {
+                  label: _vm.trans("liro-users::form.user.password_confirm")
+                }
               },
-              model: {
-                value: _vm.user.password_confirm,
-                callback: function($$v) {
-                  _vm.$set(_vm.user, "password_confirm", $$v)
-                },
-                expression: "user.password_confirm"
-              }
-            })
+              [
+                _c("app-input", {
+                  attrs: { type: "password" },
+                  model: {
+                    value: _vm.user.password_confirm,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "password_confirm", $$v)
+                    },
+                    expression: "user.password_confirm"
+                  }
+                })
+              ],
+              1
+            )
           ],
           1
         )

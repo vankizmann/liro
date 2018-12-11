@@ -1,21 +1,22 @@
+
+// Globals
 $global-font-family:                    'Roboto', 'Helvetica', 'Arial', sans-serif;
-$global-font-size:                      16px;
-$transition-duration:                   0.15s;
-$transition-slow-duration:              0.30s;
-$global-control-height:                 38px;
+$global-control-height:                 39px;
 $global-gutter:                         20px;
 $global-large-gutter:                   50px;
 $global-small-gutter:                   15px;
 $global-large-margin:                   50px;
 $global-border-radius:                  2px;
-$global-border-width:                   1px;
+// $global-border-width:                   1px;
 $global-xxlarge-font-size:              1.850rem;
-$global-xlarge-font-size:               1.650rem;
-$global-large-font-size:                1.450rem;
-$global-medium-font-size:               1.250rem;
-$global-small-font-size:                0.875rem;
+$global-xlarge-font-size:               1.550rem;
+$global-large-font-size:                1.350rem;
+$global-medium-font-size:               1.150rem;
+$global-font-size:                      1.000rem;
+$global-small-font-size:                0.925rem;
 $global-emphasis-color:                 $color-black;
 $global-color:                          $color-black;
+$global-background:                     $color-white;
 $global-border:                         $color-gray-10;
 $global-muted-background:               $color-gray-10;
 $global-muted-color:                    $color-gray-40;
@@ -25,34 +26,69 @@ $global-success-background:             $color-success;
 $global-warning-background:             $color-warning;
 $global-danger-background:              $color-danger;
 $global-link-color:                     $color-primary;
-$global-link-hover-color:               darken($global-link-color, 10%);
+// $global-link-hover-color:               darken($global-link-color, 10%);
+
+// Base
 $base-heading-font-weight:              300;
 $base-link-hover-text-decoration:       none;
+$base-body-font-size:                   14px;
 $base-body-color:                       $color-gray-65;
-$icon-image-size:                       14px;
+
+// Icon
+$icon-image-size:                       15px;
+$icon-small-image-size:                 12px;
+
+// Transition
+$transition-duration:                   0.30s;
+$transition-slow-duration:              0.60s;
+
+// Form
+$form-background:                       $global-background;
+$form-padding-horizontal:               11px;
+$form-padding-vertical:                 5px;
+$form-radio-background:                 $form-background;
+$form-legend-font-size:                 $global-medium-font-size;
+$form-select-icon-color:                $global-muted-color;
+
+// Tooltip
 $tooltip-background:                    rgba($color-gray-90, 0.65);
-$heading-primary-font-size-m:           2.00rem;
+// $heading-primary-font-size-m:           2.00rem;
+
+// Button
 $button-text-transform:                 none;
-$button-font-size:                      0.875rem;
+$button-font-size:                      0.925rem;
 $button-default-background:             $color-gray-5;
-$button-primary-color:                  $color-white;
-$button-primary-hover-color:            $color-white;
-$button-primary-active-color:           $color-white;
-$button-secondary-color:                $color-primary;
-$button-secondary-hover-color:          $color-primary;
-$button-secondary-active-color:         $color-primary;
-$nav-header-text-transform:             none;
-$nav-default-font-size:                 $global-font-size;
+
+
+// $button-primary-color:                  $color-white;
+// $button-primary-hover-color:            $color-white;
+// $button-primary-active-color:           $color-white;
+// $button-secondary-color:                $color-primary;
+// $button-secondary-hover-color:          $color-primary;
+// $button-secondary-active-color:         $color-primary;
+
+// Nav
+// $nav-header-text-transform:             none;
+// $nav-default-font-size:                 0.925rem;
 $navbar-nav-item-text-transform:        none;
+
+// Dropdown
+$dropdown-nav-font-size:                $global-font-size;
+
+// Notification
 $notification-width:                    450px;
-$notification-message-background:       $color-white;
+// $notification-message-background:       $color-white;
 $notification-message-font-size:        $global-small-font-size;
 $notification-close-top:                $global-small-gutter + 3px;
 $notification-close-right:              $global-small-gutter;
-$offcanvas-bar-background:              $color-white;
-$offcanvas-bar-color-mode:              dark;
-$pagination-margin-horizontal:          15px;
-$alert-primary-background:              lighten(mix(white, $global-primary-background, 25%), 20%);
-$alert-success-background:              lighten(mix(white, $global-success-background, 25%), 20%);
-$alert-warning-background:              lighten(mix(white, $global-warning-background, 25%), 20%);
-$alert-danger-background:               lighten(mix(white, $global-danger-background, 25%), 20%);
+
+
+// $offcanvas-bar-background:              $color-white;
+// $offcanvas-bar-color-mode:              dark;
+// $pagination-margin-horizontal:          15px;
+// $alert-primary-background:              lighten(mix(white, $global-primary-background, 25%), 20%);
+// $alert-success-background:              lighten(mix(white, $global-success-background, 25%), 20%);
+// $alert-warning-background:              lighten(mix(white, $global-warning-background, 25%), 20%);
+// $alert-danger-background:               lighten(mix(white, $global-danger-background, 25%), 20%);
+
+$internal-form-select-image:            'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 448 512%22%3E%3Cpath style=%22fill: #000;%22 d="M441.9 167.3l-19.8-19.8c-4.7-4.7-12.3-4.7-17 0L224 328.2 42.9 147.5c-4.7-4.7-12.3-4.7-17 0L6.1 167.3c-4.7 4.7-4.7 12.3 0 17l209.4 209.4c4.7 4.7 12.3 4.7 17 0l209.4-209.4c4.7-4.7 4.7-12.3 0-17z"/%3E%3C/svg%3E'

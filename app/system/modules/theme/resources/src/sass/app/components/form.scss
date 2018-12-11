@@ -46,7 +46,8 @@
     }
 
     .uk-nav > li > .uk-checkbox-label,
-    .uk-nav > li > .uk-radio-label {
+    .uk-nav > li > .uk-radio-label,
+    .uk-nav > li > span {
         display: block;
         color: $color-gray-40;
         padding: 12px 20px;
@@ -54,13 +55,15 @@
     }
 
     .uk-nav > li:hover > .uk-checkbox-label,
-    .uk-nav > li:hover > .uk-radio-label {
+    .uk-nav > li:hover > .uk-radio-label,
+    .uk-nav > li:hover > span {
         color: $color-gray-65;
         background-color: lighten($color-gray-5, 3%);
     }
 
     .uk-nav > li.uk-active > .uk-checkbox-label,
-    .uk-nav > li.uk-active > .uk-radio-label {
+    .uk-nav > li.uk-active > .uk-radio-label,
+    .uk-nav > li.uk-active > span {
         color: $color-gray-90;
     }
 

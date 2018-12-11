@@ -1,0 +1,73 @@
+
+.app-select .uk-select {
+    display: flex;
+    align-items: middle;
+    cursor: pointer;
+    user-select: none;
+}
+
+.app-select .uk-select > .uk-label {
+    text-transform: none;
+    margin: 6px 5px 6px 0;
+}
+
+.app-select .uk-select > .uk-label:first-child {
+    margin-left: -5px;
+}
+
+.app-select .uk-select > .uk-label .uk-icon {
+    margin-left: 5px;
+}
+
+.app-select .uk-dropdown {
+    padding: 0;
+    background-color: $color-white;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.app-select .uk-nav li.app-select-title > span {
+    display: flex;
+    align-items: center;
+    color: $color-gray-80;
+    padding: 9px 20px;
+}
+
+.app-select .uk-nav li.app-select-option:not(:last-child) {
+    // border-bottom: 1px solid $color-gray-5;
+}
+
+.app-select .uk-nav li.app-select-option > a {
+    display: flex;
+    align-items: center;
+    color: $color-gray-50;
+    padding: 9px 20px;
+    transition: all 0.15s;
+}
+
+.app-select .uk-nav li.app-select-option > a .app-select-left {
+    flex: 1 1 auto;
+}
+
+.app-select .uk-nav li.app-select-option > a .app-select-right {
+    flex: 0 0 auto;
+}
+
+.app-select .uk-nav li.app-select-option > a .is-check {
+    color: $color-primary;
+    opacity: 0.15;
+    transition: opacity 0.15s;
+}
+
+.app-select .uk-nav li.app-select-option.is-active > a .is-check {
+    opacity: 0.75;
+}
+
+.app-select .uk-nav li.app-select-option:hover > a {
+    color: $color-gray-65;
+    background-color: lighten($color-gray-5, 3%);
+}
+
+.app-select .uk-nav li.app-select-option.is-active > a {
+    color: $color-primary;
+}

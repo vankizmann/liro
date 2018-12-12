@@ -21,8 +21,7 @@ export default {
     props: {
 
         model: {
-            required: true,
-            type: [String, Number, Boolean]
+            required: true
         },
 
         type: {

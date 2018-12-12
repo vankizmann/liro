@@ -6,7 +6,7 @@
     <div class="app-list-pagination-limit uk-margin-auto-right">
 
         <!-- Select start -->
-        <select class="uk-select" v-model="limit" @change="paginate(null, limit)">
+        <select class="uk-select uk-form-small" v-model="limit" @change="paginate(null, limit)">
             <option v-for="(option, index) in options" :key="index" :value="option">{{ option }}</option>
         </select>
         <!-- Select end -->
@@ -19,20 +19,20 @@
         <ul class="uk-pagination uk-flex-middle uk-margin-remove-bottom">
 
             <!-- Prev start -->
-            <li :class="{ 'uk-disabled': config.paginate.page == 1 }">
-                <a href="#" @click.prevent="paginate(config.paginate.page - 1)"><i uk-icon="chevron-left"></i></a>
+            <li :class="{ 'uk-disabled': config.page == 1 }">
+                <a href="#" @click.prevent="paginate(config.page - 1)"><i class="uk-icon-small" uk-icon="chevron-left"></i></a>
             </li>
             <!-- Prev end -->
 
             <!-- Pages start -->
-            <li v-for="page in Liro.helpers.range(config.paginate.pages, 1)" :key="page" :class="{ 'uk-active': page == config.paginate.page }">
+            <li v-for="page in Liro.helpers.range(config.pages, 1)" :key="page" :class="{ 'uk-active': page == config.page }">
                 <a href="#" @click.prevent="paginate(page)">{{ page }}</a>
             </li>
             <!-- Pages end -->
 
             <!-- Next start -->
-            <li :class="{ 'uk-disabled': config.paginate.page == config.paginate.pages }">
-                <a href="#" @click.prevent="paginate(config.paginate.page + 1)"><i uk-icon="chevron-right"></i></a>
+            <li :class="{ 'uk-disabled': config.page == config.pages }">
+                <a href="#" @click.prevent="paginate(config.page + 1)"><i class="uk-icon-small" uk-icon="chevron-right"></i></a>
             </li>
             <!-- Next end -->
 
@@ -48,8 +48,16 @@
 export default {
 
     inject: [
-        'config', 'methods'
+        'list'
     ],
+
+    computed: {
+
+        config: function () {
+            return this.list.library.config.paginate;
+        }
+
+    },
 
     props: {
 
@@ -64,14 +72,14 @@ export default {
 
     data: function () {
         return {
-            limit: this.config.paginate.limit
+            limit: this.list.library.config.paginate.limit
         };
     },
 
     methods: {
 
         paginate: function (page, limit) {
-            this.methods.paginate(page || this.config.paginate.page, limit || this.config.paginate.limit);
+            this.list.library.setPaginateData(page || this.config.page, limit || this.config.limit);
         }
 
     }

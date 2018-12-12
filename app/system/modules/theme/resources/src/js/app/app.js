@@ -31,6 +31,8 @@ require('./components/default/checkbox');
 require('./components/default/select');
 require('./components/default/select-option');
 require('./components/default/select-group');
+require('./components/default/switch');
+require('./components/default/switch-option');
 
 require('./components/list');
 

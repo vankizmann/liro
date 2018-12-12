@@ -1,27 +1,9 @@
 <template>
 
-<div class="app-select">
+<div class="app-switch">
 
-    <div class="uk-select uk-flex uk-flex-middle" v-if="multiple == false && actives.length != 0">
-        <span v-for="(active, index) in actives" :key="index">
-            {{ active.label }}
-        </span>
-    </div>
-
-    <div class="uk-select uk-flex uk-flex-middle" v-if="multiple == true && actives.length != 0">
-        <div class="uk-label uk-flex-inline uk-flex-middle" v-for="(active, index) in actives" :key="index">
-            <span>{{ active.label }}</span> <i class="uk-icon-small" uk-icon="times" @click.stop="select(active.value)"></i>
-        </div>
-    </div>
-
-    <div class="uk-select" v-if="actives.length == 0">
-        <span class="uk-text-muted">
-            {{ placeholder }}
-        </span>
-    </div>
-
-    <div ref="dropdown" uk-dropdown="mode: click; pos: bottom-justify;">
-        <ul class="uk-nav uk-dropdown-nav">
+    <div class="uk-input">
+        <ul class="uk-list uk-flex-1 uk-flex uk-flex-middle">
             <slot></slot>
         </ul>
     </div>
@@ -85,16 +67,6 @@ export default {
         };
     },
 
-    computed: {
-
-        actives: function () {
-            return _.filterMap(this.ghost, (value) => {
-                return _.find(this.options, { value: value });
-            });
-        }
-
-    },
-
     watch: {
 
         ghost: function () {
@@ -105,12 +77,7 @@ export default {
 
     methods: {
 
-        select: function (value) {
-
-            if ( this.multiple == false ) {
-                UIkit.toggle(this.$refs.dropdown).hide();
-            }
-
+        switch: function (value) {
             this.ghost = _.changeValue(this.ghost, value);
         }
 
@@ -118,14 +85,14 @@ export default {
 
     provide: function () {
         return {
-            select: this
+            switch: this
         };
     }
 
 }
 
 if (window.Liro) {
-    Liro.vue.component('app-select', this.default);
+    Liro.vue.component('app-switch', this.default);
 }
 
 </script>

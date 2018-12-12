@@ -7,7 +7,7 @@ use Liro\System\Users\Models\UserRole;
 use Liro\Users\Requests\RoleStoreRequest;
 use Liro\Users\Requests\RoleUpdateRequest;
 
-class RoleApiController extends \Liro\System\Http\Controller
+class RoleController extends \Liro\System\Http\Controller
 {
 
     public function index(UserRole $role)

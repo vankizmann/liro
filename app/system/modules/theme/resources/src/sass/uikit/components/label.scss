@@ -1,32 +1,59 @@
 
+
+$label-default-color:                           $global-muted-color;
+$label-default-background:                      rgba($label-default-color, 0.15);
+$label-default-hover-color:                     $label-default-color;
+$label-default-hover-background:                rgba($label-default-color, 0.20);
+
+$label-primary-color:                           $global-primary-background;
+$label-primary-background:                      rgba($label-primary-color, 0.20);
+$label-primary-hover-color:                     $label-primary-color;
+$label-primary-hover-background:                rgba($label-primary-color, 0.25);
+
+$label-success-color:                           $global-success-background;
+$label-success-background:                      rgba($label-success-color, 0.20);
+$label-success-hover-color:                     $label-success-color;
+$label-success-hover-background:                rgba($label-success-color, 0.25);
+
+$label-warning-color:                           $global-warning-background;
+$label-warning-background:                      rgba($label-warning-color, 0.20);
+$label-warning-hover-color:                     $label-warning-color;
+$label-warning-hover-background:                rgba($label-warning-color, 0.25);
+
+$label-danger-color:                            $global-danger-background;
+$label-danger-background:                       rgba($label-danger-color, 0.20);
+$label-danger-hover-color:                      $label-danger-color;
+$label-danger-hover-background:                 rgba($label-danger-color, 0.25);
+
 .uk-label {
+    text-align: center;
     line-height: 1.2;
     text-transform: none;
-    padding: 4px 9px;
-    border: 1px solid transparent !important;
+    padding: 5px 10px;
+    transition: all $transition-duration;
 }
 
-.uk-label,
-.uk-label-default {
-    color: $color-gray-50;
-    background-color: rgba($color-gray-30, 0.20);
-    border: 1px solid rgba($color-gray-30, 0.25);
+.uk-label, .uk-label-default {
+    color: $label-default-color;
+    background-color: $label-default-background;
 }
 
 .uk-label-primary {
-    color: $color-primary;
-    background-color: rgba($color-primary, 0.20);
-    border: 1px solid rgba($color-primary, 0.25);
+    color: $label-primary-color;
+    background-color: $label-primary-background;
+}
+
+.uk-label-success {
+    color: $label-success-color;
+    background-color: $label-success-background;
 }
 
 .uk-label-warning {
-    color: $color-warning;
-    background-color: rgba($color-warning, 0.20);
-    border: 1px solid rgba($color-warning, 0.25);
+    color: $label-warning-color;
+    background-color: $label-warning-background;
 }
 
 .uk-label-danger {
-    color: $color-danger;
-    background-color: rgba($color-danger, 0.20);
-    border: 1px solid rgba($color-danger, 0.25);
+    color: $label-danger-color;
+    background-color: $label-danger-background;
 }

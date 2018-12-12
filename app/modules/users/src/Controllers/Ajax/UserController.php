@@ -7,7 +7,7 @@ use Liro\System\Users\Models\User;
 use Liro\Users\Requests\UserStoreRequest;
 use Liro\Users\Requests\UserUpdateRequest;
 
-class UserApiController extends \Liro\System\Http\Controller
+class UserController extends \Liro\System\Http\Controller
 {
 
     public function index(User $user)

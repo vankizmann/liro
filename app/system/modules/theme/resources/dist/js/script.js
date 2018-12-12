@@ -63146,6 +63146,8 @@ __webpack_require__(1455);
 __webpack_require__(1504);
 __webpack_require__(1507);
 __webpack_require__(1512);
+__webpack_require__(1518);
+__webpack_require__(1521);
 
 __webpack_require__(1458);
 
@@ -64819,8 +64821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
 
         model: {
-            required: true,
-            type: [String, Number, Boolean]
+            required: true
         },
 
         type: {
@@ -64861,7 +64862,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     watch: {
 
-        ghost: function ghost() {
+        model: function model() {
+            this.ghost = this.model;
+        }
+
+    },
+
+    methods: {
+
+        updateValue: function updateValue() {
             this.$emit('input', this.ghost);
         }
 
@@ -64905,6 +64914,7 @@ var render = function() {
               : _vm.ghost
           },
           on: {
+            input: _vm.updateValue,
             change: function($event) {
               var $$a = _vm.ghost,
                 $$el = $event.target,
@@ -64943,6 +64953,7 @@ var render = function() {
             },
             domProps: { checked: _vm._q(_vm.ghost, null) },
             on: {
+              input: _vm.updateValue,
               change: function($event) {
                 _vm.ghost = null
               }
@@ -64966,12 +64977,15 @@ var render = function() {
             },
             domProps: { value: _vm.ghost },
             on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.ghost = $event.target.value
-              }
+              input: [
+                function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.ghost = $event.target.value
+                },
+                _vm.updateValue
+              ]
             }
           })
   ])
@@ -65062,8 +65076,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
 
         model: {
-            required: true,
-            type: [String, Number, Boolean]
+            required: true
         },
 
         type: {
@@ -65249,13 +65262,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
 
         model: {
-            required: true,
-            type: [String, Number, Boolean, Array]
+            required: true
         },
 
         value: {
-            required: true,
-            type: [String, Number, Boolean]
+            required: true
         },
 
         label: {
@@ -65289,7 +65300,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     watch: {
 
-        ghost: function ghost() {
+        model: function model() {
+            this.ghost = this.model;
+        }
+
+    },
+
+    methods: {
+
+        updateValue: function updateValue() {
             this.$emit('input', this.ghost);
         }
 
@@ -65347,23 +65366,26 @@ var render = function() {
               : _vm.ghost
           },
           on: {
-            change: function($event) {
-              var $$a = _vm.ghost,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = _vm.value,
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && (_vm.ghost = $$a.concat([$$v]))
+            change: [
+              function($event) {
+                var $$a = _vm.ghost,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = _vm.value,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.ghost = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.ghost = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+                  }
                 } else {
-                  $$i > -1 &&
-                    (_vm.ghost = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+                  _vm.ghost = $$c
                 }
-              } else {
-                _vm.ghost = $$c
-              }
-            }
+              },
+              _vm.updateValue
+            ]
           }
         }),
         _vm._v(" "),
@@ -65444,45 +65466,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
+    model: {
+        prop: 'model',
+        event: 'input'
+    },
+
     props: {
 
         database: {
             required: true
         },
 
-        value: {
+        model: {
             required: true
         }
 
     },
 
-    provide: function provide() {
-        return this.listData;
+    watch: {
+
+        model: function model() {
+            this.list.setInitial(this.value);
+        }
+
     },
 
     render: function render() {
-        return this.$scopedSlots.default(this.listData);
+        return this.$scopedSlots.default(this);
+    },
+
+    provide: function provide() {
+        return {
+            list: this
+        };
     },
 
     data: function data() {
         var _this = this;
 
-        var list = new __WEBPACK_IMPORTED_MODULE_0__libraries_list_js__["a" /* default */](this.value, this.database, function (list) {
-            _this.listData = list.getData();
+        var library = new __WEBPACK_IMPORTED_MODULE_0__libraries_list_js__["a" /* default */](this.model, this.database, function (library) {
+            _this.items = library.items;
         });
 
         return {
-            list: list, listData: list.getData()
+            library: library, items: library.items
         };
-    },
-
-    mounted: function mounted() {
-        var _this2 = this;
-
-        this.$watch('value', function () {
-            return _this2.list.setInitial(_this2.value);
-        });
     }
+
 });
 
 if (window.Liro) {
@@ -67677,17 +67707,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    inject: ['config', 'methods'],
+    inject: ['list'],
+
+    computed: {
+
+        config: function config() {
+            return this.list.library.config.search;
+        }
+
+    },
 
     props: {
 
         placeholder: {
-            default: '',
+            default: function _default() {
+                return '';
+            },
             type: String
         },
 
         columns: {
-            required: true,
+            default: function _default() {
+                return [];
+            },
             type: Array
         }
 
@@ -67695,14 +67737,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            query: this.config.search.query
+            query: this.list.library.config.search.query
         };
     },
 
     methods: {
 
         setQuery: function setQuery(query) {
-            this.methods.search(this.query = query, this.columns);
+            this.list.library.setSearchData(query, this.columns);
         }
 
     }
@@ -67841,26 +67883,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    inject: ['config', 'methods'],
+    inject: ['list'],
+
+    computed: {
+
+        config: function config() {
+            return this.list.library.config.order;
+        }
+
+    },
 
     props: {
 
-        config: {
-            required: true,
-            type: Object
-        },
-
         column: {
-            default: '',
+            default: function _default() {
+                return '';
+            },
             type: String
         },
 
         label: {
-            default: '',
+            default: function _default() {
+                return '';
+            },
             type: String
         }
 
@@ -67868,7 +67918,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         setOrder: function setOrder() {
-            this.methods.order(this.column, this.config.order.direction == 'desc' ? 'asc' : 'desc');
+            this.list.library.setOrderData(this.column, this.config.direction == 'desc' ? 'asc' : 'desc');
         }
     }
 
@@ -67892,7 +67942,7 @@ var render = function() {
       {
         class: {
           "uk-text-nowrap": true,
-          "uk-active": _vm.column == _vm.config.order.column
+          "uk-active": _vm.column == _vm.config.column
         },
         attrs: { href: "javascript:void(0)" },
         on: { click: _vm.setOrder }
@@ -67901,7 +67951,7 @@ var render = function() {
         _c("i", {
           attrs: {
             "uk-icon":
-              this.config.order.direction == "asc"
+              _vm.config.direction == "asc"
                 ? "sort-amount-up"
                 : "sort-amount-down"
           }
@@ -68010,7 +68060,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    inject: ['config', 'methods'],
+    inject: ['list'],
+
+    computed: {
+
+        config: function config() {
+            return this.list.library.config.filter;
+        }
+
+    },
 
     props: {
 
@@ -68039,29 +68097,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             default: function _default() {
                 return 'value';
             },
-            type: String
+            type: [String, Number]
         },
 
         filtersLabel: {
             default: function _default() {
                 return 'label';
             },
-            type: String
+            type: [String, Number]
         }
 
     },
 
     data: function data() {
+
+        var config = this.list.library.config.filter;
+
         return {
-            values: this.config.filter.filters[this.column] || []
+            values: config.filters[this.column] || []
         };
     },
-    mounted: function mounted() {
 
-        this.$watch('values', function () {
-            this.methods.filter(this.column, this.values);
-        });
+    watch: {
+
+        values: function values() {
+            this.list.library.setFilterData(this.column, this.values);
+        }
+
     }
+
 });
 
 if (window.Liro) {
@@ -68152,10 +68216,9 @@ var render = function() {
           _c(
             "a",
             {
-              attrs: { href: "#" },
+              attrs: { href: "javascript:void(0)" },
               on: {
                 click: function($event) {
-                  $event.preventDefault()
                   _vm.values = []
                 }
               }
@@ -68163,7 +68226,7 @@ var render = function() {
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.Liro.messages.get("theme::form.list.reset")) +
+                  _vm._s(_vm.trans("theme::form.list.reset")) +
                   "\n            "
               )
             ]
@@ -68409,7 +68472,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    inject: ['config', 'methods'],
+    inject: ['list'],
+
+    computed: {
+
+        config: function config() {
+            return this.list.library.config.paginate;
+        }
+
+    },
 
     props: {
 
@@ -68424,14 +68495,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            limit: this.config.paginate.limit
+            limit: this.list.library.config.paginate.limit
         };
     },
 
     methods: {
 
         paginate: function paginate(page, limit) {
-            this.methods.paginate(page || this.config.paginate.page, limit || this.config.paginate.limit);
+            this.list.library.setPaginateData(page || this.config.page, limit || this.config.limit);
         }
 
     }
@@ -68469,7 +68540,7 @@ var render = function() {
                   expression: "limit"
                 }
               ],
-              staticClass: "uk-select",
+              staticClass: "uk-select uk-form-small",
               on: {
                 change: [
                   function($event) {
@@ -68511,61 +68582,58 @@ var render = function() {
                 "uk-pagination uk-flex-middle uk-margin-remove-bottom"
             },
             [
-              _c(
-                "li",
-                { class: { "uk-disabled": _vm.config.paginate.page == 1 } },
-                [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          _vm.paginate(_vm.config.paginate.page - 1)
-                        }
+              _c("li", { class: { "uk-disabled": _vm.config.page == 1 } }, [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.paginate(_vm.config.page - 1)
                       }
-                    },
-                    [_c("i", { attrs: { "uk-icon": "chevron-left" } })]
-                  )
-                ]
-              ),
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "uk-icon-small",
+                      attrs: { "uk-icon": "chevron-left" }
+                    })
+                  ]
+                )
+              ]),
               _vm._v(" "),
-              _vm._l(
-                _vm.Liro.helpers.range(_vm.config.paginate.pages, 1),
-                function(page) {
-                  return _c(
-                    "li",
-                    {
-                      key: page,
-                      class: { "uk-active": page == _vm.config.paginate.page }
-                    },
-                    [
-                      _c(
-                        "a",
-                        {
-                          attrs: { href: "#" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              _vm.paginate(page)
-                            }
+              _vm._l(_vm.Liro.helpers.range(_vm.config.pages, 1), function(
+                page
+              ) {
+                return _c(
+                  "li",
+                  {
+                    key: page,
+                    class: { "uk-active": page == _vm.config.page }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.paginate(page)
                           }
-                        },
-                        [_vm._v(_vm._s(page))]
-                      )
-                    ]
-                  )
-                }
-              ),
+                        }
+                      },
+                      [_vm._v(_vm._s(page))]
+                    )
+                  ]
+                )
+              }),
               _vm._v(" "),
               _c(
                 "li",
                 {
-                  class: {
-                    "uk-disabled":
-                      _vm.config.paginate.page == _vm.config.paginate.pages
-                  }
+                  class: { "uk-disabled": _vm.config.page == _vm.config.pages }
                 },
                 [
                   _c(
@@ -68575,11 +68643,16 @@ var render = function() {
                       on: {
                         click: function($event) {
                           $event.preventDefault()
-                          _vm.paginate(_vm.config.paginate.page + 1)
+                          _vm.paginate(_vm.config.page + 1)
                         }
                       }
                     },
-                    [_c("i", { attrs: { "uk-icon": "chevron-right" } })]
+                    [
+                      _c("i", {
+                        staticClass: "uk-icon-small",
+                        attrs: { "uk-icon": "chevron-right" }
+                      })
+                    ]
                   )
                 ]
               )
@@ -68670,17 +68743,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
+    inject: ['list'],
+
+    computed: {
+
+        config: function config() {
+            return this.list.library.config.select;
+        }
+
+    },
+
     props: {
-
-        config: {
-            required: true,
-            type: Object
-        },
-
-        methods: {
-            required: true,
-            type: Object
-        },
 
         value: {
             required: true,
@@ -68697,7 +68770,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
 
         selectItem: function selectItem() {
-            this.$emit('select', this.value);
+            this.list.library.toggleSelectData(this.value);
         }
 
     }
@@ -68723,7 +68796,7 @@ var render = function() {
         attrs: { type: "checkbox" },
         domProps: {
           value: _vm.value,
-          checked: _vm.config.select.selected.indexOf(_vm.value) != -1
+          checked: _vm.config.selected.indexOf(_vm.value) != -1
         },
         on: { input: _vm.selectItem }
       }),
@@ -68813,12 +68886,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    inject: ['config', 'methods'],
+    inject: ['list'],
+
+    computed: {
+
+        config: function config() {
+            return this.list.library.config.select;
+        }
+
+    },
 
     props: {
 
         label: {
-            default: '',
+            default: function _default() {
+                return '';
+            },
             type: String
         }
 
@@ -68827,7 +68910,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
 
         selectAll: function selectAll() {
-            this.methods.selectAll(this.config.select.all ? false : true);
+            this.list.library.allSelectData(this.config.all ? false : true);
         }
 
     }
@@ -68851,7 +68934,7 @@ var render = function() {
       _c("input", {
         staticClass: "uk-checkbox",
         attrs: { type: "checkbox" },
-        domProps: { checked: _vm.config.select.all },
+        domProps: { checked: _vm.config.all },
         on: { input: _vm.selectAll }
       }),
       _vm._v(" "),
@@ -68981,8 +69064,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
 
         model: {
-            required: true,
-            type: [String, Number, Boolean, Array]
+            required: true
         },
 
         multiple: {
@@ -69079,7 +69161,7 @@ var render = function() {
     _vm.multiple == false && _vm.actives.length != 0
       ? _c(
           "div",
-          { staticClass: "uk-select uk-toggle" },
+          { staticClass: "uk-select uk-flex uk-flex-middle" },
           _vm._l(_vm.actives, function(active, index) {
             return _c("span", { key: index }, [
               _vm._v("\n            " + _vm._s(active.label) + "\n        ")
@@ -69091,7 +69173,7 @@ var render = function() {
     _vm.multiple == true && _vm.actives.length != 0
       ? _c(
           "div",
-          { staticClass: "uk-select uk-toggle" },
+          { staticClass: "uk-select uk-flex uk-flex-middle" },
           _vm._l(_vm.actives, function(active, index) {
             return _c(
               "div",
@@ -69258,6 +69340,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     },
 
+    methods: {
+
+        selectValue: function selectValue() {
+            this.select.select(this.value);
+        }
+
+    },
+
     created: function created() {
         this.select.options.push({
             label: this.label, value: this.value
@@ -69281,7 +69371,7 @@ var render = function() {
   return _c(
     "li",
     {
-      class: { "app-select-option": true, "is-active": _vm.active },
+      class: { "app-select-option uk-flex-1": true, "is-active": _vm.active },
       attrs: { "data-value": _vm.value }
     },
     [
@@ -69290,11 +69380,7 @@ var render = function() {
         {
           staticClass: "app-select-link",
           attrs: { href: "javascript:void(0)" },
-          on: {
-            click: function($event) {
-              _vm.select.select(_vm.value)
-            }
-          }
+          on: { click: _vm.selectValue }
         },
         [
           _c("span", {
@@ -69599,6 +69685,351 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-0a2939ee", module.exports)
+  }
+}
+
+/***/ }),
+/* 1518 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(1519)
+/* template */
+var __vue_template__ = __webpack_require__(1520)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/js/app/components/default/switch.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e9874cac", Component.options)
+  } else {
+    hotAPI.reload("data-v-e9874cac", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 1519 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    model: {
+        prop: 'model',
+        event: 'input'
+    },
+
+    inject: {
+        id: { default: null }
+    },
+
+    props: {
+
+        model: {
+            required: true
+        },
+
+        multiple: {
+            default: function _default() {
+                return false;
+            },
+            type: [Boolean, Number]
+        },
+
+        name: {
+            default: function _default() {
+                return '';
+            },
+            type: [String, Number]
+        },
+
+        placeholder: {
+            default: function _default() {
+                return '';
+            },
+            type: [String, Number]
+        },
+
+        disabled: {
+            default: function _default() {
+                return false;
+            },
+            type: [Boolean, Number]
+        }
+
+    },
+
+    data: function data() {
+        return {
+            ghost: this.model,
+            options: []
+        };
+    },
+
+    watch: {
+
+        ghost: function ghost() {
+            this.$emit('input', this.ghost);
+        }
+
+    },
+
+    methods: {
+
+        switch: function _switch(value) {
+            this.ghost = _.changeValue(this.ghost, value);
+        }
+
+    },
+
+    provide: function provide() {
+        return {
+            switch: this
+        };
+    }
+
+});
+
+if (window.Liro) {
+    Liro.vue.component('app-switch', this.default);
+}
+
+/***/ }),
+/* 1520 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-switch" }, [
+    _c("div", { staticClass: "uk-input" }, [
+      _c(
+        "ul",
+        { staticClass: "uk-list uk-flex-1 uk-flex uk-flex-middle" },
+        [_vm._t("default")],
+        2
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e9874cac", module.exports)
+  }
+}
+
+/***/ }),
+/* 1521 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(1522)
+/* template */
+var __vue_template__ = __webpack_require__(1523)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/js/app/components/default/switch-option.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-41570528", Component.options)
+  } else {
+    hotAPI.reload("data-v-41570528", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 1522 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    inject: ['switch'],
+
+    props: {
+
+        value: {
+            required: true,
+            type: [String, Number, Boolean]
+        },
+
+        label: {
+            required: true,
+            type: [String, Number]
+        },
+
+        check: {
+            default: function _default() {
+                return '<i class="is-check uk-icon-small" uk-icon="check"></i>';
+            },
+            type: [String, Number]
+        },
+
+        disabled: {
+            default: function _default() {
+                return false;
+            },
+            type: [Boolean, Number]
+        }
+
+    },
+
+    computed: {
+
+        active: function active() {
+            return _.hasValue(this.switch.model, this.value);
+        }
+
+    },
+
+    methods: {
+
+        selectValue: function selectValue() {
+            this.switch.switch(this.value);
+        }
+
+    },
+
+    created: function created() {
+        this.switch.options.push({
+            label: this.label, value: this.value
+        });
+    }
+
+});
+
+if (window.Liro) {
+    Liro.vue.component('app-switch-option', this.default);
+}
+
+/***/ }),
+/* 1523 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "li",
+    {
+      class: { "app-switch-option uk-flex-1": true, "is-active": _vm.active },
+      attrs: { "data-value": _vm.value }
+    },
+    [
+      _c(
+        "a",
+        {
+          staticClass: "app-switch-link uk-width-1-1 uk-label",
+          attrs: { href: "javascript:void(0)" },
+          on: { click: _vm.selectValue }
+        },
+        [
+          _c("span", {
+            staticClass: "app-switch-text",
+            domProps: { innerHTML: _vm._s(_vm.label) }
+          })
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-41570528", module.exports)
   }
 }
 

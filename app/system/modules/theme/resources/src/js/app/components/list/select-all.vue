@@ -3,7 +3,7 @@
 <div class="app-list-select-all">
     <!-- Label start -->
     <label class="uk-checkbox-label">
-        <input type="checkbox" class="uk-checkbox" :checked="config.select.all" @input="selectAll">
+        <input type="checkbox" class="uk-checkbox" :checked="config.all" @input="selectAll">
         <span v-if="label" v-html="label"></span>
     </label>
     <!-- Label end -->
@@ -15,13 +15,23 @@
 export default {
 
     inject: [
-        'config', 'methods'
+        'list'
     ],
+
+    computed: {
+
+        config: function () {
+            return this.list.library.config.select;
+        }
+
+    },
 
     props: {
 
         label: {
-            default: '',
+            default: function () {
+                return '';
+            },
             type: String
         }
 
@@ -30,7 +40,7 @@ export default {
     methods: {
 
         selectAll: function () {
-            this.methods.selectAll(this.config.select.all ? false : true);
+            this.list.library.allSelectData(this.config.all ? false : true);
         }
 
     }

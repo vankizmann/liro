@@ -1,12 +1,12 @@
 <template>
 
 <app-list class="liro-role-index" v-model="roles" database="users.role.index">
-    <div slot-scope="{ items, config, methods }">
+    <div slot-scope="{ items }">
 
         <portal to="app-toolbar">
             <div class="uk-navbar-item">
-                <a class="uk-button uk-button-primary" :href="Liro.routes.get('liro-users.admin.role.create')">
-                    {{ Liro.messages.get('liro-users::module.role.create') }}
+                <a class="uk-button uk-button-primary" :href="route('liro-users.admin.role.create')">
+                    {{ trans('liro-users::module.role.create') }}
                 </a>
             </div>
         </portal>
@@ -19,10 +19,7 @@
                 <div class="th-table-head">
                     <div class="th-table-tr uk-flex uk-flex-middle">
                         <div class="uk-margin-auto-left">
-                            <app-list-search
-                                :columns="['title', 'route']" :config="config.search" @search="methods.search"
-                                :placeholder="Liro.messages.get('theme::form.search.placeholder')"
-                            ></app-list-search>
+                            <app-list-search :columns="['title', 'route']" :placeholder="trans('theme::form.search.placeholder')"></app-list-search>
                         </div>
                     </div>
                 </div>
@@ -32,23 +29,23 @@
                 <div class="th-table-filter">
                     <div class="th-table-tr uk-flex uk-flex-middle">
                         <div class="uk-width-1-3">
-                            <app-list-sort column="title" :config="config.order" @order="methods.order">
-                                {{ Liro.messages.get('liro-users::form.role.title') }}
+                            <app-list-sort column="title">
+                                {{ trans('liro-users::form.role.title') }}
                             </app-list-sort>
                         </div>
                         <div class="uk-width-1-3">
-                            <app-list-sort column="description" :config="config.order" @order="methods.order">
-                                {{ Liro.messages.get('liro-users::form.role.description') }}
+                            <app-list-sort column="description">
+                                {{ trans('liro-users::form.role.description') }}
                             </app-list-sort>
                         </div>
                         <div class="uk-width-1-3">
                             <span>
-                                {{ Liro.messages.get('liro-users::form.role.routes') }}
+                                {{ trans('liro-users::form.role.routes') }}
                             </span>
                         </div>
                         <div class="uk-width-small uk-text-center">
-                            <app-list-sort column="id" :config="config.order" @order="methods.order">
-                                {{ Liro.messages.get('liro-users::form.role.id') }}
+                            <app-list-sort column="id">
+                                {{ trans('liro-users::form.role.id') }}
                             </app-list-sort>
                         </div>
                     </div>
@@ -65,7 +62,7 @@
                 <div class="th-table-body" v-if="items.length == 0">
                     <div class="th-table-tr">
                         <div class="uk-width-1-1 uk-text-center">
-                            {{ Liro.messages.get('theme::form.list.empty') }}
+                            {{ trans('theme::form.list.empty') }}
                         </div>
                     </div>
                 </div>
@@ -73,7 +70,7 @@
 
                 <div class="th-table-footer">
                     <div class="th-table-tr uk-flex uk-flex-middle">
-                        <app-list-pagination :config="config.paginate" @paginate="methods.paginate"></app-list-pagination>
+                        <app-list-pagination></app-list-pagination>
                     </div>
                 </div>
                 

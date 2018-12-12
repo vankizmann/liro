@@ -17,13 +17,15 @@
     <div class="uk-flex-last uk-width-large">
         <div class="th-form">
 
-            <legend class="uk-legend uk-legend-small">
-                {{ trans('liro-users::form.legend.general') }}
+            <legend class="uk-legend">
+                <span>{{ trans('liro-users::form.legend.general') }}</span>
             </legend>
 
-            <app-form-switch 
-                class="is-state uk-width-1-1" name="state" v-model="user.state" :options="states" :label="trans('liro-users::form.user.state')"
-            ></app-form-switch>
+            <app-label :label="trans('liro-users::form.user.state')">
+                <app-switch class="is-state" v-model="user.state">
+                    <app-switch-option v-for="state in states" :key="state.value" :value="state.value" :label="state.label"></app-switch-option>
+                </app-switch>
+            </app-label>
 
         </div>
     </div>
@@ -34,8 +36,8 @@
 
         <div class="th-form">
 
-            <legend class="uk-legend uk-legend-small">
-                {{ trans('liro-users::form.legend.info') }}
+            <legend class="uk-legend">
+                <span>{{ trans('liro-users::form.legend.info') }}</span>
             </legend>
 
             <app-label :label="trans('liro-users::form.user.name')">
@@ -53,10 +55,11 @@
             </app-label>
 
         </div>
+
         <div class="th-form">
 
-            <legend class="uk-legend uk-legend-small">
-                {{ trans('liro-users::form.legend.password') }}
+            <legend class="uk-legend">
+                <span>{{ trans('liro-users::form.legend.password') }}</span>
             </legend>
 
             <app-label :label="trans('liro-users::form.user.password')">

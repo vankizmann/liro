@@ -1,7 +1,5 @@
 
 .app-select .uk-select {
-    display: flex;
-    align-items: middle;
     cursor: pointer;
     user-select: none;
 }
@@ -16,7 +14,13 @@
 }
 
 .app-select .uk-select > .uk-label .uk-icon {
+    opacity: 0.5;
     margin-left: 5px;
+    transition: opacity 0.3s;
+}
+
+.app-select .uk-select > .uk-label .uk-icon:hover {
+    opacity: 1;
 }
 
 .app-select .uk-dropdown {
@@ -34,7 +38,7 @@
 }
 
 .app-select .uk-nav li.app-select-option:not(:last-child) {
-    // border-bottom: 1px solid $color-gray-5;
+    border-bottom: 1px solid $color-gray-5;
 }
 
 .app-select .uk-nav li.app-select-option > a {

@@ -4,40 +4,52 @@ import List from './../libraries/list.js'
 
 export default {
 
+    model: {
+        prop: 'model',
+        event: 'input'
+    },
+
     props: {
 
         database: {
             required: true
         },
 
-        value: {
+        model: {
             required: true
         }
 
     },
 
-    provide: function () {
-        return this.listData;
+    watch: {
+
+        model: function () {
+            this.list.setInitial(this.value);
+        }
+
     },
 
     render: function () {
-        return this.$scopedSlots.default(this.listData);
+        return this.$scopedSlots.default(this);
+    },
+
+    provide: function () {
+        return {
+            list: this
+        };
     },
 
     data: function () {
 
-        var list = new List(this.value, this.database, (list) => {
-            this.listData = list.getData();
+        var library = new List(this.model, this.database, (library) => {
+            this.items = library.items;
         });
 
         return {
-            list: list , listData: list.getData()
+            library: library, items: library.items
         };
-    },
-
-    mounted: function () {
-        this.$watch('value', () => this.list.setInitial(this.value))
     }
+
 }
 
 if (window.Liro) {

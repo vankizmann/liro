@@ -27,6 +27,13 @@ class UserController extends \Liro\System\Http\Controller
 
     public function create(User $user, UserRole $role)
     {
+        $user->fill([
+            'password' => '',
+            'password_confirm' => ''
+        ]);
+
+        // $user->password = '';
+
         app('assets')->dataArray([
             'user' => $user, 'roles' => $role->all()
         ]);

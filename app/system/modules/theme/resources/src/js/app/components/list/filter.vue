@@ -18,8 +18,8 @@
 
         <!-- Reset start -->
         <div class="uk-text-small uk-text-right">
-            <a href="#" @click.prevent="values = []">
-                {{ Liro.messages.get('theme::form.list.reset') }}
+            <a href="javascript:void(0)" @click="values = []">
+                {{ trans('theme::form.list.reset') }}
             </a>
         </div>
         <!-- Reset end -->
@@ -34,8 +34,16 @@
 export default {
 
     inject: [
-        'config', 'methods'
+        'list'
     ],
+
+    computed: {
+
+        config: function () {
+            return this.list.library.config.filter;
+        }
+
+    },
 
     props: {
 
@@ -64,29 +72,32 @@ export default {
             default: function () {
                 return 'value';
             },
-            type: String
+            type: [String, Number]
         },
 
         filtersLabel: {
             default: function () {
                 return 'label';
             },
-            type: String
+            type: [String, Number]
         }
 
     },
 
-    data() {
+    data: function () {
+
+        var config = this.list.library.config.filter;
+
         return {
-            values: this.config.filter.filters[this.column] || []
+            values: config.filters[this.column] || []
         };
     },
 
-    mounted() {
+    watch: {
 
-        this.$watch('values', function () {
-            this.methods.filter(this.column, this.values);
-        });
+        values: function () {
+            this.list.library.setFilterData(this.column, this.values);
+        }
 
     }
 

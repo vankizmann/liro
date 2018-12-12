@@ -1,9 +1,8 @@
 <template>
 
-<li :class="{ 'app-select-option uk-flex-1': true, 'is-active': active }" :data-value="value">
-    <a class="app-select-link" href="javascript:void(0)" @click="selectValue">
-        <span class="app-select-left uk-flex uk-flex-middle" v-html="label"></span>
-        <span class="app-select-right uk-flex uk-flex-middle" v-html="check"></span>
+<li :class="{ 'app-switch-option uk-flex-1': true, 'is-active': active }" :data-value="value">
+    <a class="app-switch-link uk-width-1-1 uk-label" href="javascript:void(0)" @click="selectValue">
+        <span class="app-switch-text" v-html="label"></span>
     </a>
 </li>
 
@@ -13,7 +12,7 @@
 export default {
 
     inject: [
-        'select'
+        'switch'
     ],
 
     props: {
@@ -47,7 +46,7 @@ export default {
     computed: {
 
         active: function () {
-            return _.hasValue(this.select.model, this.value);
+            return _.hasValue(this.switch.model, this.value);
         }
 
     },
@@ -55,13 +54,13 @@ export default {
     methods: {
 
         selectValue: function () {
-            this.select.select(this.value);
+            this.switch.switch(this.value);
         }
 
     },
 
     created: function () {
-        this.select.options.push({
+        this.switch.options.push({
             label: this.label, value: this.value
         });
     }
@@ -69,7 +68,7 @@ export default {
 }
 
 if (window.Liro) {
-    Liro.vue.component('app-select-option', this.default);
+    Liro.vue.component('app-switch-option', this.default);
 }
 
 </script>

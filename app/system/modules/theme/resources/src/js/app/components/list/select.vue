@@ -3,7 +3,7 @@
 <div class="app-list-select">
     <!-- Label start -->
    <label class="uk-checkbox-label">
-       <input type="checkbox" class="uk-checkbox" :value="value" :checked="config.select.selected.indexOf(value) != -1" @input="selectItem">
+       <input type="checkbox" class="uk-checkbox" :value="value" :checked="config.selected.indexOf(value) != -1" @input="selectItem">
        <span v-if="label" v-html="label"></span>
     </label>
     <!-- Label end -->
@@ -14,17 +14,19 @@
 
 export default {
 
+    inject: [
+        'list'
+    ],
+
+    computed: {
+
+        config: function () {
+            return this.list.library.config.select;
+        }
+
+    },
+
     props: {
-
-        config: {
-            required: true,
-            type: Object
-        },
-
-        methods: {
-            required: true,
-            type: Object
-        },
 
         value: {
             required: true,
@@ -41,7 +43,7 @@ export default {
     methods: {
 
         selectItem: function () {
-            this.$emit('select',this.value);
+            this.list.library.toggleSelectData(this.value);
         }
 
     }

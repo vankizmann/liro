@@ -2,8 +2,9 @@
 
 <div class="app-list-sort">
     <!-- Label start -->
-    <a href="javascript:void(0)" :class="{ 'uk-text-nowrap': true, 'uk-active': column == config.order.column }" @click="setOrder">
-        <i :uk-icon="this.config.order.direction == 'asc' ? 'sort-amount-up' : 'sort-amount-down'"></i> <span v-if="$slots.default"><slot></slot></span>
+    <a href="javascript:void(0)" :class="{ 'uk-text-nowrap': true, 'uk-active': column == config.column }" @click="setOrder">
+        <i :uk-icon="config.direction == 'asc' ? 'sort-amount-up' : 'sort-amount-down'"></i>
+        <span v-if="$slots.default"><slot></slot></span>
     </a>
     <!-- Label end -->
 </div>
@@ -14,23 +15,30 @@
 export default {
 
     inject: [
-        'config', 'methods'
+        'list'
     ],
+
+    computed: {
+
+        config: function () {
+            return this.list.library.config.order;
+        }
+
+    },
 
     props: {
 
-        config: {
-            required: true,
-            type: Object
-        },
-
         column: {
-            default: '',
+            default: function () {
+                return '';
+            },
             type: String
         },
 
         label: {
-            default: '',
+            default: function () {
+                return '';
+            },
             type: String
         }
 
@@ -39,7 +47,7 @@ export default {
     methods: {
 
         setOrder() {
-            this.methods.order(this.column, this.config.order.direction == 'desc' ? 'asc' : 'desc');
+            this.list.library.setOrderData(this.column, this.config.direction == 'desc' ? 'asc' : 'desc');
         }
 
     }

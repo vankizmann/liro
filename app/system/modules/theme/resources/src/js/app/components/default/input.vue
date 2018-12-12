@@ -1,7 +1,7 @@
 <template>
 
 <div class="app-input">
-    <input class="uk-input" :type="type" :id="id" :name="name" :disabled="disabled" v-model="ghost">
+    <input class="uk-input" :type="type" :id="id" :name="name" :disabled="disabled" v-model="ghost" @input="updateValue">
 </div>
 
 </template>
@@ -21,8 +21,7 @@ export default {
     props: {
 
         model: {
-            required: true,
-            type: [String, Number, Boolean]
+            required: true
         },
 
         type: {
@@ -63,7 +62,15 @@ export default {
 
     watch: {
 
-        ghost: function () {
+        model: function () {
+            this.ghost = this.model;
+        }
+
+    },
+
+    methods: {
+
+        updateValue: function () {
             this.$emit('input', this.ghost);
         }
 

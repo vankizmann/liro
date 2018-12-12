@@ -7,22 +7,22 @@ class UserRouter
 
     public function index($router)
     {
-        $router->middleware('ajax', 'route')->get('/', 'Liro\Users\Controllers\UserApiController@index');
+        $router->middleware('ajax', 'route')->get('/', 'Liro\Users\Controllers\Ajax\UserController@index');
     }
 
     public function store($router)
     {
-        $router->middleware('ajax', 'route')->post('/', 'Liro\Users\Controllers\UserApiController@store');
+        $router->middleware('ajax', 'route')->post('/', 'Liro\Users\Controllers\Ajax\UserController@store');
     }
 
     public function show($router)
     {
-        $router->middleware('ajax', 'route')->get('{user}', 'Liro\Users\Controllers\UserApiController@show');
+        $router->middleware('ajax', 'route')->get('{user}', 'Liro\Users\Controllers\Ajax\UserController@show');
     }
 
     public function update($router)
     {
-        $router->middleware('ajax', 'route')->put('{user}', 'Liro\Users\Controllers\UserApiController@update');
+        $router->middleware('ajax', 'route')->put('{user}', 'Liro\Users\Controllers\Ajax\UserController@update');
     }
 
 }

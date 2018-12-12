@@ -4,11 +4,11 @@
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
-            <a class="uk-button uk-button-primary uk-margin-small-left" :href="Liro.routes.get('liro-users.role.index')">
-                {{ Liro.messages.get('theme::form.toolbar.close') }}
+            <a class="uk-button uk-button-primary uk-margin-small-left" :href="route('liro-users.admin.role.index')">
+                {{ trans('theme::form.toolbar.close') }}
             </a>
             <a class="uk-button uk-button-success uk-margin-small-left" href="javascript:void(0)" @click="updateRole" v-shortkey="['meta', 's']" @shortkey="updateRole">
-                {{ Liro.messages.get('theme::form.toolbar.save') }}
+                {{ trans('theme::form.toolbar.save') }}
             </a>
         </div>
     </portal>
@@ -16,21 +16,21 @@
     <!-- Form start -->
     <div class="th-form">
 
-        <legend class="uk-legend uk-legend-small">
-            {{ Liro.messages.get('liro-users::form.legend.info') }}
+        <legend class="uk-legend">
+            <span>{{ trans('liro-users::form.legend.info') }}</span>
         </legend>
 
-        <app-form-input
-            name="title" v-model="role.title" :label="Liro.messages.get('liro-users::form.role.title')"
-        ></app-form-input>
+        <app-label :label="trans('liro-users::form.role.title')">
+            <app-input name="title" v-model="role.title"></app-input>
+        </app-label>
 
-        <app-form-input
-            name="description" v-model="role.description" :label="Liro.messages.get('liro-users::form.role.description')"
-        ></app-form-input>
+        <app-label :label="trans('liro-users::form.role.description')">
+            <app-input name="description" v-model="role.description"></app-input>
+        </app-label>
 
-        <app-form-input
-            name="access" v-model="role.access" :label="Liro.messages.get('liro-users::form.role.access')"
-        ></app-form-input>
+        <app-label :label="trans('liro-users::form.role.access')">
+            <app-input name="access" v-model="role.access"></app-input>
+        </app-label>
 
     </div>
     <!-- Form end -->
@@ -39,25 +39,14 @@
     <div v-if="modules.length != 0">
 
         <ul uk-tab>
-            <li v-for="(module, type) in modules" :key="type">
-                <a href="javascript:void(0)">{{ type }}</a>
+            <li v-for="(item, index) in modules" :key="index">
+                <a href="javascript:void(0)">{{ index }}</a>
             </li>
         </ul>
 
         <ul class="uk-switcher uk-margin">
-            <li v-for="(module, type) in modules" :key="type">
-                <div class="th-form" v-for="(routes, index) in module" :key="type + '-' + index">
-                    <legend class="uk-legend uk-legend-small">
-                        <span>{{ index }}</span>
-                    </legend>
-                    <div class="uk-margin">
-                        <div class="uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l" uk-grid>
-                            <template v-for="(name, index) in routes">
-                                <app-checkbox :key="index" :label="name" :value="index" v-model="role.route_names"></app-checkbox>
-                            </template>
-                        </div>
-                    </div>
-                </div>
+            <li v-for="(items, index) in modules" :key="index">
+                <liro-role-edit-module :items="items" v-model="role.route_names"></liro-role-edit-module>
             </li>
         </ul>
 
@@ -66,6 +55,8 @@
 </div>
 </template>
 <script>
+
+import EditModule from './edit/module';
 
 export default {
 

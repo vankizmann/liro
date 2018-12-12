@@ -11,7 +11,7 @@
     }
 
     .th-table-tr > div {
-        padding: 20px 16px;
+        padding: 18px 16px;
     }
 
     .th-table-tr > div:first-child {
@@ -60,7 +60,6 @@
     }
 
     .th-table-head .th-table-tr {
-        font-size: 0.875rem;
         border-bottom: 1px solid darken($color-gray-5, 3%);
     }
 
@@ -69,7 +68,7 @@
     }
 
     .th-table-filter .th-table-tr {
-        font-size: 0.875rem;
+        font-size: $global-small-font-size;
         border-bottom: 1px solid darken($color-gray-5, 3%);
     }
 
@@ -124,7 +123,7 @@
     }
 
     .th-table-body .th-table-tr {
-        border-bottom: 1px solid $color-gray-5;
+        border-bottom: 1px solid darken($color-gray-5, 3%);
     }
 
     .th-table-body.th-table-highlight .th-table-tr {

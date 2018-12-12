@@ -1,0 +1,79 @@
+
+.app-switch .uk-input {
+    border-radius: 500px;
+    height: auto;
+    line-height: 1;
+    padding: 1px;
+}
+
+.app-switch .uk-list {
+    margin: 0;
+}
+
+.app-switch .app-switch-option {
+    margin: 1px !important;
+}
+
+.app-switch .app-switch-option:first-child {
+    margin-left: 0;
+}
+
+.app-switch .app-switch-option:last-child {
+    margin-right: 0;
+}
+
+.app-switch .app-switch-option .app-switch-link {
+    user-select: none;
+}
+
+.app-switch .app-switch-option .app-switch-link {
+    border-radius: 500px;
+}
+
+.app-switch .app-switch-option .uk-label {
+    padding: 8px 10px;
+}
+
+.app-switch .app-switch-option .uk-label {
+    background-color: transparent;
+    color: $label-default-color;
+}
+
+.app-switch .app-switch-option .uk-label:hover {
+    color: darken($label-default-color, 5%);
+}
+
+.app-switch .app-switch-option.is-active .uk-label {
+    background-color: $label-primary-background !important;
+    color: $label-primary-color !important;
+}
+
+.app-switch.is-state .app-switch-option.is-active[data-value="1"] .uk-label {
+    background-color: $label-success-background !important;
+    color: $label-success-color !important;
+}
+
+.app-switch.is-state .app-switch-option.is-active[data-value="0"] .uk-label {
+    background-color: $label-danger-background !important;
+    color: $label-danger-color !important;
+}
+
+.app-switch.is-hide .app-switch-option.is-active[data-value="1"] .uk-label {
+    background-color: $label-warning-background !important;
+    color: $label-warning-color !important;
+}
+
+.app-switch.is-hide .app-switch-option.is-active[data-value="0"] .uk-label {
+    background-color: $label-primary-background !important;
+    color: $label-primary-color !important;
+}
+
+.app-switch.is-default .app-switch-option.is-active[data-value="1"] .uk-label {
+    background-color: $label-primary-background !important;
+    color: $label-primary-color !important;
+}
+
+.app-switch.is-default .app-switch-option.is-active[data-value="0"] .uk-label {
+    background-color: $label-default-background !important;
+    color: $label-default-color !important;
+}

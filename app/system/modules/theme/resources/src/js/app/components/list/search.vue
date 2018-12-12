@@ -15,18 +15,30 @@
 export default {
 
     inject: [
-        'config', 'methods'
+        'list'
     ],
+
+    computed: {
+
+        config: function () {
+            return this.list.library.config.search;
+        }
+
+    },
 
     props: {
 
         placeholder: {
-            default: '',
+            default: function () {
+                return '';
+            },
             type: String
         },
 
         columns: {
-            required: true,
+            default: function () {
+                return [];
+            },
             type: Array
         }
 
@@ -34,14 +46,14 @@ export default {
 
     data: function () {
         return {
-            query: this.config.search.query
+            query: this.list.library.config.search.query
         };
     },
 
     methods: {
 
         setQuery: function (query) {
-            this.methods.search(this.query = query, this.columns);
+            this.list.library.setSearchData(query, this.columns);
         }
 
     }

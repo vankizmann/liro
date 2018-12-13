@@ -12,7 +12,7 @@
         </portal>
 
         <!-- Table start -->
-        <div class="th-table-container">
+        <div class="th-form is-table">
             <div class="th-table uk-margin-remove-bottom">
 
                 <!-- Table head -->
@@ -28,22 +28,25 @@
                 <!-- Table filter -->
                 <div class="th-table-filter">
                     <div class="th-table-tr uk-flex uk-flex-middle">
-                        <div class="uk-width-1-3">
+                        <div class="th-table-td th-table-td-xs">
+                            <app-list-select-all class="uk-display-inline-block uk-margin-right"></app-list-select-all>
+                        </div>
+                        <div class="uk-width-1-2">
                             <app-list-sort column="title">
                                 {{ trans('liro-users::form.role.title') }}
                             </app-list-sort>
                         </div>
-                        <div class="uk-width-1-3">
+                        <div class="uk-width-1-2">
                             <app-list-sort column="description">
                                 {{ trans('liro-users::form.role.description') }}
                             </app-list-sort>
                         </div>
-                        <div class="uk-width-1-3">
+                        <div class="th-table-td th-table-td-l uk-text-center">
                             <span>
                                 {{ trans('liro-users::form.role.routes') }}
                             </span>
                         </div>
-                        <div class="uk-width-small uk-text-center">
+                        <div class="th-table-td-m uk-text-center">
                             <app-list-sort column="id">
                                 {{ trans('liro-users::form.role.id') }}
                             </app-list-sort>
@@ -53,13 +56,13 @@
                 <!-- Table head end -->
 
                 <!-- Table body -->
-                <div class="th-table-body" v-if="items.length != 0">
+                <div class="th-table-body" v-show="items.length != 0">
                     <liro-role-index-item v-for="(item, index) in items" :value="item" :key="index"></liro-role-index-item>
                 </div>
                 <!-- Table body end -->
 
                 <!-- Table body -->
-                <div class="th-table-body" v-if="items.length == 0">
+                <div class="th-table-body" v-show="items.length == 0">
                     <div class="th-table-tr">
                         <div class="uk-width-1-1 uk-text-center">
                             {{ trans('theme::form.list.empty') }}

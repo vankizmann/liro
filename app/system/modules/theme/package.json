@@ -24,6 +24,7 @@
         "portal-vue": "^1.4.0",
         "raw-loader": "^0.5.1",
         "shiftcheckbox": "nylen/shiftcheckbox",
+        "smartmenus": "^1.1.0",
         "uikit": "^3.0.0-rc.25",
         "vue": "^2.5.17",
         "vue-nestable": "^0.0.8",

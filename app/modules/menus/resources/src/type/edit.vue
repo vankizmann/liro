@@ -6,14 +6,14 @@
         <div class="uk-navbar-item">
 
             <!-- Close link -->
-            <a class="uk-button uk-button-primary uk-margin-small-left" :href="Liro.routes.get('liro-menus.type.index')">
-                {{ Liro.messages.get('theme::form.toolbar.close') }}
+            <a class="uk-button uk-button-primary uk-margin-small-left" :href="route('liro-menus.admin.type.index')">
+                {{ trans('theme::form.toolbar.close') }}
             </a>
             <!-- Close link end -->
 
             <!-- Save button -->
             <a class="uk-button uk-button-success uk-margin-small-left" href="javascript:void(0)" @click="updateType">
-                {{ Liro.messages.get('theme::form.toolbar.save') }}
+                {{ trans('theme::form.toolbar.save') }}
             </a>
             <!-- Save button end -->
 
@@ -25,16 +25,20 @@
         <div class="th-form">
 
             <legend class="uk-legend uk-legend-small">
-                {{ Liro.messages.get('liro-menus::form.legend.general') }}
+                <span>{{ trans('liro-menus::form.legend.general') }}</span>
             </legend>
 
-            <app-form-switch 
-                class="is-state uk-width-1-1" name="state" v-model="type.state" :options="states" :label="Liro.messages.get('liro-menus::form.type.state')"
-            ></app-form-switch>
+            <app-label :label="trans('liro-menus::form.type.state')">
+                <app-switch class="is-state" v-model="type.state">
+                    <app-switch-option v-for="item in states" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
+                </app-switch>
+            </app-label>
 
-            <app-form-select-single 
-                name="locale" v-model="type.locale" :options="locales" :label="Liro.messages.get('liro-menus::form.type.locale')" :placeholder="Liro.messages.get('liro-menus::form.type.select_locale')"
-            ></app-form-select-single>
+            <app-label :label="trans('liro-menus::form.type.locale')">
+                <app-select v-model="type.locale" :placeholder="trans('liro-menus::form.type.select_locale')">
+                    <app-select-option v-for="item in locales" :key="item.value" :value="item.value" :label="item.label"></app-select-option>
+                </app-select>
+            </app-label>
 
         </div>
     </div>
@@ -45,20 +49,20 @@
         <div class="th-form">
 
             <legend class="uk-legend uk-legend-small">
-                {{ Liro.messages.get('liro-menus::form.legend.info') }}
+                <span>{{ trans('liro-menus::form.legend.info') }}</span>
             </legend>
 
-            <app-form-input 
-                name="title" v-model="type.title" :label="Liro.messages.get('liro-menus::form.type.title')"
-            ></app-form-input>
+            <app-label :label="trans('liro-menus::form.type.title')">
+                <app-input v-model="type.title"></app-input>
+            </app-label>
 
-            <app-form-input 
-                name="route" v-model="type.route" :label="Liro.messages.get('liro-menus::form.type.route')"
-            ></app-form-input>
+            <app-label :label="trans('liro-menus::form.type.route')">
+                <app-input v-model="type.route"></app-input>
+            </app-label>
 
-            <app-form-input 
-                name="theme" v-model="type.theme" :label="Liro.messages.get('liro-menus::form.type.theme')"
-            ></app-form-input>
+            <app-label :label="trans('liro-menus::form.type.theme')">
+                <app-input v-model="type.theme"></app-input>
+            </app-label>
 
         </div>
     </div>
@@ -70,34 +74,33 @@
 
 export default {
 
-    /**
-     * Get data from liro framework
-     */
-    data: function () {
-        return {
-            states: this.Liro.data.get('states'),
-            locales: this.Liro.data.get('locales'),
-            type: this.Liro.data.get('type')
-        };
+    computed: {
+
+        states: function () {
+            return this.$root.states;
+        },
+
+        locales: function () {
+            return this.$root.locales;
+        },
+
+        type: function () {
+            return this.$root.type;
+        }
+
     },
 
     methods: {
 
-        /**
-         * Submit ajax request to save type
-         */
         updateType: function () {
 
-            var url = Liro.routes.get('liro-menus.type.edit', {
+            var url = Liro.routes.get('liro-menus.ajax.type.update', {
                 type: this.type.id
             });
 
-            Axios.post(url, this.type).then(this.updateTypeResponse);
+            Axios.put(url, this.type).then(this.updateTypeResponse);
         },
 
-        /**
-         * Show success message
-         */
         updateTypeResponse: function (res) {
             var message = Liro.messages.get('liro-menus::message.type.saved');
             UIkit.notification(message, 'success');

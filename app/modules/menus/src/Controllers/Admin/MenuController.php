@@ -24,7 +24,7 @@ class MenuController extends \Liro\System\Http\Controller
 
     public function create(Menu $menu, MenuType $type)
     {
-        $modules = app('menus')->getRoutesArray(['user', 'admin']);
+        $modules = app('menus')->getModuleNames(['admin', 'user']);
 
         app('assets')->dataArray([
             'menu' => $menu, 'modules' => $modules, 'types' => $type->all()
@@ -35,7 +35,7 @@ class MenuController extends \Liro\System\Http\Controller
 
     public function edit(Menu $menu, MenuType $type)
     {
-        $modules = app('menus')->getRoutesArray('user');
+        $modules = app('menus')->getModuleNames(['admin', 'user']);
 
         app('assets')->dataArray([
             'menu' => $menu, 'modules' => $modules, 'types' => $type->all()

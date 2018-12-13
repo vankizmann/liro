@@ -18,7 +18,7 @@ body.th-index {
 body.th-error {
 
     & {
-        background-color: $color-gray-10;
+        background-color: $color-white;
     }
 
     .th-error-body {
@@ -36,11 +36,15 @@ body.th-error {
 body.th-login {
 
     & {
-        background-color: darken($color-gray-95, 5%);
+        background-color: $color-gray-10;
     }
 
     .th-login-background {
-        opacity: 0.2;
+        background-color: $color-gray-95;
+    }
+
+    .th-login-background img {
+        opacity: 0.15;
     }
 
     .th-login-body {
@@ -53,6 +57,7 @@ body.th-login {
         width: 100%;
         border-radius: 3px;
         max-width: 450px;
+        box-shadow: 0 0 3px rgba($color-gray-50, 0.15);
     }
 
 }

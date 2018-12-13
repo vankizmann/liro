@@ -1,8 +1,11 @@
 <template>
 
 <div class="th-table-tr uk-flex uk-flex-middle">
+    <div class="th-table-td-xs">
+        <app-list-select :value="value.id"></app-list-select>
+    </div>
     <div class="uk-width-1-2">
-        <a :href="Liro.routes.get('liro-languages.admin.language.edit', { language: value.id })">
+        <a :href="route('liro-languages.admin.language.edit', { language: value.id })">
             {{ value.title }}
         </a>
     </div>

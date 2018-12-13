@@ -340,6 +340,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -439,6 +442,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -467,12 +473,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "th-table-tr uk-flex uk-flex-middle" }, [
-    _c("div", { staticClass: "uk-width-1-3" }, [
+    _c(
+      "div",
+      { staticClass: "th-table-td-xs" },
+      [_c("app-list-select", { attrs: { value: _vm.value.id } })],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "uk-width-1-2" }, [
       _c(
         "a",
         {
           attrs: {
-            href: _vm.Liro.routes.get("liro-users.admin.role.edit", {
+            href: _vm.route("liro-users.admin.role.edit", {
               role: _vm.value.id
             })
           }
@@ -481,13 +494,13 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "uk-width-1-3" }, [
+    _c("div", { staticClass: "uk-width-1-2" }, [
       _c("span", { staticClass: "uk-text-muted" }, [
         _vm._v("\n            " + _vm._s(_vm.value.description) + "\n        ")
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "uk-width-1-3" }, [
+    _c("div", { staticClass: "th-table-td-l uk-text-center" }, [
       _c("span", [
         _vm._v(
           "\n            " + _vm._s(_vm.value.route_names.length) + "\n        "
@@ -495,7 +508,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "uk-width-small uk-text-center" }, [
+    _c("div", { staticClass: "th-table-td-m uk-text-center" }, [
       _c("span", [
         _vm._v("\n            " + _vm._s(_vm.value.id) + "\n        ")
       ])
@@ -551,7 +564,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "th-table-container" }, [
+              _c("div", { staticClass: "th-form is-table" }, [
                 _c("div", { staticClass: "th-table uk-margin-remove-bottom" }, [
                   _c("div", { staticClass: "th-table-head" }, [
                     _c(
@@ -584,7 +597,19 @@ var render = function() {
                       [
                         _c(
                           "div",
-                          { staticClass: "uk-width-1-3" },
+                          { staticClass: "th-table-td th-table-td-xs" },
+                          [
+                            _c("app-list-select-all", {
+                              staticClass:
+                                "uk-display-inline-block uk-margin-right"
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "uk-width-1-2" },
                           [
                             _c(
                               "app-list-sort",
@@ -605,7 +630,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "uk-width-1-3" },
+                          { staticClass: "uk-width-1-2" },
                           [
                             _c(
                               "app-list-sort",
@@ -626,21 +651,28 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "uk-width-1-3" }, [
-                          _c("span", [
-                            _vm._v(
-                              "\n                                " +
-                                _vm._s(
-                                  _vm.trans("liro-users::form.role.routes")
-                                ) +
-                                "\n                            "
-                            )
-                          ])
-                        ]),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "th-table-td th-table-td-l uk-text-center"
+                          },
+                          [
+                            _c("span", [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(
+                                    _vm.trans("liro-users::form.role.routes")
+                                  ) +
+                                  "\n                            "
+                              )
+                            ])
+                          ]
+                        ),
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "uk-width-small uk-text-center" },
+                          { staticClass: "th-table-td-m uk-text-center" },
                           [
                             _c("app-list-sort", { attrs: { column: "id" } }, [
                               _vm._v(
@@ -658,36 +690,56 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  items.length != 0
-                    ? _c(
-                        "div",
-                        { staticClass: "th-table-body" },
-                        _vm._l(items, function(item, index) {
-                          return _c("liro-role-index-item", {
-                            key: index,
-                            attrs: { value: item }
-                          })
-                        })
-                      )
-                    : _vm._e(),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: items.length != 0,
+                          expression: "items.length != 0"
+                        }
+                      ],
+                      staticClass: "th-table-body"
+                    },
+                    _vm._l(items, function(item, index) {
+                      return _c("liro-role-index-item", {
+                        key: index,
+                        attrs: { value: item }
+                      })
+                    })
+                  ),
                   _vm._v(" "),
-                  items.length == 0
-                    ? _c("div", { staticClass: "th-table-body" }, [
-                        _c("div", { staticClass: "th-table-tr" }, [
-                          _c(
-                            "div",
-                            { staticClass: "uk-width-1-1 uk-text-center" },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(_vm.trans("theme::form.list.empty")) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ])
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: items.length == 0,
+                          expression: "items.length == 0"
+                        }
+                      ],
+                      staticClass: "th-table-body"
+                    },
+                    [
+                      _c("div", { staticClass: "th-table-tr" }, [
+                        _c(
+                          "div",
+                          { staticClass: "uk-width-1-1 uk-text-center" },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.trans("theme::form.list.empty")) +
+                                "\n                        "
+                            )
+                          ]
+                        )
                       ])
-                    : _vm._e(),
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "th-table-footer" }, [
                     _c(
@@ -777,6 +829,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit_module__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit_module___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__edit_module__);
 //
 //
 //
@@ -834,8 +888,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -862,14 +916,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         storeRoleResponse: function storeRoleResponse(res) {
 
             var values = {
-                role: res.data.role.id
+                role: res.data.id
             };
 
             var query = {
                 success: 'liro-users::message.role.created'
             };
 
-            Liro.routes.redirect('liro-users.role.edit', values, query);
+            Liro.routes.redirect('liro-users.admin.role.edit', values, query);
         }
 
     }
@@ -898,12 +952,12 @@ var render = function() {
             "a",
             {
               staticClass: "uk-button uk-button-primary uk-margin-small-left",
-              attrs: { href: _vm.Liro.routes.get("liro-users.role.index") }
+              attrs: { href: _vm.route("liro-users.admin.role.index") }
             },
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.Liro.messages.get("theme::form.toolbar.close")) +
+                  _vm._s(_vm.trans("theme::form.toolbar.close")) +
                   "\n            "
               )
             ]
@@ -927,7 +981,7 @@ var render = function() {
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.Liro.messages.get("theme::form.toolbar.save")) +
+                  _vm._s(_vm.trans("theme::form.toolbar.save")) +
                   "\n            "
               )
             ]
@@ -939,145 +993,112 @@ var render = function() {
         "div",
         { staticClass: "th-form" },
         [
-          _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
-            _vm._v(
-              "\n            " +
-                _vm._s(_vm.Liro.messages.get("liro-users::form.legend.info")) +
-                "\n        "
-            )
+          _c("legend", { staticClass: "uk-legend" }, [
+            _c("span", [
+              _vm._v(_vm._s(_vm.trans("liro-users::form.legend.info")))
+            ])
           ]),
           _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "title",
-              label: _vm.Liro.messages.get("liro-users::form.role.title")
-            },
-            model: {
-              value: _vm.role.title,
-              callback: function($$v) {
-                _vm.$set(_vm.role, "title", $$v)
-              },
-              expression: "role.title"
-            }
-          }),
+          _c(
+            "app-label",
+            { attrs: { label: _vm.trans("liro-users::form.role.title") } },
+            [
+              _c("app-input", {
+                attrs: { name: "title" },
+                model: {
+                  value: _vm.role.title,
+                  callback: function($$v) {
+                    _vm.$set(_vm.role, "title", $$v)
+                  },
+                  expression: "role.title"
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "description",
-              label: _vm.Liro.messages.get("liro-users::form.role.description")
+          _c(
+            "app-label",
+            {
+              attrs: { label: _vm.trans("liro-users::form.role.description") }
             },
-            model: {
-              value: _vm.role.description,
-              callback: function($$v) {
-                _vm.$set(_vm.role, "description", $$v)
-              },
-              expression: "role.description"
-            }
-          }),
+            [
+              _c("app-input", {
+                attrs: { name: "description" },
+                model: {
+                  value: _vm.role.description,
+                  callback: function($$v) {
+                    _vm.$set(_vm.role, "description", $$v)
+                  },
+                  expression: "role.description"
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("app-form-input", {
-            attrs: {
-              name: "access",
-              label: _vm.Liro.messages.get("liro-users::form.role.access")
-            },
-            model: {
-              value: _vm.role.access,
-              callback: function($$v) {
-                _vm.$set(_vm.role, "access", $$v)
-              },
-              expression: "role.access"
-            }
-          })
+          _c(
+            "app-label",
+            { attrs: { label: _vm.trans("liro-users::form.role.access") } },
+            [
+              _c("app-input", {
+                attrs: { name: "access" },
+                model: {
+                  value: _vm.role.access,
+                  callback: function($$v) {
+                    _vm.$set(_vm.role, "access", $$v)
+                  },
+                  expression: "role.access"
+                }
+              })
+            ],
+            1
+          )
         ],
         1
       ),
       _vm._v(" "),
-      _vm._l(_vm.modules, function(module, type) {
-        return module.length != 0
-          ? _vm._l(module, function(routes, index) {
-              return _c("div", { key: index, staticClass: "th-form" }, [
-                _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
-                  _c("span", { staticClass: "uk-label uk-label-primary" }, [
-                    _vm._v(_vm._s(type))
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "uk-margin-small-left" }, [
+      _vm.modules.length != 0
+        ? _c("div", [
+            _c(
+              "ul",
+              { attrs: { "uk-tab": "" } },
+              _vm._l(_vm.modules, function(item, index) {
+                return _c("li", { key: index }, [
+                  _c("a", { attrs: { href: "javascript:void(0)" } }, [
                     _vm._v(_vm._s(index))
                   ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "uk-flex uk-grid-small uk-child-width-1-2@m uk-child-width-1-4@l",
-                    attrs: { "uk-grid": "" }
-                  },
-                  _vm._l(routes, function(name, index) {
-                    return _c(
-                      "label",
-                      { key: index, staticClass: "uk-checkbox-label" },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.role.route_names,
-                              expression: "role.route_names"
-                            }
-                          ],
-                          staticClass: "uk-checkbox",
-                          attrs: { type: "checkbox" },
-                          domProps: {
-                            value: index,
-                            checked: Array.isArray(_vm.role.route_names)
-                              ? _vm._i(_vm.role.route_names, index) > -1
-                              : _vm.role.route_names
-                          },
-                          on: {
-                            change: function($event) {
-                              var $$a = _vm.role.route_names,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = index,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    _vm.$set(
-                                      _vm.role,
-                                      "route_names",
-                                      $$a.concat([$$v])
-                                    )
-                                } else {
-                                  $$i > -1 &&
-                                    _vm.$set(
-                                      _vm.role,
-                                      "route_names",
-                                      $$a
-                                        .slice(0, $$i)
-                                        .concat($$a.slice($$i + 1))
-                                    )
-                                }
-                              } else {
-                                _vm.$set(_vm.role, "route_names", $$c)
-                              }
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", [_vm._v(_vm._s(name))])
-                      ]
-                    )
-                  })
+                ])
+              })
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "uk-switcher uk-margin" },
+              _vm._l(_vm.modules, function(items, index) {
+                return _c(
+                  "li",
+                  { key: index },
+                  [
+                    _c("liro-role-edit-module", {
+                      attrs: { items: items },
+                      model: {
+                        value: _vm.role.route_names,
+                        callback: function($$v) {
+                          _vm.$set(_vm.role, "route_names", $$v)
+                        },
+                        expression: "role.route_names"
+                      }
+                    })
+                  ],
+                  1
                 )
-              ])
-            })
-          : _vm._e()
-      })
+              })
+            )
+          ])
+        : _vm._e()
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -1099,7 +1120,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(32)
 /* template */
-var __vue_template__ = __webpack_require__(33)
+var __vue_template__ = __webpack_require__(36)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1143,8 +1164,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit_module__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit_module__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit_module___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__edit_module__);
+//
 //
 //
 //
@@ -1245,6 +1267,189 @@ if (window.Liro) {
 
 /***/ }),
 /* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(34)
+/* template */
+var __vue_template__ = __webpack_require__(35)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/role/edit/module.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9cd4620a", Component.options)
+  } else {
+    hotAPI.reload("data-v-9cd4620a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    model: {
+        prop: 'model',
+        event: 'input'
+    },
+
+    props: {
+
+        model: {
+            required: true,
+            type: Array
+        },
+
+        items: {
+            required: true,
+            type: [Object, Array]
+        }
+
+    },
+
+    data: function data() {
+        return {
+            ghost: this.model
+        };
+    },
+
+    watch: {
+
+        model: function model() {
+            this.ghost = this.model;
+        }
+
+    },
+
+    methods: {
+
+        updateValue: function updateValue(value) {
+            this.$emit('input', value);
+        }
+
+    }
+
+});
+
+if (window.Liro) {
+    Liro.vue.component('liro-role-edit-module', this.default);
+}
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "liro-role-edit-module" },
+    _vm._l(_vm.items, function(routes, group) {
+      return _c("div", { key: group, staticClass: "th-form" }, [
+        _c("legend", { staticClass: "uk-legend" }, [
+          _c("span", [_vm._v(_vm._s(group))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-margin" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l",
+              attrs: { "uk-grid": "" }
+            },
+            _vm._l(routes, function(name, index) {
+              return _c(
+                "div",
+                { key: index },
+                [
+                  _c("app-checkbox", {
+                    attrs: { label: name, value: index },
+                    on: { input: _vm.updateValue },
+                    model: {
+                      value: _vm.ghost,
+                      callback: function($$v) {
+                        _vm.ghost = $$v
+                      },
+                      expression: "ghost"
+                    }
+                  })
+                ],
+                1
+              )
+            })
+          )
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9cd4620a", module.exports)
+  }
+}
+
+/***/ }),
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1417,189 +1622,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-763f7de0", module.exports)
-  }
-}
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(35)
-/* template */
-var __vue_template__ = __webpack_require__(36)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/src/role/edit/module.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9cd4620a", Component.options)
-  } else {
-    hotAPI.reload("data-v-9cd4620a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 35 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-    model: {
-        prop: 'model',
-        event: 'input'
-    },
-
-    props: {
-
-        model: {
-            required: true,
-            type: Array
-        },
-
-        items: {
-            required: true,
-            type: [Object, Array]
-        }
-
-    },
-
-    data: function data() {
-        return {
-            ghost: this.model
-        };
-    },
-
-    watch: {
-
-        model: function model() {
-            this.ghost = this.model;
-        }
-
-    },
-
-    methods: {
-
-        updateValue: function updateValue(value) {
-            this.$emit('input', value);
-        }
-
-    }
-
-});
-
-if (window.Liro) {
-    Liro.vue.component('liro-role-edit-module', this.default);
-}
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "liro-role-edit-module" },
-    _vm._l(_vm.items, function(routes, group) {
-      return _c("div", { key: group, staticClass: "th-form" }, [
-        _c("legend", { staticClass: "uk-legend" }, [
-          _c("span", [_vm._v(_vm._s(group))])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "uk-margin" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l",
-              attrs: { "uk-grid": "" }
-            },
-            _vm._l(routes, function(name, index) {
-              return _c(
-                "div",
-                { key: index },
-                [
-                  _c("app-checkbox", {
-                    attrs: { label: name, value: index },
-                    on: { input: _vm.updateValue },
-                    model: {
-                      value: _vm.ghost,
-                      callback: function($$v) {
-                        _vm.ghost = $$v
-                      },
-                      expression: "ghost"
-                    }
-                  })
-                ],
-                1
-              )
-            })
-          )
-        ])
-      ])
-    })
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9cd4620a", module.exports)
   }
 }
 

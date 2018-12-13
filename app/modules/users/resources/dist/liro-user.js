@@ -337,8 +337,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -502,14 +500,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "th-table-tr uk-flex uk-flex-middle" }, [
-    _c("div", { staticClass: "th-table-td-xs" }, [_vm._t("checkbox")], 2),
+    _c(
+      "div",
+      { staticClass: "th-table-td-xs" },
+      [_c("app-list-select", { attrs: { value: _vm.value.id } })],
+      1
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "uk-width-1-3" }, [
       _c(
         "a",
         {
           attrs: {
-            href: _vm.Liro.routes.get("liro-users.admin.user.edit", {
+            href: _vm.route("liro-users.admin.user.edit", {
               user: _vm.value.id
             })
           }
@@ -611,7 +614,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "th-table-container" }, [
+              _c("div", { staticClass: "th-form is-table" }, [
                 _c("div", { staticClass: "th-table uk-margin-remove-bottom" }, [
                   _c("div", { staticClass: "th-table-head" }, [
                     _c(
@@ -764,49 +767,60 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  items.length != 0
-                    ? _c(
-                        "div",
-                        { staticClass: "th-table-body" },
-                        _vm._l(items, function(item, index) {
-                          return _c(
-                            "liro-user-index-item",
-                            { key: index, attrs: { value: item } },
-                            [
-                              _c("app-list-select", {
-                                attrs: { slot: "checkbox", value: item.id },
-                                slot: "checkbox"
-                              })
-                            ],
-                            1
-                          )
-                        })
-                      )
-                    : _vm._e(),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: items.length != 0,
+                          expression: "items.length != 0"
+                        }
+                      ],
+                      staticClass: "th-table-body"
+                    },
+                    _vm._l(items, function(item, index) {
+                      return _c("liro-user-index-item", {
+                        key: index,
+                        attrs: { value: item }
+                      })
+                    })
+                  ),
                   _vm._v(" "),
-                  items.length == 0
-                    ? _c("div", { staticClass: "th-table-body" }, [
-                        _c(
-                          "div",
-                          { staticClass: "th-table-tr uk-flex uk-flex-middle" },
-                          [
-                            _c(
-                              "div",
-                              { staticClass: "uk-width1-1 uk-text-center" },
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(
-                                      _vm.trans("theme::form.list.empty")
-                                    ) +
-                                    "\n                        "
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      ])
-                    : _vm._e(),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: items.length == 0,
+                          expression: "items.length == 0"
+                        }
+                      ],
+                      staticClass: "th-table-body"
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "uk-width1-1 uk-text-center" },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.trans("theme::form.list.empty")) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "th-table-footer" }, [
                     _c(

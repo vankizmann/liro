@@ -2,13 +2,13 @@
 
 <div class="app-select">
 
-    <div class="uk-select uk-flex uk-flex-middle" v-if="multiple == false && actives.length != 0">
+    <div :class="{ 'uk-select uk-flex uk-flex-middle': true, 'uk-disabled': disabled }" v-if="multiple == false && actives.length != 0">
         <span v-for="(active, index) in actives" :key="index">
             {{ active.label }}
         </span>
     </div>
 
-    <div class="uk-select uk-flex uk-flex-middle" v-if="multiple == true && actives.length != 0">
+    <div :class="{ 'uk-select uk-flex uk-flex-middle': true, 'uk-disabled': disabled }" v-if="multiple == true && actives.length != 0">
         <div class="uk-label uk-flex-inline uk-flex-middle" v-for="(active, index) in actives" :key="index">
             <span>{{ active.label }}</span> <i class="uk-icon-small" uk-icon="times" @click.stop="select(active.value)"></i>
         </div>
@@ -108,7 +108,7 @@ export default {
         select: function (value) {
 
             if ( this.multiple == false ) {
-                UIkit.toggle(this.$refs.dropdown).hide();
+                UIkit.toggle(this.$refs.dropdown);
             }
 
             this.ghost = _.changeValue(this.ghost, value);

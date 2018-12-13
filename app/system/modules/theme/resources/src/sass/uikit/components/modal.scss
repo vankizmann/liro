@@ -12,6 +12,6 @@
 }
 
 .uk-modal-dialog .uk-modal-footer {
-    border-top-color: $color-gray-5;
+    border-top-color: darken($color-gray-5, 3%);
     background-color: transparent;
 }

@@ -55,7 +55,7 @@ class Seeder
         $menu_backend_home = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'Dashboard',
             'route'         => '/',
             'module'        => 'liro-test.user.test.test',
@@ -67,23 +67,24 @@ class Seeder
         $menu_backend_users_alias = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-users::module.user.index',
             'route'         => 'users',
             'module'        => 'liro-menus.user.redirect.menu',
             'default'       => 0,
-            'icon'          => 'users',
+            'icon'          => 'user',
             'menu_type_id'  => $menu_type_backend->id
         ]);
 
         $menu_backend_users = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-users::module.user.index',
             'route'         => 'users',
             'module'        => 'liro-users.admin.user.index',
             'default'       => 0,
+            'icon'          => 'user-plus',
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_users_alias->id
         ]);
@@ -95,7 +96,7 @@ class Seeder
         $menu_backend_user_create = Menu::create([
             'state'         => 1,
             'hide'          => 1,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-users::module.user.create',
             'route'         => 'create',
             'module'        => 'liro-users.admin.user.create',
@@ -107,7 +108,7 @@ class Seeder
         $menu_backend_user_edit = Menu::create([
             'state'         => 1,
             'hide'          => 1,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-users::module.user.edit',
             'route'         => 'edit',
             'module'        => 'liro-users.admin.user.edit',
@@ -119,11 +120,12 @@ class Seeder
         $menu_backend_roles = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-users::module.role.index',
             'route'         => 'roles',
             'module'        => 'liro-users.admin.role.index',
             'default'       => 0,
+            'icon'          => 'user-shield',
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_users_alias->id
         ]);
@@ -131,7 +133,7 @@ class Seeder
         $menu_backend_role_create = Menu::create([
             'state'         => 1,
             'hide'          => 1,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-users::module.role.create',
             'route'         => 'create',
             'module'        => 'liro-users.admin.role.create',
@@ -143,7 +145,7 @@ class Seeder
         $menu_backend_role_edit = Menu::create([
             'state'         => 1,
             'hide'          => 1,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-users::module.role.edit',
             'route'         => 'edit',
             'module'        => 'liro-users.admin.role.edit',
@@ -155,23 +157,24 @@ class Seeder
         $menu_backend_menus_alias = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-menus::module.menu.index',
             'route'         => 'menus',
             'module'        => 'liro-menus.user.redirect.menu',
             'default'       => 0,
-            'icon'          => 'list',
+            'icon'          => 'compass',
             'menu_type_id'  => $menu_type_backend->id
         ]);
 
         $menu_backend_menus = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-menus::module.menu.index',
             'route'         => 'menus',
             'module'        => 'liro-menus.admin.menu.index',
             'default'       => 0,
+            'icon'          => 'bars',
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_menus_alias->id
         ]);
@@ -183,7 +186,7 @@ class Seeder
         $menu_backend_menu_create = Menu::create([
             'state'         => 1,
             'hide'          => 1,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-menus::module.menu.create',
             'route'         => 'create',
             'module'        => 'liro-menus.admin.menu.create',
@@ -195,7 +198,7 @@ class Seeder
         $menu_backend_menu_edit = Menu::create([
             'state'         => 1,
             'hide'          => 1,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-menus::module.menu.edit',
             'route'         => 'edit',
             'module'        => 'liro-menus.admin.menu.edit',
@@ -207,11 +210,12 @@ class Seeder
         $menu_backend_types = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-menus::module.type.index',
             'route'         => 'types',
             'module'        => 'liro-menus.admin.type.index',
             'default'       => 0,
+            'icon'          => 'layer-group',
             'menu_type_id'  => $menu_type_backend->id,
             'parent_id'     => $menu_backend_menus_alias->id
         ]);
@@ -219,7 +223,7 @@ class Seeder
         $menu_backend_type_create = Menu::create([
             'state'         => 1,
             'hide'          => 1,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-menus::module.type.create',
             'route'         => 'create',
             'module'        => 'liro-menus.admin.type.create',
@@ -231,7 +235,7 @@ class Seeder
         $menu_backend_type_edit = Menu::create([
             'state'         => 1,
             'hide'          => 1,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-menus::module.type.edit',
             'route'         => 'edit',
             'module'        => 'liro-menus.admin.type.edit',
@@ -243,7 +247,7 @@ class Seeder
         $menu_backend_pages = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-pages::page.page_index',
             'route'         => 'pages',
             'module'        => 'liro-pages.admin.page.index',
@@ -255,7 +259,7 @@ class Seeder
         $menu_backend_media = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'Media',
             'route'         => 'media',
             'module'        => 'liro-media.admin.media.index',
@@ -267,7 +271,7 @@ class Seeder
         $menu_backend_system = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'System',
             'route'         => 'system',
             'module'        => 'liro-modules.admin.system.index',
@@ -279,7 +283,7 @@ class Seeder
         $menu_backend_languages = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-languages::module.language.index',
             'route'         => 'languages',
             'module'        => 'liro-languages.admin.language.index',
@@ -291,7 +295,7 @@ class Seeder
         $menu_backend_language_create = Menu::create([
             'state'         => 1,
             'hide'          => 1,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-languages::module.language.create',
             'route'         => 'create',
             'module'        => 'liro-languages.admin.language.create',
@@ -302,7 +306,7 @@ class Seeder
         $menu_backend_language_edit = Menu::create([
             'state'         => 1,
             'hide'          => 1,
-            'lock'          => 0,
+            'lock'          => 1,
             'title'         => 'liro-languages::module.language.edit',
             'route'         => 'edit',
             'module'        => 'liro-languages.admin.language.edit',

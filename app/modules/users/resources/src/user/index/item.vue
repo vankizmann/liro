@@ -2,10 +2,10 @@
 
 <div class="th-table-tr uk-flex uk-flex-middle">
     <div class="th-table-td-xs">
-        <slot name="checkbox"></slot>
+        <app-list-select :value="value.id"></app-list-select>
     </div>
     <div class="uk-width-1-3">
-        <a :href="Liro.routes.get('liro-users.admin.user.edit', { user: value.id })">
+        <a :href="route('liro-users.admin.user.edit', { user: value.id })">
             {{ value.name }}
         </a>
     </div>

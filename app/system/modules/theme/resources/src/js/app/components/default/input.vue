@@ -1,7 +1,7 @@
 <template>
 
 <div class="app-input">
-    <input class="uk-input" :type="type" :id="id" :name="name" :disabled="disabled" v-model="ghost" @input="updateValue">
+    <input :class="{ 'uk-input': true, 'uk-disabled': disabled }" :type="type" :id="id" :name="name" :disabled="disabled" v-model="ghost" @input="updateValue">
 </div>
 
 </template>

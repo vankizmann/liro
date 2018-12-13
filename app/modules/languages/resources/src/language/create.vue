@@ -4,12 +4,15 @@
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
-            <a class="uk-button uk-button-primary uk-margin-small-left" :href="Liro.routes.get('liro-languages.admin.language.index')">
-                {{ Liro.messages.get('theme::form.toolbar.close') }}
+
+            <a class="uk-button uk-button-primary uk-margin-small-left" :href="route('liro-languages.admin.language.index')">
+                {{ trans('theme::form.toolbar.close') }}
             </a>
+
             <a class="uk-button uk-button-success uk-margin-small-left" href="javascript:void(0)" @click="storeLanguage" v-shortkey="['meta', 's']" @shortkey="storeLanguage">
-                {{ Liro.messages.get('theme::form.toolbar.save') }}
+                {{ trans('theme::form.toolbar.save') }}
             </a>
+
         </div>
     </portal>
 
@@ -18,16 +21,20 @@
         <div class="th-form">
 
             <legend class="uk-legend uk-legend-small">
-                {{ Liro.messages.get('liro-languages::form.legend.general') }}
+                <span>{{ trans('liro-languages::form.legend.general') }}</span>
             </legend>
 
-            <app-form-switch 
-                class="is-state uk-width-1-1" name="state" v-model="language.state" :options="states" :label="Liro.messages.get('liro-languages::form.language.state')"
-            ></app-form-switch>
+            <app-label :label="trans('liro-languages::form.language.state')">
+                <app-switch class="is-state" v-model="language.state">
+                    <app-switch-option v-for="item in states" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
+                </app-switch>
+            </app-label>
 
-            <app-form-switch 
-                class="is-default uk-width-1-1" name="default" v-model="language.default" :options="defaults" :label="Liro.messages.get('liro-languages::form.language.default')"
-            ></app-form-switch>
+            <app-label :label="trans('liro-languages::form.language.default')">
+                <app-switch class="is-default" v-model="language.default">
+                    <app-switch-option v-for="item in defaults" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
+                </app-switch>
+            </app-label>
 
         </div>
     </div>
@@ -38,16 +45,16 @@
         <div class="th-form">
 
             <legend class="uk-legend uk-legend-small">
-                {{ Liro.messages.get('liro-languages::form.legend.info') }}
+                <span>{{ trans('liro-languages::form.legend.info') }}</span>
             </legend>
 
-            <app-form-input 
-                name="title" v-model="language.title" :label="Liro.messages.get('liro-languages::form.language.title')"
-            ></app-form-input>
+            <app-label :label="trans('liro-languages::form.language.title')">
+                <app-input v-model="language.title"></app-input>
+            </app-label>
 
-            <app-form-input 
-                name="locale" v-model="language.locale" :label="Liro.messages.get('liro-languages::form.language.locale')"
-            ></app-form-input>
+            <app-label :label="trans('liro-languages::form.language.locale')">
+                <app-input v-model="language.locale"></app-input>
+            </app-label>
 
         </div>
     </div>

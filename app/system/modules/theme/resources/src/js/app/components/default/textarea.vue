@@ -1,7 +1,7 @@
 <template>
 
 <div class="app-textarea">
-    <textarea class="uk-textarea" :type="type" :id="id" :name="name" :disabled="disabled" v-model="ghost"></textarea>
+    <textarea class="uk-textarea" :type="type" :id="id" :name="name" :disabled="disabled" v-model="ghost" @input="updateValue"></textarea>
 </div>
 
 </template>
@@ -69,7 +69,15 @@ export default {
 
     watch: {
 
-        ghost: function () {
+        model: function () {
+            this.ghost = this.model;
+        }
+
+    },
+
+    methods: {
+
+        updateValue: function () {
             this.$emit('input', this.ghost);
         }
 

@@ -19,7 +19,7 @@ class RouteRegistrar
     public function __construct()
     {
         $this->modules = new Collection([
-            'hide' => new Collection, 'ajax' => new Collection, 'admin' => new Collection, 'user' => new Collection
+            'user' => new Collection, 'admin' => new Collection, 'ajax' => new Collection, 'hide' => new Collection
         ]);
     }
 
@@ -127,7 +127,7 @@ class RouteRegistrar
      */
     public function getRoutes($types = null)
     {
-        return $this->modules->only($types ?: ['hide', 'ajax', 'admin', 'user'])->flatMap(function ($module) {
+        return $this->modules->only($types ?: ['user', 'admin', 'ajax', 'hide'])->flatMap(function ($module) {
             return $module->flatMap([$this, 'flatMap']);
         });
     }
@@ -153,7 +153,7 @@ class RouteRegistrar
      */
     public function getModuleAliases($types = null)
     {
-        return $this->modules->only($types ?: ['hide', 'ajax', 'admin', 'user'])->map(function ($module) {
+        return $this->modules->only($types ?: ['user', 'admin', 'ajax', 'hide'])->map(function ($module) {
             return $module->map(function ($route) {
                 return $route->get('alias');
             });
@@ -167,7 +167,7 @@ class RouteRegistrar
      */
     public function getModuleNames($types = null)
     {
-        return $this->modules->only($types ?: ['hide', 'ajax', 'admin', 'user'])->map(function ($type) {
+        return $this->modules->only($types ?: ['user', 'admin', 'ajax', 'hide'])->map(function ($type) {
             return $type->map(function ($module) {
                 return $module->map(function ($route) {
                     return $route->trans('name');
@@ -183,7 +183,7 @@ class RouteRegistrar
      */
     public function getModuleUses($types = null)
     {
-        return $this->modules->only($types ?: ['hide', 'ajax', 'admin', 'user'])->map(function ($module) {
+        return $this->modules->only($types ?: ['user', 'admin', 'ajax', 'hide'])->map(function ($module) {
             return $module->map(function ($route) {
                 return $route->get('uses');
             });

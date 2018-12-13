@@ -5,17 +5,13 @@
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
 
-            <!-- Close link -->
             <a class="uk-button uk-button-primary uk-margin-small-left" href="javascript:window.history.back()">
-                {{ Liro.messages.get('theme::form.toolbar.close') }}
+                {{ trans('theme::form.toolbar.close') }}
             </a>
-            <!-- Close link end -->
 
-            <!-- Save button -->
             <a class="uk-button uk-button-success uk-margin-small-left" href="javascript:void(0)" @click="storeMenu" v-shortkey="['meta', 's']" @shortkey="storeMenu">
-                {{ Liro.messages.get('theme::form.toolbar.save') }}
+                {{ trans('theme::form.toolbar.save') }}
             </a>
-            <!-- Save button end -->
 
         </div>
     </portal>
@@ -25,24 +21,32 @@
         <div class="th-form">
 
             <legend class="uk-legend uk-legend-small">
-                {{ Liro.messages.get('liro-menus::form.legend.general') }}
+                <span>{{ trans('liro-menus::form.legend.general') }}</span>
             </legend>
 
-            <app-form-switch 
-                class="is-state uk-width-1-1" name="state" v-model="menu.state" :options="states" :label="Liro.messages.get('liro-menus::form.menu.state')"
-            ></app-form-switch>
+            <app-label :label="trans('liro-menus::form.menu.state')">
+                <app-switch class="is-state" v-model="menu.state">
+                    <app-switch-option v-for="item in states" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
+                </app-switch>
+            </app-label>
 
-            <app-form-switch 
-                class="is-hide uk-width-1-1" name="hide" v-model="menu.hide" :options="hides" :label="Liro.messages.get('liro-menus::form.menu.hide')"
-            ></app-form-switch>
+            <app-label :label="trans('liro-menus::form.menu.hide')">
+                <app-switch class="is-hide" v-model="menu.hide">
+                    <app-switch-option v-for="item in hides" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
+                </app-switch>
+            </app-label>
 
-            <app-form-switch 
-                class="is-default uk-width-1-1" name="default" v-model="menu.default" :options="defaults" :label="Liro.messages.get('liro-menus::form.menu.default')"
-            ></app-form-switch>
+            <app-label :label="trans('liro-menus::form.menu.default')">
+                <app-switch class="is-default" v-model="menu.default">
+                    <app-switch-option v-for="item in defaults" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
+                </app-switch>
+            </app-label>
 
-            <app-form-select-single 
-            name="menu_type_id" v-model="menu.menu_type_id" :options="types" options-value="id" options-label="title" :label="Liro.messages.get('liro-menus::form.menu.type')" :placeholder="Liro.messages.get('liro-menus::form.menu.select_type')"
-        ></app-form-select-single>
+            <app-label :label="trans('liro-menus::form.menu.type')">
+                <app-select v-model="menu.menu_type_id" :placeholder="trans('liro-menus::form.menu.select_type')">
+                    <app-select-option v-for="type in types" :key="type.id" :value="type.id" :label="type.title"></app-select-option>
+                </app-select>
+            </app-label>
 
         </div>
     </div>
@@ -53,24 +57,30 @@
         <div class="th-form">
 
             <legend class="uk-legend uk-legend-small">
-                {{ Liro.messages.get('liro-menus::form.legend.info') }}
+                <span>{{ trans('liro-menus::form.legend.info') }}</span>
             </legend>
 
-            <app-form-input 
-                name="title" v-model="menu.title" :label="Liro.messages.get('liro-menus::form.menu.title')"
-            ></app-form-input>
+            <app-label :label="trans('liro-menus::form.menu.title')">
+                <app-input v-model="menu.title"></app-input>
+            </app-label>
 
-            <app-form-input 
-                name="route" v-model="menu.route" :label="Liro.messages.get('liro-menus::form.menu.route')"
-            ></app-form-input>
+            <app-label :label="trans('liro-menus::form.menu.route')">
+                <app-input v-model="menu.route"></app-input>
+            </app-label>
 
-            <app-form-select-single 
-                name="module" v-model="menu.module" :options="modules" :label="Liro.messages.get('liro-menus::form.menu.module')" :placeholder="Liro.messages.get('liro-menus::form.menu.select_module')"
-            ></app-form-select-single>
+            <app-label :label="trans('liro-menus::form.menu.module')">
+                <app-select v-model="menu.module" :placeholder="trans('liro-menus::form.menu.select_module')" :disabled="menu.lock">
+                    <template v-for="(items, group) in modules">
+                        <app-select-group v-show="group == 'user'" v-for="(routes, index) in items" :key="group + '-' + index" :label="index">
+                            <app-select-option v-for="(label, value) in routes" :key="value" :value="value" :label="label"></app-select-option>
+                        </app-select-group>
+                    </template>
+                </app-select>
+            </app-label>
 
-            <app-form-input 
-                name="query" v-model="menu.query" :label="Liro.messages.get('liro-menus::form.menu.query')"
-            ></app-form-input>
+            <app-label :label="trans('liro-menus::form.menu.query')">
+                <app-input v-model="menu.query"></app-input>
+            </app-label>
 
         </div>
     </div>
@@ -82,37 +92,45 @@
 
 export default {
 
-    /**
-     * Get data from liro framework
-     */
-    data: function () {
-        return {
-            states: this.Liro.data.get('states'),
-            hides: this.Liro.data.get('hides'),
-            defaults: this.Liro.data.get('defaults'),
-            types: this.Liro.data.get('types'),
-            modules: this.Liro.data.get('modules'),
-            menu: this.Liro.data.get('menu')
-        };
+    computed: {
+
+        states: function () {
+            return this.$root.states;
+        },
+
+        hides: function () {
+            return this.$root.hides;
+        },
+
+        defaults: function () {
+            return this.$root.defaults;
+        },
+
+        types: function () {
+            return this.$root.types;
+        },
+
+        modules: function () {
+            return this.$root.modules;
+        },
+
+        menu: function () {
+            return this.$root.menu;
+        }
+
     },
 
     methods: {
 
-        /**
-         * Submit ajax request to create menu
-         */
         storeMenu: function () {
             var url = Liro.routes.get('liro-menus.ajax.menu.store');
             Axios.post(url, this.menu).then(this.storeMenuResponse);
         },
 
-        /**
-         * Redirect and show success message
-         */
         storeMenuResponse: function (res) {
 
             var values = {
-                menu: res.data.menu.id
+                menu: res.data.id
             };
 
             var query = {

@@ -1,22 +1,25 @@
 <template>
 
 <div class="th-table-tr uk-flex uk-flex-middle">
-    <div class="uk-width-1-3">
-        <a :href="Liro.routes.get('liro-users.admin.role.edit', { role: value.id })">
+    <div class="th-table-td-xs">
+        <app-list-select :value="value.id"></app-list-select>
+    </div>
+    <div class="uk-width-1-2">
+        <a :href="route('liro-users.admin.role.edit', { role: value.id })">
             {{ value.title }}
         </a>
     </div>
-    <div class="uk-width-1-3">
+    <div class="uk-width-1-2">
         <span class="uk-text-muted">
             {{ value.description }}
         </span>
     </div>
-    <div class="uk-width-1-3">
+    <div class="th-table-td-l uk-text-center">
         <span>
             {{ value.route_names.length }}
         </span>
     </div>
-    <div class="uk-width-small uk-text-center">
+    <div class="th-table-td-m uk-text-center">
         <span>
             {{ value.id }}
         </span>

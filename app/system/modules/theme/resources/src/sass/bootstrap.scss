@@ -4,27 +4,27 @@ $color-orange:      #ff9453;
 $color-red:         #fb4e52;
 $color-black:       #13141d;
 $color-white:       #ffffff;
-$color-highlight:   #fefeeb;
+$color-highlight:   #fffff3;
 
 $color-primary:             $color-blue;
-$color-primary-lighten:     lighten($color-primary, 30%);
-$color-primary-darken:      darken($color-primary, 30%);
+$color-primary-lighten:     mix($color-primary, $color-white, 10%);
+$color-primary-darken:      mix($color-primary, $color-black, 15%);
 
-$color-secondary:           #858ca3;
-$color-secondary-lighten:   lighten($color-secondary, 30%);
-$color-secondary-darken:    darken($color-secondary, 30%);
+$color-secondary:           $color-blue;
+$color-secondary-lighten:   mix($color-secondary, $color-white, 10%);
+$color-secondary-darken:    mix($color-secondary, $color-black, 15%);
 
 $color-success:             $color-green;
-$color-success-lighten:     lighten($color-success, 30%);
-$color-success-darken:      darken($color-success, 30%);
+$color-success-lighten:     mix($color-success, $color-white, 10%);
+$color-success-darken:      mix($color-success, $color-black, 15%);
 
 $color-warning:             $color-orange;
-$color-warning-lighten:     lighten($color-warning, 30%);
-$color-warning-darken:      darken($color-warning, 30%);
+$color-warning-lighten:     mix($color-warning, $color-white, 10%);
+$color-warning-darken:      mix($color-warning, $color-black, 15%);
 
 $color-danger:              $color-red;
-$color-danger-lighten:      lighten($color-danger, 30%);
-$color-danger-darken:       darken($color-danger, 30%);
+$color-danger-lighten:      mix($color-danger, $color-white, 10%);
+$color-danger-darken:       mix($color-danger, $color-black, 15%);
 
 $color-dark-5:              mix($color-secondary-darken, $color-black, 5%);
 $color-dark-10:             mix($color-secondary-darken, $color-black, 10%);
@@ -66,25 +66,25 @@ $color-light-85:             mix($color-secondary-lighten, $color-white, 85%);
 $color-light-90:             mix($color-secondary-lighten, $color-white, 90%);
 $color-light-95:             mix($color-secondary-lighten, $color-white, 95%);
 
-$color-gray-5:              mix($color-light-15, $color-dark-5, 99%);
-$color-gray-10:             mix($color-light-20, $color-dark-5, 95%);
-$color-gray-15:             mix($color-light-25, $color-dark-5, 90%);
-$color-gray-20:             mix($color-light-30, $color-dark-5, 84%);
-$color-gray-25:             mix($color-light-35, $color-dark-5, 77%);
-$color-gray-30:             mix($color-light-40, $color-dark-5, 71%);
-$color-gray-35:             mix($color-light-45, $color-dark-5, 65%);
-$color-gray-40:             mix($color-light-50, $color-dark-5, 60%);
-$color-gray-45:             mix($color-light-55, $color-dark-5, 55%);
-$color-gray-50:             mix($color-light-60, $color-dark-5, 50%);
-$color-gray-55:             mix($color-light-55, $color-dark-5, 45%);
-$color-gray-60:             mix($color-light-50, $color-dark-5, 40%);
-$color-gray-65:             mix($color-light-45, $color-dark-5, 35%);
-$color-gray-70:             mix($color-light-40, $color-dark-5, 30%);
-$color-gray-75:             mix($color-light-35, $color-dark-5, 25%);
-$color-gray-80:             mix($color-light-30, $color-dark-5, 20%);
-$color-gray-85:             mix($color-light-25, $color-dark-5, 15%);
-$color-gray-90:             mix($color-light-20, $color-dark-5, 10%);
-$color-gray-95:             mix($color-light-15, $color-dark-5, 5%);
+$color-gray-5:              mix($color-light-15, $color-dark-60, 99%);
+$color-gray-10:             mix($color-light-20, $color-dark-60, 95%);
+$color-gray-15:             mix($color-light-25, $color-dark-60, 90%);
+$color-gray-20:             mix($color-light-30, $color-dark-60, 84%);
+$color-gray-25:             mix($color-light-35, $color-dark-60, 77%);
+$color-gray-30:             mix($color-light-40, $color-dark-60, 71%);
+$color-gray-35:             mix($color-light-45, $color-dark-60, 65%);
+$color-gray-40:             mix($color-light-50, $color-dark-60, 60%);
+$color-gray-45:             mix($color-light-55, $color-dark-60, 55%);
+$color-gray-50:             mix($color-light-60, $color-dark-60, 50%);
+$color-gray-55:             mix($color-light-60, $color-dark-60, 45%);
+$color-gray-60:             mix($color-light-60, $color-dark-60, 40%);
+$color-gray-65:             mix($color-light-60, $color-dark-55, 35%);
+$color-gray-70:             mix($color-light-60, $color-dark-50, 30%);
+$color-gray-75:             mix($color-light-60, $color-dark-45, 25%);
+$color-gray-80:             mix($color-light-60, $color-dark-40, 20%);
+$color-gray-85:             mix($color-light-60, $color-dark-35, 15%);
+$color-gray-90:             mix($color-light-60, $color-dark-30, 10%);
+$color-gray-95:             mix($color-light-60, $color-dark-25, 5%);
 
 @import "variables";
 
@@ -92,6 +92,7 @@ $color-gray-95:             mix($color-light-15, $color-dark-5, 5%);
 @import '~uikit/src/scss/mixins-theme';
 @import "~uikit/src/scss/uikit-theme";
 
+@import "~smartmenus/src/css/sm-clean/sm-clean";
 
 @import "uikit/uikit";
 @import "theme/theme";

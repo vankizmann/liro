@@ -436,6 +436,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -499,12 +502,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "th-table-tr uk-flex uk-flex-middle" }, [
+    _c(
+      "div",
+      { staticClass: "th-table-td-xs" },
+      [_c("app-list-select", { attrs: { value: _vm.value.id } })],
+      1
+    ),
+    _vm._v(" "),
     _c("div", { staticClass: "uk-width-1-2" }, [
       _c(
         "a",
         {
           attrs: {
-            href: _vm.Liro.routes.get("liro-languages.admin.language.edit", {
+            href: _vm.route("liro-languages.admin.language.edit", {
               language: _vm.value.id
             })
           }
@@ -578,8 +588,6 @@ var render = function() {
         key: "default",
         fn: function(ref) {
           var items = ref.items
-          var config = ref.config
-          var methods = ref.methods
           return _c(
             "div",
             {},
@@ -591,18 +599,14 @@ var render = function() {
                     {
                       staticClass: "uk-button uk-button-primary",
                       attrs: {
-                        href: _vm.Liro.routes.get(
-                          "liro-languages.admin.language.create"
-                        )
+                        href: _vm.route("liro-languages.admin.language.create")
                       }
                     },
                     [
                       _vm._v(
                         "\n                    " +
                           _vm._s(
-                            _vm.Liro.messages.get(
-                              "liro-languages::module.language.create"
-                            )
+                            _vm.trans("liro-languages::module.language.create")
                           ) +
                           "\n                "
                       )
@@ -611,7 +615,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "th-table-container" }, [
+              _c("div", { staticClass: "th-form is-table" }, [
                 _c("div", { staticClass: "th-table uk-margin-remove-bottom" }, [
                   _c("div", { staticClass: "th-table-head" }, [
                     _c(
@@ -625,12 +629,10 @@ var render = function() {
                             _c("app-list-search", {
                               attrs: {
                                 columns: ["title", "locale"],
-                                config: config.search,
-                                placeholder: _vm.Liro.messages.get(
+                                placeholder: _vm.trans(
                                   "theme::form.search.placeholder"
                                 )
-                              },
-                              on: { search: methods.search }
+                              }
                             })
                           ],
                           1
@@ -646,22 +648,28 @@ var render = function() {
                       [
                         _c(
                           "div",
+                          { staticClass: "th-table-td th-table-td-xs" },
+                          [
+                            _c("app-list-select-all", {
+                              staticClass:
+                                "uk-display-inline-block uk-margin-right"
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
                           { staticClass: "uk-width-1-2" },
                           [
                             _c(
                               "app-list-sort",
-                              {
-                                attrs: {
-                                  column: "title",
-                                  config: config.order
-                                },
-                                on: { order: methods.order }
-                              },
+                              { attrs: { column: "title" } },
                               [
                                 _vm._v(
                                   "\n                                " +
                                     _vm._s(
-                                      _vm.Liro.messages.get(
+                                      _vm.trans(
                                         "liro-languages::form.language.title"
                                       )
                                     ) +
@@ -679,18 +687,12 @@ var render = function() {
                           [
                             _c(
                               "app-list-sort",
-                              {
-                                attrs: {
-                                  column: "locale",
-                                  config: config.order
-                                },
-                                on: { order: methods.order }
-                              },
+                              { attrs: { column: "locale" } },
                               [
                                 _vm._v(
                                   "\n                                " +
                                     _vm._s(
-                                      _vm.Liro.messages.get(
+                                      _vm.trans(
                                         "liro-languages::form.language.locale"
                                       )
                                     ) +
@@ -711,16 +713,14 @@ var render = function() {
                               {
                                 attrs: {
                                   column: "default",
-                                  config: config.filter,
                                   filters: _vm.defaults
-                                },
-                                on: { filter: methods.filter }
+                                }
                               },
                               [
                                 _vm._v(
                                   "\n                                " +
                                     _vm._s(
-                                      _vm.Liro.messages.get(
+                                      _vm.trans(
                                         "liro-languages::form.language.default"
                                       )
                                     ) +
@@ -739,18 +739,13 @@ var render = function() {
                             _c(
                               "app-list-filter",
                               {
-                                attrs: {
-                                  column: "state",
-                                  config: config.filter,
-                                  filters: _vm.states
-                                },
-                                on: { filter: methods.filter }
+                                attrs: { column: "state", filters: _vm.states }
                               },
                               [
                                 _vm._v(
                                   "\n                                " +
                                     _vm._s(
-                                      _vm.Liro.messages.get(
+                                      _vm.trans(
                                         "liro-languages::form.language.state"
                                       )
                                     ) +
@@ -766,24 +761,17 @@ var render = function() {
                           "div",
                           { staticClass: "th-table-td-m uk-text-center" },
                           [
-                            _c(
-                              "app-list-sort",
-                              {
-                                attrs: { column: "id", config: config.order },
-                                on: { order: methods.order }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(
-                                      _vm.Liro.messages.get(
-                                        "liro-languages::form.language.id"
-                                      )
-                                    ) +
-                                    "\n                            "
-                                )
-                              ]
-                            )
+                            _c("app-list-sort", { attrs: { column: "id" } }, [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(
+                                    _vm.trans(
+                                      "liro-languages::form.language.id"
+                                    )
+                                  ) +
+                                  "\n                            "
+                              )
+                            ])
                           ],
                           1
                         )
@@ -791,55 +779,66 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  items.length != 0
-                    ? _c(
-                        "div",
-                        { staticClass: "th-table-body" },
-                        _vm._l(items, function(item, index) {
-                          return _c("liro-language-index-item", {
-                            key: index,
-                            attrs: { value: item }
-                          })
-                        })
-                      )
-                    : _vm._e(),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: items.length != 0,
+                          expression: "items.length != 0"
+                        }
+                      ],
+                      staticClass: "th-table-body"
+                    },
+                    _vm._l(items, function(item, index) {
+                      return _c("liro-language-index-item", {
+                        key: index,
+                        attrs: { value: item }
+                      })
+                    })
+                  ),
                   _vm._v(" "),
-                  items.length == 0
-                    ? _c("div", { staticClass: "th-table-body" }, [
-                        _c(
-                          "div",
-                          { staticClass: "th-table-tr uk-flex uk-flex-middle" },
-                          [
-                            _c(
-                              "div",
-                              { staticClass: "uk-width1-1 uk-text-center" },
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(
-                                      _vm.Liro.messages.get(
-                                        "theme::form.list.empty"
-                                      )
-                                    ) +
-                                    "\n                        "
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      ])
-                    : _vm._e(),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: items.length == 0,
+                          expression: "items.length == 0"
+                        }
+                      ],
+                      staticClass: "th-table-body"
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "uk-width1-1 uk-text-center" },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.trans("theme::form.list.empty")) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "th-table-footer" }, [
                     _c(
                       "div",
                       { staticClass: "th-table-tr uk-flex uk-flex-middle" },
-                      [
-                        _c("app-list-pagination", {
-                          attrs: { config: config.paginate },
-                          on: { paginate: methods.paginate }
-                        })
-                      ],
+                      [_c("app-list-pagination")],
                       1
                     )
                   ])
@@ -981,6 +980,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1047,14 +1053,12 @@ var render = function() {
             "a",
             {
               staticClass: "uk-button uk-button-primary uk-margin-small-left",
-              attrs: {
-                href: _vm.Liro.routes.get("liro-languages.admin.language.index")
-              }
+              attrs: { href: _vm.route("liro-languages.admin.language.index") }
             },
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.Liro.messages.get("theme::form.toolbar.close")) +
+                  _vm._s(_vm.trans("theme::form.toolbar.close")) +
                   "\n            "
               )
             ]
@@ -1078,7 +1082,7 @@ var render = function() {
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.Liro.messages.get("theme::form.toolbar.save")) +
+                  _vm._s(_vm.trans("theme::form.toolbar.save")) +
                   "\n            "
               )
             ]
@@ -1092,50 +1096,72 @@ var render = function() {
           { staticClass: "th-form" },
           [
             _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(
-                    _vm.Liro.messages.get("liro-languages::form.legend.general")
-                  ) +
-                  "\n            "
-              )
+              _c("span", [
+                _vm._v(_vm._s(_vm.trans("liro-languages::form.legend.general")))
+              ])
             ]),
             _vm._v(" "),
-            _c("app-form-switch", {
-              staticClass: "is-state uk-width-1-1",
-              attrs: {
-                name: "state",
-                options: _vm.states,
-                label: _vm.Liro.messages.get(
-                  "liro-languages::form.language.state"
-                )
+            _c(
+              "app-label",
+              {
+                attrs: {
+                  label: _vm.trans("liro-languages::form.language.state")
+                }
               },
-              model: {
-                value: _vm.language.state,
-                callback: function($$v) {
-                  _vm.$set(_vm.language, "state", $$v)
-                },
-                expression: "language.state"
-              }
-            }),
+              [
+                _c(
+                  "app-switch",
+                  {
+                    staticClass: "is-state",
+                    model: {
+                      value: _vm.language.state,
+                      callback: function($$v) {
+                        _vm.$set(_vm.language, "state", $$v)
+                      },
+                      expression: "language.state"
+                    }
+                  },
+                  _vm._l(_vm.states, function(item) {
+                    return _c("app-switch-option", {
+                      key: item.value,
+                      attrs: { value: item.value, label: item.label }
+                    })
+                  })
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
-            _c("app-form-switch", {
-              staticClass: "is-default uk-width-1-1",
-              attrs: {
-                name: "default",
-                options: _vm.defaults,
-                label: _vm.Liro.messages.get(
-                  "liro-languages::form.language.default"
-                )
+            _c(
+              "app-label",
+              {
+                attrs: {
+                  label: _vm.trans("liro-languages::form.language.default")
+                }
               },
-              model: {
-                value: _vm.language.default,
-                callback: function($$v) {
-                  _vm.$set(_vm.language, "default", $$v)
-                },
-                expression: "language.default"
-              }
-            })
+              [
+                _c(
+                  "app-switch",
+                  {
+                    staticClass: "is-default",
+                    model: {
+                      value: _vm.language.default,
+                      callback: function($$v) {
+                        _vm.$set(_vm.language, "default", $$v)
+                      },
+                      expression: "language.default"
+                    }
+                  },
+                  _vm._l(_vm.defaults, function(item) {
+                    return _c("app-switch-option", {
+                      key: item.value,
+                      attrs: { value: item.value, label: item.label }
+                    })
+                  })
+                )
+              ],
+              1
+            )
           ],
           1
         )
@@ -1147,46 +1173,52 @@ var render = function() {
           { staticClass: "th-form" },
           [
             _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(
-                    _vm.Liro.messages.get("liro-languages::form.legend.info")
-                  ) +
-                  "\n            "
-              )
+              _c("span", [
+                _vm._v(_vm._s(_vm.trans("liro-languages::form.legend.info")))
+              ])
             ]),
             _vm._v(" "),
-            _c("app-form-input", {
-              attrs: {
-                name: "title",
-                label: _vm.Liro.messages.get(
-                  "liro-languages::form.language.title"
-                )
+            _c(
+              "app-label",
+              {
+                attrs: {
+                  label: _vm.trans("liro-languages::form.language.title")
+                }
               },
-              model: {
-                value: _vm.language.title,
-                callback: function($$v) {
-                  _vm.$set(_vm.language, "title", $$v)
-                },
-                expression: "language.title"
-              }
-            }),
+              [
+                _c("app-input", {
+                  model: {
+                    value: _vm.language.title,
+                    callback: function($$v) {
+                      _vm.$set(_vm.language, "title", $$v)
+                    },
+                    expression: "language.title"
+                  }
+                })
+              ],
+              1
+            ),
             _vm._v(" "),
-            _c("app-form-input", {
-              attrs: {
-                name: "locale",
-                label: _vm.Liro.messages.get(
-                  "liro-languages::form.language.locale"
-                )
+            _c(
+              "app-label",
+              {
+                attrs: {
+                  label: _vm.trans("liro-languages::form.language.locale")
+                }
               },
-              model: {
-                value: _vm.language.locale,
-                callback: function($$v) {
-                  _vm.$set(_vm.language, "locale", $$v)
-                },
-                expression: "language.locale"
-              }
-            })
+              [
+                _c("app-input", {
+                  model: {
+                    value: _vm.language.locale,
+                    callback: function($$v) {
+                      _vm.$set(_vm.language, "locale", $$v)
+                    },
+                    expression: "language.locale"
+                  }
+                })
+              ],
+              1
+            )
           ],
           1
         )
@@ -1315,6 +1347,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1377,14 +1416,12 @@ var render = function() {
             "a",
             {
               staticClass: "uk-button uk-button-primary uk-margin-small-left",
-              attrs: {
-                href: _vm.Liro.routes.get("liro-languages.admin.language.index")
-              }
+              attrs: { href: _vm.route("liro-languages.admin.language.index") }
             },
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.Liro.messages.get("theme::form.toolbar.close")) +
+                  _vm._s(_vm.trans("theme::form.toolbar.close")) +
                   "\n            "
               )
             ]
@@ -1408,7 +1445,7 @@ var render = function() {
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.Liro.messages.get("theme::form.toolbar.save")) +
+                  _vm._s(_vm.trans("theme::form.toolbar.save")) +
                   "\n            "
               )
             ]
@@ -1422,50 +1459,72 @@ var render = function() {
           { staticClass: "th-form" },
           [
             _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(
-                    _vm.Liro.messages.get("liro-languages::form.legend.general")
-                  ) +
-                  "\n            "
-              )
+              _c("span", [
+                _vm._v(_vm._s(_vm.trans("liro-languages::form.legend.general")))
+              ])
             ]),
             _vm._v(" "),
-            _c("app-form-switch", {
-              staticClass: "is-state uk-width-1-1",
-              attrs: {
-                name: "state",
-                options: _vm.states,
-                label: _vm.Liro.messages.get(
-                  "liro-languages::form.language.state"
-                )
+            _c(
+              "app-label",
+              {
+                attrs: {
+                  label: _vm.trans("liro-languages::form.language.state")
+                }
               },
-              model: {
-                value: _vm.language.state,
-                callback: function($$v) {
-                  _vm.$set(_vm.language, "state", $$v)
-                },
-                expression: "language.state"
-              }
-            }),
+              [
+                _c(
+                  "app-switch",
+                  {
+                    staticClass: "is-state",
+                    model: {
+                      value: _vm.language.state,
+                      callback: function($$v) {
+                        _vm.$set(_vm.language, "state", $$v)
+                      },
+                      expression: "language.state"
+                    }
+                  },
+                  _vm._l(_vm.states, function(item) {
+                    return _c("app-switch-option", {
+                      key: item.value,
+                      attrs: { value: item.value, label: item.label }
+                    })
+                  })
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
-            _c("app-form-switch", {
-              staticClass: "is-default uk-width-1-1",
-              attrs: {
-                name: "default",
-                options: _vm.defaults,
-                label: _vm.Liro.messages.get(
-                  "liro-languages::form.language.default"
-                )
+            _c(
+              "app-label",
+              {
+                attrs: {
+                  label: _vm.trans("liro-languages::form.language.default")
+                }
               },
-              model: {
-                value: _vm.language.default,
-                callback: function($$v) {
-                  _vm.$set(_vm.language, "default", $$v)
-                },
-                expression: "language.default"
-              }
-            })
+              [
+                _c(
+                  "app-switch",
+                  {
+                    staticClass: "is-default",
+                    model: {
+                      value: _vm.language.default,
+                      callback: function($$v) {
+                        _vm.$set(_vm.language, "default", $$v)
+                      },
+                      expression: "language.default"
+                    }
+                  },
+                  _vm._l(_vm.defaults, function(item) {
+                    return _c("app-switch-option", {
+                      key: item.value,
+                      attrs: { value: item.value, label: item.label }
+                    })
+                  })
+                )
+              ],
+              1
+            )
           ],
           1
         )
@@ -1477,46 +1536,52 @@ var render = function() {
           { staticClass: "th-form" },
           [
             _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(
-                    _vm.Liro.messages.get("liro-languages::form.legend.info")
-                  ) +
-                  "\n            "
-              )
+              _c("span", [
+                _vm._v(_vm._s(_vm.trans("liro-languages::form.legend.info")))
+              ])
             ]),
             _vm._v(" "),
-            _c("app-form-input", {
-              attrs: {
-                name: "title",
-                label: _vm.Liro.messages.get(
-                  "liro-languages::form.language.title"
-                )
+            _c(
+              "app-label",
+              {
+                attrs: {
+                  label: _vm.trans("liro-languages::form.language.title")
+                }
               },
-              model: {
-                value: _vm.language.title,
-                callback: function($$v) {
-                  _vm.$set(_vm.language, "title", $$v)
-                },
-                expression: "language.title"
-              }
-            }),
+              [
+                _c("app-input", {
+                  model: {
+                    value: _vm.language.title,
+                    callback: function($$v) {
+                      _vm.$set(_vm.language, "title", $$v)
+                    },
+                    expression: "language.title"
+                  }
+                })
+              ],
+              1
+            ),
             _vm._v(" "),
-            _c("app-form-input", {
-              attrs: {
-                name: "locale",
-                label: _vm.Liro.messages.get(
-                  "liro-languages::form.language.locale"
-                )
+            _c(
+              "app-label",
+              {
+                attrs: {
+                  label: _vm.trans("liro-languages::form.language.locale")
+                }
               },
-              model: {
-                value: _vm.language.locale,
-                callback: function($$v) {
-                  _vm.$set(_vm.language, "locale", $$v)
-                },
-                expression: "language.locale"
-              }
-            })
+              [
+                _c("app-input", {
+                  model: {
+                    value: _vm.language.locale,
+                    callback: function($$v) {
+                      _vm.$set(_vm.language, "locale", $$v)
+                    },
+                    expression: "language.locale"
+                  }
+                })
+              ],
+              1
+            )
           ],
           1
         )

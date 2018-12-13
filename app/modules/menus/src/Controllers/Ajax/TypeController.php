@@ -4,10 +4,10 @@ namespace Liro\Menus\Controllers\Ajax;
 
 use Illuminate\Http\Request;
 use Liro\System\Menus\Models\MenuType;
-use Liro\Menus\Requests\MenuTypeStoreRequest;
-use Liro\Menus\Requests\MenuTypeUpdateRequest;
+use Liro\Menus\Requests\TypeStoreRequest;
+use Liro\Menus\Requests\TypeUpdateRequest;
 
-class MenuController extends \Liro\System\Http\Controller
+class TypeController extends \Liro\System\Http\Controller
 {
 
     public function index(MenuType $type)
@@ -20,7 +20,7 @@ class MenuController extends \Liro\System\Http\Controller
         return response()->json($type, 200);
     }
 
-    public function store(MenuTypeStoreRequest $request, MenuType $type)
+    public function store(TypeStoreRequest $request, MenuType $type)
     {
         $response = $type->create(
             $request->all()
@@ -29,7 +29,7 @@ class MenuController extends \Liro\System\Http\Controller
         return response()->json($response, 201);
     }
 
-    public function update(MenuTypeUpdateRequest $request, MenuType $type)
+    public function update(TypeUpdateRequest $request, MenuType $type)
     {
         $type->update(
             $request->all()

@@ -4,22 +4,16 @@
 
     <div class="th-table-td-xs">
         <a :class="{ 'uk-disabled': value.children.length == 0 }" href="javascript:void(0)" @click="toggleCollapsed">
-            <i :uk-icon="collapsed.active(value.id) || value.children.length == 0 ? 'chevron-right' : 'chevron-down'"></i>
+            <i class="uk-icon-small" :uk-icon="collapsed.active(value.id) || value.children.length == 0 ? 'chevron-right' : 'chevron-down'"></i>
         </a>
     </div>
 
-    <div class="uk-width-1-2">
-        <a :href="Liro.routes.get('liro-menus.admin.menu.edit', { menu: value.id })">
-            {{ value.title }}
+    <div class="uk-width-1-1 uk-flex uk-flex-middle">
+        <a class="uk-margin-right" :href="route('liro-menus.admin.menu.edit', { menu: value.id })">
+            {{ value.trans_title }}
         </a>
-    </div>
-
-    <div class="th-table-td-xl th-icon-hover uk-flex uk-flex-left uk-flex-middle">
-        <span class="uk-margin-small-right">
-            {{ value.route }}
-        </span>
-        <a href="javascript:void(0)" @click="updateMenuRoute">
-            <i uk-icon="pencil"></i>
+        <a class="uk-label" href="javascript:void(0)" @click="updateMenuRoute">
+             <span>{{ value.route }}</span>
         </a>
     </div>
 
@@ -48,55 +42,41 @@ export default {
 
     props: {
 
-        /**
-         * Value property
-         */
         value: {
             required: true,
             type: Object
         },
 
-        /**
-         * Collapsed helper
-         */
         collapsed: {
-            // required: true,
+            required: true,
             type: Object
         }
 
     },
 
-    /**
-     * Apply styles when update is done
-     */
     updated: function () {
         this.collapsed.styles();
     },
 
     methods: {
 
-        /**
-         * Toggle id in collaped and force view update
-         */
         toggleCollapsed: function () {
-            this.collapsed.toggle(this.value.id);
-            this.$forceUpdate();
+            this.collapsed.toggle(this.value.id); this.$forceUpdate();
         },
 
         /**
          * Show prompt and handle input
          */
         updateMenuRoute: function () {
-            UIkit.modal.prompt(Liro.messages.get('liro-menus::form.menu.route'), this.value.route).then(this.updateMenuRouteInput);
+            var message = Liro.messages.get('liro-menus::form.menu.route');
+            UIkit.modal.prompt(message, this.value.route).then(this.updateMenuRouteInput);
         },
 
         /**
          * Apply route to value or set default if given
          */
         updateMenuRouteInput: function (input) {
-            if ( input != null ) {
-                this.value.route = input || '/';
-            }
+            if ( input != null ) this.value.route = input || '/';
         },
 
         /**

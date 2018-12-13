@@ -38,9 +38,19 @@ $label-danger-hover-background:                 rgba($label-danger-color, 0.25);
     background-color: $label-default-background;
 }
 
+a.uk-label:hover, a.uk-label-default:hover {
+    color: $label-default-hover-color;
+    background-color: $label-default-hover-background;
+}
+
 .uk-label-primary {
     color: $label-primary-color;
     background-color: $label-primary-background;
+}
+
+a.uk-label-primary:hover {
+    color: $label-primary-hover-color;
+    background-color: $label-primary-hover-background;
 }
 
 .uk-label-success {
@@ -48,12 +58,27 @@ $label-danger-hover-background:                 rgba($label-danger-color, 0.25);
     background-color: $label-success-background;
 }
 
+a.uk-label-success:hover {
+    color: $label-success-hover-color;
+    background-color: $label-success-hover-background;
+}
+
 .uk-label-warning {
     color: $label-warning-color;
     background-color: $label-warning-background;
 }
 
+a.uk-label-warning:hover {
+    color: $label-warning-hover-color;
+    background-color: $label-warning-hover-background;
+}
+
 .uk-label-danger {
     color: $label-danger-color;
     background-color: $label-danger-background;
+}
+
+a.uk-label-danger:hover {
+    color: $label-danger-hover-color;
+    background-color: $label-danger-hover-background;
 }

@@ -8,7 +8,7 @@
     </a>
     <!-- Label end -->
 
-    <div class="uk-text-left" uk-dropdown="mode: click;">
+    <div ref="dropdown" class="uk-text-left" uk-dropdown="mode: click; pos: bottom-justify;">
 
         <!-- Options start -->
         <label v-for="(filter, index) in filters" :key="index" class="uk-checkbox-label uk-display-block uk-margin-small-bottom">
@@ -17,9 +17,9 @@
         <!-- Options end -->
 
         <!-- Reset start -->
-        <div class="uk-text-small uk-text-right">
-            <a href="javascript:void(0)" @click="values = []">
-                {{ trans('theme::form.list.reset') }}
+        <div class="uk-margin-top uk-child-width-1-1">
+            <a :class="{ 'uk-button uk-button-primary uk-button-small': true, 'uk-disabled': values.length == 0 }" href="javascript:void(0)" @click="resetFilter">
+                <span>{{ trans('theme::form.list.reset') }}</span>
             </a>
         </div>
         <!-- Reset end -->
@@ -97,6 +97,14 @@ export default {
 
         values: function () {
             this.list.library.setFilterData(this.column, this.values);
+        }
+
+    },
+
+    methods: {
+
+        resetFilter: function () {
+            UIkit.toggle(this.$refs.dropdown); this.values = [];
         }
 
     }

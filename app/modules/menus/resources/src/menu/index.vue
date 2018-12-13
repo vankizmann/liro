@@ -1,21 +1,17 @@
 <template>
 
-<div class="liro-menu-index" ref="el">
+<div class="liro-menu-index">
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
-
-            <!-- Create item link -->
-            <a class="uk-button uk-button-primary uk-margin-small-left" :href="Liro.routes.get('liro-menus.menu.create')">
-                {{ Liro.messages.get('liro-menus::module.menu.create') }}
+            <a class="uk-button uk-button-primary uk-margin-small-left" :href="route('liro-menus.admin.menu.create')">
+                {{ trans('liro-menus::module.menu.create') }}
             </a>
-            <!-- Create item link end -->
-
         </div>
     </portal>
 
     <!-- Table start -->
-    <div class="th-table-container">
+    <div class="th-form is-table">
         <div class="th-table uk-margin-remove-bottom">
 
             <!-- Table head -->
@@ -24,7 +20,9 @@
 
                     <!-- Type select -->
                     <div class="uk-width-medium uk-margin-auto-left">
-                        <app-form-select-single class="uk-margin-remove-bottom" :value="type.id" :options="types" options-value="id" options-label="title" @input="redirectType"></app-form-select-single>
+                        <app-select :model="type.id" :placeholder="trans('liro-menus::form.menu.select_type')" @input="redirectType">
+                            <app-select-option v-for="type in types" :key="type.id" :value="type.id" :label="type.title"></app-select-option>
+                        </app-select>
                     </div>
                     <!-- Type select end -->
 
@@ -38,43 +36,43 @@
 
                     <div class="th-table-td th-table-td-xs">
                         <span>
-                            <!--  -->
+                            <!-- Placeholder -->
                         </span>
                     </div>
 
                     <div class="th-table-td uk-width-1-2">
                         <span>
-                            {{ Liro.messages.get('liro-menus::form.menu.title') }}
+                            {{ trans('liro-menus::form.menu.title') }}
                         </span>
                     </div>
 
                     <div class="th-table-td th-table-td-xl">
                         <span>
-                            {{ Liro.messages.get('liro-menus::form.menu.route') }}
+                            {{ trans('liro-menus::form.menu.route') }}
                         </span>
                     </div>
 
                     <div class="th-table-td th-table-td-m uk-text-center">
                         <span>
-                            {{ Liro.messages.get('liro-menus::form.menu.default') }}
+                            {{ trans('liro-menus::form.menu.default') }}
                         </span>
                     </div>
 
                     <div class="th-table-td th-table-td-m uk-text-center">
                         <span>
-                            {{ Liro.messages.get('liro-menus::form.menu.state') }}
+                            {{ trans('liro-menus::form.menu.state') }}
                         </span>
                     </div>
 
                     <div class="th-table-td th-table-td-m uk-text-center">
                         <span>
-                            {{ Liro.messages.get('liro-menus::form.menu.hide') }}
+                            {{ trans('liro-menus::form.menu.hide') }}
                         </span>
                     </div>
 
                     <div class="th-table-td th-table-td-m uk-text-center">
                         <span>
-                            {{ Liro.messages.get('liro-menus::form.menu.id') }}
+                            {{ trans('liro-menus::form.menu.id') }}
                         </span>
                     </div>
 
@@ -83,7 +81,7 @@
             <!-- Table filter end -->
 
             <!-- Table body -->
-            <div class="th-table-body" v-if="type.menus.length != 0">
+            <div class="th-table-body" v-show="type.menus.length != 0">
                 <vue-nestable v-model="type.menus" :threshold="50" :maxDepth="5">
                     <vue-nestable-handle slot-scope="{ item }" :item="item" :data-id="item.id">
                         <liro-menu-index-item v-model="item" :collapsed="collapsed"></liro-menu-index-item>
@@ -93,10 +91,10 @@
             <!-- Table body end -->
 
             <!-- Table body -->
-            <div class="th-table-body" v-if="type.menus.length == 0">
+            <div class="th-table-body" v-show="type.menus.length == 0">
                 <div class="th-table-tr">
                     <div class="uk-text-center">
-                        {{ Liro.messages.get('theme::form.list.empty') }}
+                        {{ trans('theme::form.list.empty') }}
                     </div>
                 </div>
             </div>
@@ -107,7 +105,7 @@
                 <div class="th-table-tr uk-flex">
                     <div class="uk-margin-auto-left">
                         <a class="uk-button uk-button-small uk-button-success" href="javascript:void(0)" @click="updateMenuOrder" v-shortkey="['meta', 's']" @shortkey="updateMenuOrder">
-                            {{ Liro.messages.get('theme::form.toolbar.save') }}
+                            {{ trans('theme::form.toolbar.save') }}
                         </a>
                     </div>
                 </div>
@@ -140,25 +138,16 @@ export default {
 
     },
 
-    /**
-     * Create new collapsed instance on creation
-     */
     created: function () {
         this.collapsed = new IndexCollapsed;
     },
 
     methods: {
 
-        /**
-         * Redirect to type on select change
-         */
         redirectType: function (type) {
             Liro.routes.redirect('liro-menus.admin.menu.index', { type: type });
         },
 
-        /**
-         * Submit ajax request and store order and routes
-         */
         updateMenuOrder: function () {
 
             var url = Liro.routes.get('liro-menus.ajax.menu.order', {
@@ -168,9 +157,6 @@ export default {
             Axios.post(url, this.type).then(this.updateMenuOrderResponse);
         },
 
-        /**
-         * Show success message
-         */
         updateMenuOrderResponse: function (res) {
             var message = Liro.messages.get('liro-menus::message.menu.ordered');
             UIkit.notification(message, 'success');

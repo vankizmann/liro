@@ -1,17 +1,18 @@
 <template>
 
 <div class="th-table-tr uk-flex uk-flex-middle">
-    <div class="uk-width-1-3">
-        <a :href="Liro.routes.get('liro-menus.admin.type.edit', { type: value.id })">
+    <div class="th-table-td-xs">
+        <app-list-select :value="value.id"></app-list-select>
+    </div>
+    <div class="uk-width-1-2 uk-flex uk-flex-middle">
+        <a class="uk-margin-right" :href="Liro.routes.get('liro-menus.admin.type.edit', { type: value.id })">
             {{ value.title }}
         </a>
-    </div>
-    <div class="uk-width-1-3">
-        <span>
+        <span class="uk-label">
             {{ value.route }}
         </span>
     </div>
-    <div class="uk-width-1-3">
+    <div class="uk-width-1-2">
         <span>
             {{ value.theme }}
         </span>

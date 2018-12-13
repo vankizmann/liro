@@ -12,7 +12,7 @@
         </portal>
 
         <!-- Table start -->
-        <div class="th-table-container">
+        <div class="th-form is-table">
             <div class="th-table uk-margin-remove-bottom">
 
                 <!-- Table head -->
@@ -63,15 +63,13 @@
                 <!-- Table filter end -->
 
                 <!-- Table body -->
-                <div class="th-table-body" v-if="items.length != 0">
-                    <liro-user-index-item v-for="(item, index) in items" :value="item" :key="index">
-                        <app-list-select slot="checkbox" :value="item.id"></app-list-select>
-                    </liro-user-index-item>
+                <div class="th-table-body" v-show="items.length != 0">
+                    <liro-user-index-item v-for="(item, index) in items" :value="item" :key="index"></liro-user-index-item>
                 </div>
                 <!-- Table body end -->
 
                 <!-- Table body -->
-                <div class="th-table-body" v-if="items.length == 0">
+                <div class="th-table-body" v-show="items.length == 0">
                     <div class="th-table-tr uk-flex uk-flex-middle">
                         <div class="uk-width1-1 uk-text-center">
                             {{ trans('theme::form.list.empty') }}

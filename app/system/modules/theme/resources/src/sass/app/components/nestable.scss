@@ -5,16 +5,16 @@
 
 .nestable {
     position: relative;
+    background-color: $color-gray-5;
 }
 
 .nestable .nestable-list {
     margin: 0;
     padding: 0;
     list-style-type: none;
-    background-color: $color-gray-5;
 }
 
-.nestable .nestable-item {
+.nestable .nestable-item-name {
     background-color: $color-white;
 }
 

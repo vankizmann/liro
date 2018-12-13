@@ -64,6 +64,10 @@
     margin-bottom: $global-gutter;
 }
 
+.uk-select.uk-disabled {
+    background-color: $global-muted-background;
+}
+
 .uk-select:not([multiple]):not([size]) {
     padding-right: ($icon-small-image-size + $global-gutter) !important;
     background-size: ($icon-small-image-size + $global-gutter) $icon-small-image-size;

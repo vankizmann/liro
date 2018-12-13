@@ -24,6 +24,10 @@ class Menu extends Model
         'icon'
     ];
 
+    protected $appends = [
+        'trans_title'
+    ];
+
     protected $hidden = [
         '_lft', '_rgt', 'parent_id'
     ];
@@ -83,6 +87,11 @@ class Menu extends Model
     public function scopeVisible($query)
     {
         return $query->where('hide', 0)->defaultOrder();
+    }
+
+    public function getTransTitleAttribute()
+    {
+        return trans($this->attributes['title']);
     }
 
     public function getRoutePrefixAttribute()

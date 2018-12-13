@@ -51,6 +51,7 @@
         </ul>
 
     </div>
+    <!-- Form end -->
 
 </div>
 </template>

@@ -9,7 +9,7 @@
         <div class="th-login-body uk-flex uk-flex-center uk-flex-middle uk-position-relative" id="app">
 
             <div class="th-login-background uk-position-cover uk-cover-container">
-                <img src="{{ app('assets')->file('theme::dist/images/background.jpg') }}" uk-cover>
+                <img class="uk-blend-lighten" src="{{ app('assets')->file('theme::dist/images/background.jpg') }}" uk-cover>
             </div>
 
             <div class="th-login-form uk-position-z-index uk-padding">

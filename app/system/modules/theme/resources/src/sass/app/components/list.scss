@@ -2,7 +2,7 @@
 .app-list-sort {
 
     & > a {
-        color: $color-black;
+        color: $color-gray-50;
     }
 
     & > a.uk-active {
@@ -18,7 +18,7 @@
 .app-list-filter {
 
     & > a {
-        color: $color-black;
+        color: $color-gray-50;
     }
 
     & > a.uk-active {
@@ -34,7 +34,7 @@
 .app-list-switch {
 
     & {
-        opacity: 0.6;
+        opacity: 0.7;
     }
 
     & > a {
@@ -60,26 +60,11 @@
     }
 
     &.is-hide.uk-active > a {
-        background-color: $color-danger;
+        background-color: $color-warning;
     }
 
     &.is-default.uk-active > a {
         background-color: $color-primary;
-    }
-
-}
-
-.app-list-pagination {
-
-    .uk-select {
-        // font-size: 0.875rem;
-        // padding: 0 8px;
-        // background-size: 20px auto;
-    }
-
-    .uk-select:not([multiple]):not([size]) {
-        // height: 28px;
-        // padding-right: 15px;
     }
 
 }

@@ -19,15 +19,15 @@ return [
     ],
 
     'ajax@liro-menus.ajax.menu.store' => [
-        'liro-menus::ajax.menu.create', 'Liro\Menus\Routers\Ajax\MenuRouter@store'
+        'liro-menus::ajax.menu.store', 'Liro\Menus\Routers\Ajax\MenuRouter@store'
     ],
 
     'ajax@liro-menus.ajax.menu.update' => [
-        'liro-menus::ajax.menu.edit', 'Liro\Menus\Routers\Ajax\MenuRouter@update'
+        'liro-menus::ajax.menu.update', 'Liro\Menus\Routers\Ajax\MenuRouter@update'
     ],
 
     'ajax@liro-menus.ajax.menu.order' => [
-        'liro-menus::ajax.menu.edit', 'Liro\Menus\Routers\Ajax\MenuRouter@order'
+        'liro-menus::ajax.menu.order', 'Liro\Menus\Routers\Ajax\MenuRouter@order'
     ],
 
     'admin@liro-menus.admin.menu.index' => [
@@ -51,11 +51,11 @@ return [
     ],
 
     'ajax@liro-menus.ajax.type.store' => [
-        'liro-menus::ajax.type.create', 'Liro\Menus\Routers\Ajax\TypeRouter@store'
+        'liro-menus::ajax.type.store', 'Liro\Menus\Routers\Ajax\TypeRouter@store'
     ],
 
     'ajax@liro-menus.ajax.type.update' => [
-        'liro-menus::ajax.type.edit', 'Liro\Menus\Routers\Ajax\TypeRouter@update'
+        'liro-menus::ajax.type.update', 'Liro\Menus\Routers\Ajax\TypeRouter@update'
     ],
 
     'admin@liro-menus.admin.type.index' => [

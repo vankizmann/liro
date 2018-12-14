@@ -606,7 +606,7 @@ var render = function() {
                     [
                       _vm._v(
                         "\n                    " +
-                          _vm._s(_vm.trans("liro-users::module.user.create")) +
+                          _vm._s(_vm.trans("liro-users::admin.user.create")) +
                           "\n                "
                       )
                     ]

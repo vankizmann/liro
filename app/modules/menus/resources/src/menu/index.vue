@@ -5,7 +5,7 @@
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
             <a class="uk-button uk-button-primary uk-margin-small-left" :href="route('liro-menus.admin.menu.create')">
-                {{ trans('liro-menus::module.menu.create') }}
+                {{ trans('liro-menus::admin.menu.create') }}
             </a>
         </div>
     </portal>
@@ -40,15 +40,9 @@
                         </span>
                     </div>
 
-                    <div class="th-table-td uk-width-1-2">
+                    <div class="th-table-td uk-width-1-1">
                         <span>
                             {{ trans('liro-menus::form.menu.title') }}
-                        </span>
-                    </div>
-
-                    <div class="th-table-td th-table-td-xl">
-                        <span>
-                            {{ trans('liro-menus::form.menu.route') }}
                         </span>
                     </div>
 

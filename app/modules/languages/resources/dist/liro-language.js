@@ -606,7 +606,7 @@ var render = function() {
                       _vm._v(
                         "\n                    " +
                           _vm._s(
-                            _vm.trans("liro-languages::module.language.create")
+                            _vm.trans("liro-languages::admin.language.create")
                           ) +
                           "\n                "
                       )

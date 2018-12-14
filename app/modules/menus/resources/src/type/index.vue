@@ -6,7 +6,7 @@
         <portal to="app-toolbar">
             <div class="uk-navbar-item">
                 <a class="uk-button uk-button-primary" :href="route('liro-menus.admin.type.create')">
-                    {{ trans('liro-menus::module.type.create') }}
+                    {{ trans('liro-menus::admin.type.create') }}
                 </a>
             </div>
         </portal>

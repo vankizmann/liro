@@ -76,6 +76,13 @@ class Seeder
             'state'     => 1,
             'hide'      => 0,
             'lock'      => 1,
+            'module'    => 'liro-media'
+        ]);
+
+        Module::create([
+            'state'     => 1,
+            'hide'      => 0,
+            'lock'      => 1,
             'module'    => 'liro-pages'
         ]);
 

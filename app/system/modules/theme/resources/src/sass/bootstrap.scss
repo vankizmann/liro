@@ -66,8 +66,8 @@ $color-light-85:             mix($color-secondary-lighten, $color-white, 85%);
 $color-light-90:             mix($color-secondary-lighten, $color-white, 90%);
 $color-light-95:             mix($color-secondary-lighten, $color-white, 95%);
 
-$color-gray-5:              mix($color-light-15, $color-dark-60, 99%);
-$color-gray-10:             mix($color-light-20, $color-dark-60, 95%);
+$color-gray-5:              mix($color-light-15, $color-dark-60, 98%);
+$color-gray-10:             mix($color-light-20, $color-dark-60, 94%);
 $color-gray-15:             mix($color-light-25, $color-dark-60, 90%);
 $color-gray-20:             mix($color-light-30, $color-dark-60, 84%);
 $color-gray-25:             mix($color-light-35, $color-dark-60, 77%);
@@ -91,8 +91,6 @@ $color-gray-95:             mix($color-light-60, $color-dark-25, 5%);
 @import '~uikit/src/scss/variables-theme';
 @import '~uikit/src/scss/mixins-theme';
 @import "~uikit/src/scss/uikit-theme";
-
-@import "~smartmenus/src/css/sm-clean/sm-clean";
 
 @import "uikit/uikit";
 @import "theme/theme";

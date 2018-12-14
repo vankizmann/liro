@@ -80,6 +80,7 @@ class Seeder
             'liro-menus.admin.type.index',
             'liro-menus.admin.type.create',
             'liro-menus.admin.type.edit',
+            'liro-media.admin.folder.index',
         ];
 
         foreach ($routes as $route) {

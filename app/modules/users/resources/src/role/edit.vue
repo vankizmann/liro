@@ -4,12 +4,15 @@
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
+
             <a class="uk-button uk-button-primary uk-margin-small-left" :href="route('liro-users.admin.role.index')">
                 {{ trans('theme::form.toolbar.close') }}
             </a>
+
             <a class="uk-button uk-button-success uk-margin-small-left" href="javascript:void(0)" @click="updateRole" v-shortkey="['meta', 's']" @shortkey="updateRole">
                 {{ trans('theme::form.toolbar.save') }}
             </a>
+
         </div>
     </portal>
 

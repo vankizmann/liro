@@ -11,11 +11,11 @@ return [
     ],
 
     'admin@liro-users.admin.auth.login' => [
-        'liro-users::module.auth.login', 'Liro\Users\Routers\Admin\AuthRouter@login'
+        'liro-users::admin.auth.login', 'Liro\Users\Routers\Admin\AuthRouter@login'
     ],
 
     'admin@liro-users.admin.auth.logout' => [
-        'liro-users::module.auth.logout', 'Liro\Users\Routers\Admin\AuthRouter@logout'
+        'liro-users::admin.auth.logout', 'Liro\Users\Routers\Admin\AuthRouter@logout'
     ],
 
     'ajax@liro-users.ajax.user.index' => [
@@ -35,15 +35,15 @@ return [
     ],
 
     'admin@liro-users.admin.user.index' => [
-        'liro-users::module.user.index', 'Liro\Users\Routers\Admin\UserRouter@index'
+        'liro-users::admin.user.index', 'Liro\Users\Routers\Admin\UserRouter@index'
     ],
 
     'admin@liro-users.admin.user.create' => [
-        'liro-users::module.user.create', 'Liro\Users\Routers\Admin\UserRouter@create'
+        'liro-users::admin.user.create', 'Liro\Users\Routers\Admin\UserRouter@create'
     ],
 
     'admin@liro-users.admin.user.edit' => [
-        'liro-users::module.user.edit', 'Liro\Users\Routers\Admin\UserRouter@edit'
+        'liro-users::admin.user.edit', 'Liro\Users\Routers\Admin\UserRouter@edit'
     ],
 
     'ajax@liro-users.ajax.role.index' => [
@@ -63,15 +63,15 @@ return [
     ],
 
     'admin@liro-users.admin.role.index' => [
-        'liro-users::module.role.index', 'Liro\Users\Routers\Admin\RoleRouter@index'
+        'liro-users::admin.role.index', 'Liro\Users\Routers\Admin\RoleRouter@index'
     ],
 
     'admin@liro-users.admin.role.create' => [
-        'liro-users::module.role.create', 'Liro\Users\Routers\Admin\RoleRouter@create'
+        'liro-users::admin.role.create', 'Liro\Users\Routers\Admin\RoleRouter@create'
     ],
 
     'admin@liro-users.admin.role.edit' => [
-        'liro-users::module.role.edit', 'Liro\Users\Routers\Admin\RoleRouter@edit'
+        'liro-users::admin.role.edit', 'Liro\Users\Routers\Admin\RoleRouter@edit'
     ]
 
 ];

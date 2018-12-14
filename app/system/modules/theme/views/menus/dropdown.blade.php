@@ -1,4 +1,4 @@
-<div class="uk-navbar-dropdown" uk-dropdown>
+<div class="uk-navbar-dropdown" uk-dropdown="pos: bottom-center;">
     <ul class="{{ @$style ?: 'uk-nav uk-navbar-dropdown-nav' }}">
         @foreach ($menus->where('state', 1)->where('hide', 0) as $menu)
             <li class="{{ $menu->route_current ? 'uk-current' : '' }} {{ $menu->route_active ? 'uk-active' : '' }}">

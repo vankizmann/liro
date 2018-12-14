@@ -1,8 +1,9 @@
 
 .th-form {
-    border-radius: 3px;
     margin-bottom: 20px;
     background-color: $color-white;
+    overflow: hidden;
+    border-radius: 3px;
     box-shadow: 0 1px 3px rgba($color-gray-50, 0.15);
 }
 

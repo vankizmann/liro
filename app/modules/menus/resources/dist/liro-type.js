@@ -588,7 +588,7 @@ var render = function() {
                     [
                       _vm._v(
                         "\n                    " +
-                          _vm._s(_vm.trans("liro-menus::module.type.create")) +
+                          _vm._s(_vm.trans("liro-menus::admin.type.create")) +
                           "\n                "
                       )
                     ]

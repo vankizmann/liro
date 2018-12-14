@@ -352,12 +352,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -798,7 +792,7 @@ var render = function() {
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.trans("liro-menus::module.menu.create")) +
+                  _vm._s(_vm.trans("liro-menus::admin.menu.create")) +
                   "\n            "
               )
             ]
@@ -842,21 +836,11 @@ var render = function() {
             _c("div", { staticClass: "th-table-tr uk-flex" }, [
               _vm._m(0),
               _vm._v(" "),
-              _c("div", { staticClass: "th-table-td uk-width-1-2" }, [
+              _c("div", { staticClass: "th-table-td uk-width-1-1" }, [
                 _c("span", [
                   _vm._v(
                     "\n                            " +
                       _vm._s(_vm.trans("liro-menus::form.menu.title")) +
-                      "\n                        "
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "th-table-td th-table-td-xl" }, [
-                _c("span", [
-                  _vm._v(
-                    "\n                            " +
-                      _vm._s(_vm.trans("liro-menus::form.menu.route")) +
                       "\n                        "
                   )
                 ])

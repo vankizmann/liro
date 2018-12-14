@@ -1734,15 +1734,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         updateMenu: function updateMenu() {
 
-            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
+            var url = this.route('liro-menus.ajax.menu.update', {
                 menu: this.menu.id
             });
 
-            Axios.put(url, this.menu).then(this.updateMenuResponse);
+            this.http.put(url, this.menu).then(this.updateMenuResponse);
         },
 
         updateMenuResponse: function updateMenuResponse(res) {
-            var message = Liro.messages.get('liro-menus::message.menu.saved');
+            var message = this.trans('liro-menus::message.menu.saved');
             UIkit.notification(message, 'success');
         }
 
@@ -1826,7 +1826,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-menus::form.menu.state") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-menus::form.menu.state"),
+                  horizontal: false
+                }
+              },
               [
                 _c(
                   "app-switch",
@@ -1853,7 +1858,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-menus::form.menu.hide") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-menus::form.menu.hide"),
+                  horizontal: false
+                }
+              },
               [
                 _c(
                   "app-switch",
@@ -1880,7 +1890,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-menus::form.menu.default") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-menus::form.menu.default"),
+                  horizontal: false
+                }
+              },
               [
                 _c(
                   "app-switch",
@@ -1907,7 +1922,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-menus::form.menu.type") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-menus::form.menu.type"),
+                  horizontal: false
+                }
+              },
               [
                 _c(
                   "app-select",

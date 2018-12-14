@@ -829,7 +829,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit_module__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit_module__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit_module___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__edit_module__);
 //
 //
@@ -1120,7 +1120,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(32)
 /* template */
-var __vue_template__ = __webpack_require__(33)
+var __vue_template__ = __webpack_require__(36)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1164,7 +1164,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit_module__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit_module__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit_module___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__edit_module__);
 //
 //
@@ -1270,6 +1270,189 @@ if (window.Liro) {
 
 /***/ }),
 /* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(34)
+/* template */
+var __vue_template__ = __webpack_require__(35)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/role/edit/module.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9cd4620a", Component.options)
+  } else {
+    hotAPI.reload("data-v-9cd4620a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    model: {
+        prop: 'model',
+        event: 'input'
+    },
+
+    props: {
+
+        model: {
+            required: true,
+            type: Array
+        },
+
+        items: {
+            required: true,
+            type: [Object, Array]
+        }
+
+    },
+
+    data: function data() {
+        return {
+            ghost: this.model
+        };
+    },
+
+    watch: {
+
+        model: function model() {
+            this.ghost = this.model;
+        }
+
+    },
+
+    methods: {
+
+        updateValue: function updateValue(value) {
+            this.$emit('input', value);
+        }
+
+    }
+
+});
+
+if (window.Liro) {
+    Liro.vue.component('liro-role-edit-module', this.default);
+}
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "liro-role-edit-module" },
+    _vm._l(_vm.items, function(routes, group) {
+      return _c("div", { key: group, staticClass: "th-form" }, [
+        _c("legend", { staticClass: "uk-legend" }, [
+          _c("span", [_vm._v(_vm._s(group))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-margin" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l",
+              attrs: { "uk-grid": "" }
+            },
+            _vm._l(routes, function(name, index) {
+              return _c(
+                "div",
+                { key: index },
+                [
+                  _c("app-checkbox", {
+                    attrs: { label: name, value: index },
+                    on: { input: _vm.updateValue },
+                    model: {
+                      value: _vm.ghost,
+                      callback: function($$v) {
+                        _vm.ghost = $$v
+                      },
+                      expression: "ghost"
+                    }
+                  })
+                ],
+                1
+              )
+            })
+          )
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9cd4620a", module.exports)
+  }
+}
+
+/***/ }),
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1442,189 +1625,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-763f7de0", module.exports)
-  }
-}
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(35)
-/* template */
-var __vue_template__ = __webpack_require__(36)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/src/role/edit/module.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9cd4620a", Component.options)
-  } else {
-    hotAPI.reload("data-v-9cd4620a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 35 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-    model: {
-        prop: 'model',
-        event: 'input'
-    },
-
-    props: {
-
-        model: {
-            required: true,
-            type: Array
-        },
-
-        items: {
-            required: true,
-            type: [Object, Array]
-        }
-
-    },
-
-    data: function data() {
-        return {
-            ghost: this.model
-        };
-    },
-
-    watch: {
-
-        model: function model() {
-            this.ghost = this.model;
-        }
-
-    },
-
-    methods: {
-
-        updateValue: function updateValue(value) {
-            this.$emit('input', value);
-        }
-
-    }
-
-});
-
-if (window.Liro) {
-    Liro.vue.component('liro-role-edit-module', this.default);
-}
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "liro-role-edit-module" },
-    _vm._l(_vm.items, function(routes, group) {
-      return _c("div", { key: group, staticClass: "th-form" }, [
-        _c("legend", { staticClass: "uk-legend" }, [
-          _c("span", [_vm._v(_vm._s(group))])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "uk-margin" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l",
-              attrs: { "uk-grid": "" }
-            },
-            _vm._l(routes, function(name, index) {
-              return _c(
-                "div",
-                { key: index },
-                [
-                  _c("app-checkbox", {
-                    attrs: { label: name, value: index },
-                    on: { input: _vm.updateValue },
-                    model: {
-                      value: _vm.ghost,
-                      callback: function($$v) {
-                        _vm.ghost = $$v
-                      },
-                      expression: "ghost"
-                    }
-                  })
-                ],
-                1
-              )
-            })
-          )
-        ])
-      ])
-    })
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9cd4620a", module.exports)
   }
 }
 

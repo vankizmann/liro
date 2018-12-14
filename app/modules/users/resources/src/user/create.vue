@@ -4,24 +4,27 @@
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
-            <a class="uk-button uk-button-primary uk-margin-small-left" :href="Liro.routes.get('liro-users.admin.user.index')">
-                {{ Liro.messages.get('theme::form.toolbar.close') }}
+
+            <a class="uk-button uk-button-primary uk-margin-small-left" :href="route('liro-users.admin.user.index')">
+                {{ trans('theme::form.toolbar.close') }}
             </a>
+
             <a class="uk-button uk-button-success uk-margin-small-left" href="javascript:void(0)" @click="storeUser" v-shortkey="['meta', 's']" @shortkey="storeUser">
-                {{ Liro.messages.get('theme::form.toolbar.save') }}
+                {{ trans('theme::form.toolbar.save') }}
             </a>
+
         </div>
     </portal>
 
     <!-- Sidebar start -->
-    <div class="uk-flex-last uk-width-large">
+    <div class="uk-flex-last uk-width-1-1 uk-width-large@l">
         <div class="th-form">
 
             <legend class="uk-legend">
                 <span>{{ trans('liro-users::form.legend.general') }}</span>
             </legend>
 
-            <app-label :label="trans('liro-users::form.user.state')">
+            <app-label :label="trans('liro-users::form.user.state')" :horizontal="false">
                 <app-switch class="is-state" v-model="user.state">
                     <app-switch-option v-for="state in states" :key="state.value" :value="state.value" :label="state.label"></app-switch-option>
                 </app-switch>

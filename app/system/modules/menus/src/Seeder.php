@@ -72,7 +72,7 @@ class Seeder
             'route'         => 'users',
             'module'        => 'liro-menus.user.redirect.menu',
             'default'       => 0,
-            'icon'          => 'user',
+            'icon'          => 'users',
             'menu_type_id'  => $menu_type_backend->id
         ]);
 

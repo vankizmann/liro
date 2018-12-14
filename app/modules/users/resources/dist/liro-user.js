@@ -989,6 +989,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1055,14 +1058,12 @@ var render = function() {
             "a",
             {
               staticClass: "uk-button uk-button-primary uk-margin-small-left",
-              attrs: {
-                href: _vm.Liro.routes.get("liro-users.admin.user.index")
-              }
+              attrs: { href: _vm.route("liro-users.admin.user.index") }
             },
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.Liro.messages.get("theme::form.toolbar.close")) +
+                  _vm._s(_vm.trans("theme::form.toolbar.close")) +
                   "\n            "
               )
             ]
@@ -1086,7 +1087,7 @@ var render = function() {
             [
               _vm._v(
                 "\n                " +
-                  _vm._s(_vm.Liro.messages.get("theme::form.toolbar.save")) +
+                  _vm._s(_vm.trans("theme::form.toolbar.save")) +
                   "\n            "
               )
             ]
@@ -1094,7 +1095,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "uk-flex-last uk-width-large" }, [
+      _c("div", { staticClass: "uk-flex-last uk-width-1-1 uk-width-large@l" }, [
         _c(
           "div",
           { staticClass: "th-form" },
@@ -1107,7 +1108,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-users::form.user.state") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-users::form.user.state"),
+                  horizontal: false
+                }
+              },
               [
                 _c(
                   "app-switch",
@@ -1415,6 +1421,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1514,7 +1523,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "uk-flex-last uk-width-large" }, [
+      _c("div", { staticClass: "uk-flex-last uk-width-1-1 uk-width-large@l" }, [
         _c(
           "div",
           { staticClass: "th-form" },
@@ -1527,7 +1536,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-users::form.user.state") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-users::form.user.state"),
+                  horizontal: false
+                }
+              },
               [
                 _c(
                   "app-switch",
@@ -1569,7 +1583,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-users::form.user.name") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-users::form.user.name"),
+                  required: true
+                }
+              },
               [
                 _c("app-input", {
                   model: {
@@ -1586,7 +1605,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-users::form.user.email") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-users::form.user.email"),
+                  required: true
+                }
+              },
               [
                 _c("app-input", {
                   model: {

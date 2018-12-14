@@ -3248,7 +3248,11 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-jquery@>=1.7.0, jquery@^3.3.1:
+jquery.animate@^1.8.9:
+  version "1.8.9"
+  resolved "https://registry.yarnpkg.com/jquery.animate/-/jquery.animate-1.8.9.tgz#f9729700c823bc48fb98333bcd3f54c463f65149"
+
+jquery@>=1.7.0, jquery@>=1.8, jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 
@@ -5693,6 +5697,12 @@ style-loader@^0.18.2:
   dependencies:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
+
+superfish@^1.7.10:
+  version "1.7.10"
+  resolved "https://registry.yarnpkg.com/superfish/-/superfish-1.7.10.tgz#94400c5683b0cc87215c6247f26c27890990bc9e"
+  dependencies:
+    jquery ">=1.8"
 
 supports-color@^2.0.0:
   version "2.0.0"

@@ -1,11 +1,11 @@
 <template>
 
-<div class="app-label">
+<div :class="{ 'app-label': true, 'is-required': required, 'is-horizontal': horizontal }">
     <label class="uk-form-label" :for="id">
         <span v-html="label"></span>
     </label>
     <div class="uk-form-controls">
-        <slot></slot>
+        <slot></slot><slot name="controls"></slot>
     </div>
 </div>
 
@@ -28,6 +28,20 @@ export default {
                 return _.uniqueId('app-form-');
             },
             type: [String, Number]
+        },
+
+        required: {
+            default: function () {
+                return false;
+            },
+            type: [Boolean, Number]
+        },
+
+        horizontal: {
+            default: function () {
+                return true;
+            },
+            type: [Boolean, Number]
         }
 
     },

@@ -11,6 +11,8 @@ class FolderPrototype
 
     public $name;
 
+    public $count = 0;
+
     public $dirs = [];
 
     public $files = [];
@@ -19,9 +21,11 @@ class FolderPrototype
     {
         $this->path = $path;
 
-        $this->getName();
         $this->bootFolders();
         $this->bootFiles();
+
+        $this->getName();
+        $this->getCount();
     }
 
     public static function make($path = '') {
@@ -30,12 +34,14 @@ class FolderPrototype
 
     public function toArray()
     {
-        return json_decode(json_encode($this), true);
+        $array = json_decode(json_encode($this), true);
+        return collect($array)->toArray();
     }
 
     public function toJson()
     {
-        return json_encode($this);
+        $array = json_decode(json_encode($this), true);
+        return collect($array)->toJson();
     }
 
     public function getName()
@@ -43,12 +49,21 @@ class FolderPrototype
         return $this->name = $this->name ?: pathinfo($this->path, PATHINFO_BASENAME);
     }
 
+    public function getCount()
+    {
+        return $this->count = $this->count ?: count($this->dirs) + count($this->files);
+    }
+
     protected function bootFolders()
     {
         $dirs = Storage::directories($this->path);
 
-        $this->dirs = collect($dirs)->map(function ($dir) {
-            return new FolderPrototype($dir);
+        $this->dirs = collect($dirs)->reduce(function ($result, $dir) {
+            return array_merge($result, [ md5($dir) => new FolderPrototype($dir) ]);
+        }, []);
+
+        $this->files = collect($this->files)->filter(function ($file) {
+            return ! in_array($file->name, ['node_modules']);
         });
 
         return $this->dirs;
@@ -58,8 +73,12 @@ class FolderPrototype
     {
         $files = Storage::files($this->path);
 
-        $this->files = collect($files)->map(function ($file) {
-            return new FilePrototype($file);
+        $this->files = collect($files)->reduce(function ($result, $file) {
+            return array_merge($result, [ md5($file) => new FilePrototype($file) ]);
+        }, []);
+
+        $this->files = collect($this->files)->filter(function ($file) {
+            return ! in_array($file->name, ['.DS_Store']);
         });
 
         return $this->files;

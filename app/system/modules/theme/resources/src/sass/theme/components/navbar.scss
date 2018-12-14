@@ -1,11 +1,6 @@
 
 .th-navbar {
 
-    & {
-        background-color: $color-gray-95;
-        padding: 30px 0;
-    }
-
     .th-fill-default path {
         fill: $color-white !important;
     }
@@ -14,7 +9,13 @@
         fill: $color-primary !important;
     }
 
+    .uk-navbar, .uk-nav {
+        width: 240px;
+        flex-direction: column;
+    }
+
     .uk-logo {
+        height: 100px !important;
         color: $color-white;
     }
 
@@ -27,44 +28,9 @@
     .uk-navbar-divider:before {
         content: '\00a0';
         display: block;
-        height: 20px;
-        border-left: 1px solid rgba($color-gray-50, 0.25);
-    }
-
-    .uk-navbar-search .uk-input {
-        border-radius: 500px;
-        border: 0;
-        background-color: $color-gray-10;
-        padding: 0 20px;
-        color: $color-gray-60;
-    }
-
-    .uk-navbar-search .uk-form-icon-flip + .uk-input {
-        padding-right: 43px !important;
-    }
-
-    .uk-navbar-search .uk-input:focus {
-        box-shadow: 0 0 0 0.1rem rgba($color-gray-50, 0.2);
-    }
-
-    .uk-navbar-search a.uk-form-icon:hover {
-        color: $color-primary;
-    }
-
-    .uk-navbar-search .uk-form-icon svg {
-        width: 16px;
-        height: 16px;
-    }
-
-    .uk-navbar-search .uk-form-icon-flip {
-        right: 5px;
-    }
-
-    .uk-navbar-icon {
         width: 20px;
-        height: 20px;
-        margin-right: 8px;
-    } 
+        border-bottom: 1px solid rgba($color-gray-50, 0.25);
+    }
 
     .uk-navbar-item {
         height: 40px;
@@ -72,65 +38,80 @@
         padding: 0 20px;
     }
 
-    .uk-navbar-nav > li {
-        margin: 0 5px;
+    .uk-nav .uk-nav {
+        overflow: hidden;
+        height: 0;
     }
 
-    .uk-navbar-nav > li > a {
-        height: 40px;
-        min-height: 40px;
-        padding: 0 15px;
+    .uk-nav > li {
+        position: relative;
     }
 
-    .uk-navbar-nav > li > a {
-        color: $color-gray-60;
+    .uk-nav > li > .uk-nav {
+        transform-origin: top left;
     }
 
-    .uk-navbar-nav.uk-text-small > li > a {
-        font-size: $global-small-font-size;
-    }
-
-    .uk-navbar-nav > li > a:hover,
-    .uk-navbar-nav > li > a:focus,
-    .uk-navbar-nav > li > a.uk-open {
-        color: $color-gray-35;
-    }
-
-    .uk-navbar-nav > li.uk-active > a {
-        color: $color-white;
-    }
-
-    .uk-navbar-nav > li > a .uk-icon {
-        opacity: 0.6;
-    }
-
-    .uk-dropdown {
-        min-width: 240px;
-        padding: 0;
-        background-color: $color-gray-85;
-        border: 0;
-        box-shadow: 0 0 3px rgba($color-gray-95, 0.15);
-    }
-
-    .uk-dropdown .uk-nav > li > a {
-        display: flex;
-        align-items: center;
-        padding: 15px 20px;
+    .uk-nav > li > a {
+        height: 45px;
+        min-height: 45px;
+        padding: 0 30px 0 30px;
+        color: $color-gray-50;
         transition: all 0.15s;
     }
 
-    .uk-dropdown .uk-nav > li > a:hover,
-    .uk-dropdown .uk-nav > li > a:focus {
-        color: $color-gray-35;
-        background-color: lighten($color-gray-85, 3%);
+    .uk-nav > li > a.uk-flex {
+        display: flex !important;
     }
 
-    .uk-dropdown .uk-nav > li.uk-active > a {
+    .uk-nav.uk-text-small > li > a {
+        font-size: $global-small-font-size;
+    }
+
+    .uk-nav > li > a:focus,
+    .uk-nav > li:hover > a {
+        color: $color-gray-35;
+        background-color: $color-gray-90;
+    }
+
+    .uk-nav > li.uk-active > a {
         color: $color-white;
     }
 
-    .uk-dropdown .uk-nav > li > a .uk-icon {
-        opacity: 0.4;
+    .uk-nav > li.uk-active > a:before {
+        content: '\00a0';
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        display: block;
+        width: 6px;
+        height: 6px;
+        border-radius: 500px;
+        background-color: $color-primary;
+        transform: translateY(-50%);
+    }
+
+    .uk-nav .uk-nav > li > a {
+        color: $color-gray-15;
+        font-size: $global-small-font-size;
+    }
+
+    .uk-nav .uk-nav > li > a:focus,
+    .uk-nav .uk-nav > li:hover > a {
+        color: $color-white;
+        background-color: $color-gray-55;
+    }
+
+    .uk-nav .uk-nav > li.uk-active > a:before {
+        background-color: $color-white;
+    }
+
+    .uk-nav > li > a .uk-icon {
+        opacity: 0.6;
+    }
+
+    .uk-nav > li > a .uk-icon svg {
+        // width: 18px;
+        // height: 18px;
     }
 
 }

@@ -27,6 +27,18 @@ class FilePrototype
         $this->getType();
     }
 
+    public function toArray()
+    {
+        $array = json_decode(json_encode($this), true);
+        return collect($array)->toArray();
+    }
+
+    public function toJson()
+    {
+        $array = json_decode(json_encode($this), true);
+        return collect($array)->toJson();
+    }
+
     public function getName()
     {
         return $this->name = $this->name ?: pathinfo($this->path, PATHINFO_BASENAME);

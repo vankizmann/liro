@@ -21,25 +21,25 @@
                 <span>{{ trans('liro-menus::form.legend.general') }}</span>
             </legend>
 
-            <app-label :label="trans('liro-menus::form.menu.state')">
+            <app-label :label="trans('liro-menus::form.menu.state')" :horizontal="false">
                 <app-switch class="is-state" v-model="menu.state">
                     <app-switch-option v-for="item in states" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
                 </app-switch>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.menu.hide')">
+            <app-label :label="trans('liro-menus::form.menu.hide')" :horizontal="false">
                 <app-switch class="is-hide" v-model="menu.hide">
                     <app-switch-option v-for="item in hides" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
                 </app-switch>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.menu.default')">
+            <app-label :label="trans('liro-menus::form.menu.default')" :horizontal="false">
                 <app-switch class="is-default" v-model="menu.default">
                     <app-switch-option v-for="item in defaults" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
                 </app-switch>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.menu.type')">
+            <app-label :label="trans('liro-menus::form.menu.type')" :horizontal="false">
                 <app-select v-model="menu.menu_type_id" :placeholder="trans('liro-menus::form.menu.select_type')">
                     <app-select-option v-for="type in types" :key="type.id" :value="type.id" :label="type.title"></app-select-option>
                 </app-select>
@@ -121,15 +121,15 @@ export default {
 
         updateMenu: function () {
 
-            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
+            var url = this.route('liro-menus.ajax.menu.update', {
                 menu: this.menu.id
             });
 
-            Axios.put(url, this.menu).then(this.updateMenuResponse);
+            this.http.put(url, this.menu).then(this.updateMenuResponse);
         },
 
         updateMenuResponse: function (res) {
-            var message = Liro.messages.get('liro-menus::message.menu.saved');
+            var message = this.trans('liro-menus::message.menu.saved');
             UIkit.notification(message, 'success');
         }
 

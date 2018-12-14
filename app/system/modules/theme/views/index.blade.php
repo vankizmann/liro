@@ -33,70 +33,113 @@
 
         @include('theme::partials/notification')
 
-        <div id="app">
+        <div id="app" class="th-index-app uk-flex">
 
-            <div class="th-index-header">
-
+            <div class="th-index-navigation uk-flex-none">
                 <div class="th-navbar">
-                    <div class="uk-container uk-container-expand">
-                        <div class="uk-navbar">
+                    <div class="uk-navbar">
 
-                            <div class="uk-navbar-left">
-                                <div class="uk-navbar-item uk-logo uk-margin-large-right">
-                                    <a class="uk-display-inline-block" href="{{ url($defaultUrl ?: '/') }}">
-                                        <img src="{{ app('assets')->file('theme::dist/images/liro.svg') }}" width="80" height="20" uk-svg>
+                        <div class="uk-navbar-top">
+                            <div class="uk-navbar-item uk-logo">
+                                <a class="uk-display-inline-block" href="{{ url($defaultUrl ?: '/') }}">
+                                    <img src="{{ app('assets')->file('theme::dist/images/liro.svg') }}" width="80" height="20" uk-svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="uk-navbar-top uk-margin-bottom">
+                            @include('theme::menus/default', [
+                                'menus' => app('menus')->getMenusByTypeId(2)->toTree(), 'id' => 'main-menu', 'icon' => true
+                            ])
+                        </div>
+
+                        <div class="uk-navbar-top uk-margin-bottom">
+                            <ul class="uk-nav uk-text-small">
+                                <li>
+                                    <a class="uk-flex uk-flex-middle" href="{{ route('liro-users.admin.auth.login') }}">
+                                        <img class="uk-border-circle uk-margin-small-right" src="https://api.adorable.io/avatars/60/{{ app('users')->getId() }}" width="30" height="30" alt="">
+                                        <span>{{ app('users')->getName() }}</span>
                                     </a>
-                                </div>
-                            </div>
-
-                            <div class="uk-navbar-right">
-                                @include('theme::menus/default', [
-                                    'menus' => app('menus')->getMenusByTypeId(2)->toTree(), 'style' => 'uk-navbar-nav uk-margin-large-right'
-                                ])
-                                <ul class="uk-navbar-nav uk-text-small">
-                                    <li>
-                                        <a class="uk-inline" href="{{ route('liro-users.admin.auth.login') }}">
-                                            <img class="uk-border-circle uk-margin-small-right" src="https://api.adorable.io/avatars/50/{{ app('users')->getId() }}" width="25" height="25" alt="">
-                                            <span>{{ app('users')->getName() }}</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <span class="uk-navbar-divider"></span>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('liro-users.admin.auth.logout') }}">{{ trans('liro-users::form.auth.logout') }}</a>
-                                    </li>
-                                </ul>
-                            </div>
-
+                                </li>
+                                <li>
+                                    <a class="uk-flex uk-flex-middle" href="{{ route('liro-users.admin.auth.login') }}">{{ trans('liro-users::form.auth.edit') }}</a>
+                                </li>
+                                <li>
+                                    <a class="uk-flex uk-flex-middle" href="{{ route('liro-users.admin.auth.logout') }}">{{ trans('liro-users::form.auth.logout') }}</a>
+                                </li>
+                            </ul>
                         </div>
+
                     </div>
                 </div>
-
-                <div class="th-topbar">
-                    <div class="uk-container uk-container-expand">
-                        <div class="uk-navbar">
-
-                            <div class="uk-navbar-left">
-                                <div class="uk-navbar-item">
-                                    <h1 class="uk-text-primary uk-margin-remove">{{ app()->getTitle() }}</h1>
-                                </div>
-                            </div>
-
-                            <portal-target class="uk-navbar-right" name="app-toolbar" :multiple="true">
-                                @yield('toolbar')
-                            </portal-target>
-
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <div class="uk-container uk-container-expand">
-                <div class="th-index-body">
-                    @yield('content')
+            <div class="uk-flex-1">
+
+                <div class="th-index-header" uk-sticky>
+
+                    <div class="th-navbar" style="display: none;">
+                        {{-- <div class="uk-container uk-container-expand"> --}}
+                            <div class="uk-navbar">
+
+                                <div class="uk-navbar-left">
+                                    <div class="uk-navbar-item uk-logo uk-margin-large-right">
+                                        <a class="uk-display-inline-block" href="{{ url($defaultUrl ?: '/') }}">
+                                            <img src="{{ app('assets')->file('theme::dist/images/liro.svg') }}" width="80" height="20" uk-svg>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="uk-navbar-right">
+                                    @include('theme::menus/default', [
+                                        'menus' => app('menus')->getMenusByTypeId(2)->toTree(), 'style' => 'uk-navbar-nav uk-margin-large-right'
+                                    ])
+                                    <ul class="uk-navbar-nav uk-text-small">
+                                        <li>
+                                            <a class="uk-inline" href="{{ route('liro-users.admin.auth.login') }}">
+                                                <img class="uk-border-circle uk-margin-small-right" src="https://api.adorable.io/avatars/50/{{ app('users')->getId() }}" width="25" height="25" alt="">
+                                                <span>{{ app('users')->getName() }}</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <span class="uk-navbar-divider"></span>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('liro-users.admin.auth.logout') }}">{{ trans('liro-users::form.auth.logout') }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        {{-- </div> --}}
+                    </div>
+
+                    <div class="th-topbar">
+                        {{-- <div class="uk-container uk-container-expand"> --}}
+                            <div class="uk-navbar">
+
+                                <div class="uk-navbar-left">
+                                    <div class="uk-navbar-item">
+                                        <h1 class="uk-text-primary uk-margin-remove">{{ app()->getTitle() }}</h1>
+                                    </div>
+                                </div>
+
+                                <portal-target class="uk-navbar-right" name="app-toolbar" :multiple="true">
+                                    @yield('toolbar')
+                                </portal-target>
+
+                            </div>
+                        {{-- </div> --}}
+                    </div>
+
                 </div>
+
+                {{-- <div class="uk-container uk-container-expand"> --}}
+                    <div class="th-index-body">
+                        @yield('content')
+                    </div>
+                {{-- </div> --}}
+
             </div>
 
             <liro-auth-modal></liro-auth-modal>
@@ -106,6 +149,14 @@
         <div class="th-spinner uk-position-cover">
             <div class="uk-position-center" uk-spinner="icon: spinner-third; ratio: 0.125;"></div>
         </div>
+
+        <script>
+            $(document).ready(function () {
+                $('#main-menu > li > a').click(function (event) {
+                    $(this).parent().children('.uk-nav').animate({ height: '100%' });
+                });
+            });
+        </script>
 
     </body>
 </html>

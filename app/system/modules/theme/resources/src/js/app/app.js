@@ -2,9 +2,6 @@
 import VuePortal from 'portal-vue';
 Vue.use(VuePortal);
 
-import { Container as VueContainer } from "vue-smooth-dnd";
-import { Draggable as VueDraggable } from "vue-smooth-dnd";
-
 import VueNestable from 'vue-nestable';
 Vue.use(VueNestable);
 
@@ -55,15 +52,13 @@ Vue.ready(function () {
     UIkit.modal.labels.ok = Liro.messages.get('theme::form.modal.ok');
     UIkit.modal.labels.cancel = Liro.messages.get('theme::form.modal.cancel');
 
+    Vue.prototype.Axios = Vue.prototype.http = Axios;
+
     Vue.prototype.Liro = Liro;
-    Vue.prototype.Axios = Axios;
     Vue.prototype.UIkit = UIkit;
 
     Vue.prototype.trans = Liro.messages.get;
     Vue.prototype.route = Liro.routes.get;
-
-    Vue.component('app-container', VueContainer);
-    Vue.component('app-draggable', VueDraggable);
 
     Liro.vue.filters.map(function (filter) {
         Vue.filter(filter.name, filter.options);

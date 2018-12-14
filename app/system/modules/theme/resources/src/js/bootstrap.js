@@ -2,6 +2,8 @@
 import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
 
+require('jquery.animate');
+
 import lodash from 'lodash';
 window._ = window.lodash = lodash;
 

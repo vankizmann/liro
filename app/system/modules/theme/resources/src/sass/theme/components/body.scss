@@ -5,12 +5,22 @@ body.th-index {
         background-color: $color-gray-10;
     }
 
+    .th-index-app {
+        min-height: 100vh;
+    }
+
+    .th-index-navigation {
+        background-color: $color-gray-95;
+    }
+
     .th-index-header {
+        padding: 0 20px;
+        background-color: $color-white;
         box-shadow: 0 0 3px rgba($color-gray-50, 0.15);
     }
 
     .th-index-body {
-        padding: 40px 15px;
+        padding: 40px 35px;
     }
 
 }

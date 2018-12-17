@@ -1,6 +1,6 @@
 
 // Globals
-$global-font-family:                    'Helvetica', 'Arial', sans-serif;
+$global-font-family:                    'Roboto', 'Helvetica', 'Arial', sans-serif;
 $global-control-height:                 39px;
 $global-gutter:                         20px;
 $global-large-gutter:                   50px;
@@ -41,6 +41,10 @@ $icon-small-image-size:                 12px;
 // Transition
 $transition-duration:                   0.30s;
 $transition-slow-duration:              0.60s;
+
+// Modal
+$modal-background:                      rgba($color-gray-90, 0.6);
+$modal-footer-background:               transparent;
 
 // Form
 $form-background:                       $global-background;

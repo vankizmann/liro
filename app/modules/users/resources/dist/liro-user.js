@@ -1108,12 +1108,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              {
-                attrs: {
-                  label: _vm.trans("liro-users::form.user.state"),
-                  horizontal: false
-                }
-              },
+              { attrs: { label: _vm.trans("liro-users::form.user.state") } },
               [
                 _c(
                   "app-switch",
@@ -1155,7 +1150,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-users::form.user.name") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-users::form.user.name"),
+                  required: true
+                }
+              },
               [
                 _c("app-input", {
                   model: {
@@ -1172,7 +1172,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-users::form.user.email") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-users::form.user.email"),
+                  required: true
+                }
+              },
               [
                 _c("app-input", {
                   model: {
@@ -1536,12 +1541,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              {
-                attrs: {
-                  label: _vm.trans("liro-users::form.user.state"),
-                  horizontal: false
-                }
-              },
+              { attrs: { label: _vm.trans("liro-users::form.user.state") } },
               [
                 _c(
                   "app-switch",

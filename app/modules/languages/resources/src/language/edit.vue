@@ -48,11 +48,11 @@
                 <span>{{ trans('liro-languages::form.legend.info') }}</span>
             </legend>
 
-            <app-label :label="trans('liro-languages::form.language.title')">
+            <app-label :label="trans('liro-languages::form.language.title')" :required="true">
                 <app-input v-model="language.title"></app-input>
             </app-label>
 
-            <app-label :label="trans('liro-languages::form.language.locale')">
+            <app-label :label="trans('liro-languages::form.language.locale')" :required="true">
                 <app-input v-model="language.locale"></app-input>
             </app-label>
 

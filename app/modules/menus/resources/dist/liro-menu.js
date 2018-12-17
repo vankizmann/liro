@@ -1438,7 +1438,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-menus::form.menu.title") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-menus::form.menu.title"),
+                  required: true
+                }
+              },
               [
                 _c("app-input", {
                   model: {
@@ -1455,7 +1460,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-menus::form.menu.route") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-menus::form.menu.route"),
+                  required: true
+                }
+              },
               [
                 _c("app-input", {
                   model: {
@@ -1472,7 +1482,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-menus::form.menu.module") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-menus::form.menu.module"),
+                  required: true
+                }
+              },
               [
                 _c(
                   "app-select",
@@ -1826,12 +1841,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              {
-                attrs: {
-                  label: _vm.trans("liro-menus::form.menu.state"),
-                  horizontal: false
-                }
-              },
+              { attrs: { label: _vm.trans("liro-menus::form.menu.state") } },
               [
                 _c(
                   "app-switch",
@@ -1858,12 +1868,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              {
-                attrs: {
-                  label: _vm.trans("liro-menus::form.menu.hide"),
-                  horizontal: false
-                }
-              },
+              { attrs: { label: _vm.trans("liro-menus::form.menu.hide") } },
               [
                 _c(
                   "app-switch",
@@ -1890,12 +1895,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              {
-                attrs: {
-                  label: _vm.trans("liro-menus::form.menu.default"),
-                  horizontal: false
-                }
-              },
+              { attrs: { label: _vm.trans("liro-menus::form.menu.default") } },
               [
                 _c(
                   "app-switch",
@@ -1922,12 +1922,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              {
-                attrs: {
-                  label: _vm.trans("liro-menus::form.menu.type"),
-                  horizontal: false
-                }
-              },
+              { attrs: { label: _vm.trans("liro-menus::form.menu.type") } },
               [
                 _c(
                   "app-select",
@@ -1973,7 +1968,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-menus::form.menu.title") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-menus::form.menu.title"),
+                  required: true
+                }
+              },
               [
                 _c("app-input", {
                   model: {
@@ -1990,7 +1990,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-menus::form.menu.route") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-menus::form.menu.route"),
+                  required: true
+                }
+              },
               [
                 _c("app-input", {
                   model: {
@@ -2007,7 +2012,12 @@ var render = function() {
             _vm._v(" "),
             _c(
               "app-label",
-              { attrs: { label: _vm.trans("liro-menus::form.menu.module") } },
+              {
+                attrs: {
+                  label: _vm.trans("liro-menus::form.menu.module"),
+                  required: true
+                }
+              },
               [
                 _c(
                   "app-select",

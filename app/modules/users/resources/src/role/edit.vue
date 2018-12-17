@@ -23,7 +23,7 @@
             <span>{{ trans('liro-users::form.legend.info') }}</span>
         </legend>
 
-        <app-label :label="trans('liro-users::form.role.title')">
+        <app-label :label="trans('liro-users::form.role.title')" :required="true">
             <app-input name="title" v-model="role.title"></app-input>
         </app-label>
 
@@ -31,7 +31,7 @@
             <app-input name="description" v-model="role.description"></app-input>
         </app-label>
 
-        <app-label :label="trans('liro-users::form.role.access')">
+        <app-label :label="trans('liro-users::form.role.access')" :required="true">
             <app-input name="access" v-model="role.access"></app-input>
         </app-label>
 

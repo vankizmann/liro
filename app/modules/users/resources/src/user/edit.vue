@@ -24,7 +24,7 @@
                 <span>{{ trans('liro-users::form.legend.general') }}</span>
             </legend>
 
-            <app-label :label="trans('liro-users::form.user.state')" :horizontal="false">
+            <app-label :label="trans('liro-users::form.user.state')">
                 <app-switch class="is-state" v-model="user.state">
                     <app-switch-option v-for="state in states" :key="state.value" :value="state.value" :label="state.label"></app-switch-option>
                 </app-switch>

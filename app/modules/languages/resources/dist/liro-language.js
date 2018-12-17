@@ -1182,7 +1182,8 @@ var render = function() {
               "app-label",
               {
                 attrs: {
-                  label: _vm.trans("liro-languages::form.language.title")
+                  label: _vm.trans("liro-languages::form.language.title"),
+                  required: true
                 }
               },
               [
@@ -1203,7 +1204,8 @@ var render = function() {
               "app-label",
               {
                 attrs: {
-                  label: _vm.trans("liro-languages::form.language.locale")
+                  label: _vm.trans("liro-languages::form.language.locale"),
+                  required: true
                 }
               },
               [
@@ -1545,7 +1547,8 @@ var render = function() {
               "app-label",
               {
                 attrs: {
-                  label: _vm.trans("liro-languages::form.language.title")
+                  label: _vm.trans("liro-languages::form.language.title"),
+                  required: true
                 }
               },
               [
@@ -1566,7 +1569,8 @@ var render = function() {
               "app-label",
               {
                 attrs: {
-                  label: _vm.trans("liro-languages::form.language.locale")
+                  label: _vm.trans("liro-languages::form.language.locale"),
+                  required: true
                 }
               },
               [

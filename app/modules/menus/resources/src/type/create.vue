@@ -48,15 +48,15 @@
                 <span>{{ trans('liro-menus::form.legend.info') }}</span>
             </legend>
 
-            <app-label :label="trans('liro-menus::form.type.title')">
+            <app-label :label="trans('liro-menus::form.type.title')" :required="true">
                 <app-input v-model="type.title"></app-input>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.type.route')">
+            <app-label :label="trans('liro-menus::form.type.route')" :required="true">
                 <app-input v-model="type.route"></app-input>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.type.theme')">
+            <app-label :label="trans('liro-menus::form.type.theme')" :required="true">
                 <app-input v-model="type.theme"></app-input>
             </app-label>
 

@@ -21,25 +21,25 @@
                 <span>{{ trans('liro-menus::form.legend.general') }}</span>
             </legend>
 
-            <app-label :label="trans('liro-menus::form.menu.state')" :horizontal="false">
+            <app-label :label="trans('liro-menus::form.menu.state')">
                 <app-switch class="is-state" v-model="menu.state">
                     <app-switch-option v-for="item in states" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
                 </app-switch>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.menu.hide')" :horizontal="false">
+            <app-label :label="trans('liro-menus::form.menu.hide')">
                 <app-switch class="is-hide" v-model="menu.hide">
                     <app-switch-option v-for="item in hides" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
                 </app-switch>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.menu.default')" :horizontal="false">
+            <app-label :label="trans('liro-menus::form.menu.default')">
                 <app-switch class="is-default" v-model="menu.default">
                     <app-switch-option v-for="item in defaults" :key="item.value" :value="item.value" :label="item.label"></app-switch-option>
                 </app-switch>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.menu.type')" :horizontal="false">
+            <app-label :label="trans('liro-menus::form.menu.type')">
                 <app-select v-model="menu.menu_type_id" :placeholder="trans('liro-menus::form.menu.select_type')">
                     <app-select-option v-for="type in types" :key="type.id" :value="type.id" :label="type.title"></app-select-option>
                 </app-select>
@@ -57,15 +57,15 @@
                 <span>{{ trans('liro-menus::form.legend.info') }}</span>
             </legend>
 
-            <app-label :label="trans('liro-menus::form.menu.title')">
+            <app-label :label="trans('liro-menus::form.menu.title')" :required="true">
                 <app-input v-model="menu.title"></app-input>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.menu.route')">
+            <app-label :label="trans('liro-menus::form.menu.route')" :required="true">
                 <app-input v-model="menu.route"></app-input>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.menu.module')">
+            <app-label :label="trans('liro-menus::form.menu.module')" :required="true">
                 <app-select v-model="menu.module" :placeholder="trans('liro-menus::form.menu.select_module')" :disabled="menu.lock">
                     <template v-for="(items, group) in modules">
                         <app-select-group v-show="group == 'user'" v-for="(routes, index) in items" :key="group + '-' + index" :label="index">

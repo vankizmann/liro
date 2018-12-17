@@ -4,12 +4,15 @@
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
+
             <a class="uk-button uk-button-primary uk-margin-small-left" :href="route('liro-users.admin.role.index')">
                 {{ trans('theme::form.toolbar.close') }}
             </a>
+
             <a class="uk-button uk-button-success uk-margin-small-left" href="javascript:void(0)" @click="storeRole" v-shortkey="['meta', 's']" @shortkey="storeRole">
                 {{ trans('theme::form.toolbar.save') }}
             </a>
+
         </div>
     </portal>
 
@@ -20,7 +23,7 @@
             <span>{{ trans('liro-users::form.legend.info') }}</span>
         </legend>
 
-        <app-label :label="trans('liro-users::form.role.title')">
+        <app-label :label="trans('liro-users::form.role.title')" :required="true">
             <app-input name="title" v-model="role.title"></app-input>
         </app-label>
 
@@ -28,7 +31,7 @@
             <app-input name="description" v-model="role.description"></app-input>
         </app-label>
 
-        <app-label :label="trans('liro-users::form.role.access')">
+        <app-label :label="trans('liro-users::form.role.access')" :required="true">
             <app-input name="access" v-model="role.access"></app-input>
         </app-label>
 

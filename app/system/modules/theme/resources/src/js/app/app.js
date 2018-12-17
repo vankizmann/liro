@@ -58,6 +58,7 @@ Vue.ready(function () {
     Vue.prototype.UIkit = UIkit;
 
     Vue.prototype.trans = Liro.messages.get;
+    Vue.prototype.choice = Liro.messages.choice;
     Vue.prototype.route = Liro.routes.get;
 
     Liro.vue.filters.map(function (filter) {

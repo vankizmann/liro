@@ -39,7 +39,7 @@ export default {
 
         horizontal: {
             default: function () {
-                return true;
+                return false;
             },
             type: [Boolean, Number]
         }

@@ -9,109 +9,150 @@
         fill: $color-primary !important;
     }
 
-    .uk-navbar, .uk-nav {
-        width: 240px;
+    .uk-navbar {
+        width: 280px;
         flex-direction: column;
     }
 
-    .uk-logo {
-        height: 100px !important;
-        color: $color-white;
+    .uk-navbar-item {
+        display: flex !important;
+        height: 40px;
+        min-height: 40px;
+        padding: 0 30px;
+        color: $color-gray-50;
     }
 
-    .uk-navbar-divider {
-        display: flex;
-        align-items: center;
-        height: 40px;
+    .uk-logo {
+        height: 100px;
+        min-height: 100px;
+        color: $color-white;
+        background-color: mix($color-gray-90, $color-gray-95, 75%);
+        box-shadow: 0 0 3px rgba($color-black, 0.50);
+    }
+
+    .uk-navbar-label {
+        color: $color-gray-75;
+        font-size: 0.875rem;
+        margin-top: $global-small-gutter / 2;
+    }
+
+    .uk-navbar-user {
+        height: 60px;
+        min-height: 60px;
+    }
+
+    .uk-navbar-user .is-name {
+        color: $color-gray-30;
+        font-size: $global-medium-font-size;
+    }
+
+    .uk-navbar-user .is-edit {
+        font-size: $global-small-font-size;
+    }
+
+    .uk-navbar-user .is-edit,
+    .uk-navbar-user .is-logout {
+        color: $color-gray-70;
+    }
+
+    .uk-navbar-user .is-edit:hover,
+    .uk-navbar-user .is-logout:hover {
+        color: $color-gray-50;
     }
 
     .uk-navbar-divider:before {
         content: '\00a0';
         display: block;
-        width: 20px;
-        border-bottom: 1px solid rgba($color-gray-50, 0.25);
-    }
-
-    .uk-navbar-item {
-        height: 40px;
-        min-height: 40px;
-        padding: 0 20px;
-    }
-
-    .uk-nav .uk-nav {
-        overflow: hidden;
-        height: 0;
-    }
-
-    .uk-nav > li {
-        position: relative;
-    }
-
-    .uk-nav > li > .uk-nav {
-        transform-origin: top left;
+        width: 100%;
+        border-bottom: 1px solid rgba($color-gray-50, 0.15);
     }
 
     .uk-nav > li > a {
-        height: 45px;
-        min-height: 45px;
-        padding: 0 30px 0 30px;
+        position: relative;
+        height: 60px;
+        min-height: 60px;
+        padding: 0 30px;
         color: $color-gray-50;
         transition: all 0.15s;
-    }
-
-    .uk-nav > li > a.uk-flex {
-        display: flex !important;
     }
 
     .uk-nav.uk-text-small > li > a {
         font-size: $global-small-font-size;
     }
 
-    .uk-nav > li > a:focus,
-    .uk-nav > li:hover > a {
-        color: $color-gray-35;
+    .uk-nav > li > a:hover {
+        color: $color-gray-30;
         background-color: $color-gray-90;
     }
 
     .uk-nav > li.uk-active > a {
         color: $color-white;
+        background-color: $color-gray-90;
     }
 
-    .uk-nav > li.uk-active > a:before {
+    .uk-navbar-top > .uk-nav > li.uk-active > a:after {
         content: '\00a0';
         position: absolute;
         top: 50%;
-        left: 12px;
+        left: 100%;
         display: block;
-        width: 6px;
-        height: 6px;
-        border-radius: 500px;
-        background-color: $color-primary;
-        transform: translateY(-50%);
-    }
-
-    .uk-nav .uk-nav > li > a {
-        color: $color-gray-15;
-        font-size: $global-small-font-size;
-    }
-
-    .uk-nav .uk-nav > li > a:focus,
-    .uk-nav .uk-nav > li:hover > a {
-        color: $color-white;
-        background-color: $color-gray-55;
-    }
-
-    .uk-nav .uk-nav > li.uk-active > a:before {
-        background-color: $color-white;
+        width: 0;
+        height: 0;
+        border: 8px solid transparent;
+        border-right-color: $color-gray-10;
+        transform: translate(-100%, -50%);
     }
 
     .uk-nav > li > a .uk-icon {
+        opacity: 0.3;
+    }
+
+    .uk-nav > li.uk-active > a .uk-icon {
         opacity: 0.6;
     }
 
     .uk-nav > li > a .uk-icon svg {
-        // width: 18px;
-        // height: 18px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .uk-nav > li > .uk-nav {
+        border-left: 3px solid $color-primary;
+    }
+
+    .uk-nav > li:not(.uk-active) > .uk-nav {
+        display: none;
+    }
+
+    .uk-nav > li > .uk-nav > li {
+        border-bottom: 0;
+    }
+
+    .uk-nav > li > .uk-nav > li > a {
+        min-height: 50px;
+        height: 50px;
+        font-size: $global-small-font-size;
+    }
+
+    .uk-nav > li > .uk-nav > li.uk-active > a {
+        background: transparent;
+    }
+
+    .uk-nav > li > .uk-nav > li > a:hover {
+        background-color: $color-gray-90;
+    }
+
+    .uk-navbar-top > .uk-nav > li > .uk-nav > li.uk-active > a:after {
+        content: '\00a0';
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 500px;
+        background-color: $color-primary;
+        transform: translate(-50%, -50%) !important;
     }
 
 }

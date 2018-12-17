@@ -5,7 +5,7 @@
         <legend class="uk-legend">
             <span>{{ group }}</span>
         </legend>
-        <div class="uk-margin">
+        <div class="uk-margin-top">
             <div class="uk-grid-small uk-child-width-1-2@m uk-child-width-1-3@l" uk-grid>
                 <div v-for="(name, index) in routes" :key="index">
                     <app-checkbox :label="name" :value="index" v-model="ghost" @input="updateValue"></app-checkbox>

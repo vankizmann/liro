@@ -584,8 +584,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         authUser: function authUser() {
-            var url = Liro.routes.get('liro-users.ajax.auth.login');
-            Axios.post(url, this.user).then(this.authUserResponse, this.authUserError);
+            var url = this.route('liro-users.ajax.auth.login');
+            this.http.post(url, this.user).then(this.authUserResponse, this.authUserError);
         },
 
         authUserResponse: function authUserResponse(res) {
@@ -603,8 +603,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         refreshToken: function refreshToken() {
-            var url = Liro.routes.get('liro-users.ajax.auth.token');
-            Axios.post(url, this.user).then(this.refreshTokenResponse);
+            var url = this.route('liro-users.ajax.auth.token');
+            this.http.get(url).then(this.refreshTokenResponse);
         },
 
         refreshTokenResponse: function refreshTokenResponse(res) {

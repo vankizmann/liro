@@ -18,8 +18,6 @@ class FolderController extends \Liro\System\Http\Controller
     {
         $folder = Folder::make()->toArray();
 
-        dd($folder);
-
         app('assets')->dataArray([
             'folder' => $folder
         ]);

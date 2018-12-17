@@ -1,4 +1,7 @@
 
+.uk-modal {
+    z-index: 1030;
+}
 
 .uk-modal-dialog {
     overflow: hidden;
@@ -13,5 +16,4 @@
 
 .uk-modal-dialog .uk-modal-footer {
     border-top-color: darken($color-gray-5, 3%);
-    background-color: transparent;
 }

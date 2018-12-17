@@ -21,7 +21,9 @@ return [
         'close'         => 'Schliessen',
         'clone'         => 'Kopieren',
         'delete'        => 'Löschen',
-        'select_all'    => 'Alle Einträge auswählen'
+        'move'          => 'Verschieben',
+        'rename'        => 'Umbennen',
+        'sync'          => 'Aktualisieren'
     ],
 
     'state' => [

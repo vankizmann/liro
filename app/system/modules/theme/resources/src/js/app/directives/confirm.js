@@ -14,7 +14,7 @@ export default {
         $(el).on('mousedown', function (event) {
 
             if ( event.which != 1 ) {
-                return event.stopPropagation();
+                event.stopPropagation();
             }
 
             UIkit.modal.confirm(config.message).then(() => el.click(), () => null);

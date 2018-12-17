@@ -4,8 +4,59 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "531105066112297dc159326d2262756c",
+    "content-hash": "7fc7818217d3b6134789c9bb2ce8955d",
     "packages": [
+        {
+            "name": "ankitjain28may/prettysize",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ankitjain28may/prettysize.git",
+                "reference": "1fd622baca9015b29c3cc6969e6cd37a74041ff3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ankitjain28may/prettysize/zipball/1fd622baca9015b29c3cc6969e6cd37a74041ff3",
+                "reference": "1fd622baca9015b29c3cc6969e6cd37a74041ff3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^7.0",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ankitjain28may\\Prettysize\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ankit Jain",
+                    "email": "ankitjain28may77@gmail.com"
+                }
+            ],
+            "description": "Convert bytes to other sizes for prettier logging",
+            "keywords": [
+                "PrettySize",
+                "php",
+                "utility"
+            ],
+            "time": "2018-11-26T11:17:28+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",

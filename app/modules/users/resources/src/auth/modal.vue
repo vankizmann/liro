@@ -60,8 +60,8 @@ export default {
         },
 
         authUser: function () {
-            var url = Liro.routes.get('liro-users.ajax.auth.login');
-            Axios.post(url, this.user).then(this.authUserResponse, this.authUserError);
+            var url = this.route('liro-users.ajax.auth.login');
+            this.http.post(url, this.user).then(this.authUserResponse, this.authUserError);
         },
 
         authUserResponse: function (res) {
@@ -78,8 +78,8 @@ export default {
         },
 
         refreshToken: function () {
-            var url = Liro.routes.get('liro-users.ajax.auth.token');
-            Axios.post(url, this.user).then(this.refreshTokenResponse);
+            var url = this.route('liro-users.ajax.auth.token');
+            this.http.get(url).then(this.refreshTokenResponse);
         },
 
         refreshTokenResponse: function (res) {

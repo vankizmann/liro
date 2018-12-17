@@ -1,0 +1,95 @@
+
+.liro-media-item {
+    cursor: pointer;
+    user-select: none;
+    width: 180px;
+    height: 210px;
+    border-radius: 3px;
+    padding: 30px 15px;
+    background-color: $color-white;
+    box-shadow: 0 0 3px rgba($color-gray-50, 0.15);
+}
+
+.liro-media-item .liro-media-options {
+    padding: 5px;
+}
+
+.liro-media-item .liro-media-options > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-gray-30;
+    width: 25px;
+    height: 25px;
+    border-radius: 500px;
+}
+
+.liro-media-item .liro-media-options > a:hover {
+    background-color: rgba($color-gray-50, 0.1);
+}
+
+.liro-media-item .liro-media-options .uk-dropdown {
+    padding: 0;
+    min-width: 160px;
+    max-width: 160px;
+}
+
+.liro-media-item .liro-media-options .uk-dropdown .uk-nav > li > a {
+    font-size: $global-small-font-size;
+    padding: 10px 20px;
+}
+
+.liro-media-item .liro-media-options .uk-dropdown .uk-nav > li > a:hover {
+    background-color: $color-gray-5;
+}
+
+.liro-media-item.is-selected {
+    background-color: rgba($color-white, 0.25);
+}
+
+.liro-media-item .liro-media-icon {
+    padding: 5px 20px;
+}
+
+.liro-media-item.is-folder .liro-media-icon {
+    color: $color-primary;
+}
+
+.liro-media-item.is-file .liro-media-icon {
+    color: $color-gray-40;
+}
+
+.liro-media-item .liro-media-icon svg {
+    width: 80px;
+    height: 80px;
+}
+
+.liro-media-item .liro-media-icon img {
+    width: auto;
+    max-width: 120px;
+    height: auto;
+    max-height: 80px;
+}
+
+.liro-media-item .liro-media-name {
+    color: $color-gray-80;
+}
+
+.liro-folder-index-upload {
+    border-radius: 3px;
+    background-color: $color-white;
+    box-shadow: 0 0 3px rgba($color-gray-50, 0.15);
+}
+
+.liro-media-upload-title {
+    background-color: $color-gray-5;
+    color: $color-gray-50;
+    font-size: $global-small-font-size;
+    padding: 15px 20px;
+    border-bottom: 1px solid $color-gray-10;
+}
+
+.liro-media-upload-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid $color-gray-10;
+}

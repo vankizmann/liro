@@ -16,7 +16,8 @@ return [
 
     'auth'  => [
         'login'         => 'Anmelden',
-        'logout'        => 'Abmelden'
+        'logout'        => 'Abmelden',
+        'edit'          => 'Bearbeiten',
     ]
 
 ];

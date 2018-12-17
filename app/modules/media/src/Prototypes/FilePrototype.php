@@ -2,6 +2,7 @@
 
 namespace Liro\Media\Prototypes;
 
+use Ankitjain28may\Prettysize\Pretty;
 use Illuminate\Support\Facades\Storage;
 
 class FilePrototype
@@ -15,6 +16,8 @@ class FilePrototype
 
     public $size;
 
+    public $human;
+
     public $type;
 
     public function __construct($path)
@@ -25,6 +28,11 @@ class FilePrototype
         $this->getUrl();
         $this->getSize();
         $this->getType();
+        $this->getHuman();
+    }
+
+    public static function make($path) {
+        return new FilePrototype($path);
     }
 
     public function toArray()
@@ -52,6 +60,11 @@ class FilePrototype
     public function getSize()
     {
         return $this->size = $this->size ?: Storage::size($this->path);
+    }
+
+    public function getHuman()
+    {
+        return $this->human = $this->human ?: Pretty::pretty($this->size);
     }
 
     public function getType()

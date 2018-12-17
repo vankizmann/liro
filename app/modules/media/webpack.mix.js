@@ -31,5 +31,5 @@ mix.setResourceRoot(
  */
 
 mix.js([
-    'resources/src/language/index.vue', 'resources/src/language/create.vue', 'resources/src/language/edit.vue'
-], 'resources/dist/liro-language.js');
+    'resources/src/folder/index.vue'
+], 'resources/dist/liro-folder.js');

@@ -60,15 +60,15 @@
                 <span>{{ trans('liro-menus::form.legend.info') }}</span>
             </legend>
 
-            <app-label :label="trans('liro-menus::form.menu.title')">
+            <app-label :label="trans('liro-menus::form.menu.title')" :required="true">
                 <app-input v-model="menu.title"></app-input>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.menu.route')">
+            <app-label :label="trans('liro-menus::form.menu.route')" :required="true">
                 <app-input v-model="menu.route"></app-input>
             </app-label>
 
-            <app-label :label="trans('liro-menus::form.menu.module')">
+            <app-label :label="trans('liro-menus::form.menu.module')" :required="true">
                 <app-select v-model="menu.module" :placeholder="trans('liro-menus::form.menu.select_module')" :disabled="menu.lock">
                     <template v-for="(items, group) in modules">
                         <app-select-group v-show="group == 'user'" v-for="(routes, index) in items" :key="group + '-' + index" :label="index">

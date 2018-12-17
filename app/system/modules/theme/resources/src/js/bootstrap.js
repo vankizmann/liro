@@ -18,8 +18,8 @@ window.Vue = Vue;
 import UIkit from 'uikit';
 window.UIkit = UIkit;
 
-import FontAwesome from '../icons/font-awesome';
-UIkit.icon.add(FontAwesome);
+import Icons from '../icons/font-awesome';
+UIkit.icon.add(Icons);
 
 import Liro from './liro/liro';
 window.Liro = Liro;
@@ -50,9 +50,9 @@ Axios.interceptors.response.use(
     }
 );
 
-Liro.events.watch('axios.load', function () {
+Liro.events.watch('axios.load', function (name, data) {
     clearTimeout(window.$busy);
-    $('body').addClass('is-busy');
+    if ( data.spinner != false ) $('body').addClass('is-busy');
 });
 
 Liro.events.watch('axios.done', function () {

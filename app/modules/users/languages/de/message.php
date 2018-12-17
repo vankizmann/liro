@@ -3,7 +3,8 @@
 return [
 
     'auth' => [
-        'credentials'   => 'Benutzer mit angegeben Daten konnte nicht gefunden werden.'
+        'credentials'   => 'Benutzer mit angegeben Daten konnte nicht gefunden werden.',
+        'logout'        => 'Möchten Sie sich wirklich abmelden?'
     ],
 
     'user' => [

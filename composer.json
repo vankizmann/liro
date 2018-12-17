@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1.1",
+        "ankitjain28may/prettysize": "^1.0",
         "fideloper/proxy": "~4.0",
         "intervention/image": "^2.4",
         "kalnoy/nestedset": "v4.x-dev",

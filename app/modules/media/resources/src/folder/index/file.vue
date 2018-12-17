@@ -1,6 +1,6 @@
 <template>
 
-<div class="liro-media-item is-file uk-flex uk-flex-column uk-position-relative">
+<div class="liro-media-item is-file uk-flex uk-flex-column uk-position-relative" draggable="true" @dragstart="dragFile">
     <div class="liro-media-options uk-position-top-right">
         <a href="javascript:void(0)">
             <i class="uk-icon-small" uk-icon="chevron-down"></i>
@@ -22,7 +22,7 @@
     </div>
     <div class="liro-media-icon uk-margin-auto-top">
         <div v-if="image" class="uk-text-center">
-            <img :src="value.url" width="120" height="120">
+            <img :src="value.url" width="120" height="120" draggable="false">
         </div>
         <div v-else class="uk-text-center">
             <img src="/app/system/modules/theme/resources/dist/images/file.svg" width="80" height="80" uk-svg>
@@ -71,9 +71,6 @@ export default {
     methods: {
 
         renameFilePrompt: function () {
-
-            UIkit.toggle(this.$refs.dropdown);
-
             var message = this.trans('liro-media::form.file.name');
             UIkit.modal.prompt(message, this.value.name).then(this.renameFile);
         },
@@ -87,7 +84,7 @@ export default {
             var url = this.route('liro-media.ajax.file.rename');
 
             var file = {
-                path: this.value.path, dest: dest
+                source: this.value.path, destination: dest
             };
 
             this.http.post(url, file).then(this.renameFileResponse);
@@ -115,7 +112,7 @@ export default {
             var url = this.route('liro-media.ajax.file.delete');
 
             var file = {
-                path: this.value.path
+                source: this.value.path
             };
 
             this.http.post(url, file).then(this.deleteFileResponse);
@@ -124,6 +121,10 @@ export default {
         deleteFileResponse: function (res) {
             var message = Liro.messages.get('liro-media::message.file.deleted');
             UIkit.notification(message, 'success');
+        },
+
+        dragFile: function () {
+            event.dataTransfer.setData('file', this.value.path);
         }
 
     }

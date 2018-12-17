@@ -17,13 +17,11 @@ return [
         'app.boot' => function () {
 
             app('assets')->routes([
-                'liro-users.auth.login',
-                'liro-users.auth.token'
+                'liro-users.ajax.auth.login', 'liro-users.ajax.auth.token'
             ]);
     
             app('assets')->messages([
-                'liro-users::form',
-                'liro-users::message'
+                'liro-users::form', 'liro-users::message'
             ]);
     
             app('assets')->script(

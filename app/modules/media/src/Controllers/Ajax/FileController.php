@@ -12,12 +12,15 @@ class FileController extends \Liro\System\Http\Controller
 
     public function rename(Request $request)
     {
-        $path = $request->input('path', '');
-        $dest = pathinfo($path, PATHINFO_DIRNAME) . '/' . $request->input('dest', '');
+        $file = FilePrototype::make(
+            $request->input('source', '')
+        );
 
-        Storage::move($path, $dest);
+        $file->renameFile(
+            $request->input('destination', '')
+        );
 
-        return response()->json(FilePrototype::make($dest), 200);
+        return response()->json($file, 200);
     }
 
     public function upload(Request $request)
@@ -28,11 +31,26 @@ class FileController extends \Liro\System\Http\Controller
         return response()->json(FilePrototype::make($dest), 200);
     }
 
+    public function move(Request $request)
+    {
+        $file = FilePrototype::make(
+            $request->input('source', '')
+        );
+
+        $file->moveFile(
+            $request->input('destination', '')
+        );
+
+        return response()->json($file, 200);
+    }
+
     public function delete(Request $request)
     {
-        $path = $request->input('path', '');
+        $file = FilePrototype::make(
+            $request->input('source', '')
+        );
 
-        Storage::delete($path);
+        $file->deleteFile();
 
         return response()->json([], 200);
     }

@@ -22,6 +22,10 @@ return [
         'liro-media::admin.folder.index', 'Liro\Media\Routers\Admin\FolderRouter@index'
     ],
 
+    'ajax@liro-media.ajax.file.move' => [
+        'liro-media::ajax.file.move', 'Liro\Media\Routers\Ajax\FileRouter@move'
+    ],
+
     'ajax@liro-media.ajax.file.rename' => [
         'liro-media::ajax.file.rename', 'Liro\Media\Routers\Ajax\FileRouter@rename'
     ],

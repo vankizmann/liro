@@ -7,14 +7,14 @@
         <form class="uk-form uk-margin-remove" method="post" ref="form" @submit.prevent="authUser">
 
             <div class="uk-margin-bottom">
-                <label class="uk-form-label" for="email">{{ Liro.messages.get('liro-users::form.auth.email') }}</label>
+                <label class="uk-form-label" for="email">{{ trans('liro-users::form.auth.email') }}</label>
                 <div class="uk-form-controls">
                     <input class="uk-input" id="email" type="email" name="email" v-model="user.email">
                 </div>
             </div>
 
             <div class="uk-margin-bottom">
-                <label class="uk-form-label" for="password">{{ Liro.messages.get('liro-users::form.auth.password') }}</label>
+                <label class="uk-form-label" for="password">{{ trans('liro-users::form.auth.password') }}</label>
                 <div class="uk-form-controls">
                     <input class="uk-input" id="password" type="password" name="password" v-model="user.password">
                 </div>
@@ -22,7 +22,7 @@
 
             <div class="uk-form-controls">
                 <button class="uk-button uk-button-primary uk-width-1-1" type="submit">
-                    <i uk-icon="key"></i> <span>{{ Liro.messages.get('liro-users::form.auth.login') }}</span>
+                    <i uk-icon="key"></i> <span>{{ trans('liro-users::form.auth.login') }}</span>
                 </button>
             </div>
 

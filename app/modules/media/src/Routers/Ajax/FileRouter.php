@@ -10,6 +10,11 @@ class FileRouter
         $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Ajax\FileController@rename');
     }
 
+    public function move($router)
+    {
+        $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Ajax\FileController@move');
+    }
+
     public function upload($router)
     {
         $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Ajax\FileController@upload');

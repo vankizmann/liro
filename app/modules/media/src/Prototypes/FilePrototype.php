@@ -24,11 +24,12 @@ class FilePrototype
     {
         $this->path = $path;
 
-        $this->getName();
-        $this->getUrl();
-        $this->getSize();
-        $this->getType();
-        $this->getHuman();
+        $this->loadDir();
+        $this->loadName();
+        $this->loadUrl();
+        $this->loadSize();
+        $this->loadType();
+        $this->loadHuman();
     }
 
     public static function make($path) {
@@ -47,29 +48,71 @@ class FilePrototype
         return collect($array)->toJson();
     }
 
-    public function getName()
+    protected function loadDir()
     {
-        return $this->name = $this->name ?: pathinfo($this->path, PATHINFO_BASENAME);
+        return $this->dir = pathinfo($this->path, PATHINFO_DIRNAME);
     }
 
-    public function getUrl()
+    protected function loadName()
     {
-        return $this->url = $this->url ?: Storage::url($this->path);
+        return $this->name = pathinfo($this->path, PATHINFO_BASENAME);
     }
 
-    public function getSize()
+    protected function loadUrl()
     {
-        return $this->size = $this->size ?: Storage::size($this->path);
+        return $this->url = Storage::url($this->path);
     }
 
-    public function getHuman()
+    protected function loadSize()
     {
-        return $this->human = $this->human ?: Pretty::pretty($this->size);
+        return $this->size = Storage::size($this->path);
     }
 
-    public function getType()
+    protected function loadHuman()
     {
-        return $this->type = $this->type ?: Storage::mimeType($this->path);
+        return $this->human = Pretty::pretty($this->size);
+    }
+
+    protected function loadType()
+    {
+        return $this->type = Storage::mimeType($this->path);
+    }
+
+    public function getNewByDir($dir)
+    {
+        return ltrim($dir . '/' . $this->name, '/');
+    }
+
+    public function getNewByName($name)
+    {
+        return ltrim($this->dir . '/' . $name, '/');
+    }
+
+    public function moveFile($dir)
+    {
+        $new = $this->getNewByDir($dir);
+
+        if ( Storage::move($this->path, $new) ) {
+            $this->path = $new;
+        }
+
+        return $this;
+    }
+
+    public function renameFile($name)
+    {
+        $new = $this->getNewByName($name);
+
+        if ( Storage::move($this->path, $new) ) {
+            $this->path = $new;
+        }
+
+        return $this;
+    }
+
+    public function deleteFile()
+    {
+        return Storage::delete($this->path);
     }
 
 }

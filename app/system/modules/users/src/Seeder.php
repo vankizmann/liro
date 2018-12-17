@@ -39,11 +39,16 @@ class Seeder
         ]);
 
         $routes = [
+            // Tests
+            'liro-test.user.test.test',
+
+            // Auth
             'liro-users.ajax.auth.login',
             'liro-users.ajax.auth.token',
             'liro-users.admin.auth.login',
             'liro-users.admin.auth.logout',
-            'liro-test.user.test.test',
+
+            // Languages
             'liro-languages.ajax.language.index',
             'liro-languages.ajax.language.show',
             'liro-languages.ajax.language.store',
@@ -51,6 +56,8 @@ class Seeder
             'liro-languages.admin.language.index',
             'liro-languages.admin.language.create',
             'liro-languages.admin.language.edit',
+
+            // Users
             'liro-users.ajax.user.index',
             'liro-users.ajax.user.show',
             'liro-users.ajax.user.store',
@@ -58,6 +65,8 @@ class Seeder
             'liro-users.admin.user.index',
             'liro-users.admin.user.create',
             'liro-users.admin.user.edit',
+
+            // Roles
             'liro-users.ajax.role.index',
             'liro-users.ajax.role.show',
             'liro-users.ajax.role.store',
@@ -65,6 +74,8 @@ class Seeder
             'liro-users.admin.role.index',
             'liro-users.admin.role.create',
             'liro-users.admin.role.edit',
+
+            // Menus
             'liro-menus.ajax.menu.index',
             'liro-menus.ajax.menu.show',
             'liro-menus.ajax.menu.store',
@@ -73,6 +84,8 @@ class Seeder
             'liro-menus.admin.menu.index',
             'liro-menus.admin.menu.create',
             'liro-menus.admin.menu.edit',
+
+            // Types
             'liro-menus.ajax.type.index',
             'liro-menus.ajax.type.show',
             'liro-menus.ajax.type.store',
@@ -80,7 +93,18 @@ class Seeder
             'liro-menus.admin.type.index',
             'liro-menus.admin.type.create',
             'liro-menus.admin.type.edit',
+
+            // Folders
+            'liro-media.ajax.folder.index',
+            'liro-media.ajax.folder.create',
+            'liro-media.ajax.folder.rename',
+            'liro-media.ajax.folder.delete',
             'liro-media.admin.folder.index',
+
+            // Files
+            'liro-media.ajax.file.upload',
+            'liro-media.ajax.file.rename',
+            'liro-media.ajax.file.delete',
         ];
 
         foreach ($routes as $route) {

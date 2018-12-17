@@ -1,6 +1,6 @@
 <template>
 
-<div class="liro-media-item is-folder uk-flex uk-flex-column uk-position-relative" @dblclick="folder.fetchFolder(value.path)">
+<div class="liro-media-item is-folder uk-flex uk-flex-column uk-position-relative" @dblclick="folder.fetchFolder(value.path)" @drop="dropFile">
     <div class="liro-media-options uk-position-top-right">
         <a href="javascript:void(0)">
             <i class="uk-icon-small" uk-icon="chevron-down"></i>
@@ -111,6 +111,23 @@ export default {
         deleteFolderResponse: function (res) {
             var message = Liro.messages.get('liro-media::message.folder.deleted');
             UIkit.notification(message, 'success');
+        },
+
+        dropFile: function (event) {
+
+            var file = event.dataTransfer.getData('file');
+
+            if ( ! file ) {
+                return;
+            }
+
+            var url = this.route('liro-media.ajax.file.move');
+
+            var folder = {
+                source: file, destination: this.value.path
+            };
+
+            this.http.post(url, folder).then(this.moveFileResponse);
         }
 
     }

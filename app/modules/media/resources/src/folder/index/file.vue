@@ -1,6 +1,6 @@
 <template>
 
-<div class="liro-media-item is-file uk-flex uk-flex-column uk-position-relative" draggable="true" @dragstart="dragFile">
+<div ref="file" class="liro-media-item is-file uk-flex uk-flex-column uk-position-relative" draggable="true" @dragstart="dragFile" @dragend="dragFileEnd">
     <div class="liro-media-options uk-position-top-right">
         <a href="javascript:void(0)">
             <i class="uk-icon-small" uk-icon="chevron-down"></i>
@@ -124,7 +124,12 @@ export default {
         },
 
         dragFile: function () {
+            $(this.$refs.file).addClass('is-ghost');
             event.dataTransfer.setData('file', this.value.path);
+        },
+
+        dragFileEnd: function () {
+            $(this.$refs.file).removeClass('is-ghost');
         }
 
     }

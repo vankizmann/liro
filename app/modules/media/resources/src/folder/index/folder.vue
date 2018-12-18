@@ -1,6 +1,6 @@
 <template>
 
-<div class="liro-media-item is-folder uk-flex uk-flex-column uk-position-relative" @dblclick="folder.fetchFolder(value.path)" @drop="dropFile">
+<div ref="folder" class="liro-media-item is-folder uk-flex uk-flex-column uk-position-relative" draggable="true" @dblclick="folder.fetchFolder(value.path)" @drop="dropFile" @dragstart="dragFolder" @dragend="dragFolderEnd" @dragover="dragFolderOver" @dragleave="dragFolderLeave">
     <div class="liro-media-options uk-position-top-right">
         <a href="javascript:void(0)">
             <i class="uk-icon-small" uk-icon="chevron-down"></i>
@@ -57,6 +57,46 @@ export default {
 
     methods: {
 
+        dragFolder: function () {
+            $(this.$refs.folder).addClass('is-ghost');
+            event.dataTransfer.setData('folder', this.value.path);
+        },
+
+        dragFolderEnd: function () {
+            $(this.$refs.folder).removeClass('is-ghost');
+        },
+
+        dragFolderOver: function (event) {
+            if ( event.target != this.$refs.folder ) {
+                $(this.$refs.folder).addClass('is-dragover');
+            }
+        },
+
+        dragFolderLeave: function (event) {
+            if ( event.target != this.$refs.folder ) {
+                $(this.$refs.folder).removeClass('is-dragover');
+            }
+        },
+
+        dropFile: function (event) {
+
+            $(this.$refs.folder).removeClass('is-dragover');
+
+            var file = event.dataTransfer.getData('file');
+
+            if ( ! file ) {
+                return;
+            }
+
+            var url = this.route('liro-media.ajax.file.move');
+
+            var folder = {
+                source: file, destination: this.value.path
+            };
+
+            this.http.post(url, folder).then(this.moveFileResponse);
+        },
+
         renameFolderPrompt: function () {
 
             UIkit.toggle(this.$refs.dropdown);
@@ -111,23 +151,6 @@ export default {
         deleteFolderResponse: function (res) {
             var message = Liro.messages.get('liro-media::message.folder.deleted');
             UIkit.notification(message, 'success');
-        },
-
-        dropFile: function (event) {
-
-            var file = event.dataTransfer.getData('file');
-
-            if ( ! file ) {
-                return;
-            }
-
-            var url = this.route('liro-media.ajax.file.move');
-
-            var folder = {
-                source: file, destination: this.value.path
-            };
-
-            this.http.post(url, folder).then(this.moveFileResponse);
         }
 
     }

@@ -659,13 +659,7 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "uk-form-label", attrs: { for: "email" } },
-                  [
-                    _vm._v(
-                      _vm._s(
-                        _vm.Liro.messages.get("liro-users::form.auth.email")
-                      )
-                    )
-                  ]
+                  [_vm._v(_vm._s(_vm.trans("liro-users::form.auth.email")))]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "uk-form-controls" }, [
@@ -697,13 +691,7 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "uk-form-label", attrs: { for: "password" } },
-                  [
-                    _vm._v(
-                      _vm._s(
-                        _vm.Liro.messages.get("liro-users::form.auth.password")
-                      )
-                    )
-                  ]
+                  [_vm._v(_vm._s(_vm.trans("liro-users::form.auth.password")))]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "uk-form-controls" }, [
@@ -746,11 +734,7 @@ var render = function() {
                     _c("i", { attrs: { "uk-icon": "key" } }),
                     _vm._v(" "),
                     _c("span", [
-                      _vm._v(
-                        _vm._s(
-                          _vm.Liro.messages.get("liro-users::form.auth.login")
-                        )
-                      )
+                      _vm._v(_vm._s(_vm.trans("liro-users::form.auth.login")))
                     ])
                   ]
                 )

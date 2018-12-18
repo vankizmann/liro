@@ -13610,6 +13610,14 @@ form:last-child {
           box-shadow: 0 0 3px rgba(130, 140, 163, 0.15);
 }
 
+.liro-media-item.is-ghost {
+  opacity: 0.5;
+}
+
+.liro-media-item.is-dragover {
+  background-color: #ccdcfb;
+}
+
 .liro-media-item .liro-media-options {
   padding: 5px;
 }

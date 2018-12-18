@@ -10,6 +10,14 @@
     box-shadow: 0 0 3px rgba($color-gray-50, 0.15);
 }
 
+.liro-media-item.is-ghost {
+    opacity: 0.5;
+}
+
+.liro-media-item.is-dragover {
+    background-color: mix($color-primary, $color-gray-5, 25%);
+}
+
 .liro-media-item .liro-media-options {
     padding: 5px;
 }

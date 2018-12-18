@@ -188,7 +188,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(3)
 /* template */
-var __vue_template__ = __webpack_require__(7)
+var __vue_template__ = __webpack_require__(13)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -232,11 +232,11 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_folder__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_folder__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_folder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__index_folder__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_file__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_file__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_file___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__index_file__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_upload__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_upload__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__index_upload__);
 //
 //
@@ -331,15 +331,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var url = this.route('liro-media.ajax.folder.create');
 
             var folder = {
-                path: this.folder.path, name: name
+                source: this.folder.path, destination: name
             };
 
             this.http.post(url, folder).then(this.createFolderResponse);
         },
 
         createFolderResponse: function createFolderResponse(res) {
-            var message = this.trans('liro-media::message.folder.created');
-            UIkit.notification(message, 'success');
+
+            UIkit.notification(this.trans('liro-media::message.folder.created'), 'success');
+
+            this.fetchFolder();
         }
 
     },
@@ -357,171 +359,15 @@ if (window.Liro) {
 }
 
 /***/ }),
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "liro-folder-index" },
-    [
-      _c("portal", { attrs: { to: "app-toolbar" } }, [
-        _c("div", { staticClass: "uk-navbar-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "uk-button uk-button-primary uk-margin-small-left",
-              attrs: { href: "javascript:void(0)" },
-              on: { click: _vm.createFolderPrompt }
-            },
-            [
-              _c("i", {
-                staticClass: "uk-margin-small-right",
-                attrs: { "uk-icon": "folder" }
-              }),
-              _vm._v(
-                " " +
-                  _vm._s(_vm.trans("liro-media::admin.folder.create")) +
-                  "\n            "
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "uk-button uk-button-success uk-margin-small-left",
-              attrs: { href: "javascript:void(0)" },
-              on: {
-                click: function($event) {
-                  _vm.fetchFolder(_vm.folder.path)
-                }
-              }
-            },
-            [
-              _c("i", {
-                staticClass: "uk-margin-small-right",
-                attrs: { "uk-icon": "sync" }
-              }),
-              _vm._v(
-                " " +
-                  _vm._s(_vm.trans("theme::form.toolbar.sync")) +
-                  "\n            "
-              )
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "uk-margin-bottom" },
-        [_c("liro-folder-index-upload")],
-        1
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "uk-margin-bottom" }, [
-        _c(
-          "ul",
-          { staticClass: "uk-breadcrumb" },
-          _vm._l(_vm.folder.ladder, function(path, index) {
-            return _c("li", { key: index }, [
-              _c(
-                "a",
-                {
-                  attrs: { href: "javascript:void(0)" },
-                  on: {
-                    click: function($event) {
-                      _vm.fetchFolder(path)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(index))]
-              )
-            ])
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "uk-grid-small", attrs: { "uk-grid": "" } },
-        [
-          _vm._l(_vm.folder.dirs, function(dir, index) {
-            return [
-              _c(
-                "div",
-                { key: index },
-                [
-                  _c("liro-folder-index-folder", {
-                    model: {
-                      value: _vm.folder.dirs[index],
-                      callback: function($$v) {
-                        _vm.$set(_vm.folder.dirs, index, $$v)
-                      },
-                      expression: "folder.dirs[index]"
-                    }
-                  })
-                ],
-                1
-              )
-            ]
-          }),
-          _vm._v(" "),
-          _vm._l(_vm.folder.files, function(file, index) {
-            return [
-              _c(
-                "div",
-                { key: index },
-                [
-                  _c("liro-folder-index-file", {
-                    model: {
-                      value: _vm.folder.files[index],
-                      callback: function($$v) {
-                        _vm.$set(_vm.folder.files, index, $$v)
-                      },
-                      expression: "folder.files[index]"
-                    }
-                  })
-                ],
-                1
-              )
-            ]
-          })
-        ],
-        2
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6395a1f4", module.exports)
-  }
-}
-
-/***/ }),
-/* 8 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(9)
+var __vue_script__ = __webpack_require__(5)
 /* template */
-var __vue_template__ = __webpack_require__(10)
+var __vue_template__ = __webpack_require__(6)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -560,7 +406,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 9 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -645,21 +491,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         dropFile: function dropFile(event) {
 
-            $(this.$refs.folder).removeClass('is-dragover');
+            var input = event.dataTransfer.getData('file');
 
-            var file = event.dataTransfer.getData('file');
+            if (input) {
+                var url = this.route('liro-media.ajax.file.move');
 
-            if (!file) {
-                return;
+                var folder = {
+                    source: input, destination: this.value.path
+                };
+
+                this.http.post(url, folder).then(this.moveFileResponse);
             }
 
-            var url = this.route('liro-media.ajax.file.move');
+            var input = event.dataTransfer.getData('folder');
 
-            var folder = {
-                source: file, destination: this.value.path
-            };
+            if (input && input != this.value.path) {
+                var url = this.route('liro-media.ajax.folder.move');
 
-            this.http.post(url, folder).then(this.moveFileResponse);
+                var folder = {
+                    source: input, destination: this.value.path
+                };
+
+                this.http.post(url, folder).then(this.moveFolderResponse);
+            }
+
+            $(this.$refs.folder).removeClass('is-dragover');
+        },
+
+        moveFileResponse: function moveFileResponse(res) {
+
+            UIkit.notification(this.trans('liro-media::message.file.moved'), 'success');
+
+            this.$emit('change');
+        },
+
+        moveFolderResponse: function moveFolderResponse(res) {
+
+            UIkit.notification(this.trans('liro-media::message.folder.moved'), 'success');
+
+            this.$emit('change');
         },
 
         renameFolderPrompt: function renameFolderPrompt() {
@@ -679,7 +549,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var url = this.route('liro-media.ajax.folder.rename');
 
             var folder = {
-                path: this.value.path, dest: dest
+                source: this.value.path, destination: dest
             };
 
             this.http.post(url, folder).then(this.renameFolderResponse);
@@ -689,8 +559,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             UIkit.toggle(this.$refs.dropdown);
 
-            var message = Liro.messages.get('liro-media::message.folder.renamed');
-            UIkit.notification(message, 'success');
+            UIkit.notification(this.trans('liro-media::message.folder.renamed'), 'success');
+
+            this.$emit('change');
         },
 
         deleteFolderConfirm: function deleteFolderConfirm() {
@@ -709,15 +580,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var url = this.route('liro-media.ajax.folder.delete');
 
             var folder = {
-                path: this.value.path
+                source: this.value.path
             };
 
             this.http.post(url, folder).then(this.deleteFolderResponse);
         },
 
         deleteFolderResponse: function deleteFolderResponse(res) {
-            var message = Liro.messages.get('liro-media::message.folder.deleted');
-            UIkit.notification(message, 'success');
+
+            UIkit.notification(this.trans('liro-media::message.folder.deleted'), 'success');
+
+            this.$emit('change');
         }
 
     }
@@ -729,7 +602,7 @@ if (window.Liro) {
 }
 
 /***/ }),
-/* 10 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -878,15 +751,15 @@ if (false) {
 }
 
 /***/ }),
-/* 11 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(12)
+var __vue_script__ = __webpack_require__(8)
 /* template */
-var __vue_template__ = __webpack_require__(13)
+var __vue_template__ = __webpack_require__(9)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -925,7 +798,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 12 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1071,7 +944,7 @@ if (window.Liro) {
 }
 
 /***/ }),
-/* 13 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1207,15 +1080,15 @@ if (false) {
 }
 
 /***/ }),
-/* 14 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(15)
+var __vue_script__ = __webpack_require__(11)
 /* template */
-var __vue_template__ = __webpack_require__(16)
+var __vue_template__ = __webpack_require__(12)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1254,7 +1127,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 15 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1372,7 +1245,7 @@ if (window.Liro) {
 }
 
 /***/ }),
-/* 16 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1476,6 +1349,161 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-2800faac", module.exports)
+  }
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "liro-folder-index" },
+    [
+      _c("portal", { attrs: { to: "app-toolbar" } }, [
+        _c("div", { staticClass: "uk-navbar-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "uk-button uk-button-primary uk-margin-small-left",
+              attrs: { href: "javascript:void(0)" },
+              on: { click: _vm.createFolderPrompt }
+            },
+            [
+              _c("i", {
+                staticClass: "uk-margin-small-right",
+                attrs: { "uk-icon": "folder" }
+              }),
+              _vm._v(
+                " " +
+                  _vm._s(_vm.trans("liro-media::admin.folder.create")) +
+                  "\n            "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "uk-button uk-button-success uk-margin-small-left",
+              attrs: { href: "javascript:void(0)" },
+              on: {
+                click: function($event) {
+                  _vm.fetchFolder(_vm.folder.path)
+                }
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "uk-margin-small-right",
+                attrs: { "uk-icon": "sync" }
+              }),
+              _vm._v(
+                " " +
+                  _vm._s(_vm.trans("theme::form.toolbar.sync")) +
+                  "\n            "
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "uk-margin-bottom" },
+        [_c("liro-folder-index-upload")],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-margin-bottom" }, [
+        _c(
+          "ul",
+          { staticClass: "uk-breadcrumb" },
+          _vm._l(_vm.folder.ladder, function(item, index) {
+            return _c("li", { key: index }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "javascript:void(0)" },
+                  on: {
+                    click: function($event) {
+                      _vm.fetchFolder(item.path)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(item.name))]
+              )
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "uk-grid-small", attrs: { "uk-grid": "" } },
+        [
+          _vm._l(_vm.folder.dirs, function(dir, index) {
+            return [
+              _c(
+                "div",
+                { key: index },
+                [
+                  _c("liro-folder-index-folder", {
+                    on: { change: _vm.fetchFolder },
+                    model: {
+                      value: _vm.folder.dirs[index],
+                      callback: function($$v) {
+                        _vm.$set(_vm.folder.dirs, index, $$v)
+                      },
+                      expression: "folder.dirs[index]"
+                    }
+                  })
+                ],
+                1
+              )
+            ]
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.folder.files, function(file, index) {
+            return [
+              _c(
+                "div",
+                { key: index },
+                [
+                  _c("liro-folder-index-file", {
+                    on: { change: _vm.fetchFolder },
+                    model: {
+                      value: _vm.folder.files[index],
+                      callback: function($$v) {
+                        _vm.$set(_vm.folder.files, index, $$v)
+                      },
+                      expression: "folder.files[index]"
+                    }
+                  })
+                ],
+                1
+              )
+            ]
+          })
+        ],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6395a1f4", module.exports)
   }
 }
 

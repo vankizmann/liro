@@ -12,6 +12,8 @@ class FilePrototype
 
     public $path;
 
+    public $dir;
+
     public $url;
 
     public $size;

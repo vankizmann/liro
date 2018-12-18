@@ -22,8 +22,8 @@
 
     <div class="uk-margin-bottom">
         <ul class="uk-breadcrumb">
-            <li v-for="(path, index) in folder.ladder" :key="index">
-                <a href="javascript:void(0)" @click="fetchFolder(path)">{{ index }}</a>
+            <li v-for="(item, index) in folder.ladder" :key="index">
+                <a href="javascript:void(0)" @click="fetchFolder(item.path)">{{ item.name }}</a>
             </li>
         </ul>
     </div>
@@ -32,13 +32,13 @@
 
         <template v-for="(dir, index) in folder.dirs">
             <div :key="index">
-                <liro-folder-index-folder v-model="folder.dirs[index]"></liro-folder-index-folder>
+                <liro-folder-index-folder v-model="folder.dirs[index]" @change="fetchFolder"></liro-folder-index-folder>
             </div>
         </template>
 
         <template v-for="(file, index) in folder.files">
             <div :key="index">
-                <liro-folder-index-file v-model="folder.files[index]"></liro-folder-index-file>
+                <liro-folder-index-file v-model="folder.files[index]" @change="fetchFolder"></liro-folder-index-file>
             </div>
         </template>
 
@@ -91,15 +91,19 @@ export default {
             var url = this.route('liro-media.ajax.folder.create');
 
             var folder = {
-                path: this.folder.path, name: name
+                source: this.folder.path, destination: name
             };
 
             this.http.post(url, folder).then(this.createFolderResponse);
         },
 
         createFolderResponse: function (res) {
-            var message = this.trans('liro-media::message.folder.created');
-            UIkit.notification(message, 'success');
+
+            UIkit.notification(
+                this.trans('liro-media::message.folder.created'), 'success'
+            );
+
+            this.fetchFolder();
         }
 
     },

@@ -20,6 +20,11 @@ class FolderRouter
         $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Ajax\FolderController@rename');
     }
 
+    public function move($router)
+    {
+        $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Ajax\FolderController@move');
+    }
+
     public function delete($router)
     {
         $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Ajax\FolderController@delete');

@@ -14,6 +14,10 @@ return [
         'liro-media::ajax.folder.rename', 'Liro\Media\Routers\Ajax\FolderRouter@rename'
     ],
 
+    'ajax@liro-media.ajax.folder.move' => [
+        'liro-media::ajax.folder.move', 'Liro\Media\Routers\Ajax\FolderRouter@move'
+    ],
+
     'ajax@liro-media.ajax.folder.delete' => [
         'liro-media::ajax.folder.delete', 'Liro\Media\Routers\Ajax\FolderRouter@delete'
     ],

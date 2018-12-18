@@ -104,16 +104,12 @@
     }
 
     .uk-nav > li > a .uk-icon {
-        opacity: 0.3;
-    }
-
-    .uk-nav > li.uk-active > a .uk-icon {
-        opacity: 0.6;
+        color: $color-gray-80;
     }
 
     .uk-nav > li > a .uk-icon svg {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
     }
 
     .uk-nav > li > .uk-nav {

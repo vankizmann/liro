@@ -56,11 +56,11 @@ Liro.events.watch('axios.load', function (name, data) {
 });
 
 Liro.events.watch('axios.done', function () {
-    window.$busy = setTimeout(() => $('body').removeClass('is-busy'), 100);
+    window.$busy = setTimeout(() => $('body').removeClass('is-busy'), 150);
 });
 
 Liro.events.watch('axios.error', function () {
-    window.$busy = setTimeout(() => $('body').removeClass('is-busy'), 100);
+    window.$busy = setTimeout(() => $('body').removeClass('is-busy'), 150);
 });
 
 window.setHeight = function (selector, height) {

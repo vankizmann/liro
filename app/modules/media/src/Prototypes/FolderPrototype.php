@@ -3,6 +3,7 @@
 namespace Liro\Media\Prototypes;
 
 use Illuminate\Support\Facades\Storage;
+use Liro\System\Exceptions\Exception;
 use Liro\Media\Prototypes\FilePrototype;
 
 class FolderPrototype
@@ -12,6 +13,8 @@ class FolderPrototype
     protected $currentLayer;
 
     public $path;
+
+    public $dir;
 
     public $name;
 
@@ -27,15 +30,17 @@ class FolderPrototype
     {
         $this->path = $path ?: '';
 
+        $this->dir = pathinfo($this->path, PATHINFO_DIRNAME);
+        $this->name = pathinfo($this->path, PATHINFO_BASENAME);
+
         $this->maxLayer = $maxLayer;
         $this->currentLayer = $currentLayer;
 
         $this->bootFolders();
         $this->bootFiles();
 
-        $this->getName();
-        $this->getCount();
-        $this->getLadder();
+        $this->loadCount();
+        $this->loadLadder();
     }
 
     public static function make($path = '', $maxLayer = 3, $currentLayer = 0) {
@@ -86,39 +91,82 @@ class FolderPrototype
 
     public function toArray()
     {
-        $array = json_decode(json_encode($this), true);
-        return collect($array)->toArray();
+        return collect($this)->toArray();
     }
 
     public function toJson()
     {
-        $array = json_decode(json_encode($this), true);
-        return collect($array)->toJson();
+        return collect($this)->toJson();
     }
 
-    public function getName()
-    {
-        $this->name = pathinfo($this->path, PATHINFO_BASENAME);
-    }
-
-    public function getCount()
+    protected function loadCount()
     {
         $this->count = count($this->dirs) + count($this->files);
     }
 
-    public function getLadder()
+    protected function loadLadder()
     {
         $items = explode('/', $this->path);
 
         $ladder = [
-            trans('liro-media::form.folder.root') => ''
+            ['name' => trans('liro-media::form.folder.root'), 'path' => '']
         ];
 
         foreach ( array_filter($items) as $index => $item ) {
-            $ladder[$item ?: 'root'] = implode('/', array_slice($items, 0, $index+1));
+            $ladder[] = ['name' => $item, 'path' => implode('/', array_slice($items, 0, $index+1))];
         }
 
         $this->ladder = $ladder;
+    }
+
+    public function createFolder($name)
+    {
+        $new = ltrim($this->path . '/' . $name, '/');
+
+        if ( Storage::exists($new) ) {
+            throw new Exception('liro-media::message.folder.exists');
+        }
+
+        if ( ! Storage::makeDirectory($new) ) {
+            throw new Exception('liro-media::message.media.rights');
+        }
+
+        return new FolderPrototype($new);
+    }
+
+    public function moveFolder($dir)
+    {
+        $new = ltrim($dir . '/' . $this->name, '/');
+
+        if ( Storage::exists($new) ) {
+            throw new Exception('liro-media::message.folder.exists');
+        }
+
+        if ( ! Storage::move($this->path, $new) ) {
+            throw new Exception('liro-media::message.media.rights');
+        }
+
+        return new FolderPrototype($new);
+    }
+
+    public function renameFolder($name)
+    {
+        $new = ltrim($this->dir . '/' . $name, '/');
+
+        if ( Storage::exists($new) ) {
+            throw new Exception('liro-media::message.folder.exists');
+        }
+
+        if ( ! Storage::move($this->path, $new) ) {
+            throw new Exception('liro-media::message.media.rights');
+        }
+
+        return new FolderPrototype($new);
+    }
+
+    public function deleteFolder()
+    {
+        return Storage::deleteDirectory($this->path);
     }
 
 }

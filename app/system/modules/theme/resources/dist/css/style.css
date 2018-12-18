@@ -12895,16 +12895,12 @@ a.uk-disabled {
 }
 
 .th-navbar .uk-nav > li > a .uk-icon {
-  opacity: 0.3;
-}
-
-.th-navbar .uk-nav > li.uk-active > a .uk-icon {
-  opacity: 0.6;
+  color: #343f59;
 }
 
 .th-navbar .uk-nav > li > a .uk-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .th-navbar .uk-nav > li > .uk-nav {

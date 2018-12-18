@@ -22554,13 +22554,13 @@ __WEBPACK_IMPORTED_MODULE_6__liro_liro__["a" /* default */].events.watch('axios.
 __WEBPACK_IMPORTED_MODULE_6__liro_liro__["a" /* default */].events.watch('axios.done', function () {
     window.$busy = setTimeout(function () {
         return $('body').removeClass('is-busy');
-    }, 100);
+    }, 150);
 });
 
 __WEBPACK_IMPORTED_MODULE_6__liro_liro__["a" /* default */].events.watch('axios.error', function () {
     window.$busy = setTimeout(function () {
         return $('body').removeClass('is-busy');
-    }, 100);
+    }, 150);
 });
 
 window.setHeight = function (selector, height) {

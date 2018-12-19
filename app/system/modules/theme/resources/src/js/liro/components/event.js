@@ -23,7 +23,7 @@ export default function () {
         var events = _.filter(this.events, { name: name });
         
         _.each(events, (event) => {
-            event.callback.apply(this, arguments);
+            event.callback.apply(this, _.slice(arguments, 1));
         });
     }.bind(this);
 

@@ -16,10 +16,10 @@ class FolderController extends \Liro\System\Http\Controller
 
     public function index()
     {
-        $folder = Folder::make()->toArray();
+        $folder = Folder::make();
 
         app('assets')->dataArray([
-            'folder' => $folder
+            'folder' => $folder->toArray(), 'tree' => $folder->toTreeArray()
         ]);
 
         return view('liro-media::folder/index');

@@ -7,7 +7,7 @@ class FolderRouter
 
     public function index($router)
     {
-        $router->middleware('ajax', 'route')->get('/', 'Liro\Media\Controllers\Ajax\FolderController@index');
+        $router->middleware('ajax', 'route')->post('/', 'Liro\Media\Controllers\Ajax\FolderController@index');
     }
 
     public function create($router)

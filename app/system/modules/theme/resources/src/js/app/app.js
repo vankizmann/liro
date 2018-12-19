@@ -57,9 +57,9 @@ Vue.ready(function () {
     Vue.prototype.Liro = Liro;
     Vue.prototype.UIkit = UIkit;
 
-    Vue.prototype.trans = Liro.messages.get;
-    Vue.prototype.choice = Liro.messages.choice;
-    Vue.prototype.route = Liro.routes.get;
+    Vue.prototype.trans = window.trans = Liro.messages.get;
+    Vue.prototype.choice = window.choice = Liro.messages.choice;
+    Vue.prototype.route = window.route = Liro.routes.get;
 
     Liro.vue.filters.map(function (filter) {
         Vue.filter(filter.name, filter.options);
@@ -77,7 +77,7 @@ Vue.ready(function () {
         Vue.sync(api.name, api.options);
     });
 
-    Liro.events.watch('axios.error', function (event, res) {
+    Liro.events.watch('axios.error', function (res) {
 
         if ( res.data.errors != undefined ) {
             return _.each(res.data.errors, 

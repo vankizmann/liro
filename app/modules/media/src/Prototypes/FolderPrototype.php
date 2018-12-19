@@ -8,6 +8,8 @@ use Liro\Media\Prototypes\FilePrototype;
 
 class FolderPrototype
 {
+    protected $loadFiles;
+
     protected $maxLayer;
 
     protected $currentLayer;
@@ -26,13 +28,14 @@ class FolderPrototype
 
     public $files = [];
 
-    public function __construct($path, $maxLayer = 3, $currentLayer = 0)
+    public function __construct($path, $maxLayer = 1, $currentLayer = 0, $loadFiles = true)
     {
         $this->path = $path ?: '';
 
         $this->dir = pathinfo($this->path, PATHINFO_DIRNAME);
         $this->name = pathinfo($this->path, PATHINFO_BASENAME);
 
+        $this->loadFiles = $loadFiles;
         $this->maxLayer = $maxLayer;
         $this->currentLayer = $currentLayer;
 
@@ -43,7 +46,7 @@ class FolderPrototype
         $this->loadLadder();
     }
 
-    public static function make($path = '', $maxLayer = 3, $currentLayer = 0) {
+    public static function make($path = '', $maxLayer = 1, $currentLayer = 0) {
         return new FolderPrototype($path, $maxLayer, $currentLayer);
     }
 
@@ -55,14 +58,14 @@ class FolderPrototype
 
         $dirs = Storage::directories($this->path);
 
-        $this->dirs = collect($dirs)->reduce(function ($result, $dir) {
-            return array_merge($result, [
-                md5($dir) => new FolderPrototype($dir, $this->maxLayer, $this->currentLayer + 1)
-            ]);
-        }, []);
-
-        $this->files = collect($this->files)->filter(function ($file) {
-            return ! in_array($file->name, ['node_modules']);
+        $this->dirs = collect($dirs)
+        
+        ->filter(function ($dir) {
+            return ! in_array(pathinfo($dir, PATHINFO_BASENAME), ['node_modules']);
+        })
+        
+        ->map(function ($dir) {
+            return new FolderPrototype($dir, $this->maxLayer, $this->currentLayer + 1, $this->loadFiles);
         });
 
         return $this->dirs;
@@ -70,20 +73,20 @@ class FolderPrototype
 
     protected function bootFiles()
     {
-        if ( $this->currentLayer == $this->maxLayer ) {
+        if ( $this->currentLayer == $this->maxLayer || $this->loadFiles == false ) {
             return;
         }
         
         $files = Storage::files($this->path);
 
-        $this->files = collect($files)->reduce(function ($result, $file) {
-            return array_merge($result, [
-                md5($file) => new FilePrototype($file)
-            ]);
-        }, []);
-
-        $this->files = collect($this->files)->filter(function ($file) {
-            return ! in_array($file->name, ['.DS_Store']);
+        $this->files = collect($files)
+        
+        ->filter(function ($file) {
+            return ! in_array(pathinfo($file, PATHINFO_BASENAME), ['.DS_Store']);
+        })
+        
+        ->map(function ($file) {
+            return new FilePrototype($file);
         });
 
         return $this->files;
@@ -91,17 +94,49 @@ class FolderPrototype
 
     public function toArray()
     {
-        return collect($this)->toArray();
+        $fields = [
+            'path', 'dir', 'name', 'dirs', 'files', 'count', 'ladder'
+        ];
+
+        return collect($this)->only($fields)->toArray();
     }
 
     public function toJson()
     {
-        return collect($this)->toJson();
+        $fields = [
+            'path', 'dir', 'name', 'dirs', 'files', 'count', 'ladder'
+        ];
+
+        return collect($this)->only($fields)->toJson();
+    }
+
+    public function toTreeArray($root = true)
+    {
+        $tree = new FolderPrototype($root ? '' : $this->path, -1, 0, false);
+        return collect($tree->dirs)->toArray();
+    }
+
+    public function toTreeJson($root = true)
+    {
+        $tree = new FolderPrototype($root ? '' : $this->path, -1, false);
+        return collect($tree->dirs)->toJson();
     }
 
     protected function loadCount()
     {
-        $this->count = count($this->dirs) + count($this->files);
+        $dirs = Storage::directories($this->path);
+
+        $dirs = collect($dirs)->filter(function ($dir) {
+            return ! in_array(pathinfo($dir, PATHINFO_BASENAME), ['node_modules']);
+        });
+
+        $files = Storage::files($this->path);
+
+        $files = collect($files)->filter(function ($file) {
+            return ! in_array(pathinfo($file, PATHINFO_BASENAME), ['.DS_Store']);
+        });
+
+        $this->count = count($dirs) + count($files);
     }
 
     protected function loadLadder()

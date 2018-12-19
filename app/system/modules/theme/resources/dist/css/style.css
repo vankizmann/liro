@@ -12971,14 +12971,40 @@ body.th-index .th-index-navigation {
 }
 
 body.th-index .th-index-header {
+  z-index: 10;
+  position: relative;
   padding: 0 20px;
   background-color: #ffffff;
   -webkit-box-shadow: 0 0 3px rgba(130, 140, 163, 0.15);
           box-shadow: 0 0 3px rgba(130, 140, 163, 0.15);
 }
 
+body.th-index .th-index-sidebar {
+  padding: 20px 15px;
+  max-width: 300px;
+  background-color: #f7f9fb;
+  -webkit-box-shadow: 0 0 3px rgba(130, 140, 163, 0.15);
+          box-shadow: 0 0 3px rgba(130, 140, 163, 0.15);
+}
+
+body.th-index .th-index-sidebar:not(.is-active) {
+  display: none;
+}
+
 body.th-index .th-index-body {
   padding: 40px 35px;
+}
+
+body.th-index .th-index-infobar {
+  padding: 20px 15px;
+  max-width: 300px;
+  background-color: #f7f9fb;
+  -webkit-box-shadow: 0 0 3px rgba(130, 140, 163, 0.15);
+          box-shadow: 0 0 3px rgba(130, 140, 163, 0.15);
+}
+
+body.th-index .th-index-infobar:not(.is-active) {
+  display: none;
 }
 
 body.th-error {
@@ -13703,4 +13729,76 @@ form:last-child {
 .liro-media-upload-item {
   padding: 15px 20px;
   border-bottom: 1px solid #edf0f4;
+}
+
+.liro-media-tree-legend {
+  color: #b4baca;
+  margin-bottom: 10px;
+}
+
+.liro-media-tree-legend > span {
+  font-size: 0.925rem;
+}
+
+.liro-media-tree-list .liro-media-tree-list {
+  display: none;
+  padding-left: 30px;
+}
+
+.liro-media-tree-list > li {
+  margin-top: 2px;
+}
+
+.liro-media-tree-list > li > a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px 12px;
+  background-color: #f7f9fb;
+  border-radius: 3px;
+}
+
+.liro-media-tree-list > li.is-active > a,
+.liro-media-tree-list > li > a:hover {
+  background-color: #edf0f4;
+}
+
+.liro-media-tree-list > li.is-ghost > a {
+  opacity: 0.5;
+}
+
+.liro-media-tree-list > li.is-dragover > a {
+  background-color: #ccdcfb;
+}
+
+.liro-media-tree-list > li > a > .liro-media-tree-collapse {
+  color: #b4baca;
+  margin-right: 10px;
+}
+
+.liro-media-tree-list > li > a > .liro-media-tree-icon {
+  color: #828ca3;
+  margin-right: 10px;
+}
+
+.liro-media-tree-list > li.is-active > a > .liro-media-tree-icon {
+  color: #4b84fa;
+}
+
+.liro-media-tree-list > li > a > .liro-media-tree-name {
+  color: #828ca3;
+  font-size: 0.925rem;
+}
+
+.liro-media-tree-list > li.is-active > a > .liro-media-tree-name {
+  color: #566280;
+}
+
+.liro-media-tree-list > li > a > .liro-media-tree-count {
+  color: #b4baca;
+  font-size: 0.925rem;
+  margin-left: 10px;
 }

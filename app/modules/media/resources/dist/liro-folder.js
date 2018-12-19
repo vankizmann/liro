@@ -188,7 +188,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(3)
 /* template */
-var __vue_template__ = __webpack_require__(13)
+var __vue_template__ = __webpack_require__(19)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -232,12 +232,17 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_folder__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_folder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__index_folder__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_file__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_file___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__index_file__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_upload__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__index_upload__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ajax__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_folder__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_folder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__index_folder__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_file__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_file___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__index_file__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_upload__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__index_upload__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__index_tree__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__index_tree___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__index_tree__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -286,6 +291,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+
+
+
 
 
 
@@ -302,54 +315,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     },
 
-    methods: {
-
-        fetchFolder: function fetchFolder(path) {
-
-            var url = this.route('liro-media.ajax.folder.index', null, {
-                path: path != null ? path : this.folder.path
-            });
-
-            this.http.get(url).then(this.fetchFolderResponse);
-        },
-
-        fetchFolderResponse: function fetchFolderResponse(res) {
-            this.$root.folder = res.data;
-        },
+    methods: _extends({}, __WEBPACK_IMPORTED_MODULE_0__ajax__["a" /* default */], {
 
         createFolderPrompt: function createFolderPrompt() {
-            var message = this.trans('liro-media::form.folder.name');
-            UIkit.modal.prompt(message, '').then(this.createFolder);
-        },
+            var _this = this;
 
-        createFolder: function createFolder(name) {
+            var msg = this.trans('liro-media::form.folder.name');
 
-            if (name == null || name == '') {
-                return;
-            }
-
-            var url = this.route('liro-media.ajax.folder.create');
-
-            var folder = {
-                source: this.folder.path, destination: name
+            var response = function response(res) {
+                _this.createFolder(_this.folder.path, res);
             };
 
-            this.http.post(url, folder).then(this.createFolderResponse);
-        },
-
-        createFolderResponse: function createFolderResponse(res) {
-
-            UIkit.notification(this.trans('liro-media::message.folder.created'), 'success');
-
-            this.fetchFolder();
+            UIkit.modal.prompt(msg, '').then(response);
         }
 
-    },
+    }),
 
     provide: function provide() {
         return {
             folder: this
         };
+    },
+
+    mounted: function mounted() {
+
+        Liro.events.watch('liro-media.folder@fetch', this.fetchFolder);
+
+        Liro.events.watch('liro-media.folder@rename', this.renameFolder);
+
+        Liro.events.watch('liro-media.folder@move', this.moveFolder);
+
+        Liro.events.watch('liro-media.folder@delete', this.deleteFolder);
+
+        Liro.events.watch('liro-media.file@rename', this.renameFile);
+
+        Liro.events.watch('liro-media.file@move', this.moveFile);
+
+        Liro.events.watch('liro-media.file@delete', this.deleteFile);
     }
 
 });
@@ -468,6 +470,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
 
+        dropFolder: function dropFolder(event) {
+
+            var input = event.dataTransfer.getData('file');
+
+            if (input) {
+                Liro.events.emit('liro-media.file@move', input, this.value.path);
+            }
+
+            var input = event.dataTransfer.getData('folder');
+
+            if (input && input != this.value.path) {
+                Liro.events.emit('liro-media.folder@move', input, this.value.path);
+            }
+
+            $(this.$refs.folder).removeClass('is-dragover');
+        },
+
         dragFolder: function dragFolder() {
             $(this.$refs.folder).addClass('is-ghost');
             event.dataTransfer.setData('folder', this.value.path);
@@ -478,119 +497,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         dragFolderOver: function dragFolderOver(event) {
-            if (event.target != this.$refs.folder) {
-                $(this.$refs.folder).addClass('is-dragover');
-            }
+            $(this.$refs.folder).addClass('is-dragover');
         },
 
         dragFolderLeave: function dragFolderLeave(event) {
-            if (event.target != this.$refs.folder) {
-                $(this.$refs.folder).removeClass('is-dragover');
-            }
-        },
-
-        dropFile: function dropFile(event) {
-
-            var input = event.dataTransfer.getData('file');
-
-            if (input) {
-                var url = this.route('liro-media.ajax.file.move');
-
-                var folder = {
-                    source: input, destination: this.value.path
-                };
-
-                this.http.post(url, folder).then(this.moveFileResponse);
-            }
-
-            var input = event.dataTransfer.getData('folder');
-
-            if (input && input != this.value.path) {
-                var url = this.route('liro-media.ajax.folder.move');
-
-                var folder = {
-                    source: input, destination: this.value.path
-                };
-
-                this.http.post(url, folder).then(this.moveFolderResponse);
-            }
-
             $(this.$refs.folder).removeClass('is-dragover');
         },
 
-        moveFileResponse: function moveFileResponse(res) {
-
-            UIkit.notification(this.trans('liro-media::message.file.moved'), 'success');
-
-            this.$emit('change');
-        },
-
-        moveFolderResponse: function moveFolderResponse(res) {
-
-            UIkit.notification(this.trans('liro-media::message.folder.moved'), 'success');
-
-            this.$emit('change');
+        fetchFolder: function fetchFolder() {
+            Liro.events.emit('liro-media.folder@fetch', this.value.path);
         },
 
         renameFolderPrompt: function renameFolderPrompt() {
-
-            UIkit.toggle(this.$refs.dropdown);
+            var _this = this;
 
             var message = this.trans('liro-media::form.folder.name');
-            UIkit.modal.prompt(message, this.value.name).then(this.renameFolder);
-        },
 
-        renameFolder: function renameFolder(dest) {
-
-            if (dest == null || dest == '') {
-                return;
-            }
-
-            var url = this.route('liro-media.ajax.folder.rename');
-
-            var folder = {
-                source: this.value.path, destination: dest
+            var response = function response(input) {
+                Liro.events.emit('liro-media.folder@rename', _this.value.path, input);
             };
 
-            this.http.post(url, folder).then(this.renameFolderResponse);
-        },
-
-        renameFolderResponse: function renameFolderResponse(res) {
-
-            UIkit.toggle(this.$refs.dropdown);
-
-            UIkit.notification(this.trans('liro-media::message.folder.renamed'), 'success');
-
-            this.$emit('change');
+            UIkit.modal.prompt(message, this.value.name).then(response);
         },
 
         deleteFolderConfirm: function deleteFolderConfirm() {
+            var _this2 = this;
 
             var message = this.trans('liro-media::message.folder.delete', {
                 name: this.value.name
             });
 
-            UIkit.modal.confirm(message).then(this.deleteFolder, function () {
-                return null;
-            });
-        },
-
-        deleteFolder: function deleteFolder() {
-
-            var url = this.route('liro-media.ajax.folder.delete');
-
-            var folder = {
-                source: this.value.path
+            var response = function response() {
+                Liro.events.emit('liro-media.folder@delete', _this2.value.path);
             };
 
-            this.http.post(url, folder).then(this.deleteFolderResponse);
-        },
-
-        deleteFolderResponse: function deleteFolderResponse(res) {
-
-            UIkit.notification(this.trans('liro-media::message.folder.deleted'), 'success');
-
-            this.$emit('change');
+            UIkit.modal.confirm(message).then(response, function () {
+                return null;
+            });
         }
 
     }
@@ -617,10 +560,8 @@ var render = function() {
         "liro-media-item is-folder uk-flex uk-flex-column uk-position-relative",
       attrs: { draggable: "true" },
       on: {
-        dblclick: function($event) {
-          _vm.folder.fetchFolder(_vm.value.path)
-        },
-        drop: _vm.dropFile,
+        dblclick: _vm.fetchFolder,
+        drop: _vm.dropFolder,
         dragstart: _vm.dragFolder,
         dragend: _vm.dragFolderEnd,
         dragover: _vm.dragFolderOver,
@@ -803,6 +744,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _computed$props$compu;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -848,9 +793,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+/* harmony default export */ __webpack_exports__["default"] = (_computed$props$compu = {
 
-    inject: ['folder'],
+    computed: {
+
+        folder: function folder() {
+            return this.$root.folder;
+        }
+
+    },
 
     props: {
 
@@ -859,85 +810,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: Object
         }
 
-    },
-
-    computed: {
-
-        image: function image(type) {
-            return _.includes(['image/jpg', 'image/jpeg', 'image/png', 'image/gif'], this.value.type);
-        }
-
-    },
-
-    methods: {
-
-        renameFilePrompt: function renameFilePrompt() {
-            var message = this.trans('liro-media::form.file.name');
-            UIkit.modal.prompt(message, this.value.name).then(this.renameFile);
-        },
-
-        renameFile: function renameFile(dest) {
-
-            if (dest == null || dest == '') {
-                return;
-            }
-
-            var url = this.route('liro-media.ajax.file.rename');
-
-            var file = {
-                source: this.value.path, destination: dest
-            };
-
-            this.http.post(url, file).then(this.renameFileResponse);
-        },
-
-        renameFileResponse: function renameFileResponse(res) {
-
-            UIkit.toggle(this.$refs.dropdown);
-
-            var message = Liro.messages.get('liro-media::message.file.renamed');
-            UIkit.notification(message, 'success');
-        },
-
-        deleteFileConfirm: function deleteFileConfirm() {
-
-            var message = this.trans('liro-media::message.file.delete', {
-                name: this.value.name
-            });
-
-            UIkit.modal.confirm(message).then(this.deleteFile, function () {
-                return null;
-            });
-        },
-
-        deleteFile: function deleteFile() {
-
-            var url = this.route('liro-media.ajax.file.delete');
-
-            var file = {
-                source: this.value.path
-            };
-
-            this.http.post(url, file).then(this.deleteFileResponse);
-        },
-
-        deleteFileResponse: function deleteFileResponse(res) {
-            var message = Liro.messages.get('liro-media::message.file.deleted');
-            UIkit.notification(message, 'success');
-        },
-
-        dragFile: function dragFile() {
-            $(this.$refs.file).addClass('is-ghost');
-            event.dataTransfer.setData('file', this.value.path);
-        },
-
-        dragFileEnd: function dragFileEnd() {
-            $(this.$refs.file).removeClass('is-ghost');
-        }
-
     }
 
-});
+}, _defineProperty(_computed$props$compu, 'computed', {
+
+    image: function image(type) {
+        return _.includes(['image/jpg', 'image/jpeg', 'image/png', 'image/gif'], this.value.type);
+    }
+
+}), _defineProperty(_computed$props$compu, 'methods', {
+
+    renameFilePrompt: function renameFilePrompt() {
+        var _this = this;
+
+        var message = this.trans('liro-media::form.file.name');
+
+        var response = function response(input) {
+            Liro.events.emit('liro-media.file@rename', _this.value.path, input);
+        };
+
+        UIkit.modal.prompt(message, this.value.name).then(response);
+    },
+
+    deleteFileConfirm: function deleteFileConfirm() {
+        var _this2 = this;
+
+        var message = this.trans('liro-media::message.file.delete', {
+            name: this.value.name
+        });
+
+        var response = function response() {
+            Liro.events.emit('liro-media.file@delete', _this2.value.path);
+        };
+
+        UIkit.modal.confirm(message).then(response, function () {
+            return null;
+        });
+    },
+
+    dragFile: function dragFile() {
+        $(this.$refs.file).addClass('is-ghost');
+        event.dataTransfer.setData('file', this.value.path);
+    },
+
+    dragFileEnd: function dragFileEnd() {
+        $(this.$refs.file).removeClass('is-ghost');
+    }
+
+}), _computed$props$compu);
 
 if (window.Liro) {
     Liro.vue.component('liro-folder-index-file', this.default);
@@ -1011,7 +931,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "liro-media-icon uk-margin-auto-top" }, [
-        _vm.image
+        _vm.image && true == false
           ? _c("div", { staticClass: "uk-text-center" }, [
               _c("img", {
                 attrs: {
@@ -1356,6 +1276,403 @@ if (false) {
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(14)
+/* template */
+var __vue_template__ = __webpack_require__(18)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/folder/index/tree.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-199ad289", Component.options)
+  } else {
+    hotAPI.reload("data-v-199ad289", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tree_item__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tree_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__tree_item__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    computed: {
+
+        folder: function folder() {
+            return this.$root.folder;
+        },
+
+        tree: function tree() {
+            return this.$root.tree;
+        }
+
+    },
+
+    provide: function provide() {
+        return {
+            tree: this
+        };
+    }
+
+});
+
+if (window.Liro) {
+    Liro.vue.component('liro-folder-index-tree', this.default);
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(16)
+/* template */
+var __vue_template__ = __webpack_require__(17)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/folder/index/tree-item.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-109d1e07", Component.options)
+  } else {
+    hotAPI.reload("data-v-109d1e07", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    inject: ['tree'],
+
+    props: {
+
+        value: {
+            required: true,
+            type: Object
+        }
+
+    },
+
+    data: function data() {
+        return {
+            open: false
+        };
+    },
+
+    watch: {
+
+        open: function open() {
+            $(this.$refs.list).slideToggle(150);
+        }
+
+    },
+
+    methods: {
+
+        dropFolder: function dropFolder(event) {
+
+            var input = event.dataTransfer.getData('file');
+
+            if (input) {
+                Liro.events.emit('liro-media.file@move', input, this.value.path);
+            }
+
+            var input = event.dataTransfer.getData('folder');
+
+            if (input && input != this.value.path) {
+                Liro.events.emit('liro-media.folder@move', input, this.value.path);
+            }
+
+            $(this.$refs.folder).removeClass('is-dragover');
+        },
+
+        dragFolder: function dragFolder() {
+            $(this.$refs.folder).addClass('is-ghost');
+            event.dataTransfer.setData('folder', this.value.path);
+        },
+
+        dragFolderEnd: function dragFolderEnd() {
+            $(this.$refs.folder).removeClass('is-ghost');
+        },
+
+        dragFolderOver: function dragFolderOver() {
+            $(this.$refs.folder).addClass('is-dragover');
+        },
+
+        dragFolderLeave: function dragFolderLeave() {
+            $(this.$refs.folder).removeClass('is-dragover');
+        },
+
+        fetchFolder: function fetchFolder() {
+            Liro.events.emit('liro-media.folder@fetch', this.value.path);
+        }
+
+    }
+
+});
+
+if (window.Liro) {
+    Liro.vue.component('liro-folder-index-tree-item', this.default);
+}
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "li",
+    {
+      ref: "folder",
+      class: {
+        "liro-media-tree-item": true,
+        "is-active": _vm.value.path == _vm.tree.folder.path
+      }
+    },
+    [
+      _c(
+        "a",
+        {
+          attrs: { href: "javascript:void(0)", draggable: "true" },
+          on: {
+            click: _vm.fetchFolder,
+            drop: _vm.dropFolder,
+            dragstart: _vm.dragFolder,
+            dragend: _vm.dragFolderEnd,
+            dragover: _vm.dragFolderOver,
+            dragleave: _vm.dragFolderLeave
+          }
+        },
+        [
+          _vm.value.dirs.length != 0
+            ? _c(
+                "div",
+                {
+                  staticClass: "liro-media-tree-collapse uk-flex-none",
+                  on: {
+                    click: function($event) {
+                      $event.stopPropagation()
+                      _vm.open = !_vm.open
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "uk-icon-small",
+                    attrs: {
+                      "uk-icon": !_vm.open ? "chevron-right" : "chevron-down"
+                    }
+                  })
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "liro-media-tree-name uk-flex-1 uk-text-truncate" },
+            [_c("span", [_vm._v(_vm._s(_vm.value.name))])]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "liro-media-tree-count uk-flex-none" }, [
+            _c("span", [_vm._v(_vm._s(_vm.value.count))])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _vm.value.dirs.length != 0
+        ? _c(
+            "ul",
+            { ref: "list", staticClass: "liro-media-tree-list uk-nav" },
+            _vm._l(_vm.value.dirs, function(dir, index) {
+              return _c("liro-folder-index-tree-item", {
+                key: index,
+                attrs: { value: dir }
+              })
+            }),
+            1
+          )
+        : _vm._e()
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "liro-media-tree-icon uk-flex-none" }, [
+      _c("img", {
+        attrs: {
+          src: "/app/system/modules/theme/resources/dist/images/folder.svg",
+          width: "18",
+          height: "18",
+          "uk-svg": ""
+        }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-109d1e07", module.exports)
+  }
+}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "liro-media-tree" }, [
+    _c("legend", { staticClass: "liro-media-tree-legend" }, [
+      _c("span", [_vm._v(_vm._s(_vm.trans("liro-media::form.folder.root")))])
+    ]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "liro-media-tree-list uk-nav" },
+      _vm._l(_vm.tree, function(dir, index) {
+        return _c("liro-folder-index-tree-item", {
+          key: index,
+          attrs: { value: dir }
+        })
+      }),
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-199ad289", module.exports)
+  }
+}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -1413,6 +1730,13 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c(
+        "portal",
+        { attrs: { to: "app-sidebar", "target-class": "is-active" } },
+        [_c("liro-folder-index-tree")],
+        1
+      ),
+      _vm._v(" "),
+      _c(
         "div",
         { staticClass: "uk-margin-bottom" },
         [_c("liro-folder-index-upload")],
@@ -1423,8 +1747,8 @@ var render = function() {
         _c(
           "ul",
           { staticClass: "uk-breadcrumb" },
-          _vm._l(_vm.folder.ladder, function(item, index) {
-            return _c("li", { key: index }, [
+          _vm._l(_vm.folder.ladder, function(item) {
+            return _c("li", { key: item.path }, [
               _c(
                 "a",
                 {
@@ -1447,45 +1771,23 @@ var render = function() {
         "div",
         { staticClass: "uk-grid-small", attrs: { "uk-grid": "" } },
         [
-          _vm._l(_vm.folder.dirs, function(dir, index) {
+          _vm._l(_vm.folder.dirs, function(dir) {
             return [
               _c(
                 "div",
-                { key: index },
-                [
-                  _c("liro-folder-index-folder", {
-                    on: { change: _vm.fetchFolder },
-                    model: {
-                      value: _vm.folder.dirs[index],
-                      callback: function($$v) {
-                        _vm.$set(_vm.folder.dirs, index, $$v)
-                      },
-                      expression: "folder.dirs[index]"
-                    }
-                  })
-                ],
+                { key: dir.path },
+                [_c("liro-folder-index-folder", { attrs: { value: dir } })],
                 1
               )
             ]
           }),
           _vm._v(" "),
-          _vm._l(_vm.folder.files, function(file, index) {
+          _vm._l(_vm.folder.files, function(file) {
             return [
               _c(
                 "div",
-                { key: index },
-                [
-                  _c("liro-folder-index-file", {
-                    on: { change: _vm.fetchFolder },
-                    model: {
-                      value: _vm.folder.files[index],
-                      callback: function($$v) {
-                        _vm.$set(_vm.folder.files, index, $$v)
-                      },
-                      expression: "folder.files[index]"
-                    }
-                  })
-                ],
+                { key: file.path },
+                [_c("liro-folder-index-file", { attrs: { value: file } })],
                 1
               )
             ]
@@ -1506,6 +1808,177 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-6395a1f4", module.exports)
   }
 }
+
+/***/ }),
+/* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+    fetchFolder: function fetchFolder(source) {
+        var _this = this;
+
+        var url = this.route('liro-media.ajax.folder.index');
+
+        var request = {
+            source: source || ''
+        };
+
+        var response = function response(res) {
+            _this.$root.folder = res.data.folder;_this.$root.tree = res.data.tree;
+        };
+
+        this.http.post(url, request).then(response);
+    },
+
+    createFolder: function createFolder(source, destination) {
+        var _this2 = this;
+
+        if (destination == null || destination == '') {
+            return;
+        }
+
+        var url = this.route('liro-media.ajax.folder.create');
+
+        var request = {
+            source: source || '', destination: destination
+        };
+
+        var msg = this.trans('liro-media::message.folder.created');
+
+        var response = function response(res) {
+            UIkit.notification(msg, 'success');_this2.fetchFolder(source);
+        };
+
+        this.http.post(url, request).then(response);
+    },
+
+    renameFolder: function renameFolder(source, destination) {
+        var _this3 = this;
+
+        if (destination == null || destination == '') {
+            return;
+        }
+
+        var url = this.route('liro-media.ajax.folder.rename');
+
+        var request = {
+            source: source || '', destination: destination
+        };
+
+        var msg = this.trans('liro-media::message.folder.renamed');
+
+        var response = function response(res) {
+            UIkit.notification(msg, 'success');_this3.fetchFolder();
+        };
+
+        this.http.post(url, request).then(response);
+    },
+
+    moveFolder: function moveFolder(source, destination) {
+        var _this4 = this;
+
+        if (destination == null || destination == '') {
+            return;
+        }
+
+        var url = this.route('liro-media.ajax.folder.move');
+
+        var request = {
+            source: source || '', destination: destination
+        };
+
+        var msg = this.trans('liro-media::message.folder.moved');
+
+        var response = function response(res) {
+            UIkit.notification(msg, 'success');_this4.fetchFolder();
+        };
+
+        this.http.post(url, request).then(response);
+    },
+
+    deleteFolder: function deleteFolder(source) {
+        var _this5 = this;
+
+        var url = this.route('liro-media.ajax.folder.delete');
+
+        var request = {
+            source: source || ''
+        };
+
+        var msg = this.trans('liro-media::message.folder.deleted');
+
+        var response = function response(res) {
+            UIkit.notification(msg, 'success');_this5.fetchFolder();
+        };
+
+        this.http.post(url, request).then(response);
+    },
+
+    renameFile: function renameFile(source, destination) {
+        var _this6 = this;
+
+        if (destination == null || destination == '') {
+            return;
+        }
+
+        var url = this.route('liro-media.ajax.file.rename');
+
+        var request = {
+            source: source || '', destination: destination
+        };
+
+        var msg = this.trans('liro-media::message.file.renamed');
+
+        var response = function response(res) {
+            UIkit.notification(msg, 'success');_this6.fetchFolder();
+        };
+
+        this.http.post(url, request).then(response);
+    },
+
+    moveFile: function moveFile(source, destination) {
+        var _this7 = this;
+
+        if (destination == null || destination == '') {
+            return;
+        }
+
+        var url = this.route('liro-media.ajax.file.move');
+
+        var request = {
+            source: source || '', destination: destination
+        };
+
+        var msg = this.trans('liro-media::message.file.moved');
+
+        var response = function response(res) {
+            UIkit.notification(msg, 'success');_this7.fetchFolder();
+        };
+
+        this.http.post(url, request).then(response);
+    },
+
+    deleteFile: function deleteFile(source) {
+        var _this8 = this;
+
+        var url = this.route('liro-media.ajax.file.delete');
+
+        var request = {
+            source: source || ''
+        };
+
+        var msg = this.trans('liro-media::message.file.deleted');
+
+        var response = function response(res) {
+            UIkit.notification(msg, 'success');_this8.fetchFolder();
+        };
+
+        this.http.post(url, request).then(response);
+    }
+
+});
 
 /***/ })
 /******/ ]);

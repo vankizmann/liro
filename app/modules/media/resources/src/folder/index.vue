@@ -16,13 +16,17 @@
         </div>
     </portal>
 
+    <portal to="app-sidebar" target-class="is-active">
+        <liro-folder-index-tree></liro-folder-index-tree>
+    </portal>
+
     <div class="uk-margin-bottom">
         <liro-folder-index-upload></liro-folder-index-upload>
     </div>
 
     <div class="uk-margin-bottom">
         <ul class="uk-breadcrumb">
-            <li v-for="(item, index) in folder.ladder" :key="index">
+            <li v-for="item in folder.ladder" :key="item.path">
                 <a href="javascript:void(0)" @click="fetchFolder(item.path)">{{ item.name }}</a>
             </li>
         </ul>
@@ -30,27 +34,31 @@
 
     <div class="uk-grid-small" uk-grid>
 
-        <template v-for="(dir, index) in folder.dirs">
-            <div :key="index">
-                <liro-folder-index-folder v-model="folder.dirs[index]" @change="fetchFolder"></liro-folder-index-folder>
+        <template v-for="dir in folder.dirs">
+            <div :key="dir.path">
+                <liro-folder-index-folder :value="dir"></liro-folder-index-folder>
             </div>
         </template>
 
-        <template v-for="(file, index) in folder.files">
-            <div :key="index">
-                <liro-folder-index-file v-model="folder.files[index]" @change="fetchFolder"></liro-folder-index-file>
+        <template v-for="file in folder.files">
+            <div :key="file.path">
+                <liro-folder-index-file :value="file"></liro-folder-index-file>
             </div>
         </template>
 
     </div>
+
 </div>
 
 </template>
 <script>
 
+import AjaxMethods from './ajax';
+
 import IndexFolder from './index/folder';
 import IndexFile from './index/file';
 import IndexUpload from './index/upload';
+import IndexTree from './index/tree';
 
 export default {
 
@@ -64,47 +72,18 @@ export default {
 
     methods: {
 
-        fetchFolder: function (path) {
-
-            var url = this.route('liro-media.ajax.folder.index', null, {
-                path: path != null ? path : this.folder.path
-            });
-
-            this.http.get(url).then(this.fetchFolderResponse);
-        },
-
-        fetchFolderResponse: function (res) {
-            this.$root.folder = res.data;
-        },
+        ...AjaxMethods,
 
         createFolderPrompt: function () {
-            var message = this.trans('liro-media::form.folder.name');
-            UIkit.modal.prompt(message, '').then(this.createFolder);
-        },
 
-        createFolder: function (name) {
+            var msg = this.trans('liro-media::form.folder.name');
 
-            if ( name == null || name == '' ) {
-                return;
-            }
-
-            var url = this.route('liro-media.ajax.folder.create');
-
-            var folder = {
-                source: this.folder.path, destination: name
+            var response = (res) => {
+                this.createFolder(this.folder.path, res);
             };
 
-            this.http.post(url, folder).then(this.createFolderResponse);
+            UIkit.modal.prompt(msg, '').then(response);
         },
-
-        createFolderResponse: function (res) {
-
-            UIkit.notification(
-                this.trans('liro-media::message.folder.created'), 'success'
-            );
-
-            this.fetchFolder();
-        }
 
     },
 
@@ -112,6 +91,37 @@ export default {
         return {
             folder: this
         };
+    },
+
+    mounted: function () {
+
+        Liro.events.watch(
+            'liro-media.folder@fetch', this.fetchFolder
+        );
+
+        Liro.events.watch(
+            'liro-media.folder@rename', this.renameFolder
+        );
+
+        Liro.events.watch(
+            'liro-media.folder@move', this.moveFolder
+        );
+
+        Liro.events.watch(
+            'liro-media.folder@delete', this.deleteFolder
+        );
+
+        Liro.events.watch(
+            'liro-media.file@rename', this.renameFile
+        );
+
+        Liro.events.watch(
+            'liro-media.file@move', this.moveFile
+        );
+
+        Liro.events.watch(
+            'liro-media.file@delete', this.deleteFile
+        );
     }
 
 }

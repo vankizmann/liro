@@ -1,6 +1,6 @@
 <template>
 
-<div ref="folder" class="liro-media-item is-folder uk-flex uk-flex-column uk-position-relative" draggable="true" @dblclick="folder.fetchFolder(value.path)" @drop="dropFile" @dragstart="dragFolder" @dragend="dragFolderEnd" @dragover="dragFolderOver" @dragleave="dragFolderLeave">
+<div ref="folder" class="liro-media-item is-folder uk-flex uk-flex-column uk-position-relative" draggable="true" @dblclick="fetchFolder" @drop="dropFolder" @dragstart="dragFolder" @dragend="dragFolderEnd" @dragover="dragFolderOver" @dragleave="dragFolderLeave">
     <div class="liro-media-options uk-position-top-right">
         <a href="javascript:void(0)">
             <i class="uk-icon-small" uk-icon="chevron-down"></i>
@@ -57,6 +57,23 @@ export default {
 
     methods: {
 
+        dropFolder: function (event) {
+
+            var input = event.dataTransfer.getData('file');
+
+            if ( input ) {
+                Liro.events.emit('liro-media.file@move', input, this.value.path);
+            }
+
+            var input = event.dataTransfer.getData('folder');
+
+            if ( input && input != this.value.path ) {
+                Liro.events.emit('liro-media.folder@move', input, this.value.path);
+            }
+
+            $(this.$refs.folder).removeClass('is-dragover');
+        },
+
         dragFolder: function () {
             $(this.$refs.folder).addClass('is-ghost');
             event.dataTransfer.setData('folder', this.value.path);
@@ -67,96 +84,26 @@ export default {
         },
 
         dragFolderOver: function (event) {
-            if ( event.target != this.$refs.folder ) {
-                $(this.$refs.folder).addClass('is-dragover');
-            }
+            $(this.$refs.folder).addClass('is-dragover');
         },
 
         dragFolderLeave: function (event) {
-            if ( event.target != this.$refs.folder ) {
-                $(this.$refs.folder).removeClass('is-dragover');
-            }
-        },
-
-        dropFile: function (event) {
-
-            var input = event.dataTransfer.getData('file');
-
-            if ( input ) {
-                var url = this.route('liro-media.ajax.file.move');
-
-                var folder = {
-                    source: input, destination: this.value.path
-                };
-
-                this.http.post(url, folder).then(this.moveFileResponse);
-            }
-
-            var input = event.dataTransfer.getData('folder');
-
-            if ( input && input != this.value.path ) {
-                var url = this.route('liro-media.ajax.folder.move');
-
-                var folder = {
-                    source: input, destination: this.value.path
-                };
-
-                this.http.post(url, folder).then(this.moveFolderResponse);
-            }
-
             $(this.$refs.folder).removeClass('is-dragover');
         },
 
-        moveFileResponse: function (res) {
-
-            UIkit.notification(
-                this.trans('liro-media::message.file.moved'), 'success'
-            );
-
-            this.$emit('change');
-        },
-
-        moveFolderResponse: function (res) {
-
-            UIkit.notification(
-                this.trans('liro-media::message.folder.moved'), 'success'
-            );
-
-            this.$emit('change');
+        fetchFolder: function () {
+            Liro.events.emit('liro-media.folder@fetch', this.value.path)
         },
 
         renameFolderPrompt: function () {
 
-            UIkit.toggle(this.$refs.dropdown);
-
             var message = this.trans('liro-media::form.folder.name');
-            UIkit.modal.prompt(message, this.value.name).then(this.renameFolder);
-        },
 
-        renameFolder: function (dest) {
-
-            if ( dest == null || dest == '' ) {
-                return;
+            var response = (input) => {
+                Liro.events.emit('liro-media.folder@rename', this.value.path, input);
             }
 
-            var url = this.route('liro-media.ajax.folder.rename');
-
-            var folder = {
-                source: this.value.path, destination: dest
-            };
-
-            this.http.post(url, folder).then(this.renameFolderResponse);
-        },
-
-        renameFolderResponse: function (res) {
-
-            UIkit.toggle(this.$refs.dropdown);
-
-            UIkit.notification(
-                this.trans('liro-media::message.folder.renamed'), 'success'
-            );
-
-            this.$emit('change');
+            UIkit.modal.prompt(message, this.value.name).then(response);
         },
 
         deleteFolderConfirm: function () {
@@ -165,28 +112,12 @@ export default {
                 name: this.value.name
             });
 
-            UIkit.modal.confirm(message).then(this.deleteFolder, () => null);
+            var response = () => {
+                Liro.events.emit('liro-media.folder@delete', this.value.path);
+            }
+
+            UIkit.modal.confirm(message).then(response, () => null);
         },
-
-        deleteFolder: function () {
-
-            var url = this.route('liro-media.ajax.folder.delete');
-
-            var folder = {
-                source: this.value.path
-            };
-
-            this.http.post(url, folder).then(this.deleteFolderResponse);
-        },
-
-        deleteFolderResponse: function (res) {
-
-            UIkit.notification(
-                this.trans('liro-media::message.folder.deleted'), 'success'
-            );
-
-            this.$emit('change');
-        }
 
     }
 

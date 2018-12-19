@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="liro-media-icon uk-margin-auto-top">
-        <div v-if="image" class="uk-text-center">
+        <div v-if="image && true == false" class="uk-text-center">
             <img :src="value.url" width="120" height="120" draggable="false">
         </div>
         <div v-else class="uk-text-center">
@@ -45,9 +45,13 @@
 
 export default {
 
-    inject: [
-        'folder'
-    ],
+    computed: {
+
+        folder: function () {
+            return this.$root.folder;
+        }
+
+    },
 
     props: {
 
@@ -71,31 +75,14 @@ export default {
     methods: {
 
         renameFilePrompt: function () {
+
             var message = this.trans('liro-media::form.file.name');
-            UIkit.modal.prompt(message, this.value.name).then(this.renameFile);
-        },
 
-        renameFile: function (dest) {
-
-            if ( dest == null || dest == '' ) {
-                return;
+            var response = (input) => {
+                Liro.events.emit('liro-media.file@rename', this.value.path, input);
             }
 
-            var url = this.route('liro-media.ajax.file.rename');
-
-            var file = {
-                source: this.value.path, destination: dest
-            };
-
-            this.http.post(url, file).then(this.renameFileResponse);
-        },
-
-        renameFileResponse: function (res) {
-
-            UIkit.toggle(this.$refs.dropdown);
-
-            var message = Liro.messages.get('liro-media::message.file.renamed');
-            UIkit.notification(message, 'success');
+            UIkit.modal.prompt(message, this.value.name).then(response);
         },
 
         deleteFileConfirm: function () {
@@ -104,23 +91,11 @@ export default {
                 name: this.value.name
             });
 
-            UIkit.modal.confirm(message).then(this.deleteFile, () => null);
-        },
+            var response = () => {
+                Liro.events.emit('liro-media.file@delete', this.value.path);
+            }
 
-        deleteFile: function () {
-
-            var url = this.route('liro-media.ajax.file.delete');
-
-            var file = {
-                source: this.value.path
-            };
-
-            this.http.post(url, file).then(this.deleteFileResponse);
-        },
-
-        deleteFileResponse: function (res) {
-            var message = Liro.messages.get('liro-media::message.file.deleted');
-            UIkit.notification(message, 'success');
+            UIkit.modal.confirm(message).then(response, () => null);
         },
 
         dragFile: function () {

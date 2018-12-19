@@ -50,7 +50,7 @@ Axios.interceptors.response.use(
     }
 );
 
-Liro.events.watch('axios.load', function (name, data) {
+Liro.events.watch('axios.load', function (data) {
     clearTimeout(window.$busy);
     if ( data.spinner != false ) $('body').addClass('is-busy');
 });

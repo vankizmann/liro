@@ -12,10 +12,15 @@ class FolderController extends \Liro\System\Http\Controller
     public function index(Request $request)
     {
         $folder = FolderPrototype::make(
-            $request->input('path', '')
+            $request->input('source', '')
         );
 
-        return response()->json($folder, 200);
+        $response = [
+            'folder' => $folder->toArray(),
+            'tree' => $folder->toTreeArray()
+        ];
+
+        return response()->json($response, 200);
     }
 
     public function create(Request $request)

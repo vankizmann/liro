@@ -101,3 +101,71 @@
     padding: 15px 20px;
     border-bottom: 1px solid $color-gray-10;
 }
+
+.liro-media-tree-legend {
+    color: $color-gray-30;
+    margin-bottom: 10px;
+}
+
+.liro-media-tree-legend > span {
+    font-size: $global-small-font-size;
+}
+
+.liro-media-tree-list .liro-media-tree-list {
+    display: none;
+    padding-left: 30px;
+}
+
+.liro-media-tree-list > li {
+    margin-top: 2px;
+}
+
+.liro-media-tree-list > li > a {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: $color-gray-5;
+    border-radius: 3px;
+}
+
+.liro-media-tree-list > li.is-active > a,
+.liro-media-tree-list > li > a:hover {
+    background-color: $color-gray-10;
+}
+
+.liro-media-tree-list > li.is-ghost > a {
+    opacity: 0.5;
+}
+
+.liro-media-tree-list > li.is-dragover > a {
+    background-color: mix($color-primary, $color-gray-5, 25%);
+}
+
+.liro-media-tree-list > li > a > .liro-media-tree-collapse {
+    color: $color-gray-30;
+    margin-right: 10px;
+}
+
+.liro-media-tree-list > li > a > .liro-media-tree-icon {
+    color: $color-gray-50;
+    margin-right: 10px;
+}
+
+.liro-media-tree-list > li.is-active > a > .liro-media-tree-icon {
+    color: $color-primary;
+}
+
+.liro-media-tree-list > li > a > .liro-media-tree-name {
+    color: $color-gray-50;
+    font-size: $global-small-font-size;
+}
+
+.liro-media-tree-list > li.is-active > a > .liro-media-tree-name {
+    color: $color-gray-70;
+}
+
+.liro-media-tree-list > li > a > .liro-media-tree-count {
+    color: $color-gray-30;
+    font-size: $global-small-font-size;
+    margin-left: 10px;
+}

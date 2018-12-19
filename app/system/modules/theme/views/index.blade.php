@@ -86,71 +86,37 @@
                 </div>
             </div>
 
-            <div class="uk-flex-1">
+            <div class="uk-flex-1 uk-flex uk-flex-column">
 
-                <div class="th-index-header">
-
-                    <div class="th-navbar" style="display: none;">
-                        {{-- <div class="uk-container uk-container-expand"> --}}
-                            <div class="uk-navbar">
-
-                                <div class="uk-navbar-left">
-                                    <div class="uk-navbar-item uk-logo uk-margin-large-right">
-                                        <a class="uk-display-inline-block" href="{{ url($defaultUrl ?: '/') }}">
-                                            <img src="{{ app('assets')->file('theme::dist/images/liro.svg') }}" width="80" height="20" uk-svg>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="uk-navbar-right">
-                                    @include('theme::menus/default', [
-                                        'menus' => app('menus')->getMenusByTypeId(2)->toTree(), 'style' => 'uk-navbar-nav uk-margin-large-right'
-                                    ])
-                                    <ul class="uk-navbar-nav uk-text-small">
-                                        <li>
-                                            <a class="uk-inline" href="{{ route('liro-users.admin.auth.login') }}">
-                                                <img class="uk-border-circle uk-margin-small-right" src="https://api.adorable.io/avatars/50/{{ app('users')->getId() }}" width="25" height="25" alt="">
-                                                <span>{{ app('users')->getName() }}</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <span class="uk-navbar-divider"></span>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('liro-users.admin.auth.logout') }}">{{ trans('liro-users::form.auth.logout') }}</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        {{-- </div> --}}
-                    </div>
-
+                <div class="th-index-header uk-width-1-1 uk-flex-none">
                     <div class="th-topbar">
-                        {{-- <div class="uk-container uk-container-expand"> --}}
-                            <div class="uk-navbar">
+                        <div class="uk-navbar">
 
-                                <div class="uk-navbar-left">
-                                    <div class="uk-navbar-item">
-                                        <h1 class="uk-text-primary uk-margin-remove">{{ app()->getTitle() }}</h1>
-                                    </div>
+                            <div class="uk-navbar-left">
+                                <div class="uk-navbar-item">
+                                    <h1 class="uk-text-primary uk-margin-remove">{{ app()->getTitle() }}</h1>
                                 </div>
-
-                                <portal-target class="uk-navbar-right" name="app-toolbar" :multiple="true">
-                                    @yield('toolbar')
-                                </portal-target>
-
                             </div>
-                        {{-- </div> --}}
-                    </div>
 
+                            <portal-target class="uk-navbar-right" name="app-toolbar" :multiple="true">
+                                @yield('toolbar')
+                            </portal-target>
+
+                        </div>
+                    </div>
                 </div>
 
-                {{-- <div class="uk-container uk-container-expand"> --}}
-                    <div class="th-index-body">
+                <div class="uk-flex-1-1 uk-flex-auto uk-flex">
+                    <portal-target class="th-index-sidebar uk-width-1-1" name="app-sidebar" :multiple="false">
+                        <!-- Sidebar -->
+                    </portal-target>
+                    <div class="th-index-body uk-width-1-1">
                         @yield('content')
                     </div>
-                {{-- </div> --}}
+                    <portal-target class="th-index-infobar uk-width-1-1" name="app-infobar" :multiple="false">
+                        <!-- Infobar -->
+                    </portal-target>
+                </div>
 
             </div>
 

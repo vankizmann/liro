@@ -22546,7 +22546,7 @@ __WEBPACK_IMPORTED_MODULE_2_axios___default.a.interceptors.response.use(function
     return Promise.reject(error);
 });
 
-__WEBPACK_IMPORTED_MODULE_6__liro_liro__["a" /* default */].events.watch('axios.load', function (name, data) {
+__WEBPACK_IMPORTED_MODULE_6__liro_liro__["a" /* default */].events.watch('axios.load', function (data) {
     clearTimeout(window.$busy);
     if (data.spinner != false) $('body').addClass('is-busy');
 });
@@ -64617,7 +64617,7 @@ var LiroVue = new __WEBPACK_IMPORTED_MODULE_4__components_vue__["a" /* default *
         var events = _.filter(this.events, { name: name });
 
         _.each(events, function (event) {
-            event.callback.apply(_this, _arguments);
+            event.callback.apply(_this, _.slice(_arguments, 1));
         });
     }.bind(this);
 });
@@ -64979,9 +64979,9 @@ Vue.ready(function () {
     Vue.prototype.Liro = Liro;
     Vue.prototype.UIkit = UIkit;
 
-    Vue.prototype.trans = Liro.messages.get;
-    Vue.prototype.choice = Liro.messages.choice;
-    Vue.prototype.route = Liro.routes.get;
+    Vue.prototype.trans = window.trans = Liro.messages.get;
+    Vue.prototype.choice = window.choice = Liro.messages.choice;
+    Vue.prototype.route = window.route = Liro.routes.get;
 
     Liro.vue.filters.map(function (filter) {
         Vue.filter(filter.name, filter.options);
@@ -64999,7 +64999,7 @@ Vue.ready(function () {
         Vue.sync(api.name, api.options);
     });
 
-    Liro.events.watch('axios.error', function (event, res) {
+    Liro.events.watch('axios.error', function (res) {
 
         if (res.data.errors != undefined) {
             return _.each(res.data.errors, function (errors) {

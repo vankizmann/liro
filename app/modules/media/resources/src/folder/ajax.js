@@ -5,7 +5,7 @@ export default {
         var url = this.route('liro-media.ajax.folder.index');
 
         var request = {
-            source: source || ''
+            source: source || this.folder.path
         };
 
         var response = (res) => {

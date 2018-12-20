@@ -74,7 +74,7 @@ export default {
             $(this.$refs.folder).removeClass('is-dragover');
         },
 
-        dragFolder: function () {
+        dragFolder: function (event) {
             $(this.$refs.folder).addClass('is-ghost');
             event.dataTransfer.setData('folder', this.value.path);
         },

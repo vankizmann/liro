@@ -98,7 +98,7 @@ export default {
             UIkit.modal.confirm(message).then(response, () => null);
         },
 
-        dragFile: function () {
+        dragFile: function (event) {
             $(this.$refs.file).addClass('is-ghost');
             event.dataTransfer.setData('file', this.value.path);
         },

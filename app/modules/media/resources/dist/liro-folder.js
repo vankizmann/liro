@@ -487,7 +487,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             $(this.$refs.folder).removeClass('is-dragover');
         },
 
-        dragFolder: function dragFolder() {
+        dragFolder: function dragFolder(event) {
             $(this.$refs.folder).addClass('is-ghost');
             event.dataTransfer.setData('folder', this.value.path);
         },
@@ -848,7 +848,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
     },
 
-    dragFile: function dragFile() {
+    dragFile: function dragFile(event) {
         $(this.$refs.file).addClass('is-ghost');
         event.dataTransfer.setData('file', this.value.path);
     },
@@ -1822,7 +1822,7 @@ if (false) {
         var url = this.route('liro-media.ajax.folder.index');
 
         var request = {
-            source: source || ''
+            source: source || this.folder.path
         };
 
         var response = function response(res) {

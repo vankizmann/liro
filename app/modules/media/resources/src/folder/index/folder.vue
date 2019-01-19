@@ -1,38 +1,23 @@
 <template>
 
-<div ref="folder" class="liro-media-item is-folder uk-flex uk-flex-column uk-position-relative" draggable="true" @dblclick="fetchFolder" @drop="dropFolder" @dragstart="dragFolder" @dragend="dragFolderEnd" @dragover="dragFolderOver" @dragleave="dragFolderLeave">
-    <div class="liro-media-options uk-position-top-right">
-        <a href="javascript:void(0)">
-            <i class="uk-icon-small" uk-icon="chevron-down"></i>
-        </a>
-        <div ref="dropdown" uk-dropdown="mode: click; pos: bottom-center;">
-            <ul class="uk-nav">
-                <li>
-                    <a href="javascript:void(0)" @click="renameFolderPrompt">
-                        <span>{{ trans('theme::form.toolbar.rename') }}</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" @click.capture="deleteFolderConfirm">
-                        <span>{{ trans('theme::form.toolbar.delete') }}</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+<div ref="folder" :class="{ 'liro-media-item is-folder uk-flex uk-flex-column uk-position-relative': true, 'is-selected': media.items.indexOf(value.path) !=
+-1 }" :draggable="media.items.indexOf(value.path) != -1" @click="media.selectItem(value.path)" @dblclick="fetchFolder" @drop="dropFolder"
+     @dragstart="dragFolder" @dragend="dragFolderEnd" @dragover="dragFolderOver" @dragleave="dragFolderLeave">
     <div class="liro-media-icon uk-margin-auto-top">
         <div class="uk-text-center">
             <img src="/app/system/modules/theme/resources/dist/images/folder.svg" width="80" height="80" uk-svg>
         </div>
     </div>
-    <div class="liro-media-name uk-margin-auto-top uk-text-center">
-        <div class="uk-margin-top uk-text-center uk-text-truncate">
-            <div :uk-tooltip="value.name">
+    <div class="liro-media-name uk-margin-auto-top">
+        <div class="uk-text-center">
+            <div class="uk-text-truncate uk-overflow-hidden" :uk-tooltip="value.name">
                 <span>{{ value.name }}</span>
             </div>
         </div>
         <div class="uk-text-center uk-text-muted uk-text-small">
-            <span>{{ choice('liro-media::form.folder.count', value.count) }}</span>
+            <div class="uk-text-truncate uk-overflow-hidden">
+                <span>{{ choice('liro-media::form.folder.count', value.count) }}</span>
+            </div>
         </div>
     </div>
 </div>
@@ -43,7 +28,7 @@
 export default {
 
     inject: [
-        'folder'
+        'media'
     ],
 
     props: {
@@ -58,6 +43,10 @@ export default {
     methods: {
 
         dropFolder: function (event) {
+
+            if ( this.media.items.indexOf(this.value.path) != -1 ) {
+                return;
+            }
 
             var input = event.dataTransfer.getData('file');
 
@@ -74,21 +63,28 @@ export default {
             $(this.$refs.folder).removeClass('is-dragover');
         },
 
-        dragFolder: function (event) {
-            $(this.$refs.folder).addClass('is-ghost');
-            event.dataTransfer.setData('folder', this.value.path);
+        dragFolder: function () {
+            this.media.addItem(this.value.path);
+            Liro.events.emit('liro-media.folder@drag.start', this.value.path);
+            // $(this.$refs.folder).addClass('is-ghost');
+            // event.dataTransfer.setData('folder', this.value.path);
         },
 
         dragFolderEnd: function () {
-            $(this.$refs.folder).removeClass('is-ghost');
+            Liro.events.emit('liro-media.folder@drag.end', this.value.path);
+            // $(this.$refs.folder).removeClass('is-ghost');
         },
 
-        dragFolderOver: function (event) {
-            $(this.$refs.folder).addClass('is-dragover');
+        dragFolderOver: function () {
+            if ( this.media.items.indexOf(this.value.path) == -1 ) {
+                $(this.$refs.folder).addClass('is-dragover');
+            }
         },
 
-        dragFolderLeave: function (event) {
-            $(this.$refs.folder).removeClass('is-dragover');
+        dragFolderLeave: function () {
+            if ( this.media.items.indexOf(this.value.path) == -1 ) {
+                $(this.$refs.folder).removeClass('is-dragover');
+            }
         },
 
         fetchFolder: function () {

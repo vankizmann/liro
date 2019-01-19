@@ -3,8 +3,6 @@
 namespace Liro\Media\Controllers\Ajax;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Liro\Media\Prototypes\FilePrototype;
 
 class FileController extends \Liro\System\Http\Controller
@@ -26,7 +24,9 @@ class FileController extends \Liro\System\Http\Controller
     public function upload(Request $request)
     {
         $path = $request->input('path', '');
-        $dest = $request->file->storeAs($path, $request->file->getClientOriginalName());
+        $file = $request->file('file');
+
+        $dest = $file->storeAs($path, $file->getClientOriginalName());
 
         return response()->json(FilePrototype::make($dest), 200);
     }

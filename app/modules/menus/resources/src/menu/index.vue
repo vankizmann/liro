@@ -11,7 +11,7 @@
     </portal>
 
     <!-- Table start -->
-    <div class="th-form is-table">
+    <div class="th-form is-reset">
         <div class="th-table uk-margin-remove-bottom">
 
             <!-- Table head -->

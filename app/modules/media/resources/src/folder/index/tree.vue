@@ -1,11 +1,8 @@
 <template>
 
 <div class="liro-media-tree">
-    <legend class="liro-media-tree-legend">
-        <span>{{ trans('liro-media::form.folder.root') }}</span>
-    </legend>
     <ul class="liro-media-tree-list uk-nav">
-         <liro-folder-index-tree-item v-for="(dir, index) in tree" :key="index" :value="dir"></liro-folder-index-tree-item>
+         <liro-folder-index-tree-item :value="tree" :root="true"></liro-folder-index-tree-item>
     </ul>
 </div>
 

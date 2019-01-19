@@ -5,7 +5,7 @@ export default {
         var url = this.route('liro-media.ajax.folder.index');
 
         var request = {
-            source: source || this.folder.path
+            source: source == null ? this.folder.path : source
         };
 
         var response = (res) => {
@@ -59,7 +59,7 @@ export default {
 
     moveFolder: function (source, destination) {
 
-        if ( destination == null || destination == '' ) {
+        if ( destination == null ) {
             return;
         }
 
@@ -118,7 +118,7 @@ export default {
 
     moveFile: function (source, destination) {
 
-        if ( destination == null || destination == '' ) {
+        if ( destination == null ) {
             return;
         }
 

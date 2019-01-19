@@ -2,20 +2,21 @@
 
 <li ref="folder" :class="{ 'liro-media-tree-item': true, 'is-active': value.path == tree.folder.path }">
     <a href="javascript:void(0)" @click="fetchFolder" draggable="true" @drop="dropFolder" @dragstart="dragFolder" @dragend="dragFolderEnd" @dragover="dragFolderOver" @dragleave="dragFolderLeave">
-        <div v-if="value.dirs.length != 0" class="liro-media-tree-collapse uk-flex-none" @click.stop="open = !open">
+        <div v-if="!root" :class="{ 'liro-media-tree-collapse uk-flex-none': true, 'is-disabled': value.dirs.length == 0 }" @click.stop="open =
+        value.dirs.length == 0 ? false : !open">
             <i class="uk-icon-small" :uk-icon="!open ? 'chevron-right' : 'chevron-down'"></i>
         </div>
         <div class="liro-media-tree-icon uk-flex-none">
-            <img src="/app/system/modules/theme/resources/dist/images/folder.svg" width="18" height="18" uk-svg>
+            <img src="/app/system/modules/theme/resources/dist/images/folder.svg" width="16" height="16" uk-svg>
         </div>
         <div class="liro-media-tree-name uk-flex-1 uk-text-truncate">
-            <span>{{ value.name }}</span>
+            <span>{{ value.name || trans('liro-media::form.folder.root') }}</span>
         </div>
         <div class="liro-media-tree-count uk-flex-none">
             <span>{{ value.count }}</span>
         </div>
     </a>
-    <ul ref="list" class="liro-media-tree-list uk-nav" v-if="value.dirs.length != 0">
+    <ul ref="list" v-if="value.dirs.length != 0" class="liro-media-tree-list uk-nav" :style="root ? 'display: block;' : 'display:  none;'">
         <liro-folder-index-tree-item v-for="(dir, index) in value.dirs" :key="index" :value="dir"></liro-folder-index-tree-item>
     </ul>
 </li>
@@ -34,13 +35,18 @@ export default {
         value: {
             required: true,
             type: Object
+        },
+
+        root: {
+            default: false,
+            type: Boolean
         }
 
     },
 
     data: function () {
         return {
-            open: false
+            open: this.root
         };
     },
 
@@ -55,6 +61,10 @@ export default {
     methods: {
 
         dropFolder: function (event) {
+
+            if ( this.media.items.indexOf(this.value.path) != -1 ) {
+                return;
+            }
 
             var input = event.dataTransfer.getData('file');
 
@@ -72,20 +82,27 @@ export default {
         },
 
         dragFolder: function () {
+            this.media.addItem(this.value.path);
+            Liro.events.emit('liro-media.folder@drag.start', input, this.value.path);
             $(this.$refs.folder).addClass('is-ghost');
             event.dataTransfer.setData('folder', this.value.path);
         },
 
         dragFolderEnd: function () {
+            Liro.events.emit('liro-media.folder@drag.end', input, this.value.path);
             $(this.$refs.folder).removeClass('is-ghost');
         },
 
         dragFolderOver: function () {
-            $(this.$refs.folder).addClass('is-dragover');
+            if ( this.media.items.indexOf(this.value.path) == -1 ) {
+                $(this.$refs.folder).addClass('is-dragover');
+            }
         },
 
         dragFolderLeave: function () {
-            $(this.$refs.folder).removeClass('is-dragover');
+            if ( this.media.items.indexOf(this.value.path) == -1 ) {
+                $(this.$refs.folder).removeClass('is-dragover');
+            }
         },
 
         fetchFolder: function () {

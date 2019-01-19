@@ -3,7 +3,6 @@
 namespace Liro\Media\Controllers\Ajax;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Liro\Media\Prototypes\FolderPrototype;
 
 class FolderController extends \Liro\System\Http\Controller
@@ -17,7 +16,7 @@ class FolderController extends \Liro\System\Http\Controller
 
         $response = [
             'folder' => $folder->toArray(),
-            'tree' => $folder->toTreeArray()
+            'tree'   => $folder->toTreeArray()
         ];
 
         return response()->json($response, 200);

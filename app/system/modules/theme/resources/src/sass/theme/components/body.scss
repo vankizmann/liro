@@ -16,13 +16,12 @@ body.th-index {
     .th-index-header {
         z-index: 10;
         position: relative;
-        padding: 0 20px;
         background-color: $color-white;
         box-shadow: 0 0 3px rgba($color-gray-50, 0.15);
     }
 
     .th-index-sidebar {
-        padding: 20px 15px;
+        padding: 25px 20px;
         max-width: 300px;
         background-color: $color-gray-5;
         box-shadow: 0 0 3px rgba($color-gray-50, 0.15);
@@ -33,7 +32,7 @@ body.th-index {
     }
 
     .th-index-body {
-        padding: 40px 35px;
+        padding: 25px 25px;
     }
 
     .th-index-infobar {

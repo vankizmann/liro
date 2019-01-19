@@ -1,6 +1,6 @@
 <template>
 
-<div class="liro-folder-index">
+<div class="liro-folder-index uk-flex uk-flex-1" uk-grid>
 
     <portal to="app-toolbar">
         <div class="uk-navbar-item">
@@ -16,37 +16,52 @@
         </div>
     </portal>
 
-    <portal to="app-sidebar" target-class="is-active">
-        <liro-folder-index-tree></liro-folder-index-tree>
-    </portal>
+    <div class="uk-width-1-1">
 
-    <div class="uk-margin-bottom">
-        <liro-folder-index-upload></liro-folder-index-upload>
-    </div>
+        <div class="th-form is-reset">
 
-    <div class="uk-margin-bottom">
-        <ul class="uk-breadcrumb">
-            <li v-for="item in folder.ladder" :key="item.path">
-                <a href="javascript:void(0)" @click="fetchFolder(item.path)">{{ item.name }}</a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="uk-grid-small" uk-grid>
-
-        <template v-for="dir in folder.dirs">
-            <div :key="dir.path">
-                <liro-folder-index-folder :value="dir"></liro-folder-index-folder>
+            <div class="liro-media-upload uk-width-1-1">
+                <liro-folder-index-upload></liro-folder-index-upload>
             </div>
-        </template>
 
-        <template v-for="file in folder.files">
-            <div :key="file.path">
-                <liro-folder-index-file :value="file"></liro-folder-index-file>
+            <div class="liro-media-breadcrumb uk-width-1-1">
+                <ul class="uk-breadcrumb">
+                    <li v-for="item in folder.ladder" :key="item.path">
+                        <a href="javascript:void(0)" @click="fetchFolder(item.path)">{{ item.name }}</a>
+                    </li>
+                </ul>
             </div>
-        </template>
+
+            <div class="uk-flex">
+
+                <div class="liro-media-sidebar uk-width-medium">
+                    <liro-folder-index-tree></liro-folder-index-tree>
+                </div>
+
+                <div class="liro-media-content uk-flex-1">
+                    <div class="uk-grid-mini" uk-grid>
+
+                        <template v-for="dir in folder.dirs">
+                            <div :key="dir.path">
+                                <liro-folder-index-folder :value="dir"></liro-folder-index-folder>
+                            </div>
+                        </template>
+
+                        <template v-for="file in folder.files">
+                            <div :key="file.path">
+                                <liro-folder-index-file :value="file"></liro-folder-index-file>
+                            </div>
+                        </template>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
+
 
 </div>
 
@@ -70,26 +85,15 @@ export default {
 
     },
 
-    methods: {
-
-        ...AjaxMethods,
-
-        createFolderPrompt: function () {
-
-            var msg = this.trans('liro-media::form.folder.name');
-
-            var response = (res) => {
-                this.createFolder(this.folder.path, res);
-            };
-
-            UIkit.modal.prompt(msg, '').then(response);
-        },
-
-    },
-
     provide: function () {
         return {
-            folder: this
+            media: this
+        };
+    },
+
+    data: function () {
+        return {
+            items: []
         };
     },
 
@@ -122,6 +126,27 @@ export default {
         Liro.events.watch(
             'liro-media.file@delete', this.deleteFile
         );
+    },
+
+    methods: {
+
+        ...AjaxMethods,
+
+        createFolderPrompt: function () {
+
+            var msg = this.trans('liro-media::form.folder.name');
+
+            var response = (res) => {
+                this.createFolder(this.folder.path, res);
+            };
+
+            UIkit.modal.prompt(msg, '').then(response);
+        },
+
+        selectItem: function (path) {
+            this.items = _.changeValue(this.items, path);
+        }
+
     }
 
 }

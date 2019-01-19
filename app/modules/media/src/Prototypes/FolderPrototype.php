@@ -4,15 +4,14 @@ namespace Liro\Media\Prototypes;
 
 use Illuminate\Support\Facades\Storage;
 use Liro\System\Exceptions\Exception;
-use Liro\Media\Prototypes\FilePrototype;
 
 class FolderPrototype
 {
-    protected $loadFiles;
+    protected $import;
 
-    protected $maxLayer;
+    protected $deepness;
 
-    protected $currentLayer;
+    protected $cursor;
 
     public $path;
 
@@ -28,16 +27,16 @@ class FolderPrototype
 
     public $files = [];
 
-    public function __construct($path, $maxLayer = 1, $currentLayer = 0, $loadFiles = true)
+    public function __construct($path, $deepness = 1, $cursor = 0, $import = true)
     {
         $this->path = $path ?: '';
 
-        $this->dir = pathinfo($this->path, PATHINFO_DIRNAME);
+        $this->dir  = pathinfo($this->path, PATHINFO_DIRNAME);
         $this->name = pathinfo($this->path, PATHINFO_BASENAME);
 
-        $this->loadFiles = $loadFiles;
-        $this->maxLayer = $maxLayer;
-        $this->currentLayer = $currentLayer;
+        $this->deepness = $deepness;
+        $this->cursor   = $cursor;
+        $this->import   = $import;
 
         $this->bootFolders();
         $this->bootFiles();
@@ -46,48 +45,45 @@ class FolderPrototype
         $this->loadLadder();
     }
 
-    public static function make($path = '', $maxLayer = 1, $currentLayer = 0) {
-        return new FolderPrototype($path, $maxLayer, $currentLayer);
+    public static function make($path = '', $deepness = 1, $cursor = 0)
+    {
+        return new FolderPrototype($path, $deepness, $cursor);
     }
 
-    protected function bootFolders($buildTree = false)
+    protected function bootFolders()
     {
-        if ( $this->currentLayer == $this->maxLayer ) {
-            return;
+        if ($this->cursor == $this->deepness) {
+            return null;
         }
 
         $dirs = Storage::directories($this->path);
 
         $this->dirs = collect($dirs)
-        
-        ->filter(function ($dir) {
-            return ! in_array(pathinfo($dir, PATHINFO_BASENAME), ['node_modules']);
-        })
-        
-        ->map(function ($dir) {
-            return new FolderPrototype($dir, $this->maxLayer, $this->currentLayer + 1, $this->loadFiles);
-        });
+          ->filter(function ($dir) {
+              return !in_array(pathinfo($dir, PATHINFO_BASENAME), ['node_modules']);
+          })
+          ->map(function ($dir) {
+              return new FolderPrototype($dir, $this->deepness, $this->cursor + 1, $this->import);
+          });
 
         return $this->dirs;
     }
 
     protected function bootFiles()
     {
-        if ( $this->currentLayer == $this->maxLayer || $this->loadFiles == false ) {
-            return;
+        if ($this->cursor == $this->deepness || $this->import == false) {
+            return null;
         }
-        
+
         $files = Storage::files($this->path);
 
         $this->files = collect($files)
-        
-        ->filter(function ($file) {
-            return ! in_array(pathinfo($file, PATHINFO_BASENAME), ['.DS_Store']);
-        })
-        
-        ->map(function ($file) {
-            return new FilePrototype($file);
-        });
+          ->filter(function ($file) {
+              return !in_array(pathinfo($file, PATHINFO_BASENAME), ['.DS_Store']);
+          })
+          ->map(function ($file) {
+              return new FilePrototype($file);
+          });
 
         return $this->files;
     }
@@ -95,7 +91,7 @@ class FolderPrototype
     public function toArray()
     {
         $fields = [
-            'path', 'dir', 'name', 'dirs', 'files', 'count', 'ladder'
+          'path', 'dir', 'name', 'dirs', 'files', 'count', 'ladder',
         ];
 
         return collect($this)->only($fields)->toArray();
@@ -104,7 +100,7 @@ class FolderPrototype
     public function toJson()
     {
         $fields = [
-            'path', 'dir', 'name', 'dirs', 'files', 'count', 'ladder'
+          'path', 'dir', 'name', 'dirs', 'files', 'count', 'ladder',
         ];
 
         return collect($this)->only($fields)->toJson();
@@ -113,13 +109,15 @@ class FolderPrototype
     public function toTreeArray($root = true)
     {
         $tree = new FolderPrototype($root ? '' : $this->path, -1, 0, false);
-        return collect($tree->dirs)->toArray();
+
+        return collect($tree)->toArray();
     }
 
     public function toTreeJson($root = true)
     {
         $tree = new FolderPrototype($root ? '' : $this->path, -1, false);
-        return collect($tree->dirs)->toJson();
+
+        return collect($tree)->toJson();
     }
 
     protected function loadCount()
@@ -127,13 +125,13 @@ class FolderPrototype
         $dirs = Storage::directories($this->path);
 
         $dirs = collect($dirs)->filter(function ($dir) {
-            return ! in_array(pathinfo($dir, PATHINFO_BASENAME), ['node_modules']);
+            return !in_array(pathinfo($dir, PATHINFO_BASENAME), ['node_modules']);
         });
 
         $files = Storage::files($this->path);
 
         $files = collect($files)->filter(function ($file) {
-            return ! in_array(pathinfo($file, PATHINFO_BASENAME), ['.DS_Store']);
+            return !in_array(pathinfo($file, PATHINFO_BASENAME), ['.DS_Store']);
         });
 
         $this->count = count($dirs) + count($files);
@@ -144,11 +142,11 @@ class FolderPrototype
         $items = explode('/', $this->path);
 
         $ladder = [
-            ['name' => trans('liro-media::form.folder.root'), 'path' => '']
+          ['name' => trans('liro-media::form.folder.root'), 'path' => ''],
         ];
 
-        foreach ( array_filter($items) as $index => $item ) {
-            $ladder[] = ['name' => $item, 'path' => implode('/', array_slice($items, 0, $index+1))];
+        foreach (array_filter($items) as $index => $item) {
+            $ladder[] = ['name' => $item, 'path' => implode('/', array_slice($items, 0, $index + 1))];
         }
 
         $this->ladder = $ladder;
@@ -158,11 +156,11 @@ class FolderPrototype
     {
         $new = ltrim($this->path . '/' . $name, '/');
 
-        if ( Storage::exists($new) ) {
+        if (Storage::exists($new)) {
             throw new Exception('liro-media::message.folder.exists');
         }
 
-        if ( ! Storage::makeDirectory($new) ) {
+        if (!Storage::makeDirectory($new)) {
             throw new Exception('liro-media::message.media.rights');
         }
 
@@ -173,11 +171,11 @@ class FolderPrototype
     {
         $new = ltrim($dir . '/' . $this->name, '/');
 
-        if ( Storage::exists($new) ) {
+        if (Storage::exists($new)) {
             throw new Exception('liro-media::message.folder.exists');
         }
 
-        if ( ! Storage::move($this->path, $new) ) {
+        if (!Storage::move($this->path, $new)) {
             throw new Exception('liro-media::message.media.rights');
         }
 
@@ -188,11 +186,11 @@ class FolderPrototype
     {
         $new = ltrim($this->dir . '/' . $name, '/');
 
-        if ( Storage::exists($new) ) {
+        if (Storage::exists($new)) {
             throw new Exception('liro-media::message.folder.exists');
         }
 
-        if ( ! Storage::move($this->path, $new) ) {
+        if (!Storage::move($this->path, $new)) {
             throw new Exception('liro-media::message.media.rights');
         }
 

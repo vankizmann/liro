@@ -1,41 +1,25 @@
 <template>
 
-<div ref="file" class="liro-media-item is-file uk-flex uk-flex-column uk-position-relative" draggable="true" @dragstart="dragFile" @dragend="dragFileEnd">
-    <div class="liro-media-options uk-position-top-right">
-        <a href="javascript:void(0)">
-            <i class="uk-icon-small" uk-icon="chevron-down"></i>
-        </a>
-        <div ref="dropdown" uk-dropdown="mode: click; pos: bottom-center;">
-            <ul class="uk-nav">
-                <li>
-                    <a href="javascript:void(0)" @click="renameFilePrompt">
-                        <span>{{ trans('theme::form.toolbar.rename') }}</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" @click.capture="deleteFileConfirm">
-                        <span>{{ trans('theme::form.toolbar.delete') }}</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+<div ref="file" :class="{ 'liro-media-item is-file uk-flex uk-flex-column uk-position-relative': true, 'is-selected': media.items.indexOf(value.path) != -1 }"
+     draggable="true" @dragstart="dragFile" @dragend="dragFileEnd" @click="media.selectItem(value.path)">
     <div class="liro-media-icon uk-margin-auto-top">
-        <div v-if="image && true == false" class="uk-text-center">
-            <img :src="value.url" width="120" height="120" draggable="false">
+        <div v-if="image" class="uk-text-center">
+            <img :src="value.url" width="80" height="80" draggable="false">
         </div>
         <div v-else class="uk-text-center">
             <img src="/app/system/modules/theme/resources/dist/images/file.svg" width="80" height="80" uk-svg>
         </div>
     </div>
-    <div class="liro-media-name uk-margin-auto-top ">
-        <div class="uk-margin-top uk-text-center">
-            <div class="uk-text-truncate" style="overflow: hidden;" :uk-tooltip="value.name">
+    <div class="liro-media-name uk-margin-auto-top">
+        <div class="uk-text-center">
+            <div class="uk-text-truncate uk-overflow-hidden" :uk-tooltip="value.name">
                 <span>{{ value.name }}</span>
             </div>
         </div>
         <div class="uk-text-center uk-text-muted uk-text-small">
-            <span>{{ value.human }}</span>
+            <div class="uk-text-truncate uk-overflow-hidden">
+                <span>{{ value.human }}</span>
+            </div>
         </div>
     </div>
 </div>
@@ -44,6 +28,10 @@
 <script>
 
 export default {
+
+    inject: [
+        'media'
+    ],
 
     computed: {
 
@@ -73,6 +61,10 @@ export default {
     },
 
     methods: {
+
+        test: function () {
+            console.log('foobar');
+        },
 
         renameFilePrompt: function () {
 

@@ -615,7 +615,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "th-form is-table" }, [
+              _c("div", { staticClass: "th-form is-reset" }, [
                 _c("div", { staticClass: "th-table uk-margin-remove-bottom" }, [
                   _c("div", { staticClass: "th-table-head" }, [
                     _c(

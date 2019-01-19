@@ -1,16 +1,17 @@
 
 .th-navbar {
 
-    & {
-        background-color: $color-gray-95;
-    }
-
     .th-fill-default path {
         fill: $color-white !important;
     }
 
     .th-fill-primary path {
         fill: $color-primary !important;
+    }
+
+    .uk-navbar {
+        width: 280px;
+        flex-direction: column;
     }
 
     .uk-navbar-item {
@@ -25,6 +26,8 @@
         height: 100px;
         min-height: 100px;
         color: $color-white;
+        background-color: $color-gray-90;
+        box-shadow: 0 0 3px rgba($color-black, 0.50);
     }
 
     .uk-navbar-label {

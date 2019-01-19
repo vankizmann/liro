@@ -30,7 +30,7 @@
 export default {
 
     inject: [
-        'folder'
+        'media'
     ],
 
     data: function () {
@@ -80,7 +80,7 @@ export default {
 
             var form = new FormData;
 
-            form.set('path', this.folder.folder.path);
+            form.set('path', this.media.folder.path);
             form.append('file', file);
 
             var url = this.route('liro-media.ajax.file.upload');

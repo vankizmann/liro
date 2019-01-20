@@ -18,6 +18,7 @@ return [
 
     'toolbar' => [
         'save'          => 'Speichern',
+        'create'        => 'Erstellen',
         'close'         => 'Schliessen',
         'clone'         => 'Kopieren',
         'delete'        => 'Löschen',

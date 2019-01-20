@@ -5,5 +5,12 @@
 @endphp
 
 @section('content')
-    <liro-menu-index></liro-menu-index>
+
+    <portal to="app-sidebar" target-class="is-active">
+        <liro-menu-tree></liro-menu-tree>
+    </portal>
+
+    <div>
+    </div>
+
 @endsection

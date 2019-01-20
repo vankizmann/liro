@@ -15,8 +15,10 @@ class MenuController extends \Liro\System\Http\Controller
 
     public function index(MenuType $type)
     {
+        $modules = app('menus')->getModuleNames(['admin', 'user']);
+
         app('assets')->dataArray([
-            'type' => $type->append('menus'), 'types' => $type->all()
+            'type' => $type->append('menus'), 'types' => $type->all(), 'modules' => $modules
         ]);
 
         return view('liro-menus::menu/index');

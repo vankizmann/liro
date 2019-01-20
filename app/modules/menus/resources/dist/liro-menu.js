@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -174,23 +174,1254 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(2);
-__webpack_require__(9);
-module.exports = __webpack_require__(12);
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = (function () {
 
+    /**
+     * Show storage
+     */
+    this.show = [];
+
+    /**
+     * Return true if id is in show storage
+     */
+    this.active = function (id) {
+        var intID = _.toInteger(id);
+        return _.indexOf(this.show, intID) == -1;
+    }.bind(this);
+
+    /**
+     * Toggle id in show storage
+     */
+    this.toggle = function (id) {
+        var intID = _.toInteger(id);
+        this.show = _.xor(this.show, [intID]);
+    }.bind(this);
+
+    /**
+     * Apply styles to nestable items
+     */
+    this.styles = function () {
+        var _this = this;
+
+        $('.nestable-item [data-id]').each(function (index, el) {
+            if (!_this.active(el.dataset.id)) {
+                $(el).parents('.nestable-item').eq(0).addClass('nestable-show');
+            }
+            if (_this.active(el.dataset.id)) {
+                $(el).parents('.nestable-item').eq(0).removeClass('nestable-show');
+            }
+        });
+    }.bind(this);
+
+    /**
+     * Bind style changes on mouse move
+     */
+    $(document).mousemove(this.styles);
+});
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(3);
+__webpack_require__(12);
+__webpack_require__(18);
+module.exports = __webpack_require__(21);
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(3)
+var __vue_script__ = __webpack_require__(4)
 /* template */
-var __vue_template__ = __webpack_require__(8)
+var __vue_template__ = __webpack_require__(11)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/menu/tree.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-30e33ddb", Component.options)
+  } else {
+    hotAPI.reload("data-v-30e33ddb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_collapsed__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tree_item__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tree_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__tree_item__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tree_modal__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tree_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__tree_modal__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    components: {
+        'liro-menu-tree-item': __WEBPACK_IMPORTED_MODULE_1__tree_item___default.a,
+        'liro-menu-tree-modal': __WEBPACK_IMPORTED_MODULE_2__tree_modal___default.a
+    },
+
+    computed: {
+
+        type: function type() {
+            return this.$root.type;
+        },
+
+        types: function types() {
+            return this.$root.types;
+        }
+
+    },
+
+    data: function data() {
+        return {
+            menu: {}
+        };
+    },
+
+    created: function created() {
+        this.collapsed = new __WEBPACK_IMPORTED_MODULE_0__index_collapsed__["a" /* default */]();
+    },
+
+    methods: {
+
+        redirectType: function redirectType(type) {
+            Liro.routes.redirect('liro-menus.admin.menu.index', { type: type });
+        },
+
+        updateMenuOrder: function updateMenuOrder() {
+
+            var url = Liro.routes.get('liro-menus.ajax.menu.order', {
+                type: this.type.id
+            });
+
+            Axios.post(url, this.type).then(this.updateMenuOrderResponse);
+        },
+
+        updateMenuOrderResponse: function updateMenuOrderResponse(res) {
+            var message = Liro.messages.get('liro-menus::message.menu.ordered');
+            UIkit.notification(message, 'success');
+        },
+
+        openModal: function openModal() {
+            this.$refs.modal.$emit('open');
+        }
+
+    }
+
+});
+
+if (window.Liro) {
+    Liro.vue.component('liro-menu-tree', this.default);
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(6)
+/* template */
+var __vue_template__ = __webpack_require__(7)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/menu/tree/item.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-dd545812", Component.options)
+  } else {
+    hotAPI.reload("data-v-dd545812", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: {
+
+        value: {
+            required: true,
+            type: Object
+        },
+
+        collapsed: {
+            required: true,
+            type: Object
+        }
+
+    },
+
+    updated: function updated() {
+        this.collapsed.styles();
+    },
+
+    methods: {
+
+        toggleCollapsed: function toggleCollapsed() {
+            this.collapsed.toggle(this.value.id);
+            this.$forceUpdate();
+        },
+
+        /**
+         * Show prompt and handle input
+         */
+        updateMenuRoute: function updateMenuRoute() {
+            var message = Liro.messages.get('liro-menus::form.menu.route');
+            UIkit.modal.prompt(message, this.value.route).then(this.updateMenuRouteInput);
+        },
+
+        /**
+         * Apply route to value or set default if given
+         */
+        updateMenuRouteInput: function updateMenuRouteInput(input) {
+            if (input != null) this.value.route = input || '/';
+        },
+
+        /**
+         * Submit ajax request with changed state
+         */
+        updateMenuState: function updateMenuState() {
+
+            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
+                menu: this.value.id
+            });
+
+            var menu = _.merge(this.value, {
+                state: this.value.state ? 0 : 1
+            });
+
+            Axios.put(url, menu).then(this.updateMenuResponse);
+        },
+
+        /**
+         * Submit ajax request with changed hide
+         */
+        updateMenuHide: function updateMenuHide() {
+
+            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
+                menu: this.value.id
+            });
+
+            var menu = _.merge(this.value, {
+                hide: this.value.hide ? 0 : 1
+            });
+
+            Axios.put(url, menu).then(this.updateMenuResponse);
+        },
+
+        /**
+         * Submit ajax request with changed default
+         */
+        updateMenuDefault: function updateMenuDefault() {
+
+            var url = Liro.routes.get('liro-menus.ajax.menu.update', {
+                menu: this.value.id
+            });
+
+            var menu = _.merge(this.value, {
+                default: this.value.default ? 0 : 1
+            });
+
+            Axios.put(url, menu).then(this.updateMenuResponse);
+        },
+
+        /**
+         * Show success message and save value
+         */
+        updateMenuResponse: function updateMenuResponse(res) {
+
+            var message = Liro.messages.get('liro-menus::message.menu.saved');
+            UIkit.notification(message, 'success');
+
+            this.$emit('input', res.data.user);
+        }
+
+    }
+
+});
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "liro-menu-tree-item uk-width-1-1 uk-flex uk-flex-middle" },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "liro-menu-tree-item-icon uk-flex-none uk-flex uk-flex-middle"
+        },
+        [
+          _vm.value.children.length == 0
+            ? _c(
+                "a",
+                {
+                  staticClass: "is-file",
+                  attrs: { href: "javascript:void(0)" },
+                  on: { click: _vm.toggleCollapsed }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src:
+                        "/app/system/modules/theme/resources/dist/images/file.svg",
+                      width: "18",
+                      height: "18",
+                      "uk-svg": ""
+                    }
+                  })
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.value.children.length != 0
+            ? _c(
+                "a",
+                {
+                  staticClass: "is-folder",
+                  attrs: { href: "javascript:void(0)" },
+                  on: { click: _vm.toggleCollapsed }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src:
+                        "/app/system/modules/theme/resources/dist/images/folder.svg",
+                      width: "18",
+                      height: "18",
+                      "uk-svg": ""
+                    }
+                  })
+                ]
+              )
+            : _vm._e()
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "liro-menu-tree-item-title uk-flex-auto uk-flex uk-flex-middle"
+        },
+        [
+          _c(
+            "a",
+            {
+              attrs: {
+                href: _vm.route("liro-menus.admin.menu.edit", {
+                  menu: _vm.value.id
+                })
+              }
+            },
+            [
+              _c("span", { staticClass: "uk-text-truncate" }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.value.trans_title) +
+                    "\n            "
+                )
+              ])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _vm.value.children.length != 0
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "liro-menu-tree-item-count uk-flex-none uk-flex uk-flex-middle"
+            },
+            [
+              _c("span", { staticClass: "uk-text-truncate" }, [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.value.children.length) +
+                    "\n        "
+                )
+              ])
+            ]
+          )
+        : _vm._e()
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-dd545812", module.exports)
+  }
+}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(9)
+/* template */
+var __vue_template__ = __webpack_require__(10)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/menu/tree/modal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c60dbf0e", Component.options)
+  } else {
+    hotAPI.reload("data-v-c60dbf0e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    model: {
+        prop: 'model',
+        event: 'input'
+    },
+
+    computed: {
+
+        ghost: {
+            get: function get() {
+                return this.model;
+            },
+            set: function set(value) {
+                this.$emit('input', value);
+            }
+        },
+
+        states: function states() {
+            return this.$root.states;
+        },
+
+        hides: function hides() {
+            return this.$root.hides;
+        },
+
+        defaults: function defaults() {
+            return this.$root.defaults;
+        },
+
+        types: function types() {
+            return this.$root.types;
+        },
+
+        modules: function modules() {
+            return this.$root.modules;
+        },
+
+        menu: function menu() {
+            return this.$root.menu;
+        }
+
+    },
+
+    props: {
+
+        model: {
+            required: true
+        }
+
+    },
+
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$on('open', function () {
+            return UIkit.modal(_this.$refs.modal).show();
+        });
+    },
+
+    methods: {
+
+        updateMenu: function updateMenu() {
+
+            var url = this.route('liro-menus.ajax.menu.update', {
+                menu: this.menu.id
+            });
+
+            this.http.put(url, this.menu).then(this.updateMenuResponse);
+        },
+
+        updateMenuResponse: function updateMenuResponse(res) {
+            var message = this.trans('liro-menus::message.menu.saved');
+            UIkit.notification(message, 'success');
+        }
+
+    }
+
+});
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      ref: "modal",
+      staticClass: "liro-tree-modal uk-modal-container",
+      attrs: { "uk-modal": "esc-close: false; container: false;" }
+    },
+    [
+      _c("div", { staticClass: "uk-modal-dialog uk-margin-auto-vertical" }, [
+        _c("div", { staticClass: "uk-modal-header" }, [
+          _c("h2", { staticClass: "uk-modal-title" }, [
+            _vm._v(_vm._s(_vm.trans("liro-menus::admin.menu.create")))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-modal-body" }, [
+          _c("div", { staticClass: "uk-flex", attrs: { "uk-grid": "" } }, [
+            _c(
+              "div",
+              { staticClass: "uk-width-2-3" },
+              [
+                _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+                  _c("span", [
+                    _vm._v(_vm._s(_vm.trans("liro-menus::form.legend.info")))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "app-label",
+                  {
+                    attrs: {
+                      label: _vm.trans("liro-menus::form.menu.title"),
+                      required: true
+                    }
+                  },
+                  [
+                    _c("app-input", {
+                      model: {
+                        value: _vm.ghost.title,
+                        callback: function($$v) {
+                          _vm.$set(_vm.ghost, "title", $$v)
+                        },
+                        expression: "ghost.title"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "app-label",
+                  {
+                    attrs: {
+                      label: _vm.trans("liro-menus::form.menu.route"),
+                      required: true
+                    }
+                  },
+                  [
+                    _c("app-input", {
+                      model: {
+                        value: _vm.ghost.route,
+                        callback: function($$v) {
+                          _vm.$set(_vm.ghost, "route", $$v)
+                        },
+                        expression: "ghost.route"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "app-label",
+                  {
+                    attrs: {
+                      label: _vm.trans("liro-menus::form.menu.module"),
+                      required: true
+                    }
+                  },
+                  [
+                    _c(
+                      "app-select",
+                      {
+                        attrs: {
+                          placeholder: _vm.trans(
+                            "liro-menus::form.menu.select_module"
+                          ),
+                          disabled: _vm.model.lock || false
+                        },
+                        model: {
+                          value: _vm.model.module,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "module", $$v)
+                          },
+                          expression: "model.module"
+                        }
+                      },
+                      [
+                        _vm._l(_vm.modules, function(items, group) {
+                          return _vm._l(items, function(routes, index) {
+                            return _c(
+                              "app-select-group",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: group == "user",
+                                    expression: "group == 'user'"
+                                  }
+                                ],
+                                key: group + "-" + index,
+                                attrs: { label: index }
+                              },
+                              _vm._l(routes, function(label, value) {
+                                return _c("app-select-option", {
+                                  key: value,
+                                  attrs: { value: value, label: label }
+                                })
+                              })
+                            )
+                          })
+                        })
+                      ],
+                      2
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "app-label",
+                  {
+                    attrs: { label: _vm.trans("liro-menus::form.menu.query") }
+                  },
+                  [
+                    _c("app-input", {
+                      model: {
+                        value: _vm.ghost.query,
+                        callback: function($$v) {
+                          _vm.$set(_vm.ghost, "query", $$v)
+                        },
+                        expression: "ghost.query"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "uk-width-1-3" },
+              [
+                _c("legend", { staticClass: "uk-legend uk-legend-small" }, [
+                  _c("span", [
+                    _vm._v(_vm._s(_vm.trans("liro-menus::form.legend.general")))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "app-label",
+                  {
+                    attrs: { label: _vm.trans("liro-menus::form.menu.state") }
+                  },
+                  [
+                    _c(
+                      "app-switch",
+                      {
+                        staticClass: "is-state",
+                        model: {
+                          value: _vm.model.state,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "state", $$v)
+                          },
+                          expression: "model.state"
+                        }
+                      },
+                      _vm._l(_vm.states, function(item) {
+                        return _c("app-switch-option", {
+                          key: item.value,
+                          attrs: { value: item.value, label: item.label }
+                        })
+                      })
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "app-label",
+                  { attrs: { label: _vm.trans("liro-menus::form.menu.hide") } },
+                  [
+                    _c(
+                      "app-switch",
+                      {
+                        staticClass: "is-hide",
+                        model: {
+                          value: _vm.model.hide,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "hide", $$v)
+                          },
+                          expression: "model.hide"
+                        }
+                      },
+                      _vm._l(_vm.hides, function(item) {
+                        return _c("app-switch-option", {
+                          key: item.value,
+                          attrs: { value: item.value, label: item.label }
+                        })
+                      })
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "app-label",
+                  {
+                    attrs: { label: _vm.trans("liro-menus::form.menu.default") }
+                  },
+                  [
+                    _c(
+                      "app-switch",
+                      {
+                        staticClass: "is-default",
+                        model: {
+                          value: _vm.model.default,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "default", $$v)
+                          },
+                          expression: "model.default"
+                        }
+                      },
+                      _vm._l(_vm.defaults, function(item) {
+                        return _c("app-switch-option", {
+                          key: item.value,
+                          attrs: { value: item.value, label: item.label }
+                        })
+                      })
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "app-label",
+                  { attrs: { label: _vm.trans("liro-menus::form.menu.type") } },
+                  [
+                    _c(
+                      "app-select",
+                      {
+                        attrs: {
+                          placeholder: _vm.trans(
+                            "liro-menus::form.menu.select_type"
+                          )
+                        },
+                        model: {
+                          value: _vm.model.menu_type_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "menu_type_id", $$v)
+                          },
+                          expression: "model.menu_type_id"
+                        }
+                      },
+                      _vm._l(_vm.types, function(type) {
+                        return _c("app-select-option", {
+                          key: type.id,
+                          attrs: { value: type.id, label: type.title }
+                        })
+                      })
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "uk-modal-footer uk-text-right" }, [
+      _c(
+        "button",
+        {
+          staticClass: "uk-button uk-button-default uk-modal-close",
+          attrs: { type: "button" }
+        },
+        [_vm._v("Cancel")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "uk-button uk-button-primary",
+          attrs: { type: "button" }
+        },
+        [_vm._v("Save")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c60dbf0e", module.exports)
+  }
+}
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "liro-menu-tree" },
+    [
+      _c("div", { staticClass: "uk-margin-bottom uk-flex uk-flex-middle" }, [
+        _c("div", { staticClass: "uk-flex-auto uk-margin-small-right" }, [
+          _c("input", {
+            staticClass: "uk-input uk-form-small",
+            attrs: {
+              type: "search",
+              placeholder: _vm.trans("theme::form.search.placeholder")
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-flex-none" }, [
+          _c(
+            "a",
+            {
+              staticClass: "uk-button uk-button-small uk-button-primary",
+              attrs: { href: "javascript:void(0);" },
+              on: { click: _vm.openModal }
+            },
+            [
+              _c("span", {
+                staticClass: "uk-icon-small",
+                attrs: { "uk-icon": "search" }
+              }),
+              _vm._v(" "),
+              _c("span", [
+                _vm._v(_vm._s(_vm.trans("theme::form.search.label")))
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("liro-menu-tree-modal", {
+        ref: "modal",
+        model: {
+          value: _vm.menu,
+          callback: function($$v) {
+            _vm.menu = $$v
+          },
+          expression: "menu"
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "uk-flex uk-flex-middle" }, [
+        _c("div", { staticClass: "uk-flex-auto uk-margin-small-right" }, [
+          _c("span", { staticClass: "uk-text-small uk-text-muted" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.trans("liro-menus::form.legend.tree")) +
+                "\n            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "uk-flex-none" }, [
+          _c(
+            "a",
+            {
+              staticClass: "uk-button uk-button-small uk-button-success",
+              attrs: { href: "javascript:void(0);" },
+              on: { click: _vm.openModal }
+            },
+            [
+              _c("span", {
+                staticClass: "uk-icon-small",
+                attrs: { "uk-icon": "plus" }
+              }),
+              _vm._v(" "),
+              _c("span", [
+                _vm._v(_vm._s(_vm.trans("theme::form.toolbar.create")))
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("vue-nestable", {
+        attrs: { threshold: 50, maxDepth: 5 },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function(ref) {
+              var item = ref.item
+              return _c(
+                "vue-nestable-handle",
+                { attrs: { item: item, "data-id": item.id } },
+                [
+                  _c("liro-menu-tree-item", {
+                    attrs: { collapsed: _vm.collapsed },
+                    model: {
+                      value: item,
+                      callback: function($$v) {
+                        item = $$v
+                      },
+                      expression: "item"
+                    }
+                  })
+                ],
+                1
+              )
+            }
+          }
+        ]),
+        model: {
+          value: _vm.type.menus,
+          callback: function($$v) {
+            _vm.$set(_vm.type, "menus", $$v)
+          },
+          expression: "type.menus"
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-30e33ddb", module.exports)
+  }
+}
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(13)
+/* template */
+var __vue_template__ = __webpack_require__(17)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -229,13 +1460,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 3 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_collapsed__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_item__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_collapsed__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_item__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__index_item__);
 //
 //
@@ -404,65 +1635,15 @@ if (window.Liro) {
 }
 
 /***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = (function () {
-
-    /**
-     * Show storage
-     */
-    this.show = [];
-
-    /**
-     * Return true if id is in show storage
-     */
-    this.active = function (id) {
-        var intID = _.toInteger(id);
-        return _.indexOf(this.show, intID) == -1;
-    }.bind(this);
-
-    /**
-     * Toggle id in show storage
-     */
-    this.toggle = function (id) {
-        var intID = _.toInteger(id);
-        this.show = _.xor(this.show, [intID]);
-    }.bind(this);
-
-    /**
-     * Apply styles to nestable items
-     */
-    this.styles = function () {
-        var _this = this;
-
-        $('.nestable-item [data-id]').each(function (index, el) {
-            if (!_this.active(el.dataset.id)) {
-                $(el).parents('.nestable-item').eq(0).addClass('nestable-show');
-            }
-            if (_this.active(el.dataset.id)) {
-                $(el).parents('.nestable-item').eq(0).removeClass('nestable-show');
-            }
-        });
-    }.bind(this);
-
-    /**
-     * Bind style changes on mouse move
-     */
-    $(document).mousemove(this.styles);
-});
-
-/***/ }),
-/* 5 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(6)
+var __vue_script__ = __webpack_require__(15)
 /* template */
-var __vue_template__ = __webpack_require__(7)
+var __vue_template__ = __webpack_require__(16)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -501,7 +1682,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 6 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -655,7 +1836,7 @@ if (window.Liro) {
 }
 
 /***/ }),
-/* 7 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -770,7 +1951,7 @@ if (false) {
 }
 
 /***/ }),
-/* 8 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1041,15 +2222,15 @@ if (false) {
 }
 
 /***/ }),
-/* 9 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(10)
+var __vue_script__ = __webpack_require__(19)
 /* template */
-var __vue_template__ = __webpack_require__(11)
+var __vue_template__ = __webpack_require__(20)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1088,7 +2269,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 10 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1244,7 +2425,7 @@ if (window.Liro) {
 }
 
 /***/ }),
-/* 11 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1574,15 +2755,15 @@ if (false) {
 }
 
 /***/ }),
-/* 12 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(13)
+var __vue_script__ = __webpack_require__(22)
 /* template */
-var __vue_template__ = __webpack_require__(14)
+var __vue_template__ = __webpack_require__(23)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1621,7 +2802,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 13 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1770,7 +2951,7 @@ if (window.Liro) {
 }
 
 /***/ }),
-/* 14 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

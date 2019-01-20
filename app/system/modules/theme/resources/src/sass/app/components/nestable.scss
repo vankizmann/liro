@@ -3,49 +3,49 @@
 * Style for nestable
 */
 
-.nestable {
+.liro-menu-index .nestable {
     position: relative;
     background-color: $color-gray-5;
 }
 
-.nestable .nestable-list {
+.liro-menu-index .nestable .nestable-list {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
 
-.nestable .nestable-item-name {
+.liro-menu-index .nestable .nestable-item-name {
     background-color: $color-white;
 }
 
-.nestable .nestable-item > .nestable-list > .nestable-item {
+.liro-menu-index .nestable .nestable-item > .nestable-list > .nestable-item {
     display: none;
 }
 
-.nestable .nestable-item > .nestable-list > .nestable-item.is-dragging,
-.nestable .nestable-item.nestable-show > .nestable-list > .nestable-item {
+.liro-menu-index .nestable .nestable-item > .nestable-list > .nestable-item.is-dragging,
+.liro-menu-index .nestable .nestable-item.nestable-show > .nestable-list > .nestable-item {
     display: block;
 }
 
-.nestable .nestable-list .nestable-list {
+.liro-menu-index .nestable .nestable-list .nestable-list {
     padding-left: 40px;
 }
 
-.nestable-item {
+.liro-menu-index .nestable-item {
     width: 100%;
     position: relative;
 }
 
-.nestable-item.is-dragging .nestable-list {
+.liro-menu-index .nestable-item.is-dragging .nestable-list {
     pointer-events: none;
 }
 
-.nestable-item.is-dragging * {
+.liro-menu-index .nestable-item.is-dragging * {
     opacity: 0;
     filter: alpha(opacity=0);
 }
 
-.nestable-item.is-dragging:before {
+.liro-menu-index .nestable-item.is-dragging:before {
     content: '\00a0';
     position: absolute;
     top: 0;
@@ -55,12 +55,12 @@
     background-color: rgba($color-primary, 0.3);
 }
 
-.nestable-item.is-dragging .nestable-list,
-.nestable-drag-layer .nestable-list .nestable-list {
+.liro-menu-index .nestable-item.is-dragging .nestable-list,
+.liro-menu-index .nestable-drag-layer .nestable-list .nestable-list {
     display: none !important;
 }
 
-.nestable-drag-layer {
+.liro-menu-index .nestable-drag-layer {
     position: fixed;
     top: 0;
     left: 0;
@@ -68,13 +68,13 @@
     pointer-events: none;
 }
 
-.nestable-drag-layer > .nestable-list {
+.liro-menu-index .nestable-drag-layer > .nestable-list {
     position: absolute;
     top: 0;
     left: 0;
     background-color: rgba($color-light-20, 0.9);
 }
 
-.nestable [draggable="true"] {
+.liro-menu-index .nestable [draggable="true"] {
     // cursor: move;
 }

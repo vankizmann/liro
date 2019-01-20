@@ -31,7 +31,7 @@ mix.setResourceRoot(
  */
 
 mix.js([
-    'resources/src/menu/index.vue', 'resources/src/menu/create.vue', 'resources/src/menu/edit.vue'
+    'resources/src/menu/tree.vue', 'resources/src/menu/index.vue', 'resources/src/menu/create.vue', 'resources/src/menu/edit.vue'
 ], 'resources/dist/liro-menu.js');
 
 mix.js([

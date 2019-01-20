@@ -1,0 +1,122 @@
+
+.liro-menu-tree {
+    width: 100%;
+}
+
+.liro-menu-tree-item {
+    padding: 3px;
+    border-radius: 3px;
+    margin-bottom: 3px;
+}
+
+.liro-menu-tree-item:hover {
+    background-color: rgba($color-gray-25, 0.15);
+}
+
+.liro-menu-tree-item-icon > a {
+    padding: 6px 8px;
+}
+
+.liro-menu-tree-item-icon > a.is-folder {
+    color: $color-primary;
+}
+
+.liro-menu-tree-item-icon > a.is-file {
+    color: $color-gray-50;
+}
+
+.liro-menu-tree-item-title > a {
+    padding: 6px 8px;
+    font-size: $global-small-font-size;
+    color: $color-gray-60;
+}
+
+.liro-menu-tree-item-count > span {
+    padding: 6px 8px;
+    font-size: $global-small-font-size;
+    color: $color-gray-40;
+}
+
+
+/*
+* Style for nestable
+*/
+
+.liro-menu-tree .nestable {
+    position: relative;
+}
+
+.liro-menu-tree .nestable .nestable-list {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.liro-menu-tree .nestable .nestable-list .nestable-list:before {
+    content: '\00a0';
+    position: absolute;
+    left: 16px;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background-color: rgba($color-gray-50, 0.1);
+}
+
+.liro-menu-tree .nestable .nestable-item > .nestable-list > .nestable-item {
+    display: none;
+}
+
+.liro-menu-tree .nestable .nestable-item > .nestable-list > .nestable-item.is-dragging,
+.liro-menu-tree .nestable .nestable-item.nestable-show > .nestable-list > .nestable-item {
+    display: block;
+}
+
+.liro-menu-tree .nestable .nestable-list .nestable-list {
+    padding-left: 25px;
+}
+
+.liro-menu-tree .nestable-item {
+    width: 100%;
+    position: relative;
+}
+
+.liro-menu-tree .nestable-item.is-dragging .nestable-list {
+    pointer-events: none;
+}
+
+.liro-menu-tree .nestable-item.is-dragging * {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.liro-menu-tree .nestable-item.is-dragging:before {
+    content: '\00a0';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($color-primary, 0.3);
+    border-radius: 3px;
+}
+
+.liro-menu-tree .nestable-item.is-dragging .nestable-list,
+.liro-menu-tree .nestable-drag-layer .nestable-list .nestable-list {
+    display: none !important;
+}
+
+.liro-menu-tree .nestable-drag-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.liro-menu-tree .nestable-drag-layer > .nestable-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-light-20, 0.9);
+}

@@ -6,6 +6,7 @@ return [
         'general'           => 'Allgemeines',
         'info'              => 'Informationen',
         'password'          => 'Password',
+        'tree'              => 'Menübaum'
     ],
 
     'menu' => [

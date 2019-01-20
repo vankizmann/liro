@@ -1,34 +1,36 @@
 <template>
 
 <div class="liro-auth-modal" ref="modal" uk-modal="esc-close: false; bg-close: false; container: false;">
-    <div class="uk-modal-dialog uk-margin-auto-vertical uk-padding">
+    <div class="uk-modal-dialog uk-margin-auto-vertical">
+        <div class="uk-modal-body">
 
-        <!-- Form start -->
-        <form class="uk-form uk-margin-remove" method="post" ref="form" @submit.prevent="authUser">
+            <!-- Form start -->
+            <form class="uk-form uk-margin-remove" method="post" ref="form" @submit.prevent="authUser">
 
-            <div class="uk-margin-bottom">
-                <label class="uk-form-label" for="email">{{ trans('liro-users::form.auth.email') }}</label>
-                <div class="uk-form-controls">
-                    <input class="uk-input" id="email" type="email" name="email" v-model="user.email">
+                <div class="uk-margin-bottom">
+                    <label class="uk-form-label" for="email">{{ trans('liro-users::form.auth.email') }}</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="email" type="email" name="email" v-model="user.email">
+                    </div>
                 </div>
-            </div>
 
-            <div class="uk-margin-bottom">
-                <label class="uk-form-label" for="password">{{ trans('liro-users::form.auth.password') }}</label>
-                <div class="uk-form-controls">
-                    <input class="uk-input" id="password" type="password" name="password" v-model="user.password">
+                <div class="uk-margin-bottom">
+                    <label class="uk-form-label" for="password">{{ trans('liro-users::form.auth.password') }}</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="password" type="password" name="password" v-model="user.password">
+                    </div>
                 </div>
-            </div>
 
-            <div class="uk-form-controls">
-                <button class="uk-button uk-button-primary uk-width-1-1" type="submit">
-                    <i uk-icon="key"></i> <span>{{ trans('liro-users::form.auth.login') }}</span>
-                </button>
-            </div>
+                <div class="uk-form-controls">
+                    <button class="uk-button uk-button-primary uk-width-1-1" type="submit">
+                        <i uk-icon="key"></i> <span>{{ trans('liro-users::form.auth.login') }}</span>
+                    </button>
+                </div>
 
-        </form>
-        <!-- Form end -->
+            </form>
+            <!-- Form end -->
 
+        </div>
     </div>
 </div>
 

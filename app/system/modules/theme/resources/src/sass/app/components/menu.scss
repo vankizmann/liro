@@ -4,17 +4,14 @@
 }
 
 .liro-menu-tree-item {
-    padding: 3px;
     border-radius: 3px;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
+    padding: 6px 10px;
+    //background-color: rgba($color-gray-25, 0.15);
 }
 
 .liro-menu-tree-item:hover {
     background-color: rgba($color-gray-25, 0.15);
-}
-
-.liro-menu-tree-item-icon > a {
-    padding: 6px 8px;
 }
 
 .liro-menu-tree-item-icon > a.is-folder {
@@ -22,19 +19,28 @@
 }
 
 .liro-menu-tree-item-icon > a.is-file {
-    color: $color-gray-50;
+    color: $color-gray-25;
+}
+
+.liro-menu-tree-item.is-hidden .liro-menu-tree-item-icon > a {
+    color: $color-warning;
+}
+
+.liro-menu-tree-item.is-disabled .liro-menu-tree-item-icon > a {
+    color: $color-danger;
+}
+
+.liro-menu-tree-item-title {
+    //padding: 6px;
 }
 
 .liro-menu-tree-item-title > a {
-    padding: 6px 8px;
     font-size: $global-small-font-size;
     color: $color-gray-60;
 }
 
 .liro-menu-tree-item-count > span {
-    padding: 6px 8px;
-    font-size: $global-small-font-size;
-    color: $color-gray-40;
+    color: $color-gray-30;
 }
 
 
@@ -54,9 +60,9 @@
 }
 
 .liro-menu-tree .nestable .nestable-list .nestable-list:before {
-    content: '\00a0';
+    //content: '\00a0';
     position: absolute;
-    left: 16px;
+    left: 17px;
     top: 0;
     width: 1px;
     height: 100%;
@@ -73,7 +79,7 @@
 }
 
 .liro-menu-tree .nestable .nestable-list .nestable-list {
-    padding-left: 25px;
+    padding-left: 45px;
 }
 
 .liro-menu-tree .nestable-item {

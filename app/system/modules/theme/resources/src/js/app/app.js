@@ -8,8 +8,8 @@ Vue.use(VueNestable);
 import VueShortkey from 'vue-shortkey';
 Vue.use(VueShortkey);
 
-import ScopedSlotsPolyfill from 'vue-nestable/lib/scoped-slots-polyfill';
-Vue.use(ScopedSlotsPolyfill);
+// import ScopedSlotsPolyfill from 'vue-nestable/lib/scoped-slots-polyfill';
+// Vue.use(ScopedSlotsPolyfill);
 
 import VueReady from './plugins/ready';
 Vue.use(VueReady);

@@ -12995,7 +12995,7 @@ body.th-index .th-index-header {
 
 body.th-index .th-index-sidebar {
   padding: 25px 20px;
-  max-width: 360px;
+  max-width: 320px;
   background-color: #f5f6f9;
   -webkit-box-shadow: 0 0 3px rgba(130, 140, 163, 0.15);
           box-shadow: 0 0 3px rgba(130, 140, 163, 0.15);
@@ -13792,17 +13792,13 @@ form:last-child {
 }
 
 .liro-menu-tree-item {
-  padding: 3px;
   border-radius: 3px;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
+  padding: 6px 10px;
 }
 
 .liro-menu-tree-item:hover {
   background-color: rgba(195, 200, 213, 0.15);
-}
-
-.liro-menu-tree-item-icon > a {
-  padding: 6px 8px;
 }
 
 .liro-menu-tree-item-icon > a.is-folder {
@@ -13810,19 +13806,24 @@ form:last-child {
 }
 
 .liro-menu-tree-item-icon > a.is-file {
-  color: #828ca3;
+  color: #c3c8d5;
+}
+
+.liro-menu-tree-item.is-hidden .liro-menu-tree-item-icon > a {
+  color: #ff9453;
+}
+
+.liro-menu-tree-item.is-disabled .liro-menu-tree-item-icon > a {
+  color: #fb4e52;
 }
 
 .liro-menu-tree-item-title > a {
-  padding: 6px 8px;
   font-size: 0.925rem;
   color: #6b7691;
 }
 
 .liro-menu-tree-item-count > span {
-  padding: 6px 8px;
-  font-size: 0.925rem;
-  color: #9aa2b5;
+  color: #b4baca;
 }
 
 /*
@@ -13840,9 +13841,8 @@ form:last-child {
 }
 
 .liro-menu-tree .nestable .nestable-list .nestable-list:before {
-  content: '\A0';
   position: absolute;
-  left: 16px;
+  left: 17px;
   top: 0;
   width: 1px;
   height: 100%;
@@ -13859,7 +13859,7 @@ form:last-child {
 }
 
 .liro-menu-tree .nestable .nestable-list .nestable-list {
-  padding-left: 25px;
+  padding-left: 45px;
 }
 
 .liro-menu-tree .nestable-item {

@@ -3,11 +3,15 @@
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
 <style type="text/css">
-	.st0{opacity:0.2;enable-background:new    ;}
-	.st1{opacity:0.3;enable-background:new    ;}
+	.file-opacity-60 {
+		opacity:0.6;
+	}
+	.file-opacity-80 {
+		opacity:0.8;
+	}
 </style>
 <g>
-	<polygon class="st0" points="189.4,7 41.1,7 41.1,292.5 258.4,292.5 258.4,76 	"/>
-	<polygon class="st1" points="257.6,75.2 189.4,7 189,7 189,75.2 	"/>
+	<polygon class="file-opacity-60" points="189.4,7 41.1,7 41.1,292.5 258.4,292.5 258.4,76 	"/>
+	<polygon class="file-opacity-80" points="257.6,75.2 189.4,7 189,7 189,75.2 	"/>
 </g>
 </svg>

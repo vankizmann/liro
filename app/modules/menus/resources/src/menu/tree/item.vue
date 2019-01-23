@@ -1,30 +1,37 @@
 <template>
 
-    <div class="liro-menu-tree-item uk-width-1-1 uk-flex uk-flex-middle">
+    <div :class="{ 'liro-menu-tree-item': true, 'is-hidden': value.hide == 1, 'is-disabled': value.state == 0 }">
+        <div class="uk-flex uk-flex-middle">
 
-        <div class="liro-menu-tree-item-icon uk-flex-none uk-flex uk-flex-middle">
-            <a v-if="value.children.length == 0" class="is-file" href="javascript:void(0)" @click="toggleCollapsed">
-                <img src="/app/system/modules/theme/resources/dist/images/file.svg" width="18" height="18" uk-svg>
-            </a>
-            <a v-if="value.children.length != 0" class="is-folder" href="javascript:void(0)" @click="toggleCollapsed">
-                <img src="/app/system/modules/theme/resources/dist/images/folder.svg" width="18" height="18" uk-svg>
-            </a>
+            <div class="uk-flex-none uk-margin-small-right">
+                <div class="liro-menu-tree-item-icon">
+                    <a v-if="value.children.length == 0" class="is-file" href="javascript:void(0)" @click="toggleCollapsed">
+                        <img src="/app/system/modules/theme/resources/dist/images/file.svg" width="20" height="20" uk-svg>
+                    </a>
+                    <a v-if="value.children.length != 0" class="is-folder" href="javascript:void(0)" @click="toggleCollapsed">
+                        <img src="/app/system/modules/theme/resources/dist/images/folder.svg" width="20" height="20" uk-svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="uk-flex-auto">
+                <div class="liro-menu-tree-item-title">
+                    <a class="uk-display-block" :href="route('liro-menus.admin.menu.edit', { menu: value.id })">
+                        <span>{{ value.trans_title }}</span>
+                    </a>
+                    <div class="uk-text-truncate">
+                        <span class="uk-text-small uk-text-muted">{{ value.module }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-flex-none uk-margin-small-left">
+                <div class="liro-menu-tree-item-count uk-flex-none">
+                    <span class="uk-text-truncate">{{ value.children.length || '-' }}</span>
+                </div>
+            </div>
+
         </div>
-
-        <div class="liro-menu-tree-item-title uk-flex-auto uk-flex uk-flex-middle">
-            <a :href="route('liro-menus.admin.menu.edit', { menu: value.id })">
-                <span class="uk-text-truncate">
-                    {{ value.trans_title }}
-                </span>
-            </a>
-        </div>
-
-        <div v-if="value.children.length != 0" class="liro-menu-tree-item-count uk-flex-none uk-flex uk-flex-middle">
-            <span class="uk-text-truncate">
-                {{ value.children.length }}
-            </span>
-        </div>
-
     </div>
 
 </template>

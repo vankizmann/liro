@@ -2896,9 +2896,9 @@ img-loader@^3.0.0:
   dependencies:
     loader-utils "^1.1.0"
 
-immutability-helper@^2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/immutability-helper/-/immutability-helper-2.8.1.tgz#3c5ec05fcd83676bfae7146f319595243ad904f4"
+immutability-helper@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/immutability-helper/-/immutability-helper-2.9.0.tgz#04a1c646300cd3a68aa5dc1daa7758da2ca75292"
   dependencies:
     invariant "^2.2.0"
 
@@ -6108,11 +6108,11 @@ vue-loader@^13.7.1:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
-vue-nestable@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/vue-nestable/-/vue-nestable-0.0.8.tgz#43aadd77b23a6685a7d56578748e853f2823d931"
+vue-nestable@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/vue-nestable/-/vue-nestable-2.0.0.tgz#20d77f5b169951bebcc33a54bb29365b1937f411"
   dependencies:
-    immutability-helper "^2.8.1"
+    immutability-helper "^2.9.0"
 
 vue-shortkey@^3.1.6:
   version "3.1.6"

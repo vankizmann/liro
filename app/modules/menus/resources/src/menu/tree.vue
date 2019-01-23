@@ -36,7 +36,6 @@
 
         </div>
 
-
         <!-- Table start -->
         <vue-nestable v-model="type.menus" :threshold="50" :maxDepth="5">
             <vue-nestable-handle slot-scope="{ item }" :item="item" :data-id="item.id">

@@ -16,8 +16,8 @@ class Menu extends Model
 
     protected $table = 'menus';
 
-    protected $fillable = [
-        'state', 'hide', 'lock', 'title', 'route', 'module', 'query', 'default', 'menu_type_id', 'parent_id', '_lft', '_rgt'
+    protected $guarded = [
+      'id'
     ];
 
     protected $fields = [
@@ -25,7 +25,7 @@ class Menu extends Model
     ];
 
     protected $appends = [
-        'trans_title'
+        'trans_title', 'collapsed'
     ];
 
     protected $hidden = [
@@ -107,6 +107,11 @@ class Menu extends Model
     public function getRouteActiveAttribute()
     {
         return app()->getMenuKey('id') == $this->attributes['id'] || $this->children->pluck('route_current')->contains(true) || $this->children->pluck('route_active')->contains(true);
+    }
+
+    public function getCollapsedAttribute()
+    {
+        return true;
     }
 
 }

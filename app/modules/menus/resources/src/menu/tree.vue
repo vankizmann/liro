@@ -37,9 +37,9 @@
         </div>
 
         <!-- Table start -->
-        <vue-nestable v-model="type.menus" :threshold="50" :maxDepth="5">
+        <vue-nestable v-model="type.menus" :threshold="50" :maxDepth="5" :collapsed="true">
             <vue-nestable-handle slot-scope="{ item }" :item="item" :data-id="item.id">
-                <liro-menu-tree-item v-model="item" :collapsed="collapsed"></liro-menu-tree-item>
+                <liro-menu-tree-item v-model="item"></liro-menu-tree-item>
             </vue-nestable-handle>
         </vue-nestable>
         <!-- Table end -->
@@ -49,7 +49,6 @@
 </template>
 <script>
 
-    import IndexCollapsed from './index/collapsed';
     import TreeItem from './tree/item';
     import TreeModal from './tree/modal';
 
@@ -76,10 +75,6 @@
             return {
                 menu: {}
             }
-        },
-
-        created: function () {
-            this.collapsed = new IndexCollapsed;
         },
 
         methods: {

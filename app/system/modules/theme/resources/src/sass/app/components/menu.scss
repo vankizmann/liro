@@ -3,15 +3,23 @@
     width: 100%;
 }
 
+.li-menu-tree {
+
+}
+
 .liro-menu-tree-item {
     border-radius: 3px;
     margin-bottom: 4px;
-    padding: 6px 10px;
+    padding: 6px 4px;
     //background-color: rgba($color-gray-25, 0.15);
 }
 
 .liro-menu-tree-item:hover {
     background-color: rgba($color-gray-25, 0.15);
+}
+
+.liro-menu-tree__item-cell {
+
 }
 
 .liro-menu-tree-item-icon > a.is-folder {
@@ -52,34 +60,44 @@
     position: relative;
 }
 
-.liro-menu-tree .nestable .nestable-list {
+.liro-menu-tree .nestable-list {
     position: relative;
-    margin: 0;
     padding: 0;
+    margin: 0;
     list-style-type: none;
 }
 
-.liro-menu-tree .nestable .nestable-list .nestable-list:before {
-    //content: '\00a0';
-    position: absolute;
-    left: 17px;
-    top: 0;
-    width: 1px;
-    height: 100%;
-    background-color: rgba($color-gray-50, 0.1);
+.liro-menu-tree .nestable-list > .nestable-item > .nestable-list {
+    position: relative;
+    padding-left: 22px;
 }
 
-.liro-menu-tree .nestable .nestable-item > .nestable-list > .nestable-item {
-    display: none;
+.liro-menu-tree .nestable-item {
+    position: relative;
 }
 
-.liro-menu-tree .nestable .nestable-item > .nestable-list > .nestable-item.is-dragging,
-.liro-menu-tree .nestable .nestable-item.nestable-show > .nestable-list > .nestable-item {
-    display: block;
-}
+//.liro-menu-tree .nestable-list > .nestable-item:before {
+//    content: '\00a0';
+//    position: absolute;
+//    top: -29px;
+//    left: -2px;
+//    width: 10px;
+//    height: 54px;
+//    //border-radius: 0 0 0 5px;
+//    border-left: 1px solid $color-gray-15;
+//    border-bottom: 1px solid $color-gray-15;
+//}
+//
+//.liro-menu-tree .nestable-list > .nestable-item:first-child:before {
+//    top: -5px;
+//    height: 30px;
+//}
 
-.liro-menu-tree .nestable .nestable-list .nestable-list {
-    padding-left: 45px;
+.liro-menu-tree .nestable .nestable-list {
+    position: relative;
+    margin: 0;
+    //padding: 0;
+    list-style-type: none;
 }
 
 .liro-menu-tree .nestable-item {
@@ -94,6 +112,10 @@
 .liro-menu-tree .nestable-item.is-dragging * {
     opacity: 0;
     filter: alpha(opacity=0);
+}
+
+.liro-menu-tree .nestable-item .nestable-item-content {
+    position: relative;
 }
 
 .liro-menu-tree .nestable-item.is-dragging:before {

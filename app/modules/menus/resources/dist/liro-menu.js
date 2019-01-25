@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -174,72 +174,22 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = (function () {
+__webpack_require__(2);
+__webpack_require__(12);
+__webpack_require__(19);
+module.exports = __webpack_require__(22);
 
-    /**
-     * Show storage
-     */
-    this.show = [];
-
-    /**
-     * Return true if id is in show storage
-     */
-    this.active = function (id) {
-        var intID = _.toInteger(id);
-        return _.indexOf(this.show, intID) == -1;
-    }.bind(this);
-
-    /**
-     * Toggle id in show storage
-     */
-    this.toggle = function (id) {
-        var intID = _.toInteger(id);
-        this.show = _.xor(this.show, [intID]);
-    }.bind(this);
-
-    /**
-     * Apply styles to nestable items
-     */
-    this.styles = function () {
-        var _this = this;
-
-        $('.nestable-item [data-id]').each(function (index, el) {
-            if (!_this.active(el.dataset.id)) {
-                $(el).parents('.nestable-item').eq(0).addClass('nestable-show');
-            }
-            if (_this.active(el.dataset.id)) {
-                $(el).parents('.nestable-item').eq(0).removeClass('nestable-show');
-            }
-        });
-    }.bind(this);
-
-    /**
-     * Bind style changes on mouse move
-     */
-    $(document).mousemove(this.styles);
-});
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(3);
-__webpack_require__(12);
-__webpack_require__(18);
-module.exports = __webpack_require__(21);
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(4)
+var __vue_script__ = __webpack_require__(3)
 /* template */
 var __vue_template__ = __webpack_require__(11)
 /* template functional */
@@ -280,16 +230,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_collapsed__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tree_item__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tree_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__tree_item__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tree_modal__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tree_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__tree_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tree_item__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__tree_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__tree_item__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tree_modal__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__tree_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__tree_modal__);
 //
 //
 //
@@ -339,7 +288,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
@@ -348,8 +296,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     components: {
-        'liro-menu-tree-item': __WEBPACK_IMPORTED_MODULE_1__tree_item___default.a,
-        'liro-menu-tree-modal': __WEBPACK_IMPORTED_MODULE_2__tree_modal___default.a
+        'liro-menu-tree-item': __WEBPACK_IMPORTED_MODULE_0__tree_item___default.a,
+        'liro-menu-tree-modal': __WEBPACK_IMPORTED_MODULE_1__tree_modal___default.a
     },
 
     computed: {
@@ -368,10 +316,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             menu: {}
         };
-    },
-
-    created: function created() {
-        this.collapsed = new __WEBPACK_IMPORTED_MODULE_0__index_collapsed__["a" /* default */]();
     },
 
     methods: {
@@ -407,6 +351,7 @@ if (window.Liro) {
 }
 
 /***/ }),
+/* 4 */,
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -496,6 +441,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -505,25 +455,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         value: {
             required: true,
             type: Object
-        },
-
-        collapsed: {
-            required: true,
-            type: Object
         }
 
     },
 
-    updated: function updated() {
-        this.collapsed.styles();
-    },
-
     methods: {
-
-        toggleCollapsed: function toggleCollapsed() {
-            this.collapsed.toggle(this.value.id);
-            this.$forceUpdate();
-        },
 
         /**
          * Show prompt and handle input
@@ -622,6 +558,36 @@ var render = function() {
     },
     [
       _c("div", { staticClass: "uk-flex uk-flex-middle" }, [
+        _vm.value.children.length != 0
+          ? _c("div", { staticClass: "uk-flex-none uk-margin-small-right" }, [
+              _c("div", { staticClass: "liro-menu-tree-item-icon" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "is-folder",
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        $event.stopPropagation()
+                        _vm.value.collapsed = !_vm.value.collapsed
+                      }
+                    }
+                  },
+                  [
+                    _c("span", {
+                      staticClass: "uk-icon-small",
+                      attrs: {
+                        "uk-icon": _vm.value.collapsed
+                          ? "chevron-right"
+                          : "chevron-down"
+                      }
+                    })
+                  ]
+                )
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
         _c("div", { staticClass: "uk-flex-none uk-margin-small-right" }, [
           _c("div", { staticClass: "liro-menu-tree-item-icon" }, [
             _vm.value.children.length == 0
@@ -629,8 +595,7 @@ var render = function() {
                   "a",
                   {
                     staticClass: "is-file",
-                    attrs: { href: "javascript:void(0)" },
-                    on: { click: _vm.toggleCollapsed }
+                    attrs: { href: "javascript:void(0)" }
                   },
                   [
                     _c("img", {
@@ -651,8 +616,7 @@ var render = function() {
                   "a",
                   {
                     staticClass: "is-folder",
-                    attrs: { href: "javascript:void(0)" },
-                    on: { click: _vm.toggleCollapsed }
+                    attrs: { href: "javascript:void(0)" }
                   },
                   [
                     _c("img", {
@@ -675,7 +639,6 @@ var render = function() {
             _c(
               "a",
               {
-                staticClass: "uk-display-block",
                 attrs: {
                   href: _vm.route("liro-menus.admin.menu.edit", {
                     menu: _vm.value.id
@@ -683,13 +646,7 @@ var render = function() {
                 }
               },
               [_c("span", [_vm._v(_vm._s(_vm.value.trans_title))])]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "uk-text-truncate" }, [
-              _c("span", { staticClass: "uk-text-small uk-text-muted" }, [
-                _vm._v(_vm._s(_vm.value.module))
-              ])
-            ])
+            )
           ])
         ]),
         _vm._v(" "),
@@ -1102,7 +1059,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("vue-nestable", {
-        attrs: { threshold: 50, maxDepth: 5 },
+        attrs: { threshold: 50, maxDepth: 5, collapsed: true },
         scopedSlots: _vm._u([
           {
             key: "default",
@@ -1113,7 +1070,6 @@ var render = function() {
                 { attrs: { item: item, "data-id": item.id } },
                 [
                   _c("liro-menu-tree-item", {
-                    attrs: { collapsed: _vm.collapsed },
                     model: {
                       value: item,
                       callback: function($$v) {
@@ -1159,7 +1115,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(13)
 /* template */
-var __vue_template__ = __webpack_require__(17)
+var __vue_template__ = __webpack_require__(18)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1203,8 +1159,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_collapsed__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_item__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_collapsed__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_item__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__index_item__);
 //
 //
@@ -1374,14 +1330,64 @@ if (window.Liro) {
 
 /***/ }),
 /* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = (function () {
+
+    /**
+     * Show storage
+     */
+    this.show = [];
+
+    /**
+     * Return true if id is in show storage
+     */
+    this.active = function (id) {
+        var intID = _.toInteger(id);
+        return _.indexOf(this.show, intID) == -1;
+    }.bind(this);
+
+    /**
+     * Toggle id in show storage
+     */
+    this.toggle = function (id) {
+        var intID = _.toInteger(id);
+        this.show = _.xor(this.show, [intID]);
+    }.bind(this);
+
+    /**
+     * Apply styles to nestable items
+     */
+    this.styles = function () {
+        var _this = this;
+
+        $('.nestable-item [data-id]').each(function (index, el) {
+            if (!_this.active(el.dataset.id)) {
+                $(el).parents('.nestable-item').eq(0).addClass('nestable-show');
+            }
+            if (_this.active(el.dataset.id)) {
+                $(el).parents('.nestable-item').eq(0).removeClass('nestable-show');
+            }
+        });
+    }.bind(this);
+
+    /**
+     * Bind style changes on mouse move
+     */
+    $(document).mousemove(this.styles);
+});
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(15)
+var __vue_script__ = __webpack_require__(16)
 /* template */
-var __vue_template__ = __webpack_require__(16)
+var __vue_template__ = __webpack_require__(17)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1420,7 +1426,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1574,7 +1580,7 @@ if (window.Liro) {
 }
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1689,7 +1695,7 @@ if (false) {
 }
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1960,15 +1966,15 @@ if (false) {
 }
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(19)
+var __vue_script__ = __webpack_require__(20)
 /* template */
-var __vue_template__ = __webpack_require__(20)
+var __vue_template__ = __webpack_require__(21)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2007,7 +2013,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2163,7 +2169,7 @@ if (window.Liro) {
 }
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -2493,15 +2499,15 @@ if (false) {
 }
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(22)
+var __vue_script__ = __webpack_require__(23)
 /* template */
-var __vue_template__ = __webpack_require__(23)
+var __vue_template__ = __webpack_require__(24)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -2540,7 +2546,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2689,7 +2695,7 @@ if (window.Liro) {
 }
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

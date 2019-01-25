@@ -10,7 +10,7 @@ export default function () {
      */
     this.active = function (id) {
         var intID = _.toInteger(id);
-        return _.indexOf(this.show, intID) == -1;
+        return _.indexOf(this.show, intID) != -1;
     }.bind(this);
 
     /**
@@ -26,10 +26,10 @@ export default function () {
      */
     this.styles = function () {
         $('.nestable-item [data-id]').each((index, el) => {
-            if ( ! this.active(el.dataset.id) ) {
+            if ( this.active(el.dataset.id) ) {
                 $(el).parents('.nestable-item').eq(0).addClass('nestable-show');
             }
-            if ( this.active(el.dataset.id) ) {
+            if ( ! this.active(el.dataset.id) ) {
                 $(el).parents('.nestable-item').eq(0).removeClass('nestable-show');
             }
         });

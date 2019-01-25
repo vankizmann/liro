@@ -3,12 +3,20 @@
     <div :class="{ 'liro-menu-tree-item': true, 'is-hidden': value.hide == 1, 'is-disabled': value.state == 0 }">
         <div class="uk-flex uk-flex-middle">
 
+            <div v-if="value.children.length != 0" class="uk-flex-none uk-margin-small-right">
+                <div class="liro-menu-tree-item-icon">
+                    <a class="is-folder" href="javascript:void(0)" @click.stop="value.collapsed = !value.collapsed">
+                        <span class="uk-icon-small" :uk-icon="value.collapsed ? 'chevron-right' : 'chevron-down'"></span>
+                    </a>
+                </div>
+            </div>
+
             <div class="uk-flex-none uk-margin-small-right">
                 <div class="liro-menu-tree-item-icon">
-                    <a v-if="value.children.length == 0" class="is-file" href="javascript:void(0)" @click="toggleCollapsed">
+                    <a v-if="value.children.length == 0" class="is-file" href="javascript:void(0)">
                         <img src="/app/system/modules/theme/resources/dist/images/file.svg" width="20" height="20" uk-svg>
                     </a>
-                    <a v-if="value.children.length != 0" class="is-folder" href="javascript:void(0)" @click="toggleCollapsed">
+                    <a v-if="value.children.length != 0" class="is-folder" href="javascript:void(0)">
                         <img src="/app/system/modules/theme/resources/dist/images/folder.svg" width="20" height="20" uk-svg>
                     </a>
                 </div>
@@ -16,12 +24,9 @@
 
             <div class="uk-flex-auto">
                 <div class="liro-menu-tree-item-title">
-                    <a class="uk-display-block" :href="route('liro-menus.admin.menu.edit', { menu: value.id })">
+                    <a :href="route('liro-menus.admin.menu.edit', { menu: value.id })">
                         <span>{{ value.trans_title }}</span>
                     </a>
-                    <div class="uk-text-truncate">
-                        <span class="uk-text-small uk-text-muted">{{ value.module }}</span>
-                    </div>
                 </div>
             </div>
 
@@ -44,25 +49,11 @@
             value: {
                 required: true,
                 type: Object
-            },
-
-            collapsed: {
-                required: true,
-                type: Object
             }
 
         },
 
-        updated: function () {
-            this.collapsed.styles();
-        },
-
         methods: {
-
-            toggleCollapsed: function () {
-                this.collapsed.toggle(this.value.id);
-                this.$forceUpdate();
-            },
 
             /**
              * Show prompt and handle input

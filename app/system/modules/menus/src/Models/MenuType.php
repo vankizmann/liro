@@ -13,8 +13,8 @@ class MenuType extends Model
 
     protected $table = 'menu_types';
 
-    protected $fillable = [
-        'state', 'lock', 'locale', 'title', 'route', 'theme'
+    protected $guarded = [
+        'id'
     ];
 
     protected $attributes = [

@@ -2,8 +2,7 @@
 
 <li ref="folder" :class="{ 'liro-media-tree-item': true, 'is-active': value.path == tree.folder.path }">
     <a href="javascript:void(0)" @click="fetchFolder" draggable="true" @drop="dropFolder" @dragstart="dragFolder" @dragend="dragFolderEnd" @dragover="dragFolderOver" @dragleave="dragFolderLeave">
-        <div v-if="!root" :class="{ 'liro-media-tree-collapse uk-flex-none': true, 'is-disabled': value.dirs.length == 0 }" @click.stop="open =
-        value.dirs.length == 0 ? false : !open">
+        <div v-if="!root" :class="{ 'liro-media-tree-collapse uk-flex-none': true, 'is-disabled': value.dirs.length == 0 }" @click.stop="open = value.dirs.length == 0 ? false : !open">
             <i class="uk-icon-small" :uk-icon="!open ? 'chevron-right' : 'chevron-down'"></i>
         </div>
         <div class="liro-media-tree-icon uk-flex-none">

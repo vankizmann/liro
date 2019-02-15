@@ -9,7 +9,7 @@ class ItemRegistrar
     /**
      * Item storage
      *
-     * @var Illuminate\Support\Collection
+     * @var \Illuminate\Support\Collection
      */
     protected $items;
 
@@ -25,7 +25,7 @@ class ItemRegistrar
      * Set item in collection
      *
      * @param string $key
-     * @param string $value
+     * @param void $value
      * @return void
      */
     public function set($key, $value)
@@ -48,7 +48,7 @@ class ItemRegistrar
     /**
      * Get all items
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function all()
     {

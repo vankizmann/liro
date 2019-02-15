@@ -177,8 +177,7 @@ module.exports = function normalizeComponent (
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(3);
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(3);
 
 
 /***/ }),
@@ -230,27 +229,8 @@ module.exports = Component.exports
 
 /***/ }),
 /* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -282,44 +262,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+window.Liro.Modules.export('liro-auth-login', this.default = {
 
     data: function data() {
         return {
-            user: {
-                email: '', password: ''
-            }
+            load: false,
+            user: { email: '', password: '', remember: false }
         };
+    },
+
+    mounted: function mounted() {
+        var _this = this;
+
+        this.events.bind('axios:load', function (data) {
+            if (data._uid === _this._uid) _this.load = true;
+        });
     },
 
     methods: {
 
         authUser: function authUser() {
-            var url = Liro.routes.get('liro-users.ajax.auth.login');
-            Axios.post(url, this.user).then(this.authUserResponse, this.authUserError);
-        },
 
-        authUserError: function authUserError(res) {
-            var _this = this;
+            var url = this.routes.get('liro-users.ajax.auth.login');
 
-            setTimeout(function () {
-                $(_this.$refs.form).removeClass('uk-animation-shake');
-            }, 1000);
-
-            $(this.$refs.form).addClass('uk-animation-shake');
+            this.http.post(url, this.user, { _uid: this._uid }).then(this.authUserResponse, this.authUserError);
         },
 
         authUserResponse: function authUserResponse(res) {
-            Liro.routes.redirect(res.data.redirect, null, null);
+            this.routes.goto(res.data.redirect, null, null);
+        },
+
+        authUserError: function authUserError() {
+            this.load = false;
         }
 
     }
 
 });
-
-if (window.Liro) {
-    Liro.vue.component('liro-auth-login', this.default);
-}
 
 /***/ }),
 /* 5 */
@@ -329,422 +308,124 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { ref: "form", staticClass: "liro-auth-login" }, [
-    _c(
-      "form",
-      {
-        staticClass: "uk-form uk-margin-remove",
-        attrs: { method: "post" },
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.authUser($event)
-          }
-        }
-      },
-      [
-        _c("div", { staticClass: "uk-margin-bottom" }, [
-          _c("div", { staticClass: "uk-flex" }, [
-            _c(
-              "label",
-              { staticClass: "uk-form-label", attrs: { for: "email" } },
-              [
-                _vm._v(
-                  _vm._s(_vm.Liro.messages.get("liro-users::form.auth.email"))
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "uk-form-controls" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.user.email,
-                  expression: "user.email"
-                }
-              ],
-              staticClass: "uk-input",
-              attrs: { id: "email", type: "email", name: "email" },
-              domProps: { value: _vm.user.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.user, "email", $event.target.value)
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "uk-margin-bottom" }, [
-          _c("div", { staticClass: "uk-flex" }, [
-            _c(
-              "label",
-              {
-                staticClass: "uk-form-label uk-margin-auto-right",
-                attrs: { for: "password" }
-              },
-              [
-                _vm._v(
-                  _vm._s(
-                    _vm.Liro.messages.get("liro-users::form.auth.password")
-                  )
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "uk-form-label-link", attrs: { href: "#" } },
-              [
-                _vm._v(
-                  _vm._s(
-                    _vm.Liro.messages.get(
-                      "liro-users::form.auth.password_forget"
-                    )
-                  )
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "uk-form-controls" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.user.password,
-                  expression: "user.password"
-                }
-              ],
-              staticClass: "uk-input",
-              attrs: { id: "password", type: "password", name: "password" },
-              domProps: { value: _vm.user.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.user, "password", $event.target.value)
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "uk-form-controls" }, [
-          _c(
-            "button",
-            {
-              staticClass: "uk-button uk-button-primary uk-width-1-1",
-              attrs: { type: "submit" }
-            },
-            [
-              _c("i", { attrs: { "uk-icon": "key" } }),
-              _vm._v(" "),
-              _c("span", [
-                _vm._v(
-                  _vm._s(_vm.Liro.messages.get("liro-users::form.auth.login"))
-                )
-              ])
-            ]
-          )
-        ])
-      ]
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-761a4485", module.exports)
-  }
-}
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(7)
-/* template */
-var __vue_template__ = __webpack_require__(8)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/src/auth/modal.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5de90dc9", Component.options)
-  } else {
-    hotAPI.reload("data-v-5de90dc9", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-    data: function data() {
-        return {
-            user: {
-                email: '', password: ''
-            }
-        };
-    },
-
-    mounted: function mounted() {
-        // Refresh token everey 30 minutes
-        setInterval(this.refreshToken, 1000 * 60 * 30);
-
-        // Show login form after 60 minutes
-        setInterval(this.showModal, 1000 * 60 * 60);
-    },
-
-    methods: {
-
-        showModal: function showModal() {
-            UIkit.modal(this.$refs.modal).show();
-        },
-
-        authUser: function authUser() {
-            var url = this.route('liro-users.ajax.auth.login');
-            this.http.post(url, this.user).then(this.authUserResponse, this.authUserError);
-        },
-
-        authUserResponse: function authUserResponse(res) {
-            UIkit.modal(this.$refs.modal).hide();
-        },
-
-        authUserError: function authUserError(res) {
-            var _this = this;
-
-            setTimeout(function () {
-                $(_this.$refs.form).removeClass('uk-animation-shake');
-            }, 1000);
-
-            $(this.$refs.form).addClass('uk-animation-shake');
-        },
-
-        refreshToken: function refreshToken() {
-            var url = this.route('liro-users.ajax.auth.token');
-            this.http.get(url).then(this.refreshTokenResponse);
-        },
-
-        refreshTokenResponse: function refreshTokenResponse(res) {
-            $('meta[csrf-token]').attr('content', res.data.token);
-        }
-
-    }
-
-});
-
-if (window.Liro) {
-    Liro.vue.component('liro-auth-modal', this.default);
-}
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
   return _c(
     "div",
     {
-      ref: "modal",
-      staticClass: "liro-auth-modal",
-      attrs: {
-        "uk-modal": "esc-close: false; bg-close: false; container: false;"
-      }
+      directives: [
+        {
+          name: "loading",
+          rawName: "v-loading",
+          value: _vm.load,
+          expression: "load"
+        }
+      ],
+      staticClass: "liro-auth-login"
     },
     [
-      _c("div", { staticClass: "uk-modal-dialog uk-margin-auto-vertical" }, [
-        _c("div", { staticClass: "uk-modal-body" }, [
+      _c(
+        "el-form",
+        {
+          staticClass: "liro-auth-login__form",
+          attrs: { "label-position": "top", model: _vm.user }
+        },
+        [
           _c(
-            "form",
+            "el-form-item",
             {
-              ref: "form",
-              staticClass: "uk-form uk-margin-remove",
-              attrs: { method: "post" },
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.authUser($event)
-                }
+              attrs: {
+                prop: "email",
+                label: _vm.trans("liro-users::form.auth.email")
               }
             },
             [
-              _c("div", { staticClass: "uk-margin-bottom" }, [
-                _c(
-                  "label",
-                  { staticClass: "uk-form-label", attrs: { for: "email" } },
-                  [_vm._v(_vm._s(_vm.trans("liro-users::form.auth.email")))]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "uk-form-controls" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.user.email,
-                        expression: "user.email"
-                      }
-                    ],
-                    staticClass: "uk-input",
-                    attrs: { id: "email", type: "email", name: "email" },
-                    domProps: { value: _vm.user.email },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.user, "email", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "uk-margin-bottom" }, [
-                _c(
-                  "label",
-                  { staticClass: "uk-form-label", attrs: { for: "password" } },
-                  [_vm._v(_vm._s(_vm.trans("liro-users::form.auth.password")))]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "uk-form-controls" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.user.password,
-                        expression: "user.password"
-                      }
-                    ],
-                    staticClass: "uk-input",
-                    attrs: {
-                      id: "password",
-                      type: "password",
-                      name: "password"
-                    },
-                    domProps: { value: _vm.user.password },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.user, "password", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "uk-form-controls" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "uk-button uk-button-primary uk-width-1-1",
-                    attrs: { type: "submit" }
+              _c("el-input", {
+                model: {
+                  value: _vm.user.email,
+                  callback: function($$v) {
+                    _vm.$set(_vm.user, "email", $$v)
                   },
-                  [
-                    _c("i", { attrs: { "uk-icon": "key" } }),
-                    _vm._v(" "),
-                    _c("span", [
-                      _vm._v(_vm._s(_vm.trans("liro-users::form.auth.login")))
-                    ])
-                  ]
-                )
-              ])
-            ]
+                  expression: "user.email"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            {
+              attrs: {
+                prop: "password",
+                label: _vm.trans("liro-users::form.auth.password")
+              }
+            },
+            [
+              _c("el-input", {
+                attrs: { type: "password" },
+                model: {
+                  value: _vm.user.password,
+                  callback: function($$v) {
+                    _vm.$set(_vm.user, "password", $$v)
+                  },
+                  expression: "user.password"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-checkbox",
+                {
+                  model: {
+                    value: _vm.user.remember,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "remember", $$v)
+                    },
+                    expression: "user.remember"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.trans("liro-users::form.auth.remember_me")) +
+                      "\n            "
+                  )
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c(
+                "el-button",
+                {
+                  staticClass: "liro-auth-login__button",
+                  attrs: { type: "primary" },
+                  on: { click: _vm.authUser }
+                },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.trans("liro-users::form.auth.login")) +
+                      "\n            "
+                  )
+                ]
+              )
+            ],
+            1
           )
-        ])
-      ])
-    ]
+        ],
+        1
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -753,7 +434,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5de90dc9", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-761a4485", module.exports)
   }
 }
 

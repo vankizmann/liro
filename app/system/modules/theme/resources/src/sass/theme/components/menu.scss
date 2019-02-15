@@ -1,0 +1,118 @@
+
+$--th-menu-height: $--th-header-height;
+
+$--th-menu-default-color: rgba($--color-white, 0.6);
+$--th-menu-hover-color: rgba($--color-white, 0.8);
+$--th-menu-active-color: rgba($--color-white, 1.0);
+
+$--th-menu-font-size-small: 13px;
+$--th-menu-item-height-small: $--th-menu-height / 2.5;
+
+$--th-menu-font-size-medium: 14px;
+$--th-menu-item-height-medium: $--th-menu-height / 2.5;
+
+$--th-menu-font-size-large: 16px;
+$--th-menu-item-height-large: $--th-menu-height / 2.5;
+
+.menu,
+.menu__nav,
+.menu__nav > .menu__ul {
+    height: $--th-menu-height;
+}
+
+.menu a {
+    text-decoration: none;
+}
+
+.menu__ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu--small .menu__item {
+    font-size: $--th-menu-font-size-small;
+}
+
+.menu--small .menu__item [class^="el-icon-"],
+.menu--small .menu__item [class*="el-icon-"] {
+    font-size: $--th-menu-font-size-small * 0.75;
+    margin: 0 $--th-menu-font-size-small * 0.25;
+}
+
+.menu--small .menu__item [class^="el-icon-"]:only-child,
+.menu--small .menu__item [class*="el-icon-"]:only-child {
+    font-size: $--th-menu-font-size-small * 1.25;
+}
+
+.menu--small .menu__item,
+.menu--small .menu__item .menu__popover {
+    height: $--th-menu-item-height-small;
+    line-height: $--th-menu-item-height-small;
+}
+
+.menu--medium .menu__item {
+    font-size: $--th-menu-font-size-medium;
+}
+
+.menu--medium .menu__item [class^="el-icon-"],
+.menu--medium .menu__item [class*="el-icon-"] {
+    font-size: $--th-menu-font-size-medium * 0.75;
+    margin: 0 $--th-menu-font-size-medium * 0.25;
+}
+
+.menu--medium .menu__item [class^="el-icon-"]:only-child,
+.menu--medium .menu__item [class*="el-icon-"]:only-child {
+    font-size: $--th-menu-font-size-medium * 1.25;
+}
+
+.menu--medium .menu__item,
+.menu--medium .menu__item .menu__popover {
+    height: $--th-menu-item-height-medium;
+    line-height: $--th-menu-item-height-medium;
+}
+
+.menu--large .menu__item {
+    font-size: $--th-menu-font-size-large;
+}
+
+.menu--large .menu__item [class^="el-icon-"],
+.menu--large .menu__item [class*="el-icon-"] {
+    font-size: $--th-menu-font-size-large * 0.75;
+    margin: 0 $--th-menu-font-size-large * 0.25;
+}
+
+.menu--large .menu__item [class^="el-icon-"]:only-child,
+.menu--large .menu__item [class*="el-icon-"]:only-child {
+    font-size: $--th-menu-font-size-large * 1.25;
+}
+
+.menu--large .menu__item,
+.menu--large .menu__item .menu__popover {
+    height: $--th-menu-item-height-large;
+    line-height: $--th-menu-item-height-large;
+}
+
+.menu__item .el-badge__content {
+    border-color: $--th-header-background;
+}
+
+.menu__popover,
+.menu__item a {
+    display: inline-block;
+}
+
+.menu__item,
+.menu__item a,
+.menu__route {
+    color: $--th-menu-default-color;
+}
+
+.menu__item a:hover,
+.menu__route:hover {
+    color: $--th-menu-hover-color;
+}
+
+.menu__route--active {
+    color: $--th-menu-active-color !important;
+}

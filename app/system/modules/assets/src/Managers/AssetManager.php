@@ -7,7 +7,7 @@ use MJS\TopSort\Implementations\StringSort;
 use Liro\System\Assets\Registrar\DataRegistrar;
 use Liro\System\Assets\Registrar\ItemRegistrar;
 use Liro\System\Assets\Registrar\RouteRegistrar;
-use Liro\System\Assets\Registrar\MessageRegistrar;
+use Liro\System\Assets\Registrar\LocaleRegistrar;
 use Liro\System\Assets\Registrar\NamespaceRegistrar;
 
 class AssetManager
@@ -15,49 +15,49 @@ class AssetManager
     /**
      * Application instance
      *
-     * @var Illuminate\Foundation\Application
+     * @var \Illuminate\Foundation\Application
      */
     protected $app;
 
     /**
      * Namespaces registrar
      *
-     * @var Liro\System\Assets\Registrar\NamespaceRegistrar
+     * @var \Liro\System\Assets\Registrar\NamespaceRegistrar
      */
     protected $namespaces;
 
     /**
      * Routes registrar
      *
-     * @var Liro\System\Assets\Registrar\RouteRegistrar
+     * @var \Liro\System\Assets\Registrar\RouteRegistrar
      */
     protected $routes;
 
     /**
      * Messages registrar
      *
-     * @var Liro\System\Assets\Registrar\MessageRegistrar
+     * @var \Liro\System\Assets\Registrar\MessageRegistrar
      */
-    protected $messages;
+    protected $locales;
 
     /**
      * Data registrar
      *
-     * @var Liro\System\Assets\Registrar\DataRegistrar
+     * @var \Liro\System\Assets\Registrar\DataRegistrar
      */
     protected $data;
 
     /**
      * Scripts registrar
      *
-     * @var Liro\System\Assets\Registrar\ItemRegistrar
+     * @var \Liro\System\Assets\Registrar\ItemRegistrar
      */
     protected $scripts;
 
     /**
      * Styles registrar
      *
-     * @var Liro\System\Assets\Registrar\ItemRegistrar
+     * @var \Liro\System\Assets\Registrar\ItemRegistrar
      */
     protected $styles;
 
@@ -76,16 +76,16 @@ class AssetManager
         // Register routes registrar
         $this->routes = $app->make(RouteRegistrar::class);
 
-        // Register messages registrar
-        $this->messages = $app->make(MessageRegistrar::class);
+        // Register locales registrar
+        $this->locales = $app->make(LocaleRegistrar::class);
 
-        // Register messages registrar
+        // Register locales registrar
         $this->data = $app->make(DataRegistrar::class);
 
-        // Register messages registrar
+        // Register locales registrar
         $this->scripts = $app->make(ItemRegistrar::class);
 
-        // Register messages registrar
+        // Register locales registrar
         $this->styles = $app->make(ItemRegistrar::class);
     }
 
@@ -124,25 +124,25 @@ class AssetManager
     }
 
     /**
-     * Add message to registrar
+     * Add locale to registrar
      *
      * @param string $key
      * @return void
      */
-    public function message($key)
+    public function locale($key)
     {
-        $this->messages->addByKey($key);
+        $this->locales->addByKey($key);
     }
 
     /**
-     * Add messages to registrar
+     * Add locales to registrar
      *
      * @param array $keys
      * @return void
      */
-    public function messages($keys)
+    public function locales($keys)
     {
-        $this->messages->addByKeys($keys);
+        $this->locales->addByKeys($keys);
     }
 
     /**
@@ -160,13 +160,12 @@ class AssetManager
     /**
      * Add data array to registrar
      *
-     * @param string $key
-     * @param void $value
+     * @param array $values
      * @return void
      */
     public function dataArray($values)
     {
-        foreach ($values as $key => $value) {
+        foreach ( $values as $key => $value ) {
             $this->data($key, $value);
         }
     }
@@ -175,22 +174,42 @@ class AssetManager
      * Get file path with replaced namespace
      *
      * @param string $path
+     * @param string $version
      * @return void
      */
-    public function file($path, $version = '') {
+    public function file($path, $version = '')
+    {
         return $this->namespaces->replaceInString($path);
     }
 
     /**
-     * Register module routes and messages
+     * Register module routes and locales
      *
      * @param string $module
      * @return void
      */
-    public function module($module)
+    public function init($module)
     {
         $this->route("$module.*");
-        $this->message("$module::*");
+        $this->locale("$module::*");
+    }
+
+    public function module($name, $config, $dependencies = [], $attributes = [])
+    {
+        $config = array_merge([
+            'scripts' => [], 'styles' => [], 'modules' => [],
+        ], $config);
+
+        $config['scripts'] = array_map(function ($script) {
+            return $this->namespaces->replaceInString($script);
+        }, $config['scripts']);
+
+        $config['styles'] = array_map(function ($script) {
+            return $this->namespaces->replaceInString($script);
+        }, $config['styles']);
+
+        $html = '<script ' . implode(' ', $attributes) . '>Liro.Modules.bind(\'' . $name . '\', ' . json_encode($config) . ')</script>';
+        $this->scripts->set($name, [$html, $dependencies]);
     }
 
     /**
@@ -285,7 +304,8 @@ class AssetManager
         return $this->styles->sort($sorter)->pluck(0)->implode("\n");
     }
 
-    public function output($keys) {
+    public function output($keys)
+    {
 
         if ( ! is_array($keys) ) {
             $keys = [$keys];
@@ -294,15 +314,15 @@ class AssetManager
         $output = '<script>' . "\n";
 
         if ( in_array('routes', $keys) ) {
-            $output .= 'window.$routes = ' . $this->routes->all()->toJson() . ';' . "\n";
+            $output .= 'window._routes = ' . $this->routes->all()->toJson() . ';' . "\n";
         }
 
-        if ( in_array('messages', $keys) ) {
-            $output .= 'window.$messages = ' . $this->messages->all()->toJson() . ';' . "\n";
+        if ( in_array('locales', $keys) ) {
+            $output .= 'window._locales = ' . $this->locales->all()->toJson() . ';' . "\n";
         }
 
         if ( in_array('data', $keys) ) {
-            $output .= 'window.$data = ' . $this->data->all()->toJson() . ';' . "\n";
+            $output .= 'window._storage = ' . $this->data->all()->toJson() . ';' . "\n";
         }
 
         $output .= '</script>';

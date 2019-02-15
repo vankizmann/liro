@@ -7,7 +7,7 @@ use MJS\TopSort\Implementations\StringSort;
 use Liro\System\Assets\Registrar\DataRegistrar;
 use Liro\System\Assets\Registrar\ItemRegistrar;
 use Liro\System\Assets\Registrar\RouteRegistrar;
-use Liro\System\Assets\Registrar\MessageRegistrar;
+use Liro\System\Assets\Registrar\LocaleRegistrar;
 use Liro\System\Assets\Registrar\NamespaceRegistrar;
 
 class ScriptManager
@@ -70,7 +70,7 @@ class ScriptManager
         $this->routes = new RouteRegistrar;
 
         // Register messages registrar
-        $this->messages = new MessageRegistrar;
+        $this->messages = new LocaleRegistrar;
 
         // Register data registrar
         $this->data = new DataRegistrar;

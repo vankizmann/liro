@@ -1,88 +1,70 @@
 <template>
 
-<div class="liro-auth-login" ref="form">
+    <div class="liro-auth-login" v-loading="load">
+        <el-form class="liro-auth-login__form" label-position="top" :model="user">
 
-    <!-- Form start -->
-    <form class="uk-form uk-margin-remove" method="post" @submit.prevent="authUser">
+            <el-form-item prop="email" :label="trans('liro-users::form.auth.email')">
+                <el-input v-model="user.email"></el-input>
+            </el-form-item>
 
-        <div class="uk-margin-bottom">
-            <div class="uk-flex">
-                <label class="uk-form-label" for="email">{{ Liro.messages.get('liro-users::form.auth.email') }}</label>
-            </div>
-            <div class="uk-form-controls">
-                <input class="uk-input" id="email" type="email" name="email" v-model="user.email">
-            </div>
-        </div>
+            <el-form-item prop="password" :label="trans('liro-users::form.auth.password')">
+                <el-input type="password" v-model="user.password"></el-input>
+            </el-form-item>
 
-        <div class="uk-margin-bottom">
-            <div class="uk-flex">
-                <label class="uk-form-label uk-margin-auto-right" for="password">{{ Liro.messages.get('liro-users::form.auth.password') }}</label>
-                <a class="uk-form-label-link" href="#">{{ Liro.messages.get('liro-users::form.auth.password_forget') }}</a>
-            </div>
-            <div class="uk-form-controls">
-                <input class="uk-input" id="password" type="password" name="password" v-model="user.password">
-            </div>
-        </div>
+            <el-form-item>
+                <el-checkbox v-model="user.remember">
+                    {{ trans('liro-users::form.auth.remember_me') }}
+                </el-checkbox>
+            </el-form-item>
 
-        <!--
-        <div class="uk-margin-bottom">
-            <div class="uk-form-controls">
-                <label class="uk-checkbox-label"><input class="uk-checkbox" type="checkbox" name="remember"> {{ Liro.messages.get('liro-users::form.auth.remember_me') }}</label>
-            </div>
-        </div>
-        -->
+            <el-form-item>
+                <el-button class="liro-auth-login__button" type="primary" @click="authUser">
+                    {{ trans('liro-users::form.auth.login') }}
+                </el-button>
+            </el-form-item>
 
-        <div class="uk-form-controls">
-            <button class="uk-button uk-button-primary uk-width-1-1" type="submit">
-                <i uk-icon="key"></i> <span>{{ Liro.messages.get('liro-users::form.auth.login') }}</span>
-            </button>
-        </div>
-
-    </form>
-    <!-- Form end -->
-
-</div>
+        </el-form>
+    </div>
 
 </template>
 <script>
 
-export default {
+    window.Liro.Modules.export('liro-auth-login', this.default = {
 
-    data: function () {
-        return {
-            user: {
-                email: '', password: ''
+        data: function () {
+            return {
+                load: false,
+                user: { email: '', password: '', remember: false }
             }
-        }
-    },
-
-    methods: {
-
-        authUser: function () {
-            var url = Liro.routes.get('liro-users.ajax.auth.login');
-            Axios.post(url, this.user).then(this.authUserResponse, this.authUserError);
         },
 
-        authUserError: function (res) {
-
-            setTimeout(() => {
-                $(this.$refs.form).removeClass('uk-animation-shake');
-            }, 1000);
-
-            $(this.$refs.form).addClass('uk-animation-shake');
+        mounted: function () {
+            this.events.bind('axios:load', (data) => {
+                if ( data._uid === this._uid ) this.load = true;
+            });
         },
 
-        authUserResponse: function (res) {
-            Liro.routes.redirect(res.data.redirect, null, null);
+        methods: {
+
+            authUser: function () {
+
+                let url = this.routes.get('liro-users.ajax.auth.login');
+
+                this.http.post(url, this.user, { _uid: this._uid })
+                    .then(this.authUserResponse, this.authUserError);
+            },
+
+            authUserResponse: function (res) {
+                this.routes.goto(res.data.redirect, null, null);
+            },
+
+            authUserError: function () {
+                this.load = false;
+            }
+
         }
 
-    }
-
-}
-
-if (window.Liro) {
-    Liro.vue.component('liro-auth-login', this.default);
-}
+    });
 
 </script>
 

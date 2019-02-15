@@ -11,26 +11,19 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "JSONStorage": "aheinze/JSONStorage",
+        "axios": "^0.18.0",
         "babel-plugin-transform-class-properties": "^6.24.1",
-        "browser-sync": "^2.23.6",
-        "browser-sync-webpack-plugin": "^2.0.1",
+        "backpack.css": "^2.0.0",
         "cross-env": "^5.1",
-        "dotenv": "^5.0.1",
-        "fuzzy-search": "^2.1.0",
+        "element-ui": "^2.5.4",
         "jquery": "^3.3.1",
-        "jquery.animate": "^1.8.9",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.11",
-        "portal-vue": "^1.4.0",
+        "portal-vue": "^1.5.1",
         "raw-loader": "^1.0.0",
-        "shiftcheckbox": "nylen/shiftcheckbox",
-        "smartmenus": "^1.1.0",
-        "superfish": "^1.7.10",
-        "uikit": "^3.0.0-rc.25",
         "vue": "^2.5.17",
-        "vue-nestable": "vankizmann/vue-nestable",
-        "vue-shortkey": "^3.1.6",
-        "vue-smooth-dnd": "^0.2.7"
+        "vue-router": "^3.0.2",
+        "vue2-animate": "^2.1.0",
+        "vue2-transitions": "^0.2.3"
     }
 }

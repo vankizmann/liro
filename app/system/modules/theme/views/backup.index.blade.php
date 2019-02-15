@@ -23,7 +23,7 @@
                 ['value' => 0, 'label' => trans('theme::form.default.disabled')]
             ]);
 
-            app('assets')->message('theme');
+            app('assets')->locale('theme');
         @endphp
 
         @include('theme::partials/head')

@@ -31,7 +31,7 @@ mix.setResourceRoot(
  */
 
 mix.js([
-    'resources/src/auth/login.vue', 'resources/src/auth/modal.vue'
+    'resources/src/auth/login.vue'
 ], 'resources/dist/liro-auth.js');
 
 

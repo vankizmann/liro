@@ -534,27 +534,31 @@ var render = function() {
             })
           }
         },
-        [_vm._v("\n            " + _vm._s(_vm.value.title) + "\n        ")]
+        [_vm._v("\r\n            " + _vm._s(_vm.value.title) + "\r\n        ")]
       )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "uk-width-1-2" }, [
       _c("span", { staticClass: "uk-text-muted" }, [
-        _vm._v("\n            " + _vm._s(_vm.value.description) + "\n        ")
+        _vm._v(
+          "\r\n            " + _vm._s(_vm.value.description) + "\r\n        "
+        )
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "th-table-td-l uk-text-center" }, [
       _c("span", [
         _vm._v(
-          "\n            " + _vm._s(_vm.value.route_names.length) + "\n        "
+          "\r\n            " +
+            _vm._s(_vm.value.route_names.length) +
+            "\r\n        "
         )
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "th-table-td-m uk-text-center" }, [
       _c("span", [
-        _vm._v("\n            " + _vm._s(_vm.value.id) + "\n        ")
+        _vm._v("\r\n            " + _vm._s(_vm.value.id) + "\r\n        ")
       ])
     ])
   ])
@@ -599,9 +603,9 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                    " +
+                        "\r\n                    " +
                           _vm._s(_vm.trans("liro-users::admin.role.create")) +
-                          "\n                "
+                          "\r\n                "
                       )
                     ]
                   )
@@ -660,11 +664,11 @@ var render = function() {
                               { attrs: { column: "title" } },
                               [
                                 _vm._v(
-                                  "\n                                " +
+                                  "\r\n                                " +
                                     _vm._s(
                                       _vm.trans("liro-users::form.role.title")
                                     ) +
-                                    "\n                            "
+                                    "\r\n                            "
                                 )
                               ]
                             )
@@ -681,13 +685,13 @@ var render = function() {
                               { attrs: { column: "description" } },
                               [
                                 _vm._v(
-                                  "\n                                " +
+                                  "\r\n                                " +
                                     _vm._s(
                                       _vm.trans(
                                         "liro-users::form.role.description"
                                       )
                                     ) +
-                                    "\n                            "
+                                    "\r\n                            "
                                 )
                               ]
                             )
@@ -704,11 +708,11 @@ var render = function() {
                           [
                             _c("span", [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(
                                     _vm.trans("liro-users::form.role.routes")
                                   ) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ])
                           ]
@@ -720,11 +724,11 @@ var render = function() {
                           [
                             _c("app-list-sort", { attrs: { column: "id" } }, [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(
                                     _vm.trans("liro-users::form.role.id")
                                   ) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ])
                           ],
@@ -775,9 +779,9 @@ var render = function() {
                           { staticClass: "uk-width-1-1 uk-text-center" },
                           [
                             _vm._v(
-                              "\n                            " +
+                              "\r\n                            " +
                                 _vm._s(_vm.trans("theme::form.list.empty")) +
-                                "\n                        "
+                                "\r\n                        "
                             )
                           ]
                         )
@@ -1139,9 +1143,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                " +
+                "\r\n                " +
                   _vm._s(_vm.trans("theme::form.toolbar.close")) +
-                  "\n            "
+                  "\r\n            "
               )
             ]
           ),
@@ -1163,9 +1167,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                " +
+                "\r\n                " +
                   _vm._s(_vm.trans("theme::form.toolbar.save")) +
-                  "\n            "
+                  "\r\n            "
               )
             ]
           )
@@ -1483,9 +1487,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                " +
+                "\r\n                " +
                   _vm._s(_vm.trans("theme::form.toolbar.close")) +
-                  "\n            "
+                  "\r\n            "
               )
             ]
           ),
@@ -1507,9 +1511,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                " +
+                "\r\n                " +
                   _vm._s(_vm.trans("theme::form.toolbar.save")) +
-                  "\n            "
+                  "\r\n            "
               )
             ]
           )

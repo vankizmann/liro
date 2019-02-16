@@ -515,13 +515,13 @@ var render = function() {
             })
           }
         },
-        [_vm._v("\n            " + _vm._s(_vm.value.name) + "\n        ")]
+        [_vm._v("\r\n            " + _vm._s(_vm.value.name) + "\r\n        ")]
       )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "uk-width-1-3" }, [
       _c("span", [
-        _vm._v("\n            " + _vm._s(_vm.value.email) + "\n        ")
+        _vm._v("\r\n            " + _vm._s(_vm.value.email) + "\r\n        ")
       ])
     ]),
     _vm._v(" "),
@@ -537,7 +537,7 @@ var render = function() {
               key: index,
               staticClass: "uk-label uk-label-primary uk-margin-small-right"
             },
-            [_vm._v("\n            " + _vm._s(role.title) + "\n        ")]
+            [_vm._v("\r\n            " + _vm._s(role.title) + "\r\n        ")]
           )
         }
       )
@@ -558,7 +558,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "th-table-td-m uk-text-center" }, [
       _c("span", [
-        _vm._v("\n            " + _vm._s(_vm.value.id) + "\n        ")
+        _vm._v("\r\n            " + _vm._s(_vm.value.id) + "\r\n        ")
       ])
     ])
   ])
@@ -603,9 +603,9 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                    " +
+                        "\r\n                    " +
                           _vm._s(_vm.trans("liro-users::admin.user.create")) +
-                          "\n                "
+                          "\r\n                "
                       )
                     ]
                   )
@@ -662,11 +662,11 @@ var render = function() {
                           [
                             _c("app-list-sort", { attrs: { column: "name" } }, [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(
                                     _vm.trans("liro-users::form.user.name")
                                   ) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ])
                           ],
@@ -682,11 +682,11 @@ var render = function() {
                               { attrs: { column: "email" } },
                               [
                                 _vm._v(
-                                  "\n                                " +
+                                  "\r\n                                " +
                                     _vm._s(
                                       _vm.trans("liro-users::form.user.email")
                                     ) +
-                                    "\n                            "
+                                    "\r\n                            "
                                 )
                               ]
                             )
@@ -710,11 +710,11 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                " +
+                                  "\r\n                                " +
                                     _vm._s(
                                       _vm.trans("liro-users::form.user.role")
                                     ) +
-                                    "\n                            "
+                                    "\r\n                            "
                                 )
                               ]
                             )
@@ -733,11 +733,11 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                " +
+                                  "\r\n                                " +
                                     _vm._s(
                                       _vm.trans("liro-users::form.user.state")
                                     ) +
-                                    "\n                            "
+                                    "\r\n                            "
                                 )
                               ]
                             )
@@ -751,11 +751,11 @@ var render = function() {
                           [
                             _c("app-list-sort", { attrs: { column: "id" } }, [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(
                                     _vm.trans("liro-users::form.user.id")
                                   ) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ])
                           ],
@@ -809,9 +809,9 @@ var render = function() {
                             { staticClass: "uk-width1-1 uk-text-center" },
                             [
                               _vm._v(
-                                "\n                            " +
+                                "\r\n                            " +
                                   _vm._s(_vm.trans("theme::form.list.empty")) +
-                                  "\n                        "
+                                  "\r\n                        "
                               )
                             ]
                           )
@@ -1060,9 +1060,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                " +
+                "\r\n                " +
                   _vm._s(_vm.trans("theme::form.toolbar.close")) +
-                  "\n            "
+                  "\r\n            "
               )
             ]
           ),
@@ -1084,9 +1084,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                " +
+                "\r\n                " +
                   _vm._s(_vm.trans("theme::form.toolbar.save")) +
-                  "\n            "
+                  "\r\n            "
               )
             ]
           )
@@ -1493,9 +1493,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                " +
+                "\r\n                " +
                   _vm._s(_vm.trans("theme::form.toolbar.close")) +
-                  "\n            "
+                  "\r\n            "
               )
             ]
           ),
@@ -1517,9 +1517,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                " +
+                "\r\n                " +
                   _vm._s(_vm.trans("theme::form.toolbar.save")) +
-                  "\n            "
+                  "\r\n            "
               )
             ]
           )

@@ -260,23 +260,32 @@ module.exports = Component.exports
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
+
+var user = {
+    email: '', password: '', remember: false
+};
+
+var errors = {
+    email: null, password: null
+};
 
 window.Liro.Modules.export('liro-auth-login', this.default = {
 
     data: function data() {
         return {
-            load: false,
-            user: { email: '', password: '', remember: false }
+            load: false, user: user, error: errors
         };
-    },
-
-    mounted: function mounted() {
-        var _this = this;
-
-        this.events.bind('axios:load', function (data) {
-            if (data._uid === _this._uid) _this.load = true;
-        });
     },
 
     methods: {
@@ -285,14 +294,19 @@ window.Liro.Modules.export('liro-auth-login', this.default = {
 
             var url = this.routes.get('liro-users.ajax.auth.login');
 
-            this.http.post(url, this.user, { _uid: this._uid }).then(this.authUserResponse, this.authUserError);
+            this.http.post(url, this.user).then(this.authUserResponse, this.authUserError);
+
+            this.load = true;
         },
 
         authUserResponse: function authUserResponse(res) {
             this.routes.goto(res.data.redirect, null, null);
         },
 
-        authUserError: function authUserError() {
+        authUserError: function authUserError(res) {
+
+            this.error = $.extend({}, errors, res.data.errors);
+
             this.load = false;
         }
 
@@ -326,7 +340,13 @@ var render = function() {
         "el-form",
         {
           staticClass: "liro-auth-login__form",
-          attrs: { "label-position": "top", model: _vm.user }
+          attrs: { "label-position": "top", model: _vm.user },
+          nativeOn: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.authUser($event)
+            }
+          }
         },
         [
           _c(
@@ -334,7 +354,8 @@ var render = function() {
             {
               attrs: {
                 prop: "email",
-                label: _vm.trans("liro-users::form.auth.email")
+                label: _vm.trans("liro-users::form.auth.email"),
+                error: _vm.error.email
               }
             },
             [
@@ -356,7 +377,8 @@ var render = function() {
             {
               attrs: {
                 prop: "password",
-                label: _vm.trans("liro-users::form.auth.password")
+                label: _vm.trans("liro-users::form.auth.password"),
+                error: _vm.error.password
               }
             },
             [
@@ -407,8 +429,7 @@ var render = function() {
                 "el-button",
                 {
                   staticClass: "liro-auth-login__button",
-                  attrs: { type: "primary" },
-                  on: { click: _vm.authUser }
+                  attrs: { type: "primary", "native-type": "submit" }
                 },
                 [
                   _vm._v(
@@ -420,7 +441,23 @@ var render = function() {
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("el-form-item", [
+            _c("ul", { staticClass: "list grid grid--row grid--center" }, [
+              _c("li", { staticClass: "col--flex-none" }, [
+                _c("a", { attrs: { href: "#" } }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(
+                        _vm.trans("liro-users::form.auth.password_forget")
+                      ) +
+                      "\n                    "
+                  )
+                ])
+              ])
+            ])
+          ])
         ],
         1
       )

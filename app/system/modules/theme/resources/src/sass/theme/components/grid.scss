@@ -119,11 +119,15 @@ $--th-grid-breakpoints: (
 
 @mixin th-cols($size, $suffix: '') {
 
+    .col--auto {
+        width: auto;
+    }
+
     .col--flex-1#{$suffix} {
         flex: 1 0 auto;
     }
 
-    .col--flex-none#{$suffix} {
+    .col--flex-0#{$suffix} {
         flex: 0 0 auto;
     }
 

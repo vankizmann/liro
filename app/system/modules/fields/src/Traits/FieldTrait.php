@@ -15,6 +15,10 @@ trait FieldTrait
 
     public function getFillable()
     {
+        if ( empty($this->fillable) ) {
+            return $this->fillable;
+        }
+
         return array_merge($this->getFields(), $this->fillable);
     }
 

@@ -1,5 +1,9 @@
 <html lang="{{ app()->getLocale() }}">
     <head>
+        @php
+            app('assets')->locale('theme');
+        @endphp
+
         @include('theme::partials/head')
     </head>
     <body class="th-login">

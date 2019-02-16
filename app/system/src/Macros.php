@@ -7,3 +7,4 @@ Collection::macro('trans', function ($key, $default = null) {
         $this->get($key, $default)
     );
 });
+

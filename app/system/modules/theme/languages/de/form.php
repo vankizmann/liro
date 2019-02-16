@@ -2,6 +2,8 @@
 
 return [
 
+    'error' => 'Oops, ein Fehler',
+
     'modal' => [
         'ok'            => 'Ok',
         'cancel'        => 'Abbrechen'

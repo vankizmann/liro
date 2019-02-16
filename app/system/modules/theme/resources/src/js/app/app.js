@@ -1,14 +1,9 @@
-
-import Vue from 'vue';
-
 import Element from 'element-ui';
 Vue.use(Element);
 
 import Portal from 'portal-vue';
 Vue.use(Portal);
 
-import Router from 'vue-router';
-Vue.use(Router);
 
 import Ready from './plugins/ready';
 Vue.use(Ready);
@@ -19,6 +14,7 @@ import Menu from './components/theme/Menu';
 import MenuItem from './components/theme/MenuItem';
 import MenuLink from './components/theme/MenuLink';
 import MenuRoute from './components/theme/MenuRoute';
+import Axios from "axios";
 
 Vue.ready(function () {
 
@@ -40,16 +36,51 @@ Vue.ready(function () {
 
     window.App = new Vue({
 
-        router: new Router({
-            routes: window._router || []
-        }),
-
         mounted: function () {
-            setTimeout(() => {
-                document.querySelector('body').classList.add('vue__app--ready');
-            }, 500);
+
+            this.http.interceptors.request.use(
+                this.__request, this.__error
+            );
+
+            this.http.interceptors.response.use(
+                this.__response, this.__error
+            );
+
+        },
+
+        methods: {
+
+            __request: function (request) {
+                return request;
+            },
+
+            __response: function (response) {
+
+                if ( response.data.message !== undefined) {
+                    this.$message.success(response.data.message);
+                }
+
+                return response;
+            },
+
+            __error: function (error) {
+
+                let response = error.response;
+
+                if ( response.status !== 422) {
+                    this.$message.error(response.data.message);
+                }
+
+                $.map(response.data.errors || {}, (value, key) => {
+                    response.data.errors[key] = value.join(',');
+                });
+
+                return Promise.reject(response);
+            }
+
         }
 
     }).$mount('#app');
+
 
 });

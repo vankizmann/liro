@@ -27,6 +27,10 @@ $--button-small-padding-horizontal: 12px;
 $--button-mini-padding-vertical: 7px;
 $--button-mini-padding-horizontal: 10px;
 
+/* Notification
+-------------------------- */
+$--notification-width: 420px;
+$--notification-radius: $--border-radius-base * 1.5;
 
 @import '~backpack.css';
 @import "~element-ui/packages/theme-chalk/src/index";
@@ -46,18 +50,4 @@ body {
 
 a {
     color: $--color-primary;
-}
-
-.vue__app {
-    display: flex;
-    position: relative;
-    min-width: 100vw;
-    min-height: 100vh;
-    background-color: #f5f7fa;
-    opacity: 0;
-}
-
-body.vue__app--ready .vue__app {
-    opacity: 1;
-    transition: opacity 1s;
 }

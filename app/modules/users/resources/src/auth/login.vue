@@ -47,7 +47,7 @@
         email: null, password: null
     };
 
-    window.Liro.Modules.export('liro-auth-login', this.default = {
+    window.liro.modules.export('liro-auth-login', this.default = {
 
         data: function () {
             return {

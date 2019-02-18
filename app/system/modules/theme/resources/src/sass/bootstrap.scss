@@ -1,5 +1,6 @@
 $--font-path: '../fonts/element-ui';
 
+$--color-default: #444;
 $--color-white: #ffffff;
 $--color-black: #13141d;
 $--color-primary: #4b84fa;
@@ -7,6 +8,7 @@ $--color-success: #20ca80;
 $--color-warning: #ff9453;
 $--color-danger: #fb4e52;
 $--color-info: #4bbafa;
+$--color-muted: #5e6d82;
 
 $--border-radius-base: 2px;
 $--border-radius-small: 1px;
@@ -42,12 +44,54 @@ $--notification-radius: $--border-radius-base * 1.5;
     outline: none !important;
 }
 
-body {
-    font-family: Helvetica, Arial, sans-serif;
+html, body {
     font-size: 15px;
+}
+
+body {
+    color: $--color-black;
+    font-family: Helvetica, Arial, sans-serif;
     position: relative;
 }
 
+div {
+    box-sizing: border-box;
+}
+
 a {
+    text-decoration: none;
     color: $--color-primary;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 3.2rem
+}
+
+h2 {
+    font-size: 2.4rem
+}
+
+h3 {
+    font-size: 1.8rem
+}
+
+h4 {
+    font-size: 1.3rem
+}
+
+h5 {
+    font-size: 1.0rem
+}
+
+h6 {
+    font-size: 0.9rem
+}
+
+p {
+    color: $--color-default;
+    font-size: 1.0rem;
 }

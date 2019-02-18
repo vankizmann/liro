@@ -25,7 +25,7 @@ class ItemRegistrar
      * Set item in collection
      *
      * @param string $key
-     * @param void $value
+     * @param array $value
      * @return void
      */
     public function set($key, $value)
@@ -58,15 +58,18 @@ class ItemRegistrar
     /**
      * Sort items with given sorter
      *
-     * @param MJS\TopSort\Implementations\StringSort $sorter
-     * @return void
+     * @param \MJS\TopSort\Implementations\StringSort $sorter
+     * @return \Illuminate\Support\Collection
      */
     public function sort($sorter)
     {
         $items = $this->items->toArray();
 
-        // Get order from sorter
-        $order = $sorter->sort();
+        try {
+            $order = $sorter->sort();
+        } catch (\Exception $e) {
+            $order = [];
+        }
 
         uksort($items, function($key1, $key2) use ($order) {
             return (array_search($key1, $order) > array_search($key2, $order));

@@ -25,7 +25,7 @@ class Menu extends Model
     ];
 
     protected $appends = [
-        'trans_title', 'collapsed'
+        'trans_title', 'has_childs', 'collapsed'
     ];
 
     protected $hidden = [
@@ -107,6 +107,11 @@ class Menu extends Model
     public function getRouteActiveAttribute()
     {
         return app()->getMenuKey('id') == $this->attributes['id'] || $this->children->pluck('route_current')->contains(true) || $this->children->pluck('route_active')->contains(true);
+    }
+
+    public function getHasChildsAttribute()
+    {
+        return $this->children()->enabled()->visible()->count() !== 0;
     }
 
     public function getCollapsedAttribute()

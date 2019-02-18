@@ -14,7 +14,7 @@ unset($icon);
             <span class="uk-navbar-text">
                 {{ trans($menu->title) }}
             </span>
-            
+
         </a>
 
         @if ( $menu->children()->enabled()->visible()->count() )

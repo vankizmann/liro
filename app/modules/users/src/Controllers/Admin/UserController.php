@@ -13,7 +13,7 @@ class UserController extends \Liro\System\Http\Controller
 
     public function __construct()
     {
-        app('assets')->module('liro-users');
+        app('assets')->init('liro-users');
     }
 
     public function index(User $user, UserRole $role)

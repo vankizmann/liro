@@ -12,7 +12,7 @@ class RoleController extends \Liro\System\Http\Controller
 
     public function __construct()
     {
-        app('assets')->module('liro-users');
+        app('assets')->init('liro-users');
     }
 
     public function index(UserRole $role)

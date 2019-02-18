@@ -1,4 +1,10 @@
 
+import Assets from "./libs/assets"
+export { Assets };
+
+import Queue from "./libs/queue"
+export { Queue };
+
 import EventsObject from "./libs/events"
 export const Events = new EventsObject();
 
@@ -20,10 +26,33 @@ export const Ajax = new AjaxObject();
 import VueObject from "./libs/vue"
 export const Vue = new VueObject();
 
-import Assets from "./libs/assets"
-export { Assets };
+export default {
 
-import Queue from "./libs/queue"
-export { Queue };
+    modules: Modules,
+    Modules: Modules,
 
-export default { Modules, Events, Storage, Routes, Locales, Ajax, Vue, Assets, Queue }
+    events: Events,
+    Events: Events,
+
+    storage: Storage,
+    Storage: Storage,
+
+    routes: Routes,
+    Routes: Routes,
+
+    locales: Locales,
+    Locales: Locales,
+
+    ajax: Ajax,
+    Ajax: Ajax,
+
+    vue: Vue,
+    Vue: Vue,
+
+    assets: Assets,
+    Assets: Assets,
+
+    queue: Queue,
+    Queue: Queue
+
+}

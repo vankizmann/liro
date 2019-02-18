@@ -1,18 +1,10 @@
 
-$--th-grid-steps: (
-    3, 4, 5, 6, 7, 8, 9, 10, 12
+$--theme-grid-steps: (
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12
 );
 
-$--th-grid-gutters: (
-    10px, 20px, 40px, 60px
-);
-
-$--th-grid-breakpoints: (
-    'xs': 'screen and (min-width: 320px)',
-    'sm': 'screen and (min-width: 480px)',
-    'md': 'screen and (min-width: 640px)',
-    'lg': 'screen and (min-width: 1024px)',
-    'xl': 'screen and (min-width: 1280px)'
+$--theme-grid-gutters: (
+    10px, 20px, 30px, 40px, 60px
 );
 
 @function strip($number) {
@@ -119,8 +111,21 @@ $--th-grid-breakpoints: (
 
 @mixin th-cols($size, $suffix: '') {
 
-    .col--auto {
+    .col--auto#{$suffix} {
         width: auto;
+    }
+
+    .col--left#{$suffix} {
+        margin-right: auto;
+    }
+
+    .col--center#{$suffix} {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .col--right#{$suffix} {
+        margin-left: auto;
     }
 
     .col--flex-1#{$suffix} {
@@ -143,30 +148,16 @@ $--th-grid-breakpoints: (
 
 }
 
-@include th-grid();
+@include theme-breakpoints() {
 
-@each $gutter in $--th-grid-gutters {
-    @include th-gutter($gutter);
-}
+    @include th-grid($suffix);
 
-@each $steps in $--th-grid-steps {
-    @include th-cols($steps);
-}
+    @each $gutter in $--theme-grid-gutters {
+        @include th-gutter($gutter, $suffix);
+    }
 
-@each $suffix, $breakpoint in $--th-grid-breakpoints {
-
-    @media #{$breakpoint} {
-
-        @include th-grid(\@ + $suffix);
-
-        @each $gutter in $--th-grid-gutters {
-            @include th-gutter($gutter, \@ + $suffix);
-        }
-
-        @each $steps in $--th-grid-steps {
-            @include th-cols($steps, \@ + $suffix);
-        }
-
+    @each $steps in $--theme-grid-steps {
+        @include th-cols($steps, $suffix);
     }
 
 }

@@ -1,38 +1,36 @@
-import Element from 'element-ui';
-Vue.use(Element);
-
-import Portal from 'portal-vue';
-Vue.use(Portal);
-
+import Vue from 'vue';
 
 import Ready from './plugins/ready';
 Vue.use(Ready);
 
-import Component from './components/theme/Component';
-import Layout from './components/theme/Layout';
-import Menu from './components/theme/Menu';
-import MenuItem from './components/theme/MenuItem';
-import MenuLink from './components/theme/MenuLink';
-import MenuRoute from './components/theme/MenuRoute';
-import Axios from "axios";
+import Portal from 'portal-vue';
+Vue.use(Portal);
+
+import Element from 'element-ui';
+Vue.use(Element, { i18n: liro.locales.trans });
+
+import Component from './components/component';
+Vue.component('app-component', Component);
+
+import Layout from './components/theme/layout';
+Vue.component('theme-layout', Layout);
+
+import NavItem from './components/theme/nav-item';
+Vue.component('theme-nav-item', NavItem);
+
+import NavDropdown from './components/theme/nav-dropdown';
+Vue.component('theme-nav-dropdown', NavDropdown);
 
 Vue.ready(function () {
 
-    Vue.prototype.http = window.Axios;
+    Vue.prototype.http = axios;
 
-    Vue.prototype.events = window.Liro.Events;
-    Vue.prototype.routes = window.Liro.Routes;
-    Vue.prototype.store = window.Liro.Storage;
+    Vue.prototype.events = liro.events;
+    Vue.prototype.routes = liro.routes;
+    Vue.prototype.storage = liro.storage;
 
-    Vue.prototype.trans = window.Liro.Locales.trans;
-    Vue.prototype.choice = window.Liro.Locales.choice;
-
-    Vue.component('th-component', Component);
-    Vue.component('th-layout', Layout);
-    Vue.component('th-menu', Menu);
-    Vue.component('th-menu-item', MenuItem);
-    Vue.component('th-menu-link', MenuLink);
-    Vue.component('th-menu-route', MenuRoute);
+    Vue.prototype.trans = liro.locales.trans;
+    Vue.prototype.choice = liro.locales.choice;
 
     window.App = new Vue({
 

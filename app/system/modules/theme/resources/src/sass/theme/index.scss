@@ -1,14 +1,43 @@
+@import "./components/breakpoint";
 @import "./components/transition";
 @import "./components/grid";
+@import "./components/space";
+@import "./components/error";
+@import "./components/login";
+@import "./components/page";
 @import "./components/loader";
 @import "./components/layout";
-@import "./components/menu";
-@import "./components/login";
+@import "./components/nav";
 @import "./components/override";
+
+#app {
+    width: 100vw;
+    min-height: 100vh;
+}
 
 .list {
     list-style-type: none;
     line-height: 1.2;
+}
+
+.text--primary {
+    color: $--color-primary;
+}
+
+.text--muted {
+    color: $--color-muted;
+}
+
+.text--bold {
+    font-weight: 500;
+}
+
+.text--regular {
+    font-weight: 400;
+}
+
+.text--light {
+    font-weight: 300;
 }
 
 .text--left {

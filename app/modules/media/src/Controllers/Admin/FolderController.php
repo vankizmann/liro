@@ -11,7 +11,7 @@ class FolderController extends \Liro\System\Http\Controller
 
     public function __construct()
     {
-        app('assets')->module('liro-media');
+        app('assets')->init('liro-media');
     }
 
     public function index()

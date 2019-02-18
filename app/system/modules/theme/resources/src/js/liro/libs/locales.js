@@ -37,6 +37,10 @@ export default function () {
 
     this.trans = (key, values) => {
 
+        if ( ! key.match(/^(.+?)::(.+?)$/) ) {
+            key = 'theme::' + key;
+        }
+
         let message = get(this.locales, key, key);
 
         each(values, (value, key) => {
@@ -48,13 +52,17 @@ export default function () {
 
     this.choice = (key, count, values) => {
 
+        if ( ! key.match(/^(.+?)::(.+?)$/) ) {
+            key = 'theme::' + key;
+        }
+
         let splits = get(this.locales, key, key).split('|');
 
-        if ( values.count == undefined ) {
+        if ( values.count !== undefined ) {
             values = merge({ count: count }, values || {});
         }
 
-        let message = pickByCount(splits, count);
+        let message = pickByCount(splits, count || 0);
 
         each(values, (value, key) => {
             message = message.replace(new RegExp(':' + key, 'g'), value);

@@ -9,7 +9,7 @@ class TypeController extends \Liro\System\Http\Controller
 
     public function __construct()
     {
-        app('assets')->module('liro-menus');
+        app('assets')->init('liro-menus');
     }
 
     public function index(MenuType $type)

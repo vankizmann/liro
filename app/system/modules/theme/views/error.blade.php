@@ -2,24 +2,18 @@
     <head>
         @include('theme::partials/head')
     </head>
-    <body class="th-error">
+    <body class="theme-error">
 
-        @include('theme::partials/notification')
+        <div class="theme-login__frame grid grid--row grid--center grid--middle" id="app">
+            <div class="theme-login__form grid grid--col">
 
-        <div class="th-error-body uk-flex uk-flex-center uk-flex-middle" id="app">
-            <div class="th-error-form uk-padding">
-
-                <div class="uk-flex uk-flex-center uk-margin-large-bottom">
-                    <span class="uk-logo">
-                        <img src="{{ app('assets')->file('theme::dist/images/liro.svg') }}" width="160" height="40" uk-svg>
-                    </span>
+                <div class="theme-login__logo">
+                    <img src="{{ app('assets')->file('theme::dist/images/liro.svg') }}" width="140" height="35">
                 </div>
 
-                <div class="th-error-content">
-                    <div class="uk-text-center">
-                        <h2>@yield('title')</h2>
-                        <p class="uk-text-muted">@yield('message')</p>
-                    </div>
+                <div class="theme-login__body text--center">
+                    <h3 class="text--light">@yield('title')</h3>
+                    <p class="text--muted">@yield('message')</p>
                 </div>
 
             </div>

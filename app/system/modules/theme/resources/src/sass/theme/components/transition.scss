@@ -7,7 +7,7 @@
  * Documentation: https://github.com/asika32764/vue2-animate
  */
 
-$animationDuration: 0.3s !default;
+$animationDuration: 0.15s !default;
 
 // W3C disallow quote on animate name, so this variable set to false as default after 2.1.0.
 // @see https://github.com/asika32764/vue2-animate/pull/20
@@ -19,7 +19,7 @@ $quoteAnimationNames: false !default;
 @keyframes fadeInRouter {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(5px);
     }
 
     to {
@@ -35,14 +35,14 @@ $quoteAnimationNames: false !default;
 
     to {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-5px);
     }
 }
 
 @keyframes fadeInDropdown {
     from {
         opacity: 0;
-        transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -5px, 0);
     }
 
     to {
@@ -58,7 +58,7 @@ $quoteAnimationNames: false !default;
 
     to {
         opacity: 0;
-        transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -5px, 0);
     }
 }
 

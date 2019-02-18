@@ -208,7 +208,7 @@ class AssetManager
             return $this->namespaces->replaceInString($script);
         }, $config['styles']);
 
-        $html = '<script ' . implode(' ', $attributes) . '>Liro.Modules.bind(\'' . $name . '\', ' . json_encode($config) . ')</script>';
+        $html = '<script ' . implode(' ', $attributes) . '>liro.modules.bind(\'' . $name . '\', ' . json_encode($config) . ')</script>';
         $this->scripts->set($name, [$html, $dependencies]);
     }
 

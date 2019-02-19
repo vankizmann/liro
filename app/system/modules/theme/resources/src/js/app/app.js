@@ -12,18 +12,37 @@ Vue.use(Element, { i18n: liro.locales.trans });
 import Component from './components/component';
 Vue.component('app-component', Component);
 
-import Layout from './components/theme/layout';
-Vue.component('theme-layout', Layout);
+import Layout from './components/layout';
+Vue.component('app-layout', Layout);
 
-import NavItem from './components/theme/nav-item';
-Vue.component('theme-nav-item', NavItem);
+import NavItem from './components/nav/item';
+Vue.component('app-nav-item', NavItem);
 
-import NavDropdown from './components/theme/nav-dropdown';
-Vue.component('theme-nav-dropdown', NavDropdown);
+import NavDropdown from './components/nav/dropdown';
+Vue.component('app-nav-dropdown', NavDropdown);
+
+import NavLink from './components/nav/link';
+Vue.component('app-nav-link', NavLink);
+
+import List from './components/list';
+Vue.component('app-list', List);
+
+import ListSearch from './components/list/search';
+Vue.component('app-list-search', ListSearch);
+
+import ListSort from './components/list/sort';
+Vue.component('app-list-sort', ListSort);
+
+import ListFilter from './components/list/filter';
+Vue.component('app-list-filter', ListFilter);
+
+import ListPagination from './components/list/pagination';
+Vue.component('app-list-pagination', ListPagination);
 
 Vue.ready(function () {
 
     Vue.prototype.http = axios;
+    Vue.prototype.liro = liro;
 
     Vue.prototype.events = liro.events;
     Vue.prototype.routes = liro.routes;

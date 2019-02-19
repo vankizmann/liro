@@ -16,14 +16,27 @@ return [
 
         'app.boot' => function () {
 
-            app('assets')->module('liro-auth', [
+            $auth = [
                 'scripts' => [
                     'liro-users::dist/liro-auth.js'
                 ],
                 'modules' => [
                     'liro-auth-login'
                 ]
-            ], ['theme-script']);
+            ];
+
+            app('assets')->module('liro-auth', $auth, ['theme-script']);
+
+            $user = [
+                'scripts' => [
+                    'liro-users::dist/liro-user.js'
+                ],
+                'modules' => [
+                    'liro-user-index', 'liro-user-create', 'liro-user-edit'
+                ]
+            ];
+
+            app('assets')->module('liro-user', $user, ['theme-script']);
 
             app('assets')->routes([
                 'liro-users.ajax.auth.login', 'liro-users.ajax.auth.token',

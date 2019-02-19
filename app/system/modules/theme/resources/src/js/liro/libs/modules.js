@@ -77,7 +77,7 @@ export default function () {
             return el.modules.indexOf(key) != -1;
         });
 
-        if ( index == -1 ) {
+        if ( index === undefined ) {
             return console.error('Module "' + key + '" not found');
         }
 

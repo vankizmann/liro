@@ -1,20 +1,22 @@
 <template>
 
 <div class="app-list-filter">
-    
+
+    <el-checkbox-group v-model="values">
+        <template v-for="(filter, index) in filters">
+            <el-checkbox :key="index" :value="filter[filtersValue]" :label="filter[filtersLabel]"></el-checkbox>
+        </template>
+    </el-checkbox-group>
+
     <!-- Label start -->
     <a href="javascript:void(0)" :class="{ 'uk-text-nowrap': true, 'uk-active': values.length != 0 }">
         <i uk-icon="check-square"></i> <span v-if="$slots.default"><slot></slot></span>
     </a>
     <!-- Label end -->
 
-    <div ref="dropdown" class="uk-text-left" uk-dropdown="mode: click; pos: bottom-justify;">
 
-        <!-- Options start -->
-        <label v-for="(filter, index) in filters" :key="index" class="uk-checkbox-label uk-display-block uk-margin-small-bottom">
-            <input type="checkbox" class="uk-checkbox" :value="filter[filtersValue]" v-model="values"> <span>{{ filter[filtersLabel] }}</span>
-        </label>
-        <!-- Options end -->
+
+    <div ref="dropdown" class="uk-text-left" uk-dropdown="mode: click; pos: bottom-justify;">
 
         <!-- Reset start -->
         <div class="uk-margin-top uk-child-width-1-1">
@@ -104,15 +106,11 @@ export default {
     methods: {
 
         resetFilter: function () {
-            UIkit.toggle(this.$refs.dropdown); this.values = [];
+            this.values = [];
         }
 
     }
 
-}
-
-if (window.Liro) {
-    Liro.vue.component('app-list-filter', this.default);
 }
 
 </script>

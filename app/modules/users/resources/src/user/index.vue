@@ -3,57 +3,53 @@
 <app-list class="liro-user-index" v-model="users" database="users.user.index">
     <div slot-scope="{ items }">
 
-        <portal to="app-toolbar">
-            <div class="uk-navbar-item">
-                <a class="uk-button uk-button-primary" :href="route('liro-users.admin.user.create')">
-                    {{ trans('liro-users::admin.user.create') }}
-                </a>
-            </div>
+        <portal to="toolbar-right">
+            <app-nav-item>
+                <app-nav-link :href="routes.get('liro-users.admin.user.create')">
+                    <el-button type="primary">{{ trans('liro-users::admin.user.create') }}</el-button>
+                </app-nav-link>
+            </app-nav-item>
         </portal>
 
         <!-- Table start -->
         <div class="th-form is-reset">
-            <div class="th-table uk-margin-remove-bottom">
+            <div class="table">
 
                 <!-- Table head -->
-                <div class="th-table-head">
-                    <div class="th-table-tr uk-flex uk-flex-middle">
-
-                        <div class="uk-margin-auto-left">
-                            <app-list-search class="uk-display-inline-block" :columns="['name', 'email']" :placeholder="trans('theme::form.search.placeholder')"></app-list-search>
-                        </div>
-
+                <div class="table__head">
+                    <div class="table__tr grid grid--row">
+                        <app-list-search class="col--right" :columns="['name', 'email']" :placeholder="trans('theme::form.search.placeholder')" />
                     </div>
                 </div>
                 <!-- Table head end -->
 
                 <!-- Table filter -->
-                <div class="th-table-filter">
-                    <div class="th-table-tr uk-flex uk-flex-middle">
-                        <div class="th-table-td th-table-td-xs">
-                            <app-list-select-all class="uk-display-inline-block uk-margin-right"></app-list-select-all>
+                <div class="table__filter">
+                    <div class="table__tr grid grid--row grid--middle">
+                        <div class="table__td table__td--xs">
+
                         </div>
-                        <div class="uk-width-1-3">
+                        <div class="col--1-3">
                             <app-list-sort column="name">
                                 {{ trans('liro-users::form.user.name') }}
                             </app-list-sort>
                         </div>
-                        <div class="uk-width-1-3">
+                        <div class="col--1-3">
                             <app-list-sort column="email">
                                 {{ trans('liro-users::form.user.email') }}
                             </app-list-sort>
                         </div>
-                        <div class="uk-width-1-3">
+                        <div class="col--1-3">
                             <app-list-filter column="role_ids" :filters="roles" filters-value="id" filters-label="title">
                                 {{ trans('liro-users::form.user.role') }}
                             </app-list-filter>
                         </div>
-                        <div class="th-table-td-m uk-text-center">
+                        <div class="table__td--m text--center">
                             <app-list-filter column="state" :filters="states">
                                 {{ trans('liro-users::form.user.state') }}
                             </app-list-filter>
                         </div>
-                        <div class="th-table-td-m uk-text-center">
+                        <div class="table__td--m text--center">
                             <app-list-sort column="id">
                                 {{ trans('liro-users::form.user.id') }}
                             </app-list-sort>
@@ -63,23 +59,23 @@
                 <!-- Table filter end -->
 
                 <!-- Table body -->
-                <div class="th-table-body" v-show="items.length != 0">
+                <div class="table__body" v-show="items.length !== 0">
                     <liro-user-index-item v-for="(item, index) in items" :value="item" :key="index"></liro-user-index-item>
                 </div>
                 <!-- Table body end -->
 
                 <!-- Table body -->
-                <div class="th-table-body" v-show="items.length == 0">
-                    <div class="th-table-tr uk-flex uk-flex-middle">
-                        <div class="uk-width1-1 uk-text-center">
+                <div class="table__body" v-show="items.length === 0">
+                    <div class="table__tr grid grid--row grid--middle">
+                        <div class="col--1-1 text--center">
                             {{ trans('theme::form.list.empty') }}
                         </div>
                     </div>
                 </div>
                 <!-- Table body end -->
 
-                <div class="th-table-footer">
-                    <div class="th-table-tr uk-flex uk-flex-middle">
+                <div class="table__footer">
+                    <div class="table__tr grid grid--row grid--middle">
                         <app-list-pagination></app-list-pagination>
                     </div>
                 </div>
@@ -96,29 +92,22 @@
 
 import IndexItem from './index/item';
 
-export default {
+window.liro.modules.export('liro-user-index', this.default = {
 
-    computed: {
+    components: {
+        'liro-user-index-item': IndexItem
+    },
 
-        states: function () {
-            return this.$root.states;
-        },
-
-        roles: function () {
-            return this.$root.roles;
-        },
-
-        users: function () {
-            return this.$root.users;
+    data: function () {
+        return {
+            ...this.liro.vue.bind('states', this),
+            ...this.liro.vue.bind('roles', this),
+            users: []
+            // ...this.liro.vue.ajax('users', 'users-index', 'users', this)
         }
-
     }
 
-}
-
-if (window.Liro) {
-    Liro.vue.component('liro-user-index', this.default);
-}
+});
 
 </script>
 

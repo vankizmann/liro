@@ -19,7 +19,7 @@ $quoteAnimationNames: false !default;
 @keyframes fadeInRouter {
     from {
         opacity: 0;
-        transform: translateY(5px);
+        transform: translateY(10px) scaleY(0.6);
     }
 
     to {
@@ -35,14 +35,14 @@ $quoteAnimationNames: false !default;
 
     to {
         opacity: 0;
-        transform: translateY(-5px);
+        transform: translateY(-10px) scaleY(0.6);
     }
 }
 
 @keyframes fadeInDropdown {
     from {
         opacity: 0;
-        transform: translate3d(0, -5px, 0);
+        transform: translateY(-10px) scaleY(0.6);
     }
 
     to {
@@ -58,7 +58,7 @@ $quoteAnimationNames: false !default;
 
     to {
         opacity: 0;
-        transform: translate3d(0, -5px, 0);
+        transform: translateY(-10px) scaleY(0.6);
     }
 }
 

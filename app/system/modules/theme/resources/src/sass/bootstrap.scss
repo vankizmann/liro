@@ -10,6 +10,8 @@ $--color-danger: #fb4e52;
 $--color-info: #4bbafa;
 $--color-muted: #5e6d82;
 
+$--font-weight-primary: 400;
+
 $--border-radius-base: 2px;
 $--border-radius-small: 1px;
 
@@ -45,16 +47,18 @@ $--notification-radius: $--border-radius-base * 1.5;
 }
 
 html, body {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
     font-size: 15px;
 }
 
 body {
     color: $--color-black;
     font-family: Helvetica, Arial, sans-serif;
-    position: relative;
+    font-weight: 400;
 }
 
-div {
+div, a {
     box-sizing: border-box;
 }
 

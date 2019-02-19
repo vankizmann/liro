@@ -45,7 +45,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Liro\System\Http\Middleware\EncryptCookies::class,
-            \Liro\System\Http\Middleware\VerifyCsrfToken::class,
+            // \Liro\System\Http\Middleware\VerifyCsrfToken::class,
             \Liro\System\Http\Middleware\AjaxRequest::class
         ],
 

@@ -15,7 +15,7 @@
             }
         },
         mounted: function () {
-            window.liro.modules.import(this.element, (data) => {
+            this.liro.modules.import(this.element, (data) => {
                 this.component = data;
             });
         }

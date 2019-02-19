@@ -82,51 +82,47 @@
 </template>
 <script>
 
-export default {
+    window.liro.modules.export('liro-user-create', this.default = {
 
-    computed: {
+        computed: {
 
-        states: function () {
-            return this.$root.states;
+            states: function () {
+                return this.$root.states;
+            },
+
+            roles: function () {
+                return this.$root.roles;
+            },
+
+            user: function () {
+                return this.$root.user;
+            }
+
         },
 
-        roles: function () {
-            return this.$root.roles;
-        },
+        methods: {
 
-        user: function () {
-            return this.$root.user;
+            storeUser: function () {
+                var url = Liro.routes.get('liro-users.ajax.user.store');
+                Axios.post(url, this.user).then(this.storeUserResponse);
+            },
+
+            storeUserResponse: function (res) {
+
+                var values = {
+                    user: res.data.id
+                };
+
+                var query = {
+                    success: 'liro-users::message.user.created'
+                };
+
+                Liro.routes.redirect('liro-users.admin.user.edit', values, query);
+            }
+
         }
 
-    },
-
-    methods: {
-
-        storeUser: function () {
-            var url = Liro.routes.get('liro-users.ajax.user.store');
-            Axios.post(url, this.user).then(this.storeUserResponse);
-        },
-
-        storeUserResponse: function (res) {
-
-            var values = {
-                user: res.data.id
-            };
-
-            var query = {
-                success: 'liro-users::message.user.created'
-            };
-
-            Liro.routes.redirect('liro-users.admin.user.edit', values, query);
-        }
-
-    }
-
-}
-
-if (window.Liro) {
-    Liro.vue.component('liro-user-create', this.default);
-}
+    });
 
 </script>
 

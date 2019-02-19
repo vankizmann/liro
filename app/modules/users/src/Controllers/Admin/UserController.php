@@ -2,13 +2,11 @@
 
 namespace Liro\Users\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use Liro\System\Http\Controller;
 use Liro\System\Users\Models\User;
 use Liro\System\Users\Models\UserRole;
-use Liro\Users\Requests\UserStoreRequest;
-use Liro\Users\Requests\UserUpdateRequest;
 
-class UserController extends \Liro\System\Http\Controller
+class UserController extends Controller
 {
 
     public function __construct()
@@ -18,10 +16,6 @@ class UserController extends \Liro\System\Http\Controller
 
     public function index(User $user, UserRole $role)
     {
-        app('assets')->dataArray([
-            'users' => $user->all(), 'roles' => $role->all()
-        ]);
-
         return view('liro-users::user/index');
     }
 
@@ -34,17 +28,14 @@ class UserController extends \Liro\System\Http\Controller
 
         // $user->password = '';
 
-        app('assets')->dataArray([
-            'user' => $user, 'roles' => $role->all()
-        ]);
-
         return view('liro-users::user/create');
     }
 
     public function edit(User $user, UserRole $role)
     {
-        app('assets')->dataArray([
-            'user' => $user, 'roles' => $role->all()
+        $user->fill([
+            'password' => '',
+            'password_confirm' => ''
         ]);
 
         return view('liro-users::user/edit');

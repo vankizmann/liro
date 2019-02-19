@@ -1,10 +1,9 @@
 <template>
 
-<div class="app-list-search">
+<div class="app-list__search">
     <!-- Input start -->
     <div class="uk-inline uk-width-medium">
-        <a class="uk-form-icon uk-form-icon-flip" @click="setQuery('')"><span uk-icon="times"></span></a>
-        <input id="list-filter-search" class="uk-input" type="search" v-model="query" @keyup="setQuery(query)" :placeholder="placeholder">
+        <el-input v-model="query" @change="setQuery(query)" :placeholder="placeholder"></el-input>
     </div>
     <!-- Input end -->
 </div>
@@ -58,10 +57,6 @@ export default {
 
     }
 
-}
-
-if (window.Liro) {
-    Liro.vue.component('app-list-search', this.default);
 }
 
 </script>

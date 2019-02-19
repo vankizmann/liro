@@ -241,10 +241,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_item__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__index_item__);
-//
-//
-//
-//
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -339,29 +337,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+window.liro.modules.export('liro-user-index', this.default = {
 
-    computed: {
+    components: {
+        'liro-user-index-item': __WEBPACK_IMPORTED_MODULE_0__index_item___default.a
+    },
 
-        states: function states() {
-            return this.$root.states;
-        },
-
-        roles: function roles() {
-            return this.$root.roles;
-        },
-
-        users: function users() {
-            return this.$root.users;
-        }
-
+    data: function data() {
+        return _extends({}, this.liro.vue.bind('states', this), this.liro.vue.bind('roles', this), {
+            users: []
+            // ...this.liro.vue.ajax('users', 'users-index', 'users', this)
+        });
     }
 
 });
-
-if (window.Liro) {
-    Liro.vue.component('liro-user-index', this.default);
-}
 
 /***/ }),
 /* 9 */
@@ -593,72 +582,67 @@ var render = function() {
             "div",
             {},
             [
-              _c("portal", { attrs: { to: "app-toolbar" } }, [
-                _c("div", { staticClass: "uk-navbar-item" }, [
+              _c(
+                "portal",
+                { attrs: { to: "toolbar-right" } },
+                [
                   _c(
-                    "a",
-                    {
-                      staticClass: "uk-button uk-button-primary",
-                      attrs: { href: _vm.route("liro-users.admin.user.create") }
-                    },
+                    "app-nav-item",
                     [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(_vm.trans("liro-users::admin.user.create")) +
-                          "\n                "
+                      _c(
+                        "app-nav-link",
+                        {
+                          attrs: {
+                            href: _vm.routes.get("liro-users.admin.user.create")
+                          }
+                        },
+                        [
+                          _c("el-button", { attrs: { type: "primary" } }, [
+                            _vm._v(
+                              _vm._s(_vm.trans("liro-users::admin.user.create"))
+                            )
+                          ])
+                        ],
+                        1
                       )
-                    ]
+                    ],
+                    1
                   )
-                ])
-              ]),
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "th-form is-reset" }, [
-                _c("div", { staticClass: "th-table uk-margin-remove-bottom" }, [
-                  _c("div", { staticClass: "th-table-head" }, [
+                _c("div", { staticClass: "table" }, [
+                  _c("div", { staticClass: "table__head" }, [
                     _c(
                       "div",
-                      { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                      { staticClass: "table__tr grid grid--row" },
                       [
-                        _c(
-                          "div",
-                          { staticClass: "uk-margin-auto-left" },
-                          [
-                            _c("app-list-search", {
-                              staticClass: "uk-display-inline-block",
-                              attrs: {
-                                columns: ["name", "email"],
-                                placeholder: _vm.trans(
-                                  "theme::form.search.placeholder"
-                                )
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]
+                        _c("app-list-search", {
+                          staticClass: "col--right",
+                          attrs: {
+                            columns: ["name", "email"],
+                            placeholder: _vm.trans(
+                              "theme::form.search.placeholder"
+                            )
+                          }
+                        })
+                      ],
+                      1
                     )
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "th-table-filter" }, [
+                  _c("div", { staticClass: "table__filter" }, [
                     _c(
                       "div",
-                      { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                      { staticClass: "table__tr grid grid--row grid--middle" },
                       [
-                        _c(
-                          "div",
-                          { staticClass: "th-table-td th-table-td-xs" },
-                          [
-                            _c("app-list-select-all", {
-                              staticClass:
-                                "uk-display-inline-block uk-margin-right"
-                            })
-                          ],
-                          1
-                        ),
+                        _c("div", { staticClass: "table__td table__td--xs" }),
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "uk-width-1-3" },
+                          { staticClass: "col--1-3" },
                           [
                             _c("app-list-sort", { attrs: { column: "name" } }, [
                               _vm._v(
@@ -675,7 +659,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "uk-width-1-3" },
+                          { staticClass: "col--1-3" },
                           [
                             _c(
                               "app-list-sort",
@@ -696,7 +680,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "uk-width-1-3" },
+                          { staticClass: "col--1-3" },
                           [
                             _c(
                               "app-list-filter",
@@ -724,7 +708,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "th-table-td-m uk-text-center" },
+                          { staticClass: "table__td--m text--center" },
                           [
                             _c(
                               "app-list-filter",
@@ -747,7 +731,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "th-table-td-m uk-text-center" },
+                          { staticClass: "table__td--m text--center" },
                           [
                             _c("app-list-sort", { attrs: { column: "id" } }, [
                               _vm._v(
@@ -772,11 +756,11 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: items.length != 0,
-                          expression: "items.length != 0"
+                          value: items.length !== 0,
+                          expression: "items.length !== 0"
                         }
                       ],
-                      staticClass: "th-table-body"
+                      staticClass: "table__body"
                     },
                     _vm._l(items, function(item, index) {
                       return _c("liro-user-index-item", {
@@ -793,37 +777,35 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: items.length == 0,
-                          expression: "items.length == 0"
+                          value: items.length === 0,
+                          expression: "items.length === 0"
                         }
                       ],
-                      staticClass: "th-table-body"
+                      staticClass: "table__body"
                     },
                     [
                       _c(
                         "div",
-                        { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                        {
+                          staticClass: "table__tr grid grid--row grid--middle"
+                        },
                         [
-                          _c(
-                            "div",
-                            { staticClass: "uk-width1-1 uk-text-center" },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(_vm.trans("theme::form.list.empty")) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
+                          _c("div", { staticClass: "col--1-1 text--center" }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(_vm.trans("theme::form.list.empty")) +
+                                "\n                        "
+                            )
+                          ])
                         ]
                       )
                     ]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "th-table-footer" }, [
+                  _c("div", { staticClass: "table__footer" }, [
                     _c(
                       "div",
-                      { staticClass: "th-table-tr uk-flex uk-flex-middle" },
+                      { staticClass: "table__tr grid grid--row grid--middle" },
                       [_c("app-list-pagination")],
                       1
                     )
@@ -904,10 +886,8 @@ module.exports = Component.exports
 
 /***/ }),
 /* 14 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -992,7 +972,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+window.liro.modules.export('liro-user-create', this.default = {
 
     computed: {
 
@@ -1033,10 +1013,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
 
 });
-
-if (window.Liro) {
-    Liro.vue.component('liro-user-create', this.default);
-}
 
 /***/ }),
 /* 15 */
@@ -1341,10 +1317,8 @@ module.exports = Component.exports
 
 /***/ }),
 /* 17 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -1429,7 +1403,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+window.liro.modules.export('liro-user-edit', this.default = {
 
     computed: {
 
@@ -1466,10 +1440,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
 
 });
-
-if (window.Liro) {
-    Liro.vue.component('liro-user-edit', this.default);
-}
 
 /***/ }),
 /* 18 */

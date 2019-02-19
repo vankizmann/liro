@@ -25,9 +25,9 @@
             <!-- Prev end -->
 
             <!-- Pages start -->
-            <li v-for="page in Liro.helpers.range(config.pages, 1)" :key="page" :class="{ 'uk-active': page == config.page }">
-                <a href="#" @click.prevent="paginate(page)">{{ page }}</a>
-            </li>
+            <!--<li v-for="page in Liro.helpers.range(config.pages, 1)" :key="page" :class="{ 'uk-active': page == config.page }">-->
+                <!--<a href="#" @click.prevent="paginate(page)">{{ page }}</a>-->
+            <!--</li>-->
             <!-- Pages end -->
 
             <!-- Next start -->

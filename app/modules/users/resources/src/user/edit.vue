@@ -82,47 +82,43 @@
 </template>
 <script>
 
-export default {
+    window.liro.modules.export('liro-user-edit', this.default = {
 
-    computed: {
+        computed: {
 
-        states: function () {
-            return this.$root.states;
+            states: function () {
+                return this.$root.states;
+            },
+
+            roles: function () {
+                return this.$root.roles;
+            },
+
+            user: function () {
+                return this.$root.user;
+            }
+
         },
 
-        roles: function () {
-            return this.$root.roles;
-        },
+        methods: {
 
-        user: function () {
-            return this.$root.user;
+            updateUser: function () {
+
+                var url = Liro.routes.get('liro-users.ajax.user.update', {
+                    user: this.user.id
+                });
+
+                Axios.put(url, this.user).then(this.updateUserResponse);
+            },
+
+            updateUserResponse: function (res) {
+                var message = Liro.messages.get('liro-users::message.user.saved');
+                UIkit.notification(message, 'success');
+            }
+
         }
 
-    },
-
-    methods: {
-
-        updateUser: function () {
-
-            var url = Liro.routes.get('liro-users.ajax.user.update', {
-                user: this.user.id
-            });
-
-            Axios.put(url, this.user).then(this.updateUserResponse);
-        },
-
-        updateUserResponse: function (res) {
-            var message = Liro.messages.get('liro-users::message.user.saved');
-            UIkit.notification(message, 'success');
-        }
-
-    }
-
-}
-
-if (window.Liro) {
-    Liro.vue.component('liro-user-edit', this.default);
-}
+    });
 
 </script>
 

@@ -36,7 +36,8 @@ return [
         'password_forget'       => 'Password vergessen?',
         'remember_me'           => 'Anmeldung merken',
         'login'                 => 'Anmelden',
-        'logout'                => 'Abmelden'
+        'logout'                => 'Abmelden',
+        'edit'                  => 'Account bearbeiten'
     ],
 
 

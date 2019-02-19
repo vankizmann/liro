@@ -45,7 +45,7 @@ class AssetManager
      *
      * @var \Liro\System\Assets\Registrar\DataRegistrar
      */
-    protected $data;
+    protected $storage;
 
     /**
      * Scripts registrar
@@ -80,7 +80,7 @@ class AssetManager
         $this->locales = $app->make(LocaleRegistrar::class);
 
         // Register locales registrar
-        $this->data = $app->make(DataRegistrar::class);
+        $this->storage = $app->make(DataRegistrar::class);
 
         // Register locales registrar
         $this->scripts = $app->make(ItemRegistrar::class);
@@ -152,9 +152,9 @@ class AssetManager
      * @param void $value
      * @return void
      */
-    public function data($key, $value)
+    public function storage($key, $value)
     {
-        $this->data->set($key, $value);
+        $this->storage->set($key, $value);
     }
 
     /**
@@ -163,10 +163,10 @@ class AssetManager
      * @param array $values
      * @return void
      */
-    public function dataArray($values)
+    public function storageArray($values)
     {
         foreach ( $values as $key => $value ) {
-            $this->data($key, $value);
+            $this->storage($key, $value);
         }
     }
 
@@ -321,8 +321,8 @@ class AssetManager
             $output .= 'window._locales = ' . $this->locales->all()->toJson() . ';' . "\n";
         }
 
-        if ( in_array('data', $keys) ) {
-            $output .= 'window._storage = ' . $this->data->all()->toJson() . ';' . "\n";
+        if ( in_array('storage', $keys) ) {
+            $output .= 'window._storage = ' . $this->storage->all()->toJson() . ';' . "\n";
         }
 
         $output .= '</script>';

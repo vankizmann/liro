@@ -4,14 +4,13 @@ namespace Liro\System\Menus\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Liro\System\Database\CastableTrait;
-use Liro\System\Menus\Models\Menu;
 use Liro\System\Languages\Models\Language;
 
-class MenuType extends Model
+class Domain extends Model
 {
     use CastableTrait;
 
-    protected $table = 'menu_types';
+    protected $table = 'domains';
 
     protected $guarded = [
         'id'
@@ -19,7 +18,7 @@ class MenuType extends Model
 
     protected $attributes = [
         'state'         => null,
-        'locale'        => null,
+        'entry'         => null,
         'title'         => null,
         'route'         => null,
         'theme'         => null
@@ -27,7 +26,7 @@ class MenuType extends Model
 
     protected $casts = [
         'state'         => 'integer',
-        'locale'        => 'string',
+        'entry'         => 'integer',
         'title'         => 'string',
         'route'         => 'string',
         'theme'         => 'string',
@@ -35,22 +34,12 @@ class MenuType extends Model
 
     public function menus()
     {
-        return $this->hasMany(Menu::class, 'menu_type_id', 'id');
+        return $this->hasMany(Menu::class, 'domain_id', 'id');
     }
 
     public function language()
     {
         return $this->hasOne(Language::class, 'locale', 'locale');
-    }
-
-    public function scopeEnabled($query)
-    {
-        return $query->where('state', 1);
-    }
-
-    public function scopeDisabled($query)
-    {
-        return $query->where('state', 0);
     }
 
     public function getMenusAttribute()

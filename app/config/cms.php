@@ -3,44 +3,47 @@
 return [
 
     /**
-     * Date format
-     */
-    'time' => env('CMS_DATE','d.m.Y'),
-
-    /**
-     * Time format
-     */
-    'time' => env('CMS_TIME','H:i'),
-
-    /**
-     * Datetime format
-     */
-    'datetime' => env('CMS_DATETIME','H:i d.m.Y'),
-
-
-    /**
      * 403 Error page
      */
-    '403' => env('CMS_403','system-theme::errors/403'),
+    '403' => env('CMS_403', 'system-theme::errors/403'),
 
     /**
      * 404 Error page
      */
-    '404' => env('CMS_404','system-theme::errors/404'),
+    '404' => env('CMS_404', 'system-theme::errors/404'),
 
     /**
      * 419 Error page
      */
-    '419' => env('CMS_419','system-theme::errors/419'),
+    '419' => env('CMS_419', 'system-theme::errors/419'),
 
     /**
      * 500 Error page
      */
-    '500' => env('CMS_500','system-theme::errors/500'),
+    '500' => env('CMS_500', 'system-theme::errors/500'),
 
     /**
      * 503 Error page
      */
-    '503' => env('CMS_503','system-theme::errors/503'),
+    '503' => env('CMS_503', 'system-theme::errors/503'),
+
+    /**
+     * Module paths
+     */
+    'modules' => [
+        'app/system/modules/*/index.php',
+        'app/modules/*/index.php',
+        'modules/*/*/index.php'
+    ],
+
+    /**
+     * Module loaders
+     */
+    'loaders' => [
+        Liro\System\Modules\Loaders\ClassLoader::class,
+        Liro\System\Modules\Loaders\AliasLoader::class,
+        Liro\System\Modules\Loaders\EventLoader::class,
+        Liro\System\Modules\Loaders\MiddlewareLoader::class
+    ],
 
 ];

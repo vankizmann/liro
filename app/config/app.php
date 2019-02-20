@@ -146,8 +146,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
-
+        Liro\System\Providers\AppServiceProvider::class,
+        Liro\System\Providers\EventServiceProvider::class,
+        Liro\System\Providers\RouteServiceProvider::class
     ],
 
     /*

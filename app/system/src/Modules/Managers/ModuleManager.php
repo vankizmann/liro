@@ -43,6 +43,7 @@ class ModuleManager
     public function __construct(Application $app)
     {
         $this->app = $app;
+        $this->loaders = config('cms.loaders');
     }
 
     public function getConfig($name)

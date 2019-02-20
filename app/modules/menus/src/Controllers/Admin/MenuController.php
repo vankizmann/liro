@@ -3,7 +3,7 @@
 namespace Liro\Menus\Controllers\Admin;
 
 use Liro\System\Menus\Models\Menu;
-use Liro\System\Menus\Models\MenuType;
+use Liro\System\Menus\Models\Domain;
 
 class MenuController extends \Liro\System\Http\Controller
 {
@@ -13,7 +13,7 @@ class MenuController extends \Liro\System\Http\Controller
         app('assets')->init('liro-menus');
     }
 
-    public function index(MenuType $type)
+    public function index(Domain $type)
     {
         $modules = app('menus')->getModuleNames(['admin', 'user']);
 
@@ -24,7 +24,7 @@ class MenuController extends \Liro\System\Http\Controller
         return view('liro-menus::menu/index');
     }
 
-    public function create(Menu $menu, MenuType $type)
+    public function create(Menu $menu, Domain $type)
     {
         $modules = app('menus')->getModuleNames(['admin', 'user']);
 
@@ -35,7 +35,7 @@ class MenuController extends \Liro\System\Http\Controller
         return view('liro-menus::menu/create');
     }
 
-    public function edit(Menu $menu, MenuType $type)
+    public function edit(Menu $menu, Domain $type)
     {
         $modules = app('menus')->getModuleNames(['admin', 'user']);
 

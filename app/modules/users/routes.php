@@ -2,52 +2,59 @@
 
 return [
 
-    'ajax@liro-users.ajax.auth.login' => [
-        'liro-users::ajax.auth.login', 'Liro\Users\Routers\Ajax\AuthRouter@login'
+    'liro-users.ajax.auth.login' => [
+        'controller' => 'Liro\Users\Controllers\Ajax\AuthController@login',
+        'methods' => ['post']
     ],
 
-    'ajax@liro-users.ajax.auth.token' => [
-        'liro-users::ajax.auth.token', 'Liro\Users\Routers\Ajax\AuthRouter@token'
+    'liro-users.admin.auth.login' => [
+        'controller' => 'Liro\Users\Controllers\Admin\AuthController@login',
+        'methods' => ['get']
     ],
 
-    'admin@liro-users.admin.auth.login' => [
-        'liro-users::admin.auth.login', 'Liro\Users\Routers\Admin\AuthRouter@login'
+    'liro-users.admin.auth.logout' => [
+        'controller' => 'Liro\Users\Controllers\Admin\AuthController@logout',
+        'methods' => ['get']
     ],
 
-    'admin@liro-users.admin.auth.logout' => [
-        'liro-users::admin.auth.logout', 'Liro\Users\Routers\Admin\AuthRouter@logout'
+    'liro-users.ajax.user' => [
+        'controller' => 'Liro\Users\Controllers\Ajax\UserController',
+        'methods' => ['resource']
     ],
 
-    'ajax@liro-users.ajax.user.index' => [
-        'liro-users::ajax.user.index', 'Liro\Users\Routers\Ajax\UserRouter@index'
+    'liro-users.admin.user.index' => [
+        'controller' => 'Liro\Users\Controllers\Admin\UserController@index',
+        'methods' => ['get']
     ],
 
-    'admin@liro-users.admin.user.index' => [
-        'liro-users::admin.user.index', 'Liro\Users\Routers\Admin\UserRouter@index'
+    'liro-users.admin.user.create' => [
+        'controller' => 'Liro\Users\Controllers\Admin\UserController@create',
+        'methods' => ['get']
     ],
 
-    'admin@liro-users.admin.user.create' => [
-        'liro-users::admin.user.create', 'Liro\Users\Routers\Admin\UserRouter@create'
+    'liro-users.admin.user.edit' => [
+        'controller' => 'Liro\Users\Controllers\Admin\UserController@edit',
+        'methods' => ['get']
     ],
 
-    'admin@liro-users.admin.user.edit' => [
-        'liro-users::admin.user.edit', 'Liro\Users\Routers\Admin\UserRouter@edit'
+    'liro-users.ajax.role' => [
+        'controller' => 'Liro\Users\Controllers\Ajax\RoleController',
+        'methods' => ['resource']
     ],
 
-    'ajax@liro-users.ajax.role.index' => [
-        'liro-users::ajax.role.index', 'Liro\Users\Routers\Ajax\RoleRouter@index'
+    'liro-users.admin.role.index' => [
+        'controller' => 'Liro\Users\Controllers\Admin\RoleController@index',
+        'methods' => ['get']
     ],
 
-    'admin@liro-users.admin.role.index' => [
-        'liro-users::admin.role.index', 'Liro\Users\Routers\Admin\RoleRouter@index'
+    'liro-users.admin.role.create' => [
+        'controller' => 'Liro\Users\Controllers\Admin\RoleController@create',
+        'methods' => ['get']
     ],
 
-    'admin@liro-users.admin.role.create' => [
-        'liro-users::admin.role.create', 'Liro\Users\Routers\Admin\RoleRouter@create'
-    ],
-
-    'admin@liro-users.admin.role.edit' => [
-        'liro-users::admin.role.edit', 'Liro\Users\Routers\Admin\RoleRouter@edit'
+    'liro-users.admin.role.edit' => [
+        'controller' => 'Liro\Users\Controllers\Admin\RoleController@edit',
+        'methods' => ['get']
     ]
 
 ];

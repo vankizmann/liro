@@ -47,11 +47,11 @@ $app->singleton(
     Liro\System\Exceptions\Handler::class
 );
 
-$app->extend('translator', function ($service) use ($app) {
+$app->extend('translator', function () use ($app) {
     return new Liro\System\Translation\Translator($app['translation.loader'], $app['config']['app.locale']);
 });
 
-$app->extend('url', function ($service) use ($app) {
+$app->extend('url', function () use ($app) {
     return new Liro\System\Routing\UrlGenerator($app['routes'], $app['request']);
 });
 

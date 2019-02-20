@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
 use Liro\System\Database\CastableTrait;
 use Liro\System\Fields\Traits\FieldTrait;
-use Liro\System\Menus\Models\MenuType;
 
 class Menu extends Model
 {
@@ -25,7 +24,7 @@ class Menu extends Model
     ];
 
     protected $appends = [
-        'trans_title', 'has_childs', 'collapsed'
+        'route', 'trans_title', 'has_childs', 'collapsed'
     ];
 
     protected $hidden = [
@@ -35,38 +34,33 @@ class Menu extends Model
     protected $attributes = [
         'state'         => null,
         'hide'          => null,
-        'lock'          => null,
         'title'         => null,
-        'route'         => null,
-        'module'        => null,
+        'slug'          => null,
+        'name'          => null,
+        'path'          => null,
         'query'         => null,
-        'menu_type_id'  => null
+        'domain_id'     => null
     ];
 
     protected $casts = [
         'state'         => 'integer',
         'hide'          => 'integer',
-        'lock'          => 'integer',
         'title'         => 'string',
-        'route'         => 'string',
-        'module'        => 'string',
+        'slug'          => 'string',
+        'name'          => 'string',
+        'path'          => 'string',
         'query'         => 'string',
-        'menu_type_id'  => 'integer'
+        'domain_id'     => 'integer'
     ];
 
     protected function getScopeAttributes()
     {
-        return ['menu_type_id'];
+        return ['domain_id'];
     }
 
-    public function getRebuildFields()
+    public function domain()
     {
-        return ['route'];
-    }
-
-    public function menu_type()
-    {
-        return $this->hasOne(MenuType::class, 'id', 'menu_type_id');
+        return $this->hasOne(Domain::class, 'id', 'domain_id');
     }
 
     public function scopeEnabled($query)
@@ -87,6 +81,14 @@ class Menu extends Model
     public function scopeVisible($query)
     {
         return $query->where('hide', 0)->defaultOrder();
+    }
+
+    public function getRouteAttribute()
+    {
+        if ( $this->parent()->count() === 0 ) {
+            return $this->domain->route . '/' . $this->slug;
+        }
+        return  $this->parent->route . '/' . $this->slug;
     }
 
     public function getTransTitleAttribute()

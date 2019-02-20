@@ -3,24 +3,24 @@
 namespace Liro\Menus\Controllers\Ajax;
 
 use Illuminate\Http\Request;
-use Liro\System\Menus\Models\MenuType;
+use Liro\System\Menus\Models\Domain;
 use Liro\Menus\Requests\TypeStoreRequest;
 use Liro\Menus\Requests\TypeUpdateRequest;
 
 class TypeController extends \Liro\System\Http\Controller
 {
 
-    public function index(MenuType $type)
+    public function index(Domain $type)
     {
         return response()->json($type->all(), 200);
     }
 
-    public function show(MenuType $type)
+    public function show(Domain $type)
     {
         return response()->json($type, 200);
     }
 
-    public function store(TypeStoreRequest $request, MenuType $type)
+    public function store(TypeStoreRequest $request, Domain $type)
     {
         $response = $type->create(
             $request->all()
@@ -29,7 +29,7 @@ class TypeController extends \Liro\System\Http\Controller
         return response()->json($response, 201);
     }
 
-    public function update(TypeUpdateRequest $request, MenuType $type)
+    public function update(TypeUpdateRequest $request, Domain $type)
     {
         $type->update(
             $request->all()

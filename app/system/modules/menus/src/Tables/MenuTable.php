@@ -2,12 +2,9 @@
 
 namespace Liro\System\Menus\Tables;
 
-use Kalnoy\Nestedset\NestedSet;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Liro\System\Menus\Models\Menu;
-use Liro\System\Menus\Models\MenuType;
 
 class MenuTable extends Migration
 {
@@ -23,25 +20,22 @@ class MenuTable extends Migration
             $table->integer('hide')
                 ->default(0);
 
-            $table->integer('lock')
-                ->default(0);
-
             $table->string('title')
                 ->default('');
 
-            $table->string('route')
+            $table->string('slug')
                 ->nullable();
 
-            $table->string('module')
+            $table->string('name')
+                ->nullable();
+
+            $table->string('path')
                 ->nullable();
 
             $table->string('query')
                 ->nullable();
 
-            $table->integer('default')
-                ->default(0);
-
-            $table->integer('menu_type_id')
+            $table->integer('domain_id')
                 ->default(0);
 
             $table->timestamps();

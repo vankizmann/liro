@@ -2,7 +2,7 @@
 
 namespace Liro\Menus\Controllers\Admin;
 
-use Liro\System\Menus\Models\MenuType;
+use Liro\System\Menus\Models\Domain;
 
 class TypeController extends \Liro\System\Http\Controller
 {
@@ -12,7 +12,7 @@ class TypeController extends \Liro\System\Http\Controller
         app('assets')->init('liro-menus');
     }
 
-    public function index(MenuType $type)
+    public function index(Domain $type)
     {
         $locales = app('languages')->getLocalesArray();
 
@@ -23,7 +23,7 @@ class TypeController extends \Liro\System\Http\Controller
         return view('liro-menus::type/index');
     }
 
-    public function create(MenuType $type)
+    public function create(Domain $type)
     {
         $locales = app('languages')->getLocalesArray();
 
@@ -34,7 +34,7 @@ class TypeController extends \Liro\System\Http\Controller
         return view('liro-menus::type/create');
     }
 
-    public function edit(MenuType $type)
+    public function edit(Domain $type)
     {
         $locales = app('languages')->getLocalesArray();
 

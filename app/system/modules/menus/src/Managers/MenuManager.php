@@ -2,35 +2,33 @@
 
 namespace Liro\System\Menus\Managers;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Route;
-use Liro\System\Menus\Models\MenuType;
+use Liro\System\Menus\Models\Menu;
+use Liro\System\Menus\Models\Domain;
 use Liro\System\Languages\Models\Language;
 use Liro\System\Menus\Registrar\RouteRegistrar;
 use Illuminate\Contracts\Foundation\Application;
-use Liro\System\Menus\Models\Menu;
 
 class MenuManager
 {
     /**
      * Application instance
      *
-     * @var Illuminate\Contracts\Foundation\Application
+     * @var \Illuminate\Contracts\Foundation\Application
      */
     protected $app;
 
     /**
      * Registrar instance
      *
-     * @var Liro\System\Menus\Registrar\RouteRegistrar;
+     * @var \Liro\System\Menus\Registrar\RouteRegistrar
      */
     protected $routes;
 
     /**
      * Initialize application
      *
-     * @param Illuminate\Contracts\Foundation\Application $app
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param \Liro\System\Menus\Registrar\RouteRegistrar $routes
      */
     public function __construct(Application $app, RouteRegistrar $routes)
     {
@@ -45,9 +43,11 @@ class MenuManager
      */
     public function bootModules()
     {
-        $this->routes->getRoutes()->each(function($route) {
-            $this->registerModuleRouteLocale($route);
-        });
+        foreach ( $this->routes->getRoutes() as $key => $route ) {
+            $this->registerModuleRouteLocale(explode('.', $key), $route);
+        }
+
+        dd(app()->getDomain(), app()->getLocale(), Menu::find(12)->toArray());
     }
 
     /**
@@ -57,7 +57,7 @@ class MenuManager
      */
     public function bootMenus()
     {
-        MenuType::enabled()->get()->each(function($menuType) {
+        Domain::enabled()->get()->each(function($menuType) {
             $this->registerMenuTypeLocale($menuType);
         });
     }
@@ -78,50 +78,43 @@ class MenuManager
     /**
      * Get all routes from registrar
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
-    public function getRoutes($types = null)
+    public function getRoutes()
     {
-        return $this->routes->getRoutes($types);
+        return $this->routes->getRoutes(...func_get_args());
     }
 
     /**
      * Get routes for frontend
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
-    public function getRoutesArray($types = null)
+    public function getRoutesArray()
     {
-        return $this->routes->getRoutesArray($types);
+        return $this->routes->getRoutesArray(...func_get_args());
     }
 
     /**
      * Get module routes
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
-    public function getModuleRoutes($types = null)
+    public function getModuleRoutes()
     {
-        return $this->routes->getModuleRoutes($types);
+        return $this->routes->getModuleRoutes(...func_get_args());
     }
 
     /**
      * Get module route names
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
-    public function getModuleNames($types = null)
+    public function getModuleNames()
     {
-        return $this->routes->getModuleNames($types);
+        return $this->routes->getModuleNames(...func_get_args());
     }
 
-
-    /**
-     * Add locale to given key
-     *
-     * @param string $key
-     * @return string
-     */
     public function addKeyLocale($key)
     {
         if ( ! preg_match('/^[a-z]{2}\./', $key) ) {
@@ -131,15 +124,15 @@ class MenuManager
         return $key;
     }
 
-    /**
-     * Add locale to given key
-     *
-     * @param string $key
-     * @return string
-     */
     public function removeKeyLocale($key)
     {
         return preg_replace('/^[a-z]{2}\./', '', $key);
+    }
+
+    protected function joinMerge($glue = '/')
+    {
+        $arguments = func_get_args();
+        return implode($glue, array_merge(...array_splice($arguments, 1)));
     }
 
     /**
@@ -147,7 +140,7 @@ class MenuManager
      *
      * @param array $segments
      * @param string $value
-     * @return void
+     * @return array
      */
     protected function appendSegment($segments, $value)
     {
@@ -177,26 +170,25 @@ class MenuManager
     /**
      * Register module route
      *
-     * @param Illuminate\Support\Collection $route
+     * @param string $alias
+     * @param \Illuminate\Support\Collection $route
      * @param array $prefix
-     * @param array $name
+     * @param array $names
      * @return void
      */
-    protected function bindModuleRoute($route, $prefix, $name)
+    protected function bindModuleRoute($alias, $route, $prefix, $names)
     {
-        // Get route alias
-        $alias = $route->get('alias');
-
-        // Add alias to segments
-        $name = $this->appendSegment($name, $alias);
-
-        $prefix = array_merge(
-            $prefix, ['modules'], explode('.', $alias)
+        $name = $this->joinMerge(
+            '.', $names, $alias
         );
 
-        app()->call($route->get('uses'), [
-            $this->app['router']->prefix(implode('/', $prefix))->name(implode('.', $name))
-        ]);
+        $path = $this->joinMerge(
+            '/', $prefix, ['modules'], $alias
+        );
+
+        foreach ($route['methods'] as $method) {
+            app('router')->name($name)->{$method}($path, $route['controller'], $route['options']);
+        }
 
         return;
     }
@@ -222,7 +214,7 @@ class MenuManager
         }
 
         app()->call($route->get('uses'), [
-            $this->app['router']->prefix(implode('/', $prefix))->name(implode('.', $name))
+            $this->app['router'], implode('/', $prefix), implode('.', $name),
         ]);
 
         // Get new registred routes
@@ -260,9 +252,9 @@ class MenuManager
             $this->registerMenu($child_menu, $prefix, $name);
         }
 
-        $name = $this->appendSegment($name, $menu->module);
-
-        $this->bindMenuRoute($menu, $prefix, $name);
+        $this->bindMenuRoute(
+            $menu, $prefix, $this->appendSegment($name, $menu->module)
+        );
     }
 
     /**
@@ -275,6 +267,9 @@ class MenuManager
      */
     protected function registerMenuType($menuType, $prefix, $name)
     {
+
+        dd($menuType->menus->toArray());
+
         $prefix = $this->appendSegment($prefix, $menuType->route);
 
         foreach ($menuType->menus()->enabled()->get()->toTree() as $menu) {
@@ -284,29 +279,19 @@ class MenuManager
         return;
     }
 
-    /**
-     * Register module route with all locales
-     *
-     * @param Illuminate\Support\Collection $route
-     * @return void
-     */
-    protected function registerModuleRouteLocale($route)
+
+    protected function registerModuleRouteLocale($key, $route)
     {
         $languages = Language::enabled()->get();
 
         foreach ($languages as $language) {
-            $this->bindModuleRoute($route, [$language->locale], [$language->locale]);
+            $this->bindModuleRoute($key, $route, [$language->locale], [$language->locale]);
         }
 
         return;
     }
 
-    /**
-     * Register menu type with given locales
-     *
-     * @param Liro\System\Menus\Models\MenuType $menuType
-     * @return void
-     */
+
     protected function registerMenuTypeLocale($menuType)
     {
         $languages = Language::enabled()->get();
@@ -323,10 +308,11 @@ class MenuManager
      *
      * @param int $menuTypeId
      * @return void
+     * @throws
      */
     public function getMenusByTypeId($menuTypeId)
     {
-        $menuType = MenuType::enabled()->find($menuTypeId);
+        $menuType = Domain::enabled()->find($menuTypeId);
 
         if ( $menuType == null ) {
             throw new \Exception("MenuType with given id does not exists: $menuTypeId");
@@ -356,7 +342,7 @@ class MenuManager
     /**
      * Get menu prefix from menu
      *
-     * @param Liro\System\Models\Menu $menu
+     * @param \Liro\System\Models\Menu $menu
      * @param array $prefix
      * @return string
      */

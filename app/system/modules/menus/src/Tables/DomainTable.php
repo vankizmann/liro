@@ -6,24 +6,18 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MenuTypeTable extends Migration
+class DomainTable extends Migration
 {
     public function install()
     {
-        Schema::create('menu_types', function(Blueprint $table) {
+        Schema::create('domains', function(Blueprint $table) {
 
             $table->increments('id');
 
             $table->integer('state')
                 ->default(0);
 
-            $table->integer('hide')
-                ->default(0);
-            
-            $table->integer('lock')
-                ->default(0);
-
-            $table->string('locale')
+            $table->integer('entry')
                 ->nullable();
 
             $table->string('title')
@@ -41,7 +35,7 @@ class MenuTypeTable extends Migration
 
     public function uninstall()
     {
-        Schema::dropIfExists('menu_types');
+        Schema::dropIfExists('domains');
     }
 
 }

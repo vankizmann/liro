@@ -3,13 +3,14 @@
 namespace Liro\System\Menus\Registrar;
 
 use Illuminate\Support\Collection;
+use Liro\System\Exceptions\Exception;
 
 class RouteRegistrar
 {
     /**
      * Modules containing routes
      *
-     * @var Illuminate\Support\Collection
+     * @var \Illuminate\Support\Collection
      */
     protected $modules;
 
@@ -18,124 +19,50 @@ class RouteRegistrar
      */
     public function __construct()
     {
-        $this->modules = new Collection([
-            'user' => new Collection, 'admin' => new Collection, 'ajax' => new Collection, 'hide' => new Collection
-        ]);
+        $this->modules = new Collection();
     }
 
-    public function flatMap($route)
+    protected function mergeOptions($route, $options)
     {
-        return $route;
+        if ( ! isset($options['controller']) ) {
+            throw new Exception("Controller not defined for route \"{$route}\"");
+        }
+
+        return array_merge([ 'methods' => ['get'], 'options' => [] ], $options);
     }
 
-    public function setHideRoute($module, $route, $options)
-    {
-        $collection = $this->modules['hide']->get($module, new Collection);
-
-        $collection->put($route, new Collection([
-            'alias' => $route, 'name' => $options[0], 'uses' => $options[1]
-        ]));
-
-        $this->modules['hide']->put($module, $collection);
-    }
-
-    public function setAjaxRoute($module, $route, $options)
-    {
-        $collection = $this->modules['ajax']->get($module, new Collection);
-
-        $collection->put($route, new Collection([
-            'alias' => $route, 'name' => $options[0], 'uses' => $options[1]
-        ]));
-
-        $this->modules['ajax']->put($module, $collection);
-    }
-
-    public function setAdminRoute($module, $route, $options)
-    {
-        $collection = $this->modules['admin']->get($module, new Collection);
-
-        $collection->put($route, new Collection([
-            'alias' => $route, 'name' => $options[0], 'uses' => $options[1]
-        ]));
-
-        $this->modules['admin']->put($module, $collection);
-    }
-
-    public function setUserRoute($module, $route, $options)
-    {
-        $collection = $this->modules['user']->get($module, new Collection);
-
-        $collection->put($route, new Collection([
-            'alias' => $route, 'name' => $options[0], 'uses' => $options[1]
-        ]));
-
-        $this->modules['user']->put($module, $collection);
-    }
-
-    /**
-     * Set route inside modules
-     *
-     * @param string $module
-     * @param string $route
-     * @param array $options
-     * @return void
-     */
     public function setRoute($module, $route, $options)
     {
-        // Replace ajax match
-        $route = preg_replace('/^!(ajax@|admin@|user@)/', '', $route, -1, $hideMatch);
+        /* @var Collection $collection */
+        $collection = $this->modules->get(
+            $module, new Collection
+        );
 
-        if ( $hideMatch ) {
-            return $this->setHideRoute($module, $route, $options);
-        }
+        $collection->put(
+            $route, $this->mergeOptions($route, $options)
+        );
 
-        // Replace ajax match
-        $route = preg_replace('/^ajax@/', '', $route, -1, $ajaxMatch);
-
-        if ( $ajaxMatch ) {
-            return $this->setAjaxRoute($module, $route, $options);
-        }
-
-        // Replace admin match
-        $route = preg_replace('/^admin@/', '', $route, -1, $adminMatch);
-
-        if ( $adminMatch ) {
-            return $this->setAdminRoute($module, $route, $options);
-        }
-
-        // Replace user match
-        $route = preg_replace('/^user@/', '', $route, -1, $userMatch);
-
-        return $this->setUserRoute($module, $route, $options);
+        $this->modules->put($module, $collection);
     }
 
-    /**
-     * Get route from flattened modules
-     *
-     * @param string $route
-     * @return Illuminate\Support\Collection
-     */
-    public function getRoute($route, $types = null)
+    public function getRoute($route)
     {
-        return $this->getRoutes($types)->get($route, null);
+        return $this->getRoutes()->get($route, null);
     }
 
-    /**
-     * Get all routes from modules
-     *
-     * @return Illuminate\Support\Collection
-     */
-    public function getRoutes($types = null)
+    public function getRoutes()
     {
-        return $this->modules->only($types ?: ['user', 'admin', 'ajax', 'hide'])->flatMap(function ($module) {
-            return $module->flatMap([$this, 'flatMap']);
+        return $this->modules->flatMap(function ($module) {
+            /* @var \Illuminate\Support\Collection $module */
+            return $module;
         });
     }
 
     /**
      * Get only routes as frontend array
      *
-     * @return Illuminate\Support\Collection
+     * @param array $types
+     * @return \Illuminate\Support\Collection
      */
     public function getRoutesArray($types = null)
     {
@@ -149,7 +76,8 @@ class RouteRegistrar
     /**
      * Get modules with routes
      *
-     * @return Illuminate\Support\Collection
+     * @param array $types
+     * @return \Illuminate\Support\Collection
      */
     public function getModuleAliases($types = null)
     {
@@ -163,7 +91,8 @@ class RouteRegistrar
     /**
      * Get modules with names
      *
-     * @return Illuminate\Support\Collection
+     * @param array $types
+     * @return \Illuminate\Support\Collection
      */
     public function getModuleNames($types = null)
     {
@@ -179,7 +108,8 @@ class RouteRegistrar
     /**
      * Get modules with names
      *
-     * @return Illuminate\Support\Collection
+     * @param array $types
+     * @return \Illuminate\Support\Collection
      */
     public function getModuleUses($types = null)
     {

@@ -51,47 +51,47 @@ class Seeder
             'module'    => 'system-theme'
         ]);
 
-        Module::create([
-            'state'     => 1,
-            'hide'      => 0,
-            'lock'      => 1,
-            'module'    => 'liro-languages'
-        ]);
-        
-        Module::create([
-            'state'     => 1,
-            'hide'      => 0,
-            'lock'      => 1,
-            'module'    => 'liro-menus'
-        ]);
-
+//        Module::create([
+//            'state'     => 1,
+//            'hide'      => 0,
+//            'lock'      => 1,
+//            'module'    => 'liro-languages'
+//        ]);
+//
+//        Module::create([
+//            'state'     => 1,
+//            'hide'      => 0,
+//            'lock'      => 1,
+//            'module'    => 'liro-menus'
+//        ]);
+//
         Module::create([
             'state'     => 1,
             'hide'      => 0,
             'lock'      => 1,
             'module'    => 'liro-users'
         ]);
-
-        Module::create([
-            'state'     => 1,
-            'hide'      => 0,
-            'lock'      => 1,
-            'module'    => 'liro-media'
-        ]);
-
-        Module::create([
-            'state'     => 1,
-            'hide'      => 0,
-            'lock'      => 1,
-            'module'    => 'liro-pages'
-        ]);
-
-        Module::create([
-            'state'     => 1,
-            'hide'      => 0,
-            'lock'      => 0,
-            'module'    => 'liro-test'
-        ]);
+//
+//        Module::create([
+//            'state'     => 1,
+//            'hide'      => 0,
+//            'lock'      => 1,
+//            'module'    => 'liro-media'
+//        ]);
+//
+//        Module::create([
+//            'state'     => 1,
+//            'hide'      => 0,
+//            'lock'      => 1,
+//            'module'    => 'liro-pages'
+//        ]);
+//
+//        Module::create([
+//            'state'     => 1,
+//            'hide'      => 0,
+//            'lock'      => 0,
+//            'module'    => 'liro-test'
+//        ]);
     }
 
 }

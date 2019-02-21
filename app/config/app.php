@@ -148,7 +148,8 @@ return [
         Illuminate\Database\DatabaseServiceProvider::class,
         Liro\System\Providers\AppServiceProvider::class,
         Liro\System\Providers\EventServiceProvider::class,
-        Liro\System\Providers\RouteServiceProvider::class
+        Liro\System\Providers\RouteServiceProvider::class,
+        Liro\System\Providers\ModuleServiceProvider::class
     ],
 
     /*

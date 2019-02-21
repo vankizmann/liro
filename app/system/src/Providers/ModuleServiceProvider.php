@@ -2,12 +2,10 @@
 
 namespace Liro\System\Providers;
 
-use Composer\Autoload\ClassLoader;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Liro\System\Modules\Instance as CMS;
 
-
-class AppServiceProvider extends ServiceProvider
+class ModuleServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -16,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('autoloader', ClassLoader::class);
+        $this->app->singleton('cms', CMS::class);
     }
 
     /**
@@ -26,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(255);
+        $this->app->booted([$this->app['cms'], 'boot']);
     }
 
 }

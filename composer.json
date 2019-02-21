@@ -35,6 +35,7 @@
     ],
     "autoload": {
         "files": [
+            "app/system/src/functions.php",
             "app/system/src/Macros.php"
         ],
         "psr-4": {

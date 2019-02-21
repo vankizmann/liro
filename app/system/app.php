@@ -12,9 +12,8 @@
 */
 
 $app = new Liro\System\Application(
-    realpath(__DIR__.'/../../')
+    realpath(ROOT)
 );
-
 
 /*
 |--------------------------------------------------------------------------
@@ -47,52 +46,13 @@ $app->singleton(
     Liro\System\Exceptions\Handler::class
 );
 
-$app->extend('translator', function () use ($app) {
-    return new Liro\System\Translation\Translator($app['translation.loader'], $app['config']['app.locale']);
-});
-
-$app->extend('url', function () use ($app) {
-    return new Liro\System\Routing\UrlGenerator($app['routes'], $app['request']);
-});
-
-
-/*
-|--------------------------------------------------------------------------
-| Append basic loaders to modules
-|--------------------------------------------------------------------------
-*/
-
-$app['modules']->addLoaders([
-    Liro\System\Modules\Loaders\ClassLoader::class,
-    Liro\System\Modules\Loaders\AliasLoader::class,
-    Liro\System\Modules\Loaders\EventLoader::class,
-    Liro\System\Modules\Loaders\MiddlewareLoader::class
-]);
-
-$app['modules']->loadPaths([
-    'app/system/modules/*/index.php',
-    'app/modules/*/index.php',
-    'modules/*/*/index.php'
-]);
-
-$app->booted(function () use ($app) {
-
-    $app['modules']->loadModule('system-modules');
-    $app['modules']->bootModule('system-modules');
-
-    $app['events']->fire('app.router.before');
-    $app['modules']->registerModuleRoutes()->bootModuleRoutes();
-    $app['events']->fire('app.router.after');
-
-    $app['events']->fire('app.view.before');
-    $app['modules']->registerModuleHints()->registerThemeHints();
-    $app['events']->fire('app.view.after');
-
-    $app['events']->fire('app.boot');
-
-    // dd($app['router']);
-
-});
+//$app->extend('translator', function () use ($app) {
+//    return new Liro\System\Translation\Translator($app['translation.loader'], $app['config']['app.locale']);
+//});
+//
+//$app->extend('url', function () use ($app) {
+//    return new Liro\System\Routing\UrlGenerator($app['routes'], $app['request']);
+//});
 
 /*
 |--------------------------------------------------------------------------

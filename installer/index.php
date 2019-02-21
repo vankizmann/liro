@@ -8,7 +8,7 @@
  */
 
 define('LARAVEL_START', microtime(true));
-define('ROOT', __DIR__);
+define('ROOT', dirname(__DIR__));
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +36,4 @@ require ROOT . '/vendor/autoload.php';
 |
 */
 
-require_once ROOT . '/app/system/app.php';
+require_once ROOT.'/app/installer/app.php';

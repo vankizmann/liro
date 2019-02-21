@@ -2,70 +2,13 @@
 
 namespace Liro\System;
 
-use Illuminate\Foundation\Application as FoundationApplication;
-use Liro\System\Modules\Managers\ModuleManager;
+use Liro\System\Application\DomainTrait;
 
-class Application extends FoundationApplication
+class Application extends \Illuminate\Foundation\Application
 {
+    use DomainTrait;
+
     protected $namespace = 'Liro\\System\\';
-
-    protected $domain;
-
-    public function __construct($basePath)
-    {
-        parent::__construct($basePath);
-
-        if ( ! $this->runningInConsole() && ! $this->runningUnitTests() ) {
-            $this->setDomain($_SERVER['SERVER_NAME']);
-        }
-
-        $this->singleton('modules', ModuleManager::class);
-    }
-
-    public function setDomain($domain)
-    {
-        return $this->domain = preg_replace('#^https?://#', '', $domain);
-    }
-
-    public function getDomain()
-    {
-        return $this->domain;
-    }
-
-    public function hasDomain()
-    {
-        return ! empty($this->domain);
-    }
-
-    public function path($path = '')
-    {
-        return $this->basePath . ($path ? "/$path" : $path);
-    }
-
-    public function basePath($path = '')
-    {
-        return $this->basePath . ($path ? "/{$path}" : $path);
-    }
-
-    public function appPath($path = '')
-    {
-        return "{$this->basePath}/app/system" . ($path ? "/{$path}" : $path);
-    }
-
-    public function configPath($path = '')
-    {
-        return "{$this->basePath}/app/config" . ($path ? "/{$path}" : $path);
-    }
-
-    public function langPath($path = '')
-    {
-        return "{$this->basePath}/app/system/languages" . ($path ? "/{$path}" : $path);
-    }
-
-    public function storagePath($path = '')
-    {
-        return "{$this->basePath}/tmp" . ($path ? "/{$path}" : $path);
-    }
 
     public function getCachedServicesPath()
     {
@@ -85,6 +28,36 @@ class Application extends FoundationApplication
     public function getCachedRoutesPath()
     {
         return $this->storagePath('cache/routes.php');
+    }
+
+    public function path($path = '')
+    {
+        return str_join('/', $this->basePath, $path);
+    }
+
+    public function basePath($path = '')
+    {
+       return str_join('/', $this->basePath, $path);
+    }
+
+    public function appPath($path = '')
+    {
+        return str_join('/', $this->basePath, 'app/system', $path);
+    }
+
+    public function configPath($path = '')
+    {
+        return str_join('/', $this->basePath, 'app/config', $path);
+    }
+
+    public function langPath($path = '')
+    {
+        return str_join('/', $this->basePath, 'app/system/languages', $path);
+    }
+
+    public function storagePath($path = '')
+    {
+        return str_join('/', $this->basePath, 'tmp', $path);
     }
 
 }

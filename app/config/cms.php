@@ -27,23 +27,4 @@ return [
      */
     '503' => env('CMS_503', 'system-theme::errors/503'),
 
-    /**
-     * Module paths
-     */
-    'modules' => [
-        'app/system/modules/*/index.php',
-        'app/modules/*/index.php',
-        'modules/*/*/index.php'
-    ],
-
-    /**
-     * Module loaders
-     */
-    'loaders' => [
-        Liro\System\Modules\Loaders\ClassLoader::class,
-        Liro\System\Modules\Loaders\AliasLoader::class,
-        Liro\System\Modules\Loaders\EventLoader::class,
-        Liro\System\Modules\Loaders\MiddlewareLoader::class
-    ],
-
 ];

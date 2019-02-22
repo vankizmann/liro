@@ -38,9 +38,13 @@ class Instance
 
         $modules->load(['liro-users']);
 
+
         $routes->boot();
 
-        dd($modules, $routes);
+
+        $test = $modules->booted->where('type', 'system-module');
+
+        dd($test, $modules, $routes);
 
         $app->singleton('cms.modules', function () use ($modules) {
             return $modules;

@@ -18,7 +18,7 @@ class RouteManager
 
     }
 
-    public function register($name, $options)
+    public function module($name, $options)
     {
         $this->routes->put($name, $options);
     }

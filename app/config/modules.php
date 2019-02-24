@@ -6,24 +6,25 @@ return [
      * Paths to find modules
      */
     'paths' => [
-        'app/system/modules/*', 'app/modules/*', 'modules/*/*'
+        '/app/system/modules/*/index.php',
+        '/app/modules/*/index.php',
+        '/modules/*/*/index.php'
+    ],
+
+    'defaults' => [
+        'liro-policies', 'liro-users', 'liro-modules',
     ],
 
     /**
-     * Loaders on module boot
+     * Filters on module
      */
-    'boot' => [
-        Liro\System\Modules\Module\Loaders\AutoloadLoader::class,
-    ],
-
-    /**
-     * Loaders on module load
-     */
-    'load' => [
-        Liro\System\Modules\Module\Loaders\RouteLoader::class,
-        Liro\System\Modules\Module\Loaders\ScriptLoader::class,
-        Liro\System\Modules\Module\Loaders\EventLoader::class,
-        Liro\System\Modules\Module\Loaders\MiddlewareLoader::class,
-    ],
+    'filters' => [
+        Liro\System\Cms\Module\Loaders\AutoloadLoader::class,
+        Liro\System\Cms\Module\Loaders\ProviderLoader::class,
+        Liro\System\Cms\Module\Loaders\MigrationLoader::class,
+        Liro\System\Cms\Module\Loaders\RouteLoader::class,
+        Liro\System\Cms\Module\Loaders\EventLoader::class,
+        Liro\System\Cms\Module\Loaders\MiddlewareLoader::class,
+    ]
 
 ];

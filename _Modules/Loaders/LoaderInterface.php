@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\System\Modules\Loaders;
+namespace Liro\System\Cms\Loaders;
 
 interface LoaderInterface
 {

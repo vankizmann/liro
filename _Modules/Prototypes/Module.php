@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\System\Modules\Prototypes;
+namespace Liro\System\Cms\Prototypes;
 
 use Illuminate\Contracts\Foundation\Application;
 

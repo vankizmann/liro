@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Liro\System\Users\Models\User::class,
+            'model' => Liro\Extension\Users\Models\User::class,
         ],
 
         // 'users' => [

@@ -149,7 +149,7 @@ return [
         Liro\System\Providers\AppServiceProvider::class,
         Liro\System\Providers\EventServiceProvider::class,
         Liro\System\Providers\RouteServiceProvider::class,
-        Liro\System\Providers\ModuleServiceProvider::class
+        Liro\System\Providers\AuthServiceProvider::class
     ],
 
     /*

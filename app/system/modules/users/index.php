@@ -2,20 +2,16 @@
 
 return [
 
-    'name'          => 'system-users',
-    'version'       => '0.0.1',
-    'type'          => 'system-module',
+    'name'          => 'liro-users',
+    'version'       => '1.0.0',
+    'type'          => 'extension',
 
     'autoload' => [
-        'Liro\\System\\Users\\' => 'src/'
+        'Liro\\Extension\\Users\\' => 'src/'
     ],
 
-    'alias' => [
-        'users' => Liro\System\Users\Managers\UserManager::class
-    ],
-
-    'middleware' => [
-        'route' => Liro\System\Users\Middleware\CheckUserRoleRoute::class
+    'providers' => [
+        Liro\Extension\Users\Providers\UserServiceProvider::class
     ]
 
 ];

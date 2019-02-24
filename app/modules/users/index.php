@@ -1,10 +1,10 @@
 <?php
 
-use Liro\System\Modules\Models\Module;
+use Liro\System\Cms\Models\Module;
 
 return [
 
-    'name'    => 'liro-users',
+    'name'    => 'liro-user33s',
     'version' => '0.0.1',
     'type'    => 'app-module',
 

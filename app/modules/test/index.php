@@ -1,6 +1,6 @@
 <?php
 
-use Liro\System\Modules\Models\Module;
+use Liro\System\Cms\Models\Module;
 
 return [
 

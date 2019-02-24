@@ -1,77 +1,59 @@
 <?php
-namespace Liro\System\Users\Models;
 
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Notifications\Notifiable;
-use Liro\System\Database\CastableTrait;
-use Liro\System\Users\Models\UserRole;
-use Liro\System\Fields\Helpers\FieldHelper;
+namespace Liro\Extension\Users\Models;
+
+use Liro\Extension\Users\Database\Traits\GuardTrait;
+use Liro\System\Database\Traits\CastableTrait;
 
 class User extends \Illuminate\Foundation\Auth\User
 {
-    use Notifiable;
-    use CastableTrait;
+    use CastableTrait, GuardTrait;
 
     protected $table = 'users';
 
-    protected $appends = [
-        'role_ids'
-    ];
-
-    protected $fillable = [
-        'state', 'lock', 'name', 'email', 'password', 'image', 'role_ids'
+    protected $guarded = [
+        'id',
     ];
 
     protected $hidden = [
-        'password', 'remember_token'
+        'password', 'remember_token',
     ];
 
     protected $attributes = [
-        'state'         => null,
-        'lock'          => null,
-        'name'          => null,
-        'email'         => null,
-        'password'      => null
+        'state'    => null,
+        'name'     => null,
+        'email'    => null,
+        'password' => null,
+        'guard'    => null,
     ];
 
     protected $casts = [
-        'state'         => 'integer',
-        'lock'          => 'integer',
-        'name'          => 'string',
-        'email'         => 'string',
-        'password'      => 'string'
+        'state'    => 'integer',
+        'name'     => 'string',
+        'email'    => 'string',
+        'password' => 'string',
+        'guard'    => 'integer',
     ];
 
     public function roles()
     {
-        return $this->belongsToMany(UserRole::class, 'user_role_links', 'user_id', 'user_role_id');
+        return $this->belongsToMany(Role::class, 'user_to_role', 'user_id', 'role_id');
     }
 
-    public function getRoleIdsAttribute()
+    public function getPoliciesAttribute()
     {
-        return $this->roles->pluck('id');
+        return $this->roles()->with('policies')->get()->pluck('policies')->flatten(1);
     }
 
-    public function setRoleIdsAttribute($value)
+    public function getPolicyDepth($class)
     {
-        $this->saved(function($model) use ($value) {
-            $model->roles()->sync($value);
-        });
+        return $this->policies->where('class', $class)->where('method', '')->pluck('depth')->min();
     }
 
-    public function setPasswordAttribute($value)
+    public function hasPolicyAction($class, $method)
     {
-        if ($value) $this->attributes['password'] = Hash::make($value);
+        return $this->policies->where('class', $class)->whereIn('method', ['*', $method])->isNotEmpty();
     }
 
-    public function getImageAttribute()
-    {
-        return FieldHelper::getModel($this, 'image', null);
-    }
-
-    public function setImageAttribute($value)
-    {
-        return FieldHelper::setModel($this, 'image', $value);
-    }
 
 }

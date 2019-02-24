@@ -4,7 +4,7 @@ namespace Liro\Users\Controllers\Admin;
 
 use Liro\System\Http\Controller;
 use Liro\System\Users\Models\User;
-use Liro\System\Users\Models\UserRole;
+use Liro\System\Users\Models\Role;
 
 class UserController extends Controller
 {
@@ -14,12 +14,12 @@ class UserController extends Controller
         app('assets')->init('liro-users');
     }
 
-    public function index(User $user, UserRole $role)
+    public function index(User $user, Role $role)
     {
         return view('liro-users::user/index');
     }
 
-    public function create(User $user, UserRole $role)
+    public function create(User $user, Role $role)
     {
         $user->fill([
             'password' => '',
@@ -31,7 +31,7 @@ class UserController extends Controller
         return view('liro-users::user/create');
     }
 
-    public function edit(User $user, UserRole $role)
+    public function edit(User $user, Role $role)
     {
         $user->fill([
             'password' => '',

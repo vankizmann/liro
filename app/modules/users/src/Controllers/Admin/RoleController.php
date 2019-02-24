@@ -3,7 +3,7 @@
 namespace Liro\Users\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Liro\System\Users\Models\UserRole;
+use Liro\System\Users\Models\Role;
 use Liro\Users\Requests\RoleStoreRequest;
 use Liro\Users\Requests\RoleUpdateRequest;
 
@@ -15,7 +15,7 @@ class RoleController extends \Liro\System\Http\Controller
         app('assets')->init('liro-users');
     }
 
-    public function index(UserRole $role)
+    public function index(Role $role)
     {
         app('assets')->dataArray([
             'roles' => $role->all()
@@ -24,7 +24,7 @@ class RoleController extends \Liro\System\Http\Controller
         return view('liro-users::role/index');
     }
 
-    public function create(UserRole $role)
+    public function create(Role $role)
     {
         $modules = app('menus')->getModuleNames(['ajax', 'admin', 'user']);
 
@@ -35,7 +35,7 @@ class RoleController extends \Liro\System\Http\Controller
         return view('liro-users::role/create');
     }
 
-    public function edit(UserRole $role)
+    public function edit(Role $role)
     {
         $modules = app('menus')->getModuleNames(['ajax', 'admin', 'user']);
 

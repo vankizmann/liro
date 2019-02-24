@@ -1,52 +1,30 @@
 <?php
 
-namespace Liro\System\Modules\Models;
+namespace Liro\Extension\Modules\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Liro\System\Database\CastableTrait;
+use Liro\System\Database\Model;
+use Liro\System\Database\Traits\StateTrait;
 
 class Module extends Model
 {
-    use CastableTrait;
+    use StateTrait;
 
     protected $table = 'modules';
 
-    protected $fillable = [
-        'state', 'hide', 'lock', 'module'
+    protected $guarded = [
+        'id',
     ];
 
     protected $attributes = [
-        'state'         => null,
-        'hide'          => null,
-        'lock'          => null,
-        'module'        => null
+        'state'     => null,
+        'extension' => null,
+        'guard'     => null,
     ];
 
     protected $casts = [
-        'state'         => 'integer',
-        'hide'          => 'integer',
-        'lock'          => 'integer',
-        'module'        => 'string'
+        'state'     => 'integer',
+        'extension' => 'string',
+        'guard'     => 'integer',
     ];
-
-    public function scopeEnabled($query)
-    {
-        return $query->where('state', 1);
-    }
-
-    public function scopeDisabled($query)
-    {
-        return $query->where('state', 0);
-    }
-
-    public function scopeHidden($query)
-    {
-        return $query->where('hide', 1);
-    }
-
-    public function scopeVisible($query)
-    {
-        return $query->where('hide', 0);
-    }
 
 }

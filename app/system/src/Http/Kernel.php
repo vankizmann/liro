@@ -19,7 +19,6 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Liro\System\Http\Middleware\TrimStrings::class,
         \Liro\System\Http\Middleware\TrustProxies::class,
-        // \Liro\System\Http\Middleware\LocaleRequest::class,
     ];
 
     /**

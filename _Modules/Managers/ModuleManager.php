@@ -1,8 +1,8 @@
 <?php
 
-namespace Liro\System\Modules\Managers;
+namespace Liro\System\Cms\Managers;
 
-use Liro\System\Modules\Prototypes\Module;
+use Liro\System\Cms\Prototypes\Module;
 use Illuminate\Contracts\Foundation\Application;
 
 class ModuleManager

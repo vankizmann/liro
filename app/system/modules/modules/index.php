@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Foundation\Application;
-use Liro\System\Modules\Models\Module;
+use Liro\Extension\Modules\Models\Module;
 
 return [
 
-    'name'          => 'system-modules',
-    'version'       => '0.0.1',
-    'type'          => 'system-module',
+    'name'          => 'liro-modules',
+    'version'       => '1.0.0',
+    'type'          => 'extension',
 
     'autoload' => [
-        'Liro\\System\\Modules\\' => 'src/'
+        'Liro\\Extension\\Modules\\' => 'src/'
     ],
     
     'boot' => function (Application $app) {

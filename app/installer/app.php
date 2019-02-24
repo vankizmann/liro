@@ -12,7 +12,7 @@
 */
 
 $app = new Liro\System\Application(
-    realpath(__DIR__.'/../../')
+    realpath(ROOT)
 );
 
 /*
@@ -46,42 +46,13 @@ $app->singleton(
     Liro\System\Exceptions\Handler::class
 );
 
-$app->extend('url', function ($service) use ($app) {
-    return new Liro\System\Routing\UrlGenerator($app['routes'], $app['request']);
-});
-
-
 /*
 |--------------------------------------------------------------------------
-| Append basic loaders to modules
+| Append installer
 |--------------------------------------------------------------------------
 */
 
-$app['modules']->addLoaders([
-    Liro\System\Modules\Loaders\ClassLoader::class,
-    Liro\System\Modules\Loaders\AliasLoader::class,
-    Liro\System\Modules\Loaders\EventLoader::class,
-    Liro\System\Modules\Loaders\MiddlewareLoader::class
-]);
-
-$app['modules']->loadPaths([
-    'app/system/modules/*/index.php'
-]);
-
-$app->booted(function () use ($app) {
-
-    $modules = [
-        'system-fields', 'system-languages', 'system-menus',
-        'system-users', 'system-modules'
-    ];
-
-    $app['modules']->loadModules($modules);
-    $app['modules']->uninstallModules($modules);
-    $app['modules']->installModules($modules);
-
-    dd('installer is done!');
-
-});
+$app->register(\Liro\System\Providers\InstallerServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

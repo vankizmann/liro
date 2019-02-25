@@ -8,6 +8,10 @@ return [
 
     'autoload' => [
         'Liro\\Extension\\Languages\\' => 'src/'
+    ],
+
+    'providers' => [
+        Liro\Extension\Languages\Providers\LanguageServiceProvider::class
     ]
 
 ];

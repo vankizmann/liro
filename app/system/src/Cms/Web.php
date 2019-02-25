@@ -28,11 +28,11 @@ class Web
 
         $paths = [];
 
-        foreach ( config('modules.filters') as $filter ) {
+        foreach ( config('web.filters') as $filter ) {
             $modules->addFilter($filter);
         }
 
-        foreach ( config('modules.paths') as $path ) {
+        foreach ( config('web.paths') as $path ) {
             $paths[] = glob(ROOT . $path);
         }
 
@@ -40,7 +40,7 @@ class Web
             $modules->bootModule($file);
         }
 
-        foreach ( config('modules.defaults') as $name ) {
+        foreach ( config('web.autoload') as $name ) {
             $modules->loadModule($name);
         }
 
@@ -53,7 +53,7 @@ class Web
         });
 
         $this->booted(function () use ($modules, $routes) {
-            dd($modules, app('router'));
+//            dd($modules, app('router'));
         });
 
         $this->bootInstance();

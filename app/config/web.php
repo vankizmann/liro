@@ -2,16 +2,13 @@
 
 return [
 
-    /**
-     * Paths to find modules
-     */
     'paths' => [
         '/app/system/modules/*/index.php',
         '/app/modules/*/index.php',
         '/modules/*/*/index.php'
     ],
 
-    'defaults' => [
+    'autoload' => [
         'liro-fields',
         'liro-modules',
         'liro-languages',
@@ -19,9 +16,6 @@ return [
         'liro-menus',
     ],
 
-    /**
-     * Filters on module
-     */
     'filters' => [
         Liro\System\Cms\Module\Loaders\AutoloadLoader::class,
         Liro\System\Cms\Module\Loaders\ProviderLoader::class,
@@ -29,6 +23,6 @@ return [
         Liro\System\Cms\Module\Loaders\RouteLoader::class,
         Liro\System\Cms\Module\Loaders\EventLoader::class,
         Liro\System\Cms\Module\Loaders\MiddlewareLoader::class,
-    ]
+    ],
 
 ];

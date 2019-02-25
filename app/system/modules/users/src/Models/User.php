@@ -49,12 +49,14 @@ class User extends Model
 
     public function getPolicyDepth($class)
     {
-        return $this->policies->where('class', $class)->where('method', '')->pluck('depth')->min();
+        return $this->policies->where('class', $class)
+            ->where('method', '')->pluck('depth')->min() ?: 0;
     }
 
     public function hasPolicyAction($class, $method)
     {
-        return $this->policies->where('class', $class)->whereIn('method', ['*', $method])->isNotEmpty();
+        return $this->policies->where('class', $class)
+            ->whereIn('method', ['*', $method])->isNotEmpty() ?: false;
     }
 
 

@@ -28,11 +28,11 @@ class Installer
 
         $paths = [];
 
-        foreach ( config('modules.filters') as $filter ) {
+        foreach ( config('installer.filters') as $filter ) {
             $modules->addFilter($filter);
         }
 
-        foreach ( config('modules.paths') as $path ) {
+        foreach ( config('installer.paths') as $path ) {
             $paths[] = glob(ROOT . $path);
         }
 
@@ -40,7 +40,7 @@ class Installer
             $modules->bootModule($file);
         }
 
-        foreach ( config('modules.defaults') as $name ) {
+        foreach ( config('installer.autoload') as $name ) {
             $modules->loadModule($name);
         }
 

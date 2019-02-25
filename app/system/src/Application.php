@@ -2,11 +2,12 @@
 
 namespace Liro\System;
 
+use Liro\System\Application\AllowedLocalesTrait;
 use Liro\System\Application\DomainTrait;
 
 class Application extends \Illuminate\Foundation\Application
 {
-    use DomainTrait;
+    use DomainTrait, AllowedLocalesTrait;
 
     protected $namespace = 'Liro\\System\\';
 

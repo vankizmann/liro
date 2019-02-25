@@ -7,6 +7,11 @@ use Liro\System\Http\Controller;
 class AuthController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('guard');
+    }
+
     public function login()
     {
         return view('liro-users::auth/login');

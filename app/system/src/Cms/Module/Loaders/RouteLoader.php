@@ -15,7 +15,7 @@ class RouteLoader implements LoaderInterface
             return $module;
         }
 
-        app('cms.routes')->register($module->name, include $path);
+        app('cms.routes')->registerRoute($module->name, include $path);
 
         return $module;
     }

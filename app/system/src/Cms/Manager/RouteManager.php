@@ -24,31 +24,38 @@ class RouteManager
 
     public function boot()
     {
-        $this->routes->each([$this, 'bootModule']);
-        $this->menus->each([$this, 'bootMenu']);
+        foreach ( app()->getAllowedLocales() as $locale ) {
+            $this->bootModules($locale);
+        }
+
+        foreach ( app()->getAllowedLocales() as $locale ) {
+            $this->bootMenus($locale);
+        }
     }
 
-    public function register($name, $options)
+    public function registerRoute($name, $options)
     {
         $this->routes->put($name, $options);
     }
 
-    public function bootModule($routes)
+    public function bootModules($locale)
     {
-        collect($routes)->each([$this, 'bootModuleRoute']);
+        foreach ( $this->getFlatRoutes() as $name => $options ) {
+            app()->call([$this, 'bootModuleRoute'], [str_join('.', $locale, $name), $options]);
+        }
     }
 
-    public function bootModuleRoute($option, $name)
+    public function bootModuleRoute($name, $options)
     {
         $route = str_join('/', 'modules', ...explode('.', $name));
 
-        foreach ( $option['methods'] as $method ) {
+        foreach ( $options['methods'] as $method ) {
 
             $alias = $method === 'resource' ?
                 preg_replace('/\.[^\.]+$/', '', $name) : $name;
 
             app('router')->name($alias)->$method(
-                $route, $option['controller'], @$option['options'] ?: []
+                $route, $options['controller'], @$options['options'] ?: []
             );
         }
 
@@ -60,18 +67,25 @@ class RouteManager
         $this->menus->push($menu);
     }
 
-    public function bootMenu($menu)
+    public function bootMenus($locale)
+    {
+        foreach ( $this->menus as $menu ) {
+            app()->call([$this, 'bootMenuRoute'], [str_join('.', $locale, $menu->module), $menu]);
+        }
+    }
+
+    public function bootMenuRoute($name, $menu)
     {
         $option = $this->getFlatRoutes()->get($menu->module);
 
         if ( $option === null ) {
-            return;
+            return null;
         }
 
         foreach ( $option['methods'] as $method ) {
 
             $alias = $method === 'resource' ?
-                preg_replace('/\.[^\.]+$/', '', $menu->module) : $menu->module;
+                preg_replace('/\.[^\.]+$/', '', $name) : $name;
 
             app('router')->name($alias)->$method(
                 $menu->route, $option['controller'], @$option['options'] ?: []

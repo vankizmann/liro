@@ -1,41 +1,35 @@
 <?php
 
-namespace Liro\System\Menus\Tables;
+namespace Liro\Extension\Languages\Migrations;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DomainTable extends Migration
+class LanguageTable extends Migration
 {
     public function install()
     {
-        Schema::create('domains', function(Blueprint $table) {
+        Schema::create('languages', function(Blueprint $table) {
 
             $table->increments('id');
 
             $table->integer('state')
                 ->default(0);
 
-            $table->integer('entry')
-                ->nullable();
-
             $table->string('title')
                 ->default('');
 
-            $table->string('route')
-                ->nullable();
-
-            $table->string('theme')
+            $table->string('locale')
                 ->default('');
-                
+            
             $table->timestamps();
         });
     }
 
     public function uninstall()
     {
-        Schema::dropIfExists('domains');
+        Schema::dropIfExists('languages');
     }
 
 }

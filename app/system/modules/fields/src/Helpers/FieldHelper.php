@@ -1,8 +1,8 @@
 <?php
 
-namespace Liro\System\Fields\Helpers;
+namespace Liro\Extension\Fields\Helpers;
 
-use Liro\System\Fields\Models\Field;
+use Liro\Extension\Fields\Models\Field;
 
 class FieldHelper
 {

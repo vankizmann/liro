@@ -1,8 +1,10 @@
 <?php
 
-namespace Liro\Users\Controllers\Admin;
+namespace Liro\Extension\Users\Controllers\Admin;
 
-class AuthController extends \Liro\System\Http\Controller
+use Liro\System\Http\Controller;
+
+class AuthController extends Controller
 {
 
     public function login()
@@ -17,7 +19,7 @@ class AuthController extends \Liro\System\Http\Controller
 
     public function logout()
     {
-        app('users')->logoutUser();
+        auth()->logout();
         return redirect()->route('liro-users.admin.auth.login');
     }
 

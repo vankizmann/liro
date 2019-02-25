@@ -1,11 +1,10 @@
 <?php
 
-namespace Liro\System\Fields\Tables;
+namespace Liro\Extension\Fields\Migrations;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Liro\System\Fields\Helpers\FieldHelper;
 
 class FieldTable extends Migration
 {

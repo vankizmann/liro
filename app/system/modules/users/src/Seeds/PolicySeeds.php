@@ -24,16 +24,16 @@ class PolicySeeds
         ]);
 
         Policy::create([
-            'title'  => 'Create users',
+            'title'  => 'Allow all methods in users',
             'class'  => \Liro\Extension\Users\Models\User::class,
-            'method' => 'create',
+            'method' => '*',
             'depth'  => 0,
         ]);
 
         Policy::create([
-            'title'  => 'Allow all in users',
+            'title'  => 'Create users',
             'class'  => \Liro\Extension\Users\Models\User::class,
-            'method' => '*',
+            'method' => 'create',
             'depth'  => 0,
         ]);
 

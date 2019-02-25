@@ -1,19 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Redirect;
-
 return [
 
-    'name'          => 'system-menus',
+    'name'          => 'liro-menus',
     'version'       => '0.0.1',
-    'type'          => 'system-module',
+    'type'          => 'extension',
 
     'autoload' => [
-        'Liro\\System\\Menus\\' => 'src/'
+        'Liro\\Extension\\Menus\\' => 'src/'
     ],
 
-    'alias' => [
-        'menus' => Liro\System\Menus\Managers\MenuManager::class
+    'providers' => [
+        Liro\Extension\Menus\Providers\MenuServiceProvider::class
     ]
 
 ];

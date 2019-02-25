@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\System\Languages\Managers;
+namespace Liro\Extension\Languages\Managers;
 
 use Illuminate\Foundation\Application;
 use Liro\System\Languages\Models\Language;

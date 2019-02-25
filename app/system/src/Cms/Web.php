@@ -2,16 +2,15 @@
 
 namespace Liro\System\Cms;
 
-use Illuminate\Support\Facades\Hash;
-use Liro\Extension\Users\Models\User;
 use Liro\System\Application;
 use Liro\System\Cms\Manager\ModuleManager;
 use Liro\System\Cms\Manager\RouteManager;
 use Liro\System\Cms\Traits\BootedTrait;
+use Liro\System\Cms\Traits\GuardedTrait;
 
 class Web
 {
-    use BootedTrait;
+    use BootedTrait, GuardedTrait;
 
     public function boot(Application $app)
     {
@@ -23,11 +22,15 @@ class Web
 
         $modules = $app->make(ModuleManager::class);
 
+        $app->singleton('cms.modules', function () use ($modules) {
+            return $modules;
+        });
+
+        $paths = [];
+
         foreach ( config('modules.filters') as $filter ) {
             $modules->addFilter($filter);
         }
-
-        $paths = [];
 
         foreach ( config('modules.paths') as $path ) {
             $paths[] = glob(ROOT . $path);
@@ -41,26 +44,18 @@ class Web
             $modules->loadModule($name);
         }
 
-        $app->singleton('cms.modules', function () use ($modules) {
-            return $modules;
+        $this->booted(function () use ($modules) {
+            $modules->refreshModules();
         });
 
+        $this->booted(function () use ($routes) {
+            $routes->boot();
+        });
 
-        $user = User::disableGuard()->where('email', 'admin@gmail.com')->first();
+        $this->booted(function () use ($modules, $routes) {
+            dd($modules, app('router'));
+        });
 
-        $this->booted = true;
-
-        $attempt = auth()->login($user);
-
-        auth()->logout();
-
-
-        dd(User::with('roles')->get()->toArray());
-
-
-
-
-
-        $routes->boot();
+        $this->bootInstance();
     }
 }

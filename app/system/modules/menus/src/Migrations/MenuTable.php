@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\System\Menus\Tables;
+namespace Liro\Extension\Menus\Migrations;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -29,10 +29,13 @@ class MenuTable extends Migration
             $table->string('name')
                 ->nullable();
 
-            $table->string('path')
+            $table->string('module')
                 ->nullable();
 
             $table->string('query')
+                ->nullable();
+
+            $table->integer('guard')
                 ->nullable();
 
             $table->integer('domain_id')

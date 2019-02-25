@@ -1,22 +1,22 @@
 <?php
 
-namespace Liro\System\Fields\Traits;
+namespace Liro\Extension\Fields\Traits;
 
-use Liro\System\Fields\Helpers\FieldHelper;
+use Liro\Extension\Fields\Helpers\FieldHelper;
 
 trait FieldTrait
 {
-    // public function getAttributes()
-    // {
-    //     return array_filter(parent::getAttributes(), function ($key) {
-    //         return in_array($key, $this->getTableColumns());
-    //     }, ARRAY_FILTER_USE_KEY);
-    // }
+//     public function getAttributes()
+//     {
+//         return array_filter(parent::getAttributes(), function ($key) {
+//             return in_array($key, $this->getTableColumns());
+//         }, ARRAY_FILTER_USE_KEY);
+//     }
 
     public function getFillable()
     {
         if ( empty($this->fillable) ) {
-            return $this->fillable;
+            return parent::getFillable();
         }
 
         return array_merge($this->getFields(), $this->fillable);

@@ -1,6 +1,6 @@
 <?php
 
-namespace  Liro\Extension\Policies\Exceptions;
+namespace  Liro\Extension\Users\Exceptions;
 
 use Liro\System\Exceptions\Exception;
 

@@ -2,12 +2,14 @@
 
 namespace Liro\Extension\Users\Models;
 
-use Liro\Extension\Users\Database\Traits\GuardTrait;
+use Illuminate\Foundation\Auth\User as Model;
+use Liro\Extension\Users\Database\Traits\DepthGuardTrait;
+use Liro\Extension\Users\Database\Traits\ActionGuardTrait;
 use Liro\System\Database\Traits\CastableTrait;
 
-class User extends \Illuminate\Foundation\Auth\User
+class User extends Model
 {
-    use CastableTrait, GuardTrait;
+    use CastableTrait, DepthGuardTrait, ActionGuardTrait;
 
     protected $table = 'users';
 
@@ -42,7 +44,7 @@ class User extends \Illuminate\Foundation\Auth\User
 
     public function getPoliciesAttribute()
     {
-        return $this->roles()->with('policies')->get()->pluck('policies')->flatten(1);
+        return $this->roles()->get()->pluck('policies')->flatten(1);
     }
 
     public function getPolicyDepth($class)

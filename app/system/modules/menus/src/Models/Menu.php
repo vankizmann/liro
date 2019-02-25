@@ -1,17 +1,15 @@
 <?php
 
-namespace Liro\System\Menus\Models;
+namespace Liro\Extension\Menus\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
-use Liro\System\Database\CastableTrait;
-use Liro\System\Fields\Traits\FieldTrait;
+use Liro\System\Database\Model;
+use Liro\Extension\Fields\Traits\FieldTrait;
+use Liro\System\Database\Traits\StateTrait;
 
 class Menu extends Model
 {
-    use NodeTrait;
-    use FieldTrait;
-    use CastableTrait;
+    use NodeTrait, StateTrait, FieldTrait;
 
     protected $table = 'menus';
 
@@ -19,12 +17,12 @@ class Menu extends Model
       'id'
     ];
 
-    protected $fields = [
-        'icon'
+    protected $appends = [
+        'route'
     ];
 
-    protected $appends = [
-        'route', 'trans_title', 'has_childs', 'collapsed'
+    protected $fields = [
+        'icon'
     ];
 
     protected $hidden = [
@@ -37,7 +35,7 @@ class Menu extends Model
         'title'         => null,
         'slug'          => null,
         'name'          => null,
-        'path'          => null,
+        'module'        => null,
         'query'         => null,
         'domain_id'     => null
     ];
@@ -48,7 +46,7 @@ class Menu extends Model
         'title'         => 'string',
         'slug'          => 'string',
         'name'          => 'string',
-        'path'          => 'string',
+        'module'        => 'string',
         'query'         => 'string',
         'domain_id'     => 'integer'
     ];
@@ -63,62 +61,9 @@ class Menu extends Model
         return $this->hasOne(Domain::class, 'id', 'domain_id');
     }
 
-    public function scopeEnabled($query)
-    {
-        return $query->where('state', 1)->defaultOrder();
-    }
-
-    public function scopeDisabled($query)
-    {
-        return $query->where('state', 0)->defaultOrder();
-    }
-
-    public function scopeHidden($query)
-    {
-        return $query->where('hide', 1)->defaultOrder();
-    }
-
-    public function scopeVisible($query)
-    {
-        return $query->where('hide', 0)->defaultOrder();
-    }
-
     public function getRouteAttribute()
     {
-        if ( $this->parent()->count() === 0 ) {
-            return $this->domain->route . '/' . $this->slug;
-        }
-        return  $this->parent->route . '/' . $this->slug;
-    }
-
-    public function getTransTitleAttribute()
-    {
-        return trans($this->attributes['title']);
-    }
-
-    public function getRoutePrefixAttribute()
-    {
-        return app('menus')->getMenuPrefix($this);
-    }
-
-    public function getRouteCurrentAttribute()
-    {
-        return app()->getMenuKey('id') == $this->attributes['id'];
-    }
-
-    public function getRouteActiveAttribute()
-    {
-        return app()->getMenuKey('id') == $this->attributes['id'] || $this->children->pluck('route_current')->contains(true) || $this->children->pluck('route_active')->contains(true);
-    }
-
-    public function getHasChildsAttribute()
-    {
-        return $this->children()->enabled()->visible()->count() !== 0;
-    }
-
-    public function getCollapsedAttribute()
-    {
-        return true;
+        return  str_join('/', $this->parent ? $this->parent->route : $this->domain->route, $this->slug);
     }
 
 }

@@ -21,6 +21,9 @@ class AuthController extends \Liro\System\Http\Controller
             throw new Exception('liro-users::message.auth.credentials', 400);
         }
 
+        //        $user = User::withoutDepthGuard()->where('email', 'admin@gmail.com')->first();
+        //        auth()->login($user);
+
         return response()->json([
             'redirect' => url($menu_type->default->route_prefix)
         ], 200);

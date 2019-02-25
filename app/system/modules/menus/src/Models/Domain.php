@@ -1,15 +1,11 @@
 <?php
 
-namespace Liro\System\Menus\Models;
+namespace Liro\Extension\Menus\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Liro\System\Database\CastableTrait;
-use Liro\System\Languages\Models\Language;
+use Liro\System\Database\Model;
 
 class Domain extends Model
 {
-    use CastableTrait;
-
     protected $table = 'domains';
 
     protected $guarded = [
@@ -37,29 +33,14 @@ class Domain extends Model
         return $this->hasMany(Menu::class, 'domain_id', 'id');
     }
 
-    public function language()
-    {
-        return $this->hasOne(Language::class, 'locale', 'locale');
-    }
-
     public function getMenusAttribute()
     {
         return $this->menus()->defaultOrder()->get()->toTree();
     }
 
-    public function getDefaultAttribute()
+    public function getRouteAttribute()
     {
-        return $this->menus()->where('default', 1)->first();
-    }
-
-    public function getLocaleFallbackAttribute()
-    {
-        return @$this->attributes['locale'] ?: app()->getLocale();
-    }
-
-    public function getRoutePrefixAttribute()
-    {
-        return app('menus')->getMenuTypePrefix($this);
+        return str_replace([':domain', ':locale'], ['{domain}', '{locale}'], $this->attributes['route']);
     }
 
 }

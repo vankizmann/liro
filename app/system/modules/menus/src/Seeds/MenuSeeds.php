@@ -1,36 +1,21 @@
 <?php
 
-namespace Liro\System\Menus;
+namespace Liro\Extension\Menus\Seeds;
 
-use Liro\System\Menus\Models\Menu;
-use Liro\System\Menus\Models\Domain;
+use Liro\Extension\Menus\Models\Menu;
 
-class Seeder
+class MenuSeeds
 {
 
     public function install()
     {
-        $menu_type_frontend = Domain::create([
-            'state'         => 1,
-            'title'         => 'Frontend',
-            'route'         => '{domain}/{locale}',
-            'theme'         => 'system-theme'
-        ]);
-
-        $menu_type_backend = Domain::create([
-            'state'         => 1,
-            'title'         => 'Backend',
-            'route'         => '{domain}/{locale}/{backend}',
-            'theme'         => 'system-theme'
-        ]);
-
         $menu_frontend_home = Menu::create([
             'state'         => 1,
             'hide'          => 0,
             'title'         => 'Home',
             'slug'          => '/',
-            'path'          => 'liro-test.user.test.test',
-            'domain_id'     => $menu_type_frontend->id
+            'module'        => 'liro-test.user.test.test',
+            'domain_id'     => 2
         ]);
 
         $menu_frontend_test = Menu::create([
@@ -38,8 +23,8 @@ class Seeder
             'hide'          => 0,
             'title'         => 'Test',
             'slug'          => 'test',
-            'path'          => 'liro-test.user.test.test',
-            'domain_id'     => $menu_type_frontend->id
+            'module'        => 'liro-test.user.test.test',
+            'domain_id'     => 2
         ]);
 
         $menu_backend_home = Menu::create([
@@ -47,9 +32,9 @@ class Seeder
             'hide'          => 0,
             'title'         => 'Dashboard',
             'slug'          => '/',
-            'path'          => 'liro-test.user.test.test',
+            'module'        => 'liro-test.user.test.test',
             'icon'          => 'tachometer',
-            'domain_id'     => $menu_type_backend->id
+            'domain_id'     => 1
         ]);
 
         $menu_backend_users_alias = Menu::create([
@@ -57,9 +42,9 @@ class Seeder
             'hide'          => 0,
             'title'         => 'liro-users::admin.user.index',
             'slug'          => 'users',
-            'path'          => 'liro-menus.user.redirect.menu',
+            'module'        => 'liro-menus.user.redirect.menu',
             'icon'          => 'users',
-            'domain_id'     => $menu_type_backend->id
+            'domain_id'     => 1
         ]);
 
         $menu_backend_users = Menu::create([
@@ -67,9 +52,9 @@ class Seeder
             'hide'          => 0,
             'title'         => 'liro-users::admin.user.index',
             'slug'          => 'users',
-            'path'          => 'liro-users.admin.user.index',
+            'module'        => 'liro-users.admin.user.index',
             'icon'          => 'user-plus',
-            'domain_id'     => $menu_type_backend->id,
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_users_alias->id
         ]);
 
@@ -82,8 +67,8 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-users::admin.user.create',
             'slug'          => 'create',
-            'path'          => 'liro-users.admin.user.create',
-            'domain_id'     => $menu_type_backend->id,
+            'module'        => 'liro-users.admin.user.create',
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_users->id
         ]);
 
@@ -92,8 +77,8 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-users::admin.user.edit',
             'slug'          => 'edit',
-            'path'          => 'liro-users.admin.user.edit',
-            'domain_id'     => $menu_type_backend->id,
+            'module'        => 'liro-users.admin.user.edit',
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_users->id
         ]);
 
@@ -102,9 +87,9 @@ class Seeder
             'hide'          => 0,
             'title'         => 'liro-users::admin.role.index',
             'slug'          => 'roles',
-            'path'          => 'liro-users.admin.role.index',
+            'module'        => 'liro-users.admin.role.index',
             'icon'          => 'user-shield',
-            'domain_id'     => $menu_type_backend->id,
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_users_alias->id
         ]);
 
@@ -113,8 +98,8 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-users::admin.role.create',
             'slug'          => 'create',
-            'path'          => 'liro-users.admin.role.create',
-            'domain_id'     => $menu_type_backend->id,
+            'module'        => 'liro-users.admin.role.create',
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_roles->id
         ]);
 
@@ -123,8 +108,8 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-users::admin.role.edit',
             'slug'          => 'edit',
-            'path'          => 'liro-users.admin.role.edit',
-            'domain_id'     => $menu_type_backend->id,
+            'module'        => 'liro-users.admin.role.edit',
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_roles->id
         ]);
 
@@ -133,9 +118,9 @@ class Seeder
             'hide'          => 0,
             'title'         => 'liro-menus::admin.menu.index',
             'slug'          => 'menus',
-            'path'          => 'liro-menus.user.redirect.menu',
+            'module'        => 'liro-menus.user.redirect.menu',
             'icon'          => 'compass',
-            'domain_id'     => $menu_type_backend->id
+            'domain_id'     => 1
         ]);
 
         $menu_backend_menus = Menu::create([
@@ -143,9 +128,9 @@ class Seeder
             'hide'          => 0,
             'title'         => 'liro-menus::admin.menu.index',
             'slug'          => 'menus',
-            'path'          => 'liro-menus.admin.menu.index',
+            'module'        => 'liro-menus.admin.menu.index',
             'icon'          => 'bars',
-            'domain_id'     => $menu_type_backend->id,
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_menus_alias->id
         ]);
 
@@ -158,8 +143,8 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-menus::admin.menu.create',
             'slug'          => 'create',
-            'path'          => 'liro-menus.admin.menu.create',
-            'domain_id'     => $menu_type_backend->id,
+            'module'        => 'liro-menus.admin.menu.create',
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_menus->id
         ]);
 
@@ -168,8 +153,8 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-menus::admin.menu.edit',
             'slug'          => 'edit',
-            'path'          => 'liro-menus.admin.menu.edit',
-            'domain_id'     => $menu_type_backend->id,
+            'module'        => 'liro-menus.admin.menu.edit',
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_menus->id
         ]);
 
@@ -178,9 +163,9 @@ class Seeder
             'hide'          => 0,
             'title'         => 'liro-menus::admin.type.index',
             'slug'          => 'types',
-            'path'          => 'liro-menus.admin.type.index',
+            'module'        => 'liro-menus.admin.type.index',
             'icon'          => 'layer-group',
-            'domain_id'     => $menu_type_backend->id,
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_menus_alias->id
         ]);
 
@@ -189,8 +174,8 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-menus::admin.type.create',
             'slug'          => 'create',
-            'path'          => 'liro-menus.admin.type.create',
-            'domain_id'     => $menu_type_backend->id,
+            'module'        => 'liro-menus.admin.type.create',
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_types->id
         ]);
 
@@ -199,8 +184,8 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-menus::admin.type.edit',
             'slug'          => 'edit',
-            'path'          => 'liro-menus.admin.type.edit',
-            'domain_id'     => $menu_type_backend->id,
+            'module'        => 'liro-menus.admin.type.edit',
+            'domain_id'     => 1,
             'parent_id'     => $menu_backend_types->id
         ]);
 
@@ -209,9 +194,9 @@ class Seeder
             'hide'          => 0,
             'title'         => 'liro-pages::page.page_index',
             'slug'          => 'pages',
-            'path'          => 'liro-pages.admin.page.index',
+            'module'        => 'liro-pages.admin.page.index',
             'icon'          => 'file',
-            'domain_id'     => $menu_type_backend->id
+            'domain_id'     => 1
         ]);
 
         $menu_backend_media = Menu::create([
@@ -219,9 +204,9 @@ class Seeder
             'hide'          => 0,
             'title'         => 'Media',
             'slug'          => 'media',
-            'path'          => 'liro-media.admin.folder.index',
+            'module'        => 'liro-media.admin.folder.index',
             'icon'          => 'camera',
-            'domain_id'     => $menu_type_backend->id
+            'domain_id'     => 1
         ]);
 
         $menu_backend_system = Menu::create([
@@ -229,9 +214,9 @@ class Seeder
             'hide'          => 0,
             'title'         => 'System',
             'slug'          => 'system',
-            'path'          => 'liro-modules.admin.system.index',
+            'module'        => 'liro-modules.admin.system.index',
             'icon'          => 'cog',
-            'domain_id'     => $menu_type_backend->id
+            'domain_id'     => 1
         ]);
 
         $menu_backend_languages = Menu::create([
@@ -239,9 +224,9 @@ class Seeder
             'hide'          => 0,
             'title'         => 'liro-languages::admin.language.index',
             'slug'          => 'languages',
-            'path'          => 'liro-languages.admin.language.index',
+            'module'        => 'liro-languages.admin.language.index',
             'icon'          => 'globe',
-            'domain_id'     => $menu_type_backend->id
+            'domain_id'     => 1
         ], $menu_backend_system);
 
         $menu_backend_language_create = Menu::create([
@@ -249,8 +234,8 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-languages::admin.language.create',
             'slug'          => 'create',
-            'path'          => 'liro-languages.admin.language.create',
-            'domain_id'     => $menu_type_backend->id
+            'module'        => 'liro-languages.admin.language.create',
+            'domain_id'     => 1
         ], $menu_backend_languages);
 
         $menu_backend_language_edit = Menu::create([
@@ -258,8 +243,8 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-languages::admin.language.edit',
             'slug'          => 'edit',
-            'path'          => 'liro-languages.admin.language.edit',
-            'domain_id'     => $menu_type_backend->id
+            'module'        => 'liro-languages.admin.language.edit',
+            'domain_id'     => 1
         ], $menu_backend_languages);
 
         $menu_backend_login = Menu::create([
@@ -267,8 +252,8 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-users::admin.auth.login',
             'slug'          => 'login',
-            'path'          => 'liro-users.admin.auth.login',
-            'domain_id'     => $menu_type_backend->id
+            'module'        => 'liro-users.admin.auth.login',
+            'domain_id'     => 1
         ]);
 
         $menu_backend_logout = Menu::create([
@@ -276,11 +261,9 @@ class Seeder
             'hide'          => 1,
             'title'         => 'liro-users::admin.auth.logout',
             'slug'          => 'logout',
-            'path'          => 'liro-users.admin.auth.logout',
-            'domain_id'     => $menu_type_backend->id
+            'module'        => 'liro-users.admin.auth.logout',
+            'domain_id'     => 1
         ]);
-
-        // Menu::fixTree();
     }
 
 }

@@ -6,10 +6,11 @@ use Liro\System\Application;
 use Liro\System\Cms\Manager\ModuleManager;
 use Liro\System\Cms\Manager\RouteManager;
 use Liro\System\Cms\Traits\BootedTrait;
+use Liro\System\Cms\Traits\GuardedTrait;
 
 class Installer
 {
-    use BootedTrait;
+    use BootedTrait, GuardedTrait;
 
     public function boot(Application $app)
     {
@@ -21,11 +22,15 @@ class Installer
 
         $modules = $app->make(ModuleManager::class);
 
+        $app->singleton('cms.modules', function () use ($modules) {
+            return $modules;
+        });
+
+        $paths = [];
+
         foreach ( config('modules.filters') as $filter ) {
             $modules->addFilter($filter);
         }
-
-        $paths = [];
 
         foreach ( config('modules.paths') as $path ) {
             $paths[] = glob(ROOT . $path);
@@ -39,19 +44,30 @@ class Installer
             $modules->loadModule($name);
         }
 
-        $app->singleton('cms.modules', function () use ($modules) {
-            return $modules;
+        $this->booted(function () use ($modules) {
+            $modules->refreshModules();
         });
 
-        foreach ( $modules->loaded as $module ) {
+        $this->booted(function () use ($routes) {
+            $routes->boot();
+        });
+
+        // TODO: Pack into a migrate module
+        $this->unguarded([$this, 'install']);
+
+        dd($modules->loaded->keys()->toArray());
+
+        $this->bootInstance();
+    }
+
+    public function install()
+    {
+        foreach ( app('cms.modules')->loaded as $module ) {
             /* @var \Liro\System\Cms\Module\BaseModule $module */
             $module->uninstall()->install();
         }
 
-        $this->booted = true;
-
-        dd($modules);
-
-        $routes->boot();
+        return;
     }
+
 }

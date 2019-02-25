@@ -12,7 +12,11 @@ return [
     ],
 
     'defaults' => [
-        'liro-policies', 'liro-users', 'liro-modules',
+        'liro-fields',
+        'liro-modules',
+        'liro-languages',
+        'liro-users',
+        'liro-menus',
     ],
 
     /**

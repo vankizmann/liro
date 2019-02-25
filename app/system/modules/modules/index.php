@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Liro\Extension\Modules\Models\Module;
-
 return [
 
     'name'          => 'liro-modules',
@@ -12,14 +9,9 @@ return [
     'autoload' => [
         'Liro\\Extension\\Modules\\' => 'src/'
     ],
-    
-    'boot' => function (Application $app) {
 
-        // Get module column from collection
-        $modules = Module::enabled()->pluck('module');
-
-        // Load modules
-        $app['modules']->loadModules($modules)->bootModules($modules);
-    }
+    'providers' => [
+        Liro\Extension\Modules\Providers\ModuleServiceProvider::class
+    ]
 
 ];

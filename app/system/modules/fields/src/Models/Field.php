@@ -1,18 +1,15 @@
 <?php
 
-namespace Liro\System\Fields\Models;
+namespace Liro\Extension\Fields\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Liro\System\Database\CastableTrait;
+use Liro\System\Database\Model;
 
 class Field extends Model
 {
-    use CastableTrait;
-
     protected $table = 'fields';
 
-    protected $fillable = [
-        'label', 'value'
+    protected $guarded = [
+        'id'
     ];
 
     protected $attributes = [

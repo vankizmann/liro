@@ -1,28 +1,25 @@
 <?php
 
-namespace Liro\System\Languages;
+namespace Liro\Extension\Languages\Seeds;
 
-use Liro\System\Languages\Models\Language;
+use Liro\Extension\Languages\Models\Language;
 
-class Seeder
+class LanguageSeeds
 {
 
     public function install()
     {
-        $language_en = Language::create([
+        $english = Language::create([
             'state'     => 1,
-            'default'   => 0,
             'title'     => 'English',
             'locale'    => 'en'
         ]);
 
-        $language_de = Language::create([
+        $german = Language::create([
             'state'     => 1,
-            'default'   => 1,
             'title'     => 'Deutsch',
             'locale'    => 'de'
         ]);
-
     }
 
 }

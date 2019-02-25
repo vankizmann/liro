@@ -2,7 +2,7 @@
 
 return [
 
-    'name'          => 'liro-menus',
+    'name'          => 'liro-me22nus',
     'version'       => '0.0.1',
     'type'          => 'app-module',
 

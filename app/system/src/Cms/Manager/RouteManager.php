@@ -2,7 +2,9 @@
 
 namespace Liro\System\Cms\Manager;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Liro\System\Exceptions\Exception;
 
 class RouteManager
 {
@@ -24,48 +26,64 @@ class RouteManager
 
     public function boot()
     {
-        foreach ( app()->getAllowedLocales() as $locale ) {
-            $this->bootModules($locale);
-        }
-
-        foreach ( app()->getAllowedLocales() as $locale ) {
-            $this->bootMenus($locale);
-        }
+        $this->bootModuleRoutes();
+        $this->bootMenuRoutes();
     }
 
-    public function registerRoute($name, $options)
+    public function registerRoute($name, $routes)
     {
-        $this->routes->put($name, $options);
+        $this->routes->put($name, $routes);
     }
 
-    public function bootModules($locale)
+    public function bootModuleRoutes()
+    {
+        foreach ( app()->getAllowedLocales() as $locale ) {
+            $this->bootLocalizedModuleRoutes($locale);
+        }
+    }
+
+    public function bootLocalizedModuleRoutes($locale)
     {
         foreach ( $this->getFlatRoutes() as $name => $options ) {
-            call_user_func([$this, 'bootModuleRoute'], $name, $options, $locale);
+
+            // Get route by name with module prefix
+            $route = app('cms.helpers.route')
+                ->makeLocalizedRoute($name, $locale, 'module');
+
+            // Boot module route
+            $this->bootModuleRoute($name, $route, $options, $locale);
         }
     }
 
-    public function bootModuleRoute($name, $options, $locale = '')
+    public function bootModuleRoute($name, $route, $options, $locale = '')
     {
-        $route = str_join('/', $locale, 'modules', ...explode('.', $name));
-
-        if ( ! isset($options['methods']) ) {
-            $options['methods'] = ['any'];
+        if ( ! isset($options['method']) ) {
+            throw new Exception('Method in ' . $name . ' not given!');
         }
 
-        $name = str_join('.', $locale, $name);
-
-        foreach ( $options['methods'] as $method ) {
-
-            $alias = $method === 'resource' ?
-                preg_replace('/\.[^\.]+$/', '', $name) : $name;
-
-            app('router')->name($alias)->$method(
-                $route, $options['controller'], @$options['options'] ?: []
-            );
+        if ( ! isset($options['uses']) ) {
+            throw new Exception('Controller in ' . $name . ' not given!');
         }
 
-        return $route;
+        // Make localized name
+        $name = app('cms.helpers.route')
+            ->makeLocalizedName($name, $locale);
+
+        if ( $options['method'] === 'resource' ) {
+
+            $name = app('cms.helpers.route')
+                ->makeResourceName($name);
+
+            app('router')->resource($route, $options['uses'],
+                array_merge(['as' => $name], $options));
+
+            return $this;
+        }
+
+        app('router')->addRoute(strtoupper($options['method']), $route,
+            array_merge(['as' => $name], $options));
+
+        return $this;
     }
 
     public function registerMenu($menu)
@@ -73,40 +91,50 @@ class RouteManager
         $this->menus->push($menu);
     }
 
-    public function bootMenus($locale)
+    public function bootMenuRoutes()
     {
         foreach ( $this->menus as $menu ) {
-            call_user_func([$this, 'bootMenuRoute'], $menu->module, $menu, $locale);
+            $this->bootLocalizedMenuRoutes($menu);
         }
     }
 
-    public function bootMenuRoute($name, $menu, $locale = '')
+    public function bootLocalizedMenuRoutes($menu)
     {
-        $replacements = [
-            ['{locale}', '{domain}'], [app()->getLocale(), app()->getDomain()]
-        ];
-
-        $route = str_replace($replacements[0], $replacements[1], $menu->route);
-
         $options = $this->getFlatRoutes()->get($menu->module);
 
         if ( $options === null ) {
-            return null;
+            return;
         }
 
-        $name = str_join('.', $locale, $name);
+        // Get all locales from app
+        $locales = app()->getAllowedLocales();
 
-        foreach ( $options['methods'] as $method ) {
+        if ( ! preg_match('/{locale}/', $menu->route) ) {
+            $locales = app('cms.helpers.route')->findLocales($menu->route);
+        }
 
-            $alias = $method === 'resource' ?
-                preg_replace('/\.[^\.]+$/', '', $name) : $name;
+        foreach ( $locales ?: (array) app()->getLocale() as $locale ) {
 
-            app('router')->name($alias)->$method(
-                $route, $options['controller'], @$options['options'] ?: []
+            // Replace domain in route
+            $domain = app('cms.helpers.route')->replaceDomain(
+                app('cms.helpers.route')->extractDomain($menu->route)
             );
+
+            // Replace domain in route
+            $route = app('cms.helpers.route')->replaceLocale(
+                app('cms.helpers.route')->extractRoute($menu->route), $locale
+            );
+
+            $options = array_merge([
+                'domain' => $domain
+            ], $options);
+
+            // Boot module route
+            $this->bootModuleRoute($menu->module, $route, $options, $locale);
+
         }
 
-        return $menu->route;
+        return;
     }
 
 

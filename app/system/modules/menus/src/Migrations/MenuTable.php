@@ -26,13 +26,16 @@ class MenuTable extends Migration
             $table->string('slug')
                 ->nullable();
 
-            $table->string('name')
-                ->nullable();
-
             $table->string('module')
                 ->nullable();
 
             $table->string('query')
+                ->nullable();
+
+            $table->string('layout')
+                ->nullable();
+
+            $table->string('locale')
                 ->nullable();
 
             $table->integer('guard')

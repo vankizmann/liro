@@ -27,6 +27,8 @@ class MenuServiceProvider extends ServiceProvider
         Menu::enabled()->get()->each(function ($menu) {
             app('cms.routes')->registerMenu($menu);
         });
+
+
     }
 
 }

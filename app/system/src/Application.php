@@ -11,6 +11,15 @@ class Application extends \Illuminate\Foundation\Application
 
     protected $namespace = 'Liro\\System\\';
 
+    public function __construct(?string $basePath = null)
+    {
+        if ( ! $this->runningInConsole() ) {
+            $this->setDomain($_SERVER['HTTP_HOST']);
+        }
+
+        parent::__construct($basePath);
+    }
+
     public function getCachedServicesPath()
     {
         return $this->storagePath('cache/services.php');

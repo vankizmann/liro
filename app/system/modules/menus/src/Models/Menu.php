@@ -34,9 +34,10 @@ class Menu extends Model
         'hide'          => null,
         'title'         => null,
         'slug'          => null,
-        'name'          => null,
         'module'        => null,
         'query'         => null,
+        'layout'        => null,
+        'locale'        => null,
         'domain_id'     => null
     ];
 
@@ -45,9 +46,10 @@ class Menu extends Model
         'hide'          => 'integer',
         'title'         => 'string',
         'slug'          => 'string',
-        'name'          => 'string',
         'module'        => 'string',
         'query'         => 'string',
+        'layout'        => 'string',
+        'locale'        => 'string',
         'domain_id'     => 'integer'
     ];
 

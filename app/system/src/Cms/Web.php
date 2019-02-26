@@ -3,6 +3,8 @@
 namespace Liro\System\Cms;
 
 use Liro\System\Application;
+use Liro\System\Cms\Helpers\LocaleHelper;
+use Liro\System\Cms\Helpers\RouteHelper;
 use Liro\System\Cms\Manager\ModuleManager;
 use Liro\System\Cms\Manager\RouteManager;
 use Liro\System\Cms\Traits\BootedTrait;
@@ -14,6 +16,8 @@ class Web
 
     public function boot(Application $app)
     {
+        $app->singleton('cms.helpers.route', RouteHelper::class);
+
         $routes = $app->make(RouteManager::class);
 
         $app->singleton('cms.routes', function () use ($routes) {

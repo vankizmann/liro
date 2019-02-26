@@ -2,6 +2,7 @@
 
 namespace Liro\Extension\Users\Seeds;
 
+use Liro\Extension\Users\Models\Policy;
 use Liro\Extension\Users\Models\Role;
 
 class RoleSeeds
@@ -16,7 +17,7 @@ class RoleSeeds
             'guard'       => 1
         ]);
 
-        $admin->policies()->attach([1, 2, 3, 4, 5]);
+        $admin->policies()->attach(Policy::all());
     }
 
 }

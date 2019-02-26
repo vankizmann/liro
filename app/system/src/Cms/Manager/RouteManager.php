@@ -41,13 +41,19 @@ class RouteManager
     public function bootModules($locale)
     {
         foreach ( $this->getFlatRoutes() as $name => $options ) {
-            app()->call([$this, 'bootModuleRoute'], [str_join('.', $locale, $name), $options]);
+            call_user_func([$this, 'bootModuleRoute'], $name, $options, $locale);
         }
     }
 
-    public function bootModuleRoute($name, $options)
+    public function bootModuleRoute($name, $options, $locale = '')
     {
-        $route = str_join('/', 'modules', ...explode('.', $name));
+        $route = str_join('/', $locale, 'modules', ...explode('.', $name));
+
+        if ( ! isset($options['methods']) ) {
+            $options['methods'] = ['any'];
+        }
+
+        $name = str_join('.', $locale, $name);
 
         foreach ( $options['methods'] as $method ) {
 
@@ -70,25 +76,33 @@ class RouteManager
     public function bootMenus($locale)
     {
         foreach ( $this->menus as $menu ) {
-            app()->call([$this, 'bootMenuRoute'], [str_join('.', $locale, $menu->module), $menu]);
+            call_user_func([$this, 'bootMenuRoute'], $menu->module, $menu, $locale);
         }
     }
 
-    public function bootMenuRoute($name, $menu)
+    public function bootMenuRoute($name, $menu, $locale = '')
     {
-        $option = $this->getFlatRoutes()->get($menu->module);
+        $replacements = [
+            ['{locale}', '{domain}'], [app()->getLocale(), app()->getDomain()]
+        ];
 
-        if ( $option === null ) {
+        $route = str_replace($replacements[0], $replacements[1], $menu->route);
+
+        $options = $this->getFlatRoutes()->get($menu->module);
+
+        if ( $options === null ) {
             return null;
         }
 
-        foreach ( $option['methods'] as $method ) {
+        $name = str_join('.', $locale, $name);
+
+        foreach ( $options['methods'] as $method ) {
 
             $alias = $method === 'resource' ?
                 preg_replace('/\.[^\.]+$/', '', $name) : $name;
 
             app('router')->name($alias)->$method(
-                $menu->route, $option['controller'], @$option['options'] ?: []
+                $route, $options['controller'], @$options['options'] ?: []
             );
         }
 

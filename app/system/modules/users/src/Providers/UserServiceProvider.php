@@ -4,7 +4,7 @@ namespace Liro\Extension\Users\Providers;
 
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Support\ServiceProvider;
-use Liro\Extension\Users\Middlewares\ControllerGuard;
+use Liro\Extension\Users\Http\Middleware\ControllerGuard;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -33,7 +33,7 @@ class UserServiceProvider extends ServiceProvider
             return $fallback;
         });
 
-        app('router')->middleware('guard', ControllerGuard::class);
+        app('router')->aliasMiddleware('guard', ControllerGuard::class);
     }
 
     /**

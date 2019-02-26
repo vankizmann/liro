@@ -50,6 +50,41 @@ class PolicySeeds
             'method' => 'delete',
             'depth'  => 0,
         ]);
+
+        Policy::create([
+            'title'  => 'Allow all methods in users controller',
+            'class'  => \Liro\Extension\Users\Http\Controllers\Admin\UserController::class,
+            'method' => '*',
+            'depth'  => 0,
+        ]);
+
+        Policy::create([
+            'title'  => 'Allow index in users controller',
+            'class'  => \Liro\Extension\Users\Http\Controllers\Admin\UserController::class,
+            'method' => 'index',
+            'depth'  => 0,
+        ]);
+
+        Policy::create([
+            'title'  => 'Allow show in users controller',
+            'class'  => \Liro\Extension\Users\Http\Controllers\Admin\UserController::class,
+            'method' => 'show',
+            'depth'  => 0,
+        ]);
+
+        Policy::create([
+            'title'  => 'Allow create in users controller',
+            'class'  => \Liro\Extension\Users\Http\Controllers\Admin\UserController::class,
+            'method' => 'create',
+            'depth'  => 0,
+        ]);
+
+        Policy::create([
+            'title'  => 'Allow edit in users controller',
+            'class'  => \Liro\Extension\Users\Http\Controllers\Admin\UserController::class,
+            'method' => 'edit',
+            'depth'  => 0,
+        ]);
     }
 
 }

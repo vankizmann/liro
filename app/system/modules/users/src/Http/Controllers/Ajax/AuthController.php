@@ -1,8 +1,7 @@
 <?php
 
-namespace Liro\Users\Controllers\Ajax;
+namespace Liro\Users\Controllers\Http\Ajax;
 
-use Illuminate\Support\Facades\Auth;
 use Liro\System\Exceptions\Exception;
 use Liro\Users\Requests\AuthSubmitRequest;
 

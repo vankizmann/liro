@@ -13,7 +13,7 @@ class GuardObserver
         $modelClass = get_class($model);
 
         if ( $model->getUseActionGuard() && ! app('auth')->hasPolicyAction($modelClass, 'create') ) {
-            throw new PolicyException('Access to ' . $modelClass . '@create not granted.');
+            throw new PolicyException('Access to ' . $modelClass . '@create not granted.', 403);
         }
 
         return;
@@ -24,7 +24,7 @@ class GuardObserver
         $modelClass = get_class($model);
 
         if ( $model->getUseActionGuard() && ! app('auth')->hasPolicyAction($modelClass, 'update') ) {
-            throw new PolicyException('Access to ' . $modelClass . '@update not granted.');
+            throw new PolicyException('Access to ' . $modelClass . '@update not granted.', 403);
         }
 
         return;
@@ -35,7 +35,7 @@ class GuardObserver
         $modelClass = get_class($model);
 
         if ( $model->getUseActionGuard() && ! app('auth')->hasPolicyAction($modelClass, 'delete') ) {
-            throw new PolicyException('Access to ' . $modelClass . '@delete not granted.');
+            throw new PolicyException('Access to ' . $modelClass . '@delete not granted.', 403);
         }
 
         return;

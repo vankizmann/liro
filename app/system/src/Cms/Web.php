@@ -3,30 +3,36 @@
 namespace Liro\System\Cms;
 
 use Liro\System\Application;
-use Liro\System\Cms\Helpers\LocaleHelper;
 use Liro\System\Cms\Helpers\RouteHelper;
-use Liro\System\Cms\Manager\ModuleManager;
-use Liro\System\Cms\Manager\RouteManager;
+use Liro\System\Cms\Managers\ModuleManager;
+use Liro\System\Cms\Managers\RouteManager;
 use Liro\System\Cms\Traits\BootedTrait;
+use Liro\System\Cms\Traits\DomainTrait;
 use Liro\System\Cms\Traits\GuardedTrait;
+use Liro\System\Cms\Traits\MenuTrait;
+use Liro\System\Cms\Traits\ThemeTrait;
 
 class Web
 {
-    use BootedTrait, GuardedTrait;
+    use BootedTrait, GuardedTrait, ThemeTrait, DomainTrait, MenuTrait;
 
-    public function boot(Application $app)
+    public function boot()
     {
-        $app->singleton('cms.helpers.route', RouteHelper::class);
+        $routes = app()->make(RouteManager::class);
 
-        $routes = $app->make(RouteManager::class);
-
-        $app->singleton('cms.routes', function () use ($routes) {
+        app()->singleton('cms.routes', function () use ($routes) {
             return $routes;
         });
 
-        $modules = $app->make(ModuleManager::class);
+        $routesHelper = app()->make(RouteHelper::class);
 
-        $app->singleton('cms.modules', function () use ($modules) {
+        app()->singleton('cms.routes.helper', function () use ($routesHelper) {
+            return $routesHelper;
+        });
+
+        $modules = app()->make(ModuleManager::class);
+
+        app()->singleton('cms.modules', function () use ($modules) {
             return $modules;
         });
 
@@ -48,18 +54,21 @@ class Web
             $modules->loadModule($name);
         }
 
-        $this->booted(function () use ($modules) {
-            $modules->refreshModules();
+        app()->booted(function () {
+            app('cms.modules')->refreshModules();
         });
 
-        $this->booted(function () use ($routes) {
-            $routes->boot();
+        app()->booted(function () {
+            app('cms.routes')->boot();
         });
 
-        $this->booted(function () use ($modules, $routes) {
-//            dd($modules, app('router'));
+        app()->booted(function () {
+            app('cms')->bootInstance();
         });
 
-        $this->bootInstance();
+        app()->booted(function () {
+//            dd(app('cms'), app('view'));
+        });
+
     }
 }

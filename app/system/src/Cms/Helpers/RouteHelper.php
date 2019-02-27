@@ -4,6 +4,7 @@ namespace Liro\System\Cms\Helpers;
 
 class RouteHelper
 {
+
     public function makeResourceName($name)
     {
         return preg_replace('/\.[^\.]+$/', '', $name);
@@ -49,6 +50,45 @@ class RouteHelper
     public function replaceLocale($route, $locale = null)
     {
         return preg_replace('/({locale}|:locale)/', $locale ?: app()->getLocale(), $route);
+    }
+
+    public function getHost()
+    {
+        return preg_replace('/\:(.*?)$/', '', $_SERVER['HTTP_HOST']);
+    }
+
+    public function getRoute()
+    {
+        return preg_replace('/\?(.*?)$/', '', $_SERVER['REQUEST_URI']);
+    }
+
+    public function getFullRoute()
+    {
+        return $this->getHost() . $this->getRoute();
+    }
+
+    public function isLikeRoute($route)
+    {
+        $route = $this->replaceDomain($route);
+        $route = $this->replaceLocale($route);
+
+        return preg_match('/^' . preg_quote($route, '/') . '/', $this->getFullRoute());
+    }
+
+    public function isRoute($route)
+    {
+        $route = $this->replaceDomain($route);
+        $route = $this->replaceLocale($route);
+
+        return $this->getRoute() === $route;
+    }
+
+    public function isFullRoute($route)
+    {
+        $route = $this->replaceDomain($route);
+        $route = $this->replaceLocale($route);
+
+        return $this->getFullRoute() === $route;
     }
 
 }

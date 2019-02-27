@@ -1,19 +1,20 @@
 <?php
 
-namespace Liro\System\Cms\Manager;
+namespace Liro\System\Cms\Managers;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Liro\System\Exceptions\Exception;
 
 class RouteManager
 {
     public $routes;
+    public $domains;
     public $menus;
 
     public function __construct()
     {
         $this->routes = new Collection();
+        $this->domains = new Collection();
         $this->menus = new Collection();
     }
 
@@ -47,7 +48,7 @@ class RouteManager
         foreach ( $this->getFlatRoutes() as $name => $options ) {
 
             // Get route by name with module prefix
-            $route = app('cms.helpers.route')
+            $route = app('cms.routes.helper')
                 ->makeLocalizedRoute($name, $locale, 'module');
 
             // Boot module route
@@ -66,12 +67,12 @@ class RouteManager
         }
 
         // Make localized name
-        $name = app('cms.helpers.route')
+        $name = app('cms.routes.helper')
             ->makeLocalizedName($name, $locale);
 
         if ( $options['method'] === 'resource' ) {
 
-            $name = app('cms.helpers.route')
+            $name = app('cms.routes.helper')
                 ->makeResourceName($name);
 
             app('router')->resource($route, $options['uses'],
@@ -84,6 +85,11 @@ class RouteManager
             array_merge(['as' => $name], $options));
 
         return $this;
+    }
+
+    public function registerDomain($domain)
+    {
+        $this->domains->push($domain);
     }
 
     public function registerMenu($menu)
@@ -106,23 +112,27 @@ class RouteManager
             return;
         }
 
+        if ( app('cms.routes.helper')->isFullRoute($menu->route) ) {
+            $this->active = $menu;
+        }
+
         // Get all locales from app
         $locales = app()->getAllowedLocales();
 
         if ( ! preg_match('/{locale}/', $menu->route) ) {
-            $locales = app('cms.helpers.route')->findLocales($menu->route);
+            $locales = app('cms.routes.helper')->findLocales($menu->route);
         }
 
         foreach ( $locales ?: (array) app()->getLocale() as $locale ) {
 
             // Replace domain in route
-            $domain = app('cms.helpers.route')->replaceDomain(
-                app('cms.helpers.route')->extractDomain($menu->route)
+            $domain = app('cms.routes.helper')->replaceDomain(
+                app('cms.routes.helper')->extractDomain($menu->route)
             );
 
             // Replace domain in route
-            $route = app('cms.helpers.route')->replaceLocale(
-                app('cms.helpers.route')->extractRoute($menu->route), $locale
+            $route = app('cms.routes.helper')->replaceLocale(
+                app('cms.routes.helper')->extractRoute($menu->route), $locale
             );
 
             $options = array_merge([

@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\System\Cms\Manager;
+namespace Liro\System\Cms\Managers;
 
 use Liro\System\Support\Collection;
 use Liro\System\Cms\Module\BaseModule;
@@ -22,6 +22,16 @@ class ModuleManager
 
         $this->filters = new Collection();
         $this->history = new Collection();
+    }
+
+    public function getBooted()
+    {
+        return $this->booted;
+    }
+
+    public function getLoaded()
+    {
+        return $this->loaded;
     }
 
     public function bootModule($config)

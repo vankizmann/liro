@@ -5,7 +5,7 @@ namespace Liro\System\Cms\Managers;
 use Liro\System\Cms\Prototypes\Module;
 use Illuminate\Contracts\Foundation\Application;
 
-class ModuleManager
+class ModuleManagerss
 {
     /**
      * Application instance

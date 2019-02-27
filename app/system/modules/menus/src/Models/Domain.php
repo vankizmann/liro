@@ -3,13 +3,20 @@
 namespace Liro\Extension\Menus\Models;
 
 use Liro\System\Database\Model;
+use Liro\System\Database\Traits\StateTrait;
 
 class Domain extends Model
 {
+    use StateTrait;
+
     protected $table = 'domains';
 
     protected $guarded = [
         'id'
+    ];
+
+    protected $appends = [
+        'active'
     ];
 
     protected $attributes = [
@@ -41,6 +48,11 @@ class Domain extends Model
     public function getRouteAttribute()
     {
         return str_replace([':domain', ':locale'], ['{domain}', '{locale}'], $this->attributes['route']);
+    }
+
+    public function getActiveAttribute()
+    {
+        return app('cms')->getDomain() && app('cms')->getDomain()->get('id') === $this->id;
     }
 
 }

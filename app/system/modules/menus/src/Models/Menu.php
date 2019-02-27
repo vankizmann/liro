@@ -18,7 +18,7 @@ class Menu extends Model
     ];
 
     protected $appends = [
-        'route'
+        'route', 'active'
     ];
 
     protected $fields = [
@@ -66,6 +66,11 @@ class Menu extends Model
     public function getRouteAttribute()
     {
         return  str_join('/', $this->parent ? $this->parent->route : $this->domain->route, $this->slug);
+    }
+
+    public function getActiveAttribute()
+    {
+        return app('cms')->getMenu() && app('cms')->getMenu()->get('id') === $this->id;
     }
 
 }

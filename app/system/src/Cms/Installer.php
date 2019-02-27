@@ -3,36 +3,44 @@
 namespace Liro\System\Cms;
 
 use Liro\System\Application;
-use Liro\System\Cms\Manager\ModuleManager;
-use Liro\System\Cms\Manager\RouteManager;
+use Liro\System\Cms\Helpers\RouteHelper;
+use Liro\System\Cms\Managers\ModuleManager;
+use Liro\System\Cms\Managers\RouteManager;
 use Liro\System\Cms\Traits\BootedTrait;
 use Liro\System\Cms\Traits\GuardedTrait;
+use Liro\System\Cms\Traits\ThemeTrait;
 
 class Installer
 {
-    use BootedTrait, GuardedTrait;
+    use BootedTrait, GuardedTrait, ThemeTrait;
 
-    public function boot(Application $app)
+    public function boot()
     {
-        $routes = $app->make(RouteManager::class);
+        $routes = app()->make(RouteManager::class);
 
-        $app->singleton('cms.routes', function () use ($routes) {
+        app()->singleton('cms.routes', function () use ($routes) {
             return $routes;
         });
 
-        $modules = $app->make(ModuleManager::class);
+        $routesHelper = app()->make(RouteHelper::class);
 
-        $app->singleton('cms.modules', function () use ($modules) {
+        app()->singleton('cms.routes.helper', function () use ($routesHelper) {
+            return $routesHelper;
+        });
+
+        $modules = app()->make(ModuleManager::class);
+
+        app()->singleton('cms.modules', function () use ($modules) {
             return $modules;
         });
 
         $paths = [];
 
-        foreach ( config('installer.filters') as $filter ) {
+        foreach ( config('web.filters') as $filter ) {
             $modules->addFilter($filter);
         }
 
-        foreach ( config('installer.paths') as $path ) {
+        foreach ( config('web.paths') as $path ) {
             $paths[] = glob(ROOT . $path);
         }
 
@@ -40,24 +48,28 @@ class Installer
             $modules->bootModule($file);
         }
 
-        foreach ( config('installer.autoload') as $name ) {
+        foreach ( config('web.autoload') as $name ) {
             $modules->loadModule($name);
         }
 
-        $this->booted(function () use ($modules) {
-            $modules->refreshModules();
+        app()->booted(function () {
+            app('cms.modules')->refreshModules();
         });
 
-        $this->booted(function () use ($routes) {
-            $routes->boot();
+        app()->booted(function () {
+            // TODO: Pack into a migrate module
+            $this->unguarded([$this, 'install']);
         });
 
-        // TODO: Pack into a migrate module
-        $this->unguarded([$this, 'install']);
+        app()->booted(function () {
+            app('cms.routes')->boot();
+        });
 
-        dd($modules->loaded->keys()->toArray());
+        app()->booted(function () {
+            app('cms')->bootInstance();
+            dd(app('cms.modules')->loaded->keys()->toArray());
+        });
 
-        $this->bootInstance();
     }
 
     public function install()

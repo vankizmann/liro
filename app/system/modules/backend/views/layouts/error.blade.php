@@ -1,6 +1,6 @@
 <html lang="{{ app()->getLocale() }}">
     <head>
-        @include('theme::partials/head')
+        @include('theme::partials.head')
     </head>
     <body class="app-error">
 

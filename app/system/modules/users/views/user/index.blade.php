@@ -1,4 +1,4 @@
-@extends('theme::index')
+@extends($layout)
 
 @section('content')
     <app-component element="liro-user-index" />

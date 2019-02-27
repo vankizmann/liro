@@ -13,7 +13,7 @@ class WebServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('cms', \Liro\System\Cms\Web::class);
+        app()->singleton('cms', \Liro\System\Cms\Web::class);
     }
 
     /**
@@ -23,7 +23,7 @@ class WebServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->booted([$this->app['cms'], 'boot']);
+        app('cms')->boot();
     }
 
 }

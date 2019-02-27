@@ -3,6 +3,9 @@
 namespace Liro\Extension\Menus\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Liro\Extension\Menus\Loaders\RouteLoader;
+use Liro\Extension\Menus\Managers\RouteManager;
+use Liro\Extension\Menus\Models\Domain;
 use Liro\Extension\Menus\Models\Menu;
 
 class MenuServiceProvider extends ServiceProvider
@@ -24,11 +27,35 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Menu::enabled()->get()->each(function ($menu) {
-            app('cms.routes')->registerMenu($menu);
+        $domains = Domain::enabled()->get()->sortBy(function($domain) {
+            return strlen($domain->route);
         });
 
+        foreach ( $domains as $domain ) {
 
+            if ( app('cms.routes.helper')->isLikeRoute($domain->route) ) {
+                app('cms')->setDomain($domain);
+                app('cms')->setTheme($domain->theme);
+            }
+
+            app('cms.routes')->registerDomain($domain);
+        }
+
+        $menus = Menu::enabled()->get()->sortBy(function($menu) {
+            return strlen($menu->route);
+        });
+
+        foreach ( $menus as $menu ) {
+
+            if ( app('cms.routes.helper')->isFullRoute($menu->route) ) {
+                app('cms')->setMenu($menu);
+                app('cms')->setLayout($menu->layout);
+            }
+
+            app('cms.routes')->registerMenu($menu);
+        }
+
+        app('cms')->bootTheme();
     }
 
 }

@@ -13,7 +13,7 @@ class DomainSeeds
             'state'         => 1,
             'title'         => 'Backend',
             'route'         => ':domain/:locale/backend',
-            'theme'         => 'system-theme',
+            'theme'         => 'liro-backend',
             'guard'         => 1
         ]);
 
@@ -21,7 +21,7 @@ class DomainSeeds
             'state'         => 1,
             'title'         => 'Frontend',
             'route'         => ':domain/:locale',
-            'theme'         => 'system-theme',
+            'theme'         => 'liro-frontend',
             'guard'         => 1
         ]);
     }

@@ -62,7 +62,7 @@ class Application extends \Illuminate\Foundation\Application
 
     public function langPath($path = '')
     {
-        return str_join('/', $this->basePath, 'app/system/languages', $path);
+        return str_join('/', $this->basePath, 'app/languages', $path);
     }
 
     public function storagePath($path = '')

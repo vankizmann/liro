@@ -1,4 +1,4 @@
-@extends('theme::login')
+@theme(null)
 
 @section('content')
     <app-component element="liro-auth-login" />

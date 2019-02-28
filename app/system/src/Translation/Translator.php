@@ -2,8 +2,6 @@
 
 namespace Liro\System\Translation;
 
-use Illuminate\Support\Arr;
-
 class Translator extends \Illuminate\Translation\Translator
 {
 

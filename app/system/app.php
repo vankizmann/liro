@@ -46,13 +46,13 @@ $app->singleton(
     Liro\System\Exceptions\Handler::class
 );
 
-//$app->extend('translator', function () use ($app) {
-//    return new Liro\System\Translation\Translator($app['translation.loader'], $app['config']['app.locale']);
-//});
-//
-//$app->extend('url', function () use ($app) {
-//    return new Liro\System\Routing\UrlGenerator($app['routes'], $app['request']);
-//});
+$app->extend('translator', function () use ($app) {
+    return new Liro\System\Translation\Translator($app['translation.loader'], $app['config']['app.locale']);
+});
+
+$app->extend('url', function () use ($app) {
+    return new Liro\System\Routing\UrlGenerator($app['routes'], $app['request']);
+});
 
 /*
 |--------------------------------------------------------------------------

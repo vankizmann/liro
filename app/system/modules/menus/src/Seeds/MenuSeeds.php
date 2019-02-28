@@ -253,6 +253,7 @@ class MenuSeeds
             'title'         => 'liro-users::admin.auth.login',
             'slug'          => 'login',
             'module'        => 'liro-users.admin.auth.login',
+            'layout'        => 'login',
             'domain_id'     => 1
         ]);
 
@@ -262,6 +263,7 @@ class MenuSeeds
             'title'         => 'liro-users::admin.auth.logout',
             'slug'          => 'logout',
             'module'        => 'liro-users.admin.auth.logout',
+            'layout'        => 'login',
             'domain_id'     => 1
         ]);
     }

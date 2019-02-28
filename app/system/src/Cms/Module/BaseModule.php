@@ -3,7 +3,7 @@
 namespace Liro\System\Cms\Module;
 
 use Liro\System\Cms\Module\Exceptions\ModuleException;
-use Liro\System\Cms\Module\Abstracts\DataAbstract;
+use Liro\System\Cms\Abstracts\DataAbstract;
 
 class BaseModule extends DataAbstract implements ModuleInterface
 {

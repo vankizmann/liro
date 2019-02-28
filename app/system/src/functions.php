@@ -44,3 +44,29 @@ if ( ! function_exists('str_join') ) {
     }
 
 }
+
+if ( ! function_exists('asset') ) {
+
+    function asset($path = null, $secure = null)
+    {
+        if ( $path === null ) {
+            return app('cms.assets');
+        }
+
+        return app('cms.assets')->file($path, $secure);
+    }
+
+}
+
+if ( ! function_exists('secure_asset') ) {
+
+    function secure_asset($path = null)
+    {
+        if ( $path === null ) {
+            return app('cms.assets');
+        }
+
+        return app('cms.assets')->file($path, true);
+    }
+
+}

@@ -1,7 +1,7 @@
-@extends('theme::index')
+@layout(null)
 
 @php
-    app('assets')->script('liro-role', 'liro-users::dist/liro-role.js', ['theme-script']);
+    asset()->script('liro-role', 'liro-users::dist/liro-role.js', ['theme-script']);
 @endphp
 
 @section('content')

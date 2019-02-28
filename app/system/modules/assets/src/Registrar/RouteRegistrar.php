@@ -29,7 +29,6 @@ class RouteRegistrar
      */
     public function addByName($name)
     {
-        elixir();
         // Get real locale names
         $namePattern = str_replace(
             '\*', '(.*)', preg_quote( app('menus')->addKeyLocale($name) )

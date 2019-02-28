@@ -17,7 +17,7 @@ trait ThemeTrait
         $this->theme = $theme;
     }
 
-    public function getLayout($fallback = 'debug')
+    public function getLayout($fallback = 'index')
     {
         return $this->layout ?: $fallback;
     }

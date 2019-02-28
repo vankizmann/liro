@@ -2,8 +2,8 @@
 
 namespace Liro\System\Cms;
 
-use Liro\System\Application;
 use Liro\System\Cms\Helpers\RouteHelper;
+use Liro\System\Cms\Managers\AssetManager;
 use Liro\System\Cms\Managers\ModuleManager;
 use Liro\System\Cms\Managers\RouteManager;
 use Liro\System\Cms\Traits\BootedTrait;
@@ -18,6 +18,12 @@ class Web
 
     public function boot()
     {
+        $assets = app()->make(AssetManager::class);
+
+        app()->singleton('cms.assets', function () use ($assets) {
+            return $assets;
+        });
+
         $routes = app()->make(RouteManager::class);
 
         app()->singleton('cms.routes', function () use ($routes) {

@@ -23,6 +23,7 @@ return [
         Liro\System\Cms\Module\Loaders\RouteLoader::class,
         Liro\System\Cms\Module\Loaders\ViewLoader::class,
         Liro\System\Cms\Module\Loaders\TranslationLoader::class,
+        Liro\System\Cms\Module\Loaders\AssetLoader::class,
         Liro\System\Cms\Module\Loaders\EventLoader::class,
         Liro\System\Cms\Module\Loaders\MiddlewareLoader::class,
     ],

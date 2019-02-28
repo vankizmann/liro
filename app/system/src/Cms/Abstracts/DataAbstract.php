@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\System\Cms\Module\Abstracts;
+namespace Liro\System\Cms\Abstracts;
 
 use ArrayAccess;
 
@@ -56,6 +56,11 @@ abstract class DataAbstract implements ArrayAccess
     public function set($key, $value)
     {
         return array_set($this->data, $key, $value);
+    }
+
+    public function has($key)
+    {
+        return array_has($this->data, $key);
     }
 
 }

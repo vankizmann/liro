@@ -2,38 +2,14 @@
 <head>
     @php
         $defaultUrl = app('cms')->getDomain()->route;
-
-        dd($defaultUrl);
-
-        app('assets')->storage('states', [
-            ['value' => 1, 'label' => trans('theme::form.state.enabled')],
-            ['value' => 0, 'label' => trans('theme::form.state.disabled')]
-        ]);
-
-        app('assets')->storage('locks', [
-            ['value' => 0, 'label' => trans('theme::form.lock.unlocked')],
-            ['value' => 1, 'label' => trans('theme::form.lock.locked')]
-        ]);
-
-        app('assets')->storage('hides', [
-            ['value' => 0, 'label' => trans('theme::form.hide.visible')],
-            ['value' => 1, 'label' => trans('theme::form.hide.hidden')]
-        ]);
-
-        app('assets')->storage('defaults', [
-            ['value' => 1, 'label' => trans('theme::form.default.enabled')],
-            ['value' => 0, 'label' => trans('theme::form.default.disabled')]
-        ]);
-
-        app('assets')->locale('theme');
     @endphp
 
-    @include('theme::partials/head')
+    @include('liro-backend::partials/head')
 
 </head>
 <body class="app-page">
 
-    @include('theme::partials/notification')
+    @include('liro-backend::partials/notification')
 
     <div id="app">
 
@@ -44,15 +20,13 @@
         <portal to="menubar-left" :order="100">
             <app-nav-item class="margin-20--right">
                 <app-nav-link href="{{ url($defaultUrl ?: '/') }}">
-                    <img src="{{ app('assets')->file('theme::dist/images/liro-negative.svg') }}" alt="{{ app()->getTitle() }}" width="80" height="20">
+                    <img src="{{ asset('liro-backend::dist/images/liro-negative.svg') }}" alt="" width="80" height="20">
                 </app-nav-link>
             </app-nav-item>
         </portal>
 
         <portal to="menubar-left" :order="200">
-            @include('theme::menus/dropdown', [
-                'menus' => app('menus')->getMenusByTypeId(2)->toTree()
-            ])
+
         </portal>
 
         <portal to="menubar-right" :order="100">
@@ -69,7 +43,7 @@
         <portal to="menubar-right" :order="200">
             <app-nav-item size="small">
                 <app-nav-dropdown>
-                    <app-nav-link>{{ app('users')->getName() }}</app-nav-link>
+                    <app-nav-link></app-nav-link>
                     <ul class="nav__dropdown-nav" slot="dropdown">
                         <app-nav-item>
                             <app-nav-link href="{{ route('liro-users.admin.auth.login') }}">
@@ -88,7 +62,7 @@
 
         <portal to="toolbar-left" :order="100">
             <app-nav-item>
-                <h4 class="text--primary text--light">{{ app()->getTitle() }}</h4>
+                <h4 class="text--primary text--light">asdasd</h4>
             </app-nav-item>
         </portal>
 

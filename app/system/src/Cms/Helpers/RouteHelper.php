@@ -52,6 +52,20 @@ class RouteHelper
         return preg_replace('/({locale}|:locale)/', $locale ?: app()->getLocale(), $route);
     }
 
+    public function prefixLocale($name)
+    {
+        if ( preg_match('/^[a-z]{2}\./', $name) ) {
+            return $name;
+        }
+
+        return app()->getLocale() . '.' . $name;
+    }
+
+    public function removeLocale($name)
+    {
+        return preg_replace('/^[a-z]{2}\./', '', $name);
+    }
+
     public function getHost()
     {
         return preg_replace('/\:(.*?)$/', '', $_SERVER['HTTP_HOST']);

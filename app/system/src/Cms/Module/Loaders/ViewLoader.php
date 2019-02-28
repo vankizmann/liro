@@ -19,8 +19,6 @@ class ViewLoader implements LoaderInterface
             }
 
             app('view')->addLocation($path);
-
-            return $module;
         }
 
         app('view')->addNamespace($module->name, $path);

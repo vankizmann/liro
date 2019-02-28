@@ -14,11 +14,7 @@ class AuthController extends Controller
 
     public function login()
     {
-        app('cms')->unguarded(function () {
-            auth()->attempt(['email' => 'admin@gmail.com', 'password' => 'password']);
-        });
-
-        return 'Ok';
+        auth()->attempt(['email' => 'admin@gmail.com', 'password' => 'password']);
 
         return view('liro-users::auth/login');
     }

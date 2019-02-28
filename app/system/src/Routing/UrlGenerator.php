@@ -7,7 +7,8 @@ class UrlGenerator extends \Illuminate\Routing\UrlGenerator
 
     public function route($name, $parameters = [], $absolute = true)
     {
-        return parent::route(app('menus')->addKeyLocale($name), $parameters, $absolute);
+        $name = app('cms.routes.helper')->prefixLocale($name);
+        return parent::route($name, $parameters, $absolute);
     }
 
 }

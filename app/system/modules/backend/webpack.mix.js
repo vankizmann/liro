@@ -30,16 +30,10 @@ mix.setResourceRoot(
  * Compile files
  */
 
-// Src path
-let src = 'resources/src/';
-
-// Dist path
-let dist = 'resources/dist/';
-
-mix.js(src + 'js/bootstrap.js', dist + 'js/script.js', {
+mix.js('resources/src/js/bootstrap.js', 'resources/dist/js/script.js', {
     // JS options
-});
+}).version();
 
-mix.sass(src + 'sass/bootstrap.scss', dist + 'css/style.css', {
+mix.sass('resources/src/sass/bootstrap.scss', 'resources/dist/css/style.css', {
     precision: 3
-});
+}).version();

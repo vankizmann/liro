@@ -67,7 +67,7 @@ class Web
         });
 
         app()->booted(function () {
-//            dd(app('cms'), app('view'));
+//            dd(app(), app('cms'), app('view'));
         });
 
     }

@@ -1,7 +1,9 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     @php
-        $defaultUrl = app()->getMenuTypeKey('default.route_prefix');
+        $defaultUrl = app('cms')->getDomain()->route;
+
+        dd($defaultUrl);
 
         app('assets')->storage('states', [
             ['value' => 1, 'label' => trans('theme::form.state.enabled')],

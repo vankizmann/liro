@@ -1,2 +1,5 @@
+@theme(null)
+
+@section('content')
 USER INDEX IN THEME
-{{ trans('validation.accepted') }}
+@endsection

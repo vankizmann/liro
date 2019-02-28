@@ -144,12 +144,12 @@ return [
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
-        Illuminate\View\ViewServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
-        Liro\System\Providers\AppServiceProvider::class,
+        Liro\System\Providers\ViewServiceProvider::class,
         Liro\System\Providers\EventServiceProvider::class,
         Liro\System\Providers\RouteServiceProvider::class,
-        Liro\System\Providers\AuthServiceProvider::class
+        Liro\System\Providers\AuthServiceProvider::class,
+        Liro\System\Providers\AppServiceProvider::class,
     ],
 
     /*

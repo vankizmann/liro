@@ -24,6 +24,16 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //
+    }
+
+    /**
+     * Load any application services.
+     *
+     * @return void
+     */
+    public function load()
+    {
         Module::enabled()->get()->each(function ($module) {
             app('cms.modules')->loadModule($module->extension);
         });

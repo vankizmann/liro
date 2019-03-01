@@ -16,4 +16,10 @@ trait MenuTrait
         return $this->menu = $menu;
     }
 
+    public function getMenuAttr($attribute, $fallback = null)
+    {
+        return $this->menu === null ? $fallback :
+            array_get($this->menu, $attribute, $fallback);
+    }
+
 }

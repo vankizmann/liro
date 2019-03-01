@@ -16,4 +16,10 @@ trait DomainTrait
         return $this->domain = $domain;
     }
 
+    public function getDomainAttr($attribute, $fallback = null)
+    {
+        return $this->domain === null ? $fallback :
+            array_get($this->domain, $attribute, $fallback);
+    }
+
 }

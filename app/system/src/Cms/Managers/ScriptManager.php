@@ -22,8 +22,4 @@ class ScriptManager
         $this->modules = new Collection();
     }
 
-    public function route()
-    {
-
-    }
 }

@@ -8,7 +8,7 @@ trait DomainTrait
 
     public function setDomain($domain)
     {
-        return $this->domain = preg_replace('#^https?://#', '', $domain);
+        return $this->domain = preg_replace('/^https?\:\/\//', '', $domain);
     }
 
     public function getDomain()

@@ -6,54 +6,18 @@ use Liro\System\Cms\Abstracts\DataAbstract;
 
 class ScriptAsset extends DataAbstract implements AssetInterface
 {
+    public $name = 'script';
 
-    public function __construct($data)
+    public function __construct($link)
     {
-        $this->data = $data;
+        $this->data = [$data[0]];
     }
 
     public function output()
     {
-        if ( $this->has('link') ) {
-            return $this->parseLink();
-        }
+        $link = app('cms.assets')->solveLink($this->link);
 
-        if ( $this->has('html') ) {
-            return $this->parseHtml();
-        }
-
-        return '';
-    }
-
-    protected function getAttr()
-    {
-        $attr = $this->get('attr', []);
-
-        $attr = collect($attr)->map(function ($item, $key) {
-            return is_string($key) ? $key . '="' . $item . '"' : $item;
-        });
-
-        return $attr->implode(' ');
-    }
-
-    protected function parseLink($link = null)
-    {
-        if ( $link === null ) {
-            $link = $this->get('link');
-        }
-
-        $link = app('cms.assets')->solveLink($link);
-
-        return '<script src="' . $link . '" ' . $this->getAttr() . '></script>';
-    }
-
-    protected function parseHtml($html = null)
-    {
-        if ( $html === null ) {
-            $html = $this->get('html');
-        }
-
-        return '<script ' . $this->getAttr() . '>' . $html . '</script>';
+        return '<script src="' . $link . '"></script>';
     }
 
 }

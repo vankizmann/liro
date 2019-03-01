@@ -1,7 +1,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     @php
-        $defaultUrl = app('cms')->getDomain()->route;
+        $defaultUrl = app('cms')->getDomainAttr('route');
     @endphp
 
     @include('liro-backend::partials/head')

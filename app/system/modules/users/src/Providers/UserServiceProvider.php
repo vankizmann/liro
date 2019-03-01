@@ -15,6 +15,16 @@ class UserServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
         SessionGuard::macro('getPolicyDepth', function ($class, $fallback = 10000) {
 
             if ( ! auth()->guest() ) {
@@ -34,16 +44,6 @@ class UserServiceProvider extends ServiceProvider
         });
 
         app('router')->aliasMiddleware('guard', ControllerGuard::class);
-    }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
     }
 
 }

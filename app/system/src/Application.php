@@ -2,18 +2,25 @@
 
 namespace Liro\System;
 
-use Liro\System\Application\AllowedLocalesTrait;
+use Liro\System\Application\LoadedTrait;
+use Liro\System\Application\LocalesTrait;
 use Liro\System\Application\DomainTrait;
+use Liro\System\Application\ProtocolTrait;
 
 class Application extends \Illuminate\Foundation\Application
 {
-    use DomainTrait, AllowedLocalesTrait;
+    use LoadedTrait, ProtocolTrait, DomainTrait, LocalesTrait;
 
     protected $namespace = 'Liro\\System\\';
 
     public function __construct(?string $basePath = null)
     {
         if ( ! $this->runningInConsole() ) {
+
+            // TODO: Comment
+            $this->setProtocol($_SERVER['SERVER_PROTOCOL']);
+
+            // TODO: Comment
             $this->setDomain($_SERVER['HTTP_HOST']);
         }
 

@@ -6,7 +6,6 @@ use Liro\System\Cms\Helpers\RouteHelper;
 use Liro\System\Cms\Managers\AssetManager;
 use Liro\System\Cms\Managers\ModuleManager;
 use Liro\System\Cms\Managers\RouteManager;
-use Liro\System\Cms\Traits\BootedTrait;
 use Liro\System\Cms\Traits\DomainTrait;
 use Liro\System\Cms\Traits\GuardedTrait;
 use Liro\System\Cms\Traits\MenuTrait;
@@ -14,7 +13,7 @@ use Liro\System\Cms\Traits\ThemeTrait;
 
 class Web
 {
-    use BootedTrait, GuardedTrait, ThemeTrait, DomainTrait, MenuTrait;
+    use GuardedTrait, ThemeTrait, DomainTrait, MenuTrait;
 
     public function boot()
     {
@@ -44,6 +43,10 @@ class Web
 
         $paths = [];
 
+        foreach ( config('web.compilers') as $group => $compiler ) {
+            $assets->addFilter($group, $compiler);
+        }
+
         foreach ( config('web.filters') as $filter ) {
             $modules->addFilter($filter);
         }
@@ -61,18 +64,18 @@ class Web
         }
 
         app()->booted(function () {
+            app()->load();
+        });
+
+        app()->loaded(function () {
             app('cms.modules')->refreshModules();
         });
 
-        app()->booted(function () {
+        app()->loaded(function () {
             app('cms.routes')->boot();
         });
 
-        app()->booted(function () {
-            app('cms')->bootInstance();
-        });
-
-        app()->booted(function () {
+        app()->loaded(function () {
 //            dd(app(), app('cms'), app('view'));
         });
 

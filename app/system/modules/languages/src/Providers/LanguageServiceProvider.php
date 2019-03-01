@@ -25,6 +25,16 @@ class LanguageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //
+    }
+
+    /**
+     * Load any application services.
+     *
+     * @return void
+     */
+    public function load()
+    {
         /* @var \Illuminate\Support\Collection $locales */
         $locales = Language::enabled()->pluck('locale');
 
@@ -40,7 +50,7 @@ class LanguageServiceProvider extends ServiceProvider
             $this->app->setLocale($locale);
         }
 
-        $this->app->setAllowedLocales($locales->toArray());
+        $this->app->setLocales($locales->toArray());
     }
 
 }

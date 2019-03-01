@@ -38,7 +38,7 @@ class RouteManager
 
     public function bootModuleRoutes()
     {
-        foreach ( app()->getAllowedLocales() as $locale ) {
+        foreach ( app()->getLocales() as $locale ) {
             $this->bootLocalizedModuleRoutes($locale);
         }
     }
@@ -112,12 +112,8 @@ class RouteManager
             return;
         }
 
-        if ( app('cms.routes.helper')->isFullRoute($menu->route) ) {
-            $this->active = $menu;
-        }
-
         // Get all locales from app
-        $locales = app()->getAllowedLocales();
+        $locales = app()->getLocales();
 
         if ( ! preg_match('/{locale}/', $menu->route) ) {
             $locales = app('cms.routes.helper')->findLocales($menu->route);

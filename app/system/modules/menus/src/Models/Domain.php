@@ -47,7 +47,7 @@ class Domain extends Model
 
     public function getRouteAttribute()
     {
-        return str_replace([':domain', ':locale'], ['{domain}', '{locale}'], $this->attributes['route']);
+        return app()->getProtocol() . '://' . $this->attributes['route'];
     }
 
     public function getActiveAttribute()

@@ -65,7 +65,7 @@ class Menu extends Model
 
     public function getRouteAttribute()
     {
-        return  str_join('/', $this->parent ? $this->parent->route : $this->domain->route, $this->slug);
+        return str_join('/', $this->parent ? $this->parent->route : $this->domain->route, $this->slug);
     }
 
     public function getActiveAttribute()

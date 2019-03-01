@@ -28,4 +28,10 @@ return [
         Liro\System\Cms\Module\Loaders\MiddlewareLoader::class,
     ],
 
+    'assets' => [
+        Liro\System\Cms\Asset\ScriptAsset::class,
+        Liro\System\Cms\Asset\StyleAsset::class,
+        Liro\System\Cms\Asset\RouteAsset::class
+    ]
+
 ];

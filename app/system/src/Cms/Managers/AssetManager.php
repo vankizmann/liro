@@ -2,12 +2,17 @@
 
 namespace Liro\System\Cms\Managers;
 
+use function foo\func;
 use Liro\System\Support\Collection;
 use Liro\System\Cms\Asset\ScriptAsset;
 use Liro\System\Cms\Asset\StyleAsset;
 
 class AssetManager
 {
+    public $assets;
+
+    public $compilers;
+
     public $useScript = ScriptAsset::class;
 
     public $scripts;
@@ -22,11 +27,22 @@ class AssetManager
 
     public function __construct()
     {
+        $this->assets = new Collection();
+        $this->compilers = new Collection();
+
         $this->scripts = new Collection();
         $this->styles = new Collection();
+
         $this->namespaces = new Collection();
         $this->manifests = new Collection();
     }
+
+    public function addAsset($group, $compiler)
+    {
+        $this->assets->put($group, $compiler);
+    }
+
+
 
     public function addNamespace($namespace, $hint)
     {

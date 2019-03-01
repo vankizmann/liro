@@ -27,6 +27,16 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //
+    }
+
+    /**
+     * Load any application services.
+     *
+     * @return void
+     */
+    public function load()
+    {
         $domains = Domain::enabled()->get()->sortBy(function($domain) {
             return strlen($domain->route);
         });
@@ -35,6 +45,9 @@ class MenuServiceProvider extends ServiceProvider
 
             if ( app('cms.routes.helper')->isLikeRoute($domain->route) ) {
                 app('cms')->setDomain($domain);
+            }
+
+            if ( app('cms.routes.helper')->isLikeRoute($domain->route) ) {
                 app('cms')->setTheme($domain->theme);
             }
 
@@ -47,8 +60,11 @@ class MenuServiceProvider extends ServiceProvider
 
         foreach ( $menus as $menu ) {
 
-            if ( app('cms.routes.helper')->isFullRoute($menu->route) ) {
+            if ( app('cms.routes.helper')->isRoute($menu->route) ) {
                 app('cms')->setMenu($menu);
+            }
+
+            if ( app('cms.routes.helper')->isRoute($menu->route) ) {
                 app('cms')->setLayout($menu->layout);
             }
 

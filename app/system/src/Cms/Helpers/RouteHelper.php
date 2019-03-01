@@ -27,18 +27,20 @@ class RouteHelper
 
     public function findLocales($route, $glue = '/')
     {
-        return array_intersect(app()->getAllowedLocales(), explode($glue, $route));
+        return array_intersect(app()->getLocales(), explode($glue, $route));
     }
 
     public function extractDomain($route)
     {
-        preg_match('/^(.*?)\/(.*?)$/', $route, $match);
+        preg_match('/^https?\:\/\/(.*?)\/(.*?)$/', $route, $match);
+
         return count($match) === 3 ? $match[1] : $route;
     }
 
     public function extractRoute($route)
     {
-        preg_match('/^(.*?)\/(.*?)$/', $route, $match);
+        preg_match('/^https?\:\/\/(.*?)\/(.*?)$/', $route, $match);
+
         return count($match) === 3 ? $match[2] : $route;
     }
 
@@ -68,7 +70,7 @@ class RouteHelper
 
     public function getHost()
     {
-        return preg_replace('/\:(.*?)$/', '', $_SERVER['HTTP_HOST']);
+        return app()->getProtocol() . '://' . app()->getDomain();
     }
 
     public function getRoute()
@@ -90,14 +92,6 @@ class RouteHelper
     }
 
     public function isRoute($route)
-    {
-        $route = $this->replaceDomain($route);
-        $route = $this->replaceLocale($route);
-
-        return $this->getRoute() === $route;
-    }
-
-    public function isFullRoute($route)
     {
         $route = $this->replaceDomain($route);
         $route = $this->replaceLocale($route);

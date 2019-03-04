@@ -4,5 +4,6 @@ namespace Liro\System\Cms\Asset;
 
 interface AssetInterface
 {
-    public function output();
+    public function add($name, $data);
+    public function render();
 }

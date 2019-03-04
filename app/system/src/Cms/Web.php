@@ -43,8 +43,8 @@ class Web
 
         $paths = [];
 
-        foreach ( config('web.compilers') as $group => $compiler ) {
-            $assets->addFilter($group, $compiler);
+        foreach ( config('web.assets') as $name => $compiler ) {
+            $assets->addAsset($name, $compiler);
         }
 
         foreach ( config('web.filters') as $filter ) {

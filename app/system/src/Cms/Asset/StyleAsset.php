@@ -2,58 +2,35 @@
 
 namespace Liro\System\Cms\Asset;
 
-use Liro\System\Cms\Abstracts\DataAbstract;
 
-class StyleAsset extends DataAbstract implements AssetInterface
+use Liro\System\Support\Collection;
+
+class StyleAsset implements AssetInterface
 {
 
-    public function __construct($data)
+    public $styles;
+
+    public function __construct()
     {
-        $this->data = $data;
+        $this->styles = new Collection();
     }
 
-    public function output()
+    public function add($name, $path, $deps = [], $attrs = [])
     {
-        if ( $this->has('link') ) {
-            return $this->parseLink();
-        }
-
-        if ( $this->has('html') ) {
-            return $this->parseHtml();
-        }
-
-        return '';
+        $this->styles->put($name, [
+            'path' => $path, 'deps' => $deps, 'attrs' => $attrs
+        ]);
     }
 
-    protected function getAttr()
+    public function render()
     {
-        $attr = $this->get('attr', []);
-
-        $attr = collect($attr)->map(function ($item, $key) {
-            return is_string($key) ? $key . '="' . $item . '"' : $item;
-        });
-
-        return $attr->implode(' ');
+        return $this->styles->sortByDeps()
+            ->map([$this, 'renderStyle'])->implode("\n");
     }
 
-    protected function parseLink($link = null)
+    public function renderStyle($style)
     {
-        if ( $link === null ) {
-            $link = $this->get('link');
-        }
-
-        $link = app('cms.assets')->solveLink($link);
-
-        return '<link rel="stylesheet" href="' . $link . '" ' . $this->getAttr() . ' />';
-    }
-
-    protected function parseHtml($html = null)
-    {
-        if ( $html === null ) {
-            $html = $this->get('html');
-        }
-
-        return '<style ' . $this->getAttr() . '>' . $html . '</style>';
+        return '<link rel="stylesheet" href="' . app('cms.assets')->file($style['path']) . '">';
     }
 
 }

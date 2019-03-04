@@ -27,10 +27,10 @@
 
 @php
     asset()->style('theme-style', 'liro-backend::dist/css/style.css');
-    echo asset()->output('styles');
+    echo asset()->output('style');
 @endphp
 
 @php
     asset()->script('theme-script', 'liro-backend::dist/js/script.js');
-    echo asset()->output('scripts');
+    echo asset()->output('script');
 @endphp

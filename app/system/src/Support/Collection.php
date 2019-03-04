@@ -27,6 +27,13 @@ class Collection extends \Illuminate\Support\Collection
         return $diffrence;
     }
 
+    public function findByKeys($keys)
+    {
+        return $this->filter(function ($value, $key) use ($keys) {
+            return in_array('*', (array) $keys) || in_array($key, (array) $keys);
+        });
+    }
+
     public function sortByDeps($depsKey = 'deps')
     {
         $sorter = new StringSort();

@@ -38,7 +38,7 @@ class RouteRegistrar
         $routeNames = app('router')->getRoutes()->getRoutesByName();
 
         foreach ( $routeNames as $routeName => $route) {
-            if ( preg_match('/^' . $namePattern . '$/', $routeName) ) {
+            if ( preg_match('/^' . $namePattern . '\:\:.*$/', $routeName) ) {
                 $this->routes->put( app('menus')->removeKeyLocale($routeName), app('url')->to($route->uri) );
             }
         }

@@ -2,22 +2,34 @@
 
 namespace Liro\System\Cms\Asset;
 
-use Liro\System\Cms\Abstracts\DataAbstract;
+use Liro\System\Support\Collection;
 
-class ScriptAsset extends DataAbstract implements AssetInterface
+class ScriptAsset implements AssetInterface
 {
-    public $name = 'script';
 
-    public function __construct($link)
+    public $scripts;
+
+    public function __construct()
     {
-        $this->data = [$data[0]];
+        $this->scripts = new Collection();
     }
 
-    public function output()
+    public function add($name, $path, $deps = [], $attrs = [])
     {
-        $link = app('cms.assets')->solveLink($this->link);
+        $this->scripts->put($name, [
+            'path' => $path, 'deps' => $deps, 'attrs' => $attrs
+        ]);
+    }
 
-        return '<script src="' . $link . '"></script>';
+    public function render()
+    {
+        return $this->scripts->sortByDeps()
+            ->map([$this, 'renderScript'])->implode("\n");
+    }
+
+    public function renderScript($script)
+    {
+        return '<script src="' . app('cms.assets')->file($script['path']) . '"></script>';
     }
 
 }

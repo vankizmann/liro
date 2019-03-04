@@ -2,7 +2,8 @@
 
 namespace Liro\System\Cms\Managers;
 
-use function foo\func;
+use Illuminate\Support\Traits\Macroable;
+use Liro\System\Cms\Asset\Exceptions\AssetException;
 use Liro\System\Support\Collection;
 use Liro\System\Cms\Asset\ScriptAsset;
 use Liro\System\Cms\Asset\StyleAsset;
@@ -11,16 +12,6 @@ class AssetManager
 {
     public $assets;
 
-    public $compilers;
-
-    public $useScript = ScriptAsset::class;
-
-    public $scripts;
-
-    public $useStyle = StyleAsset::class;
-
-    public $styles;
-
     public $namespaces;
 
     public $manifests;
@@ -28,21 +19,9 @@ class AssetManager
     public function __construct()
     {
         $this->assets = new Collection();
-        $this->compilers = new Collection();
-
-        $this->scripts = new Collection();
-        $this->styles = new Collection();
-
         $this->namespaces = new Collection();
         $this->manifests = new Collection();
     }
-
-    public function addAsset($group, $compiler)
-    {
-        $this->assets->put($group, $compiler);
-    }
-
-
 
     public function addNamespace($namespace, $hint)
     {
@@ -56,7 +35,12 @@ class AssetManager
         $this->manifests->put($source, $target);
     }
 
-    public function solveLink($link, $secure = null)
+    public function addAsset($name, $compiler)
+    {
+        $this->assets->put($name, app()->make($compiler));
+    }
+
+    public function file($link, $secure = null)
     {
         foreach ( $this->manifests as $source => $target ) {
             $link = preg_replace('/^' . preg_quote($source, '/') . '$/',
@@ -75,57 +59,22 @@ class AssetManager
         return $link;
     }
 
-    public function output($vars = ['scripts', 'styles'])
+    public function output($names = '*')
     {
-        return collect($vars)->map([$this, 'outputAsset'])->implode("\n");
+        $assets = $this->assets->findByKeys($names)->map(function ($asset) {
+            return $asset->render();
+        });
+
+        return $assets->implode("\n");
     }
 
-    public function outputAsset($var)
+    public function __call($name, $arguments)
     {
-        return $this->$var->sortByDeps()->map(function ($asset) {
-            return $asset->output();
-        })->implode("\n");
-    }
+        if ( ! $this->assets->has($name) ) {
+            throw new AssetException('Asset or function "' . $name . '" does not exits!');
+        }
 
-    public function plainScript($key, $html, $deps = [], $attr = [])
-    {
-        $script = app()->make($this->useScript, [
-            'data' => ['html' => $html, 'deps' => $deps, 'attr' => $attr]
-        ]);
-
-        $this->scripts->put($key, $script);
-    }
-
-    public function script($key, $link, $deps = [], $attr = [])
-    {
-        $script = app()->make($this->useScript, [
-            'data' => ['link' => $link, 'deps' => $deps, 'attr' => $attr]
-        ]);
-
-        $this->scripts->put($key, $script);
-    }
-
-    public function plainStyle($key, $html, $deps = [], $attr = [])
-    {
-        $style = app()->make($this->useStyle, [
-            'data' => ['html' => $html, 'deps' => $deps, 'attr' => $attr]
-        ]);
-
-        $this->styles->put($key, $style);
-    }
-
-    public function style($key, $link, $deps = [], $attr = [])
-    {
-        $style = app()->make($this->useStyle, [
-            'data' => ['link' => $link, 'deps' => $deps, 'attr' => $attr]
-        ]);
-
-        $this->styles->put($key, $style);
-    }
-
-    public function file($path, $secure = null)
-    {
-        return $this->solveLink($path, $secure);
+        return $this->assets->get($name)->add(...$arguments);
     }
 
 }

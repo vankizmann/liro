@@ -29,9 +29,9 @@ return [
     ],
 
     'assets' => [
-        Liro\System\Cms\Asset\ScriptAsset::class,
-        Liro\System\Cms\Asset\StyleAsset::class,
-        Liro\System\Cms\Asset\RouteAsset::class
+        'script' => Liro\System\Cms\Asset\ScriptAsset::class,
+        'style' => Liro\System\Cms\Asset\StyleAsset::class,
+//        'route' => Liro\System\Cms\Asset\RouteAsset::class
     ]
 
 ];

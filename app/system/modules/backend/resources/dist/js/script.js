@@ -82760,11 +82760,7 @@ var render = function() {
                 attrs: { href: "javascript:void(0)" },
                 on: { click: _vm.resetFilter }
               },
-              [
-                _c("span", [
-                  _vm._v(_vm._s(_vm.trans("theme::form.list.reset")))
-                ])
-              ]
+              [_c("span", [_vm._v(_vm._s(_vm.trans("form.list.reset")))])]
             )
           ])
         ]
@@ -96463,7 +96459,7 @@ var Vue = new __WEBPACK_IMPORTED_MODULE_8__libs_vue__["a" /* default */]();
         var key = _key(input),
             store = _store(input);
 
-        Axios.get(_this.apis[key]).then(function (res) {
+        axios.get(_this.apis[key]).then(function (res) {
 
             if (callback) {
                 callback(res.data);
@@ -96478,7 +96474,7 @@ var Vue = new __WEBPACK_IMPORTED_MODULE_8__libs_vue__["a" /* default */]();
         var key = _key(input),
             store = _store(input);
 
-        Axios.get(_this.apis[key] + '/' + id).then(function (res) {
+        axios.get(_this.apis[key] + '/' + id).then(function (res) {
 
             if (callback) {
                 callback(res.data);
@@ -96576,7 +96572,7 @@ var Vue = new __WEBPACK_IMPORTED_MODULE_8__libs_vue__["a" /* default */]();
 /* harmony default export */ __webpack_exports__["a"] = (function () {
     var _this = this;
 
-    this.locales = window._locales || {};
+    this.locales = window._Locales || {};
 
     var pickByCount = function pickByCount(splits, count) {
 
@@ -96611,10 +96607,6 @@ var Vue = new __WEBPACK_IMPORTED_MODULE_8__libs_vue__["a" /* default */]();
 
     this.trans = function (key, values) {
 
-        if (!key.match(/^(.+?)::(.+?)$/)) {
-            key = 'theme::' + key;
-        }
-
         var message = Object(__WEBPACK_IMPORTED_MODULE_0_lodash__["get"])(_this.locales, key, key);
 
         Object(__WEBPACK_IMPORTED_MODULE_0_lodash__["each"])(values, function (value, key) {
@@ -96625,10 +96617,6 @@ var Vue = new __WEBPACK_IMPORTED_MODULE_8__libs_vue__["a" /* default */]();
     };
 
     this.choice = function (key, count, values) {
-
-        if (!key.match(/^(.+?)::(.+?)$/)) {
-            key = 'theme::' + key;
-        }
 
         var splits = Object(__WEBPACK_IMPORTED_MODULE_0_lodash__["get"])(_this.locales, key, key).split('|');
 
@@ -96807,7 +96795,7 @@ var Vue = new __WEBPACK_IMPORTED_MODULE_8__libs_vue__["a" /* default */]();
 /* harmony default export */ __webpack_exports__["a"] = (function () {
     var _this = this;
 
-    this.routes = window._routes || {};
+    this.routes = window._Routes || {};
 
     this.set = function (key, value) {
         _this.routes[key] = value;
@@ -96966,7 +96954,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             __WEBPACK_IMPORTED_MODULE_0__index__["a" /* Ajax */].index(input);
         }
 
-        return _this.bind(input.splice(1, 2), scope);
+        return _this.bind(Object(__WEBPACK_IMPORTED_MODULE_1_lodash__["isString"])(input) ? input : input.splice(1, 2), scope);
     };
 
     this.import = function (key) {

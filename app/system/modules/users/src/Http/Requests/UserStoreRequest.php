@@ -1,8 +1,10 @@
 <?php
 
-namespace Liro\Users\Requests;
+namespace Liro\Extension\Users\Http\Requests;
 
-class UserUpdateRequest extends \Liro\System\Http\FormRequest
+use Illuminate\Foundation\Http\FormRequest;
+
+class UserStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +24,10 @@ class UserUpdateRequest extends \Liro\System\Http\FormRequest
     public function rules()
     {
         return [
-            'state'             => 'required|integer',
             'name'              => 'required|min:4',
-            'email'             => "required|unique:users,email,$this->id|email",
-            'password'          => 'nullable|min:6',
+            'state'             => 'required|integer',
+            'email'             => 'required|unique:users|email',
+            'password'          => 'required|min:6',
             'password_confirm'  => 'required_with:password|min:6|same:password'
         ];
     }

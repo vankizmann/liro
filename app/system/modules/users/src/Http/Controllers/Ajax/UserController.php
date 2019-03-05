@@ -1,14 +1,18 @@
 <?php
 
-namespace Liro\Users\Controllers\Ajax;
+namespace Liro\Extension\Users\Http\Controllers\Ajax;
 
-use Illuminate\Http\Request;
-use Liro\System\Users\Models\User;
-use Liro\Users\Requests\UserStoreRequest;
-use Liro\Users\Requests\UserUpdateRequest;
+use Liro\System\Http\Controller;
+use Liro\Extension\Users\Models\User;
+use Liro\Extension\Users\Http\Requests\UserStoreRequest;
+use Liro\Extension\Users\Http\Requests\UserUpdateRequest;
 
-class UserController extends \Liro\System\Http\Controller
+class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['ajax', 'guard']);
+    }
 
     public function index(User $user)
     {

@@ -32,6 +32,8 @@ return [
     'assets' => [
         'script' => Liro\System\Cms\Asset\ScriptAsset::class,
         'style' => Liro\System\Cms\Asset\StyleAsset::class,
+        'locale' => Liro\System\Cms\Asset\LocaleAsset::class,
+        'route' => Liro\System\Cms\Asset\RouteAsset::class,
         'export' => Liro\System\Cms\Asset\ExportAsset::class
     ]
 

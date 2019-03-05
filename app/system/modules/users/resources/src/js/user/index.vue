@@ -18,7 +18,7 @@
                 <!-- Table head -->
                 <div class="table__head">
                     <div class="table__tr grid grid--row">
-                        <app-list-search class="col--right" :columns="['name', 'email']" :placeholder="trans('theme::form.search.placeholder')" />
+                        <app-list-search class="col--right" :columns="['name', 'email']" :placeholder="trans('form.search.placeholder')" />
                     </div>
                 </div>
                 <!-- Table head end -->
@@ -68,7 +68,7 @@
                 <div class="table__body" v-show="items.length === 0">
                     <div class="table__tr grid grid--row grid--middle">
                         <div class="col--1-1 text--center">
-                            {{ trans('theme::form.list.empty') }}
+                            {{ trans('form.list.empty') }}
                         </div>
                     </div>
                 </div>
@@ -102,8 +102,8 @@ window.liro.modules.export('liro-user-index', this.default = {
         return {
             ...this.liro.vue.bind('states', this),
             ...this.liro.vue.bind('roles', this),
-            users: []
-            // ...this.liro.vue.ajax('users', 'users-index', 'users', this)
+            // users: []
+            ...this.liro.vue.ajax(['users', 'users-index', 'users'], this)
         }
     }
 

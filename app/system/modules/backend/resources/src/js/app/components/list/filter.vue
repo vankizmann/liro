@@ -21,7 +21,7 @@
         <!-- Reset start -->
         <div class="uk-margin-top uk-child-width-1-1">
             <a :class="{ 'uk-button uk-button-primary uk-button-small': true, 'uk-disabled': values.length == 0 }" href="javascript:void(0)" @click="resetFilter">
-                <span>{{ trans('theme::form.list.reset') }}</span>
+                <span>{{ trans('form.list.reset') }}</span>
             </a>
         </div>
         <!-- Reset end -->

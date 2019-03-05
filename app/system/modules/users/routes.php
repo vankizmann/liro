@@ -22,6 +22,16 @@ return [
         'method' => 'resource'
     ],
 
+//    'liro-users.ajax.user.index' => [
+//        'uses' => 'Liro\Extension\Users\Http\Controllers\Ajax\UserController@index',
+//        'method' => 'get'
+//    ],
+//
+//    'liro-users.ajax.user.index' => [
+//        'uses' => 'Liro\Extension\Users\Http\Controllers\Ajax\UserController@index',
+//        'method' => 'get'
+//    ],
+
     'liro-users.admin.user.index' => [
         'uses' => 'Liro\Extension\Users\Http\Controllers\Admin\UserController@index',
         'method' => 'get'

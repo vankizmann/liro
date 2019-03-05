@@ -1,14 +1,18 @@
 <?php
 
-namespace Liro\Users\Controllers\Ajax;
+namespace Liro\Extension\Users\Http\Controllers\Ajax;
 
-use Illuminate\Http\Request;
-use Liro\System\Users\Models\Role;
-use Liro\Users\Requests\RoleStoreRequest;
-use Liro\Users\Requests\RoleUpdateRequest;
+use Liro\System\Http\Controller;
+use Liro\Extension\Users\Models\Role;
+use Liro\Extension\Users\Http\Requests\RoleStoreRequest;
+use Liro\Extension\Users\Http\Requests\RoleUpdateRequest;
 
-class RoleController extends \Liro\System\Http\Controller
+class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['ajax', 'guard']);
+    }
 
     public function index(Role $role)
     {

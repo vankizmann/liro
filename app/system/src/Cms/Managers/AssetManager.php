@@ -61,11 +61,13 @@ class AssetManager
 
     public function output($names = '*')
     {
-        $assets = $this->assets->findByKeys($names)->map(function ($asset) {
-            return $asset->render();
-        });
+        $assets = [];
 
-        return $assets->implode("\n");
+        foreach ( (array) $names as $name ) {
+            $assets[] = $this->assets->get($name)->render();
+        }
+
+        return implode("\n", $assets);
     }
 
     public function __call($name, $arguments)

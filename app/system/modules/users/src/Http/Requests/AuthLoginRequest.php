@@ -1,8 +1,10 @@
 <?php
 
-namespace Liro\Users\Requests;
+namespace Liro\Extension\Users\Http\Requests;
 
-class RoleUpdateRequest extends \Liro\System\Http\FormRequest
+use Illuminate\Foundation\Http\FormRequest;
+
+class AuthLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +24,8 @@ class RoleUpdateRequest extends \Liro\System\Http\FormRequest
     public function rules()
     {
         return [
-            'title'         => 'required|min:4',
-            'access'        => "required|unique:user_roles,access,$this->id|alpha|min:4"
+            'email'         => 'required|email',
+            'password'      => 'required'
         ];
     }
 
@@ -35,8 +37,8 @@ class RoleUpdateRequest extends \Liro\System\Http\FormRequest
     public function attributes()
     {
         return [
-            'title'         => trans('liro-users::form.role.title'),
-            'access'        => trans('liro-users::form.role.access')
+            'email'         => trans('liro-users::form.auth.email'),
+            'password'      => trans('liro-users::form.auth.password')
         ];
     }
 

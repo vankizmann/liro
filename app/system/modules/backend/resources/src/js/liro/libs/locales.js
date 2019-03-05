@@ -2,7 +2,7 @@ import { get, each, merge } from "lodash";
 
 export default function () {
 
-    this.locales = window._locales || {};
+    this.locales = window._Locales || {};
 
     let pickByCount = function (splits, count) {
 
@@ -37,10 +37,6 @@ export default function () {
 
     this.trans = (key, values) => {
 
-        if ( ! key.match(/^(.+?)::(.+?)$/) ) {
-            key = 'theme::' + key;
-        }
-
         let message = get(this.locales, key, key);
 
         each(values, (value, key) => {
@@ -51,10 +47,6 @@ export default function () {
     };
 
     this.choice = (key, count, values) => {
-
-        if ( ! key.match(/^(.+?)::(.+?)$/) ) {
-            key = 'theme::' + key;
-        }
 
         let splits = get(this.locales, key, key).split('|');
 

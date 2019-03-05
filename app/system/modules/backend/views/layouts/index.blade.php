@@ -62,7 +62,7 @@
 
         <portal to="toolbar-left" :order="100">
             <app-nav-item>
-                <h4 class="text--primary text--light">asdasd</h4>
+                <h4 class="text--primary text--light">{{ trans(app('cms')->getMenuAttr('title')) }}</h4>
             </app-nav-item>
         </portal>
 

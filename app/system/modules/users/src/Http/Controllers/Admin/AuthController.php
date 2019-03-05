@@ -14,14 +14,12 @@ class AuthController extends Controller
 
     public function login()
     {
-        auth()->attempt(['email' => 'admin@gmail.com', 'password' => 'password']);
-
         return view('liro-users::auth/login');
     }
 
     public function logout()
     {
-//        auth()->logout();
+        auth()->logout();
         return redirect()->route('liro-users.admin.auth.login');
     }
 

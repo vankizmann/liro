@@ -1,9 +1,5 @@
-@extends('theme::index')
-
-@php
-    app('assets')->script('liro-user', 'liro-users::dist/liro-user.js', ['theme-script']);
-@endphp
+@theme(null)
 
 @section('content')
-    <liro-user-edit></liro-user-edit>
+    <app-component element="liro-user-edit" />
 @endsection

@@ -1,8 +1,10 @@
 <?php
 
-namespace Liro\Users\Requests;
+namespace Liro\Extension\Users\Http\Requests;
 
-class RoleStoreRequest extends \Liro\System\Http\FormRequest
+use Illuminate\Foundation\Http\FormRequest;
+
+class RoleUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +25,7 @@ class RoleStoreRequest extends \Liro\System\Http\FormRequest
     {
         return [
             'title'         => 'required|min:4',
-            'access'        => 'required|unique:user_roles|alpha|min:4'
+            'access'        => "required|unique:user_roles,access,$this->id|alpha|min:4"
         ];
     }
 

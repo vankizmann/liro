@@ -51,7 +51,7 @@ export default function () {
             Ajax.index(input);
         }
 
-        return this.bind(input.splice(1, 2), scope);
+        return this.bind(isString(input) ? input : input.splice(1, 2), scope);
     };
 
     this.import = (key) => {

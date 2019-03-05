@@ -1,18 +1,15 @@
 <?php
 
-namespace Liro\Users\Controllers\Admin;
+namespace Liro\Extension\Users\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Liro\System\Users\Models\Role;
-use Liro\Users\Requests\RoleStoreRequest;
-use Liro\Users\Requests\RoleUpdateRequest;
+use Liro\Extension\Users\Models\Role;
 
 class RoleController extends \Liro\System\Http\Controller
 {
 
     public function __construct()
     {
-        app('assets')->init('liro-users');
+        $this->middleware(['web', 'guard']);
     }
 
     public function index(Role $role)

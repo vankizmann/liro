@@ -118,7 +118,7 @@ return [
         'titles'            => ['Liste 1', 'Liste 2'],
         'filterPlaceholder' => 'Einträge filtern',
         'noCheckedFormat'   => ':total Einträge',
-        'hasCheckedFormat'  => ':checked/:total] ausgewählt',
+        'hasCheckedFormat'  => '[:checked/:total] ausgewählt',
     ],
 
 ];

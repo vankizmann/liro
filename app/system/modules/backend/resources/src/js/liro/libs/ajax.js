@@ -25,7 +25,7 @@ export default function () {
 
         let key = _key(input), store = _store(input);
 
-        Axios.get(this.apis[key]).then((res) => {
+        axios.get(this.apis[key]).then((res) => {
 
             if ( callback ) {
                 callback(res.data);
@@ -39,7 +39,7 @@ export default function () {
 
         let key = _key(input), store = _store(input);
 
-        Axios.get(this.apis[key] + '/' + id).then((res) => {
+        axios.get(this.apis[key] + '/' + id).then((res) => {
 
             if ( callback ) {
                 callback(res.data);

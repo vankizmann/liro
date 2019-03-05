@@ -2,7 +2,7 @@ import { each, flatMap } from "lodash";
 
 export default function () {
 
-    this.routes = window._routes || {};
+    this.routes = window._Routes || {};
 
     this.set = (key, value) => {
         this.routes[key] = value;

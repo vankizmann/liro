@@ -38,7 +38,10 @@ class LanguageServiceProvider extends ServiceProvider
         /* @var \Illuminate\Support\Collection $locales */
         $locales = Language::enabled()->pluck('locale');
 
-        preg_match('/(?<=,)[a-z]+(?=;)/', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $accepted);
+        // Get http language
+        $http = @$_SERVER['HTTP_ACCEPT_LANGUAGE'] ?: '';
+
+        preg_match('/(?<=,)[a-z]+(?=;)/', $http, $accepted);
 
         if ( $locale = $locales->intersect($accepted)->first() ) {
             $this->app->setLocale($locale);

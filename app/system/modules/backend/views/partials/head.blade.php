@@ -23,11 +23,12 @@
 
 <meta name="theme-color" content="#4590f6">
 
-<title>Test</title>
+<title>{{ trans(app('cms')->getMenuAttr('title', 'Undefined')) . ' | ' . config('app.name') }} </title>
 
 @php
     asset()->style('theme-style', 'liro-backend::dist/css/style.css');
-    asset()->script('theme-script', 'liro-backend::dist/js/script.js');
+    echo asset()->output(['style']);
 
-    echo asset()->output('*');
+    asset()->script('theme-script', 'liro-backend::dist/js/script.js');
+    echo asset()->output(['route', 'locale', 'export', 'script']);
 @endphp

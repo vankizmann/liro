@@ -1,39 +1,36 @@
 <?php
 
-namespace Liro\Users\Controllers\Http\Ajax;
+namespace Liro\Extension\Users\Http\Controllers\Ajax;
 
+use Liro\System\Http\Controller;
 use Liro\System\Exceptions\Exception;
-use Liro\Users\Requests\AuthSubmitRequest;
+use Liro\Extension\Users\Http\Requests\AuthLoginRequest;
 
-class AuthController extends \Liro\System\Http\Controller
+class AuthController extends Controller
 {
 
-    public function login(AuthSubmitRequest $request)
+    public function __construct()
     {
-        $menu_type = app()->getMenuType();
+        $this->middleware(['ajax']);
+    }
 
-        if ( $menu_type == null ) {
-            throw new Exception('liro-users::message.auth.menu', 500);
-        }
+    public function login(AuthLoginRequest $request)
+    {
+        $route = app('cms')->getDomainAttr('route');
 
-        if ( ! app('users')->loginUser() ) {
+        $credentials = [
+            'email' => $request->input('email', ''),
+            'password' => $request->input('password', '')
+        ];
+
+        $remember = $request->input('remember', false);
+
+        if ( ! auth()->attempt($credentials, $remember) ) {
             throw new Exception('liro-users::message.auth.credentials', 400);
         }
 
-        //        $user = User::withoutDepthGuard()->where('email', 'admin@gmail.com')->first();
-        //        auth()->login($user);
-
         return response()->json([
-            'redirect' => url($menu_type->default->route_prefix)
-        ], 200);
-    }
-
-    public function token()
-    {
-        session()->regenerateToken();
-
-        return response()->json([
-            'token' => csrf_token()
+            'redirect' => url($route ? $route : '/')
         ], 200);
     }
 

@@ -3,7 +3,7 @@
 return [
 
     'scripts' => [
-        'liro-users::src/js/liro-auth.js'
+        'liro-users::dist/js/index.js'
     ],
 
     'styles' => [
@@ -11,7 +11,8 @@ return [
     ],
 
     'modules' => [
-        'liro-auth-login'
+        'liro-auth-login',
+        'liro-user-index'
     ]
 
 ];

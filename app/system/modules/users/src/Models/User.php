@@ -3,12 +3,11 @@
 namespace Liro\Extension\Users\Models;
 
 use Illuminate\Foundation\Auth\User as Model;
-use Liro\Extension\Users\Database\Traits\ActionGuardTrait;
 use Liro\System\Database\Traits\CastableTrait;
 
 class User extends Model
 {
-    use CastableTrait, ActionGuardTrait;
+    use CastableTrait;
 
     protected $table = 'users';
 

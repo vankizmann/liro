@@ -16,14 +16,24 @@ class ExportAsset implements AssetInterface
 
     public function add($name, $options)
     {
-        $this->exports->put($name, [
-//            'path' => $path, 'deps' => $deps, 'attrs' => $attrs
-        ]);
+        $options = array_merge([
+            'scripts' => [], 'styles' => [], 'modules' => []
+        ], $options);
+
+        $options['scripts'] = array_map(function ($script) {
+            return app('cms.assets')->file($script);
+        },  $options['scripts']);
+
+        $options['styles'] = array_map(function ($style) {
+            return app('cms.assets')->file($style);
+        },  $options['styles']);
+
+        $this->exports->put($name, $options);
     }
 
     public function render()
     {
-        return '<script>window._Routes = ' . $this->exports->toJson() . ';</script>';
+        return '<script>window._Imports = ' . $this->exports->toJson() . ';</script>';
     }
 
 }

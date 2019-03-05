@@ -3,10 +3,12 @@ import { Events, Queue, Assets } from "../index";
 
 export default function () {
 
-    this.modules = {}, this.pending = [], this.loaded = [], this.exports = {};
+    this.imports = window._Imports || {};
+
+    this.pending = [], this.loaded = [], this.exports = {};
 
     this.bind = (key, config) => {
-        this.modules[key] = config;
+        this.imports[key] = config;
         return this;
     };
 
@@ -20,13 +22,13 @@ export default function () {
             return callback();
         }
 
-        if ( this.modules[key] === undefined ) {
+        if ( this.imports[key] === undefined ) {
             return console.error('Module "' + key + '" config not found');
         }
 
         let config = assign({
             scripts: [], styles: [], modules: []
-        }, this.modules[key]);
+        }, this.imports[key]);
 
         let queue = new Queue(), assets = new Assets();
 
@@ -73,7 +75,7 @@ export default function () {
 
     this.import = (key, callback) => {
 
-        let index = findKey(this.modules, (el) => {
+        let index = findKey(this.imports, (el) => {
             return el.modules.indexOf(key) != -1;
         });
 

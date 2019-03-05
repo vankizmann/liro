@@ -27,10 +27,7 @@
 
 @php
     asset()->style('theme-style', 'liro-backend::dist/css/style.css');
-    echo asset()->output('style');
-@endphp
-
-@php
     asset()->script('theme-script', 'liro-backend::dist/js/script.js');
-    echo asset()->output('script');
+
+    echo asset()->output('*');
 @endphp

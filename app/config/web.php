@@ -26,12 +26,13 @@ return [
         Liro\System\Cms\Module\Loaders\AssetLoader::class,
         Liro\System\Cms\Module\Loaders\EventLoader::class,
         Liro\System\Cms\Module\Loaders\MiddlewareLoader::class,
+        Liro\System\Cms\Module\Loaders\ExportLoader::class,
     ],
 
     'assets' => [
         'script' => Liro\System\Cms\Asset\ScriptAsset::class,
         'style' => Liro\System\Cms\Asset\StyleAsset::class,
-//        'route' => Liro\System\Cms\Asset\RouteAsset::class
+        'export' => Liro\System\Cms\Asset\ExportAsset::class
     ]
 
 ];

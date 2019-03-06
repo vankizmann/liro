@@ -24,7 +24,7 @@ export default {
     watch: {
 
         model: function () {
-            this.list.setInitial(this.value);
+            this.library.setInitial(this.model);
         }
 
     },
@@ -50,10 +50,6 @@ export default {
         };
     }
 
-}
-
-if (window.Liro) {
-    Liro.vue.component('app-list', this.default);
 }
 
 </script>

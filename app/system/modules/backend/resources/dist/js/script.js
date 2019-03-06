@@ -3279,7 +3279,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
 
         model: function model() {
-            this.list.setInitial(this.value);
+            this.library.setInitial(this.model);
         }
 
     },
@@ -3308,10 +3308,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 });
 
-if (window.Liro) {
-    Liro.vue.component('app-list', this.default);
-}
-
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}],\"transform-class-properties\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/js/app/components/list/filter.vue":
@@ -3319,12 +3315,6 @@ if (window.Liro) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -82699,71 +82689,61 @@ var render = function() {
     { staticClass: "app-list-filter" },
     [
       _c(
-        "el-checkbox-group",
-        {
-          model: {
-            value: _vm.values,
-            callback: function($$v) {
-              _vm.values = $$v
+        "el-popover",
+        { attrs: { width: "200", trigger: "hover" } },
+        [
+          _c(
+            "a",
+            {
+              class: { "filter__title--active": _vm.values.length != 0 },
+              attrs: { slot: "reference", href: "javascript:void(0)" },
+              slot: "reference"
             },
-            expression: "values"
-          }
-        },
-        [
-          _vm._l(_vm.filters, function(filter, index) {
-            return [
-              _c("el-checkbox", {
-                key: index,
-                attrs: {
-                  value: filter[_vm.filtersValue],
-                  label: filter[_vm.filtersLabel]
-                }
-              })
+            [
+              _c("i", { staticClass: "el-icon-arrow-down" }),
+              _vm._v(" "),
+              _vm.$slots.default ? _c("span", [_vm._t("default")], 2) : _vm._e()
             ]
-          })
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          class: {
-            "uk-text-nowrap": true,
-            "uk-active": _vm.values.length != 0
-          },
-          attrs: { href: "javascript:void(0)" }
-        },
-        [
-          _c("i", { attrs: { "uk-icon": "check-square" } }),
+          ),
           _vm._v(" "),
-          _vm.$slots.default ? _c("span", [_vm._t("default")], 2) : _vm._e()
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          ref: "dropdown",
-          staticClass: "uk-text-left",
-          attrs: { "uk-dropdown": "mode: click; pos: bottom-justify;" }
-        },
-        [
-          _c("div", { staticClass: "uk-margin-top uk-child-width-1-1" }, [
-            _c(
-              "a",
-              {
-                class: {
-                  "uk-button uk-button-primary uk-button-small": true,
-                  "uk-disabled": _vm.values.length == 0
+          _c(
+            "el-checkbox-group",
+            {
+              model: {
+                value: _vm.values,
+                callback: function($$v) {
+                  _vm.values = $$v
                 },
-                attrs: { href: "javascript:void(0)" },
-                on: { click: _vm.resetFilter }
-              },
-              [_c("span", [_vm._v(_vm._s(_vm.trans("form.list.reset")))])]
-            )
-          ])
-        ]
+                expression: "values"
+              }
+            },
+            [
+              _vm._l(_vm.filters, function(filter, index) {
+                return [
+                  _c("el-checkbox", {
+                    key: index,
+                    attrs: {
+                      value: filter[_vm.filtersValue],
+                      label: filter[_vm.filtersLabel]
+                    }
+                  })
+                ]
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              class: { "filter__reset-disabled": _vm.values.length == 0 },
+              attrs: { href: "javascript:void(0)" },
+              on: { click: _vm.resetFilter }
+            },
+            [_c("span", [_vm._v(_vm._s(_vm.trans("form.list.reset")))])]
+          )
+        ],
+        1
       )
     ],
     1

@@ -44,7 +44,8 @@ return [
 
     'liro-users.admin.user.edit' => [
         'uses' => 'Liro\Extension\Users\Http\Controllers\Admin\UserController@edit',
-        'method' => 'get'
+        'method' => 'get',
+        'route' => 'liro-users/admin/user/edit/{user}'
     ],
 
     'liro-users.ajax.role' => [

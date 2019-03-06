@@ -2,32 +2,26 @@
 
 <div class="app-list-filter">
 
-    <el-checkbox-group v-model="values">
-        <template v-for="(filter, index) in filters">
-            <el-checkbox :key="index" :value="filter[filtersValue]" :label="filter[filtersLabel]"></el-checkbox>
-        </template>
-    </el-checkbox-group>
+    <el-popover width="200" trigger="hover">
 
-    <!-- Label start -->
-    <a href="javascript:void(0)" :class="{ 'uk-text-nowrap': true, 'uk-active': values.length != 0 }">
-        <i uk-icon="check-square"></i> <span v-if="$slots.default"><slot></slot></span>
-    </a>
-    <!-- Label end -->
+        <!-- Label start -->
+        <a slot="reference" href="javascript:void(0)" :class="{ 'filter__title--active': values.length != 0 }">
+            <i class="el-icon-arrow-down"></i> <span v-if="$slots.default"><slot></slot></span>
+        </a>
+        <!-- Label end -->
 
+        <el-checkbox-group v-model="values">
+            <template v-for="(filter, index) in filters">
+                <el-checkbox :key="index" :value="filter[filtersValue]" :label="filter[filtersLabel]"></el-checkbox>
+            </template>
+        </el-checkbox-group>
 
+        <a :class="{ 'filter__reset-disabled': values.length == 0 }" href="javascript:void(0)" @click="resetFilter">
+            <span>{{ trans('form.list.reset') }}</span>
+        </a>
 
-    <div ref="dropdown" class="uk-text-left" uk-dropdown="mode: click; pos: bottom-justify;">
+    </el-popover>
 
-        <!-- Reset start -->
-        <div class="uk-margin-top uk-child-width-1-1">
-            <a :class="{ 'uk-button uk-button-primary uk-button-small': true, 'uk-disabled': values.length == 0 }" href="javascript:void(0)" @click="resetFilter">
-                <span>{{ trans('form.list.reset') }}</span>
-            </a>
-        </div>
-        <!-- Reset end -->
-
-    </div>
-    
 </div>
 
 </template>

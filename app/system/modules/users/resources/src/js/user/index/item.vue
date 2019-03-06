@@ -1,76 +1,47 @@
 <template>
 
-<div class="th-table-tr uk-flex uk-flex-middle">
-    <div class="th-table-td-xs">
-        <app-list-select :value="value.id"></app-list-select>
+    <div class="th-table-tr uk-flex uk-flex-middle">
+        <div class="th-table-td-xs">
+
+        </div>
+        <div class="uk-width-1-3">
+            <a :href="routes.get('liro-users.admin.user.edit', { user: value.id })">
+                {{ value.name }}
+            </a>
+        </div>
+        <div class="uk-width-1-3">
+            <span>
+                {{ value.email }}
+            </span>
+        </div>
+        <div class="uk-width-1-3">
+
+        </div>
+        <div class="th-table-td-m uk-text-center">
+
+        </div>
+        <div class="th-table-td-m uk-text-center">
+            <span>
+                {{ value.id }}
+            </span>
+        </div>
     </div>
-    <div class="uk-width-1-3">
-        <a :href="route('liro-users.admin.user.edit', { user: value.id })">
-            {{ value.name }}
-        </a>
-    </div>
-    <div class="uk-width-1-3">
-        <span>
-            {{ value.email }}
-        </span>
-    </div>
-    <div class="uk-width-1-3">
-        <span class="uk-label uk-label-primary uk-margin-small-right" v-for="(role, index) in Liro.helpers.map(value.role_ids, 'id', $root.roles)" :key="index">
-            {{ role.title }}
-        </span>
-    </div>
-    <div class="th-table-td-m uk-text-center">
-        <app-list-switch class="is-state" :active="value.state" @click="updateUser"></app-list-switch>
-    </div>
-    <div class="th-table-td-m uk-text-center">
-        <span>
-            {{ value.id }}
-        </span>
-    </div>
-</div>
 
 </template>
 <script>
 
-export default {
+    export default {
 
-    props: {
+        props: {
 
-        value: {
-            required: true,
-            type: Object
-        }
+            value: {
+                required: true,
+                type: Object
+            }
 
-    },
-
-    methods: {
-
-        updateUser: function () {
-
-            var url = Liro.routes.get('liro-users.ajax.user.update', {
-                user: this.value.id
-            });
-
-            var user = _.merge(this.value, {
-                state: this.value.state ? 0 : 1
-            });
-
-            Axios.put(url, user).then(this.updateUserResponse);
-        },
-
-        updateUserResponse: function (res) {
-            var message = Liro.messages.get('liro-users::message.user.saved');
-            UIkit.notification(message, 'success');
         }
 
     }
-
-}
-
-if (window.Liro) {
-    Liro.vue.component('liro-user-index-item', this.default);
-}
-
 
 </script>
 

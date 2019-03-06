@@ -60,33 +60,11 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(1);
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auth_login__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auth_login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__auth_login__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_index__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__user_index__);
-
-
-
-window.liro.ajax.set('users', window.liro.routes.get('liro-users.ajax.user.index'));
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -195,11 +173,33 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(2);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auth_login__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auth_login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__auth_login__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_index__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__user_index__);
+
+
+
+window.liro.ajax.set('users', window.liro.routes.get('liro-users.ajax.user.index'));
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(4)
 /* template */
@@ -494,7 +494,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(7)
 /* template */
@@ -657,7 +657,7 @@ window.liro.modules.export('liro-user-index', this.default = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(9)
 /* template */
@@ -735,8 +735,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -748,35 +746,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: Object
         }
 
-    },
-
-    methods: {
-
-        updateUser: function updateUser() {
-
-            var url = Liro.routes.get('liro-users.ajax.user.update', {
-                user: this.value.id
-            });
-
-            var user = _.merge(this.value, {
-                state: this.value.state ? 0 : 1
-            });
-
-            Axios.put(url, user).then(this.updateUserResponse);
-        },
-
-        updateUserResponse: function updateUserResponse(res) {
-            var message = Liro.messages.get('liro-users::message.user.saved');
-            UIkit.notification(message, 'success');
-        }
-
     }
 
 });
-
-if (window.Liro) {
-    Liro.vue.component('liro-user-index-item', this.default);
-}
 
 /***/ }),
 /* 10 */
@@ -787,19 +759,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "th-table-tr uk-flex uk-flex-middle" }, [
-    _c(
-      "div",
-      { staticClass: "th-table-td-xs" },
-      [_c("app-list-select", { attrs: { value: _vm.value.id } })],
-      1
-    ),
+    _c("div", { staticClass: "th-table-td-xs" }),
     _vm._v(" "),
     _c("div", { staticClass: "uk-width-1-3" }, [
       _c(
         "a",
         {
           attrs: {
-            href: _vm.route("liro-users.admin.user.edit", {
+            href: _vm.routes.get("liro-users.admin.user.edit", {
               user: _vm.value.id
             })
           }
@@ -814,37 +781,9 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "uk-width-1-3" },
-      _vm._l(
-        _vm.Liro.helpers.map(_vm.value.role_ids, "id", _vm.$root.roles),
-        function(role, index) {
-          return _c(
-            "span",
-            {
-              key: index,
-              staticClass: "uk-label uk-label-primary uk-margin-small-right"
-            },
-            [_vm._v("\n            " + _vm._s(role.title) + "\n        ")]
-          )
-        }
-      ),
-      0
-    ),
+    _c("div", { staticClass: "uk-width-1-3" }),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "th-table-td-m uk-text-center" },
-      [
-        _c("app-list-switch", {
-          staticClass: "is-state",
-          attrs: { active: _vm.value.state },
-          on: { click: _vm.updateUser }
-        })
-      ],
-      1
-    ),
+    _c("div", { staticClass: "th-table-td-m uk-text-center" }),
     _vm._v(" "),
     _c("div", { staticClass: "th-table-td-m uk-text-center" }, [
       _c("span", [

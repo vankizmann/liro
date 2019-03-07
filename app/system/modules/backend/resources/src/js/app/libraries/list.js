@@ -131,7 +131,7 @@ class List {
 
     getPaginateData () {
         return this.config.paginate || this.getSessionData(this.config, {
-            'paginate.page': 1, 'paginate.limit': 25, 'paginate.pages': 1
+            'paginate.page': 1, 'paginate.limit': 25, 'paginate.pages': 1, 'paginate.count': 0
         });
     }
 
@@ -220,7 +220,8 @@ class List {
         var config = this.config.paginate;
 
         this.setSessionData(this.config, {
-            'paginate.pages': Math.ceil(items.length / config.limit) || 1
+            'paginate.pages': Math.ceil(items.length / config.limit) || 1,
+            'paginate.count': items.length
         });
 
         return _.slice(items, (config.page - 1) * config.limit, config.page * config.limit);

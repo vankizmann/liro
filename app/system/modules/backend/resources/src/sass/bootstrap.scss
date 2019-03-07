@@ -1,15 +1,48 @@
-$--font-path: '../fonts/element-ui';
-
-$--color-default: #444;
+/* Color
+-------------------------- */
+$--color-primary: #4b84fa;
 $--color-white: #ffffff;
 $--color-black: #13141d;
-$--color-primary: #4b84fa;
+
+$--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default;
+$--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default;
+$--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default;
+$--color-primary-light-4: mix($--color-white, $--color-primary, 40%) !default;
+$--color-primary-light-5: mix($--color-white, $--color-primary, 50%) !default;
+$--color-primary-light-6: mix($--color-white, $--color-primary, 60%) !default;
+$--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default;
+$--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default;
+$--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default;
+
 $--color-success: #20ca80;
 $--color-warning: #ff9453;
 $--color-danger: #fb4e52;
-$--color-info: #4bbafa;
+$--color-info: #909399;
 $--color-muted: #5e6d82;
 
+$--color-success-light: mix($--color-white, $--color-success, 80%) !default;
+$--color-warning-light: mix($--color-white, $--color-warning, 80%) !default;
+$--color-danger-light: mix($--color-white, $--color-danger, 80%) !default;
+$--color-info-light: mix($--color-white, $--color-info, 80%) !default;
+
+$--color-success-lighter: mix($--color-white, $--color-success, 90%) !default;
+$--color-warning-lighter: mix($--color-white, $--color-warning, 90%) !default;
+$--color-danger-lighter: mix($--color-white, $--color-danger, 90%) !default;
+$--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
+
+$--color-text-primary: #303133 !default;
+$--color-text-regular: #606266 !default;
+$--color-text-secondary: #909399 !default;
+$--color-text-placeholder: #C0C4CC !default;
+
+$--border-color-base: #DCDFE6 !default;
+$--border-color-light: #E4E7ED !default;
+$--border-color-lighter: #EBEEF5 !default;
+$--border-color-extra-light: #F2F6FC !default;
+
+$--background-color-base: #f5f7fa !default;
+
+$--font-path: '../fonts/element-ui';
 $--font-weight-primary: 400;
 
 $--border-radius-base: 2px;
@@ -18,6 +51,9 @@ $--border-radius-small: 1px;
 $--box-shadow-base: 0 1px 3px rgba($--color-black, 0.050);
 $--box-shadow-dark: 0 1px 5px rgba($--color-black, 0.100);
 $--box-shadow-light: 0 1px 3px rgba($--color-black, 0.025);
+
+
+$--input-height: 36px;
 
 $--button-padding-vertical: 10px;
 $--button-padding-horizontal: 16px;
@@ -96,6 +132,6 @@ h6 {
 }
 
 p {
-    color: $--color-default;
+    color: $--color-text-regular;
     font-size: 1.0rem;
 }

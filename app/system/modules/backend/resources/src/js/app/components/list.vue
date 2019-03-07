@@ -43,6 +43,7 @@ export default {
 
         var library = new List(this.model, this.database, (library) => {
             this.items = library.items;
+            this.$forceUpdate();
         });
 
         return {

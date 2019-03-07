@@ -112,7 +112,7 @@ class RouteManager
         $options = $this->getFlatRoutes()->get($menu->module);
 
         if ( $options === null ) {
-            return;
+            return $this;
         }
 
         // Get all locales from app
@@ -143,7 +143,7 @@ class RouteManager
 
         }
 
-        return;
+        return $this;
     }
 
 

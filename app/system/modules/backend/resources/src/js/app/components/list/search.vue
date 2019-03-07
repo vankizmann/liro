@@ -2,8 +2,13 @@
 
 <div class="app-list__search">
     <!-- Input start -->
-    <div class="uk-inline uk-width-medium">
-        <el-input v-model="query" @change="setQuery(query)" :placeholder="placeholder"></el-input>
+    <div class="grid grid--row grid--middle grid--10">
+        <div class="col--flex-auto">
+            <el-input v-model="query" @change="setQuery(query)" :placeholder="placeholder"></el-input>
+        </div>
+        <div class="col--flex-none">
+            <el-button type="primary" @click="setQuery(query)">{{ trans('form.search.label') }}</el-button>
+        </div>
     </div>
     <!-- Input end -->
 </div>

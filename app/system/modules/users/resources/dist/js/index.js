@@ -189,6 +189,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auth_login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__auth_login__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_index__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__user_index__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_edit__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_edit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__user_edit__);
+
 
 
 
@@ -638,6 +641,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -649,7 +661,7 @@ window.liro.modules.export('liro-user-index', this.default = {
     },
 
     data: function data() {
-        return _extends({}, this.liro.vue.bind('states', this), this.liro.vue.ajax(['roles', 'roles-index', 'roles'], this), this.liro.vue.ajax(['users', 'users-index', 'users'], this));
+        return _extends({}, this.liro.vue.bind('states', this), this.liro.vue.bind(['user-index', 'users'], this), this.liro.vue.bind(['role-index', 'roles'], this));
     }
 
 });
@@ -760,10 +772,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "grid grid--row grid--middle" }, [
-    _c("div", { staticClass: "th-table-td-xs" }),
+  return _c("div", { staticClass: "table__tr grid grid--row grid--middle" }, [
+    _c(
+      "div",
+      { staticClass: "table__td table__td--xs" },
+      [_c("app-list-select", { attrs: { value: _vm.value.id } })],
+      1
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "col--1-3" }, [
+    _c("div", { staticClass: "table__td col--1-3" }, [
       _c(
         "a",
         {
@@ -777,17 +794,19 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col--1-3" }, [
+    _c("div", { staticClass: "table__td col--1-3" }, [
       _c("span", [
         _vm._v("\n            " + _vm._s(_vm.value.email) + "\n        ")
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col--1-3" }),
+    _c("div", { staticClass: "table__td col--1-3" }),
     _vm._v(" "),
-    _c("div", { staticClass: "th-table-td-m uk-text-center" }),
+    _c("div", { staticClass: "table__td table__td--md text--center" }, [
+      _vm._v("\n        " + _vm._s(_vm.value.state) + "\n    ")
+    ]),
     _vm._v(" "),
-    _c("div", { staticClass: "th-table-td-m uk-text-center" }, [
+    _c("div", { staticClass: "table__td table__td--md text--center" }, [
       _c("span", [
         _vm._v("\n            " + _vm._s(_vm.value.id) + "\n        ")
       ])
@@ -857,20 +876,44 @@ var render = function() {
               _c("div", { staticClass: "th-form is-reset" }, [
                 _c("div", { staticClass: "table" }, [
                   _c("div", { staticClass: "table__head" }, [
-                    _c(
-                      "div",
-                      { staticClass: "table__tr grid grid--row" },
-                      [
-                        _c("app-list-search", {
-                          staticClass: "col--right",
-                          attrs: {
-                            columns: ["name", "email"],
-                            placeholder: _vm.trans("form.search.placeholder")
-                          }
-                        })
-                      ],
-                      1
-                    )
+                    _c("div", { staticClass: "table__tr grid grid--row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "table__td table__td--xl col--left" },
+                        [
+                          _c("app-list-search", {
+                            attrs: {
+                              columns: ["name", "email"],
+                              placeholder: _vm.trans("form.search.placeholder")
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "table__td col--right" }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: _vm.routes.get(
+                                "liro-users.admin.user.create"
+                              )
+                            }
+                          },
+                          [
+                            _c("el-button", { attrs: { type: "success" } }, [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.trans("liro-users::admin.user.create")
+                                )
+                              )
+                            ])
+                          ],
+                          1
+                        )
+                      ])
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "table__filter" }, [
@@ -878,11 +921,16 @@ var render = function() {
                       "div",
                       { staticClass: "table__tr grid grid--row grid--middle" },
                       [
-                        _c("div", { staticClass: "table__td table__td--xs" }),
+                        _c(
+                          "div",
+                          { staticClass: "table__td table__td--xs" },
+                          [_c("app-list-select-all")],
+                          1
+                        ),
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "col--1-3" },
+                          { staticClass: "table__td col--1-3" },
                           [
                             _c("app-list-sort", { attrs: { column: "name" } }, [
                               _vm._v(
@@ -899,7 +947,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "col--1-3" },
+                          { staticClass: "table__td col--1-3" },
                           [
                             _c(
                               "app-list-sort",
@@ -920,7 +968,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "col--1-3" },
+                          { staticClass: "table__td col--1-3" },
                           [
                             _c(
                               "app-list-filter",
@@ -948,7 +996,9 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "table__td--m text--center" },
+                          {
+                            staticClass: "table__td table__td--md text--center"
+                          },
                           [
                             _c(
                               "app-list-filter",
@@ -971,7 +1021,9 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "table__td--m text--center" },
+                          {
+                            staticClass: "table__td table__td--md text--center"
+                          },
                           [
                             _c("app-list-sort", { attrs: { column: "id" } }, [
                               _vm._v(
@@ -1031,13 +1083,20 @@ var render = function() {
                           staticClass: "table__tr grid grid--row grid--middle"
                         },
                         [
-                          _c("div", { staticClass: "col--1-1 text--center" }, [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(_vm.trans("form.list.empty")) +
-                                "\n                        "
-                            )
-                          ])
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "table__td col--1-1 text--center text--muted"
+                            },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.trans("form.list.empty")) +
+                                  "\n                        "
+                              )
+                            ]
+                          )
                         ]
                       )
                     ]
@@ -1047,8 +1106,14 @@ var render = function() {
                     _c(
                       "div",
                       { staticClass: "table__tr grid grid--row grid--middle" },
-                      [_c("app-list-pagination")],
-                      1
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "table__td col--1-1" },
+                          [_c("app-list-pagination")],
+                          1
+                        )
+                      ]
                     )
                   ])
                 ])
@@ -1075,6 +1140,231 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-e61dcfbe", module.exports)
+  }
+}
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(13)
+/* template */
+var __vue_template__ = __webpack_require__(14)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/js/user/edit.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2cb1f9ea", Component.options)
+  } else {
+    hotAPI.reload("data-v-2cb1f9ea", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+window.liro.modules.export('liro-user-edit', this.default = {
+
+    data: function data() {
+        return _extends({}, this.liro.vue.bind('states', this), this.liro.vue.bind(['user-edit', 'user'], this), this.liro.vue.bind(['role-index', 'roles'], this));
+    },
+
+    methods: {
+
+        updateUser: function updateUser() {
+
+            var url = Liro.routes.get('liro-users.ajax.user.update', {
+                user: this.user.id
+            });
+
+            this.http.put(url, this.user).then(this.updateUserResponse);
+        },
+
+        updateUserResponse: function updateUserResponse(res) {
+            var message = Liro.messages.get('liro-users::message.user.saved');
+        }
+
+    }
+
+});
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "liro-user-edit" },
+    [
+      _c(
+        "el-form",
+        { attrs: { model: _vm.user } },
+        [
+          _c(
+            "el-form-item",
+            { attrs: { label: _vm.trans("liro-users::form.user.name") } },
+            [
+              _c(
+                "el-radio-group",
+                {
+                  model: {
+                    value: _vm.user.state,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "state", $$v)
+                    },
+                    expression: "user.state"
+                  }
+                },
+                [
+                  _c("el-radio", { attrs: { label: 3 } }, [_vm._v("Option A")]),
+                  _vm._v(" "),
+                  _c("el-radio", { attrs: { label: 6 } }, [_vm._v("Option B")]),
+                  _vm._v(" "),
+                  _c("el-radio", { attrs: { label: 9 } }, [_vm._v("Option C")])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: _vm.trans("liro-users::form.user.name") } },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.user.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.user, "name", $$v)
+                  },
+                  expression: "user.name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            { attrs: { label: _vm.trans("liro-users::form.user.password") } },
+            [
+              _c("el-input", {
+                attrs: { type: "password" },
+                model: {
+                  value: _vm.user.password,
+                  callback: function($$v) {
+                    _vm.$set(_vm.user, "password", $$v)
+                  },
+                  expression: "user.password"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            {
+              attrs: {
+                label: _vm.trans("liro-users::form.user.password_confirm")
+              }
+            },
+            [
+              _c("el-input", {
+                attrs: { type: "password" },
+                model: {
+                  value: _vm.user.password_confirm,
+                  callback: function($$v) {
+                    _vm.$set(_vm.user, "password_confirm", $$v)
+                  },
+                  expression: "user.password_confirm"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2cb1f9ea", module.exports)
   }
 }
 

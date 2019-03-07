@@ -36,6 +36,12 @@ Vue.component('app-list-sort', ListSort);
 import ListFilter from './components/list/filter';
 Vue.component('app-list-filter', ListFilter);
 
+import ListSelect from './components/list/select';
+Vue.component('app-list-select', ListSelect);
+
+import ListSelectAll from './components/list/select-all';
+Vue.component('app-list-select-all', ListSelectAll);
+
 import ListPagination from './components/list/pagination';
 Vue.component('app-list-pagination', ListPagination);
 

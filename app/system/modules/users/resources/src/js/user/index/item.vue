@@ -1,26 +1,26 @@
 <template>
 
-    <div class="grid grid--row grid--middle">
-        <div class="th-table-td-xs">
-
+    <div class="table__tr grid grid--row grid--middle">
+        <div class="table__td table__td--xs">
+            <app-list-select :value="value.id" />
         </div>
-        <div class="col--1-3">
+        <div class="table__td col--1-3">
             <a :href="routes.get('liro-users.admin.user.edit', { user: value.id })">
                 {{ value.name }}
             </a>
         </div>
-        <div class="col--1-3">
+        <div class="table__td col--1-3">
             <span>
                 {{ value.email }}
             </span>
         </div>
-        <div class="col--1-3">
+        <div class="table__td col--1-3">
 
         </div>
-        <div class="th-table-td-m uk-text-center">
-
+        <div class="table__td table__td--md text--center">
+            {{ value.state }}
         </div>
-        <div class="th-table-td-m uk-text-center">
+        <div class="table__td table__td--md text--center">
             <span>
                 {{ value.id }}
             </span>

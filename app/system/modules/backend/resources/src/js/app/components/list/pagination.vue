@@ -1,44 +1,17 @@
 <template>
 
-<div class="app-list-pagination uk-width-1-1 uk-flex uk-flex-middle">
+<div class="app-list-pagination">
 
-    <!-- Limit start -->
-    <div class="app-list-pagination-limit uk-margin-auto-right">
-
-        <!-- Select start -->
-        <select class="uk-select uk-form-small" v-model="limit" @change="paginate(null, limit)">
-            <option v-for="(option, index) in options" :key="index" :value="option">{{ option }}</option>
-        </select>
-        <!-- Select end -->
-
+    <div class="grid grid--row">
+        <div class="col--flex-0 col--left">
+            <el-select size="small" v-model="limit" @change="changeLimit(limit)" style="width: 75px;">
+                <el-option v-for="(option, index) in options" :key="index" :value="option">{{ option }}</el-option>
+            </el-select>
+        </div>
+        <div class="col--flex-0 col--right">
+            <el-pagination @current-change="changePage" :current-page="config.page" :page-size.sync="limit" layout="prev, pager, next" :total="config.count" :background="true" />
+        </div>
     </div>
-    <!-- Limit end -->
-
-    <!-- Pages start -->
-    <div class="app-list-pagination-pages uk-margin-auto-left">
-        <ul class="uk-pagination uk-flex-middle uk-margin-remove-bottom">
-
-            <!-- Prev start -->
-            <li :class="{ 'uk-disabled': config.page == 1 }">
-                <a href="#" @click.prevent="paginate(config.page - 1)"><i class="uk-icon-small" uk-icon="chevron-left"></i></a>
-            </li>
-            <!-- Prev end -->
-
-            <!-- Pages start -->
-            <!--<li v-for="page in Liro.helpers.range(config.pages, 1)" :key="page" :class="{ 'uk-active': page == config.page }">-->
-                <!--<a href="#" @click.prevent="paginate(page)">{{ page }}</a>-->
-            <!--</li>-->
-            <!-- Pages end -->
-
-            <!-- Next start -->
-            <li :class="{ 'uk-disabled': config.page == config.pages }">
-                <a href="#" @click.prevent="paginate(config.page + 1)"><i class="uk-icon-small" uk-icon="chevron-right"></i></a>
-            </li>
-            <!-- Next end -->
-
-        </ul>
-    </div>
-    <!-- Pages end -->
     
 </div>
 
@@ -78,8 +51,12 @@ export default {
 
     methods: {
 
-        paginate: function (page, limit) {
-            this.list.library.setPaginateData(page || this.config.page, limit || this.config.limit);
+        changePage: function (page) {
+            this.list.library.setPaginateData(page || this.config.page, this.config.limit);
+        },
+
+        changeLimit: function (limit) {
+            this.list.library.setPaginateData(1, limit || this.config.limit);
         }
 
     }

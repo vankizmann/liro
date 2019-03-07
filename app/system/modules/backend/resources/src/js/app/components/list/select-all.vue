@@ -2,10 +2,9 @@
 
 <div class="app-list-select-all">
     <!-- Label start -->
-    <label class="uk-checkbox-label">
-        <input type="checkbox" class="uk-checkbox" :checked="config.all" @input="selectAll">
+    <el-checkbox :value="true" v-model="config.all" @input="selectAll">
         <span v-if="label" v-html="label"></span>
-    </label>
+    </el-checkbox>
     <!-- Label end -->
 </div>
 
@@ -39,16 +38,11 @@ export default {
 
     methods: {
 
-        selectAll: function () {
-            this.list.library.allSelectData(this.config.all ? false : true);
+        selectAll: function (value) {
+            this.list.library.allSelectData(value);
         }
 
     }
 
 }
-
-if (window.Liro) {
-    Liro.vue.component('app-list-select-all', this.default);
-}
-
 </script>

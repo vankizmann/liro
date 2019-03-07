@@ -2,10 +2,9 @@
 
 <div class="app-list-select">
     <!-- Label start -->
-   <label class="uk-checkbox-label">
-       <input type="checkbox" class="uk-checkbox" :value="value" :checked="config.selected.indexOf(value) != -1" @input="selectItem">
-       <span v-if="label" v-html="label"></span>
-    </label>
+    <el-checkbox v-model="config.selected.indexOf(value) != -1" @input="selectItem">
+        <span v-if="label" v-html="label"></span>
+    </el-checkbox>
     <!-- Label end -->
 </div>
 

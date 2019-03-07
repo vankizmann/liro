@@ -1,5 +1,6 @@
 import AuthLogin from './auth/login';
 import UserIndex from './user/index';
+import UserEdit from './user/edit';
 
 
 window.liro.ajax.set('users', window.liro.routes.get('liro-users.ajax.user.index'));

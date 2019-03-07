@@ -101,8 +101,7 @@ window.liro.modules.export('liro-user-index', this.default = {
     data: function () {
         return {
             ...this.liro.vue.bind('states', this),
-            ...this.liro.vue.bind('roles', this),
-            // users: []
+            ...this.liro.vue.ajax(['roles', 'roles-index', 'roles'], this),
             ...this.liro.vue.ajax(['users', 'users-index', 'users'], this)
         }
     }

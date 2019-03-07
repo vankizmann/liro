@@ -34,6 +34,7 @@ return [
         'style' => Liro\System\Cms\Asset\StyleAsset::class,
         'locale' => Liro\System\Cms\Asset\LocaleAsset::class,
         'route' => Liro\System\Cms\Asset\RouteAsset::class,
+        'store' => Liro\System\Cms\Asset\StoreAsset::class,
         'export' => Liro\System\Cms\Asset\ExportAsset::class
     ]
 

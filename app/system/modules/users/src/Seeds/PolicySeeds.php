@@ -37,6 +37,20 @@ class PolicySeeds
             'depth'  => 0,
         ]);
 
+        Policy::create([
+            'title'  => 'Allow all methods in admin roles controller',
+            'class'  => \Liro\Extension\Users\Http\Controllers\Admin\RoleController::class,
+            'method' => '*',
+            'depth'  => 0,
+        ]);
+
+        Policy::create([
+            'title'  => 'Allow all methods in ajax roles controller',
+            'class'  => \Liro\Extension\Users\Http\Controllers\Ajax\RoleController::class,
+            'method' => '*',
+            'depth'  => 0,
+        ]);
+
     }
 
 }

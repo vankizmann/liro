@@ -26,9 +26,30 @@
 <title>{{ trans(app('cms')->getMenuAttr('title', 'Undefined')) . ' | ' . config('app.name') }} </title>
 
 @php
-    asset()->style('theme-style', 'liro-backend::dist/css/style.css');
-    echo asset()->output(['style']);
 
+    asset()->store('states', [
+        ['value' => 1, 'label' => trans('form.state.enabled')],
+        ['value' => 0, 'label' => trans('form.state.disabled')]
+    ]);
+
+    asset()->store('hides', [
+        ['value' => 0, 'label' => trans('form.hide.visible')],
+        ['value' => 1, 'label' => trans('form.hide.hidden')]
+    ]);
+
+    asset()->store('defaults', [
+        ['value' => 1, 'label' => trans('form.default.enabled')],
+        ['value' => 0, 'label' => trans('form.default.disabled')]
+    ]);
+
+    // Styles
+    asset()->style('theme-style', 'liro-backend::dist/css/style.css');
+
+    // Scripts
     asset()->script('theme-script', 'liro-backend::dist/js/script.js');
-    echo asset()->output(['route', 'locale', 'export', 'script']);
+
+    echo asset()->output([
+        'style', 'locale', 'route', 'store', 'export', 'script'
+    ]);
+
 @endphp

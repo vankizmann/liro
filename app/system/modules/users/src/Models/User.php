@@ -19,6 +19,10 @@ class User extends Model
         'password', 'remember_token',
     ];
 
+    protected $appends = [
+        'role_ids'
+    ];
+
     protected $attributes = [
         'state'    => null,
         'name'     => null,
@@ -55,6 +59,11 @@ class User extends Model
     {
         return $this->policies->where('class', $class)
             ->whereIn('method', ['*', $method])->isNotEmpty() ?: false;
+    }
+
+    public function getRoleIdsAttribute()
+    {
+        return $this->roles()->get()->pluck('id')->flatten(1);
     }
 
 

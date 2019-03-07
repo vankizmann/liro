@@ -12,12 +12,8 @@ class RoleController extends \Liro\System\Http\Controller
         $this->middleware(['web', 'guard']);
     }
 
-    public function index(Role $role)
+    public function index()
     {
-        app('assets')->dataArray([
-            'roles' => $role->all()
-        ]);
-
         return view('liro-users::role/index');
     }
 

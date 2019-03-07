@@ -193,6 +193,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 window.liro.ajax.set('users', window.liro.routes.get('liro-users.ajax.user.index'));
+window.liro.ajax.set('roles', window.liro.routes.get('liro-users.ajax.role.index'));
+window.liro.ajax.set('policies', window.liro.routes.get('liro-users.ajax.policy.index'));
 
 /***/ }),
 /* 3 */
@@ -647,7 +649,7 @@ window.liro.modules.export('liro-user-index', this.default = {
     },
 
     data: function data() {
-        return _extends({}, this.liro.vue.bind('states', this), this.liro.vue.bind('roles', this), this.liro.vue.ajax(['users', 'users-index', 'users'], this));
+        return _extends({}, this.liro.vue.bind('states', this), this.liro.vue.ajax(['roles', 'roles-index', 'roles'], this), this.liro.vue.ajax(['users', 'users-index', 'users'], this));
     }
 
 });
@@ -758,10 +760,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "th-table-tr uk-flex uk-flex-middle" }, [
+  return _c("div", { staticClass: "grid grid--row grid--middle" }, [
     _c("div", { staticClass: "th-table-td-xs" }),
     _vm._v(" "),
-    _c("div", { staticClass: "uk-width-1-3" }, [
+    _c("div", { staticClass: "col--1-3" }, [
       _c(
         "a",
         {
@@ -775,13 +777,13 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "uk-width-1-3" }, [
+    _c("div", { staticClass: "col--1-3" }, [
       _c("span", [
         _vm._v("\n            " + _vm._s(_vm.value.email) + "\n        ")
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "uk-width-1-3" }),
+    _c("div", { staticClass: "col--1-3" }),
     _vm._v(" "),
     _c("div", { staticClass: "th-table-td-m uk-text-center" }),
     _vm._v(" "),

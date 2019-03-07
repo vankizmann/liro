@@ -3,7 +3,7 @@ import { Events } from "../index";
 
 export default function () {
 
-    this.storage = window._storage || {};
+    this.storage = window._Storage || {};
 
     let _key = function (input) {
         return isString(input) ? input : input[0];

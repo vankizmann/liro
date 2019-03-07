@@ -3342,6 +3342,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -82690,7 +82692,7 @@ var render = function() {
     [
       _c(
         "el-popover",
-        { attrs: { width: "200", trigger: "hover" } },
+        { attrs: { width: "200", trigger: "click" } },
         [
           _c(
             "a",
@@ -82720,13 +82722,12 @@ var render = function() {
             [
               _vm._l(_vm.filters, function(filter, index) {
                 return [
-                  _c("el-checkbox", {
-                    key: index,
-                    attrs: {
-                      value: filter[_vm.filtersValue],
-                      label: filter[_vm.filtersLabel]
-                    }
-                  })
+                  _c(
+                    "el-checkbox",
+                    { key: index, attrs: { label: filter[_vm.filtersValue] } },
+                    [[_vm._v(_vm._s(filter[_vm.filtersLabel]))]],
+                    2
+                  )
                 ]
               })
             ],
@@ -96816,7 +96817,7 @@ var Vue = new __WEBPACK_IMPORTED_MODULE_8__libs_vue__["a" /* default */]();
 /* harmony default export */ __webpack_exports__["a"] = (function () {
     var _this = this;
 
-    this.storage = window._storage || {};
+    this.storage = window._Storage || {};
 
     var _key = function _key(input) {
         return Object(__WEBPACK_IMPORTED_MODULE_0_lodash__["isString"])(input) ? input : input[0];

@@ -49,13 +49,11 @@ class RouteManager
 
             // Get route by name with module prefix
             $route = app('cms.routes.helper')
-                ->makeLocalizedRoute(@$options['route'] ?: $name, $locale, 'module');
+                ->makeLocalizedRoute($name, $locale, 'module');
 
             // Boot module route
             $this->bootModuleRoute($name, $route, $options, $locale);
         }
-
-        dd(app('router'));
     }
 
     public function bootModuleRoute($name, $route, $options, $locale = '')
@@ -82,6 +80,9 @@ class RouteManager
 
             return $this;
         }
+
+        $route = ! isset($options['with']) ? $route :
+            str_join('/', $route, $options['with']);
 
         app('router')->addRoute(strtoupper($options['method']), $route,
             array_merge(['as' => $name], $options));

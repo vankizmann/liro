@@ -2,7 +2,7 @@
 
 <div class="app-list-filter">
 
-    <el-popover width="200" trigger="hover">
+    <el-popover width="200" trigger="click">
 
         <!-- Label start -->
         <a slot="reference" href="javascript:void(0)" :class="{ 'filter__title--active': values.length != 0 }">
@@ -12,7 +12,9 @@
 
         <el-checkbox-group v-model="values">
             <template v-for="(filter, index) in filters">
-                <el-checkbox :key="index" :value="filter[filtersValue]" :label="filter[filtersLabel]"></el-checkbox>
+                <el-checkbox :key="index" :label="filter[filtersValue]">
+                    <template name="label">{{ filter[filtersLabel] }}</template>
+                </el-checkbox>
             </template>
         </el-checkbox-group>
 

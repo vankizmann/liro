@@ -29,6 +29,24 @@
     padding-bottom: 0;
 }
 
+.el-select {
+    width: 100%;
+}
+
+.el-radio-group {
+    display: flex;
+    width: 100%;
+}
+
+.el-radio-group .el-radio-button {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+.el-radio-button .el-radio-button__inner {
+    flex: 1 0 auto;
+}
+
 .el-notification__content {
     text-align: left;
 }

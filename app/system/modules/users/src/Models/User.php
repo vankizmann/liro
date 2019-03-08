@@ -3,6 +3,7 @@
 namespace Liro\Extension\Users\Models;
 
 use Illuminate\Foundation\Auth\User as Model;
+use Illuminate\Support\Facades\Hash;
 use Liro\System\Database\Traits\CastableTrait;
 
 class User extends Model
@@ -61,9 +62,26 @@ class User extends Model
             ->whereIn('method', ['*', $method])->isNotEmpty() ?: false;
     }
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
     public function getRoleIdsAttribute()
     {
         return $this->roles()->get()->pluck('id')->flatten(1);
+    }
+
+    public function setRoleIdsAttribute($value)
+    {
+        $this->saved(function ($model) use ($value) {
+            $model->roles()->sync($value);
+        });
+    }
+
+    public function setPasswordConfirmAttribute()
+    {
+        return;
     }
 
 

@@ -1,123 +1,116 @@
 <template>
 
-<div class="liro-user-create uk-flex" uk-grid>
+    <div class="liro-user-create" v-loading="load">
 
-    <portal to="app-toolbar">
-        <div class="uk-navbar-item">
+        <portal to="toolbar-right">
+            <app-nav-item>
+                <el-button type="primary" @click="storeUser">
+                    {{ trans('form.toolbar.save') }}
+                </el-button>
+            </app-nav-item>
+        </portal>
 
-            <a class="uk-button uk-button-primary uk-margin-small-left" :href="route('liro-users.admin.user.index')">
-                {{ trans('theme::form.toolbar.close') }}
-            </a>
+        <el-form :model="user" label-position="top" v-shortkey="['meta', 's']" @shortkey.native="storeUser">
 
-            <a class="uk-button uk-button-success uk-margin-small-left" href="javascript:void(0)" @click="storeUser" v-shortkey="['meta', 's']" @shortkey="storeUser">
-                {{ trans('theme::form.toolbar.save') }}
-            </a>
+            <div class="grid grid--wrap grid--row grid--20">
 
-        </div>
-    </portal>
+                <div class="col--3-12@md col--order-2">
+                    <div class="form">
 
-    <!-- Sidebar start -->
-    <div class="uk-flex-last uk-width-1-1 uk-width-large@l">
-        <div class="th-form">
+                        <el-form-item prop="state" :label="trans('form.state.label')" :error="error.state">
+                            <el-radio-group v-model="user.state">
+                                <el-radio-button v-for="(state) in states" :key="state.label" :label="state.value">
+                                    {{ trans(state.label) }}
+                                </el-radio-button>
+                            </el-radio-group>
+                        </el-form-item>
 
-            <legend class="uk-legend">
-                <span>{{ trans('liro-users::form.legend.general') }}</span>
-            </legend>
+                        <el-form-item prop="state" :label="trans('liro-users::form.user.roles')" :error="error.state">
+                            <el-select :multiple="true" v-model="user.role_ids" :placeholder="trans('liro-users::form.user.select_roles')">
+                                <el-option v-for="(role) in roles" :key="role.id" :value="role.id" :label="role.title" />
+                            </el-select>
+                        </el-form-item>
 
-            <app-label :label="trans('liro-users::form.user.state')">
-                <app-switch class="is-state" v-model="user.state">
-                    <app-switch-option v-for="state in states" :key="state.value" :value="state.value" :label="state.label"></app-switch-option>
-                </app-switch>
-            </app-label>
+                    </div>
+                </div>
 
-        </div>
-    </div>
-    <!-- Sidebar end -->
 
-    <!-- Form start -->
-    <div class="uk-flex-first uk-flex-auto">
+                <div class="col--9-12@md col--order-1">
+                    <div class="form">
 
-        <div class="th-form">
+                        <el-form-item prop="name" :label="trans('liro-users::form.user.name')" :error="error.name">
+                            <el-input v-model="user.name"></el-input>
+                        </el-form-item>
 
-            <legend class="uk-legend">
-                <span>{{ trans('liro-users::form.legend.info') }}</span>
-            </legend>
+                        <el-form-item prop="email" :label="trans('liro-users::form.user.email')" :error="error.email">
+                            <el-input v-model="user.email"></el-input>
+                        </el-form-item>
 
-            <app-label :label="trans('liro-users::form.user.name')" :required="true">
-                <app-input v-model="user.name"></app-input>
-            </app-label>
+                        <el-form-item prop="password" :label="trans('liro-users::form.user.password')" :error="error.password">
+                            <el-input type="password" v-model="user.password"></el-input>
+                        </el-form-item>
 
-            <app-label :label="trans('liro-users::form.user.email')" :required="true">
-                <app-input v-model="user.email"></app-input>
-            </app-label>
+                        <el-form-item prop="password_confirm" :label="trans('liro-users::form.user.password_confirm')" :error="error.password_confirm">
+                            <el-input type="password" v-model="user.password_confirm"></el-input>
+                        </el-form-item>
 
-            <app-label :label="trans('liro-users::form.user.role')">
-                <app-select v-model="user.role_ids" :multiple="true" :placeholder="trans('liro-users::form.user.select_role')">
-                    <app-select-option v-for="role in roles" :key="role.id" :value="role.id" :label="role.title"></app-select-option>
-                </app-select>
-            </app-label>
+                    </div>
+                </div>
 
-        </div>
-        <div class="th-form">
+            </div>
 
-            <legend class="uk-legend">
-                <span>{{ trans('liro-users::form.legend.password') }}</span>
-            </legend>
-
-            <app-label :label="trans('liro-users::form.user.password')">
-                <app-input type="password" v-model="user.password"></app-input>
-            </app-label>
-
-            <app-label :label="trans('liro-users::form.user.password_confirm')">
-                <app-input type="password" v-model="user.password_confirm"></app-input>
-            </app-label>
-
-        </div>
+        </el-form>
 
     </div>
-    <!-- Form end -->
-
-</div>
 
 </template>
 <script>
 
+    let errors = {
+        state: null, name: null, email: null, password: null, password_confirm: null
+    };
+
     window.liro.modules.export('liro-user-create', this.default = {
 
-        computed: {
-
-            states: function () {
-                return this.$root.states;
-            },
-
-            roles: function () {
-                return this.$root.roles;
-            },
-
-            user: function () {
-                return this.$root.user;
+        data: function () {
+            return {
+                load: false, error: errors,
+                ...this.liro.vue.bind('states', this),
+                ...this.liro.vue.bind(['user-edit', 'user'], this),
+                ...this.liro.vue.bind(['role-index', 'roles'], this)
             }
-
         },
 
         methods: {
 
             storeUser: function () {
-                var url = Liro.routes.get('liro-users.ajax.user.store');
-                Axios.post(url, this.user).then(this.storeUserResponse);
+
+                let url = this.routes.get('liro-users.ajax.user.store', {
+                    user: this.user.id
+                });
+
+                this.http.post(url, this.user)
+                    .then(this.storeUserResponse, this.storeUserError);
+
+                this.error = errors;
+                this.load = true;
             },
 
             storeUserResponse: function (res) {
-
-                var values = {
+                this.routes.goto('liro-users.admin.user.edit', {
                     user: res.data.id
-                };
-
-                var query = {
+                }, {
                     success: 'liro-users::message.user.created'
-                };
+                });
+            },
 
-                Liro.routes.redirect('liro-users.admin.user.edit', values, query);
+            storeUserError: function (res) {
+
+                this.error = $.extend(
+                    {}, errors, res.data.errors
+                );
+
+                this.load = false;
             }
 
         }

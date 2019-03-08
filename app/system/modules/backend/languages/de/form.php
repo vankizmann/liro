@@ -30,6 +30,7 @@ return [
     ],
 
     'state' => [
+        'label'         => 'Status',
         'enabled'       => 'Aktiviert',
         'disabled'      => 'Deaktiviert',
     ],

@@ -26,15 +26,19 @@ class UserController extends Controller
 
     public function store(UserStoreRequest $request, User $user)
     {
-        $response = $user->create(
+        $user = $user->create(
             $request->all()
         );
 
-        return response()->json($response, 201);
+        return response()->json($user, 201);
     }
 
     public function update(UserUpdateRequest $request, User $user)
     {
+        if ( ! $request->input('password') ) {
+            $request->offsetUnset('password');
+        }
+
         $user->update(
             $request->all()
         );

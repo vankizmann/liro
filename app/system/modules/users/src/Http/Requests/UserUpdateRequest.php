@@ -28,7 +28,7 @@ class UserUpdateRequest extends FormRequest
             'name'              => 'required|min:4',
             'email'             => "required|unique:users,email,$this->id|email",
             'password'          => 'nullable|min:6',
-            'password_confirm'  => 'required_with:password|min:6|same:password'
+            'password_confirm'  => 'required_with:password|same:password'
         ];
     }
 

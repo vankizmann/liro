@@ -16,8 +16,8 @@ return [
         'email'             => 'E-Mail-Adresse',
         'password'          => 'Passwort',
         'password_confirm'  => 'Passwort bestätigen',
-        'role'              => 'Benutzergruppe',
-        'select_role'       => 'Benutzergruppe auswählen'
+        'roles'             => 'Benutzergruppen',
+        'select_roles'      => 'Benutzergruppen auswählen'
     ],
 
     'role' => [

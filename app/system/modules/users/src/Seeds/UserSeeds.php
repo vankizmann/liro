@@ -3,7 +3,6 @@
 namespace Liro\Extension\Users\Seeds;
 
 use Faker\Generator as Faker;
-use Illuminate\Support\Facades\Hash;
 use Liro\Extension\Users\Models\User;
 
 class UserSeeds
@@ -15,18 +14,18 @@ class UserSeeds
             'state'    => 1,
             'name'     => 'Administrator',
             'email'    => 'admin@gmail.com',
-            'password' => Hash::make('password'),
+            'password' => 'password',
             'guard'    => 1
         ]);
 
         $admin->roles()->attach(1);
 
-        foreach (array_fill(0,30,0) as $user) {
+        foreach ( array_fill(0, 30, 0) as $user ) {
             User::create([
                 'state'    => rand(0,1),
                 'name'     => $faker->name,
                 'email'    => $faker->unique()->safeEmail,
-                'password' => Hash::make('password'),
+                'password' => 'password',
                 'guard'    => 1
             ]);
         }

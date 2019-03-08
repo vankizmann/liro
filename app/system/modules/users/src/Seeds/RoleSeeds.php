@@ -18,6 +18,15 @@ class RoleSeeds
         ]);
 
         $admin->policies()->attach(Policy::all());
+
+        $manager = Role::create([
+            'title'       => 'Manager',
+            'description' => 'A description for manager',
+            'access'      => 'manager',
+            'guard'       => 1
+        ]);
+
+        $manager->policies()->attach(Policy::whereIn('depth', [0, 2])->get());
     }
 
 }

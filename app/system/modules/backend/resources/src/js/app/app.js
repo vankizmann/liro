@@ -6,6 +6,9 @@ Vue.use(Ready);
 import Portal from 'portal-vue';
 Vue.use(Portal);
 
+import Shortkey from 'vue-shortkey';
+Vue.use(Shortkey);
+
 import Element from 'element-ui';
 Vue.use(Element, { i18n: liro.locales.trans });
 

@@ -4,10 +4,7 @@
     <!-- Input start -->
     <div class="grid grid--row grid--middle grid--10">
         <div class="col--flex-auto">
-            <el-input v-model="query" @change="setQuery(query)" :placeholder="placeholder"></el-input>
-        </div>
-        <div class="col--flex-none">
-            <el-button type="primary" @click="setQuery(query)">{{ trans('form.search.label') }}</el-button>
+            <el-input v-model="query" @input="setQuery(query)" :placeholder="placeholder" :clearable="true"></el-input>
         </div>
     </div>
     <!-- Input end -->

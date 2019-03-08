@@ -28,6 +28,9 @@ class UserController extends Controller
             'password' => '', 'password_confirm' => ''
         ]);
 
+        asset()->store('user-edit', $user);
+        asset()->store('role-index', $role->all());
+
         // $user->password = '';
 
         return view('liro-users::user/create');

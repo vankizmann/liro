@@ -140,6 +140,12 @@ $--theme-grid-gutters: (
         flex: 1 0 auto;
     }
 
+    @for $i from 1 through 10 {
+        .col--order-#{$i}#{$suffix} {
+            order: $i;
+        }
+    }
+
     @for $i from 1 through $size {
         .col--#{$i}-#{$size}#{$suffix} {
             width: #{((100% / $size) * $i) - 0.001};

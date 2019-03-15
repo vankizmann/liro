@@ -19,9 +19,20 @@
 
         <el-form :model="user" label-position="top" v-shortkey="['meta', 's']" @shortkey.native="updateUser">
 
-            <div class="grid grid--wrap grid--row grid--20">
+            <div class="grid grid--wrap grid--row">
 
-                <div class="col--1-1 col--4-10@lg col--order-2@lg col--4-12@xl">
+                <div class="form form__title col--1-1 col--order-0">
+                    <a :href="routes.get('liro-users.admin.user.index')">
+                        <el-button type="primary">
+                            {{ trans('form.toolbar.close') }}
+                        </el-button>
+                    </a>
+                    <el-button type="success" @click="updateUser">
+                        {{ trans('form.toolbar.save') }}
+                    </el-button>
+                </div>
+
+                <div class="form__sidebar col--1-1 col--4-10@lg col--order-2@lg col--4-12@xl">
                     <div class="form">
 
                         <el-form-item prop="state" :label="trans('form.state.label')" :error="error.state">
@@ -42,7 +53,7 @@
                 </div>
 
 
-                <div class="col--1-1 col--6-10@lg col--order-1@lg col--8-12@xl">
+                <div class="form__body col--1-1 col--6-10@lg col--order-1@lg col--8-12@xl">
                     <div class="form">
 
                         <el-form-item prop="name" :label="trans('liro-users::form.user.name')" :error="error.name">
@@ -77,7 +88,7 @@
         state: null, name: null, email: null, password: null, password_confirm: null
     };
 
-    window.liro.modules.export('liro-user-edit', this.default = {
+    export default {
 
         data: function () {
             return {
@@ -119,7 +130,7 @@
 
         }
 
-    });
+    }
 
 </script>
 

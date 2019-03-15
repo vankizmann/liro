@@ -1,16 +1,4 @@
 
-
-.table {
-    margin-bottom: 20px;
-    background: $--color-white;
-    border-radius: $--border-radius-base * 2;
-    box-shadow: $--box-shadow-base;
-}
-
-.table:last-child {
-    margin-bottom: 0;
-}
-
 .table .table__td {
     padding: 20px 16px;
 }

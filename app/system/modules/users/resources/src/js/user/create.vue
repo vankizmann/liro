@@ -1,6 +1,6 @@
 <template>
 
-    <div class="liro-user-create" v-loading="load">
+    <div class="liro-user-create">
 
         <portal to="toolbar-right">
             <app-nav-item>
@@ -70,7 +70,7 @@
         state: null, name: null, email: null, password: null, password_confirm: null
     };
 
-    window.liro.modules.export('liro-user-create', this.default = {
+    export default {
 
         data: function () {
             return {
@@ -115,7 +115,7 @@
 
         }
 
-    });
+    }
 
 </script>
 

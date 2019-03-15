@@ -2,6 +2,14 @@
 
 return [
 
+    'search' => [
+        'placeholder' => 'Suchbegriff'
+    ],
+
+    'loader' => [
+        'text' => 'Inhalt wird geladen'
+    ],
+
     'colorpicker' => [
         'confirm' => 'OK',
         'clear'   => 'Leeren',

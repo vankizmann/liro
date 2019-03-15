@@ -27,19 +27,14 @@
 
 @php
 
-    asset()->store('states', [
+    asset()->store('state-index', [
         ['value' => 1, 'label' => trans('form.state.enabled')],
         ['value' => 0, 'label' => trans('form.state.disabled')]
     ]);
 
-    asset()->store('hides', [
+    asset()->store('hide-index', [
         ['value' => 0, 'label' => trans('form.hide.visible')],
         ['value' => 1, 'label' => trans('form.hide.hidden')]
-    ]);
-
-    asset()->store('defaults', [
-        ['value' => 1, 'label' => trans('form.default.enabled')],
-        ['value' => 0, 'label' => trans('form.default.disabled')]
     ]);
 
     // Styles

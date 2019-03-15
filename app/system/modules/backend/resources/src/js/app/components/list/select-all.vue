@@ -2,7 +2,7 @@
 
 <div class="app-list-select-all">
     <!-- Label start -->
-    <el-checkbox :value="true" v-model="config.all" @input="selectAll">
+    <el-checkbox :indeterminate="config.all === false && config.selected.length !== 0" v-model="config.all" @input="selectAll">
         <span v-if="label" v-html="label"></span>
     </el-checkbox>
     <!-- Label end -->

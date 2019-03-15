@@ -1,5 +1,5 @@
 @theme(null)
 
 @section('content')
-    <app-component element="liro-user-index" />
+    <app-component class="is-root" element="liro-user-index" />
 @endsection

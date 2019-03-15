@@ -189,18 +189,84 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auth_login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__auth_login__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_index__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__user_index__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_create__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_create__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_create___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__user_create__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_edit__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_edit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__user_edit__);
 
 
+liro.modules.export('liro-auth-login', __WEBPACK_IMPORTED_MODULE_0__auth_login___default.a);
 
 
+liro.modules.export('liro-user-index', __WEBPACK_IMPORTED_MODULE_1__user_index___default.a);
 
-// window.liro.ajax.set('users', window.liro.routes.get('liro-users.ajax.user.index'));
-// window.liro.ajax.set('roles', window.liro.routes.get('liro-users.ajax.role.index'));
-// window.liro.ajax.set('policies', window.liro.routes.get('liro-users.ajax.policy.index'));
+
+liro.modules.export('liro-user-create', __WEBPACK_IMPORTED_MODULE_2__user_create___default.a);
+
+
+liro.modules.export('liro-user-edit', __WEBPACK_IMPORTED_MODULE_3__user_edit___default.a);
+
+liro.ajax.bind('user-index', function (query) {
+
+    var route = liro.routes.get('liro-users.ajax.user.index', null, query);
+
+    return axios.get(route);
+});
+
+liro.ajax.bind('user-show', function (user) {
+
+    var route = liro.routes.get('liro-users.ajax.user.show', {
+        user: user.id
+    });
+
+    return axios.get(route);
+});
+
+liro.ajax.bind('user-store', function (user) {
+
+    var route = liro.routes.get('liro-users.ajax.user.store');
+
+    return axios.post(route, user);
+});
+
+liro.ajax.bind('user-update', function (user) {
+
+    var route = liro.routes.get('liro-users.ajax.user.update', {
+        user: user.id
+    });
+
+    return axios.post(route, user);
+});
+
+liro.ajax.bind('role-index', function () {
+
+    var route = liro.routes.get('liro-users.ajax.role.index');
+
+    return axios.get(route);
+});
+
+liro.ajax.bind('role-show', function () {
+
+    var route = liro.routes.get('liro-users.ajax.role.show');
+
+    return axios.get(route);
+});
+
+liro.ajax.bind('role-store', function (role) {
+
+    var route = liro.routes.get('liro-users.ajax.role.store');
+
+    return axios.post(route, role);
+});
+
+liro.ajax.bind('role-update', function (role) {
+
+    var route = liro.routes.get('liro-users.ajax.role.update', {
+        role: role.id
+    });
+
+    return axios.post(route, role);
+});
 
 /***/ }),
 /* 3 */
@@ -506,7 +572,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(7)
 /* template */
-var __vue_template__ = __webpack_require__(11)
+var __vue_template__ = __webpack_require__(8)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -550,195 +616,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_item__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__index_item__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-window.liro.modules.export('liro-user-index', this.default = {
-
-    components: {
-        'liro-user-index-item': __WEBPACK_IMPORTED_MODULE_0__index_item___default.a
-    },
-
-    data: function data() {
-        return _extends({}, this.liro.vue.bind('states', this), this.liro.vue.bind(['user-index', 'users'], this), this.liro.vue.bind(['role-index', 'roles'], this));
-    }
-
-});
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(9)
-/* template */
-var __vue_template__ = __webpack_require__(10)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/src/js/user/index/item.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2d537571", Component.options)
-  } else {
-    hotAPI.reload("data-v-2d537571", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -756,385 +635,123 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: {
+    data: function data() {
+        var _this = this;
 
-        value: {
-            required: true,
-            type: Object
+        var columns = [{
+            type: 'checkbox',
+            prop: 'id',
+            class: 'table__td--xs text--center'
+        }, {
+            type: 'order',
+            prop: 'name',
+            label: this.trans('Name'),
+            class: 'col--1-3'
+        }, {
+            type: 'order',
+            prop: 'email',
+            label: this.trans('Email'),
+            class: 'col--1-3'
+        }, {
+            type: 'filter',
+            prop: 'role_ids',
+            label: this.trans('Roles'),
+            class: 'col--1-3',
+            filter: {
+                data: function data() {
+                    return _this.roles;
+                }, label: 'title', value: 'id'
+            }
+        }, {
+            type: 'order',
+            label: this.trans('Id'),
+            prop: 'id',
+            class: 'table__td--sm text--center'
+        }];
+
+        return _extends({
+            loadUsers: false, loadRoles: false,
+            action: '', selected: [], columns: columns
+        }, this.liro.vue.bind(['state-index', 'states'], this), this.liro.vue.bind(['user-index', 'users'], this), this.liro.vue.bind(['role-index', 'roles'], this));
+    },
+
+    beforeCreate: function beforeCreate() {
+        var _this2 = this;
+
+        if (!this.liro.storage.has('user-index')) {
+
+            this.$on('hook:created', function () {
+                _this2.loadUsers = true;
+            });
+
+            this.liro.ajax.call('user-index').then(function () {
+                return _this2.loadUsers = false;
+            });
         }
 
+        if (!this.liro.storage.has('role-index')) {
+
+            this.$on('hook:created', function () {
+                _this2.loadRoles = true;
+            });
+
+            this.liro.ajax.call('role-index').then(function () {
+                return _this2.loadRoles = false;
+            });
+        }
     }
 
 });
 
 /***/ }),
-/* 10 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "table__tr grid grid--row grid--middle" }, [
-    _c(
-      "div",
-      { staticClass: "table__td table__td--xs" },
-      [_c("app-list-select", { attrs: { value: _vm.value.id } })],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "table__td col--1-3" }, [
-      _c(
-        "a",
-        {
-          attrs: {
-            href: _vm.routes.get("liro-users.admin.user.edit", {
-              user: _vm.value.id
-            })
+  return _c(
+    "app-loader",
+    { attrs: { load: _vm.loadUsers === true && _vm.loadRoles === true } },
+    [
+      _c("app-list-builder", {
+        attrs: {
+          list: this.users,
+          columns: this.columns,
+          search: ["name", "email"],
+          selected: _vm.selected
+        },
+        on: {
+          "update:selected": function($event) {
+            _vm.selected = $event
           }
         },
-        [_vm._v("\n            " + _vm._s(_vm.value.name) + "\n        ")]
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "table__td col--1-3" }, [
-      _c("span", [
-        _vm._v("\n            " + _vm._s(_vm.value.email) + "\n        ")
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "table__td col--1-3" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "table__td table__td--md text--center" }, [
-      _vm._v("\n        " + _vm._s(_vm.value.state) + "\n    ")
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "table__td table__td--md text--center" }, [
-      _c("span", [
-        _vm._v("\n            " + _vm._s(_vm.value.id) + "\n        ")
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2d537571", module.exports)
-  }
-}
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("app-list", {
-    staticClass: "liro-user-index",
-    attrs: { database: "users.user.index" },
-    scopedSlots: _vm._u([
-      {
-        key: "default",
-        fn: function(ref) {
-          var items = ref.items
-          return _c(
-            "div",
-            {},
-            [
-              _c(
-                "portal",
-                { attrs: { to: "toolbar-right" } },
-                [
-                  _c(
-                    "app-nav-item",
-                    [
-                      _c(
-                        "app-nav-link",
-                        {
-                          attrs: {
-                            href: _vm.routes.get("liro-users.admin.user.create")
-                          }
-                        },
-                        [
-                          _c("el-button", { attrs: { type: "primary" } }, [
-                            _vm._v(
-                              _vm._s(_vm.trans("liro-users::admin.user.create"))
-                            )
-                          ])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "th-form is-reset" }, [
-                _c("div", { staticClass: "table" }, [
-                  _c("div", { staticClass: "table__head" }, [
-                    _c("div", { staticClass: "table__tr grid grid--row" }, [
-                      _c(
-                        "div",
-                        { staticClass: "table__td table__td--xl col--left" },
-                        [
-                          _c("app-list-search", {
-                            attrs: {
-                              columns: ["name", "email"],
-                              placeholder: _vm.trans("form.search.placeholder")
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "table__td col--right" }, [
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: _vm.routes.get(
-                                "liro-users.admin.user.create"
-                              )
-                            }
-                          },
-                          [
-                            _c("el-button", { attrs: { type: "success" } }, [
-                              _vm._v(
-                                _vm._s(
-                                  _vm.trans("liro-users::admin.user.create")
-                                )
-                              )
-                            ])
-                          ],
-                          1
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "table__filter" }, [
-                    _c(
-                      "div",
-                      { staticClass: "table__tr grid grid--row grid--middle" },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "table__td table__td--xs" },
-                          [_c("app-list-select-all")],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "table__td col--1-3" },
-                          [
-                            _c("app-list-sort", { attrs: { column: "name" } }, [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(
-                                    _vm.trans("liro-users::form.user.name")
-                                  ) +
-                                  "\n                            "
-                              )
-                            ])
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "table__td col--1-3" },
-                          [
-                            _c(
-                              "app-list-sort",
-                              { attrs: { column: "email" } },
-                              [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(
-                                      _vm.trans("liro-users::form.user.email")
-                                    ) +
-                                    "\n                            "
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "table__td col--1-3" },
-                          [
-                            _c(
-                              "app-list-filter",
-                              {
-                                attrs: {
-                                  column: "role_ids",
-                                  filters: _vm.roles,
-                                  "filters-value": "id",
-                                  "filters-label": "title"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(
-                                      _vm.trans("liro-users::form.user.role")
-                                    ) +
-                                    "\n                            "
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "table__td table__td--md text--center"
-                          },
-                          [
-                            _c(
-                              "app-list-filter",
-                              {
-                                attrs: { column: "state", filters: _vm.states }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(
-                                      _vm.trans("liro-users::form.user.state")
-                                    ) +
-                                    "\n                            "
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "table__td table__td--md text--center"
-                          },
-                          [
-                            _c("app-list-sort", { attrs: { column: "id" } }, [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(
-                                    _vm.trans("liro-users::form.user.id")
-                                  ) +
-                                  "\n                            "
-                              )
-                            ])
-                          ],
-                          1
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: items.length !== 0,
-                          expression: "items.length !== 0"
-                        }
-                      ],
-                      staticClass: "table__body"
-                    },
-                    _vm._l(items, function(item, index) {
-                      return _c("liro-user-index-item", {
-                        key: index,
-                        attrs: { value: item }
+        scopedSlots: _vm._u([
+          {
+            key: "column.name",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: _vm.routes.get("liro-users.admin.user.edit", {
+                        user: item.id
                       })
-                    }),
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: items.length === 0,
-                          expression: "items.length === 0"
-                        }
-                      ],
-                      staticClass: "table__body"
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "table__tr grid grid--row grid--middle"
-                        },
-                        [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "table__td col--1-1 text--center text--muted"
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(_vm.trans("form.list.empty")) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "table__footer" }, [
-                    _c(
-                      "div",
-                      { staticClass: "table__tr grid grid--row grid--middle" },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "table__td col--1-1" },
-                          [_c("app-list-pagination")],
-                          1
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ])
-            ],
-            1
-          )
-        }
-      }
-    ]),
-    model: {
-      value: _vm.users,
-      callback: function($$v) {
-        _vm.users = $$v
-      },
-      expression: "users"
-    }
-  })
+                    }
+                  },
+                  [_c("span", [_vm._v(_vm._s(item.name))])]
+                )
+              ]
+            }
+          }
+        ])
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1147,497 +764,15 @@ if (false) {
 }
 
 /***/ }),
-/* 12 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(13)
+var __vue_script__ = __webpack_require__(10)
 /* template */
-var __vue_template__ = __webpack_require__(14)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/src/js/user/edit.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2cb1f9ea", Component.options)
-  } else {
-    hotAPI.reload("data-v-2cb1f9ea", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-var errors = {
-    state: null, name: null, email: null, password: null, password_confirm: null
-};
-
-window.liro.modules.export('liro-user-edit', this.default = {
-
-    data: function data() {
-        return _extends({
-            load: false, error: errors
-        }, this.liro.vue.bind('states', this), this.liro.vue.bind(['user-edit', 'user'], this), this.liro.vue.bind(['role-index', 'roles'], this));
-    },
-
-    methods: {
-
-        updateUser: function updateUser() {
-
-            var url = this.routes.get('liro-users.ajax.user.update', {
-                user: this.user.id
-            });
-
-            this.http.put(url, this.user).then(this.updateUserResponse, this.updateUserError);
-
-            this.error = errors;
-            this.load = true;
-        },
-
-        updateUserResponse: function updateUserResponse(res) {
-            this.$message.success(this.trans('liro-users::message.user.saved'));
-            this.load = false;
-        },
-
-        updateUserError: function updateUserError(res) {
-
-            this.error = $.extend({}, errors, res.data.errors);
-
-            this.load = false;
-        }
-
-    }
-
-});
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      directives: [
-        {
-          name: "loading",
-          rawName: "v-loading",
-          value: _vm.load,
-          expression: "load"
-        }
-      ],
-      staticClass: "liro-user-edit"
-    },
-    [
-      _c(
-        "portal",
-        { attrs: { to: "toolbar-right" } },
-        [
-          _c("app-nav-item", [
-            _c(
-              "a",
-              {
-                attrs: { href: _vm.routes.get("liro-users.admin.user.index") }
-              },
-              [
-                _c("el-button", { attrs: { type: "primary" } }, [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(_vm.trans("form.toolbar.close")) +
-                      "\n                "
-                  )
-                ])
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "app-nav-item",
-            [
-              _c(
-                "el-button",
-                { attrs: { type: "success" }, on: { click: _vm.updateUser } },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.trans("form.toolbar.save")) +
-                      "\n            "
-                  )
-                ]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-form",
-        {
-          directives: [
-            {
-              name: "shortkey",
-              rawName: "v-shortkey",
-              value: ["meta", "s"],
-              expression: "['meta', 's']"
-            }
-          ],
-          attrs: { model: _vm.user, "label-position": "top" },
-          nativeOn: {
-            shortkey: function($event) {
-              return _vm.updateUser($event)
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "grid grid--wrap grid--row grid--20" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col--1-1 col--4-10@lg col--order-2@lg col--4-12@xl"
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "form" },
-                  [
-                    _c(
-                      "el-form-item",
-                      {
-                        attrs: {
-                          prop: "state",
-                          label: _vm.trans("form.state.label"),
-                          error: _vm.error.state
-                        }
-                      },
-                      [
-                        _c(
-                          "el-radio-group",
-                          {
-                            model: {
-                              value: _vm.user.state,
-                              callback: function($$v) {
-                                _vm.$set(_vm.user, "state", $$v)
-                              },
-                              expression: "user.state"
-                            }
-                          },
-                          _vm._l(_vm.states, function(state) {
-                            return _c(
-                              "el-radio-button",
-                              {
-                                key: state.label,
-                                attrs: { label: state.value }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(_vm.trans(state.label)) +
-                                    "\n                            "
-                                )
-                              ]
-                            )
-                          }),
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-form-item",
-                      {
-                        attrs: {
-                          prop: "state",
-                          label: _vm.trans("liro-users::form.user.roles"),
-                          error: _vm.error.state
-                        }
-                      },
-                      [
-                        _c(
-                          "el-select",
-                          {
-                            attrs: {
-                              multiple: true,
-                              placeholder: _vm.trans(
-                                "liro-users::form.user.select_roles"
-                              )
-                            },
-                            model: {
-                              value: _vm.user.role_ids,
-                              callback: function($$v) {
-                                _vm.$set(_vm.user, "role_ids", $$v)
-                              },
-                              expression: "user.role_ids"
-                            }
-                          },
-                          _vm._l(_vm.roles, function(role) {
-                            return _c("el-option", {
-                              key: role.id,
-                              attrs: { value: role.id, label: role.title }
-                            })
-                          }),
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "col--1-1 col--6-10@lg col--order-1@lg col--8-12@xl"
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "form" },
-                  [
-                    _c(
-                      "el-form-item",
-                      {
-                        attrs: {
-                          prop: "name",
-                          label: _vm.trans("liro-users::form.user.name"),
-                          error: _vm.error.name
-                        }
-                      },
-                      [
-                        _c("el-input", {
-                          model: {
-                            value: _vm.user.name,
-                            callback: function($$v) {
-                              _vm.$set(_vm.user, "name", $$v)
-                            },
-                            expression: "user.name"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-form-item",
-                      {
-                        attrs: {
-                          prop: "email",
-                          label: _vm.trans("liro-users::form.user.email"),
-                          error: _vm.error.email
-                        }
-                      },
-                      [
-                        _c("el-input", {
-                          model: {
-                            value: _vm.user.email,
-                            callback: function($$v) {
-                              _vm.$set(_vm.user, "email", $$v)
-                            },
-                            expression: "user.email"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-form-item",
-                      {
-                        attrs: {
-                          prop: "password",
-                          label: _vm.trans("liro-users::form.user.password"),
-                          error: _vm.error.password
-                        }
-                      },
-                      [
-                        _c("el-input", {
-                          attrs: { "show-password": "" },
-                          model: {
-                            value: _vm.user.password,
-                            callback: function($$v) {
-                              _vm.$set(_vm.user, "password", $$v)
-                            },
-                            expression: "user.password"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-form-item",
-                      {
-                        attrs: {
-                          prop: "password_confirm",
-                          label: _vm.trans(
-                            "liro-users::form.user.password_confirm"
-                          ),
-                          error: _vm.error.password_confirm
-                        }
-                      },
-                      [
-                        _c("el-input", {
-                          attrs: { "show-password": "" },
-                          model: {
-                            value: _vm.user.password_confirm,
-                            callback: function($$v) {
-                              _vm.$set(_vm.user, "password_confirm", $$v)
-                            },
-                            expression: "user.password_confirm"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]
-            )
-          ])
-        ]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2cb1f9ea", module.exports)
-  }
-}
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(16)
-/* template */
-var __vue_template__ = __webpack_require__(17)
+var __vue_template__ = __webpack_require__(11)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1676,9 +811,11 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports) {
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -1753,7 +890,7 @@ var errors = {
     state: null, name: null, email: null, password: null, password_confirm: null
 };
 
-window.liro.modules.export('liro-user-create', this.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     data: function data() {
         return _extends({
@@ -1795,7 +932,7 @@ window.liro.modules.export('liro-user-create', this.default = {
 });
 
 /***/ }),
-/* 17 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1804,17 +941,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      directives: [
-        {
-          name: "loading",
-          rawName: "v-loading",
-          value: _vm.load,
-          expression: "load"
-        }
-      ],
-      staticClass: "liro-user-create"
-    },
+    { staticClass: "liro-user-create" },
     [
       _c(
         "portal",
@@ -2067,6 +1194,539 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-38e636bd", module.exports)
+  }
+}
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(13)
+/* template */
+var __vue_template__ = __webpack_require__(14)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/js/user/edit.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2cb1f9ea", Component.options)
+  } else {
+    hotAPI.reload("data-v-2cb1f9ea", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+var errors = {
+    state: null, name: null, email: null, password: null, password_confirm: null
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    data: function data() {
+        return _extends({
+            load: false, error: errors
+        }, this.liro.vue.bind('states', this), this.liro.vue.bind(['user-edit', 'user'], this), this.liro.vue.bind(['role-index', 'roles'], this));
+    },
+
+    methods: {
+
+        updateUser: function updateUser() {
+
+            var url = this.routes.get('liro-users.ajax.user.update', {
+                user: this.user.id
+            });
+
+            this.http.put(url, this.user).then(this.updateUserResponse, this.updateUserError);
+
+            this.error = errors;
+            this.load = true;
+        },
+
+        updateUserResponse: function updateUserResponse(res) {
+            this.$message.success(this.trans('liro-users::message.user.saved'));
+            this.load = false;
+        },
+
+        updateUserError: function updateUserError(res) {
+
+            this.error = $.extend({}, errors, res.data.errors);
+
+            this.load = false;
+        }
+
+    }
+
+});
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      directives: [
+        {
+          name: "loading",
+          rawName: "v-loading",
+          value: _vm.load,
+          expression: "load"
+        }
+      ],
+      staticClass: "liro-user-edit"
+    },
+    [
+      _c(
+        "portal",
+        { attrs: { to: "toolbar-right" } },
+        [
+          _c("app-nav-item", [
+            _c(
+              "a",
+              {
+                attrs: { href: _vm.routes.get("liro-users.admin.user.index") }
+              },
+              [
+                _c("el-button", { attrs: { type: "primary" } }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.trans("form.toolbar.close")) +
+                      "\n                "
+                  )
+                ])
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "app-nav-item",
+            [
+              _c(
+                "el-button",
+                { attrs: { type: "success" }, on: { click: _vm.updateUser } },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.trans("form.toolbar.save")) +
+                      "\n            "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-form",
+        {
+          directives: [
+            {
+              name: "shortkey",
+              rawName: "v-shortkey",
+              value: ["meta", "s"],
+              expression: "['meta', 's']"
+            }
+          ],
+          attrs: { model: _vm.user, "label-position": "top" },
+          nativeOn: {
+            shortkey: function($event) {
+              return _vm.updateUser($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "grid grid--wrap grid--row" }, [
+            _c(
+              "div",
+              { staticClass: "form form__title col--1-1 col--order-0" },
+              [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: _vm.routes.get("liro-users.admin.user.index")
+                    }
+                  },
+                  [
+                    _c("el-button", { attrs: { type: "primary" } }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.trans("form.toolbar.close")) +
+                          "\n                    "
+                      )
+                    ])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-button",
+                  { attrs: { type: "success" }, on: { click: _vm.updateUser } },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.trans("form.toolbar.save")) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "form__sidebar col--1-1 col--4-10@lg col--order-2@lg col--4-12@xl"
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "form" },
+                  [
+                    _c(
+                      "el-form-item",
+                      {
+                        attrs: {
+                          prop: "state",
+                          label: _vm.trans("form.state.label"),
+                          error: _vm.error.state
+                        }
+                      },
+                      [
+                        _c(
+                          "el-radio-group",
+                          {
+                            model: {
+                              value: _vm.user.state,
+                              callback: function($$v) {
+                                _vm.$set(_vm.user, "state", $$v)
+                              },
+                              expression: "user.state"
+                            }
+                          },
+                          _vm._l(_vm.states, function(state) {
+                            return _c(
+                              "el-radio-button",
+                              {
+                                key: state.label,
+                                attrs: { label: state.value }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(_vm.trans(state.label)) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
+                          }),
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-form-item",
+                      {
+                        attrs: {
+                          prop: "state",
+                          label: _vm.trans("liro-users::form.user.roles"),
+                          error: _vm.error.state
+                        }
+                      },
+                      [
+                        _c(
+                          "el-select",
+                          {
+                            attrs: {
+                              multiple: true,
+                              placeholder: _vm.trans(
+                                "liro-users::form.user.select_roles"
+                              )
+                            },
+                            model: {
+                              value: _vm.user.role_ids,
+                              callback: function($$v) {
+                                _vm.$set(_vm.user, "role_ids", $$v)
+                              },
+                              expression: "user.role_ids"
+                            }
+                          },
+                          _vm._l(_vm.roles, function(role) {
+                            return _c("el-option", {
+                              key: role.id,
+                              attrs: { value: role.id, label: role.title }
+                            })
+                          }),
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "form__body col--1-1 col--6-10@lg col--order-1@lg col--8-12@xl"
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "form" },
+                  [
+                    _c(
+                      "el-form-item",
+                      {
+                        attrs: {
+                          prop: "name",
+                          label: _vm.trans("liro-users::form.user.name"),
+                          error: _vm.error.name
+                        }
+                      },
+                      [
+                        _c("el-input", {
+                          model: {
+                            value: _vm.user.name,
+                            callback: function($$v) {
+                              _vm.$set(_vm.user, "name", $$v)
+                            },
+                            expression: "user.name"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-form-item",
+                      {
+                        attrs: {
+                          prop: "email",
+                          label: _vm.trans("liro-users::form.user.email"),
+                          error: _vm.error.email
+                        }
+                      },
+                      [
+                        _c("el-input", {
+                          model: {
+                            value: _vm.user.email,
+                            callback: function($$v) {
+                              _vm.$set(_vm.user, "email", $$v)
+                            },
+                            expression: "user.email"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-form-item",
+                      {
+                        attrs: {
+                          prop: "password",
+                          label: _vm.trans("liro-users::form.user.password"),
+                          error: _vm.error.password
+                        }
+                      },
+                      [
+                        _c("el-input", {
+                          attrs: { "show-password": "" },
+                          model: {
+                            value: _vm.user.password,
+                            callback: function($$v) {
+                              _vm.$set(_vm.user, "password", $$v)
+                            },
+                            expression: "user.password"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-form-item",
+                      {
+                        attrs: {
+                          prop: "password_confirm",
+                          label: _vm.trans(
+                            "liro-users::form.user.password_confirm"
+                          ),
+                          error: _vm.error.password_confirm
+                        }
+                      },
+                      [
+                        _c("el-input", {
+                          attrs: { "show-password": "" },
+                          model: {
+                            value: _vm.user.password_confirm,
+                            callback: function($$v) {
+                              _vm.$set(_vm.user, "password_confirm", $$v)
+                            },
+                            expression: "user.password_confirm"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2cb1f9ea", module.exports)
   }
 }
 

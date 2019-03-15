@@ -15,6 +15,9 @@ Vue.use(Element, { i18n: liro.locales.trans });
 import Component from './components/component';
 Vue.component('app-component', Component);
 
+import Loader from './components/loader';
+Vue.component('app-loader', Loader);
+
 import Layout from './components/layout';
 Vue.component('app-layout', Layout);
 
@@ -48,6 +51,9 @@ Vue.component('app-list-select-all', ListSelectAll);
 import ListPagination from './components/list/pagination';
 Vue.component('app-list-pagination', ListPagination);
 
+import ListBuilder from './components/list-builder';
+Vue.component('app-list-builder', ListBuilder);
+
 Vue.ready(function () {
 
     Vue.prototype.http = axios;
@@ -60,48 +66,52 @@ Vue.ready(function () {
     Vue.prototype.trans = liro.locales.trans;
     Vue.prototype.choice = liro.locales.choice;
 
+    Vue.prototype.empty = function (obj) {
+        return Object.keys(obj).length === 0;
+    };
+
     window.App = new Vue({
 
         mounted: function () {
 
             this.http.interceptors.request.use(
-                this.__request, this.__error
+                this.onRequest, this.onError
             );
 
             this.http.interceptors.response.use(
-                this.__response, this.__error
+                this.onResponse, this.onError
             );
 
         },
 
         methods: {
 
-            __request: function (request) {
-                return request;
+            onRequest: function (req) {
+                return req;
             },
 
-            __response: function (response) {
+            onResponse: function (res) {
 
-                if ( response.data.message !== undefined) {
-                    this.$message.success(response.data.message);
+                if ( res.data.message !== undefined) {
+                    this.$message.success(res.data.message);
                 }
 
-                return response;
+                return res;
             },
 
-            __error: function (error) {
+            onError: function (err) {
 
-                let response = error.response;
+                let res = err.response;
 
-                if ( response.status !== 422) {
-                    this.$message.error(response.data.message);
+                if ( res.status !== 422) {
+                    this.$message.error(res.data.message);
                 }
 
-                $.map(response.data.errors || {}, (value, key) => {
-                    response.data.errors[key] = value.join(',');
+                $.map(res.data.errors || {}, (value, key) => {
+                    res.data.errors[key] = value.join(',');
                 });
 
-                return Promise.reject(response);
+                return Promise.reject(res);
             }
 
         }

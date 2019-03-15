@@ -52776,60 +52776,70 @@ textarea,
 
 .grid--10 {
   width: calc(100% + 10px);
+  margin-bottom: -10px;
   margin-left: -5px;
   margin-right: -5px;
 }
 
 .grid--10 > [class^="col--"],
 .grid--10 > [class*="col--"] {
+  padding-bottom: 10px;
   padding-left: 5px;
   padding-right: 5px;
 }
 
 .grid--20 {
   width: calc(100% + 20px);
+  margin-bottom: -20px;
   margin-left: -10px;
   margin-right: -10px;
 }
 
 .grid--20 > [class^="col--"],
 .grid--20 > [class*="col--"] {
+  padding-bottom: 20px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .grid--30 {
   width: calc(100% + 30px);
+  margin-bottom: -30px;
   margin-left: -15px;
   margin-right: -15px;
 }
 
 .grid--30 > [class^="col--"],
 .grid--30 > [class*="col--"] {
+  padding-bottom: 30px;
   padding-left: 15px;
   padding-right: 15px;
 }
 
 .grid--40 {
   width: calc(100% + 40px);
+  margin-bottom: -40px;
   margin-left: -20px;
   margin-right: -20px;
 }
 
 .grid--40 > [class^="col--"],
 .grid--40 > [class*="col--"] {
+  padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
 }
 
 .grid--60 {
   width: calc(100% + 60px);
+  margin-bottom: -60px;
   margin-left: -30px;
   margin-right: -30px;
 }
 
 .grid--60 > [class^="col--"],
 .grid--60 > [class*="col--"] {
+  padding-bottom: 60px;
   padding-left: 30px;
   padding-right: 30px;
 }
@@ -54245,51 +54255,61 @@ textarea,
   }
   .grid--10\@xs {
     width: calc(100% + 10px);
+    margin-bottom: -10px;
     margin-left: -5px;
     margin-right: -5px;
   }
   .grid--10\@xs > [class^="col--"],
   .grid--10\@xs > [class*="col--"] {
+    padding-bottom: 10px;
     padding-left: 5px;
     padding-right: 5px;
   }
   .grid--20\@xs {
     width: calc(100% + 20px);
+    margin-bottom: -20px;
     margin-left: -10px;
     margin-right: -10px;
   }
   .grid--20\@xs > [class^="col--"],
   .grid--20\@xs > [class*="col--"] {
+    padding-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px;
   }
   .grid--30\@xs {
     width: calc(100% + 30px);
+    margin-bottom: -30px;
     margin-left: -15px;
     margin-right: -15px;
   }
   .grid--30\@xs > [class^="col--"],
   .grid--30\@xs > [class*="col--"] {
+    padding-bottom: 30px;
     padding-left: 15px;
     padding-right: 15px;
   }
   .grid--40\@xs {
     width: calc(100% + 40px);
+    margin-bottom: -40px;
     margin-left: -20px;
     margin-right: -20px;
   }
   .grid--40\@xs > [class^="col--"],
   .grid--40\@xs > [class*="col--"] {
+    padding-bottom: 40px;
     padding-left: 20px;
     padding-right: 20px;
   }
   .grid--60\@xs {
     width: calc(100% + 60px);
+    margin-bottom: -60px;
     margin-left: -30px;
     margin-right: -30px;
   }
   .grid--60\@xs > [class^="col--"],
   .grid--60\@xs > [class*="col--"] {
+    padding-bottom: 60px;
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -55452,51 +55472,61 @@ textarea,
   }
   .grid--10\@sm {
     width: calc(100% + 10px);
+    margin-bottom: -10px;
     margin-left: -5px;
     margin-right: -5px;
   }
   .grid--10\@sm > [class^="col--"],
   .grid--10\@sm > [class*="col--"] {
+    padding-bottom: 10px;
     padding-left: 5px;
     padding-right: 5px;
   }
   .grid--20\@sm {
     width: calc(100% + 20px);
+    margin-bottom: -20px;
     margin-left: -10px;
     margin-right: -10px;
   }
   .grid--20\@sm > [class^="col--"],
   .grid--20\@sm > [class*="col--"] {
+    padding-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px;
   }
   .grid--30\@sm {
     width: calc(100% + 30px);
+    margin-bottom: -30px;
     margin-left: -15px;
     margin-right: -15px;
   }
   .grid--30\@sm > [class^="col--"],
   .grid--30\@sm > [class*="col--"] {
+    padding-bottom: 30px;
     padding-left: 15px;
     padding-right: 15px;
   }
   .grid--40\@sm {
     width: calc(100% + 40px);
+    margin-bottom: -40px;
     margin-left: -20px;
     margin-right: -20px;
   }
   .grid--40\@sm > [class^="col--"],
   .grid--40\@sm > [class*="col--"] {
+    padding-bottom: 40px;
     padding-left: 20px;
     padding-right: 20px;
   }
   .grid--60\@sm {
     width: calc(100% + 60px);
+    margin-bottom: -60px;
     margin-left: -30px;
     margin-right: -30px;
   }
   .grid--60\@sm > [class^="col--"],
   .grid--60\@sm > [class*="col--"] {
+    padding-bottom: 60px;
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -56659,51 +56689,61 @@ textarea,
   }
   .grid--10\@md {
     width: calc(100% + 10px);
+    margin-bottom: -10px;
     margin-left: -5px;
     margin-right: -5px;
   }
   .grid--10\@md > [class^="col--"],
   .grid--10\@md > [class*="col--"] {
+    padding-bottom: 10px;
     padding-left: 5px;
     padding-right: 5px;
   }
   .grid--20\@md {
     width: calc(100% + 20px);
+    margin-bottom: -20px;
     margin-left: -10px;
     margin-right: -10px;
   }
   .grid--20\@md > [class^="col--"],
   .grid--20\@md > [class*="col--"] {
+    padding-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px;
   }
   .grid--30\@md {
     width: calc(100% + 30px);
+    margin-bottom: -30px;
     margin-left: -15px;
     margin-right: -15px;
   }
   .grid--30\@md > [class^="col--"],
   .grid--30\@md > [class*="col--"] {
+    padding-bottom: 30px;
     padding-left: 15px;
     padding-right: 15px;
   }
   .grid--40\@md {
     width: calc(100% + 40px);
+    margin-bottom: -40px;
     margin-left: -20px;
     margin-right: -20px;
   }
   .grid--40\@md > [class^="col--"],
   .grid--40\@md > [class*="col--"] {
+    padding-bottom: 40px;
     padding-left: 20px;
     padding-right: 20px;
   }
   .grid--60\@md {
     width: calc(100% + 60px);
+    margin-bottom: -60px;
     margin-left: -30px;
     margin-right: -30px;
   }
   .grid--60\@md > [class^="col--"],
   .grid--60\@md > [class*="col--"] {
+    padding-bottom: 60px;
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -57866,51 +57906,61 @@ textarea,
   }
   .grid--10\@lg {
     width: calc(100% + 10px);
+    margin-bottom: -10px;
     margin-left: -5px;
     margin-right: -5px;
   }
   .grid--10\@lg > [class^="col--"],
   .grid--10\@lg > [class*="col--"] {
+    padding-bottom: 10px;
     padding-left: 5px;
     padding-right: 5px;
   }
   .grid--20\@lg {
     width: calc(100% + 20px);
+    margin-bottom: -20px;
     margin-left: -10px;
     margin-right: -10px;
   }
   .grid--20\@lg > [class^="col--"],
   .grid--20\@lg > [class*="col--"] {
+    padding-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px;
   }
   .grid--30\@lg {
     width: calc(100% + 30px);
+    margin-bottom: -30px;
     margin-left: -15px;
     margin-right: -15px;
   }
   .grid--30\@lg > [class^="col--"],
   .grid--30\@lg > [class*="col--"] {
+    padding-bottom: 30px;
     padding-left: 15px;
     padding-right: 15px;
   }
   .grid--40\@lg {
     width: calc(100% + 40px);
+    margin-bottom: -40px;
     margin-left: -20px;
     margin-right: -20px;
   }
   .grid--40\@lg > [class^="col--"],
   .grid--40\@lg > [class*="col--"] {
+    padding-bottom: 40px;
     padding-left: 20px;
     padding-right: 20px;
   }
   .grid--60\@lg {
     width: calc(100% + 60px);
+    margin-bottom: -60px;
     margin-left: -30px;
     margin-right: -30px;
   }
   .grid--60\@lg > [class^="col--"],
   .grid--60\@lg > [class*="col--"] {
+    padding-bottom: 60px;
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -59073,51 +59123,61 @@ textarea,
   }
   .grid--10\@xl {
     width: calc(100% + 10px);
+    margin-bottom: -10px;
     margin-left: -5px;
     margin-right: -5px;
   }
   .grid--10\@xl > [class^="col--"],
   .grid--10\@xl > [class*="col--"] {
+    padding-bottom: 10px;
     padding-left: 5px;
     padding-right: 5px;
   }
   .grid--20\@xl {
     width: calc(100% + 20px);
+    margin-bottom: -20px;
     margin-left: -10px;
     margin-right: -10px;
   }
   .grid--20\@xl > [class^="col--"],
   .grid--20\@xl > [class*="col--"] {
+    padding-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px;
   }
   .grid--30\@xl {
     width: calc(100% + 30px);
+    margin-bottom: -30px;
     margin-left: -15px;
     margin-right: -15px;
   }
   .grid--30\@xl > [class^="col--"],
   .grid--30\@xl > [class*="col--"] {
+    padding-bottom: 30px;
     padding-left: 15px;
     padding-right: 15px;
   }
   .grid--40\@xl {
     width: calc(100% + 40px);
+    margin-bottom: -40px;
     margin-left: -20px;
     margin-right: -20px;
   }
   .grid--40\@xl > [class^="col--"],
   .grid--40\@xl > [class*="col--"] {
+    padding-bottom: 40px;
     padding-left: 20px;
     padding-right: 20px;
   }
   .grid--60\@xl {
     width: calc(100% + 60px);
+    margin-bottom: -60px;
     margin-left: -30px;
     margin-right: -30px;
   }
   .grid--60\@xl > [class^="col--"],
   .grid--60\@xl > [class*="col--"] {
+    padding-bottom: 60px;
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -61239,22 +61299,11 @@ textarea,
   background: #f5f7fa;
 }
 
-.loader {
-  z-index: -10;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
 .loader__container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 220px;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  position: relative;
+  padding: 5% 0;
+  margin: 0 auto;
+  max-width: 220px;
 }
 
 .loader__logo {
@@ -61291,6 +61340,37 @@ textarea,
           animation: ease-in slide 2s infinite;
 }
 
+.loader__text {
+  margin-top: 1rem;
+  text-align: center;
+  color: #909399;
+  font-size: 13px;
+}
+
+@-webkit-keyframes skeleton-loader {
+  0% {
+    background-position: -100vw;
+  }
+  50% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 100vw;
+  }
+}
+
+@keyframes skeleton-loader {
+  0% {
+    background-position: -100vw;
+  }
+  50% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 100vw;
+  }
+}
+
 @-webkit-keyframes slide {
   0% {
     -webkit-transform: translateX(-100%) scaleX(0);
@@ -61319,6 +61399,18 @@ textarea,
     -webkit-transform: translateX(100%) scaleX(0);
             transform: translateX(100%) scaleX(0);
   }
+}
+
+.component > .el-loading-mask {
+  -webkit-transition: opacity 0s !important;
+  transition: opacity 0s !important;
+}
+
+.component.is-root {
+  border-radius: 4px;
+  background: #ffffff;
+  -webkit-box-shadow: 0 1px 3px rgba(19, 20, 29, 0.05);
+          box-shadow: 0 1px 3px rgba(19, 20, 29, 0.05);
 }
 
 .layout {
@@ -61508,18 +61600,6 @@ textarea,
   color: #5d90fb;
 }
 
-.table {
-  margin-bottom: 20px;
-  background: #ffffff;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 1px 3px rgba(19, 20, 29, 0.05);
-          box-shadow: 0 1px 3px rgba(19, 20, 29, 0.05);
-}
-
-.table:last-child {
-  margin-bottom: 0;
-}
-
 .table .table__td {
   padding: 20px 16px;
 }
@@ -61594,13 +61674,47 @@ textarea,
   background: #fafbfd;
 }
 
+.list-filter__popover.el-popover .el-checkbox-group {
+  padding: 12px 16px;
+  max-height: 190px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.list-filter__popover.el-popover .el-checkbox:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.list-filter__reset {
+  border-top: 1px solid #EBEEF5;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 13px;
+}
+
+.list-filter__reset.list-filter__reset--disabled a {
+  cursor: not-allowed;
+  color: #909399;
+}
+
 .form {
-  margin-bottom: 20px;
   padding: 18px 22px;
-  background: #ffffff;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 1px 3px rgba(19, 20, 29, 0.05);
-          box-shadow: 0 1px 3px rgba(19, 20, 29, 0.05);
+}
+
+.form__title {
+  border-bottom: 1px solid #EBEEF5;
+}
+
+.form__sidebar {
+  border: 0 solid #EBEEF5;
+  border-bottom-width: 1px;
+}
+
+@media screen and (min-width: 1024px) {
+  .form__sidebar {
+    border-bottom-width: 0;
+    border-left-width: 1px;
+  }
 }
 
 .el-tabs__nav-wrap::after {
@@ -61672,6 +61786,10 @@ textarea,
   line-height: 1.3;
 }
 
+.el-pagination__editor.el-input {
+  margin-left: 10px;
+}
+
 .list {
   list-style-type: none;
   line-height: 1.2;
@@ -61719,6 +61837,10 @@ textarea,
 
 .liro-auth-login__link {
   font-size: 13px;
+}
+
+[v-cloak] {
+  display: none;
 }
 
 * {

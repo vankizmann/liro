@@ -1,18 +1,9 @@
-.loader {
-    z-index: -10;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
 
 .loader__container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 220px;
-    transform: translate(-50%, -50%);
+    position: relative;
+    padding: 5% 0;
+    margin: 0 auto;
+    max-width: 220px;
 }
 
 .loader__logo {
@@ -26,6 +17,7 @@
     width: 100%;
     height: auto;
 }
+
 
 .loader__spinner {
     overflow: hidden;
@@ -46,6 +38,29 @@
     border-radius: 3px;
     background: rgba($--color-primary, 0.8);
     animation: ease-in slide 2s infinite;
+}
+
+.loader__text {
+    margin-top: 1rem;
+    text-align: center;
+    color: $--color-text-secondary;
+    font-size: $--font-size-small;
+}
+
+@keyframes skeleton-loader {
+
+    0% {
+        background-position: -100vw;
+    }
+
+    50% {
+        background-position: 0;
+    }
+
+    100% {
+        background-position: 100vw;
+    }
+
 }
 
 @keyframes slide {

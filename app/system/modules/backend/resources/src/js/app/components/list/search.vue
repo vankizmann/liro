@@ -31,7 +31,7 @@ export default {
 
         placeholder: {
             default: function () {
-                return '';
+                return this.trans('el.search.placeholder');
             },
             type: String
         },

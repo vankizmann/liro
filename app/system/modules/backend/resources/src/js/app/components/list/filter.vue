@@ -1,12 +1,12 @@
 <template>
 
-<div class="app-list-filter">
+<div class="list-filter">
 
-    <el-popover width="200" trigger="click">
+    <el-popover popper-class="list-filter__popover" width="200" trigger="click">
 
         <!-- Label start -->
         <a slot="reference" href="javascript:void(0)" :class="{ 'filter__title--active': values.length != 0 }">
-            <i class="el-icon-arrow-down"></i> <span v-if="$slots.default"><slot></slot></span>
+            <i class="el-icon-arrow-down"></i> <span><slot>{{ label }}</slot></span>
         </a>
         <!-- Label end -->
 
@@ -18,9 +18,12 @@
             </template>
         </el-checkbox-group>
 
-        <a :class="{ 'filter__reset-disabled': values.length == 0 }" href="javascript:void(0)" @click="resetFilter">
-            <span>{{ trans('form.list.reset') }}</span>
-        </a>
+        <div :class="{ 'list-filter__reset': true, 'list-filter__reset--disabled': values.length === 0 }">
+            <a href="javascript:void(0)" @click="resetFilter">
+                <span>{{ trans('el.table.resetFilter') }}</span>
+            </a>
+        </div>
+
 
     </el-popover>
 

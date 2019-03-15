@@ -4,12 +4,12 @@
 
     <div class="grid grid--row">
         <div class="col--flex-0 col--left">
-            <el-select size="small" v-model="limit" @change="changeLimit(limit)" style="width: 75px;">
+            <el-select size="small" :popper-append-to-body="false" v-model="limit" @change="changeLimit(limit)" style="width: 75px;">
                 <el-option v-for="(option, index) in options" :key="index" :value="option">{{ option }}</el-option>
             </el-select>
         </div>
         <div class="col--flex-0 col--right">
-            <el-pagination @current-change="changePage" :current-page="config.page" :page-size.sync="limit" layout="prev, pager, next" :total="config.count" :background="true" />
+            <el-pagination @current-change="changePage" :current-page="config.page" :page-size.sync="limit" layout="prev, pager, next, jumper" :total="config.count" :background="false" />
         </div>
     </div>
     

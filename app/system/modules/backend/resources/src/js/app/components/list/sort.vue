@@ -4,7 +4,7 @@
     <!-- Label start -->
     <a href="javascript:void(0)" :class="{ 'uk-text-nowrap': true, 'uk-active': column === config.column }" @click="setOrder">
         <i :uk-icon="config.direction === 'asc' ? 'sort-amount-up' : 'sort-amount-down'"></i>
-        <span v-if="$slots.default"><slot></slot></span>
+        <span><slot>{{ label }}</slot></span>
     </a>
     <!-- Label end -->
 </div>

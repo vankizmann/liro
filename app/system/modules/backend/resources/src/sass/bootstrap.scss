@@ -78,6 +78,10 @@ $--notification-radius: $--border-radius-base * 1.5;
 @import "./theme/index";
 @import "./liro/index";
 
+[v-cloak] {
+    display: none;
+}
+
 * {
     outline: none !important;
 }

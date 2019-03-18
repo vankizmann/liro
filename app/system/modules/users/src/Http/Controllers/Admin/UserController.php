@@ -16,8 +16,9 @@ class UserController extends Controller
 
     public function index(User $user, Role $role)
     {
-        asset()->store('user-index', $user->all());
-        asset()->store('role-index', $role->all());
+        asset()->store([
+            'user-index' => $user->all(), 'role-index' =>  $role->all()
+        ]);
 
         return view('liro-users::user/index');
     }
@@ -28,10 +29,9 @@ class UserController extends Controller
             'password' => '', 'password_confirm' => ''
         ]);
 
-        asset()->store('user-edit', $user);
-        asset()->store('role-index', $role->all());
-
-        // $user->password = '';
+        asset()->store([
+            'user-create' => $user, 'role-index' => $role->all()
+        ]);
 
         return view('liro-users::user/create');
     }
@@ -42,8 +42,9 @@ class UserController extends Controller
             'password' => '', 'password_confirm' => ''
         ]);
 
-        asset()->store('user-edit', $user);
-        asset()->store('role-index', $role->all());
+        asset()->store([
+            'user-edit' => $user, 'role-index' => $role->all()
+        ]);
 
         return view('liro-users::user/edit');
     }

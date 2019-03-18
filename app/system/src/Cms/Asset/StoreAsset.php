@@ -14,9 +14,17 @@ class StoreAsset implements AssetInterface
         $this->stores = new Collection();
     }
 
-    public function add($name, $data)
+    public function add($stores, $data = null)
     {
-        $this->stores->put($name, $data);
+        if ( ! is_array($stores) ) {
+            $stores = [$stores => $data];
+        }
+
+        foreach ( $stores as $key => $value ) {
+            $this->stores->put($key, $value);
+        }
+
+        return $this;
     }
 
     public function render()

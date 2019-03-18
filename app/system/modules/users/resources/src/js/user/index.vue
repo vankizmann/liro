@@ -1,6 +1,6 @@
 <template>
 
-    <app-loader :load="loadUsers === true && loadRoles === true">
+    <app-loader :load="loadUsers || loadRoles">
         <app-list-builder :list="this.users" :columns="this.columns" :search="['name', 'email']" :selected.sync="selected">
             <template slot="column.name" slot-scope="{ item }">
                 <a :href="routes.get('liro-users.admin.user.edit', { user: item.id })">
@@ -26,19 +26,19 @@
                 {
                     type: 'order',
                     prop: 'name',
-                    label: this.trans('Name'),
+                    label: this.trans('liro-users::form.user.name'),
                     class: 'col--1-3'
                 },
                 {
                     type: 'order',
                     prop: 'email',
-                    label: this.trans('Email'),
+                    label: this.trans('liro-users::form.user.email'),
                     class: 'col--1-3'
                 },
                 {
                     type: 'filter',
                     prop: 'role_ids',
-                    label: this.trans('Roles'),
+                    label: this.trans('liro-users::form.user.roles'),
                     class: 'col--1-3',
                     filter: {
                         data: () => this.roles, label: 'title', value: 'id'
@@ -46,15 +46,20 @@
                 },
                 {
                     type: 'order',
-                    label: this.trans('Id'),
+                    label: this.trans('liro-users::form.user.id'),
                     prop: 'id',
                     class: 'table__td--sm text--center'
                 }
             ];
 
             return {
+                // Loading states
                 loadUsers: false, loadRoles: false,
+
+                // List data
                 action: '', selected: [], columns: columns,
+
+                // Component bindings
                 ...this.liro.vue.bind(['state-index', 'states'], this),
                 ...this.liro.vue.bind(['user-index', 'users'], this),
                 ...this.liro.vue.bind(['role-index', 'roles'], this)

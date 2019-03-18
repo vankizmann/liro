@@ -645,17 +645,17 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         }, {
             type: 'order',
             prop: 'name',
-            label: this.trans('Name'),
+            label: this.trans('liro-users::form.user.name'),
             class: 'col--1-3'
         }, {
             type: 'order',
             prop: 'email',
-            label: this.trans('Email'),
+            label: this.trans('liro-users::form.user.email'),
             class: 'col--1-3'
         }, {
             type: 'filter',
             prop: 'role_ids',
-            label: this.trans('Roles'),
+            label: this.trans('liro-users::form.user.roles'),
             class: 'col--1-3',
             filter: {
                 data: function data() {
@@ -664,14 +664,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }
         }, {
             type: 'order',
-            label: this.trans('Id'),
+            label: this.trans('liro-users::form.user.id'),
             prop: 'id',
             class: 'table__td--sm text--center'
         }];
 
         return _extends({
+            // Loading states
             loadUsers: false, loadRoles: false,
+
+            // List data
             action: '', selected: [], columns: columns
+
         }, this.liro.vue.bind(['state-index', 'states'], this), this.liro.vue.bind(['user-index', 'users'], this), this.liro.vue.bind(['role-index', 'roles'], this));
     },
 
@@ -713,7 +717,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "app-loader",
-    { attrs: { load: _vm.loadUsers === true && _vm.loadRoles === true } },
+    { attrs: { load: _vm.loadUsers || _vm.loadRoles } },
     [
       _c("app-list-builder", {
         attrs: {

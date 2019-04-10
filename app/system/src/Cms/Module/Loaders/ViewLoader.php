@@ -2,6 +2,7 @@
 
 namespace Liro\System\Cms\Module\Loaders;
 
+use Illuminate\Support\Facades\View;
 use Liro\System\Cms\Module\BaseModule;
 
 class ViewLoader implements LoaderInterface
@@ -13,8 +14,8 @@ class ViewLoader implements LoaderInterface
 
         if ( $module->type === 'theme' ) {
 
-            foreach ( app('view')->getFinder()->getHints() as $namespace => $hint ) {
-                app('view')->prependNamespace($namespace,
+            foreach ( View::getFinder()->getHints() as $namespace => $hint ) {
+                View::prependNamespace($namespace,
                     str_join('/', $path, 'vendor', $namespace));
             }
 

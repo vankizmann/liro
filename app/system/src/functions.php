@@ -1,5 +1,20 @@
 <?php
 
+if ( ! function_exists('dc') ) {
+
+    function dc()
+    {
+        $arguments = [];
+
+        foreach ( func_get_args() as $argument ) {
+            array_push($arguments, $argument, get_class_methods($argument));
+        }
+
+        dump(...$arguments);
+    }
+
+}
+
 if ( ! function_exists('ddc') ) {
 
     function ddc()
@@ -10,7 +25,7 @@ if ( ! function_exists('ddc') ) {
             array_push($arguments, $argument, get_class_methods($argument));
         }
 
-        dd(...$arguments);
+        dump(...$arguments); die();
     }
 
 }

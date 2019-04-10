@@ -200,8 +200,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Image' => Intervention\Image\Facades\Image::class
-
+        'Web' => Liro\System\Cms\Facades\Web::class,
+        'Installer' => Liro\System\Cms\Facades\Installer::class,
+        'Modules' => Liro\System\Cms\Facades\Modules::class,
+        'Routes' => Liro\System\Cms\Facades\Routes::class,
+        'Assets' => Liro\System\Cms\Facades\Assets::class,
     ],
 
 ];

@@ -24,6 +24,13 @@ class PolicySeeds
         ]);
 
         Policy::create([
+            'title'  => 'Allow all methods in admin dashboard controller',
+            'class'  => \Liro\Extension\System\Http\Controllers\Admin\DashboardController::class,
+            'method' => '*',
+            'depth'  => 0,
+        ]);
+
+        Policy::create([
             'title'  => 'Allow all methods in admin users controller',
             'class'  => \Liro\Extension\Users\Http\Controllers\Admin\UserController::class,
             'method' => '*',

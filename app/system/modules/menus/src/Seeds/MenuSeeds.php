@@ -32,8 +32,7 @@ class MenuSeeds
             'hide'          => 0,
             'title'         => 'Dashboard',
             'slug'          => '/',
-            'module'        => 'liro-test.user.test.test',
-            'icon'          => 'tachometer',
+            'module'        => 'liro-system.admin.dashboard.index',
             'domain_id'     => 1
         ]);
 
@@ -43,7 +42,6 @@ class MenuSeeds
             'title'         => 'liro-users::admin.user.index',
             'slug'          => 'users',
             'module'        => 'liro-menus.user.redirect.menu',
-            'icon'          => 'users',
             'domain_id'     => 1
         ]);
 
@@ -53,7 +51,6 @@ class MenuSeeds
             'title'         => 'liro-users::admin.user.index',
             'slug'          => 'users',
             'module'        => 'liro-users.admin.user.index',
-            'icon'          => 'user-plus',
             'domain_id'     => 1,
             'parent_id'     => $menu_backend_users_alias->id
         ]);
@@ -88,7 +85,6 @@ class MenuSeeds
             'title'         => 'liro-users::admin.role.index',
             'slug'          => 'roles',
             'module'        => 'liro-users.admin.role.index',
-            'icon'          => 'user-shield',
             'domain_id'     => 1,
             'parent_id'     => $menu_backend_users_alias->id
         ]);
@@ -119,7 +115,6 @@ class MenuSeeds
             'title'         => 'liro-menus::admin.menu.index',
             'slug'          => 'menus',
             'module'        => 'liro-menus.user.redirect.menu',
-            'icon'          => 'compass',
             'domain_id'     => 1
         ]);
 
@@ -129,7 +124,6 @@ class MenuSeeds
             'title'         => 'liro-menus::admin.menu.index',
             'slug'          => 'menus',
             'module'        => 'liro-menus.admin.menu.index',
-            'icon'          => 'bars',
             'domain_id'     => 1,
             'parent_id'     => $menu_backend_menus_alias->id
         ]);
@@ -164,7 +158,6 @@ class MenuSeeds
             'title'         => 'liro-menus::admin.type.index',
             'slug'          => 'types',
             'module'        => 'liro-menus.admin.type.index',
-            'icon'          => 'layer-group',
             'domain_id'     => 1,
             'parent_id'     => $menu_backend_menus_alias->id
         ]);
@@ -195,7 +188,6 @@ class MenuSeeds
             'title'         => 'liro-pages::page.page_index',
             'slug'          => 'pages',
             'module'        => 'liro-pages.admin.page.index',
-            'icon'          => 'file',
             'domain_id'     => 1
         ]);
 
@@ -205,7 +197,6 @@ class MenuSeeds
             'title'         => 'Media',
             'slug'          => 'media',
             'module'        => 'liro-media.admin.folder.index',
-            'icon'          => 'camera',
             'domain_id'     => 1
         ]);
 
@@ -215,7 +206,6 @@ class MenuSeeds
             'title'         => 'System',
             'slug'          => 'system',
             'module'        => 'liro-modules.admin.system.index',
-            'icon'          => 'cog',
             'domain_id'     => 1
         ]);
 
@@ -225,7 +215,6 @@ class MenuSeeds
             'title'         => 'liro-languages::admin.language.index',
             'slug'          => 'languages',
             'module'        => 'liro-languages.admin.language.index',
-            'icon'          => 'globe',
             'domain_id'     => 1
         ], $menu_backend_system);
 

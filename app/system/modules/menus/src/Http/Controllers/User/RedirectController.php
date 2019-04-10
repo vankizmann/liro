@@ -1,28 +1,28 @@
 <?php
 
-namespace Liro\Menus\Controllers\User;
+namespace Liro\Extension\Menus\Http\Controllers\User;
 
 use Liro\Extension\Menus\Models\Menu;
+use Liro\System\Cms\Facades\Web;
 
 class RedirectController extends \Liro\System\Http\Controller
 {
 
     public function menu(Menu $menu)
     {
-        parse_str(app()->getMenuKey('query', ''), $params);
 
-        if ( ! array_key_exists('menu', $params) ) {
+        $id = Web::getMenuAttr('query.menu');
+
+        if ( $id === null ) {
             throw new \Exception('Redirect requires a menu parameter.');
         }
 
-        return redirect()->to(
-            $menu->findOrFail($params['menu'])->route_prefix
-        );
+        return redirect()->to($menu->findOrFail($id)->route);
     }
 
     public function url()
     {
-        parse_str(app()->getMenuKey('query', ''), $params);
+        parse_str(Web::getMenuAttr('query', ''), $params);
 
         if ( ! array_key_exists('url', $params) ) {
             throw new \Exception('Redirect requires a url parameter.');

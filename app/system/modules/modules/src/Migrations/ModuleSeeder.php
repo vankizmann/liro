@@ -15,10 +15,10 @@ class ModuleSeeder
             'extension' => 'system-theme'
         ]);
 
-//        Module::create([
-//            'state'     => 1,
-//            'extension' => 'liro-languages'
-//        ]);
+        Module::create([
+            'state'     => 1,
+            'extension' => 'liro-system'
+        ]);
 //
 //        Module::create([
 //            'state'     => 1,

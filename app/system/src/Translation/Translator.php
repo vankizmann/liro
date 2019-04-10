@@ -74,7 +74,7 @@ class Translator extends \Illuminate\Translation\Translator
             $groups = array_filter($files);
         }
 
-        if ( isset($groups) == false ) {
+        if ( isset($groups) === false ) {
             $groups = [$group];
         }
 

@@ -34,15 +34,16 @@ class ViewServiceProvider extends ServiceProvider
     public function themeDirective($html)
     {
         // Theme directive pattern
-        $pattern = '/@theme\(\'?\"?(.*?)\"?\'?\)/';
+        $pattern = '/@theme\(\'?\"?(.*?)?\"?\'?\)/';
 
         $html = preg_replace_callback($pattern, function ($match) {
 
             // Use match if not null
-            $layout = $match[1] === 'null' ?
+            $layout = $match[1] === 'null' || $match[1] === '' ?
                 $this->app['cms']->getLayout() : $match[1];
 
             return "@extends('" . str_join('/', 'layouts', $layout) . "')";
+
         }, $html);
 
         return $html;

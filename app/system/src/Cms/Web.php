@@ -2,6 +2,7 @@
 
 namespace Liro\System\Cms;
 
+use Illuminate\Support\Facades\App;
 use Liro\System\Cms\Helpers\RouteHelper;
 use Liro\System\Cms\Managers\AssetManager;
 use Liro\System\Cms\Managers\ModuleManager;
@@ -17,27 +18,27 @@ class Web
 
     public function boot()
     {
-        $assets = app()->make(AssetManager::class);
+        $assets = App::make(AssetManager::class);
 
-        app()->singleton('cms.assets', function () use ($assets) {
+        App::singleton('cms.assets', function () use ($assets) {
             return $assets;
         });
 
-        $routes = app()->make(RouteManager::class);
+        $routes = App::make(RouteManager::class);
 
-        app()->singleton('cms.routes', function () use ($routes) {
+        App::singleton('cms.routes', function () use ($routes) {
             return $routes;
         });
 
-        $routesHelper = app()->make(RouteHelper::class);
+        $routesHelper = App::make(RouteHelper::class);
 
-        app()->singleton('cms.routes.helper', function () use ($routesHelper) {
+        App::singleton('cms.routes.helper', function () use ($routesHelper) {
             return $routesHelper;
         });
 
-        $modules = app()->make(ModuleManager::class);
+        $modules = App::make(ModuleManager::class);
 
-        app()->singleton('cms.modules', function () use ($modules) {
+        App::singleton('cms.modules', function () use ($modules) {
             return $modules;
         });
 
@@ -63,20 +64,20 @@ class Web
             $modules->loadModule($name);
         }
 
-        app()->booted(function () {
-            app()->load();
+        App::booted(function () {
+            App::load();
         });
 
-        app()->loaded(function () {
+        App::loaded(function () {
             app('cms.modules')->refreshModules();
         });
 
-        app()->loaded(function () {
+        App::loaded(function () {
             app('cms.routes')->boot();
         });
 
-        app()->loaded(function () {
-//            dd(app(), app('cms'), app('view'));
+        App::loaded(function () {
+            # dd(app('cms')->getDomainAttr('config'), app('cms')->getDomainAttr('config.login.redirect'));
         });
 
     }

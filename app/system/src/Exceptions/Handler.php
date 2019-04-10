@@ -32,7 +32,7 @@ class Handler extends \Illuminate\Foundation\Exceptions\Handler
      *
      * @param \Exception  $exception
      * @throws \Exception
-     * @return void
+     * @return mixed
      */
     public function report(Exception $exception)
     {
@@ -48,49 +48,28 @@ class Handler extends \Illuminate\Foundation\Exceptions\Handler
      */
     public function render($request, Exception $exception)
     {
-        $theme = null; //app()->getTheme();
+        $statusCode = method_exists($exception, 'getStatusCode') ?
+            $exception->getStatusCode() : 0;
 
-//        if (
-//            $exception instanceof AuthorizationException ||
-//            $exception instanceof AuthenticationException ||
-//            $exception instanceof AccessDeniedHttpException
-//        ) {
-//            if ( ! $request->expectsJson() ) {
-//                return response()->view(config('cms.403'), [], 403);
-//            } else {
-//                return response()->json([ 'message' => '403 Forbidden' ], 403);
-//            }
-//        }
-//
-//        if (
-//            $exception instanceof NotFoundHttpException
-//        ) {
-//            if ( ! $request->expectsJson() ) {
-//                return response()->view(config('cms.404'), [], 404);
-//            } else {
-//                return response()->json([ 'message' => '404 Not Found' ], 404);
-//            }
-//        }
-//
-//        if ( $exception instanceof TokenMismatchException ) {
-//            if ( ! $request->expectsJson() ) {
-//                return response()->view(config('cms.419'), [], 419);
-//            } else {
-//                return response()->json([ 'message' => '419 Token Mismatch' ], 419);
-//            }
-//        }
+        if ( $exception->getCode() === 403 || $statusCode === 403 ) {
+            return response()->view("errors/403", [
+                'statusCode' => $statusCode, 'exception' => $exception
+            ], 403);
+        }
 
-        $debug = config('app.debug');
+        if ( $exception->getCode() === 404 || $statusCode === 404 ) {
+            return response()->view("errors/404", [
+                'statusCode' => $statusCode, 'exception' => $exception
+            ], 404);
+        }
 
-        if ( $debug == true ) {
+        if ( config('app.debug') == true ) {
             return parent::render($request, $exception);
         }
 
-        if ( $request->expectsJson() ) {
-            return response()->json([ 'message' => '500 Internal Server Error' ], 500);
-        }
-        
-        return response()->view(config('cms.500'));
+        return response()->view("errors/500", [
+            'statusCode' => $statusCode, 'exception' => $exception
+        ], 500);
     }
 
 }

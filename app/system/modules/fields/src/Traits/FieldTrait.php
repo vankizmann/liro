@@ -6,12 +6,12 @@ use Liro\Extension\Fields\Helpers\FieldHelper;
 
 trait FieldTrait
 {
-//     public function getAttributes()
-//     {
-//         return array_filter(parent::getAttributes(), function ($key) {
-//             return in_array($key, $this->getTableColumns());
-//         }, ARRAY_FILTER_USE_KEY);
-//     }
+     public function getAttributes()
+     {
+         return array_filter($this->attributes, function ($key) {
+             return ! in_array($key, $this->getFields());
+         }, ARRAY_FILTER_USE_KEY);
+     }
 
     public function getFillable()
     {
@@ -30,7 +30,7 @@ trait FieldTrait
     public function setAttribute($key, $value)
     {
         if ( in_array($key, $this->getFields()) && ! $this->hasSetMutator($key) ) {
-            return FieldHelper::setModel($this, $key, $value);
+            return FieldHelper::setModel($this, $key, $this->setCastAttribute($key, $value));
         }
 
         return parent::setAttribute($key, $value);
@@ -39,7 +39,7 @@ trait FieldTrait
     public function getAttribute($key)
     {
         if ( in_array($key, $this->getFields()) && ! $this->hasGetMutator($key) ) {
-            return FieldHelper::getModel($this, $key, null);
+            return $this->castAttribute($key, FieldHelper::getModel($this, $key, null));
         }
 
         return parent::getAttribute($key);

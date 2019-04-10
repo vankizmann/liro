@@ -3,8 +3,8 @@
 namespace Liro\Extension\Menus\Models;
 
 use Kalnoy\Nestedset\NodeTrait;
-use Liro\System\Database\Model;
 use Liro\Extension\Fields\Traits\FieldTrait;
+use Liro\System\Database\Model;
 use Liro\System\Database\Traits\StateTrait;
 
 class Menu extends Model
@@ -22,7 +22,7 @@ class Menu extends Model
     ];
 
     protected $fields = [
-        'icon'
+        'config'
     ];
 
     protected $hidden = [
@@ -38,6 +38,7 @@ class Menu extends Model
         'query'         => null,
         'layout'        => null,
         'locale'        => null,
+        'config'        => null,
         'domain_id'     => null
     ];
 
@@ -47,9 +48,10 @@ class Menu extends Model
         'title'         => 'string',
         'slug'          => 'string',
         'module'        => 'string',
-        'query'         => 'string',
+        'query'         => 'params',
         'layout'        => 'string',
         'locale'        => 'string',
+        'config'        => 'array',
         'domain_id'     => 'integer'
     ];
 
@@ -65,12 +67,13 @@ class Menu extends Model
 
     public function getRouteAttribute()
     {
-        return str_join('/', $this->parent ? $this->parent->route : $this->domain->route, $this->slug);
+        return str_join('/', $this->parent ? $this->parent->route :
+            $this->domain->route, $this->slug);
     }
 
     public function getActiveAttribute()
     {
-        return app('cms')->getMenu() && app('cms')->getMenu()->get('id') === $this->id;
+        return app('cms')->getMenuAttr('id') === $this->id;
     }
 
 }

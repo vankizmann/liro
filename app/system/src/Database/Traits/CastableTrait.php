@@ -4,6 +4,27 @@ namespace Liro\System\Database\Traits;
 
 trait CastableTrait
 {
+
+    protected function setCastAttribute($key, $value)
+    {
+        if ( $this->getCastType($key) == 'object' && is_object($value) ) {
+            return json_encode($value);
+        }
+
+        if ( $this->getCastType($key) == 'array' && is_array($value) ) {
+            return json_encode($value);
+        }
+
+        if ( $this->getCastType($key) == 'params' && is_object($value) ) {
+            return http_build_query($value);
+        }
+
+        if ( $this->getCastType($key) == 'params' && is_array($value) ) {
+            return http_build_query($value);
+        }
+
+        return $value;
+    }
     /**
      * Cast an attribute to a native PHP type.
      *
@@ -13,8 +34,28 @@ trait CastableTrait
      */
     protected function castAttribute($key, $value)
     {
+        if ( $this->getCastType($key) == 'object' && is_null($value) ) {
+            return new \StdClass();
+        }
+
+        if ( $this->getCastType($key) == 'object' && is_string($value) ) {
+            return json_decode($value, false);
+        }
+
         if ( $this->getCastType($key) == 'array' && is_null($value) ) {
             return [];
+        }
+
+        if ( $this->getCastType($key) == 'array' && is_string($value) ) {
+            return json_decode($value, true);
+        }
+
+        if ( $this->getCastType($key) == 'params' && is_null($value) ) {
+            return [];
+        }
+
+        if ( $this->getCastType($key) == 'params' && is_string($value) ) {
+            parse_str($value, $result); return $result;
         }
 
         if ( $this->getCastType($key) == 'string' && is_null($value) ) {

@@ -2,12 +2,13 @@
 
 namespace Liro\Extension\Menus\Models;
 
+use Liro\Extension\Fields\Traits\FieldTrait;
 use Liro\System\Database\Model;
 use Liro\System\Database\Traits\StateTrait;
 
 class Domain extends Model
 {
-    use StateTrait;
+    use StateTrait, FieldTrait;
 
     protected $table = 'domains';
 
@@ -19,12 +20,17 @@ class Domain extends Model
         'active'
     ];
 
+    protected $fields = [
+        'config'
+    ];
+
     protected $attributes = [
         'state'         => null,
         'entry'         => null,
         'title'         => null,
         'route'         => null,
-        'theme'         => null
+        'theme'         => null,
+        'config'        => null
     ];
 
     protected $casts = [
@@ -33,6 +39,7 @@ class Domain extends Model
         'title'         => 'string',
         'route'         => 'string',
         'theme'         => 'string',
+        'config'        => 'array',
     ];
 
     public function menus()
@@ -52,7 +59,7 @@ class Domain extends Model
 
     public function getActiveAttribute()
     {
-        return app('cms')->getDomain() && app('cms')->getDomain()->get('id') === $this->attributes['id'];
+        return app('cms')->getDomainAttr('id') === $this->attributes['id'];
     }
 
 }

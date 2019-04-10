@@ -2,9 +2,13 @@
 
 namespace Liro\Extension\Menus\Providers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Liro\Extension\Menus\Models\Domain;
 use Liro\Extension\Menus\Models\Menu;
+use Liro\System\Cms\Facades\Web;
+use Liro\System\Cms\Facades\Routes;
+use Liro\System\Cms\Helpers\RouteHelper;
 
 class MenuServiceProvider extends ServiceProvider
 {
@@ -38,49 +42,56 @@ class MenuServiceProvider extends ServiceProvider
         $status = $this->_getMenuAndDomain();
 
         if ( $status === false ) {
-            $this->_getMenuAndDomain(url()->previous());
+            $this->_getMenuAndDomain(URL::previous());
         }
 
-        app('cms')->bootTheme();
+        $login = app('cms')->getDomain()->menus()
+            ->where('module', 'liro-users.admin.auth.login')->first();
+
+        if ( $login !== null ) {
+            Web::setLogin($login);
+        }
+
+        Web::bootTheme();
     }
 
     protected function _getMenuAndDomain($url = null)
     {
-        $domains = Domain::enabled()->get()->sortBy(function($domain) {
+        $domains = Domain::enabled()->get()->sortBy(function ($domain) {
             return strlen($domain->route);
         });
 
         foreach ( $domains as $domain ) {
 
-            if ( app('cms.routes.helper')->isLikeRoute($domain->route, $url) ) {
-                app('cms')->setDomain($domain);
+            if ( RouteHelper::isLikeRoute($domain->route, $url) ) {
+                Web::setDomain($domain);
             }
 
-            if ( app('cms.routes.helper')->isLikeRoute($domain->route, $url) ) {
-                app('cms')->setTheme($domain->theme);
+            if ( RouteHelper::isLikeRoute($domain->route, $url) ) {
+                Web::setTheme($domain->theme);
             }
 
-            app('cms.routes')->registerDomain($domain);
+            Routes::registerDomain($domain);
         }
 
-        $menus = Menu::enabled()->get()->sortBy(function($menu) {
+        $menus = Menu::enabled()->get()->sortBy(function ($menu) {
             return strlen($menu->route);
         });
 
         foreach ( $menus as $menu ) {
 
-            if ( app('cms.routes.helper')->isRoute($menu->route, $url) ) {
-                app('cms')->setMenu($menu);
+            if ( RouteHelper::isRoute($menu->route, $url) ) {
+                Web::setMenu($menu);
             }
 
-            if ( app('cms.routes.helper')->isRoute($menu->route, $url) ) {
-                app('cms')->setLayout($menu->layout);
+            if ( RouteHelper::isRoute($menu->route, $url) ) {
+                Web::setLayout($menu->layout);
             }
 
-            app('cms.routes')->registerMenu($menu);
+            Routes::registerMenu($menu);
         }
 
-        return app('cms')->getDomain() !== null && app('cms')->getMenu() !== null;
+        return Web::getDomain() !== null && Web::getMenu() !== null;
     }
 
 }

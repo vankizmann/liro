@@ -4,8 +4,9 @@ return [
 
     'paths' => [
         '/app/system/modules/*/index.php',
-        '/app/modules/*/index.php',
-        '/modules/*/*/index.php'
+        '/app/system/themes/*/index.php',
+        '/modules/*/*/index.php',
+        '/themes/*/*/index.php'
     ],
 
     'autoload' => [

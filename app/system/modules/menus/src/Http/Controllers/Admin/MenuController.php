@@ -2,10 +2,11 @@
 
 namespace Liro\Menus\Controllers\Admin;
 
-use Liro\System\Menus\Models\Menu;
-use Liro\System\Menus\Models\Domain;
+use Liro\System\Http\Controller;
+use Liro\Extension\Menus\Models\Menu;
+use Liro\Extension\Menus\Models\Domain;
 
-class MenuController extends \Liro\System\Http\Controller
+class MenuController extends Controller
 {
 
     public function __construct()

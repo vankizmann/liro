@@ -2,8 +2,7 @@
 
 namespace Liro\Menus\Controllers\Ajax;
 
-use Illuminate\Http\Request;
-use Liro\System\Menus\Models\Domain;
+use Liro\Extension\Menus\Models\Domain;
 use Liro\Menus\Requests\TypeStoreRequest;
 use Liro\Menus\Requests\TypeUpdateRequest;
 

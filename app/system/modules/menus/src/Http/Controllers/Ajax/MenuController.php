@@ -2,8 +2,8 @@
 
 namespace Liro\Menus\Controllers\Ajax;
 
-use Liro\System\Menus\Models\Menu;
-use Liro\System\Menus\Models\Domain;
+use Liro\Extension\Menus\Models\Menu;
+use Liro\Extension\Menus\Models\Domain;
 use Liro\Menus\Requests\MenuOrderRequest;
 use Liro\Menus\Requests\MenuStoreRequest;
 use Liro\Menus\Requests\MenuUpdateRequest;

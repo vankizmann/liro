@@ -1,8 +1,10 @@
 <?php
 
-namespace Liro\Languages\Requests;
+namespace Liro\Extension\Languages\Http\Requests;
 
-class LanguageStoreRequest extends \Liro\System\Http\FormRequest
+use Illuminate\Foundation\Http\FormRequest;
+
+class LanguageStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

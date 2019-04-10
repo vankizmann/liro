@@ -9,7 +9,7 @@ class DataRegistrar
     /**
      * Data storage
      *
-     * @var Illuminate\Support\Collection
+     * @var \Illuminate\Support\Collection
      */
     protected $data;
 
@@ -41,7 +41,7 @@ class DataRegistrar
      */
     public function push($values)
     {
-        $this->data = $this->data->merge($key, $values);
+        $this->data = $this->data->merge($values);
     }
 
     /**
@@ -59,7 +59,7 @@ class DataRegistrar
     /**
      * Get all data
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function all()
     {

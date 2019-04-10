@@ -15,42 +15,42 @@ class ScriptManager
     /**
      * Application instance
      *
-     * @var Illuminate\Foundation\Application
+     * @var \Liro\System\Application
      */
     protected $app;
 
     /**
      * Namespaces registrar
      *
-     * @var Liro\System\Assets\Registrar\NamespaceRegistrar
+     * @var \Liro\System\Assets\Registrar\NamespaceRegistrar
      */
     protected $namespaces;
 
     /**
      * Routes registrar
      *
-     * @var Liro\System\Assets\Registrar\RouteRegistrar
+     * @var \Liro\System\Assets\Registrar\RouteRegistrar
      */
     protected $routes;
 
     /**
      * Messages registrar
      *
-     * @var Liro\System\Assets\Registrar\MessageRegistrar
+     * @var \Liro\System\Assets\Registrar\LocaleRegistrar
      */
     protected $messages;
 
     /**
      * Data registrar
      *
-     * @var Liro\System\Assets\Registrar\DataRegistrar
+     * @var \Liro\System\Assets\Registrar\DataRegistrar
      */
     protected $data;
 
     /**
      * Items registrar
      *
-     * @var Liro\System\Assets\Registrar\ItemRegistrar
+     * @var \Liro\System\Assets\Registrar\ItemRegistrar
      */
     protected $items;
 

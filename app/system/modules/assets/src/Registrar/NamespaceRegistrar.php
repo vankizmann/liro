@@ -16,7 +16,7 @@ class NamespaceRegistrar
     /**
      * Namespace storage
      *
-     * @var Illuminate\Support\Collection
+     * @var \Illuminate\Support\Collection
      */
     protected $namespaces;
 
@@ -46,7 +46,7 @@ class NamespaceRegistrar
      * Get namspace from collection
      *
      * @param string $key
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function get($key)
     {
@@ -56,8 +56,7 @@ class NamespaceRegistrar
     /**
      * Get all namespaces
      *
-     * @param string $key
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function all()
     {
@@ -67,7 +66,7 @@ class NamespaceRegistrar
     /**
      * Get namespace keys
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
     protected function getKeys()
     {
@@ -77,7 +76,7 @@ class NamespaceRegistrar
     /**
      * Get namespace hints
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
     protected function getHints()
     {

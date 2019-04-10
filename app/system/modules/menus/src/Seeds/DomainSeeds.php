@@ -9,7 +9,7 @@ class DomainSeeds
 
     public function install()
     {
-        $backend = Domain::create([
+        Domain::create([
             'state'         => 1,
             'title'         => 'Backend',
             'route'         => ':domain/:locale/backend',
@@ -17,7 +17,7 @@ class DomainSeeds
             'guard'         => 1
         ]);
 
-        $frontend = Domain::create([
+        Domain::create([
             'state'         => 1,
             'title'         => 'Frontend',
             'route'         => ':domain/:locale',

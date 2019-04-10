@@ -97559,11 +97559,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__("./node_modules/lodash/lodash.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__("./node_modules/axios/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__liro_index__ = __webpack_require__("./resources/src/js/liro/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__("./node_modules/axios/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__liro_index__ = __webpack_require__("./resources/src/js/liro/index.js");
 
 window.$ = window.jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
 
@@ -97571,15 +97569,12 @@ window.$ = window.jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
 window._ = window.lodash = __WEBPACK_IMPORTED_MODULE_1_lodash___default.a;
 
 
-window.Vue = __WEBPACK_IMPORTED_MODULE_2_vue___default.a;
+window.axios = __WEBPACK_IMPORTED_MODULE_2_axios___default.a;
 
 
-window.axios = __WEBPACK_IMPORTED_MODULE_3_axios___default.a;
+window.liro = __WEBPACK_IMPORTED_MODULE_3__liro_index__["f" /* default */];
 
-
-window.liro = __WEBPACK_IMPORTED_MODULE_4__liro_index__["f" /* default */];
-
-__WEBPACK_IMPORTED_MODULE_3_axios___default.a.defaults.headers.common = {
+__WEBPACK_IMPORTED_MODULE_2_axios___default.a.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
 

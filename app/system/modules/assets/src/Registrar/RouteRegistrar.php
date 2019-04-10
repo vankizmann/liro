@@ -9,7 +9,7 @@ class RouteRegistrar
     /**
      * Route storage
      *
-     * @var Illuminate\Support\Collection
+     * @var \Illuminate\Support\Collection
      */
     protected $routes;
 
@@ -62,7 +62,7 @@ class RouteRegistrar
     /**
      * Get all routes from collection
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function all()
     {

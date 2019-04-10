@@ -83,7 +83,7 @@ class RouteHelper
         return $this->getHost() . $this->getRoute();
     }
 
-    public function isLikeRoute($route)
+    public function isLikeRoute($route, $compare = null)
     {
         $route = $this->replaceDomain($route);
         $route = $this->replaceLocale($route);
@@ -91,10 +91,10 @@ class RouteHelper
         $route = preg_quote($route, '/');
         $route = preg_replace('/\\\{[^\/]+\\\}/', '[^\/]+', $route);
 
-        return preg_match('/^' . $route . '/', $this->getFullRoute());
+        return preg_match('/^' . $route . '/', $compare ?: $this->getFullRoute());
     }
 
-    public function isRoute($route)
+    public function isRoute($route, $compare = null)
     {
         $route = $this->replaceDomain($route);
         $route = $this->replaceLocale($route);
@@ -102,7 +102,7 @@ class RouteHelper
         $route = preg_quote($route, '/');
         $route = preg_replace('/\\\{[^\/]+\\\}/', '[^\/]+', $route);
 
-        return preg_match('/^' . $route . '/', $this->getFullRoute());
+        return preg_match('/^' . $route . '$/', $compare ?: $this->getFullRoute());
     }
 
 }

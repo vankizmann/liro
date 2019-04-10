@@ -52,7 +52,7 @@ class Domain extends Model
 
     public function getActiveAttribute()
     {
-        return app('cms')->getDomain() && app('cms')->getDomain()->get('id') === $this->id;
+        return app('cms')->getDomain() && app('cms')->getDomain()->get('id') === $this->attributes['id'];
     }
 
 }

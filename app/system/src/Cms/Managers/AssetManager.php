@@ -2,11 +2,8 @@
 
 namespace Liro\System\Cms\Managers;
 
-use Illuminate\Support\Traits\Macroable;
 use Liro\System\Cms\Asset\Exceptions\AssetException;
 use Liro\System\Support\Collection;
-use Liro\System\Cms\Asset\ScriptAsset;
-use Liro\System\Cms\Asset\StyleAsset;
 
 class AssetManager
 {

@@ -17,8 +17,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \Liro\System\Http\Middleware\TrimStrings::class,
-        \Liro\System\Http\Middleware\TrustProxies::class,
+        Middleware\TrimStrings::class,
+        Middleware\TrustProxies::class,
     ];
 
     /**
@@ -34,8 +34,8 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \Liro\System\Http\Middleware\EncryptCookies::class,
-            \Liro\System\Http\Middleware\VerifyCsrfToken::class
+            Middleware\EncryptCookies::class,
+            Middleware\VerifyCsrfToken::class
         ],
 
         'ajax' => [
@@ -43,9 +43,9 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \Liro\System\Http\Middleware\EncryptCookies::class,
-            \Liro\System\Http\Middleware\VerifyCsrfToken::class,
-            \Liro\System\Http\Middleware\AjaxRequest::class
+            Middleware\EncryptCookies::class,
+            Middleware\VerifyCsrfToken::class,
+            Middleware\AjaxRequest::class
         ],
 
         'api' => [

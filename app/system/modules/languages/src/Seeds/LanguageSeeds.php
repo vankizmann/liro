@@ -9,13 +9,13 @@ class LanguageSeeds
 
     public function install()
     {
-        $english = Language::create([
+        Language::create([
             'state'     => 1,
             'title'     => 'English',
             'locale'    => 'en'
         ]);
 
-        $german = Language::create([
+        Language::create([
             'state'     => 1,
             'title'     => 'Deutsch',
             'locale'    => 'de'

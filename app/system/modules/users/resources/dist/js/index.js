@@ -703,6 +703,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return _this2.loadRoles = false;
             });
         }
+    },
+
+    methods: {
+
+        test: function test(item) {
+            this.liro.events.fire('');
+            console.log(item);
+        }
+
     }
 
 });
@@ -740,10 +749,11 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    attrs: {
-                      href: _vm.routes.get("liro-users.admin.user.edit", {
-                        user: item.id
-                      })
+                    attrs: { href: "javascript:void(0)" },
+                    on: {
+                      click: function($event) {
+                        return _vm.test("foobar")
+                      }
                     }
                   },
                   [_c("span", [_vm._v(_vm._s(item.name))])]

@@ -4,9 +4,6 @@ window.$ = window.jQuery = jQuery;
 import lodash from 'lodash';
 window._ = window.lodash = lodash;
 
-import Vue from 'vue';
-window.Vue = Vue;
-
 import Axios from 'axios';
 window.axios = Axios;
 

@@ -2,10 +2,9 @@
 
 namespace Liro\Languages\Controllers\Ajax;
 
-use Illuminate\Http\Request;
-use Liro\System\Languages\Models\Language;
-use Liro\Languages\Requests\LanguageStoreRequest;
-use Liro\Languages\Requests\LanguageUpdateRequest;
+use Liro\Extension\Languages\Models\Language;
+use  Liro\Extension\Languages\Http\Requests\LanguageStoreRequest;
+use  Liro\Extension\Languages\Http\Requests\LanguageUpdateRequest;
 
 class LanguageController extends \Liro\System\Http\Controller
 {

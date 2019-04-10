@@ -2,7 +2,6 @@
 
 namespace Liro\Extension\Languages\Providers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use Liro\Extension\Languages\Models\Language;
 

@@ -2,8 +2,6 @@
 
 namespace Liro\Media\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Application;
 use Liro\Media\Prototypes\FolderPrototype as Folder;
 
 class FolderController extends \Liro\System\Http\Controller

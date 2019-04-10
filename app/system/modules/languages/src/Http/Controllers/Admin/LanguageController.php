@@ -2,11 +2,7 @@
 
 namespace Liro\Languages\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Application;
-use Liro\System\Languages\Models\Language;
-use Liro\Languages\Requests\LanguageStoreRequest;
-use Liro\Languages\Requests\LanguageUpdateRequest;
+use Liro\Extension\Languages\Models\Language;
 
 class LanguageController extends \Liro\System\Http\Controller
 {

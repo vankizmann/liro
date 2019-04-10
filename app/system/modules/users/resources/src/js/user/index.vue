@@ -3,7 +3,7 @@
     <app-loader :load="loadUsers || loadRoles">
         <app-list-builder :list="this.users" :columns="this.columns" :search="['name', 'email']" :selected.sync="selected">
             <template slot="column.name" slot-scope="{ item }">
-                <a :href="routes.get('liro-users.admin.user.edit', { user: item.id })">
+                <a href="javascript:void(0)" @click="test('foobar')">
                     <span>{{ item.name }}</span>
                 </a>
             </template>
@@ -84,6 +84,15 @@
                 });
 
                 this.liro.ajax.call('role-index').then(() => this.loadRoles = false);
+            }
+
+        },
+
+        methods: {
+
+            test: function (item) {
+                this.liro.events.fire('')
+                console.log(item)
             }
 
         }

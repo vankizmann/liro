@@ -2,7 +2,7 @@
 
 namespace Liro\Menus\Controllers\User;
 
-use Liro\System\Menus\Models\Menu;
+use Liro\Extension\Menus\Models\Menu;
 
 class RedirectController extends \Liro\System\Http\Controller
 {

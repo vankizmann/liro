@@ -3,11 +3,6 @@
 namespace Liro\System\Exceptions;
 
 use Exception;
-use Illuminate\Session\TokenMismatchException;
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Auth\Access\AuthorizationException;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends \Illuminate\Foundation\Exceptions\Handler
 {
@@ -35,12 +30,13 @@ class Handler extends \Illuminate\Foundation\Exceptions\Handler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $exception
+     * @param \Exception  $exception
+     * @throws \Exception
      * @return void
      */
     public function report(Exception $exception)
     {
-        parent::report($exception);
+        return parent::report($exception);
     }
 
     /**

@@ -2,15 +2,15 @@
 
 namespace Liro\System\Cms\Managers;
 
+use Liro\System\Application;
 use Liro\System\Cms\Prototypes\Module;
-use Illuminate\Contracts\Foundation\Application;
 
 class ModuleManagerss
 {
     /**
      * Application instance
      *
-     * @var Illuminate\Contracts\Foundation\Application
+     * @var \Liro\System\Application
      */
     protected $app;
 
@@ -38,7 +38,7 @@ class ModuleManagerss
     /**
      * Initialize application
      *
-     * @param Illuminate\Contracts\Foundation\Application $app
+     * @param \Liro\System\Application $app
      */
     public function __construct(Application $app)
     {

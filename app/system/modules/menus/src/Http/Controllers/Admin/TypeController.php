@@ -2,9 +2,10 @@
 
 namespace Liro\Menus\Controllers\Admin;
 
-use Liro\System\Menus\Models\Domain;
+use Liro\System\Http\Controller;
+use Liro\Extension\Menus\Models\Domain;
 
-class TypeController extends \Liro\System\Http\Controller
+class TypeController extends Controller
 {
 
     public function __construct()

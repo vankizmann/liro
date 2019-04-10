@@ -36,7 +36,7 @@ class AssetManager
     /**
      * Messages registrar
      *
-     * @var \Liro\System\Assets\Registrar\MessageRegistrar
+     * @var \Liro\System\Assets\Registrar\LocaleRegistrar
      */
     protected $locales;
 
@@ -175,11 +175,11 @@ class AssetManager
      *
      * @param string $path
      * @param string $version
-     * @return void
+     * @return string
      */
     public function file($path, $version = '')
     {
-        return $this->namespaces->replaceInString($path);
+        return $this->namespaces->replaceInString($path) . ($version ? '?' . $version : '');
     }
 
     /**

@@ -140,7 +140,6 @@ class RouteManager
 
             // Boot module route
             $this->bootModuleRoute($menu->module, $route, $options, $locale);
-
         }
 
         return $this;

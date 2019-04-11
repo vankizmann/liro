@@ -1,5 +1,7 @@
 
-$--theme-space-gutters: (
+@import "./media";
+
+$--space-gutter: (
     5px, 10px, 20px, 40px, 60px
 ) !default;
 
@@ -7,7 +9,7 @@ $--theme-space-gutters: (
     @return $number / ($number * 0 + 1);
 }
 
-@mixin theme-margin($gutter, $suffix: '') {
+@mixin margin($gutter, $suffix: '') {
 
     .margin-#{strip($gutter)}#{$suffix} {
         margin: $gutter;
@@ -31,7 +33,7 @@ $--theme-space-gutters: (
 
 }
 
-@mixin theme-padding($gutter, $suffix: '') {
+@mixin padding($gutter, $suffix: '') {
 
     .padding-#{strip($gutter)}#{$suffix} {
         padding: $gutter;
@@ -55,9 +57,9 @@ $--theme-space-gutters: (
 
 }
 
-@include theme-breakpoints() {
-    @each $gutter in $--theme-space-gutters {
-        @include theme-margin($gutter, $suffix);
-        @include theme-padding($gutter, $suffix);
+@include media() {
+    @each $gutter in $--space-gutter {
+        @include margin($gutter, $suffix);
+        @include padding($gutter, $suffix);
     }
 }

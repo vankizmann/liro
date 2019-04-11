@@ -11,6 +11,7 @@
 
     @php
         asset()->script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js');
+        asset()->script('velocity', '//cdnjs.cloudflare.com/ajax/libs/velocity/1.5.2/velocity.min.js');
 
         echo asset()->output([
             'style', 'locale', 'route', 'store', 'export', 'script'
@@ -22,15 +23,8 @@
     <div id="app" class="app__viewport">
         <div class="app__layout grid grid--col">
 
-            <div sx-test="text: 'attribute huh;:u lol'">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda pariatur quisquam reiciendis totam? Aut dolore eos eveniet laboriosam officiis! Accusamus atque, autem ducimus inventore ipsa maxime officia possimus veniam?
-            </div>
-            <div ui-test="text: '...'">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda pariatur quisquam reiciendis totam? Aut dolore eos eveniet laboriosam officiis! Accusamus atque, autem ducimus inventore ipsa maxime officia possimus veniam?
-            </div>
-
-            <header class="app__header">
-                <nav>
+            <header class="app__header col grid grid--row grid--20">
+                <nav class="col grid grid--row" js-nav>
                     @include('menus/index', [
                         'menus' => Web::getDomainAttr('menus')
                     ])

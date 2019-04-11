@@ -1,17 +1,18 @@
+@import "./media";
 
-$--theme-grid-steps: (
+$--grid-steps: (
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12
-);
+) !default;
 
-$--theme-grid-gutters: (
+$--grid-gutters: (
     10px, 20px, 30px, 40px, 60px
-);
+) !default;
 
 @function strip($number) {
     @return $number / ($number * 0 + 1);
 }
 
-@mixin th-grid($suffix: '') {
+@mixin grid-container($suffix: '') {
 
     .grid#{$suffix} {
         display: flex;
@@ -93,7 +94,7 @@ $--theme-grid-gutters: (
 
 }
 
-@mixin th-gutter($gutter, $suffix: '') {
+@mixin grid-gutter($gutter, $suffix: '') {
 
     .grid--#{strip($gutter)}#{$suffix} {
         width: calc(100% + #{$gutter});
@@ -102,8 +103,8 @@ $--theme-grid-gutters: (
         margin-right: -#{$gutter / 2};
     }
 
-    .grid--#{strip($gutter)}#{$suffix} > [class^="col--"],
-    .grid--#{strip($gutter)}#{$suffix} > [class*="col--"] {
+    .grid--#{strip($gutter)}#{$suffix} > [class^="col"],
+    .grid--#{strip($gutter)}#{$suffix} > [class*="col"] {
         padding-bottom: $gutter;
         padding-left: $gutter / 2;
         padding-right: $gutter / 2;
@@ -111,8 +112,9 @@ $--theme-grid-gutters: (
 
 }
 
-@mixin th-cols($size, $suffix: '') {
+@mixin grid-columns($size, $suffix: '') {
 
+    .col#{$suffix},
     .col--auto#{$suffix} {
         width: auto;
     }
@@ -156,16 +158,16 @@ $--theme-grid-gutters: (
 
 }
 
-@include theme-breakpoints() {
+@include media() {
 
-    @include th-grid($suffix);
+    @include grid-container($suffix);
 
-    @each $gutter in $--theme-grid-gutters {
-        @include th-gutter($gutter, $suffix);
+    @each $gutter in $--grid-gutters {
+        @include grid-gutter($gutter, $suffix);
     }
 
-    @each $steps in $--theme-grid-steps {
-        @include th-cols($steps, $suffix);
+    @each $steps in $--grid-steps {
+        @include grid-columns($steps, $suffix);
     }
 
 }

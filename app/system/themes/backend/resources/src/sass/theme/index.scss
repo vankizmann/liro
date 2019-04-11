@@ -1,36 +1,32 @@
-@import "./components/breakpoint";
-@import "./components/transition";
-@import "./components/grid";
-@import "./components/space";
-@import "./components/error";
-@import "./components/login";
-@import "./components/page";
-@import "./components/loader";
-@import "./components/component";
-@import "./components/layout";
-@import "./components/nav";
-@import "./components/table";
-@import "./components/list";
-@import "./components/form";
-@import "./components/override";
+@import "./mixins/media";
+@import "./mixins/grid";
+@import "./mixins/space";
+
+@import "./elements/header";
+@import "./elements/nav";
+
+//@import "./components/transition";
+//@import "./components/error";
+//@import "./components/login";
+//@import "./components/page";
+//@import "./components/loader";
+//@import "./components/component";
+//@import "./components/layout";
+//@import "./components/nav";
+//@import "./components/table";
+//@import "./components/list";
+//@import "./components/form";
+//@import "./components/override";
 
 //#app {
 //    width: 100vw;
 //    min-height: 100vh;
 //}
 
-.list {
-    list-style-type: none;
-    line-height: 1.2;
-}
-
-.text--primary {
-    color: $--color-primary;
-}
-
-.text--muted {
-    color: $--color-muted;
-}
+//.list {
+//    list-style-type: none;
+//    line-height: 1.2;
+//}
 
 .text--bold {
     font-weight: 500;

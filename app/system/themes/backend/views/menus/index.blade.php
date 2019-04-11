@@ -2,18 +2,26 @@
     $depth = isset($depth) ? $depth + 1 : 0
 @endphp
 
-@if ( $childs = $menus->where('state', 1)->where('hide', 0) )
-    <ul class="grid grid--row grid--10">
-        @foreach ( $childs as $menu )
-            <li class="col--flex-0 {{ $menu->active ? 'is-active' : '' }}">
+@if ( $children = $menus->where('hide', 0)->where('state', 1) )
+    <ul class="{{ $depth === 0 ? 'grid grid--row grid--10' : 'grid grid--col' }}">
+        @foreach ( $children as $menu )
+            <li class="nav__item col {{ $menu->active ? 'nav__item--active' : '' }}">
 
                 <a href="{{ url($menu->route) }}">
-                    {{ trans($menu->title) }} {{ $depth }}
+                    {{ trans($menu->title) }}
                 </a>
 
-                @include('menus/index', [
-                    'menus' => $menu->children, 'layer' => $depth
-                ])
+                @if ( $menu->children->count() )
+                    @if ( $depth === 0 )
+                        <div class="nav__dropdown">
+                    @endif
+                    @include('menus/index', [
+                        'menus' => $menu->children, 'layer' => $depth
+                    ])
+                    @if ( $depth === 0 )
+                        </div>
+                    @endif
+                @endif
 
             </li>
         @endforeach

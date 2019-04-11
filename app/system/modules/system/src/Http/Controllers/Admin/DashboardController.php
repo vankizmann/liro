@@ -9,7 +9,7 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['web', 'guard']);
+        $this->middleware(['web']);
     }
 
     public function index()

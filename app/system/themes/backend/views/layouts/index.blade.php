@@ -5,71 +5,45 @@
         $defaultUrl = app('cms')->getDomainAttr('route');
     @endphp
 
-    @include('liro-backend::partials/head')
+    @include('partials/head')
 
     <title>{{ trans(app('cms')->getMenuAttr('title')) . ' | ' . config('app.name') }}</title>
 
+    @php
+        asset()->script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js');
+
+        echo asset()->output([
+            'style', 'locale', 'route', 'store', 'export', 'script'
+        ]);
+    @endphp
+
 </head>
-<body class="app-page">
+<body class="app app__index">
+    <div id="app" class="app__viewport">
+        <div class="app__layout grid grid--col">
 
-    @include('liro-backend::partials/notification')
+            <div sx-test="text: 'attribute huh;:u lol'">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda pariatur quisquam reiciendis totam? Aut dolore eos eveniet laboriosam officiis! Accusamus atque, autem ducimus inventore ipsa maxime officia possimus veniam?
+            </div>
+            <div ui-test="text: '...'">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda pariatur quisquam reiciendis totam? Aut dolore eos eveniet laboriosam officiis! Accusamus atque, autem ducimus inventore ipsa maxime officia possimus veniam?
+            </div>
 
-    <div id="app">
+            <header class="app__header">
+                <nav>
+                    @include('menus/index', [
+                        'menus' => Web::getDomainAttr('menus')
+                    ])
+                </nav>
+            </header>
 
-        <app-layout>
-            @yield('content')
-        </app-layout>
+            @include('partials/notification')
 
-        <portal to="menubar-left" :order="100">
-            <app-nav-item class="margin-20--right">
-                <app-nav-link href="{{ url($defaultUrl ?: '/') }}">
-                    <img src="{{ asset('liro-backend::dist/images/liro-negative.svg') }}" alt="" width="80" height="20">
-                </app-nav-link>
-            </app-nav-item>
-        </portal>
+            <main class="app__main">
+                @yield('content')
+            </main>
 
-        <portal to="menubar-left" :order="200">
-
-        </portal>
-
-        <portal to="menubar-right" :order="100">
-            <app-nav-item size="small">
-                <app-nav-dropdown :width="320">
-                    <el-badge is-dot>
-                        <app-nav-link><i class="el-icon-bell"></i></app-nav-link>
-                    </el-badge>
-                    <app-component slot="dropdown" element="liro-user-notification" />
-                </app-nav-dropdown>
-            </app-nav-item>
-        </portal>
-
-        <portal to="menubar-right" :order="200">
-            <app-nav-item size="small">
-                <app-nav-dropdown>
-                    <app-nav-link></app-nav-link>
-                    <ul class="nav__dropdown-nav" slot="dropdown">
-                        <app-nav-item>
-                            <app-nav-link href="{{ route('liro-users.admin.auth.login') }}">
-                                {{ trans('liro-users::form.auth.edit') }}
-                            </app-nav-link>
-                        </app-nav-item>
-                        <app-nav-item>
-                            <app-nav-link href="{{ route('liro-users.admin.auth.logout') }}">
-                                {{ trans('liro-users::form.auth.logout') }}
-                            </app-nav-link>
-                        </app-nav-item>
-                    </ul>
-                </app-nav-dropdown>
-            </app-nav-item>
-        </portal>
-
-        <portal to="toolbar-left" :order="100">
-            <app-nav-item>
-                <h4 class="text--primary text--light">{{ trans(app('cms')->getMenuAttr('title', 'Undefined')) }}</h4>
-            </app-nav-item>
-        </portal>
-
+        </div>
     </div>
-
 </body>
 </html>

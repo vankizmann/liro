@@ -1,29 +1,29 @@
 
-import Assets from "./libs/assets"
+import Assets from "./libraries/assets"
 export { Assets };
 
-import Queue from "./libs/queue"
+import Queue from "./libraries/queue"
 export { Queue };
 
-import EventsObject from "./libs/events"
+import EventsObject from "./libraries/events"
 export const Events = new EventsObject();
 
-import ModulesObject from "./libs/modules"
+import ModulesObject from "./libraries/modules"
 export const Modules = new ModulesObject();
 
-import StorageObject from "./libs/storage"
+import StorageObject from "./libraries/storage"
 export const Storage = new StorageObject();
 
-import RoutesObject from "./libs/routes"
+import RoutesObject from "./libraries/routes"
 export const Routes = new RoutesObject();
 
-import LocalesObject from "./libs/locales"
+import LocalesObject from "./libraries/locales"
 export const Locales = new LocalesObject();
 
-import AjaxObject from "./libs/ajax"
+import AjaxObject from "./libraries/ajax"
 export const Ajax = new AjaxObject();
 
-import VueObject from "./libs/vue"
+import VueObject from "./libraries/vue"
 export const Vue = new VueObject();
 
 export default {

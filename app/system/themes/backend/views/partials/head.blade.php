@@ -42,8 +42,4 @@
     // Scripts
     asset()->script('theme-index', 'liro-backend::dist/js/index.js');
 
-    echo asset()->output([
-        'style', 'locale', 'route', 'store', 'export', 'script'
-    ]);
-
 @endphp

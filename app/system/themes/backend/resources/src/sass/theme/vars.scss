@@ -1,5 +1,18 @@
-$color-white: #fff;
-$color-black: #000;
+$color-white:           #ffffff;
+$color-black:           #13141d;
+$color-primary:         #4b84fa;
+$color-success:         #20ca80;
+$color-warning:         #ff9453;
+$color-danger:          #fb4e52;
+$color-info:            #909399;
+$color-muted:           #5e6d82;
+$color-background:      #f5f7fa;
+
+$text-mini:             12px;
+$text-small:            14px;
+$text-base:             15px;
+$text-medium:           16px;
+$text-large:            18px;
 
 $border-radius: 3px;
-$box-shadow: 0 2px 4px 1px rgba($color-black, 0.15);
+$box-shadow: 0 1px 3px 1px rgba($color-black, 0.1);

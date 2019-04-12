@@ -98,14 +98,12 @@ $--grid-gutters: (
 
     .grid--#{strip($gutter)}#{$suffix} {
         width: calc(100% + #{$gutter});
-        margin-bottom: -#{$gutter};
         margin-left: -#{$gutter / 2};
         margin-right: -#{$gutter / 2};
     }
 
     .grid--#{strip($gutter)}#{$suffix} > [class^="col"],
     .grid--#{strip($gutter)}#{$suffix} > [class*="col"] {
-        padding-bottom: $gutter;
         padding-left: $gutter / 2;
         padding-right: $gutter / 2;
     }

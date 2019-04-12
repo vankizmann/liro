@@ -5,9 +5,9 @@
 @if ( $children = $menus->where('hide', 0)->where('state', 1) )
     <ul class="{{ $depth === 0 ? 'grid grid--row grid--10' : 'grid grid--col' }}">
         @foreach ( $children as $menu )
-            <li class="nav__item col {{ $menu->active ? 'nav__item--active' : '' }}">
+            <li class="nav__item {{ $menu->active ? 'nav__item--active' : '' }} col grid grid--row">
 
-                <a href="{{ url($menu->route) }}">
+                <a class="grid grid--row grid--middle" href="{{ url($menu->route) }}">
                     {{ trans($menu->title) }}
                 </a>
 

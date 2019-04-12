@@ -21,10 +21,10 @@
 </head>
 <body class="app app__index">
     <div id="app" class="app__viewport">
-        <div class="app__layout grid grid--col">
+        <div class="app__layout">
 
-            <header class="app__header col grid grid--row grid--20">
-                <nav class="col grid grid--row" js-nav>
+            <header class="app__header">
+                <nav class="col grid grid--row" js-nav="bindMode: hover">
                     @include('menus/index', [
                         'menus' => Web::getDomainAttr('menus')
                     ])
@@ -36,6 +36,10 @@
             <main class="app__main">
                 @yield('content')
             </main>
+
+            <footer class="app__footer">
+                Lorem ipsum dolor sit amet.
+            </footer>
 
         </div>
     </div>

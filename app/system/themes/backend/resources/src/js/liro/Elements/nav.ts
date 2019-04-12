@@ -7,6 +7,7 @@ export default class Nav
     public options : any = {
         duration:       200,
         delay:          300,
+        bindMode:       'hover',
         navSelector:    '> div',
         baseName:       'js__nav',
         openModifier:   'open',
@@ -28,6 +29,23 @@ export default class Nav
 
     public bindEvent(index : string, el : HTMLElement)
     {
+        if ( $(el).find(this.options.navSelector).length === 0 ) {
+            return;
+        }
+
+        if ( this.options.bindMode === 'hover' ) {
+            this.bindHoverEvent(el);
+        }
+
+        if ( this.options.bindMode === 'click' ) {
+            this.bindClickEvent(el);
+        }
+
+        $(el).addClass(this.options.baseName)
+    }
+
+    public bindHoverEvent(el : HTMLElement)
+    {
         $(el).on('mouseenter', () => {
             this.openNav(el);
         });
@@ -35,8 +53,40 @@ export default class Nav
         $(el).on('mouseleave', () => {
             this.closeNav(el);
         });
+    }
 
-        $(el).addClass(this.options.baseName)
+    public bindClickEvent(el : HTMLElement)
+    {
+        let open = false;
+
+        $(el).on('click', () => {
+
+            if ( open === false ) {
+                this.openNav(el);
+                return open = true;
+            }
+
+            if ( open === true ) {
+                this.closeNav(el);
+                return open = false;
+            }
+        });
+
+        $(document).on('click', (event) => {
+
+            if ( $(event.target).is(el) || $(event.target).parents().is(el) ) {
+                return;
+            }
+
+            this.closeNav(el);
+            return open = false;
+        });
+
+
+
+        $(el).children('a').on('click', (event) => {
+            event.preventDefault();
+        });
     }
 
     protected openNav(el : HTMLElement)
@@ -61,7 +111,6 @@ export default class Nav
             .velocity({ opacity: 1, height: height }, options);
 
         $(el).addClass(this.getOpenClass());
-        $nav.css({ zIndex: 20 });
     }
 
     protected closeNav(el : HTMLElement)
@@ -73,7 +122,7 @@ export default class Nav
             delay: this.options.delay
         };
 
-        (<any> options).beginn = () => {
+        (<any> options).begin = () => {
             $(el).removeClass(this.getReadyClass());
         };
 
@@ -86,8 +135,6 @@ export default class Nav
 
         $nav.velocity('stop', true)
             .velocity({ opacity: 0, height: 0 }, options);
-
-        $nav.css({ zIndex: 10 });
     }
 
     protected getOpenClass() : string

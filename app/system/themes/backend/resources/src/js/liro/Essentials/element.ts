@@ -18,7 +18,7 @@ export default abstract class Element
                 callback.call({}, el, this.parseParams(el.getAttribute(selector)))
             });
 
-        return true;
+        return this;
     }
 
     /**
@@ -29,7 +29,7 @@ export default abstract class Element
         let parsed = {};
 
         let result = params.match(
-            /(?<=(^|;))([^\s]+\s*:\s*(".*?"|'.*?'|.*?)\s*)(?=(;|$))/g
+            /(?<=(^|;))(\s*[^\s]+\s*:\s*(".*?"|'.*?'|.*?)\s*)(?=(;|$))/g
         );
 
         if ( result === undefined || result === null ) {
@@ -40,7 +40,7 @@ export default abstract class Element
 
             // Get key and value from match
             let attribute = match.match(
-                /^([^\s]+)\s*:\s*(".*?"|'.*?'|.*?)\s*$/
+                /^\s*([^\s]+)\s*:\s*(".*?"|'.*?'|.*?)\s*$/
             );
 
             // Skip if length does not match
@@ -50,6 +50,14 @@ export default abstract class Element
 
             let value : any = attribute[2]
                 .replace(/(^["']*|["']*$)/g, '');
+
+            if ( typeof value === 'string' && value.match(/^true$/i) ) {
+                value = true;
+            }
+
+            if ( typeof value === 'string' && value.match(/^false$/i) ) {
+                value = false;
+            }
 
             if ( typeof value === 'string' && value.match(/^[0-9]+$/) ) {
                 value = parseInt(value);

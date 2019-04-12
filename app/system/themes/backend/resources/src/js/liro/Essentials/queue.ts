@@ -11,20 +11,27 @@ export default class Queue
         }
     }
 
-    public clear () {
+    public clear ()
+    {
         this.queue = [];
+
         return this;
     }
 
-    public add (callback) {
+    public add (callback)
+    {
         this.queue.push(callback);
+
         return this;
     }
 
-    public run () {
+    public run ()
+    {
         if ( this.queue.length ) {
             this.queue[0](this.queueHandler(this.queue.slice(0), 0));
         }
+
+        return this;
     }
 
 }

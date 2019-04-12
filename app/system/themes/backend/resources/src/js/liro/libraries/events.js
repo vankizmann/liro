@@ -10,7 +10,7 @@ export default function () {
 
     this.emit = (name, ...args) => {
         each(filter(this.events, { name }), (event) => {
-            event.callback(...args);
+            event.callback.call({}, ...args);
         });
     };
 

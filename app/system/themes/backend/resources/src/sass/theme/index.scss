@@ -2,6 +2,7 @@
 @import "./mixins/grid";
 @import "./mixins/space";
 
+@import "./elements/default";
 @import "./elements/header";
 @import "./elements/nav";
 
@@ -27,6 +28,10 @@
 //    list-style-type: none;
 //    line-height: 1.2;
 //}
+
+.app__index {
+    background: $color-background;
+}
 
 .text--bold {
     font-weight: 500;

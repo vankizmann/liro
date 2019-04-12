@@ -15,6 +15,7 @@ return [
         'liro-languages',
         'liro-users',
         'liro-menus',
+        'liro-pages',
     ],
 
     'filters' => [

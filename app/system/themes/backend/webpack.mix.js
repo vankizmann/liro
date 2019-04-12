@@ -34,11 +34,10 @@ mix.ts('resources/src/js/liro/index.ts', 'resources/dist/js/index.js', {
     // JS options
 }).version();
 
-mix.sass('resources/src/sass/index.scss', 'resources/dist/css/index.css', {
+mix.sass('resources/src/sass/theme/index.scss', 'resources/dist/css/index.css', {
     precision: 3
 }).version();
 
-//
-// mix.sass('resources/src/sass/vendor.scss', 'resources/dist/css/vendor.css', {
-//     precision: 3
-// }).version();
+mix.sass('resources/src/sass/vendor.scss', 'resources/dist/css/vendor.css', {
+    precision: 3
+}).version();

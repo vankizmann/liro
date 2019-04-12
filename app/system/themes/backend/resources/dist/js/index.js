@@ -76,6 +76,7 @@ var Nav = /** @class */ (function () {
         this.options = {
             duration: 200,
             delay: 300,
+            bindMode: 'hover',
             navSelector: '> div',
             baseName: 'js__nav',
             openModifier: 'open',
@@ -91,6 +92,18 @@ var Nav = /** @class */ (function () {
         });
     };
     Nav.prototype.bindEvent = function (index, el) {
+        if ($(el).find(this.options.navSelector).length === 0) {
+            return;
+        }
+        if (this.options.bindMode === 'hover') {
+            this.bindHoverEvent(el);
+        }
+        if (this.options.bindMode === 'click') {
+            this.bindClickEvent(el);
+        }
+        $(el).addClass(this.options.baseName);
+    };
+    Nav.prototype.bindHoverEvent = function (el) {
         var _this = this;
         $(el).on('mouseenter', function () {
             _this.openNav(el);
@@ -98,7 +111,30 @@ var Nav = /** @class */ (function () {
         $(el).on('mouseleave', function () {
             _this.closeNav(el);
         });
-        $(el).addClass(this.options.baseName);
+    };
+    Nav.prototype.bindClickEvent = function (el) {
+        var _this = this;
+        var open = false;
+        $(el).on('click', function () {
+            if (open === false) {
+                _this.openNav(el);
+                return open = true;
+            }
+            if (open === true) {
+                _this.closeNav(el);
+                return open = false;
+            }
+        });
+        $(document).on('click', function (event) {
+            if ($(event.target).is(el) || $(event.target).parents().is(el)) {
+                return;
+            }
+            _this.closeNav(el);
+            return open = false;
+        });
+        $(el).children('a').on('click', function (event) {
+            event.preventDefault();
+        });
     };
     Nav.prototype.openNav = function (el) {
         var _this = this;
@@ -116,7 +152,6 @@ var Nav = /** @class */ (function () {
         $nav.velocity('stop')
             .velocity({ opacity: 1, height: height }, options);
         $(el).addClass(this.getOpenClass());
-        $nav.css({ zIndex: 20 });
     };
     Nav.prototype.closeNav = function (el) {
         var _this = this;
@@ -125,7 +160,7 @@ var Nav = /** @class */ (function () {
             duration: this.options.duration,
             delay: this.options.delay
         };
-        options.beginn = function () {
+        options.begin = function () {
             $(el).removeClass(_this.getReadyClass());
         };
         options.complete = function () {
@@ -134,7 +169,6 @@ var Nav = /** @class */ (function () {
         };
         $nav.velocity('stop', true)
             .velocity({ opacity: 0, height: 0 }, options);
-        $nav.css({ zIndex: 10 });
     };
     Nav.prototype.getOpenClass = function () {
         return this.options.baseName + '--' + this.options.openModifier;
@@ -214,26 +248,32 @@ var Element = /** @class */ (function () {
             .forEach(function (el) {
             callback.call({}, el, _this.parseParams(el.getAttribute(selector)));
         });
-        return true;
+        return this;
     };
     /**
      * Parse param string to object (e.g. foo: bar; test: lorem).
      */
     Element.parseParams = function (params) {
         var parsed = {};
-        var result = params.match(/(?<=(^|;))([^\s]+\s*:\s*(".*?"|'.*?'|.*?)\s*)(?=(;|$))/g);
+        var result = params.match(/(?<=(^|;))(\s*[^\s]+\s*:\s*(".*?"|'.*?'|.*?)\s*)(?=(;|$))/g);
         if (result === undefined || result === null) {
             return parsed;
         }
         result.forEach(function (match) {
             // Get key and value from match
-            var attribute = match.match(/^([^\s]+)\s*:\s*(".*?"|'.*?'|.*?)\s*$/);
+            var attribute = match.match(/^\s*([^\s]+)\s*:\s*(".*?"|'.*?'|.*?)\s*$/);
             // Skip if length does not match
             if (attribute.length !== 3) {
                 return;
             }
             var value = attribute[2]
                 .replace(/(^["']*|["']*$)/g, '');
+            if (typeof value === 'string' && value.match(/^true$/i)) {
+                value = true;
+            }
+            if (typeof value === 'string' && value.match(/^false$/i)) {
+                value = false;
+            }
             if (typeof value === 'string' && value.match(/^[0-9]+$/)) {
                 value = parseInt(value);
             }
@@ -264,6 +304,47 @@ var Element = /** @class */ (function () {
     return Element;
 }());
 exports.default = Element;
+
+
+/***/ }),
+
+/***/ "./resources/src/js/liro/Essentials/event.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Event = /** @class */ (function () {
+    function Event() {
+    }
+    Event.bind = function (name, callback) {
+        this.events.push({ name: name, callback: callback });
+        return this;
+    };
+    Event.fire = function (name) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        var events = this.events.filter(function (item) {
+            return item.name === name;
+        });
+        $.each(events, function (index, event) {
+            var _a;
+            (_a = event.callback).call.apply(_a, [{}].concat(args));
+        });
+        return this;
+    };
+    Event.clear = function (name) {
+        this.events = this.events.filter(function (item) {
+            return item.name !== name;
+        });
+        return this;
+    };
+    Event.events = [];
+    return Event;
+}());
+exports.default = Event;
 
 
 /***/ }),
@@ -312,20 +393,36 @@ $.fn.realWidth = function (display) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var dom_1 = __webpack_require__("./resources/src/js/liro/Essentials/dom.ts");
+var event_1 = __webpack_require__("./resources/src/js/liro/Essentials/event.ts");
 var element_1 = __webpack_require__("./resources/src/js/liro/Essentials/element.ts");
 var nav_1 = __webpack_require__("./resources/src/js/liro/Elements/nav.ts");
 dom_1.default.ready(function () {
     __webpack_require__("./resources/src/js/liro/Extends/jquery.ts");
+    event_1.default.bind('foobar', function () {
+        console.log('foobar triggered!');
+    });
     element_1.default.bind('nav', function (el, options) {
         new nav_1.default(el, options).bind();
     });
+    event_1.default.clear('foobar');
+    event_1.default.bind('foobar', function () {
+        console.log('foobar now triggered :)');
+    });
+    event_1.default.fire('foobar');
     console.log('Ready!');
 });
 
 
 /***/ }),
 
-/***/ "./resources/src/sass/index.scss":
+/***/ "./resources/src/sass/theme/index.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/src/sass/vendor.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -336,7 +433,8 @@ dom_1.default.ready(function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("./resources/src/js/liro/index.ts");
-module.exports = __webpack_require__("./resources/src/sass/index.scss");
+__webpack_require__("./resources/src/sass/theme/index.scss");
+module.exports = __webpack_require__("./resources/src/sass/vendor.scss");
 
 
 /***/ })

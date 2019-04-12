@@ -185,7 +185,7 @@ class MenuSeeds
         $menu_backend_pages = Menu::create([
             'state'         => 1,
             'hide'          => 0,
-            'title'         => 'liro-pages::page.page_index',
+            'title'         => 'liro-pages::admin.page.index',
             'slug'          => 'pages',
             'module'        => 'liro-pages.admin.page.index',
             'domain_id'     => 1

@@ -18741,6 +18741,11 @@ textarea,
   background-color: transparent !important;
 }
 
+.el-table__placeholder {
+  display: inline-block;
+  width: 20px;
+}
+
 .el-table--fit {
   border-right: 0;
   border-bottom: 0;
@@ -19190,6 +19195,13 @@ textarea,
 .el-table--fluid-height .el-table__fixed-right {
   bottom: 0;
   overflow: hidden;
+}
+
+.el-table [class*=el-table__row--level] .el-table__expand-icon {
+  display: inline-block;
+  width: 14px;
+  vertical-align: middle;
+  margin-right: 5px;
 }
 
 /* BEM support Func
@@ -21098,13 +21110,25 @@ textarea,
 
 .el-month-table td {
   text-align: center;
-  padding: 20px 3px;
+  padding: 8px 0px;
   cursor: pointer;
+}
+
+.el-month-table td div {
+  height: 48px;
+  padding: 6px 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .el-month-table td.today .cell {
   color: #4b84fa;
   font-weight: bold;
+}
+
+.el-month-table td.today.start-date .cell,
+.el-month-table td.today.end-date .cell {
+  color: #ffffff;
 }
 
 .el-month-table td.disabled .cell {
@@ -21118,16 +21142,46 @@ textarea,
 }
 
 .el-month-table td .cell {
-  width: 48px;
-  height: 32px;
+  width: 60px;
+  height: 36px;
   display: block;
-  line-height: 32px;
+  line-height: 36px;
   color: #606266;
   margin: 0 auto;
+  border-radius: 18px;
 }
 
 .el-month-table td .cell:hover {
   color: #4b84fa;
+}
+
+.el-month-table td.in-range div {
+  background-color: #F2F6FC;
+}
+
+.el-month-table td.in-range div:hover {
+  background-color: #F2F6FC;
+}
+
+.el-month-table td.start-date div,
+.el-month-table td.end-date div {
+  color: #ffffff;
+}
+
+.el-month-table td.start-date .cell,
+.el-month-table td.end-date .cell {
+  color: #ffffff;
+  background-color: #4b84fa;
+}
+
+.el-month-table td.start-date div {
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+}
+
+.el-month-table td.end-date div {
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
 }
 
 .el-month-table td.current:not(.disabled) .cell {
@@ -21979,6 +22033,10 @@ textarea,
 
 .el-date-editor.el-input, .el-date-editor.el-input__inner {
   width: 220px;
+}
+
+.el-date-editor--monthrange.el-input, .el-date-editor--monthrange.el-input__inner {
+  width: 300px;
 }
 
 .el-date-editor--daterange.el-input, .el-date-editor--daterange.el-input__inner, .el-date-editor--timerange.el-input, .el-date-editor--timerange.el-input__inner {
@@ -22871,7 +22929,7 @@ textarea,
   border-right: 1px solid #e4e4e4;
 }
 
-.el-date-range-picker__content.is-right .el-date-range-picker__header div {
+.el-date-range-picker__content .el-date-range-picker__header div {
   margin-left: 50px;
   margin-right: 50px;
 }
@@ -25052,6 +25110,10 @@ textarea,
   width: 220px;
 }
 
+.el-date-editor--monthrange.el-input, .el-date-editor--monthrange.el-input__inner {
+  width: 300px;
+}
+
 .el-date-editor--daterange.el-input, .el-date-editor--daterange.el-input__inner, .el-date-editor--timerange.el-input, .el-date-editor--timerange.el-input__inner {
   width: 350px;
 }
@@ -26905,6 +26967,10 @@ textarea,
 
 .el-date-editor.el-input, .el-date-editor.el-input__inner {
   width: 220px;
+}
+
+.el-date-editor--monthrange.el-input, .el-date-editor--monthrange.el-input__inner {
+  width: 300px;
 }
 
 .el-date-editor--daterange.el-input, .el-date-editor--daterange.el-input__inner, .el-date-editor--timerange.el-input, .el-date-editor--timerange.el-input__inner {
@@ -32807,6 +32873,16 @@ textarea,
   padding-top: 1px;
 }
 
+.el-form-item__label-wrap {
+  float: left;
+  text-align: right;
+}
+
+.el-form-item__label-wrap .el-form-item__label {
+  display: inline-block;
+  float: none;
+}
+
 .el-form-item__label {
   text-align: right;
   vertical-align: middle;
@@ -33255,8 +33331,8 @@ textarea,
 }
 
 .el-tabs__item:focus.is-active.is-focus:not(:active) {
-  -webkit-box-shadow: 0 0 2px 2px #409eff inset;
-          box-shadow: 0 0 2px 2px #409eff inset;
+  -webkit-box-shadow: 0 0 2px 2px #4b84fa inset;
+          box-shadow: 0 0 2px 2px #4b84fa inset;
   border-radius: 3px;
 }
 

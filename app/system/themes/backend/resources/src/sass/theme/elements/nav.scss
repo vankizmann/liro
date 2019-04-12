@@ -4,20 +4,55 @@
     position: relative;
 }
 
+.nav__item > a {
+    transition: color 0.3s;
+    color: $color-muted;
+    padding: 0 10px;
+}
+
+.nav__item:hover > a {
+    color: mix($color-muted, $color-white, 50%);
+}
+
+.nav__item.nav__item--active > a {
+    color: mix($color-muted, $color-white, 50%);
+}
+
 .nav__dropdown {
     overflow: hidden;
     position: absolute;
-    padding: 5px 12px;
-    margin-left: -5px;
-    background: $color-white;
-    border-radius: $border-radius;
+    top: 100%;
+    left: 0;
+    padding: 3px 0;
+    background: lighten($color-black, 10%);
     box-shadow: $box-shadow;
+    border-radius: $border-radius;
+}
+
+.nav__dropdown > ul > .nav__item > a {
+    padding: 7px 15px;
+    font-size: $text-small;
+}
+
+.nav__dropdown > ul > .nav__item > a:hover {
+    color: $color-white;
+}
+
+.nav__dropdown > ul > .nav__item > a {
+    color: mix($color-muted, $color-white, 75%);
+}
+
+.js__nav.js__nav--open > a {
+    color: mix($color-muted, $color-white, 50%);
 }
 
 .js__nav .nav__dropdown {
     display: none;
     width: 190px;
     transition: transform 0.5s;
+}
+
+.js__nav.js__nav--open:not(.js__nav--ready) .nav__dropdown {
     transform: translateY(10px);
 }
 
@@ -27,9 +62,10 @@
 
 .js__nav .nav__dropdown > ul {
     opacity: 0;
-    transition: all 0.3s;
+    transition: opacity 0.15s;
 }
 
 .js__nav.js__nav--ready .nav__dropdown > ul {
     opacity: 1;
+    transition: opacity 0.3s;
 }

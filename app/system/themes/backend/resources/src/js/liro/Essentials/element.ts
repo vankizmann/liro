@@ -29,7 +29,7 @@ export default abstract class Element
         let parsed = {};
 
         let result = params.match(
-            /(?<=(^|;))(\s*[^\s]+\s*:\s*(".*?"|'.*?'|.*?)\s*)(?=(;|$))/g
+            /(^|;)(\s*[^\s]+\s*:\s*(".*?"|'.*?'|.*?)\s*)(?=(;|$))/g
         );
 
         if ( result === undefined || result === null ) {
@@ -40,7 +40,7 @@ export default abstract class Element
 
             // Get key and value from match
             let attribute = match.match(
-                /^\s*([^\s]+)\s*:\s*(".*?"|'.*?'|.*?)\s*$/
+                /^;?\s*([^\s]+)\s*:\s*(".*?"|'.*?'|.*?)\s*$/
             );
 
             // Skip if length does not match

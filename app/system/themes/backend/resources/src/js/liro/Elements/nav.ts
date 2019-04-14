@@ -82,8 +82,6 @@ export default class Nav
             return open = false;
         });
 
-
-
         $(el).children('a').on('click', (event) => {
             event.preventDefault();
         });

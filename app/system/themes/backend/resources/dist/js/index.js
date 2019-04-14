@@ -183,6 +183,68 @@ exports.default = Nav;
 
 /***/ }),
 
+/***/ "./resources/src/js/liro/Essentials/asset.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Asset = /** @class */ (function () {
+    function Asset() {
+    }
+    Asset.errorFallback = function (link) {
+        console.error('Error on loading: ' + link);
+    };
+    Asset.loadFallback = function (link) {
+        console.info('Done on loading: ' + link);
+    };
+    Asset.script = function (link, load, error) {
+        if (load === void 0) { load = undefined; }
+        if (error === void 0) { error = undefined; }
+        var el = document.createElement('script');
+        $.extend(el, {
+            src: link, async: true
+        });
+        $.extend(el, {
+            onload: function () {
+                load ? load.call({}, link) :
+                    Asset.loadFallback.call({}, link);
+            },
+            onerror: function () {
+                error ? error.call({}, link) :
+                    Asset.errorFallback.call({}, link);
+            }
+        });
+        document.getElementsByTagName("head")[0].append(el);
+        return this;
+    };
+    Asset.style = function (link, load, error) {
+        if (load === void 0) { load = undefined; }
+        if (error === void 0) { error = undefined; }
+        var el = document.createElement('link');
+        $.extend(el, {
+            href: link, rel: 'stylesheet'
+        });
+        $.extend(el, {
+            onload: function () {
+                load ? load.call({}, link) :
+                    Asset.loadFallback.call({}, link);
+            },
+            onerror: function () {
+                error ? error.call({}, link) :
+                    Asset.errorFallback.call({}, link);
+            }
+        });
+        document.getElementsByTagName("head")[0].append(el);
+        return this;
+    };
+    return Asset;
+}());
+exports.default = Asset;
+
+
+/***/ }),
+
 /***/ "./resources/src/js/liro/Essentials/dom.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -255,13 +317,13 @@ var Element = /** @class */ (function () {
      */
     Element.parseParams = function (params) {
         var parsed = {};
-        var result = params.match(/(?<=(^|;))(\s*[^\s]+\s*:\s*(".*?"|'.*?'|.*?)\s*)(?=(;|$))/g);
+        var result = params.match(/(^|;)(\s*[^\s]+\s*:\s*(".*?"|'.*?'|.*?)\s*)(?=(;|$))/g);
         if (result === undefined || result === null) {
             return parsed;
         }
         result.forEach(function (match) {
             // Get key and value from match
-            var attribute = match.match(/^\s*([^\s]+)\s*:\s*(".*?"|'.*?'|.*?)\s*$/);
+            var attribute = match.match(/^;?\s*([^\s]+)\s*:\s*(".*?"|'.*?'|.*?)\s*$/);
             // Skip if length does not match
             if (attribute.length !== 3) {
                 return;
@@ -349,6 +411,138 @@ exports.default = Event;
 
 /***/ }),
 
+/***/ "./resources/src/js/liro/Essentials/module.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var queue_1 = __webpack_require__("./resources/src/js/liro/Essentials/queue.ts");
+var asset_1 = __webpack_require__("./resources/src/js/liro/Essentials/asset.ts");
+var Module = /** @class */ (function () {
+    function Module() {
+    }
+    Module.bind = function (name, config) {
+        this.imports[name] = _.assign({
+            scripts: [], styles: [], modules: []
+        }, config);
+        return this;
+    };
+    Module.load = function (name, load, error) {
+        var _this = this;
+        if (load === void 0) { load = undefined; }
+        if (error === void 0) { error = undefined; }
+        var reload = function () {
+            _this.load(name, load, error);
+        };
+        if (!_.has(this.imports, name)) {
+            return error ? error() : error;
+        }
+        if (_.has(this.loaded, name)) {
+            return load ? load() : load;
+        }
+        if (_.has(this.aborted, name)) {
+            return error ? error() : error;
+        }
+        if (_.has(this.pending, name)) {
+            return setTimeout(reload, 100);
+        }
+        var queue = new queue_1.default();
+        queue.add(function (next) {
+            _this.pending.push(name);
+            next();
+        });
+        this.imports[name].styles.forEach(function (style) {
+            queue.add(function (next) { return asset_1.default.style(style, next, error); });
+        });
+        this.imports[name].scripts.forEach(function (script) {
+            queue.add(function (next) { return asset_1.default.script(script, next, error); });
+        });
+        queue.add(function (next) {
+            _.pull(_this.pending, name);
+            var modules = _.intersection(_.keys(_this.exports), _this.imports[name].modules);
+            if (modules.length !== _this.imports[name].modules.length) {
+                return error ? error() : error;
+            }
+            _this.loaded.push(name);
+            next();
+        });
+        queue.add(load).run();
+    };
+    ;
+    Module.export = function (name, data) {
+        return this.exports[name] = data;
+    };
+    Module.import = function (name, load, error) {
+        var _this = this;
+        if (load === void 0) { load = undefined; }
+        if (error === void 0) { error = undefined; }
+        if (this.exports[name] !== undefined) {
+            return load ? load(this.exports[name]) : load;
+        }
+        var index = _.findKey(this.imports, function (item) {
+            return _.intersection(item.modules, [name]).length;
+        });
+        if (index === undefined) {
+            return error ? error() : error;
+        }
+        if (this.loaded[index] !== undefined) {
+            return load ? load(this.exports[name]) : load;
+        }
+        this.load(index, function () { return load(_this.exports[name]); }, error);
+    };
+    ;
+    Module.imports = {};
+    Module.exports = {};
+    Module.pending = [];
+    Module.loaded = [];
+    Module.aborted = [];
+    return Module;
+}());
+exports.default = Module;
+
+
+/***/ }),
+
+/***/ "./resources/src/js/liro/Essentials/queue.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Queue = /** @class */ (function () {
+    function Queue() {
+        this.queue = [];
+    }
+    Queue.prototype.queueHandler = function (queue, index) {
+        var _this = this;
+        return function () {
+            if (queue.length - 1 > index++) {
+                queue[index](_this.queueHandler(queue, index));
+            }
+        };
+    };
+    Queue.prototype.clear = function () {
+        this.queue = [];
+        return this;
+    };
+    Queue.prototype.add = function (callback) {
+        this.queue.push(callback);
+        return this;
+    };
+    Queue.prototype.run = function () {
+        if (this.queue.length) {
+            this.queue[0](this.queueHandler(this.queue.slice(0), 0));
+        }
+        return this;
+    };
+    return Queue;
+}());
+exports.default = Queue;
+
+
+/***/ }),
+
 /***/ "./resources/src/js/liro/Extends/jquery.ts":
 /***/ (function(module, exports) {
 
@@ -393,13 +587,34 @@ $.fn.realWidth = function (display) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var dom_1 = __webpack_require__("./resources/src/js/liro/Essentials/dom.ts");
+var module_1 = __webpack_require__("./resources/src/js/liro/Essentials/module.ts");
 var event_1 = __webpack_require__("./resources/src/js/liro/Essentials/event.ts");
 var element_1 = __webpack_require__("./resources/src/js/liro/Essentials/element.ts");
 var nav_1 = __webpack_require__("./resources/src/js/liro/Elements/nav.ts");
 dom_1.default.ready(function () {
     __webpack_require__("./resources/src/js/liro/Extends/jquery.ts");
+    module_1.default.bind('foo', {
+        styles: [
+        // 'https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'
+        ],
+        scripts: [
+            'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'
+        ],
+        modules: ['bar']
+    });
+    module_1.default.export('foo', {});
+    // Module.load('foo', () => {
+    //     console.log('foo loaded!');
+    // }, () => {
+    //     console.log('NIX OK');
+    // });
+    module_1.default.import('bar', function () {
+        console.log('bar loaded!');
+    }, function () {
+        console.log('iwas ist schief gelaufen :(');
+    });
     event_1.default.bind('foobar', function () {
-        console.log('foobar triggered!');
+        console.log('foobar not triggered!');
     });
     element_1.default.bind('nav', function (el, options) {
         new nav_1.default(el, options).bind();

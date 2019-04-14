@@ -8552,6 +8552,7 @@
 
 .app, .app__viewport {
   width: 100%;
+  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8652,9 +8653,37 @@ p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 10px 40px;
+  padding: 10px 20px;
   height: 80px;
   background: #13141d;
+  -webkit-box-shadow: 0 1px 3px 1px rgba(19, 20, 29, 0.1);
+          box-shadow: 0 1px 3px 1px rgba(19, 20, 29, 0.1);
+}
+
+.app__toolbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px 20px;
+  height: 80px;
+  background: #ffffff;
+  -webkit-box-shadow: 0 1px 3px 1px rgba(19, 20, 29, 0.1);
+          box-shadow: 0 1px 3px 1px rgba(19, 20, 29, 0.1);
+}
+
+.app__main {
+  padding: 10px 20px;
+}
+
+.app__footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px 20px;
+  height: 60px;
+  background: #ffffff;
+  -webkit-box-shadow: 0 1px 3px 1px rgba(19, 20, 29, 0.1);
+          box-shadow: 0 1px 3px 1px rgba(19, 20, 29, 0.1);
 }
 
 .nav__item {
@@ -8679,9 +8708,9 @@ p {
 .nav__dropdown {
   overflow: hidden;
   position: absolute;
-  top: 100%;
+  top: calc(100% - 10px);
   left: 0;
-  padding: 3px 0;
+  padding: 5px 0;
   background: #27293c;
   -webkit-box-shadow: 0 1px 3px 1px rgba(19, 20, 29, 0.1);
           box-shadow: 0 1px 3px 1px rgba(19, 20, 29, 0.1);

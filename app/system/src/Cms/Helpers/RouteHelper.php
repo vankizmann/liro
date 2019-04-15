@@ -32,15 +32,23 @@ class RouteHelper
         return array_intersect(App::getLocales(), explode($glue, $route));
     }
 
-    public static function extractDomain($route)
+    public static function extractDomain($route,  $locale = null)
     {
+        if ( preg_match('/({domain}|:domain)/', $route) ) {
+            $route = self::replaceDomain($route, $locale);
+        }
+
         preg_match('/^https?\:\/\/(.*?)\/(.*?)$/', $route, $match);
 
         return count($match) === 3 ? $match[1] : $route;
     }
 
-    public static function extractRoute($route)
+    public static function extractRoute($route, $locale = null)
     {
+        if ( preg_match('/({locale}|:locale)/', $route) ) {
+            $route = self::replaceLocale($route, $locale);
+        }
+
         preg_match('/^https?\:\/\/(.*?)\/(.*?)$/', $route, $match);
 
         return count($match) === 3 ? $match[2] : $route;
@@ -55,6 +63,11 @@ class RouteHelper
     {
         return preg_replace('/({locale}|:locale)/', $locale ?: App::getLocale(), $route);
     }
+
+//    public static function getRoute($route)
+//    {
+//        return self::replaceLocale(self::extractRoute($route));
+//    }
 
     public static function replaceAll($route, $domain = null, $locale = null)
     {
@@ -111,6 +124,15 @@ class RouteHelper
         $route = preg_replace('/\\\{[^\/]+\\\}/', '[^\/]+', $route);
 
         return preg_match('/^' . $route . '$/', $compare ?: self::getFullRoute());
+    }
+
+    public static function isVue($menuOrRoute)
+    {
+        if ( array_get($menuOrRoute, 'config.vue', false) ) {
+            return true;
+        }
+
+        return array_get($menuOrRoute, 'domain.config.vue', false);
     }
 
 }

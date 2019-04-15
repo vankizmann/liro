@@ -16,12 +16,12 @@ class Domain extends Model
         'id'
     ];
 
-    protected $appends = [
-        'active'
-    ];
-
     protected $fields = [
         'config'
+    ];
+
+    protected $appends = [
+        'active'
     ];
 
     protected $attributes = [

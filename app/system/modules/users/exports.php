@@ -11,16 +11,16 @@ return [
     ],
 
     'modules' => [
-        'liro-auth-login',
-        'liro-user-index',
-        'liro-user-create',
-        'liro-user-edit',
-        'liro-role-index',
-        'liro-role-create',
-        'liro-role-edit',
-        'liro-policy-index',
-        'liro-policy-create',
-        'liro-policy-edit',
+        'liro-users-auth-login',
+        'liro-users-user-index',
+        'liro-users-user-create',
+        'liro-users-user-edit',
+        'liro-users-role-index',
+        'liro-users-role-create',
+        'liro-users-role-edit',
+        'liro-users-policy-index',
+        'liro-users-policy-create',
+        'liro-users-policy-edit',
     ]
 
 ];

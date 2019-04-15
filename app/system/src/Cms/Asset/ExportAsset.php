@@ -33,7 +33,7 @@ class ExportAsset implements AssetInterface
 
     public function render()
     {
-        return '<script>window._Imports = ' . $this->exports->toJson() . ';</script>';
+        return '<script>window.imports = ' . $this->exports->toJson() . ';</script>';
     }
 
 }

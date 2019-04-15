@@ -52,13 +52,13 @@ class Handler extends \Illuminate\Foundation\Exceptions\Handler
             $exception->getStatusCode() : 0;
 
         if ( $exception->getCode() === 403 || $statusCode === 403 ) {
-            return response()->view("errors/403", [
+            return response()->view("layouts/error", [
                 'statusCode' => $statusCode, 'exception' => $exception
             ], 403);
         }
 
         if ( $exception->getCode() === 404 || $statusCode === 404 ) {
-            return response()->view("errors/404", [
+            return response()->view("layouts/error", [
                 'statusCode' => $statusCode, 'exception' => $exception
             ], 404);
         }
@@ -67,7 +67,7 @@ class Handler extends \Illuminate\Foundation\Exceptions\Handler
             return parent::render($request, $exception);
         }
 
-        return response()->view("errors/500", [
+        return response()->view("layouts/error", [
             'statusCode' => $statusCode, 'exception' => $exception
         ], 500);
     }

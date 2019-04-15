@@ -8,7 +8,7 @@ export default class DOM
         // Create callback with destroyer
         let callbackHandler = () => {
             this.destroyListener(callbackHandler);
-            callback.call({});
+            callback();
         };
 
         // Call function if already loaded

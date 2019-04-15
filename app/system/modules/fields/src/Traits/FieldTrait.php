@@ -6,6 +6,23 @@ use Liro\Extension\Fields\Helpers\FieldHelper;
 
 trait FieldTrait
 {
+    public function toArray()
+    {
+        return array_merge($this->attributesToArray(),
+            $this->relationsToArray(), $this->fieldsToArray());
+    }
+
+    public function fieldsToArray()
+    {
+        $result = [];
+
+        foreach ( $this->getFields() as $field ) {
+            $result[$field] = $this->getAttribute($field);
+        }
+
+        return $result;
+    }
+
      public function getAttributes()
      {
          return array_filter($this->attributes, function ($key) {

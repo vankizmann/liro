@@ -14,6 +14,7 @@ class DashboardController extends Controller
 
     public function index()
     {
+        dd(app('router'));
         return view('liro-system::dashboard/index');
     }
 

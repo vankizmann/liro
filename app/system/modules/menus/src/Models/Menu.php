@@ -17,12 +17,12 @@ class Menu extends Model
       'id'
     ];
 
-    protected $appends = [
-        'route', 'active'
-    ];
-
     protected $fields = [
         'config'
+    ];
+
+    protected $appends = [
+        'route', 'active'
     ];
 
     protected $hidden = [
@@ -38,6 +38,7 @@ class Menu extends Model
         'query'         => null,
         'layout'        => null,
         'locale'        => null,
+        'guard'         => null,
         'config'        => null,
         'domain_id'     => null
     ];
@@ -51,6 +52,7 @@ class Menu extends Model
         'query'         => 'params',
         'layout'        => 'string',
         'locale'        => 'string',
+        'guard'         => 'integer',
         'config'        => 'array',
         'domain_id'     => 'integer'
     ];
@@ -65,10 +67,22 @@ class Menu extends Model
         return $this->hasOne(Domain::class, 'id', 'domain_id');
     }
 
+    public function getSlugAttribute()
+    {
+        if ( ! $this->parent ) {
+            return '/' . str_join('/', $this->attributes['slug']);
+        }
+
+        return str_join('/', $this->parent->slug, $this->attributes['slug']);
+    }
+
     public function getRouteAttribute()
     {
-        return str_join('/', $this->parent ? $this->parent->route :
-            $this->domain->route, $this->slug);
+        if ( ! $this->domain ) {
+            return str_join('/', $this->slug);
+        }
+
+        return str_join('/', $this->domain->slug, $this->slug);
     }
 
     public function getActiveAttribute()

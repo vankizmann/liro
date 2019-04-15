@@ -57,6 +57,8 @@ class MenuServiceProvider extends ServiceProvider
 
     protected function _getMenuAndDomain($url = null)
     {
+        Routes::clear();
+
         $domains = Domain::enabled()->get()->sortBy(function ($domain) {
             return strlen($domain->route);
         });

@@ -1,5 +1,3 @@
-@theme('error')
-
-@section('content')
+<p class="text--muted">
     Whoops, looks like something went wrong.
-@endsection
+</p>

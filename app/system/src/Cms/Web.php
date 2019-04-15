@@ -77,7 +77,7 @@ class Web
         });
 
         App::loaded(function () {
-            # dd(app('cms')->getDomainAttr('config'), app('cms')->getDomainAttr('config.login.redirect'));
+//            dd(app('router'));
         });
 
     }

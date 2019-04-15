@@ -24,14 +24,23 @@ class ModuleManager
         $this->history = new Collection();
     }
 
-    public function getBooted()
+    public function getBooted($name = null)
     {
-        return $this->booted;
+        if ( $name === null ) {
+            return $this->booted;
+        }
+
+        return $this->booted->firstWhere('name', $name);
+
     }
 
-    public function getLoaded()
+    public function getLoaded($name = null)
     {
-        return $this->loaded;
+        if ( $name === null ) {
+            return $this->loaded;
+        }
+
+        return $this->loaded->firstWhere('name', $name);
     }
 
     public function bootModule($config)

@@ -11,25 +11,19 @@
     },
     "devDependencies": {
         "@types/node": "^11.13.4",
-        "JSONStorage": "aheinze/JSONStorage",
-        "axios": "^0.18.0",
         "babel-plugin-transform-class-properties": "^6.24.1",
         "backpack.css": "^2.0.0",
+        "cash-dom": "^3.1.0",
         "cross-env": "^5.1",
         "element-ui": "^2.6.1",
-        "fuzzy-search": "^3.0.1",
-        "jquery": "^3.3.1",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.11",
-        "portal-vue": "^1.5.1",
         "raw-loader": "^1.0.0",
         "ts-loader": "3",
         "typescript": "^3.4.3",
-        "velocity-animate": "^1.5.2",
         "vue": "^2.5.17",
+        "vue-resource": "^1.5.1",
         "vue-router": "^3.0.2",
-        "vue-shortkey": "^3.1.6",
-        "vue2-animate": "^2.1.0",
-        "vue2-transitions": "^0.2.3"
+        "vue-shortkey": "^3.1.6"
     }
 }

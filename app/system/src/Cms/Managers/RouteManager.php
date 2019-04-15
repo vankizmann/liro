@@ -3,19 +3,27 @@
 namespace Liro\System\Cms\Managers;
 
 use Illuminate\Support\Collection;
+use Liro\System\Cms\Facades\Modules;
+use Liro\System\Cms\Helpers\RouteHelper;
 use Liro\System\Exceptions\Exception;
 
 class RouteManager
 {
     public $routes;
-    public $domains;
-    public $menus;
+
+    public $webDomains;
+    public $vueDomains;
+
+    public $webMenus;
+    public $vueMenus;
 
     public function __construct()
     {
         $this->routes = new Collection();
-        $this->domains = new Collection();
-        $this->menus = new Collection();
+        $this->vueDomains = new Collection();
+        $this->webDomains = new Collection();
+        $this->vueMenus = new Collection();
+        $this->webMenus = new Collection();
     }
 
     public function getFlatRoutes()
@@ -25,9 +33,38 @@ class RouteManager
         });
     }
 
+    public function getVueDomains()
+    {
+        return $this->vueDomains;
+    }
+
+    public function getVueMenus()
+    {
+        return $this->vueMenus;
+    }
+
+    public function getWebDomains()
+    {
+        return $this->webDomains;
+    }
+
+    public function getWebMenus()
+    {
+        return $this->webMenus;
+    }
+
+    public function clear()
+    {
+        $this->vueMenus->splice(0, $this->vueMenus->count());
+        $this->webMenus->splice(0, $this->webMenus->count());
+        $this->vueDomains->splice(0, $this->vueDomains->count());
+        $this->webDomains->splice(0, $this->webDomains->count());
+    }
+
     public function boot()
     {
         $this->bootModuleRoutes();
+        $this->bootDomainRoutes();
         $this->bootMenuRoutes();
     }
 
@@ -48,32 +85,29 @@ class RouteManager
         foreach ( $this->getFlatRoutes() as $name => $options ) {
 
             // Get route by name with module prefix
-            $route = app('cms.routes.helper')
-                ->makeLocalizedRoute($name, $locale, 'module');
+            $route = RouteHelper::makeLocalizedRoute($name, $locale, 'module');
 
             // Boot module route
-            $this->bootModuleRoute($name, $route, $options, $locale);
+            $this->bootRoute($name, $route, $options, $locale);
         }
     }
 
-    public function bootModuleRoute($name, $route, $options, $locale = '')
+    public function bootRoute($name, $route, $options, $locale = '')
     {
-        if ( ! isset($options['method']) ) {
-            throw new Exception('Method in ' . $name . ' not given!');
-        }
+        $options = array_merge([
+            'method' => 'get'
+        ], $options);
 
         if ( ! isset($options['uses']) ) {
             throw new Exception('Controller in ' . $name . ' not given!');
         }
 
         // Make localized name
-        $name = app('cms.routes.helper')
-            ->makeLocalizedName($name, $locale);
+        $name = RouteHelper::makeLocalizedName($name, $locale);
 
         if ( $options['method'] === 'resource' ) {
 
-            $name = app('cms.routes.helper')
-                ->makeResourceName($name);
+            $name = RouteHelper::makeResourceName($name);
 
             app('router')->resource($route, $options['uses'],
                 array_merge(['as' => $name], $options));
@@ -92,24 +126,91 @@ class RouteManager
 
     public function registerDomain($domain)
     {
-        $this->domains->push($domain);
+        if ( RouteHelper::isVue($domain) ) {
+            $this->vueDomains->push($domain);
+        } else {
+            $this->webDomains->push($domain);
+        }
+
+        return $this;
     }
 
     public function registerMenu($menu)
     {
-        $this->menus->push($menu);
+        if ( RouteHelper::isVue($menu) ) {
+            $this->vueMenus->push($menu);
+        } else {
+            $this->webMenus->push($menu);
+        }
+
+        return $this;
+    }
+
+    public function bootDomainRoutes()
+    {
+        foreach ( $this->vueDomains as $domain ) {
+            $this->bootLocalizedVueRoutes($domain);
+        }
+
+        return $this;
     }
 
     public function bootMenuRoutes()
     {
-        foreach ( $this->menus as $menu ) {
-            $this->bootLocalizedMenuRoutes($menu);
+        foreach ( $this->webMenus as $menu ) {
+            $this->bootLocalizedWebRoutes($menu);
         }
+
+        return $this;
     }
 
-    public function bootLocalizedMenuRoutes($menu)
+    public function bootLocalizedVueRoutes($model)
     {
-        $options = $this->getFlatRoutes()->get($menu->module);
+        $theme = Modules::getBooted($model->theme);
+
+        if ( ! $theme->has('handler.vue') ) {
+            return $this;
+        }
+
+        $options = [
+            'uses' => $theme->handler['vue'],
+            'with' => '{route?}',
+            'where' => ['route' => '.*']
+        ];
+
+        // Get all locales from app
+        $locales = app()->getLocales();
+
+        if ( ! preg_match('/{locale}/', $model->route) ) {
+            $locales = RouteHelper::findLocales($model->route);
+        }
+
+        foreach ( $locales ?: (array) app()->getLocales() as $locale ) {
+
+            // Replace domain in route
+            $domain = RouteHelper::replaceDomain(
+                RouteHelper::extractDomain($model->route)
+            );
+
+            // Replace domain in route
+            $route = RouteHelper::replaceLocale(
+                RouteHelper::extractRoute($model->route), $locale
+            );
+
+            $options = array_merge([
+                'domain' => $domain
+            ], $options);
+
+            // Boot module route
+            $this->bootRoute(md5($model->route), $route, $options, $locale);
+        }
+
+        return $this;
+    }
+
+    public function bootLocalizedWebRoutes($model)
+    {
+        $options = $this->getFlatRoutes()->get($model->module);
 
         if ( $options === null ) {
             return $this;
@@ -118,20 +219,20 @@ class RouteManager
         // Get all locales from app
         $locales = app()->getLocales();
 
-        if ( ! preg_match('/{locale}/', $menu->route) ) {
-            $locales = app('cms.routes.helper')->findLocales($menu->route);
+        if ( ! preg_match('/{locale}/', $model->route) ) {
+            $locales = RouteHelper::findLocales($model->route);
         }
 
         foreach ( $locales ?: (array) app()->getLocale() as $locale ) {
 
             // Replace domain in route
-            $domain = app('cms.routes.helper')->replaceDomain(
-                app('cms.routes.helper')->extractDomain($menu->route)
+            $domain = RouteHelper::replaceDomain(
+                RouteHelper::extractDomain($model->route)
             );
 
             // Replace domain in route
-            $route = app('cms.routes.helper')->replaceLocale(
-                app('cms.routes.helper')->extractRoute($menu->route), $locale
+            $route = RouteHelper::replaceLocale(
+                RouteHelper::extractRoute($model->route), $locale
             );
 
             $options = array_merge([
@@ -139,7 +240,7 @@ class RouteManager
             ], $options);
 
             // Boot module route
-            $this->bootModuleRoute($menu->module, $route, $options, $locale);
+            $this->bootRoute($model->module, $route, $options, $locale);
         }
 
         return $this;

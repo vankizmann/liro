@@ -20,7 +20,17 @@
                 </div>
 
                 <div class="app-error__body text--center">
-                    <p class="text--muted">@yield('content')</p>
+                    @switch ($statusCode)
+                        @case(403)
+                            @include('errors/403')
+                        @break
+                        @case(404)
+                            @include('errors/404')
+                        @break
+                        @default
+                            @include('errors/500')
+                        @break
+                    @endswitch
                 </div>
 
             </div>

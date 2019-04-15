@@ -11,15 +11,18 @@ class DomainSeeds
     {
         Domain::create([
             'state'         => 1,
-            'title'         => 'Backend',
+            'title'         => 'Liro CMS',
             'route'         => ':domain/:locale/backend',
             'theme'         => 'liro-backend',
-            'guard'         => 1
+            'guard'         => 1,
+            'config'        => [
+                'vue' => true
+            ]
         ]);
 
         Domain::create([
             'state'         => 1,
-            'title'         => 'Frontend',
+            'title'         => 'Demo',
             'route'         => ':domain/:locale',
             'theme'         => 'liro-frontend',
             'guard'         => 1

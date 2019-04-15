@@ -26,10 +26,26 @@ mix.setResourceRoot(
     path.resolve(__dirname)
 );
 
+mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                options: { appendTsSuffixTo: [/\.vue$/] },
+                exclude: /node_modules/,
+            }
+        ]
+    },
+    resolve: {
+        extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"]
+    }
+});
+
 /**
  * Compile files
  */
 
-mix.js(['resources/src/js/index.js'], 'resources/dist/js/index.js', [
-    //
-]);
+mix.ts('resources/src/js/index.ts', 'resources/dist/js/index.js', {
+    // JS options
+}).version();

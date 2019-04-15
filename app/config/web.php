@@ -37,7 +37,7 @@ return [
         'menu' => Liro\System\Cms\Asset\MenuAsset::class,
         'locale' => Liro\System\Cms\Asset\LocaleAsset::class,
         'route' => Liro\System\Cms\Asset\RouteAsset::class,
-        'store' => Liro\System\Cms\Asset\StoreAsset::class,
+        'data' => Liro\System\Cms\Asset\DataAsset::class,
         'export' => Liro\System\Cms\Asset\ExportAsset::class,
     ]
 

@@ -25,12 +25,12 @@
 
 @php
 
-    asset()->store('state-index', [
+    asset()->data('state-index', [
         ['value' => 1, 'label' => trans('form.state.enabled')],
         ['value' => 0, 'label' => trans('form.state.disabled')]
     ]);
 
-    asset()->store('hide-index', [
+    asset()->data('hide-index', [
         ['value' => 0, 'label' => trans('form.hide.visible')],
         ['value' => 1, 'label' => trans('form.hide.hidden')]
     ]);

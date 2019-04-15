@@ -65,20 +65,13 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/ts-loader/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/ts/controllers/foo.vue":
+/***/ "./node_modules/ts-loader/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/ts/menu/menu-index.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
-    mounted: function () {
-        console.log('foobar');
-    },
-    data: function () {
-        return { test: 'jajajaja!' };
-    },
-};
+exports.default = {};
 
 
 /***/ }),
@@ -193,40 +186,65 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-08d8ca7e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/ts/controllers/foo.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3b9f7a47\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/ts/menu/menu-index.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("p", [_vm._v("FOOOOOOO BBBBAAAAARRR")]),
-    _vm._v(" "),
-    _c("p", { domProps: { innerHTML: _vm._s(_vm.test) } })
-  ])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("p", [_vm._v("Im the menus")])])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-08d8ca7e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3b9f7a47", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ "./resources/src/ts/controllers/foo.vue":
+/***/ "./resources/src/ts/ajax/menu.ts":
+/***/ (function(module, exports) {
+
+console.log('foo');
+ux.ajax.bind('menu-index', function (query) {
+    var route = ux.routes.get('liro-users.ajax.user.index', null, query);
+    return Vue.$http.get(route);
+});
+
+
+/***/ }),
+
+/***/ "./resources/src/ts/index.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("./resources/src/ts/ajax/menu.ts");
+var MenuIndex = __webpack_require__("./resources/src/ts/menu/menu-index.vue");
+ux.ext.export('liro-menus-menu-index', MenuIndex);
+
+
+/***/ }),
+
+/***/ "./resources/src/ts/menu/menu-index.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = __webpack_require__("./node_modules/ts-loader/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/ts/controllers/foo.vue")
+var __vue_script__ = __webpack_require__("./node_modules/ts-loader/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/ts/menu/menu-index.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-08d8ca7e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/ts/controllers/foo.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3b9f7a47\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/ts/menu/menu-index.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -243,7 +261,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/ts/controllers/foo.vue"
+Component.options.__file = "resources/src/ts/menu/menu-index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -252,9 +270,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-08d8ca7e", Component.options)
+    hotAPI.createRecord("data-v-3b9f7a47", Component.options)
   } else {
-    hotAPI.reload("data-v-08d8ca7e", Component.options)
+    hotAPI.reload("data-v-3b9f7a47", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -262,15 +280,6 @@ if (false) {(function () {
 })()}
 
 module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ "./resources/src/ts/index.ts":
-/***/ (function(module, exports, __webpack_require__) {
-
-var UserIndex = __webpack_require__("./resources/src/ts/controllers/foo.vue");
-ux.ext.export('liro-users-user-index', UserIndex);
 
 
 /***/ }),

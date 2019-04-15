@@ -16,7 +16,7 @@ class UserController extends Controller
 
     public function index(User $user, Role $role)
     {
-        asset()->store([
+        asset()->data([
             'user-index' => $user->all(), 'role-index' =>  $role->all()
         ]);
 
@@ -29,7 +29,7 @@ class UserController extends Controller
             'password' => '', 'password_confirm' => ''
         ]);
 
-        asset()->store([
+        asset()->data([
             'user-create' => $user, 'role-index' => $role->all()
         ]);
 
@@ -42,7 +42,7 @@ class UserController extends Controller
             'password' => '', 'password_confirm' => ''
         ]);
 
-        asset()->store([
+        asset()->data([
             'user-edit' => $user, 'role-index' => $role->all()
         ]);
 

@@ -1,0 +1,8 @@
+<template>
+    <div>
+        <p>Im the dashboard</p>
+    </div>
+</template>
+<script lang="ts">
+export default {};
+</script>

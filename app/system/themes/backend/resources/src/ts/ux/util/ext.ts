@@ -58,7 +58,6 @@ export default class Ext
         });
 
         each(this.imports[name].styles, (style) => {
-            console.log('load sytle');
             queue.add((next) => asset.style(style, next, error));
         });
 

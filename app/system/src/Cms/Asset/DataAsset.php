@@ -4,7 +4,7 @@ namespace Liro\System\Cms\Asset;
 
 use Liro\System\Support\Collection;
 
-class StoreAsset implements AssetInterface
+class DataAsset implements AssetInterface
 {
 
     public $stores;
@@ -29,7 +29,7 @@ class StoreAsset implements AssetInterface
 
     public function render()
     {
-        return '<script>window._Storage = ' . $this->stores->toJson() . ';</script>';
+        return '<script>window.data = ' . $this->stores->toJson() . ';</script>';
     }
 
 }

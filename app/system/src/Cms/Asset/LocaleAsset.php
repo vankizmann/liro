@@ -27,7 +27,7 @@ class LocaleAsset implements AssetInterface
 
         $locales = $locales->merge(app('translator')->getRootLinesFlatten(app('cms')->getTheme()));
 
-        return '<script>window._Locales = ' . $locales->toJson() . ';</script>';
+        return '<script>window.locales = ' . $locales->toJson() . ';</script>';
     }
 
 }

@@ -30,7 +30,7 @@ mix.setResourceRoot(
  * Compile files
  */
 
-mix.ts('resources/src/js/index.ts', 'resources/dist/js/index.js', {
+mix.ts('resources/src/ts/index.ts', 'resources/dist/js/index.js', {
     // JS options
 }).version();
 

@@ -32,7 +32,7 @@ class MenuSeeds
             'hide'          => 0,
             'title'         => 'Dashboard',
             'slug'          => '/',
-            'module'        => 'liro-system.admin.dashboard.index',
+            'module'        => 'liro-system-dashboard-index',
             'domain_id'     => 1
         ]);
 

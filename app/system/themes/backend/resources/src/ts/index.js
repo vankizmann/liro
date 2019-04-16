@@ -13,7 +13,7 @@ window.axios = Axios;
 import Liro from './liro/index';
 window.liro = Liro;
 
-Axios.defaults.headers.common = {
+axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
 

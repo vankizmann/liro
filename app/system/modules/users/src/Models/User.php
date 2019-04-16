@@ -50,6 +50,11 @@ class User extends Model
         return $this->roles()->get()->pluck('policies')->flatten(1);
     }
 
+    public function getPolicyModulesAttribute()
+    {
+        return $this->policies->where('module', '!=', '')->pluck('module')->flatten(1);
+    }
+
     public function getPolicyDepth($class)
     {
         return $this->policies->where('class', $class)
@@ -82,6 +87,11 @@ class User extends Model
     public function setPasswordConfirmAttribute()
     {
         return;
+    }
+
+    public function toVue()
+    {
+        return $this->append(['policy_modules']);
     }
 
 

@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "@types/node": "^11.13.4",
+        "axios": "^0.18.0",
         "babel-plugin-transform-class-properties": "^6.24.1",
         "backpack.css": "^2.0.0",
         "cash-dom": "^3.1.0",

@@ -33,9 +33,7 @@ class AuthController extends Controller
             throw new Exception('liro-users::message.auth.credentials', 400);
         }
 
-        return response()->json([
-            'redirect' => url($route ? $route : '/')
-        ], 200);
+        return response()->json(auth()->user()->toVue(), 200);
     }
 
 }

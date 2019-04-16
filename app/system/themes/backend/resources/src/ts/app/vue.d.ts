@@ -6,12 +6,12 @@ declare module "*.vue" {
 
 declare global {
     interface Vue {
-        $window: any;
+        ux: any;
     }
 }
 
-declare global {
-    interface VueConstructor {
-        $window: any;
-    }
-}
+// declare global {
+//     interface VueConstructor {
+//         $ux: any;
+//     }
+// }

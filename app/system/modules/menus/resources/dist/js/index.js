@@ -217,10 +217,9 @@ if (false) {
 /***/ "./resources/src/ts/ajax/menu.ts":
 /***/ (function(module, exports) {
 
-console.log('foo');
-ux.ajax.bind('menu-index', function (query) {
-    var route = ux.routes.get('liro-users.ajax.user.index', null, query);
-    return Vue.$http.get(route);
+ux.ajax.bind('menu-index', function (ajax, query) {
+    var route = ux.route.get('liro-users.ajax.user.index', null, query);
+    return ajax.get(route);
 });
 
 

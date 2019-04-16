@@ -3,10 +3,21 @@ import { each } from 'lodash';
 import cash from 'cash-dom';
 (<any> window).$ = cash;
 
+import axios from 'axios';
+(<any> window).axios = axios;
+
 import ux from './ux/index';
 (<any> window).ux = ux;
 
 import App from './app/index';
+
+axios.interceptors.request.use(
+    res => res, res => Promise.reject(res.response)
+);
+
+axios.interceptors.response.use(
+    res => res, res => Promise.reject(res.response)
+);
 
 ux.dom.ready(() => {
 
@@ -26,8 +37,4 @@ ux.dom.ready(() => {
 
     queue.run();
 });
-
-// require('./liro/index');
-
-// require('./app/index');
 

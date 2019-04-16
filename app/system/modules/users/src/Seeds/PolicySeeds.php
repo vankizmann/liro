@@ -10,16 +10,19 @@ class PolicySeeds
     public function install()
     {
         Policy::create([
+            'title'  => 'Access all modules',
+            'module' => '*',
+        ]);
+
+        Policy::create([
             'title'  => 'Access admin users',
             'class'  => \Liro\Extension\Users\Models\User::class,
-            'method' => '',
             'depth'  => 1,
         ]);
 
         Policy::create([
             'title'  => 'Access manager users',
             'class'  => \Liro\Extension\Users\Models\User::class,
-            'method' => '',
             'depth'  => 2,
         ]);
 
@@ -27,35 +30,30 @@ class PolicySeeds
             'title'  => 'Allow all methods in admin dashboard controller',
             'class'  => \Liro\Extension\System\Http\Controllers\Admin\DashboardController::class,
             'method' => '*',
-            'depth'  => 0,
         ]);
 
         Policy::create([
             'title'  => 'Allow all methods in admin users controller',
             'class'  => \Liro\Extension\Users\Http\Controllers\Admin\UserController::class,
             'method' => '*',
-            'depth'  => 0,
         ]);
 
         Policy::create([
             'title'  => 'Allow all methods in ajax users controller',
             'class'  => \Liro\Extension\Users\Http\Controllers\Ajax\UserController::class,
             'method' => '*',
-            'depth'  => 0,
         ]);
 
         Policy::create([
             'title'  => 'Allow all methods in admin roles controller',
             'class'  => \Liro\Extension\Users\Http\Controllers\Admin\RoleController::class,
             'method' => '*',
-            'depth'  => 0,
         ]);
 
         Policy::create([
             'title'  => 'Allow all methods in ajax roles controller',
             'class'  => \Liro\Extension\Users\Http\Controllers\Ajax\RoleController::class,
             'method' => '*',
-            'depth'  => 0,
         ]);
 
     }

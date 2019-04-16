@@ -18,13 +18,16 @@ class PolicyTable extends Migration
                 ->default('');
 
             $table->string('class')
-                ->default('');
+                ->default('')->nullable();
 
             $table->string('method')
-                ->default('');
+                ->default('')->nullable();
+
+            $table->string('module')
+                ->default('')->nullable();
 
             $table->integer('depth')
-                ->default(0);
+                ->default(0)->nullable();
 
             $table->timestamps();
         });

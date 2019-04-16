@@ -29,7 +29,7 @@ class DataAsset implements AssetInterface
 
     public function render()
     {
-        return '<script>window.data = ' . $this->stores->toJson() . ';</script>';
+        return '<script>window.datas = ' . $this->stores->toJson() . ';</script>';
     }
 
 }

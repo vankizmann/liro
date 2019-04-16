@@ -33,7 +33,7 @@ export abstract class Data
     }
 
 
-    public static get (input, fallback)
+    public static get (input : any, fallback : any = null)
     {
         let key = extractKey(input);
 

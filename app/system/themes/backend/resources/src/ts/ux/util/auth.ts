@@ -1,6 +1,9 @@
 import { get, has } from 'lodash';
 import Data from './data';
 
+export function regexEscape (value : string) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 export abstract class Auth
 {
@@ -22,11 +25,21 @@ export abstract class Auth
 
     public static can(key)
     {
+        console.log(key);
+
         let policies = this.user('policy_modules', [
             'liro-users-auth-login'
         ]);
 
-        return policies.indexOf(key) !== -1 || policies.indexOf('*') !== -1;
+        policies = policies.filter((policy) => {
+
+            let regex = new RegExp('^' + regexEscape(policy)
+                .replace(/\\\*/g, '(.*?)') + '$');
+
+            return key.match(regex);
+        });
+
+        return policies.length !== 0 || key === '';
     }
 }
 

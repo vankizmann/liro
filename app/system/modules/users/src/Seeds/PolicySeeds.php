@@ -9,9 +9,29 @@ class PolicySeeds
 
     public function install()
     {
+//        Policy::create([
+//            'title'  => 'Access all modules',
+//            'module' => '*',
+//        ]);
+
         Policy::create([
-            'title'  => 'Access all modules',
-            'module' => '*',
+            'title'  => 'Access system modules',
+            'module' => 'liro-system-*',
+        ]);
+
+        Policy::create([
+            'title'  => 'Access user modules',
+            'module' => 'liro-users-*',
+        ]);
+
+        Policy::create([
+            'title'  => 'Access menus modules',
+            'module' => 'liro-menus-*',
+        ]);
+
+        Policy::create([
+            'title'  => 'Access pages modules',
+            'module' => 'liro-pages-*',
         ]);
 
         Policy::create([

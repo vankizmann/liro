@@ -21,8 +21,8 @@
                 </div>
                 <nav class="header__nav col">
                     <div class="grid grid--row grid--middle grid--10">
-                        <div class="nav__item col" v-for="nav in ux.data.get('nav', [])">
-                            <router-link :to="nav.path">{{ trans(nav.title) }}</router-link>
+                        <div class="nav__item col" v-for="nav in ux.data.get('nav', [])" v-if="canAccess(nav)">
+                            <router-link :to="nav.slug">{{ trans(nav.title) }}</router-link>
                         </div>
                     </div>
                 </nav>
@@ -57,6 +57,7 @@
 
 </template>
 <script lang="ts">
+    import { get } from 'lodash';
     import Vue from "vue";
     import AppRouter from '../router';
 
@@ -118,6 +119,10 @@
             gotoLogout() {
                 this.ux.ajax.call(['auth-logout', 'auth'], true)
                     .then(this.gotoLogin)
+            },
+            canAccess(nav) {
+                return nav.hide === 0 && nav.state === 1 &&
+                    this.ux.auth.can(nav.module);
             }
         }
 

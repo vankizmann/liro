@@ -41,8 +41,9 @@ class MenuSeeds
             'hide'          => 0,
             'title'         => 'liro-users::admin.user.index',
             'slug'          => 'users',
-            'module'        => 'liro-menus.user.redirect.menu',
-            'domain_id'     => 1
+            'module'        => 'liro-users-user-index',
+            'domain_id'     => 1,
+            'query'         => 'redirect=liro-users-user-index'
         ]);
 
         $menu_backend_users = Menu::create([
@@ -53,10 +54,6 @@ class MenuSeeds
             'module'        => 'liro-users-user-index',
             'domain_id'     => 1,
             'parent_id'     => $menu_backend_users_alias->id
-        ]);
-
-        $menu_backend_users_alias->update([
-            'query'         => 'menu=' . $menu_backend_users->id
         ]);
 
         $menu_backend_user_create = Menu::create([
@@ -114,8 +111,9 @@ class MenuSeeds
             'hide'          => 0,
             'title'         => 'liro-menus::admin.menu.index',
             'slug'          => 'menus',
-            'module'        => 'liro-menus.user.redirect.menu',
-            'domain_id'     => 1
+            'module'        => 'liro-menus-menu-index',
+            'domain_id'     => 1,
+            'query'         => 'redirect=liro-menus-menu-index'
         ]);
 
         $menu_backend_menus = Menu::create([
@@ -126,10 +124,6 @@ class MenuSeeds
             'module'        => 'liro-menus-menu-index',
             'domain_id'     => 1,
             'parent_id'     => $menu_backend_menus_alias->id
-        ]);
-
-        $menu_backend_menus_alias->update([
-            'query'         => 'menu=' . $menu_backend_menus->id
         ]);
 
         $menu_backend_menu_create = Menu::create([

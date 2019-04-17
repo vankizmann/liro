@@ -7,8 +7,17 @@ trait DomainTrait
     public $domain = null;
     public $login = null;
 
-    public function getDomain()
+    public function hasDomain()
     {
+        return $this->domain !== null;
+    }
+
+    public function getDomain($attribute = null, $fallback = null)
+    {
+        if ( $this->domain && $attribute !== null ) {
+            return array_get($this->domain, $attribute, $fallback);
+        }
+
         return $this->domain;
     }
 

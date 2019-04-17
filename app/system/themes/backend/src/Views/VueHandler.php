@@ -2,6 +2,11 @@
 
 namespace Liro\Theme\Backend\Views;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+use Liro\Extension\Menus\Models\Menu;
+use Liro\System\Cms\Facades\Assets;
+use Liro\System\Cms\Facades\Web;
 use Liro\System\Http\Controller;
 
 class VueHandler extends Controller
@@ -14,11 +19,15 @@ class VueHandler extends Controller
 
     public function render()
     {
-        if ( ! auth()->guest() ) {
-            asset()->data('auth', auth()->user()->toVue());
+        if ( ! Auth::guest() ) {
+            Assets::data('auth', Auth::user()->toVue());
         }
 
-        return view('layouts/vue', [
+        if ( Web::hasDomain() ) {
+            Assets::data('nav', Web::getDomain('menus'));
+        }
+
+        return View::make('layouts/vue', [
             //
         ]);
     }

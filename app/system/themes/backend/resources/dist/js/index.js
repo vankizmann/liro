@@ -73108,6 +73108,10 @@ exports.default = vue_1.default.extend({
         gotoLogout: function () {
             this.ux.ajax.call(['auth-logout', 'auth'], true)
                 .then(this.gotoLogin);
+        },
+        canAccess: function (nav) {
+            return nav.hide === 0 && nav.state === 1 &&
+                this.ux.auth.can(nav.module);
         }
     }
 });
@@ -73233,28 +73237,30 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "app__error" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "app__error-text" }, [
+      _c("h1", [_vm._v("Whoops, page not found.")]),
+      _vm._v(" "),
+      _c(
+        "p",
+        [
+          _vm._v("Please try again or simply "),
+          _c("router-link", { attrs: { to: "/" } }, [_vm._v("go to home")]),
+          _vm._v(", if the problem persists please contact the support.")
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "app__error" }, [
-      _c("div", { staticClass: "app__error-image" }, [_c("div")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "app__error-text" }, [
-        _c("h1", [_vm._v("Whoops, page not found.")]),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("Please try again or simply "),
-          _c("a", { attrs: { href: "javascript:window.history.back()" } }, [
-            _vm._v("go back")
-          ]),
-          _vm._v(", if the problem persists please contact the support.")
-        ])
-      ])
-    ])
+    return _c("div", { staticClass: "app__error-image" }, [_c("div")])
   }
 ]
 render._withStripped = true
@@ -73341,16 +73347,18 @@ var render = function() {
                     "div",
                     { staticClass: "grid grid--row grid--middle grid--10" },
                     _vm._l(_vm.ux.data.get("nav", []), function(nav) {
-                      return _c(
-                        "div",
-                        { staticClass: "nav__item col" },
-                        [
-                          _c("router-link", { attrs: { to: nav.path } }, [
-                            _vm._v(_vm._s(_vm.trans(nav.title)))
-                          ])
-                        ],
-                        1
-                      )
+                      return _vm.canAccess(nav)
+                        ? _c(
+                            "div",
+                            { staticClass: "nav__item col" },
+                            [
+                              _c("router-link", { attrs: { to: nav.slug } }, [
+                                _vm._v(_vm._s(_vm.trans(nav.title)))
+                              ])
+                            ],
+                            1
+                          )
+                        : _vm._e()
                     }),
                     0
                   )
@@ -73437,7 +73445,7 @@ if (false) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /*!
-  * vue-router v3.0.5
+  * vue-router v3.0.4
   * (c) 2019 Evan You
   * @license MIT
   */
@@ -73496,14 +73504,11 @@ var View = {
     var depth = 0;
     var inactive = false;
     while (parent && parent._routerRoot !== parent) {
-      var vnodeData = parent.$vnode && parent.$vnode.data;
-      if (vnodeData) {
-        if (vnodeData.routerView) {
-          depth++;
-        }
-        if (vnodeData.keepAlive && parent._inactive) {
-          inactive = true;
-        }
+      if (parent.$vnode && parent.$vnode.data.routerView) {
+        depth++;
+      }
+      if (parent._inactive) {
+        inactive = true;
       }
       parent = parent.$parent;
     }
@@ -73540,17 +73545,6 @@ var View = {
     // in case the same component instance is reused across different routes
     ;(data.hook || (data.hook = {})).prepatch = function (_, vnode) {
       matched.instances[name] = vnode.componentInstance;
-    };
-
-    // register instance in init hook
-    // in case kept-alive component be actived when routes changed
-    data.hook.init = function (vnode) {
-      if (vnode.data.keepAlive &&
-        vnode.componentInstance &&
-        vnode.componentInstance !== matched.instances[name]
-      ) {
-        matched.instances[name] = vnode.componentInstance;
-      }
     };
 
     // resolve props
@@ -75208,7 +75202,7 @@ function resolveAsyncComponents (matched) {
           match.components[key] = resolvedDef;
           pending--;
           if (pending <= 0) {
-            next(to);
+            next();
           }
         });
 
@@ -76100,7 +76094,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.0.5';
+VueRouter.version = '3.0.4';
 
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
@@ -88300,11 +88294,28 @@ lodash_1.each(window.datas || {}, function (value, key) {
 });
 var routes = [];
 lodash_1.each(window.menus || [], function (menu) {
-    var route = {
-        path: menu.slug, name: menu.module, component: function (done) {
-            window.ux.ext.import(menu.module, done);
-        }
+    if (lodash_1.isEmpty(menu.module) && !lodash_1.has(menu, 'query.redirect')) {
+        return;
+    }
+    var error = function () {
+        App.$message.error(App.trans('vue.module.missing', menu));
     };
+    var route = {
+        path: menu.slug, props: { menu: menu }
+    };
+    if (lodash_1.has(menu, 'query.redirect')) {
+        route.redirect = function (to) {
+            return { name: menu.query.redirect };
+        };
+    }
+    if (!lodash_1.has(route, 'redirect')) {
+        route.component = function (done) {
+            window.ux.ext.import(menu.module, done, error);
+        };
+    }
+    if (lodash_1.has(route, 'component')) {
+        route.name = menu.module;
+    }
     route.beforeEnter = function (from, to, next) {
         window.ux.dom.title(menu.title);
         next();
@@ -88313,7 +88324,7 @@ lodash_1.each(window.menus || [], function (menu) {
 });
 var AppError = __webpack_require__("./resources/src/ts/app/layout/error.vue");
 routes.push({
-    name: 'liro-error', path: '*', component: AppError
+    path: '*', component: AppError
 });
 exports.default = new vue_router_1.default({
     base: window.basePath, mode: 'history', routes: routes
@@ -88539,6 +88550,10 @@ exports.default = Asset;
 Object.defineProperty(exports, "__esModule", { value: true });
 var lodash_1 = __webpack_require__("./node_modules/lodash/lodash.js");
 var data_1 = __webpack_require__("./resources/src/ts/ux/util/data.ts");
+function regexEscape(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+exports.regexEscape = regexEscape;
 var Auth = /** @class */ (function () {
     function Auth() {
     }
@@ -88555,10 +88570,16 @@ var Auth = /** @class */ (function () {
         return this.user('id') === null;
     };
     Auth.can = function (key) {
+        console.log(key);
         var policies = this.user('policy_modules', [
             'liro-users-auth-login'
         ]);
-        return policies.indexOf(key) !== -1 || policies.indexOf('*') !== -1;
+        policies = policies.filter(function (policy) {
+            var regex = new RegExp('^' + regexEscape(policy)
+                .replace(/\\\*/g, '(.*?)') + '$');
+            return key.match(regex);
+        });
+        return policies.length !== 0 || key === '';
     };
     return Auth;
 }());

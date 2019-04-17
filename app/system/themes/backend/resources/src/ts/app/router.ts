@@ -1,47 +1,45 @@
 import VueRouter from 'vue-router';
 import { each } from 'lodash';
 
-declare const ux : any;
+declare var window : any;
 
-each((<any> window).locales || {}, (path, name) => {
-    ux.locale.set(name, path)
+each(window.locales || {}, (path, name) => {
+    window.ux.locale.set(name, path)
 });
 
-each((<any> window).routes || {}, (path, name) => {
-    ux.route.set(name, path)
+each(window.routes || {}, (path, name) => {
+    window.ux.route.set(name, path)
 });
 
-each((<any> window).imports || {}, (config, name) => {
-    ux.ext.bind(name, config)
+each(window.imports || {}, (config, name) => {
+    window.ux.ext.bind(name, config)
 });
 
-each((<any> window).datas || {}, (value, key) => {
-    ux.data.set(key, value)
+each(window.datas || {}, (value, key) => {
+    window.ux.data.set(key, value)
 });
 
 let routes : any[] = [];
 
-each((<any> window).menus || [], function (menu) {
+each(window.menus || [], function (menu) {
 
     let route : any = {
         path: menu.slug, name: menu.module, component: (done) => {
-            ux.ext.import(menu.module, done)
+            window.ux.ext.import(menu.module, done)
         }
     };
 
     route.beforeEnter = (from, to, next) => {
-        ux.dom.title(menu.title); next();
+        window.ux.dom.title(menu.title); next();
     };
 
     routes.push(route);
 });
 
-let Error = {
-    template: '<div>404 not found</div>'
-};
+let AppError = require('./layout/error.vue');
 
 routes.push({
-    path: '*', component: Error
+    name: 'liro-error', path: '*', component: AppError
 });
 
 export default new VueRouter({

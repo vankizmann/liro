@@ -16,12 +16,6 @@ class AuthController extends Controller
 
     public function login(AuthLoginRequest $request)
     {
-        $route = app('cms')->getDomainAttr('config.redirect.login');
-
-        if ( $route === null ) {
-            $route = app('cms')->getDomainAttr('route');
-        }
-
         $credentials = [
             'email' => $request->input('email', ''),
             'password' => $request->input('password', '')
@@ -34,6 +28,13 @@ class AuthController extends Controller
         }
 
         return response()->json(auth()->user()->toVue(), 200);
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return response()->json(null, 200);
     }
 
 }

@@ -1,4 +1,4 @@
-declare var Vue : any;
+import Vue from 'vue';
 
 declare module '*.vue' {
     export default Vue
@@ -6,6 +6,7 @@ declare module '*.vue' {
 
 declare module 'vue/types/vue' {
     interface VueConstructor {
-        $router: any,
+        $ux: any;
+        $router: any;
     }
 }

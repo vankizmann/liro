@@ -1,0 +1,52 @@
+@import "../vars";
+
+.app {
+    background: $color-background;
+}
+
+.app, .app__viewport {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+}
+
+.app__layout {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.app__layout.app__layout--login,
+.app__layout.app__layout--error {
+    justify-content: center;
+    align-items: center;
+}
+
+.app__layout.app__layout--error {
+    background: $color-black;
+}
+
+.app__layout .app__header {
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.app__layout .app__main {
+    width: 100%;
+    flex: 1 0 auto;
+}
+
+.app__layout.app__layout--login .app__main {
+    max-width: 420px;
+    flex: 0 0 auto;
+}
+
+.app__layout.app__layout--error .app__main {
+    max-width: 640px;
+    flex: 0 0 auto;
+}
+
+.app__layout .app__footer {
+    width: 100%;
+    flex: 0 0 auto;
+}

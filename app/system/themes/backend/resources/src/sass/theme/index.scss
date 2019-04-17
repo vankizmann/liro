@@ -2,12 +2,16 @@
 @import "./mixins/grid";
 @import "./mixins/space";
 
+@import "./elements/element";
 @import "./elements/default";
+@import "./elements/error";
+@import "./elements/app";
 @import "./elements/header";
 @import "./elements/toolbar";
 @import "./elements/main";
 @import "./elements/footer";
 @import "./elements/nav";
+@import "./elements/auth";
 
 //@import "./components/transition";
 //@import "./components/error";
@@ -31,10 +35,6 @@
 //    list-style-type: none;
 //    line-height: 1.2;
 //}
-
-.app__index {
-    background: $color-background;
-}
 
 .text--bold {
     font-weight: 500;

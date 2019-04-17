@@ -7,14 +7,9 @@ return [
         'method' => 'post'
     ],
 
-    'liro-users.admin.auth.login' => [
-        'uses' => 'Liro\Extension\Users\Http\Controllers\Admin\AuthController@login',
-        'method' => 'get'
-    ],
-
-    'liro-users.admin.auth.logout' => [
-        'uses' => 'Liro\Extension\Users\Http\Controllers\Admin\AuthController@logout',
-        'method' => 'get'
+    'liro-users.ajax.auth.logout' => [
+        'uses' => 'Liro\Extension\Users\Http\Controllers\Ajax\AuthController@logout',
+        'method' => 'post'
     ],
 
     'liro-users.ajax.user' => [

@@ -49,7 +49,7 @@ export abstract class Locale
         return this;
     }
 
-    public static trans (key : string, values : string)
+    public static trans (key : string, values : any = {})
     {
         let message = get(Locale.locales, key, key);
 
@@ -60,7 +60,7 @@ export abstract class Locale
         return message;
     }
 
-    public static choice (key : any, count : number, values : any)
+    public static choice (key : any, count : number = 0, values : any = {})
     {
         let splits = get(Locale.locales, key, key).split('|');
 

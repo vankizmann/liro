@@ -1,0 +1,10 @@
+@import "../vars";
+
+.auth__name {
+    display: flex;
+    align-items: center;
+}
+
+.auth__name span {
+    color: $color-muted;
+}

@@ -2,7 +2,6 @@ import { has, isString } from "lodash";
 import { extractKey, Data } from "./data";
 
 export function extractStore (key) {
-    console.log(key, isString(key) ? key : key[1] || extractKey(key));
     return isString(key) ? key : key[1] || extractKey(key);
 }
 
@@ -10,14 +9,6 @@ export abstract class Ajax
 {
     public static apis :
         any = {};
-
-    public static handler :
-        any = null;
-
-    public static getHandler()
-    {
-        return this.handler || (<any> window).axios || (<any> window).Vue.http;
-    }
 
     public static has (input : any)
     {
@@ -31,15 +22,29 @@ export abstract class Ajax
         return this;
     }
 
-    public static call (input : any, vars : any = {})
+    public static solve(input : any, vars : any = {})
     {
-        return new Promise((resolve, reject) => {
-            return this.apis[extractKey(input)](this.getHandler(), vars)
-                .then((res) => {
-                    Data.set(extractStore(input), res.data); resolve(res);
-                }, reject);
-        });
-    };
+        let handler = (<any> window).axios || (<any> window).Vue.http;
+
+        return this.apis[extractKey(input)](handler, vars);
+    }
+
+    public static call (input : any, store : boolean = false, vars : any = {})
+    {
+        let call = (resolve, reject) => {
+            return this.solve(input, vars).then((res) => {
+
+                if ( store === true ) {
+                    Data.set(extractStore(input), res.data);
+                }
+
+                return resolve(res);
+            }, reject);
+        };
+
+        return new Promise(call);
+    }
+
 }
 
 export default Ajax;

@@ -11,25 +11,25 @@
             </el-form-item>
 
             <el-form-item>
-                <el-checkbox v-model="user.remember">
-                    {{ trans('liro-users::form.auth.remember_me') }}
-                </el-checkbox>
-            </el-form-item>
-
-            <el-form-item>
-                <el-button class="login__button" type="primary" native-type="submit">
-                    {{ trans('liro-users::form.auth.login') }}
-                </el-button>
-            </el-form-item>
-
-            <el-form-item>
-                <ul class="list">
-                    <li>
+                <div class="grid grid--row grid--middle">
+                    <div class="col col--left">
+                        <el-checkbox v-model="user.remember">
+                            {{ trans('liro-users::form.auth.remember_me') }}
+                        </el-checkbox>
+                    </div>
+                    <div class="col col--right">
                         <a href="#">
                             {{ trans('liro-users::form.auth.password_forget') }}
                         </a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
+
+            </el-form-item>
+
+            <el-form-item>
+                <el-button class="login__submit" type="primary" native-type="submit">
+                    {{ trans('liro-users::form.auth.login') }}
+                </el-button>
             </el-form-item>
 
         </el-form>
@@ -58,7 +58,7 @@
         methods: {
 
             authUser () {
-                this.ux.ajax.call(['auth-login', 'auth'], this.user)
+                this.ux.ajax.call(['auth-login', 'auth'], true, this.user)
                     .then(this.authUserDone, this.authUserError);
             },
 
@@ -73,4 +73,5 @@
         }
 
     }
+
 </script>

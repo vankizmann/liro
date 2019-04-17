@@ -85,7 +85,7 @@ exports.default = {
     },
     methods: {
         authUser: function () {
-            this.ux.ajax.call(['auth-login', 'auth'], this.user)
+            this.ux.ajax.call(['auth-login', 'auth'], true, this.user)
                 .then(this.authUserDone, this.authUserError);
         },
         authUserDone: function (res) {
@@ -324,31 +324,50 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "el-form-item",
-            [
+          _c("el-form-item", [
+            _c("div", { staticClass: "grid grid--row grid--middle" }, [
               _c(
-                "el-checkbox",
-                {
-                  model: {
-                    value: _vm.user.remember,
-                    callback: function($$v) {
-                      _vm.$set(_vm.user, "remember", $$v)
-                    },
-                    expression: "user.remember"
-                  }
-                },
+                "div",
+                { staticClass: "col col--left" },
                 [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.trans("liro-users::form.auth.remember_me")) +
-                      "\n            "
+                  _c(
+                    "el-checkbox",
+                    {
+                      model: {
+                        value: _vm.user.remember,
+                        callback: function($$v) {
+                          _vm.$set(_vm.user, "remember", $$v)
+                        },
+                        expression: "user.remember"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(
+                            _vm.trans("liro-users::form.auth.remember_me")
+                          ) +
+                          "\n                    "
+                      )
+                    ]
                   )
-                ]
-              )
-            ],
-            1
-          ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col col--right" }, [
+                _c("a", { attrs: { href: "#" } }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(
+                        _vm.trans("liro-users::form.auth.password_forget")
+                      ) +
+                      "\n                    "
+                  )
+                ])
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "el-form-item",
@@ -356,7 +375,7 @@ var render = function() {
               _c(
                 "el-button",
                 {
-                  staticClass: "login__button",
+                  staticClass: "login__submit",
                   attrs: { type: "primary", "native-type": "submit" }
                 },
                 [
@@ -369,23 +388,7 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("el-form-item", [
-            _c("ul", { staticClass: "list" }, [
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(
-                        _vm.trans("liro-users::form.auth.password_forget")
-                      ) +
-                      "\n                    "
-                  )
-                ])
-              ])
-            ])
-          ])
+          )
         ],
         1
       )

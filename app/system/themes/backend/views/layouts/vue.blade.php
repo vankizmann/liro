@@ -25,7 +25,7 @@ use Liro\System\Cms\Helpers\RouteHelper;
 
     {!! asset()->output(['style', 'export', 'route', 'locale', 'data', 'menu', 'script']) !!}
 </head>
-<body>
+<body class="app">
     <div id="app"></div>
 </body>
 </html>

@@ -8714,7 +8714,7 @@ p {
 }
 
 .app {
-  background: #f5f8fa;
+  background: #f3f5f6;
 }
 
 .app, .app__viewport {
@@ -8737,6 +8737,7 @@ p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  background: #ffffff;
 }
 
 .app__layout.app__layout--login {
@@ -8795,8 +8796,9 @@ p {
   display: -ms-flexbox;
   display: flex;
   padding: 10px 40px;
-  height: 80px;
-  background: #272938;
+  height: 100px;
+  background: #ffffff;
+  border-bottom: 1px solid #f3f5f6;
 }
 
 .header__logo {
@@ -8807,7 +8809,7 @@ p {
 }
 
 .header__logo a {
-  color: #0aa3eb;
+  color: #272938;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8876,16 +8878,14 @@ p {
 .nav__item > a {
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
-  color: #5e6d82;
+  color: #8692a1;
   padding: 0 10px;
 }
 
-.nav__item:hover > a {
-  color: #afb6c1;
-}
-
+.nav__item:hover > a,
+.nav__item > a.router-link-active,
 .nav__item.nav__item--active > a {
-  color: #afb6c1;
+  color: #505c70;
 }
 
 .nav__dropdown {
@@ -8958,6 +8958,21 @@ p {
 }
 
 .auth__name span {
+  font-size: 14px;
+  color: #5e6d82;
+}
+
+.auth__logout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.auth__logout a {
+  font-size: 14px;
   color: #5e6d82;
 }
 
@@ -8983,7 +8998,7 @@ p {
   -webkit-box-pack: stretch;
       -ms-flex-pack: stretch;
           justify-content: stretch;
-  background-color: #272938;
+  background-color: #f3f5f6;
 }
 
 .login__image > div {

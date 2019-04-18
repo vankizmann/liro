@@ -73367,9 +73367,16 @@ var render = function() {
                             "div",
                             { staticClass: "nav__item col" },
                             [
-                              _c("router-link", { attrs: { to: nav.slug } }, [
-                                _vm._v(_vm._s(_vm.trans(nav.title)))
-                              ])
+                              _c(
+                                "router-link",
+                                {
+                                  attrs: {
+                                    to: nav.slug,
+                                    exact: nav.slug === "/"
+                                  }
+                                },
+                                [_vm._v(_vm._s(_vm.trans(nav.title)))]
+                              )
                             ],
                             1
                           )
@@ -73379,32 +73386,43 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "header__auth col--right" }, [
-                  _c("div", { staticClass: "auth__name" }, [
-                    _c("span", [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(_vm.ux.auth.user("name", "Anonymous")) +
-                          "\n                    "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "javascript:void(0)" },
-                        on: { click: _vm.gotoLogout }
-                      },
-                      [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "header__auth col col--right grid grid--row grid--10"
+                  },
+                  [
+                    _c("div", { staticClass: "col auth__name" }, [
+                      _c("span", [
                         _vm._v(
                           "\n                        " +
-                            _vm._s(_vm.trans("liro-users::form.auth.logout")) +
+                            _vm._s(_vm.ux.auth.user("name", "Anonymous")) +
                             "\n                    "
                         )
-                      ]
-                    )
-                  ])
-                ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col auth__logout" }, [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "javascript:void(0)" },
+                          on: { click: _vm.gotoLogout }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(
+                                _vm.trans("liro-users::form.auth.logout")
+                              ) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                )
               ]),
               _vm._v(" "),
                false
@@ -73491,7 +73509,7 @@ if (false) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /*!
-  * vue-router v3.0.5
+  * vue-router v3.0.4
   * (c) 2019 Evan You
   * @license MIT
   */
@@ -73550,14 +73568,11 @@ var View = {
     var depth = 0;
     var inactive = false;
     while (parent && parent._routerRoot !== parent) {
-      var vnodeData = parent.$vnode && parent.$vnode.data;
-      if (vnodeData) {
-        if (vnodeData.routerView) {
-          depth++;
-        }
-        if (vnodeData.keepAlive && parent._inactive) {
-          inactive = true;
-        }
+      if (parent.$vnode && parent.$vnode.data.routerView) {
+        depth++;
+      }
+      if (parent._inactive) {
+        inactive = true;
       }
       parent = parent.$parent;
     }
@@ -73594,17 +73609,6 @@ var View = {
     // in case the same component instance is reused across different routes
     ;(data.hook || (data.hook = {})).prepatch = function (_, vnode) {
       matched.instances[name] = vnode.componentInstance;
-    };
-
-    // register instance in init hook
-    // in case kept-alive component be actived when routes changed
-    data.hook.init = function (vnode) {
-      if (vnode.data.keepAlive &&
-        vnode.componentInstance &&
-        vnode.componentInstance !== matched.instances[name]
-      ) {
-        matched.instances[name] = vnode.componentInstance;
-      }
     };
 
     // resolve props
@@ -75262,7 +75266,7 @@ function resolveAsyncComponents (matched) {
           match.components[key] = resolvedDef;
           pending--;
           if (pending <= 0) {
-            next(to);
+            next();
           }
         });
 
@@ -76154,7 +76158,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.0.5';
+VueRouter.version = '3.0.4';
 
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);

@@ -31,15 +31,17 @@
                 <nav class="header__nav col">
                     <div class="grid grid--row grid--middle grid--10">
                         <div class="nav__item col" v-for="nav in ux.data.get('nav', [])" v-if="canAccess(nav)">
-                            <router-link :to="nav.slug">{{ trans(nav.title) }}</router-link>
+                            <router-link :to="nav.slug" :exact="nav.slug === '/'">{{ trans(nav.title) }}</router-link>
                         </div>
                     </div>
                 </nav>
-                <div class="header__auth col--right">
-                    <div class="auth__name">
+                <div class="header__auth col col--right grid grid--row grid--10">
+                    <div class="col auth__name">
                         <span>
                             {{ ux.auth.user('name', 'Anonymous') }}
                         </span>
+                    </div>
+                    <div class="col auth__logout">
                         <a href="javascript:void(0)" @click="gotoLogout">
                             {{ trans('liro-users::form.auth.logout') }}
                         </a>

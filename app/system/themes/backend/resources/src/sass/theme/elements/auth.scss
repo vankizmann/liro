@@ -6,5 +6,16 @@
 }
 
 .auth__name span {
+    font-size: $text-small;
+    color: $color-muted;
+}
+
+.auth__logout {
+    display: flex;
+    align-items: center;
+}
+
+.auth__logout a {
+    font-size: $text-small;
     color: $color-muted;
 }

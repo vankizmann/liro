@@ -6,16 +6,14 @@
 
 .nav__item > a {
     transition: color 0.3s;
-    color: $color-muted;
+    color: mix($color-muted, $color-white, 75%);
     padding: 0 10px;
 }
 
-.nav__item:hover > a {
-    color: mix($color-muted, $color-white, 50%);
-}
-
+.nav__item:hover > a,
+.nav__item > a.router-link-active,
 .nav__item.nav__item--active > a {
-    color: mix($color-muted, $color-white, 50%);
+    color: mix($color-muted, $color-black, 75%);
 }
 
 .nav__dropdown {

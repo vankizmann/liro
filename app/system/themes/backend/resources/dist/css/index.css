@@ -8547,7 +8547,11 @@
 }
 
 .el-loading-mask {
-  background: rgba(245, 247, 250, 0.8);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.el-loading-spinner .path {
+  stroke: #0aa3eb;
 }
 
 .el-tabs__nav-wrap::after {
@@ -8653,7 +8657,7 @@ div, a {
 
 a {
   text-decoration: none;
-  color: #4b84fa;
+  color: #0aa3eb;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -8710,7 +8714,7 @@ p {
 }
 
 .app {
-  background: #f5f7fa;
+  background: #f5f8fa;
 }
 
 .app, .app__viewport {
@@ -8726,24 +8730,29 @@ p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.app__layout.app__layout--index {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
 }
 
-.app__layout.app__layout--login,
-.app__layout.app__layout--error {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.app__layout.app__layout--login {
+  background: #ffffff;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .app__layout.app__layout--error {
   background: #272938;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .app__layout .app__header {
@@ -8798,7 +8807,7 @@ p {
 }
 
 .header__logo a {
-  color: #ffffff;
+  color: #0aa3eb;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8835,8 +8844,8 @@ p {
   padding: 10px 40px;
   height: 100px;
   background: #313447;
-  -webkit-box-shadow: 0 1px 3px 1px rgba(39, 41, 56, 0.05);
-          box-shadow: 0 1px 3px 1px rgba(39, 41, 56, 0.05);
+  -webkit-box-shadow: 0 1px 10px 1px rgba(25, 102, 146, 0.05);
+          box-shadow: 0 1px 10px 1px rgba(25, 102, 146, 0.05);
 }
 
 .toolbar__title h1 {
@@ -8846,7 +8855,7 @@ p {
 }
 
 .app__main {
-  padding: 10px 40px;
+  padding: 30px 40px;
 }
 
 .app__footer {
@@ -8856,8 +8865,8 @@ p {
   padding: 10px 20px;
   height: 60px;
   background: #ffffff;
-  -webkit-box-shadow: 0 1px 3px 1px rgba(39, 41, 56, 0.05);
-          box-shadow: 0 1px 3px 1px rgba(39, 41, 56, 0.05);
+  -webkit-box-shadow: 0 1px 10px 1px rgba(25, 102, 146, 0.05);
+          box-shadow: 0 1px 10px 1px rgba(25, 102, 146, 0.05);
 }
 
 .nav__item {
@@ -8886,8 +8895,8 @@ p {
   left: 0;
   padding: 5px 0;
   background: #3c3f56;
-  -webkit-box-shadow: 0 1px 3px 1px rgba(39, 41, 56, 0.05);
-          box-shadow: 0 1px 3px 1px rgba(39, 41, 56, 0.05);
+  -webkit-box-shadow: 0 1px 10px 1px rgba(25, 102, 146, 0.05);
+          box-shadow: 0 1px 10px 1px rgba(25, 102, 146, 0.05);
   border-radius: 3px;
 }
 
@@ -8950,6 +8959,40 @@ p {
 
 .auth__name span {
   color: #5e6d82;
+}
+
+.login__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login__image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  background-color: #272938;
+}
+
+.login__image > div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://source.unsplash.com/user/kizmann/likes/960x1080");
 }
 
 .text--bold {

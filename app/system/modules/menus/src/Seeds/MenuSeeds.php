@@ -70,7 +70,7 @@ class MenuSeeds
             'state'         => 1,
             'hide'          => 1,
             'title'         => 'liro-users::admin.user.edit',
-            'slug'          => 'edit',
+            'slug'          => 'edit/:user',
             'module'        => 'liro-users-user-edit',
             'domain_id'     => 1,
             'parent_id'     => $menu_backend_users->id
@@ -100,7 +100,7 @@ class MenuSeeds
             'state'         => 1,
             'hide'          => 1,
             'title'         => 'liro-users::admin.role.edit',
-            'slug'          => 'edit',
+            'slug'          => 'edit/:role',
             'module'        => 'liro-users-role-edit',
             'domain_id'     => 1,
             'parent_id'     => $menu_backend_roles->id
@@ -140,7 +140,7 @@ class MenuSeeds
             'state'         => 1,
             'hide'          => 1,
             'title'         => 'liro-menus::admin.menu.edit',
-            'slug'          => 'edit',
+            'slug'          => 'edit/:menu',
             'module'        => 'liro-menus-menu-edit',
             'domain_id'     => 1,
             'parent_id'     => $menu_backend_menus->id
@@ -170,7 +170,7 @@ class MenuSeeds
             'state'         => 1,
             'hide'          => 1,
             'title'         => 'liro-menus::admin.type.edit',
-            'slug'          => 'edit',
+            'slug'          => 'edit/:type',
             'module'        => 'liro-menus-type-edit',
             'domain_id'     => 1,
             'parent_id'     => $menu_backend_types->id
@@ -225,7 +225,7 @@ class MenuSeeds
             'state'         => 1,
             'hide'          => 1,
             'title'         => 'liro-languages::admin.language.edit',
-            'slug'          => 'edit',
+            'slug'          => 'edit/:language',
             'module'        => 'liro-languages-language-edit',
             'domain_id'     => 1
         ], $menu_backend_languages);

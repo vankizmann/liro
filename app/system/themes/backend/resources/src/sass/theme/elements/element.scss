@@ -1,7 +1,11 @@
 @import "../vars";
 
 .el-loading-mask {
-    background: rgba($color-background, 0.8);
+    background: rgba($color-white, 0.3);
+}
+
+.el-loading-spinner .path {
+    stroke: $color-primary;
 }
 
 .el-tabs__nav-wrap::after {

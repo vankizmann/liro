@@ -18,9 +18,9 @@
                         </el-checkbox>
                     </div>
                     <div class="col col--right">
-                        <a href="#">
+                        <router-link to="/reset-password">
                             {{ trans('liro-users::form.auth.password_forget') }}
-                        </a>
+                        </router-link>
                     </div>
                 </div>
 
@@ -37,7 +37,7 @@
 </template>
 <script lang="ts">
 
-    declare var $ : any;
+    declare var _ : any;
 
     let user : any = {
         email: '', password: '', remember: false
@@ -67,7 +67,7 @@
             },
 
             authUserError (res : any) {
-                this.error = $.extend({}, errors, res.data.errors);
+                this.error = _.assign({}, errors, res.data.errors);
             }
 
         }

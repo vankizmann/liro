@@ -5,6 +5,7 @@
     padding: 10px 40px;
     height: 80px;
     background: $color-black;
+    //box-shadow: $box-shadow;
 }
 
 .header__logo {
@@ -13,7 +14,7 @@
 }
 
 .header__logo  a {
-    color: $color-white;
+    color: $color-primary;
     display: flex;
     align-items: center;
     justify-content: center;

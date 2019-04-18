@@ -1,18 +1,27 @@
 <template>
     <div class="app__viewport" v-loading="load">
         <div class="app__layout app__layout--error" v-if="error" key="error">
-            <main class="app__main">
-                <keep-alive>
-                    <router-view></router-view>
-                </keep-alive>
-            </main>
+            <div class="col col--flex-1 grid grid--row grid--middle grid--center">
+                <main class="app__main">
+                    <keep-alive>
+                        <router-view></router-view>
+                    </keep-alive>
+                </main>
+            </div>
         </div>
         <div class="app__layout app__layout--login" v-if="login" key="login">
-            <main class="app__main">
-                <keep-alive>
-                    <router-view></router-view>
-                </keep-alive>
-            </main>
+            <div class="col col--flex-1 grid grid--row">
+                <div class="login__content col col--1-1 col--1-2@md">
+                    <main class="app__main">
+                        <keep-alive>
+                            <router-view></router-view>
+                        </keep-alive>
+                    </main>
+                </div>
+                <div class="login__image col col--1-1 col--1-2@md">
+                    <div></div>
+                </div>
+            </div>
         </div>
         <div class="app__layout app__layout--index" v-if="index" key="index">
             <header class="app__header">
@@ -37,7 +46,7 @@
                     </div>
                 </div>
             </header>
-            <section class="app__toolbar">
+            <section class="app__toolbar" v-if="true === false">
                 <div class="grid grid--row grid--middle grid--10">
                     <div class="toolbar__title col col--left">
                         <h1>{{ trans(ux.dom.titleNow) }}</h1>
@@ -49,8 +58,9 @@
             </section>
             <main class="app__main">
                 <keep-alive>
-                    <router-view></router-view>
+                    <router-view v-if="Object.keys($route.params).length === 0"></router-view>
                 </keep-alive>
+                <router-view v-if="Object.keys($route.params).length !== 0"></router-view>
             </main>
         </div>
     </div>
@@ -111,7 +121,7 @@
             },
             isError() {
                 this.error = this.$router.currentRoute.name ===
-                    'liro-error';
+                    'liro-backend-error';
             },
             gotoLogin() {
                 this.$router.push({ name: 'liro-users-auth-login'})

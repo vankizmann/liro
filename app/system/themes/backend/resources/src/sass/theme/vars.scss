@@ -1,12 +1,12 @@
 $color-white:           #ffffff;
 $color-black:           #272938;
-$color-primary:         #4b84fa;
-$color-success:         #10b55e;
-$color-warning:         #ff9453;
-$color-danger:          #fb4e52;
+$color-primary:         #0aa3eb;
+$color-success:         #35cb9f;
+$color-warning:         #ffac2f;
+$color-danger:          #fd2f51;
 $color-info:            #909399;
 $color-muted:           #5e6d82;
-$color-background:      #f5f7fa;
+$color-background:      #f5f8fa;
 
 $text-mini:             12px;
 $text-small:            14px;
@@ -15,4 +15,4 @@ $text-medium:           16px;
 $text-large:            18px;
 
 $border-radius: 3px;
-$box-shadow: 0 1px 3px 1px rgba($color-black, 0.05);
+$box-shadow: 0 1px 10px 1px rgba(mix($color-black, $color-primary, 50%), 0.05);

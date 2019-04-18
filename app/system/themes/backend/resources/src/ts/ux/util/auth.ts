@@ -1,4 +1,4 @@
-import { get, has } from 'lodash';
+import { get, has, concat } from 'lodash';
 import Data from './data';
 
 export function regexEscape (value : string) {
@@ -25,10 +25,10 @@ export abstract class Auth
 
     public static can(key)
     {
-        console.log(key);
+        let policies = this.user('policy_modules', []);
 
-        let policies = this.user('policy_modules', [
-            'liro-users-auth-login'
+        policies = concat(policies, [
+            'liro-users-auth-login', 'liro-backend-error'
         ]);
 
         policies = policies.filter((policy) => {

@@ -4,7 +4,6 @@ namespace Liro\Theme\Backend\Views;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
-use Liro\Extension\Menus\Models\Menu;
 use Liro\System\Cms\Facades\Assets;
 use Liro\System\Cms\Facades\Web;
 use Liro\System\Http\Controller;

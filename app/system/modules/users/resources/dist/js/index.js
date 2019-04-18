@@ -92,7 +92,7 @@ exports.default = {
             this.$router.push({ path: '/' });
         },
         authUserError: function (res) {
-            this.error = $.extend({}, errors, res.data.errors);
+            this.error = _.assign({}, errors, res.data.errors);
         }
     }
 };
@@ -100,19 +100,70 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./node_modules/ts-loader/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/ts/controllers/foo.vue":
+/***/ "./node_modules/ts-loader/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/ts/user/user-edit.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var errors = {
+    state: null, name: null, email: null, password: null, password_confirm: null
+};
+exports.default = {
+    props: ['user'],
+    data: function () {
+        return { entity: {}, error: errors };
+    },
+    mounted: function () {
+        var _this = this;
+        var entity = this.ux.data.find('users.data', {
+            id: this.user
+        }, null);
+        if (entity !== null) {
+            return this.entity = entity;
+        }
+        this.ux.ajax.call(['user-show', 'user'], true, { id: this.user })
+            .then(function (res) { return _this.entity = res.data; });
+    },
+    methods: {
+        updateUser: function () {
+            this.ux.ajax.call('user-update', false, this.entity)
+                .then(this.updateUserDone, this.updateUserError);
+        },
+        updateUserDone: function (res) {
+            this.$message.success(this.trans('liro-users::message.user.saved'));
+            this.ux.data.replace('users.data', res.data);
+        },
+        updateUserError: function (res) {
+            this.error = _.assign({}, errors, res.data.errors);
+        }
+    }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/ts-loader/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/ts/user/user-index.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
-    mounted: function () {
-        console.log('foobar');
-    },
+    props: ['id'],
     data: function () {
-        return { test: 'jajajaja!' };
+        return { entities: {} };
     },
+    mounted: function () {
+        var _this = this;
+        this.ux.ajax.call(['user-index', 'users'], true)
+            .then(function (res) { return _this.entities = res.data; });
+    },
+    watch: {
+        $route: function () {
+            this.entities = this.ux.data.get('users', {});
+        }
+    }
 };
 
 
@@ -228,18 +279,38 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-08d8ca7e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/ts/controllers/foo.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-046a3dc7\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/ts/user/user-index.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("p", [_vm._v("FOOOOOOO BBBBAAAAARRR")]),
-    _vm._v(" "),
-    _c("p", { domProps: { innerHTML: _vm._s(_vm.test) } })
-  ])
+  return _c(
+    "div",
+    _vm._l(_vm.entities.data, function(entity) {
+      return _c(
+        "div",
+        { key: entity.id },
+        [
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: {
+                  name: "liro-users-user-edit",
+                  params: { user: entity.id }
+                }
+              }
+            },
+            [_vm._v("\n            " + _vm._s(entity.name) + "\n        ")]
+          )
+        ],
+        1
+      )
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -247,7 +318,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-08d8ca7e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-046a3dc7", module.exports)
   }
 }
 
@@ -355,17 +426,22 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col col--right" }, [
-                _c("a", { attrs: { href: "#" } }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(
-                        _vm.trans("liro-users::form.auth.password_forget")
-                      ) +
-                      "\n                    "
-                  )
-                ])
-              ])
+              _c(
+                "div",
+                { staticClass: "col col--right" },
+                [
+                  _c("router-link", { attrs: { to: "/reset-password" } }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(
+                          _vm.trans("liro-users::form.auth.password_forget")
+                        ) +
+                        "\n                    "
+                    )
+                  ])
+                ],
+                1
+              )
             ])
           ]),
           _vm._v(" "),
@@ -408,6 +484,142 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3580deb6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/ts/user/user-edit.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "el-form",
+        { attrs: { model: _vm.entity, "label-position": "top" } },
+        [
+          _c(
+            "el-form-item",
+            {
+              attrs: {
+                prop: "name",
+                label: _vm.trans("liro-users::form.user.name"),
+                error: _vm.error.name
+              }
+            },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.entity.name,
+                  callback: function($$v) {
+                    _vm.$set(_vm.entity, "name", $$v)
+                  },
+                  expression: "entity.name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            {
+              attrs: {
+                prop: "email",
+                label: _vm.trans("liro-users::form.user.email"),
+                error: _vm.error.email
+              }
+            },
+            [
+              _c("el-input", {
+                model: {
+                  value: _vm.entity.email,
+                  callback: function($$v) {
+                    _vm.$set(_vm.entity, "email", $$v)
+                  },
+                  expression: "entity.email"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            {
+              attrs: {
+                prop: "password",
+                label: _vm.trans("liro-users::form.user.password"),
+                error: _vm.error.password
+              }
+            },
+            [
+              _c("el-input", {
+                attrs: { autocomplete: "new-password", "show-password": "" },
+                model: {
+                  value: _vm.entity.password,
+                  callback: function($$v) {
+                    _vm.$set(_vm.entity, "password", $$v)
+                  },
+                  expression: "entity.password"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            {
+              attrs: {
+                prop: "password_confirm",
+                label: _vm.trans("liro-users::form.user.password_confirm"),
+                error: _vm.error.password_confirm
+              }
+            },
+            [
+              _c("el-input", {
+                attrs: { autocomplete: "new-password", "show-password": "" },
+                model: {
+                  value: _vm.entity.password_confirm,
+                  callback: function($$v) {
+                    _vm.$set(_vm.entity, "password_confirm", $$v)
+                  },
+                  expression: "entity.password_confirm"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-form-item",
+            [
+              _c("el-button", { on: { click: _vm.updateUser } }, [
+                _vm._v("Update")
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3580deb6", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/src/ts/ajax/auth.ts":
 /***/ (function(module, exports) {
 
@@ -418,6 +630,29 @@ ux.ajax.bind('auth-login', function (ajax, query) {
 ux.ajax.bind('auth-logout', function (ajax, query) {
     var route = ux.route.get('liro-users.ajax.auth.logout');
     return ajax.post(route, query);
+});
+
+
+/***/ }),
+
+/***/ "./resources/src/ts/ajax/user.ts":
+/***/ (function(module, exports) {
+
+ux.ajax.bind('user-index', function (ajax, query) {
+    var route = ux.route.get('liro-users.ajax.user.index', null, query);
+    return ajax.get(route);
+});
+ux.ajax.bind('user-show', function (ajax, query) {
+    var route = ux.route.get('liro-users.ajax.user.show', { user: query.id });
+    return ajax.get(route, query);
+});
+ux.ajax.bind('user-store', function (ajax, query) {
+    var route = ux.route.get('liro-users.ajax.user.store');
+    return ajax.post(route, query);
+});
+ux.ajax.bind('user-update', function (ajax, query) {
+    var route = ux.route.get('liro-users.ajax.user.update', { user: query.id });
+    return ajax.put(route, query);
 });
 
 
@@ -471,15 +706,30 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/src/ts/controllers/foo.vue":
+/***/ "./resources/src/ts/index.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("./resources/src/ts/ajax/auth.ts");
+__webpack_require__("./resources/src/ts/ajax/user.ts");
+var UserIndex = __webpack_require__("./resources/src/ts/user/user-index.vue");
+ux.ext.export('liro-users-user-index', UserIndex);
+var UserEdit = __webpack_require__("./resources/src/ts/user/user-edit.vue");
+ux.ext.export('liro-users-user-edit', UserEdit);
+var AuthLogin = __webpack_require__("./resources/src/ts/auth/auth-login.vue");
+ux.ext.export('liro-users-auth-login', AuthLogin);
+
+
+/***/ }),
+
+/***/ "./resources/src/ts/user/user-edit.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = __webpack_require__("./node_modules/ts-loader/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/ts/controllers/foo.vue")
+var __vue_script__ = __webpack_require__("./node_modules/ts-loader/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/ts/user/user-edit.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-08d8ca7e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/ts/controllers/foo.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3580deb6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/ts/user/user-edit.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -496,7 +746,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/src/ts/controllers/foo.vue"
+Component.options.__file = "resources/src/ts/user/user-edit.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -505,9 +755,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-08d8ca7e", Component.options)
+    hotAPI.createRecord("data-v-3580deb6", Component.options)
   } else {
-    hotAPI.reload("data-v-08d8ca7e", Component.options)
+    hotAPI.reload("data-v-3580deb6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -519,14 +769,50 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/src/ts/index.ts":
+/***/ "./resources/src/ts/user/user-index.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("./resources/src/ts/ajax/auth.ts");
-var UserIndex = __webpack_require__("./resources/src/ts/controllers/foo.vue");
-ux.ext.export('liro-users-user-index', UserIndex);
-var AuthLogin = __webpack_require__("./resources/src/ts/auth/auth-login.vue");
-ux.ext.export('liro-users-auth-login', AuthLogin);
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/ts-loader/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/ts/user/user-index.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-046a3dc7\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/ts/user/user-index.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/ts/user/user-index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-046a3dc7", Component.options)
+  } else {
+    hotAPI.reload("data-v-046a3dc7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
 
 
 /***/ }),

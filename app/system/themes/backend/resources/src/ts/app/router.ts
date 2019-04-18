@@ -33,7 +33,7 @@ each(window.menus || [], function (menu) {
     };
 
     let route : any = {
-        path: menu.slug, props: { menu }
+        path: menu.slug , props: true
     };
 
     if ( has(menu, 'query.redirect') ) {
@@ -61,9 +61,15 @@ each(window.menus || [], function (menu) {
 
 let AppError = require('./layout/error.vue');
 
-routes.push({
-    path: '*', component: AppError
-});
+let error : any = {
+    name: 'liro-backend-error', path: '*', component: AppError
+};
+
+error.beforeEnter = (from, to, next) => {
+    window.ux.dom.title('Page not found'); next();
+};
+
+routes.push(error);
 
 export default new VueRouter({
     base: (<any> window).basePath, mode: 'history', routes: routes

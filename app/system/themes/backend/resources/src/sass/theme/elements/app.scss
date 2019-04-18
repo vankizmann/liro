@@ -13,17 +13,20 @@
 .app__layout {
     width: 100%;
     display: flex;
+}
+
+.app__layout.app__layout--index {
     flex-direction: column;
 }
 
-.app__layout.app__layout--login,
-.app__layout.app__layout--error {
-    justify-content: center;
-    align-items: center;
+.app__layout.app__layout--login {
+    background: $color-white;
+    flex-direction: row;
 }
 
 .app__layout.app__layout--error {
     background: $color-black;
+    flex-direction: row;
 }
 
 .app__layout .app__header {

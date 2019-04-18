@@ -1,0 +1,21 @@
+@import "../vars";
+
+.login__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login__image {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    background-color: $color-black;
+}
+
+.login__image > div {
+    flex: 1 1 auto;
+    background-position: center;
+    background-size: cover;
+    background-image: url('https://source.unsplash.com/user/kizmann/likes/960x1080')
+}

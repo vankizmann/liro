@@ -9,11 +9,11 @@ export default abstract class Route
         this.routes[key] = value;
     }
 
-    public static get (key : string, values : any, params : any)
+    public static get (key : string, values : any = null, params : any = null)
     {
         let route = key.match(/^https?:\/\//) ? key : this.routes[key] || '';
 
-        each(values, (value, key) => {
+        each(values || {}, (value, key) => {
             route = route.replace(new RegExp('{' + key + '\\?*}', 'g'), value);
         });
 
@@ -24,7 +24,7 @@ export default abstract class Route
         return route + (query.length != 0 ? '?' + query.join('&') : '');
     }
 
-    public static goto (key : string, values : any, params : any)
+    public static goto (key : string, values : any = null, params : any = null)
     {
         window.location.href = this.get(key, values, params);
     }

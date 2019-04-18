@@ -3,6 +3,9 @@ import { get, each, mapValues } from 'lodash';
 import cash from 'cash-dom';
 (<any> window).$ = cash;
 
+import * as lodash from 'lodash';
+(<any> window)._ = lodash;
+
 import axios from 'axios';
 (<any> window).axios = axios;
 

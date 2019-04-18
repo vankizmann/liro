@@ -73040,11 +73040,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var vue_1 = __webpack_require__("./node_modules/vue/dist/vue.esm.js");
-exports.default = vue_1.default.extend({
-    beforeMount: function () {
-        this.ux.dom.title('Page not found');
-    }
-});
+exports.default = vue_1.default.extend({});
 vue_1.default.component('liro-error', this.default);
 
 
@@ -73100,7 +73096,7 @@ exports.default = vue_1.default.extend({
         },
         isError: function () {
             this.error = this.$router.currentRoute.name ===
-                'liro-error';
+                'liro-backend-error';
         },
         gotoLogin: function () {
             this.$router.push({ name: 'liro-users-auth-login' });
@@ -73301,10 +73297,19 @@ var render = function() {
             { key: "error", staticClass: "app__layout app__layout--error" },
             [
               _c(
-                "main",
-                { staticClass: "app__main" },
-                [_c("keep-alive", [_c("router-view")], 1)],
-                1
+                "div",
+                {
+                  staticClass:
+                    "col col--flex-1 grid grid--row grid--middle grid--center"
+                },
+                [
+                  _c(
+                    "main",
+                    { staticClass: "app__main" },
+                    [_c("keep-alive", [_c("router-view")], 1)],
+                    1
+                  )
+                ]
               )
             ]
           )
@@ -73315,12 +73320,22 @@ var render = function() {
             "div",
             { key: "login", staticClass: "app__layout app__layout--login" },
             [
-              _c(
-                "main",
-                { staticClass: "app__main" },
-                [_c("keep-alive", [_c("router-view")], 1)],
-                1
-              )
+              _c("div", { staticClass: "col col--flex-1 grid grid--row" }, [
+                _c(
+                  "div",
+                  { staticClass: "login__content col col--1-1 col--1-2@md" },
+                  [
+                    _c(
+                      "main",
+                      { staticClass: "app__main" },
+                      [_c("keep-alive", [_c("router-view")], 1)],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
             ]
           )
         : _vm._e(),
@@ -73392,33 +73407,55 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("section", { staticClass: "app__toolbar" }, [
-                _c(
-                  "div",
-                  { staticClass: "grid grid--row grid--middle grid--10" },
-                  [
-                    _c("div", { staticClass: "toolbar__title col col--left" }, [
-                      _c("h1", [_vm._v(_vm._s(_vm.trans(_vm.ux.dom.titleNow)))])
-                    ]),
-                    _vm._v(" "),
+               false
+                ? _c("section", { staticClass: "app__toolbar" }, [
                     _c(
                       "div",
-                      { staticClass: "toolbar__actions col col--right" },
+                      { staticClass: "grid grid--row grid--middle grid--10" },
                       [
-                        _c("el-button", { attrs: { type: "primary" } }, [
-                          _vm._v("Benutzer erstellen")
-                        ])
-                      ],
-                      1
+                        _c(
+                          "div",
+                          { staticClass: "toolbar__title col col--left" },
+                          [
+                            _c("h1", [
+                              _vm._v(_vm._s(_vm.trans(_vm.ux.dom.titleNow)))
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "toolbar__actions col col--right" },
+                          [
+                            _c("el-button", { attrs: { type: "primary" } }, [
+                              _vm._v("Benutzer erstellen")
+                            ])
+                          ],
+                          1
+                        )
+                      ]
                     )
-                  ]
-                )
-              ]),
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "main",
                 { staticClass: "app__main" },
-                [_c("keep-alive", [_c("router-view")], 1)],
+                [
+                  _c(
+                    "keep-alive",
+                    [
+                      Object.keys(_vm.$route.params).length === 0
+                        ? _c("router-view")
+                        : _vm._e()
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  Object.keys(_vm.$route.params).length !== 0
+                    ? _c("router-view")
+                    : _vm._e()
+                ],
                 1
               )
             ]
@@ -73427,7 +73464,16 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "login__image col col--1-1 col--1-2@md" }, [
+      _c("div")
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -73445,7 +73491,7 @@ if (false) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /*!
-  * vue-router v3.0.4
+  * vue-router v3.0.5
   * (c) 2019 Evan You
   * @license MIT
   */
@@ -73504,11 +73550,14 @@ var View = {
     var depth = 0;
     var inactive = false;
     while (parent && parent._routerRoot !== parent) {
-      if (parent.$vnode && parent.$vnode.data.routerView) {
-        depth++;
-      }
-      if (parent._inactive) {
-        inactive = true;
+      var vnodeData = parent.$vnode && parent.$vnode.data;
+      if (vnodeData) {
+        if (vnodeData.routerView) {
+          depth++;
+        }
+        if (vnodeData.keepAlive && parent._inactive) {
+          inactive = true;
+        }
       }
       parent = parent.$parent;
     }
@@ -73545,6 +73594,17 @@ var View = {
     // in case the same component instance is reused across different routes
     ;(data.hook || (data.hook = {})).prepatch = function (_, vnode) {
       matched.instances[name] = vnode.componentInstance;
+    };
+
+    // register instance in init hook
+    // in case kept-alive component be actived when routes changed
+    data.hook.init = function (vnode) {
+      if (vnode.data.keepAlive &&
+        vnode.componentInstance &&
+        vnode.componentInstance !== matched.instances[name]
+      ) {
+        matched.instances[name] = vnode.componentInstance;
+      }
     };
 
     // resolve props
@@ -75202,7 +75262,7 @@ function resolveAsyncComponents (matched) {
           match.components[key] = resolvedDef;
           pending--;
           if (pending <= 0) {
-            next();
+            next(to);
           }
         });
 
@@ -76094,7 +76154,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.0.4';
+VueRouter.version = '3.0.5';
 
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
@@ -88301,7 +88361,7 @@ lodash_1.each(window.menus || [], function (menu) {
         App.$message.error(App.trans('vue.module.missing', menu));
     };
     var route = {
-        path: menu.slug, props: { menu: menu }
+        path: menu.slug, props: true
     };
     if (lodash_1.has(menu, 'query.redirect')) {
         route.redirect = function (to) {
@@ -88323,9 +88383,14 @@ lodash_1.each(window.menus || [], function (menu) {
     routes.push(route);
 });
 var AppError = __webpack_require__("./resources/src/ts/app/layout/error.vue");
-routes.push({
-    path: '*', component: AppError
-});
+var error = {
+    name: 'liro-backend-error', path: '*', component: AppError
+};
+error.beforeEnter = function (from, to, next) {
+    window.ux.dom.title('Page not found');
+    next();
+};
+routes.push(error);
 exports.default = new vue_router_1.default({
     base: window.basePath, mode: 'history', routes: routes
 });
@@ -88342,6 +88407,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var lodash_1 = __webpack_require__("./node_modules/lodash/lodash.js");
 var cash_dom_1 = __webpack_require__("./node_modules/cash-dom/dist/cash.esm.js");
 window.$ = cash_dom_1.default;
+var lodash = __webpack_require__("./node_modules/lodash/lodash.js");
+window._ = lodash;
 var axios_1 = __webpack_require__("./node_modules/axios/index.js");
 window.axios = axios_1.default;
 var index_1 = __webpack_require__("./resources/src/ts/ux/index.ts");
@@ -88409,6 +88476,7 @@ index_1.default.dom.ready(function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var queue_1 = __webpack_require__("./resources/src/ts/ux/util/queue.ts");
 var asset_1 = __webpack_require__("./resources/src/ts/ux/util/asset.ts");
+var event_1 = __webpack_require__("./resources/src/ts/ux/util/event.ts");
 var dom_1 = __webpack_require__("./resources/src/ts/ux/util/dom.ts");
 var ext_1 = __webpack_require__("./resources/src/ts/ux/util/ext.ts");
 var data_1 = __webpack_require__("./resources/src/ts/ux/util/data.ts");
@@ -88417,7 +88485,7 @@ var locale_1 = __webpack_require__("./resources/src/ts/ux/util/locale.ts");
 var ajax_1 = __webpack_require__("./resources/src/ts/ux/util/ajax.ts");
 var auth_1 = __webpack_require__("./resources/src/ts/ux/util/auth.ts");
 exports.default = {
-    ext: ext_1.default, dom: dom_1.default, queue: queue_1.default, asset: asset_1.default, data: data_1.default, route: route_1.default, locale: locale_1.default, ajax: ajax_1.default, auth: auth_1.default
+    ext: ext_1.default, dom: dom_1.default, queue: queue_1.default, asset: asset_1.default, event: event_1.default, data: data_1.default, route: route_1.default, locale: locale_1.default, ajax: ajax_1.default, auth: auth_1.default
 };
 __webpack_require__("./resources/src/ts/ux/util/polyfill.ts");
 
@@ -88570,9 +88638,9 @@ var Auth = /** @class */ (function () {
         return this.user('id') === null;
     };
     Auth.can = function (key) {
-        console.log(key);
-        var policies = this.user('policy_modules', [
-            'liro-users-auth-login'
+        var policies = this.user('policy_modules', []);
+        policies = lodash_1.concat(policies, [
+            'liro-users-auth-login', 'liro-backend-error'
         ]);
         policies = policies.filter(function (policy) {
             var regex = new RegExp('^' + regexEscape(policy)
@@ -88616,31 +88684,67 @@ var Data = /** @class */ (function () {
         if (lodash_1.isEqual(this.data[key], copy)) {
             return;
         }
-        this.data[key] = copy;
+        lodash_1.set(this.data, key, copy);
         event_1.default.fire('store:' + key, copy, key);
     };
     Data.get = function (input, fallback) {
         if (fallback === void 0) { fallback = null; }
         var key = extractKey(input);
-        if (this.has(key) === false) {
-            return this.data[key] = {};
+        if (_.has(this.data, key) === false) {
+            return fallback;
         }
-        return lodash_1.clone(this.data[key] || fallback || {});
+        var value = _.get(this.data, key, fallback);
+        if (!_.isPlainObject(value)) {
+            return value;
+        }
+        return lodash_1.clone(value);
     };
-    ;
+    Data.find = function (input, value, fallback) {
+        if (fallback === void 0) { fallback = null; }
+        var key = extractKey(input);
+        if (_.has(this.data, key) === false) {
+            return fallback;
+        }
+        if (_.has(value, 'id') === false) {
+            return fallback;
+        }
+        var index = _.findIndex(this.get(key), {
+            id: parseInt(value.id)
+        });
+        if (index === -1) {
+            return fallback;
+        }
+        return this.get(key + '.' + index);
+    };
+    Data.replace = function (input, value) {
+        var key = extractKey(input);
+        if (_.has(this.data, key) === false) {
+            return;
+        }
+        if (_.has(value, 'id') === false) {
+            return;
+        }
+        var index = _.findIndex(this.get(key), {
+            id: parseInt(value.id)
+        });
+        if (index === -1) {
+            return;
+        }
+        this.set(key + '.' + index, value);
+    };
     Data.add = function (input) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        this.set(input, lodash_1.merge(this.get(input, []), args));
+        this.set(input, _.merge(this.get(input, []), args));
     };
     Data.remove = function (input) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        this.set(input, lodash_1.difference(this.get(input, []), args));
+        this.set(input, _.difference(this.get(input, []), args));
     };
     Data.data = {};
     return Data;
@@ -88940,8 +89044,10 @@ var Route = /** @class */ (function () {
         this.routes[key] = value;
     };
     Route.get = function (key, values, params) {
+        if (values === void 0) { values = null; }
+        if (params === void 0) { params = null; }
         var route = key.match(/^https?:\/\//) ? key : this.routes[key] || '';
-        lodash_1.each(values, function (value, key) {
+        lodash_1.each(values || {}, function (value, key) {
             route = route.replace(new RegExp('{' + key + '\\?*}', 'g'), value);
         });
         var query = lodash_1.flatMap(params || {}, function (value, key) {
@@ -88950,6 +89056,8 @@ var Route = /** @class */ (function () {
         return route + (query.length != 0 ? '?' + query.join('&') : '');
     };
     Route.goto = function (key, values, params) {
+        if (values === void 0) { values = null; }
+        if (params === void 0) { params = null; }
         window.location.href = this.get(key, values, params);
     };
     Route.routes = {};

@@ -15,10 +15,6 @@
 
     export default Vue.extend({
 
-        beforeMount() {
-            this.ux.dom.title('Page not found');
-        }
-
     });
 
     Vue.component('liro-error', this.default)

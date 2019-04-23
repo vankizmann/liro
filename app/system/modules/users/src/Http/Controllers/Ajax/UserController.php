@@ -16,7 +16,7 @@ class UserController extends Controller
 
     public function index(User $user)
     {
-        return response()->json($user->paginate(), 200);
+        return response()->json($user->datatable(), 200);
     }
 
     public function show(User $user)

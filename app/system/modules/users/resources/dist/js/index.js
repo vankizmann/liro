@@ -163,6 +163,52 @@ exports.default = {
         $route: function () {
             this.entities = this.ux.data.get('users', {});
         }
+    },
+    methods: {
+        sizeChange: function (size) {
+            var _this = this;
+            var params = {
+                size: size
+            };
+            if (_.has(this, 'entities.current_page')) {
+                params.page = this.entities.current_page;
+            }
+            this.ux.ajax.call(['user-index', 'users'], true, params)
+                .then(function (res) { return _this.entities = res.data; });
+        },
+        currentChange: function (page) {
+            var _this = this;
+            var params = {
+                page: page
+            };
+            if (_.has(this, 'entities.per_page')) {
+                params.size = this.entities.per_page;
+            }
+            this.ux.ajax.call(['user-index', 'users'], true, params)
+                .then(function (res) { return _this.entities = res.data; });
+        },
+        test: function (options) {
+            var _this = this;
+            var params = {};
+            if (options.order !== null) {
+                params.column = options.prop;
+            }
+            if (options.order === 'descending') {
+                params.order = 'desc';
+            }
+            if (options.order === 'ascending') {
+                params.order = 'asc';
+            }
+            this.ux.ajax.call(['user-index', 'users'], true, params)
+                .then(function (res) { return _this.entities = res.data; });
+        },
+        foobar: function (col) {
+            var args = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args[_i - 1] = arguments[_i];
+            }
+            console.log('foobar', col, args);
+        }
     }
 };
 
@@ -288,28 +334,93 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.entities.data, function(entity) {
-      return _c(
-        "div",
-        { key: entity.id },
+    [
+      _c(
+        "el-table",
+        { attrs: { data: _vm.entities.data }, on: { "sort-change": _vm.test } },
         [
-          _c(
-            "router-link",
-            {
-              attrs: {
-                to: {
-                  name: "liro-users-user-edit",
-                  params: { user: entity.id }
+          _c("el-table-column", { attrs: { type: "selection", width: "55" } }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "name", label: "Name", sortable: "custom" },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(scope) {
+                  return [
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "liro-users-user-edit",
+                            params: { user: scope.row.id }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(scope.row.name) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ]
                 }
               }
+            ])
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: {
+              prop: "email",
+              "column-key": "email",
+              label: "E-Mail",
+              sortable: "custom"
             },
-            [_vm._v("\n            " + _vm._s(entity.name) + "\n        ")]
-          )
+            scopedSlots: _vm._u([
+              {
+                key: "header",
+                fn: function(scope) {
+                  return [_c("span", [_vm._v(_vm._s(scope.column.label))])]
+                }
+              }
+            ])
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: {
+              prop: "updated_at",
+              "column-key": "updated_at",
+              label: "Zuletzt bearbeitet",
+              sortable: "custom"
+            }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "id", label: "ID", width: 80, sortable: "custom" }
+          })
         ],
         1
-      )
-    }),
-    0
+      ),
+      _vm._v(" "),
+      _c("el-pagination", {
+        attrs: {
+          "current-page": _vm.entities.current_page,
+          "page-size": _vm.entities.per_page,
+          layout: "sizes, ->, total, ->, prev, pager, next",
+          total: _vm.entities.total,
+          background: true,
+          "page-sizes": [10, 20, 50, 100, 250, 500]
+        },
+        on: {
+          "size-change": _vm.sizeChange,
+          "current-change": _vm.currentChange
+        }
+      })
+    ],
+    1
   )
 }
 var staticRenderFns = []

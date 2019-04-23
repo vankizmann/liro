@@ -72,6 +72,10 @@
     line-height: 1.2;
 }
 
-.el-pagination__editor.el-input {
-    margin-left: 10px;
+.el-pagination .el-select .el-input {
+    min-width: 130px;
+}
+
+.el-pagination {
+    margin: 17px 0;
 }

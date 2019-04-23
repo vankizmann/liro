@@ -5,10 +5,12 @@ namespace Liro\Extension\Users\Models;
 use Illuminate\Foundation\Auth\User as Model;
 use Illuminate\Support\Facades\Hash;
 use Liro\System\Database\Traits\CastableTrait;
+use Liro\System\Database\Traits\DatatableTrait;
+use Liro\System\Database\Traits\PaginatableTrait;
 
 class User extends Model
 {
-    use CastableTrait;
+    use CastableTrait, PaginatableTrait, DatatableTrait;
 
     protected $table = 'users';
 

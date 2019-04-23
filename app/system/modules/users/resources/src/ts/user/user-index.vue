@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-table :data="entities.data" @sort-change="test">
+        <el-table ref="table" :data="entities.data" @sort-change="test">
             <el-table-column
                 type="selection" width="55">
             </el-table-column>
@@ -52,7 +52,8 @@
 
         watch: {
             $route() {
-                this.entities = this.ux.data.get('users', {})
+                this.entities = this.ux.data.get('users', {});
+                this.$refs.table.doLayout();
             }
         },
 

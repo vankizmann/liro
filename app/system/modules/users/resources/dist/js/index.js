@@ -162,6 +162,7 @@ exports.default = {
     watch: {
         $route: function () {
             this.entities = this.ux.data.get('users', {});
+            this.$refs.table.doLayout();
         }
     },
     methods: {
@@ -337,7 +338,11 @@ var render = function() {
     [
       _c(
         "el-table",
-        { attrs: { data: _vm.entities.data }, on: { "sort-change": _vm.test } },
+        {
+          ref: "table",
+          attrs: { data: _vm.entities.data },
+          on: { "sort-change": _vm.test }
+        },
         [
           _c("el-table-column", { attrs: { type: "selection", width: "55" } }),
           _vm._v(" "),

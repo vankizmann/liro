@@ -1,7 +1,7 @@
 import { get, each, mapValues } from 'lodash';
 
-import cash from 'cash-dom';
-(<any> window).$ = cash;
+import * as jquery from 'jquery';
+(<any> window).$ = jquery;
 
 import * as lodash from 'lodash';
 (<any> window)._ = lodash;

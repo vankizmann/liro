@@ -1,4 +1,6 @@
-import { each, flatMap } from 'lodash';
+import { each, isEmpty, flatMap } from 'lodash';
+
+declare var $ : any;
 
 export default abstract class Route
 {
@@ -17,11 +19,7 @@ export default abstract class Route
             route = route.replace(new RegExp('{' + key + '\\?*}', 'g'), value);
         });
 
-        let query = flatMap(params || {}, (value, key) => {
-            return encodeURIComponent(key) + '=' + encodeURIComponent(value);
-        });
-
-        return route + (query.length != 0 ? '?' + query.join('&') : '');
+        return route + (! isEmpty(params) ? '?' + $.param(params || {}) : '');
     }
 
     public static goto (key : string, values : any = null, params : any = null)

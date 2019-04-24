@@ -3,8 +3,10 @@
 namespace Liro\Extension\Users\Providers;
 
 use Illuminate\Auth\SessionGuard;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Liro\Extension\Users\Http\Middleware\ControllerGuard;
+use Liro\System\Cms\Facades\Web;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -25,10 +27,20 @@ class UserServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        SessionGuard::macro('getUserAttr', function ($attribute, $fallback = null) {
+            return Web::unguarded(function () use ($attribute, $fallback) {
+                return data_get(Auth::user(), $attribute, $fallback);
+            });
+        });
+
         SessionGuard::macro('getPolicyDepth', function ($class, $fallback = 10000) {
 
-            if ( ! auth()->guest() ) {
-                return auth()->user()->getPolicyDepth($class);
+            $user = Web::unguarded(function () {
+                return Auth::user();
+            });
+
+            if ( $user !== null ) {
+                return $user->getPolicyDepth($class);
             }
 
             return $fallback;
@@ -36,8 +48,12 @@ class UserServiceProvider extends ServiceProvider
 
         SessionGuard::macro('hasPolicyAction', function ($class, $action, $fallback = false) {
 
-            if ( ! auth()->guest() ) {
-                return auth()->user()->hasPolicyAction($class, $action);
+            $user = Web::unguarded(function () {
+                return Auth::user();
+            });
+
+            if ( $user !== null ) {
+                return $user->hasPolicyAction($class, $action);
             }
 
             return $fallback;

@@ -3,6 +3,7 @@
 namespace Liro\System\Cms;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Event;
 use Liro\System\Cms\Helpers\RouteHelper;
 use Liro\System\Cms\Managers\AssetManager;
 use Liro\System\Cms\Managers\ModuleManager;
@@ -77,7 +78,7 @@ class Web
         });
 
         App::loaded(function () {
-//            dd(app('router'));
+//            app('cms')->enableGuarded();
         });
 
     }

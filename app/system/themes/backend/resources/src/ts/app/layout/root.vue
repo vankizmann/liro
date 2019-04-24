@@ -1,6 +1,6 @@
 <template>
     <div class="app__viewport" v-loading="load">
-        <div class="app__layout app__layout--error" v-if="error" key="error">
+        <div class="app__layout app__layout--error" v-if="error" :key="'error'">
             <div class="col col--flex-1 grid grid--row grid--middle grid--center">
                 <main class="app__main">
                     <keep-alive>
@@ -9,7 +9,7 @@
                 </main>
             </div>
         </div>
-        <div class="app__layout app__layout--login" v-if="login" key="login">
+        <div class="app__layout app__layout--login" v-if="login" :key="'login'">
             <div class="col col--flex-1 grid grid--row">
                 <div class="login__content col col--1-1 col--1-2@md">
                     <main class="app__main">
@@ -23,10 +23,10 @@
                 </div>
             </div>
         </div>
-        <div class="app__layout app__layout--index" v-if="index" key="index">
+        <div class="app__layout app__layout--index" v-if="index" :key="'index'">
             <header class="app__header">
                 <div class="header__logo col">
-                    <router-link to="/"><h2>Logo</h2></router-link>
+                    <router-link to="/"><h2>Liro</h2></router-link>
                 </div>
                 <nav class="header__nav col">
                     <div class="grid grid--row grid--middle grid--10">
@@ -69,7 +69,6 @@
 
 </template>
 <script lang="ts">
-    import { get } from 'lodash';
     import Vue from "vue";
     import AppRouter from '../router';
 

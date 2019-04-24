@@ -3,14 +3,16 @@
 namespace Liro\Extension\Users\Models;
 
 use Illuminate\Foundation\Auth\User as Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Liro\Extension\Users\Database\Traits\DepthGuardTrait;
 use Liro\System\Database\Traits\CastableTrait;
 use Liro\System\Database\Traits\DatatableTrait;
 use Liro\System\Database\Traits\PaginatableTrait;
 
 class User extends Model
 {
-    use CastableTrait, PaginatableTrait, DatatableTrait;
+    use CastableTrait, PaginatableTrait, DatatableTrait, DepthGuardTrait;
 
     protected $table = 'users';
 
@@ -41,6 +43,17 @@ class User extends Model
         'password' => 'string',
         'guard'    => 'integer',
     ];
+
+    public function skipGuardedBuilder($query)
+    {
+        $userId = Auth::getUserAttr('id', null);
+
+        if ($userId !== null) {
+            $query->orWhere('id', $userId);
+        }
+
+        return $query;
+    }
 
     public function roles()
     {

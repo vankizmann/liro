@@ -26,7 +26,7 @@ class UserSeeds
                 'name'     => $faker->name,
                 'email'    => $faker->unique()->safeEmail,
                 'password' => 'password',
-                'guard'    => 1
+                'guard'    => rand(1,2),
             ]);
         }
     }

@@ -35,7 +35,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             Middleware\EncryptCookies::class,
-            Middleware\VerifyCsrfToken::class
+            Middleware\VerifyCsrfToken::class,
+            Middleware\EnableGuarded::class,
         ],
 
         'ajax' => [
@@ -45,7 +46,8 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             Middleware\EncryptCookies::class,
             Middleware\VerifyCsrfToken::class,
-            Middleware\AjaxRequest::class
+            Middleware\AjaxRequest::class,
+            Middleware\EnableGuarded::class,
         ],
 
         'api' => [

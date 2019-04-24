@@ -2,6 +2,8 @@
 
 namespace Liro\Extension\Users\Http\Controllers\Ajax;
 
+use Illuminate\Support\Facades\Auth;
+use Liro\System\Cms\Facades\Web;
 use Liro\System\Http\Controller;
 use Liro\System\Exceptions\Exception;
 use Liro\Extension\Users\Http\Requests\AuthLoginRequest;
@@ -23,7 +25,11 @@ class AuthController extends Controller
 
         $remember = $request->input('remember', false);
 
-        if ( ! auth()->attempt($credentials, $remember) ) {
+        $attempt = Web::unguarded(function() use ($credentials, $remember) {
+            return Auth::attempt($credentials, $remember);
+        });
+
+        if ( $attempt === false ) {
             throw new Exception('liro-users::message.auth.credentials', 400);
         }
 

@@ -13,7 +13,7 @@ trait PaginatableTrait
 
     public function getPerPage()
     {
-        $pageSize = Input::get('size', 100);
+        $pageSize = Input::get('limit', 25);
 
         return $this->perPage = (int) min($pageSize, $this->pageSizeLimit);
     }

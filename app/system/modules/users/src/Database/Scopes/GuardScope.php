@@ -18,12 +18,22 @@ class GuardScope implements Scope
             $guardDepth = app('auth')
                 ->getPolicyDepth($modelClass);
 
-            $builder
-                ->where($model->getDepthGuardColumn(), '>=', $guardDepth)
-                ->orWhere($model->getDepthGuardColumn(), '=', 0);
+            $userId = app('auth')
+                ->getUserAttr('id', null);
+
+            $builder->where(function ($query) use ($model, $guardDepth, $userId) {
+
+                if ( method_exists($model, 'skipGuardedBuilder') ) {
+                    $query = $model->skipGuardedBuilder($query);
+                }
+
+                $query
+                    ->orWhere($model->getDepthGuardColumn(), '>=', $guardDepth)
+                    ->orWhere($model->getDepthGuardColumn(), '=', 0);
+            });
         }
 
-        return;
+        return $builder;
     }
 
 }

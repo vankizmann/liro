@@ -149,66 +149,94 @@ exports.default = {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var query = {
+    search: {
+        query: '', columns: ['id', 'email', 'name']
+    },
+    order: {
+        direction: 'desc', column: 'id'
+    },
+    paginate: {
+        page: 1, limit: 25, total: 0,
+    },
+    filters: {
+    // email: ['admin@gmail.com']
+    },
+};
 exports.default = {
     props: ['id'],
     data: function () {
-        return { entities: {} };
+        return { key: 0, search: '', selected: [], query: _.assign({}, query), entities: {} };
     },
     mounted: function () {
         var _this = this;
-        this.ux.ajax.call(['user-index', 'users'], true)
-            .then(function (res) { return _this.entities = res.data; });
+        this.$watch('entities.per_page', function (value) {
+            _this.query.paginate.limit = value;
+        });
+        this.$watch('entities.current_page', function (value) {
+            _this.query.paginate.page = value;
+        });
+        this.$watch('entities.total', function (value) {
+            _this.query.paginate.total = value;
+        });
+        this.queryData();
     },
     watch: {
         $route: function () {
+            this.$refs.table.clearSelection();
             this.entities = this.ux.data.get('users', {});
-            this.$refs.table.doLayout();
         }
     },
     methods: {
-        sizeChange: function (size) {
+        queryData: function (override) {
             var _this = this;
-            var params = {
-                size: size
-            };
-            if (_.has(this, 'entities.current_page')) {
-                params.page = this.entities.current_page;
-            }
-            this.ux.ajax.call(['user-index', 'users'], true, params)
+            if (override === void 0) { override = null; }
+            var params = _.merge({}, override || this.query);
+            this.ux.ajax.call(['user-index', 'users'], true, this.query = params)
                 .then(function (res) { return _this.entities = res.data; });
         },
-        currentChange: function (page) {
-            var _this = this;
-            var params = {
-                page: page
-            };
-            if (_.has(this, 'entities.per_page')) {
-                params.size = this.entities.per_page;
-            }
-            this.ux.ajax.call(['user-index', 'users'], true, params)
-                .then(function (res) { return _this.entities = res.data; });
+        searchChange: function (query) {
+            var params = _.merge({}, this.query, {
+                search: { query: query }
+            });
+            this.queryData(params);
         },
-        test: function (options) {
-            var _this = this;
-            var params = {};
-            if (options.order !== null) {
-                params.column = options.prop;
+        limitChange: function (limit) {
+            var params = _.merge({}, this.query, {
+                paginate: { limit: limit }
+            });
+            this.queryData(params);
+        },
+        filterChange: function (filter) {
+            var params = _.merge({}, this.query);
+            _.each(filter, function (values, key) {
+                params.filters[key] = _.merge([], values);
+            });
+            this.queryData(params);
+        },
+        pageChange: function (page) {
+            var params = _.merge({}, this.query, {
+                paginate: { page: page }
+            });
+            this.queryData(params);
+        },
+        sortChange: function (options) {
+            var params = _.merge({}, this.query, {
+                order: query.order
+            });
+            if (options.prop !== null) {
+                params.order.column = options.prop;
             }
             if (options.order === 'descending') {
-                params.order = 'desc';
+                params.order.direction = 'desc';
             }
             if (options.order === 'ascending') {
-                params.order = 'asc';
+                params.order.direction = 'asc';
             }
-            this.ux.ajax.call(['user-index', 'users'], true, params)
-                .then(function (res) { return _this.entities = res.data; });
+            this.queryData(params);
         },
-        foobar: function (col) {
-            var args = [];
-            for (var _i = 1; _i < arguments.length; _i++) {
-                args[_i - 1] = arguments[_i];
-            }
-            console.log('foobar', col, args);
+        selectionChange: function (selected) {
+            this.selected = selected;
         }
     }
 };
@@ -336,19 +364,137 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("div", { staticClass: "grid grid--row grid--10" }, [
+        _c(
+          "div",
+          { staticClass: "col" },
+          [
+            _c("el-input", {
+              attrs: {
+                placeholder: _vm.trans("el.search.placeholder"),
+                clearable: true
+              },
+              on: {
+                clear: function($event) {
+                  return _vm.searchChange("")
+                }
+              },
+              nativeOn: {
+                keyup: function($event) {
+                  if (
+                    !$event.type.indexOf("key") &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  return _vm.searchChange(_vm.search)
+                }
+              },
+              model: {
+                value: _vm.search,
+                callback: function($$v) {
+                  _vm.search = $$v
+                },
+                expression: "search"
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col col--left" },
+          [
+            _c(
+              "el-button",
+              {
+                attrs: { type: "primary", icon: "el-icon-search" },
+                on: {
+                  click: function($event) {
+                    return _vm.searchChange(_vm.search)
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.trans("el.search.button")) +
+                    "\n            "
+                )
+              ]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col col--right" },
+          [
+            _c(
+              "el-button",
+              {
+                attrs: {
+                  type: "secondary",
+                  icon: "el-icon-delete",
+                  disabled: _vm.selected.length === 0
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.searchChange(_vm.search)
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.trans("el.table.delete")) +
+                    "\n            "
+                )
+              ]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "el-table",
         {
+          key: _vm.key,
           ref: "table",
           attrs: { data: _vm.entities.data },
-          on: { "sort-change": _vm.test }
+          on: {
+            "sort-change": _vm.sortChange,
+            "filter-change": _vm.filterChange,
+            "selection-change": _vm.selectionChange
+          }
         },
         [
-          _c("el-table-column", { attrs: { type: "selection", width: "55" } }),
+          _c("el-table-column", {
+            attrs: { prop: "id", type: "selection", width: "55" }
+          }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "name", label: "Name", sortable: "custom" },
+            attrs: {
+              "column-key": "name",
+              prop: "name",
+              label: "Name",
+              filters: [{ text: "Administrator", value: "Administrator" }]
+            },
             scopedSlots: _vm._u([
+              {
+                key: "header",
+                fn: function(ref) {
+                  var column = ref.column
+                  return [
+                    _c("span", { staticClass: "el-table__column-label" }, [
+                      _vm._v(_vm._s(column.label))
+                    ])
+                  ]
+                }
+              },
               {
                 key: "default",
                 fn: function(scope) {
@@ -387,8 +533,13 @@ var render = function() {
             scopedSlots: _vm._u([
               {
                 key: "header",
-                fn: function(scope) {
-                  return [_c("span", [_vm._v(_vm._s(scope.column.label))])]
+                fn: function(ref) {
+                  var column = ref.column
+                  return [
+                    _c("span", { staticClass: "el-table__column-label" }, [
+                      _vm._v(_vm._s(column.label))
+                    ])
+                  ]
                 }
               }
             ])
@@ -400,11 +551,37 @@ var render = function() {
               "column-key": "updated_at",
               label: "Zuletzt bearbeitet",
               sortable: "custom"
-            }
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "header",
+                fn: function(ref) {
+                  var column = ref.column
+                  return [
+                    _c("span", { staticClass: "el-table__column-label" }, [
+                      _vm._v(_vm._s(column.label))
+                    ])
+                  ]
+                }
+              }
+            ])
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "id", label: "ID", width: 80, sortable: "custom" }
+            attrs: { prop: "id", label: "ID", width: 80, sortable: "custom" },
+            scopedSlots: _vm._u([
+              {
+                key: "header",
+                fn: function(ref) {
+                  var column = ref.column
+                  return [
+                    _c("span", { staticClass: "el-table__column-label" }, [
+                      _vm._v(_vm._s(column.label))
+                    ])
+                  ]
+                }
+              }
+            ])
           })
         ],
         1
@@ -412,17 +589,14 @@ var render = function() {
       _vm._v(" "),
       _c("el-pagination", {
         attrs: {
-          "current-page": _vm.entities.current_page,
-          "page-size": _vm.entities.per_page,
+          "current-page": _vm.query.paginate.page,
+          "page-size": _vm.query.paginate.limit,
           layout: "sizes, ->, total, ->, prev, pager, next",
-          total: _vm.entities.total,
+          total: _vm.query.paginate.total,
           background: true,
-          "page-sizes": [10, 20, 50, 100, 250, 500]
+          "page-sizes": [10, 25, 50, 100, 250, 500]
         },
-        on: {
-          "size-change": _vm.sizeChange,
-          "current-change": _vm.currentChange
-        }
+        on: { "size-change": _vm.limitChange, "current-change": _vm.pageChange }
       })
     ],
     1

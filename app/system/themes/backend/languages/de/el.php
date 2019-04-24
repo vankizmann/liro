@@ -3,6 +3,7 @@
 return [
 
     'search' => [
+        'button' => 'Suchen',
         'placeholder' => 'Suchbegriff'
     ],
 
@@ -112,8 +113,9 @@ return [
         'emptyText'     => 'Keine Daten',
         'confirmFilter' => 'Anwenden',
         'resetFilter'   => 'Zurücksetzen',
-        'clearFilter'   => 'Alles ',
+        'clearFilter'   => 'Alles',
         'sumText'       => 'Summe',
+        'delete'        => 'Löschen'
     ],
 
     'tree'        => [

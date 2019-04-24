@@ -49,16 +49,16 @@ trait DepthGuardTrait
         return $this;
     }
 
-    public function scopeWithoutDepthGuard(Builder $builder)
-    {
-        $model = $builder->getModel()->disableDepthGuard();
-        return $builder->setModel($model);
-    }
-
-    public function scopeWithDepthGuard(Builder $builder)
-    {
-        $model = $builder->getModel()->enableDepthGuard();
-        return $builder->setModel($model);
-    }
+//    public function scopeWithoutDepthGuard(Builder $builder)
+//    {
+//        $model = $builder->getModel()->disableDepthGuard();
+//        return $builder->setModel($model);
+//    }
+//
+//    public function scopeWithDepthGuard(Builder $builder)
+//    {
+//        $model = $builder->getModel()->enableDepthGuard();
+//        return $builder->setModel($model);
+//    }
 
 }

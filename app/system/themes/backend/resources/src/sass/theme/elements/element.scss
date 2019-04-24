@@ -79,3 +79,49 @@
 .el-pagination {
     margin: 17px 0;
 }
+
+.el-table th > .cell {
+    display: flex;
+    align-items: center;
+}
+
+.el-table th > .cell > span {
+    cursor: pointer;
+}
+
+.el-table th > .cell > span:only-child {
+    cursor: initial;
+}
+
+.el-table th > .cell .el-table__column-label {
+    order: 1;
+    flex: 1 0 auto;
+}
+
+.el-table th > .cell .caret-wrapper {
+    order: 2;
+    flex: 0 0 auto;
+    margin-left: 5px;
+}
+
+.el-table th > .cell .el-table__column-filter-trigger {
+    order: 3;
+    flex: 0 0 auto;
+    margin-right: 7px;
+    line-height: 20px;
+    padding: 5px;
+}
+
+.el-table th > .cell .el-table__column-filter-trigger i {
+    transform: none;
+    font-size: 0.6em;
+    text-align: center;
+    width: 20px;
+    line-height: 20px;
+    border-radius: $border-radius / 2;
+    background: $color-border;
+}
+
+//.el-table th > .cell .el-table__column-filter-trigger i:before {
+//    transform: none;
+//}

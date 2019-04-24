@@ -69,7 +69,7 @@
             direction: 'desc', column: 'id'
         },
         paginate: {
-            page: 1, limit: 25, total: 0,
+            page: 1, limit: 10, total: 0,
         },
         filters: {
             // email: ['admin@gmail.com']

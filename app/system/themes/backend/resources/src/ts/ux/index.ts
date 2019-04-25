@@ -7,10 +7,12 @@ import data from './util/data';
 import route from './util/route';
 import locale from './util/locale';
 import ajax from './util/ajax';
+import element from './util/element';
 import auth from './util/auth';
 
 export default {
-    ext, dom, queue, asset, event, data, route, locale, ajax, auth
+    ext, dom, queue, asset, event, data, route, locale, ajax, element, auth
 }
 
-require('./util/polyfill');
+require('./polyfill');
+require('./element');

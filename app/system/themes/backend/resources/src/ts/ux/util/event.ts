@@ -1,5 +1,5 @@
 
-declare var $ : any;
+declare var _ : any;
 
 export default abstract class Event
 {
@@ -19,7 +19,7 @@ export default abstract class Event
             return item.name === name;
         });
 
-        $.each(events, (index, event) => {
+        _.each(events, (event) => {
             event.callback.call({}, ...args);
         });
 

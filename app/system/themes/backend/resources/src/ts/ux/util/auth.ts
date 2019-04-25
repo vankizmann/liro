@@ -5,7 +5,7 @@ export function regexEscape (value : string) {
     return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-export abstract class Auth
+export class Auth
 {
     public static user(key : string = null, fallback : any = null)
     {

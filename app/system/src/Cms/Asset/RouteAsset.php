@@ -32,7 +32,7 @@ class RouteAsset implements AssetInterface
             $this->routes->put(app('cms.routes.helper')->removeLocale($name), app('url')->to($route->uri));
         }
 
-        return '<script>window.routes = ' . $this->routes->toJson() . ';</script>';
+        return '<script>window._routes = ' . $this->routes->toJson() . ';</script>';
     }
 
 }

@@ -27,17 +27,34 @@ mix.setResourceRoot(
 );
 
 /**
- * Compile files
+ * Webfont files
  */
 
-mix.ts('resources/src/ts/index.ts', 'resources/dist/js/index.js', {
-    // JS options
-}).version();
+mix.copyDirectory(
+    'node_modules/@fortawesome/fontawesome-free/webfonts',
+    'resources/dist/webfonts',
+);
 
-mix.sass('resources/src/sass/theme/index.scss', 'resources/dist/css/index.css', {
-    precision: 3
-}).version();
+/**
+ * JS files
+ */
 
-mix.sass('resources/src/sass/vendor.scss', 'resources/dist/css/vendor.css', {
-    precision: 3
-}).version();
+mix.js(
+    'resources/src/js/bootstrap.js',
+    'resources/dist/js/index.js',
+    {
+        // JS options
+    }
+).version();
+
+/**
+ * CSS files
+ */
+
+mix.sass(
+    'resources/src/sass/bootstrap.scss',
+    'resources/dist/css/index.css',
+    {
+        precision: 3
+    }
+).version();

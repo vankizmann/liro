@@ -4,10 +4,10 @@
 </head>
 <body class="app-error">
 
-@include('liro-frontend::partials/notification')
+    @include('liro-frontend::partials/notification')
 
     <div id="app">
-        @yield('content')
+        Page not fount :(
     </div>
 
 </body>

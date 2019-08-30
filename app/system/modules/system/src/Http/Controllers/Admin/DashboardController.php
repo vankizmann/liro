@@ -9,12 +9,11 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['web']);
+        $this->middleware(['web', 'guard']);
     }
 
     public function index()
     {
-        dd(app('router'));
         return view('liro-system::dashboard/index');
     }
 

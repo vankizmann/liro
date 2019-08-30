@@ -34,7 +34,7 @@ class MenuAsset implements AssetInterface
             $this->menus->push($reduced);
         }
 
-        return '<script>window.menus = ' . $this->menus->toJson() . ';</script>';
+        return '<script>window._menus = ' . $this->menus->toJson() . ';</script>';
     }
 
 }

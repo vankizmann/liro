@@ -7,6 +7,7 @@
     @include('liro-frontend::partials/notification')
 
     <div id="app">
+        Nice!
         @yield('content')
     </div>
 

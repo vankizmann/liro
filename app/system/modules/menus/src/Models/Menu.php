@@ -70,19 +70,21 @@ class Menu extends Model
     public function getSlugAttribute()
     {
         if ( ! $this->parent ) {
-            return '/' . str_join('/', $this->attributes['slug']);
+            return '/' . trim($this->attributes['slug'], '/');
         }
 
-        return str_join('/', $this->parent->slug, $this->attributes['slug']);
+        return str_join('/', $this->parent->slug,
+            rtrim($this->attributes['slug'], '/'));
     }
 
     public function getRouteAttribute()
     {
         if ( ! $this->domain ) {
-            return str_join('/', $this->slug);
+            return '/' . trim($this->attributes['slug'], '/');
         }
 
-        return str_join('/', $this->domain->slug, $this->slug);
+        return str_join('/', $this->domain->route,
+            rtrim($this->attributes['slug'], '/'));
     }
 
     public function getActiveAttribute()

@@ -10,24 +10,24 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "@types/node": "^11.13.4",
+        "@babel/plugin-proposal-class-properties": "^7.5.5",
+        "@babel/plugin-proposal-export-default-from": "^7.5.2",
+        "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
+        "@fortawesome/fontawesome-free": "^5.10.2",
         "axios": "^0.18.0",
         "babel-plugin-transform-class-properties": "^6.24.1",
         "backpack.css": "^2.0.0",
-        "cash-dom": "^3.1.0",
         "cross-env": "^5.1",
-        "dot-qs": "^0.2.0",
-        "element-ui": "^2.6.1",
-        "font-awesome": "^4.7.0",
-        "jquery": "^3.4.0",
-        "laravel-mix": "^2.0",
-        "lodash": "^4.17.11",
+        "jquery": "^3.4.1",
+        "laravel-mix": "^4.0.7",
+        "nanojs": "https://github.com/vankizmann/nano.git#master",
         "raw-loader": "^1.0.0",
-        "ts-loader": "3",
-        "typescript": "^3.4.3",
-        "vue": "^2.5.17",
-        "vue-resource": "^1.5.1",
+        "sass": "^1.15.2",
+        "sass-loader": "^7.1.0",
+        "vue": "^2.6.10",
         "vue-router": "^3.0.2",
-        "vue-shortkey": "^3.1.6"
+        "vue-shortkey": "^3.1.6",
+        "vue-template-compiler": "^2.6.10"
     }
 }

@@ -14,7 +14,7 @@ class MenuSeeds
             'hide'          => 0,
             'title'         => 'Home',
             'slug'          => '/',
-            'module'        => 'liro-system.admin.dashboard.index',
+            'module'        => 'liro-system.user.dashboard.index',
             'domain_id'     => 2
         ]);
 
@@ -24,7 +24,8 @@ class MenuSeeds
             'title'         => 'Test',
             'slug'          => 'test',
             'module'        => 'liro-system.admin.dashboard.index',
-            'domain_id'     => 2
+            'domain_id'     => 2,
+            'parent_id'     => $menu_frontend_home->id
         ]);
 
         $menu_backend_home = Menu::create([

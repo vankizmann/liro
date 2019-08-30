@@ -27,9 +27,23 @@ mix.setResourceRoot(
 );
 
 /**
+ * Webpack config
+ */
+
+mix.webpackConfig({
+    externals: {
+        "vue": "Vue"
+    }
+});
+
+/**
  * Compile files
  */
 
-mix.ts('resources/src/ts/index.ts', 'resources/dist/js/index.js', {
-    // JS options
-}).version();
+mix.js(
+    'resources/src/js/bootstrap.js',
+    'resources/dist/js/index.js',
+    {
+        // JS options
+    }
+).version();

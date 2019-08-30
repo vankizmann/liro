@@ -1,21 +1,21 @@
 <template>
     <div class="liro-users-auth-login">
-        <el-form class="login__form" label-position="top" :model="user" @submit.native.prevent="authUser">
+        <NForm class="login__form" label-position="top" :model="user">
 
-            <el-form-item prop="email" :label="trans('liro-users::form.auth.email')" :error="error.email">
-                <el-input v-model="user.email"></el-input>
-            </el-form-item>
+            <NFormItem prop="email" :label="trans('liro-users::form.auth.email')" :error="error.email">
+                <NInput v-model="user.email"></NInput>
+            </NFormItem>
 
-            <el-form-item prop="password" :label="trans('liro-users::form.auth.password')" :error="error.password">
-                <el-input type="password" v-model="user.password"></el-input>
-            </el-form-item>
+            <NFormItem prop="password" :label="trans('liro-users::form.auth.password')" :error="error.password">
+                <NInput native-type="password" v-model="user.password"></NInput>
+            </NFormItem>
 
-            <el-form-item>
+            <NFormItem>
                 <div class="grid grid--row grid--middle">
                     <div class="col col--left">
-                        <el-checkbox v-model="user.remember">
+                        <NCheckbox v-model="user.remember">
                             {{ trans('liro-users::form.auth.remember_me') }}
-                        </el-checkbox>
+                        </NCheckbox>
                     </div>
                     <div class="col col--right">
                         <router-link to="/reset-password">
@@ -24,26 +24,25 @@
                     </div>
                 </div>
 
-            </el-form-item>
+            </NFormItem>
 
-            <el-form-item>
-                <el-button class="login__submit" type="primary" native-type="submit">
+            <NFormItem>
+                <NButton class="login__submit" type="primary" @click="authUser">
                     {{ trans('liro-users::form.auth.login') }}
-                </el-button>
-            </el-form-item>
+                </NButton>
+            </NFormItem>
 
-        </el-form>
+        </NForm>
     </div>
 </template>
-<script lang="ts">
+<script>
 
-    declare var _ : any;
 
-    let user : any = {
+    let user = {
         email: '', password: '', remember: false
     };
 
-    let errors : any = {
+    let errors = {
         email: null, password: null
     };
 
@@ -58,16 +57,16 @@
         methods: {
 
             authUser () {
-                this.ux.ajax.call(['auth-login', 'auth'], true, this.user)
+                this.Ajax.call(['auth-login', 'auth'], true, this.user)
                     .then(this.authUserDone, this.authUserError);
             },
 
-            authUserDone (res : any) {
+            authUserDone (res) {
                 this.$router.push({ path: '/' });
             },
 
-            authUserError (res : any) {
-                this.error = _.assign({}, errors, res.data.errors);
+            authUserError (res) {
+                this.error = this.Obj.assign({}, errors, res.data.errors);
             }
 
         }

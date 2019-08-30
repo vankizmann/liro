@@ -17,8 +17,9 @@ use Liro\System\Cms\Helpers\RouteHelper;
         window.basePath = '<?php echo RouteHelper::extractRoute(Web::getDomainAttr('route')); ?>';
     </script>
 
+    <link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700&display=swap" rel="stylesheet">
+
     @php
-        asset()->style('vendor', 'liro-backend::dist/css/vendor.css');
         asset()->style('theme', 'liro-backend::dist/css/index.css');
         asset()->script('theme', 'liro-backend::dist/js/index.js');
     @endphp

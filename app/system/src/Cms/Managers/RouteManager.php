@@ -246,6 +246,4 @@ class RouteManager
         return $this;
     }
 
-
-
 }

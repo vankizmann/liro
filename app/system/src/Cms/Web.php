@@ -78,6 +78,7 @@ class Web
         });
 
         App::loaded(function () {
+//            dd(app('cms.routes'), app('router'));
 //            app('cms')->enableGuarded();
         });
 

@@ -52,6 +52,16 @@ class Domain extends Model
         return $this->menus()->defaultOrder()->get()->toTree();
     }
 
+    public function getLoginAttribute()
+    {
+        return $this->menus()->where('module', config('cms.modules.login'))->first();
+    }
+
+    public function getLogoutAttribute()
+    {
+        return $this->menus()->where('module', config('cms.modules.logout'))->first();
+    }
+
     public function getRouteAttribute()
     {
         return app()->getProtocol() . '://' . $this->attributes['route'];

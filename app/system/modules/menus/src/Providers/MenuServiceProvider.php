@@ -45,8 +45,7 @@ class MenuServiceProvider extends ServiceProvider
             $this->_getMenuAndDomain(URL::previous());
         }
 
-        $login = app('cms')->getDomain()->menus()
-            ->where('module', 'liro-users.admin.auth.login')->first();
+        $login = app('cms')->getDomain('login');
 
         if ( $login !== null ) {
             Web::setLogin($login);

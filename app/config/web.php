@@ -2,6 +2,11 @@
 
 return [
 
+    'modules' => [
+        'login' => 'liro-users.admin.auth.login',
+        'logout' => 'liro-users.admin.auth.logout'
+    ],
+
     'paths' => [
         '/app/system/modules/*/index.php',
         '/app/system/themes/*/index.php',

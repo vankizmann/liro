@@ -31,7 +31,7 @@ class DomainSeeds
         Domain::create([
             'state'         => 1,
             'title'         => 'Default Domain',
-            'route'         => ':domain/:locale',
+            'route'         => ':domain/:locale/foobar',
             'theme'         => 'liro-frontend',
             'guard'         => 1
         ]);

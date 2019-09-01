@@ -22,10 +22,10 @@ class MenuSeeds
             'state'         => 1,
             'hide'          => 0,
             'title'         => 'Test',
-            'slug'          => 'test',
+            'slug'          => '/',
             'module'        => 'liro-system.admin.dashboard.index',
-            'domain_id'     => 2,
-            'parent_id'     => $menu_frontend_home->id
+            'guard'         => 1,
+            'domain_id'     => 3
         ]);
 
         $menu_backend_home = Menu::create([
@@ -236,7 +236,7 @@ class MenuSeeds
             'hide'          => 1,
             'title'         => 'liro-users::admin.auth.login',
             'slug'          => 'login',
-            'module'        => 'liro-users-auth-login',
+            'module'        => 'app-login',
             'domain_id'     => 1
         ]);
 
@@ -245,7 +245,7 @@ class MenuSeeds
             'hide'          => 1,
             'title'         => 'liro-users::admin.auth.logout',
             'slug'          => 'logout',
-            'module'        => 'liro-users-auth-logout',
+            'module'        => 'app-logout',
             'domain_id'     => 1
         ]);
     }

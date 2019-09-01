@@ -22,7 +22,15 @@ class DomainSeeds
 
         Domain::create([
             'state'         => 1,
-            'title'         => 'Demo',
+            'title'         => 'Test Domain',
+            'route'         => 'liro-test',
+            'theme'         => 'liro-frontend',
+            'guard'         => 1
+        ]);
+
+        Domain::create([
+            'state'         => 1,
+            'title'         => 'Default Domain',
             'route'         => ':domain/:locale',
             'theme'         => 'liro-frontend',
             'guard'         => 1

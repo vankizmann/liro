@@ -8,7 +8,7 @@
 
     @include('partials/head')
 
-    <title>{{ trans(app('cms')->getMenuAttr('title')) . ' | ' . config('app.name') }}</title>
+    <title>{{ app('cms')->getMenuAttr('title') . ' | ' . app('cms')->getDomainAttr('title') }}</title>
 
     @php
         asset()->script('lodash', '//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js');

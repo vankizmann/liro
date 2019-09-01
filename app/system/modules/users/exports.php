@@ -11,7 +11,8 @@ return [
     ],
 
     'modules' => [
-        'liro-users-auth-login',
+        'app-login',
+        'app-logout',
         'liro-users-user-index',
         'liro-users-user-create',
         'liro-users-user-edit',

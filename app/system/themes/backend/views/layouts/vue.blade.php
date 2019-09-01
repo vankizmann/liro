@@ -17,14 +17,23 @@ use Liro\System\Cms\Helpers\RouteHelper;
         window.basePath = '<?php echo RouteHelper::extractRoute(Web::getDomainAttr('route')); ?>';
     </script>
 
-    <link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700&display=swap" rel="stylesheet">
-
     @php
         asset()->style('theme', 'liro-backend::dist/css/index.css');
         asset()->script('theme', 'liro-backend::dist/js/index.js');
     @endphp
 
     {!! asset()->output(['style', 'export', 'route', 'locale', 'data', 'menu', 'script']) !!}
+
+    <script>
+        (function (Nano) {
+            Nano.Data.set('theme', {
+                'login': '{{ asset('liro-backend::src/images/login.svg') }}',
+                'logout': '{{ asset('liro-backend::src/images/logout.svg') }}',
+                'error': '{{ asset('liro-backend::src/images/error.svg') }}',
+            });
+        })(Nano);
+    </script>
+
 </head>
 <body class="app">
     <div id="app"></div>

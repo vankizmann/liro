@@ -16,8 +16,5 @@ window.nano = Nano;
 import Liro from "./liro/index";
 Nano.extends(Liro);
 
-axios.defaults.headers.common = {
-    'X-Requested-With': 'XMLHttpRequest'
-};
-
+require('./config/axios');
 require('./app/index');

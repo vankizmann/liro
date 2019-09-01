@@ -10,7 +10,7 @@ trait DatatableTrait
     public function scopeDatatable($query)
     {
         $query->orderBy(
-            Input::get('order.column', 'id'), Input::get('order.direction', 'desc')
+            Input::get('sort.prop', 'id'), Input::get('sort.dir', 'desc')
         );
 
         $search = [
@@ -26,10 +26,53 @@ trait DatatableTrait
             });
         }
 
-        foreach ( Input::get('filters', []) as $key => $values ) {
-            if ( count($values) !== 0 ) {
-                $query->whereIn($key, (array) $values);
+        foreach ( Input::get('filter', []) as $key => $filter ) {
+
+            if ( empty($filter['value']) ) {
+                continue;
             }
+
+            $operator = '=';
+
+            if ( $filter['operator'] === 'eq' ) {
+                $operator = '=';
+            }
+
+            if ( $filter['operator'] === 'ne' ) {
+                $operator = '!=';
+            }
+
+            if ( $filter['operator'] === 'li' ) {
+                $operator = 'LIKE';
+            }
+
+            if ( $filter['operator'] === 'nl' ) {
+                $operator = 'NOT LIKE';
+            }
+
+            if ( $filter['operator'] === 'in' ) {
+                $operator = 'IN';
+            }
+
+            if ( $filter['operator'] === 'ni' ) {
+                $operator = 'NOT IN';
+            }
+
+            $value = $filter['value'];
+
+            if ( $filter['operator'] === 'li' ) {
+                $value = '%' . $filter['value'] . '%';
+            }
+
+            if ( $filter['operator'] === 'nl' ) {
+                $value = '%' . $filter['value'] . '%';
+            }
+
+            if ( $filter['type'] === 'options' ) {
+                $value = explode(',', $filter['value']);
+            }
+
+            $query->where($filter['property'], $operator, $value);
         }
 
         $paginatePage = (int) Input::get('paginate.page', 1);

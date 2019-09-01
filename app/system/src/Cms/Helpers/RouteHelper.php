@@ -51,7 +51,7 @@ class RouteHelper
 
         preg_match('/^https?\:\/\/(.*?)\/(.*?)$/', $route, $match);
 
-        return count($match) === 3 ? $match[2] : $route;
+        return count($match) === 3 ? $match[2] : '/';
     }
 
     public static function replaceDomain($route, $domain = null)
@@ -113,7 +113,7 @@ class RouteHelper
         $route = preg_quote($route, '/');
         $route = preg_replace('/\\\{[^\/]+\\\}/', '[^\/]+', $route);
 
-        return preg_match('/^' . $route . '/', $compare ?: self::getFullRoute());
+        return preg_match('/^' . $route . '\/?/', $compare ?: self::getFullRoute());
     }
 
     public static function isRoute($route, $compare = null)
@@ -123,7 +123,7 @@ class RouteHelper
         $route = preg_quote($route, '/');
         $route = preg_replace('/\\\{[^\/]+\\\}/', '[^\/]+', $route);
 
-        return preg_match('/^' . $route . '$/', $compare ?: self::getFullRoute());
+        return preg_match('/^' . $route . '\/?$/', $compare ?: self::getFullRoute());
     }
 
     public static function isVue($menuOrRoute)

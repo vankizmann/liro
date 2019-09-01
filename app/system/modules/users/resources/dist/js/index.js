@@ -107,11 +107,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    name: 'liro-users-auth-login',
+    name: 'app-login',
 
     data: function data() {
         var user = {
@@ -126,13 +127,80 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         authUser: function authUser() {
-            this.Ajax.call(['auth-login', 'auth'], true, this.user).then(this.authUserDone, this.authUserError);
+            var _this = this;
+
+            var options = {
+                onLoad: function onLoad() {
+                    return _this.load = true;
+                },
+                onDone: function onDone() {
+                    return _this.load = false;
+                }
+            };
+
+            this.Ajax.call(['auth-login', 'auth'], true, this.user, options).then(this.authUserDone, this.authUserError);
         },
         authUserDone: function authUserDone(res) {
             this.$router.push({ path: '/' });
         },
         authUserError: function authUserError(res) {
-            this.errors = Obj.get(res, 'data.errors', {});
+            console.log(res);
+            this.errors = this.Obj.get(res, 'data.errors', {});
+        }
+    }
+
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/js/components/auth/src/logout/logout.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    name: 'app-logout',
+
+    beforeMount: function beforeMount() {
+        this.logoutUser();
+    },
+
+
+    methods: {
+        logoutUser: function logoutUser() {
+            this.Ajax.call(['auth-logout', 'auth'], true).then(this.logoutUserDone, this.logoutUserError);
+        },
+        logoutUserDone: function logoutUserDone(res) {
+            var _this = this;
+
+            this.Any.delay(function () {
+                _this.$router.push({ name: 'auth-login' });
+            }, 2000);
+        },
+        logoutUserError: function logoutUserError(res) {
+            var _this2 = this;
+
+            this.Any.delay(function () {
+                _this2.$router.push({ name: 'auth-login' });
+            }, 2000);
         }
     }
 
@@ -233,10 +301,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    name: 'liro-users-user-index'
+    name: 'liro-users-user-index',
+
+    data: function data() {
+        var data = {};
+
+        data.apis = {
+            'index': ['user-index']
+        };
+
+        data.columns = {
+
+            selection: {
+                prop: 'id', type: 'selection', align: 'center', fixedWidth: 45
+            },
+
+            id: {
+                prop: 'id', type: 'string', sort: true, filter: true, label: this.trans('liro-users::form.user.id')
+            },
+
+            state: {
+                prop: 'state', type: 'boolean', sort: true, filter: true, label: this.trans('liro-users::form.user.state')
+            },
+
+            email: {
+                prop: 'email', type: 'string', sort: true, filter: true, label: this.trans('liro-users::form.user.email')
+            }
+
+        };
+
+        return data;
+    },
+
+
+    methods: {
+        gotoEdit: function gotoEdit(_ref) {
+            var row = _ref.row;
+
+            var params = {
+                user: row.id
+            };
+
+            this.$router.push({
+                name: 'liro-users-user-edit', params: params
+            });
+        }
+    }
 
 });
 
@@ -360,15 +475,15 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { staticClass: "liro-users-auth-login" },
+    "NLoader",
+    { staticClass: "app-login", attrs: { visible: _vm.load } },
     [
       _c(
         "NForm",
         {
-          staticClass: "login__form",
+          staticClass: "app-login__form",
           attrs: {
-            "label-position": "top",
+            "label-position": "left",
             model: _vm.user,
             errors: _vm.errors
           }
@@ -419,40 +534,37 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _c(
+            "NFormItem",
+            [
+              _c(
+                "NCheckbox",
+                {
+                  model: {
+                    value: _vm.user.remember,
+                    callback: function($$v) {
+                      _vm.$set(_vm.user, "remember", $$v)
+                    },
+                    expression: "user.remember"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.trans("liro-users::form.auth.remember_me")) +
+                      "\n            "
+                  )
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
           _c("NFormItem", [
             _c("div", { staticClass: "grid grid--row grid--middle" }, [
               _c(
                 "div",
                 { staticClass: "col col--left" },
-                [
-                  _c(
-                    "NCheckbox",
-                    {
-                      model: {
-                        value: _vm.user.remember,
-                        callback: function($$v) {
-                          _vm.$set(_vm.user, "remember", $$v)
-                        },
-                        expression: "user.remember"
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(
-                            _vm.trans("liro-users::form.auth.remember_me")
-                          ) +
-                          "\n                    "
-                      )
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col col--right" },
                 [
                   _c("router-link", { attrs: { to: "/reset-password" } }, [
                     _vm._v(
@@ -465,31 +577,32 @@ var render = function() {
                   ])
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col col--right" },
+                [
+                  _c(
+                    "NButton",
+                    {
+                      staticClass: "login__submit",
+                      attrs: { type: "primary" },
+                      on: { click: _vm.authUser }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.trans("liro-users::form.auth.login")) +
+                          "\n                    "
+                      )
+                    ]
+                  )
+                ],
+                1
               )
             ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "NFormItem",
-            [
-              _c(
-                "NButton",
-                {
-                  staticClass: "login__submit",
-                  attrs: { type: "primary" },
-                  on: { click: _vm.authUser }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.trans("liro-users::form.auth.login")) +
-                      "\n            "
-                  )
-                ]
-              )
-            ],
-            1
-          )
+          ])
         ],
         1
       )
@@ -537,7 +650,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("User index")])
+  return _c(
+    "app-data-table",
+    { attrs: { apis: _vm.apis }, on: { "row-dblclick": _vm.gotoEdit } },
+    _vm._l(_vm.columns, function(column, key) {
+      return _c(
+        "n-table-column",
+        _vm._b({ key: key }, "n-table-column", column, false)
+      )
+    }),
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -588,6 +711,43 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-5790fe32", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7ef71973\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/js/components/auth/src/logout/logout.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-logout__wrapper" }, [
+    _c("div", { staticClass: "app-logout" }, [
+      _vm.Data.has("theme.logout")
+        ? _c("div", { staticClass: "app-logout__image" }, [
+            _c("img", { attrs: { src: _vm.Data.get("theme.logout") } })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "app-logout__title" }, [
+        _c("h1", [_vm._v(_vm._s(_vm.trans("liro-users::form.logout.title")))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "app-logout__text" }, [
+        _c("p", [_vm._v(_vm._s(_vm.trans("liro-users::form.logout.message")))])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7ef71973", module.exports)
   }
 }
 
@@ -644,14 +804,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('auth-login', function (ajax, query) {
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('auth-login', function (ajax, query, options) {
     var route = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.Route.get('liro-users.ajax.auth.login');
-    return ajax.post(route, query);
+    return ajax.post(route, query, options);
 });
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('auth-logout', function (ajax, query) {
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('auth-logout', function (ajax, query, options) {
     var route = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.Route.get('liro-users.ajax.auth.logout');
-    return ajax.post(route, query);
+    return ajax.post(route, query, options);
 });
 
 /***/ }),
@@ -696,24 +856,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('user-index', function (ajax, query) {
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('user-index', function (ajax, query, options) {
     var route = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.Route.get('liro-users.ajax.user.index', null, query);
-    return ajax.get(route);
+    return ajax.get(route, options);
 });
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('user-show', function (ajax, query) {
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('user-show', function (ajax, query, options) {
     var route = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.Route.get('liro-users.ajax.user.show', { user: query.id });
-    return ajax.get(route, query);
+    return ajax.get(route, query, options);
 });
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('user-store', function (ajax, query) {
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('user-store', function (ajax, query, options) {
     var route = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.Route.get('liro-users.ajax.user.store');
-    return ajax.post(route, query);
+    return ajax.post(route, query, options);
 });
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('user-update', function (ajax, query) {
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Ajax.bind('user-update', function (ajax, query, options) {
     var route = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.Route.get('liro-users.ajax.user.update', { user: query.id });
-    return ajax.put(route, query);
+    return ajax.put(route, query, options);
 });
 
 /***/ }),
@@ -740,10 +900,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_login_login__ = __webpack_require__("./resources/src/js/components/auth/src/login/login.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_login_login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__src_login_login__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_logout_logout__ = __webpack_require__("./resources/src/js/components/auth/src/logout/logout.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_logout_logout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__src_logout_logout__);
 
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.Extension.export(__WEBPACK_IMPORTED_MODULE_1__src_login_login___default.a.name, __WEBPACK_IMPORTED_MODULE_1__src_login_login___default.a);
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.Extension.export(__WEBPACK_IMPORTED_MODULE_2__src_logout_logout___default.a.name, __WEBPACK_IMPORTED_MODULE_2__src_logout_logout___default.a);
 
 /***/ }),
 
@@ -784,6 +949,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-01b7aa07", Component.options)
   } else {
     hotAPI.reload("data-v-01b7aa07", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/src/js/components/auth/src/logout/logout.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/src/js/components/auth/src/logout/logout.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7ef71973\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/src/js/components/auth/src/logout/logout.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/src/js/components/auth/src/logout/logout.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7ef71973", Component.options)
+  } else {
+    hotAPI.reload("data-v-7ef71973", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

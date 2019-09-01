@@ -2,7 +2,7 @@
 
 namespace Liro\Menus\Requests;
 
-class TypeStoreRequest extends \Liro\System\Http\FormRequest
+class DomainUpdateRequest extends \Liro\System\Http\FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

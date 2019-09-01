@@ -1,5 +1,11 @@
-$color-black: #274567;
+
 $color-background: #F4F6FA;
+$color-black: #0E1D2E;
+
+$radius-small: 2px !default;
+$radius-medium: 5px !default;
+$radius-large: 8px !default;
+$radius-extended: 9px !default;
 
 @import '~backpack.css';
 @import '~nanojs/src/index';
@@ -7,10 +13,14 @@ $color-background: #F4F6FA;
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/solid";
 
-
 @import "./mixins/media";
 @import "./mixins/grid";
 @import "./mixins/space";
 
 @import "./elements/default";
+@import "./elements/root";
+@import "./elements/login";
+@import "./elements/logout";
+@import "./elements/error";
+@import "./elements/table";
 @import "./elements/header";

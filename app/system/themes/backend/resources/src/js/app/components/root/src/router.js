@@ -16,7 +16,7 @@ Vue.Arr.each(menus, function (menu) {
     };
 
     let route = {
-        path: Vue.Obj.get(menu, 'slug'), props: true
+        path: Vue.Obj.get(menu, 'slug'), props: true, meta: menu
     };
 
     if ( Vue.Obj.has(menu, 'query.redirect') ) {
@@ -39,7 +39,9 @@ Vue.Arr.each(menus, function (menu) {
 });
 
 let error = {
-    name: 'app-error', path: '*', component: Vue.component('app-error')
+    name: 'app-error', path: '*', component: Vue.component('app-error'), meta: {
+        title: 'Not Found'
+    }
 };
 
 routes.push(error);

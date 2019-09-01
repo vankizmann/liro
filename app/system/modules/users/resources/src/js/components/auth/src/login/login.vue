@@ -1,45 +1,46 @@
 <template>
-    <div class="liro-users-auth-login">
-        <NForm class="login__form" label-position="top" :model="user" :errors="errors">
+    <NLoader :visible="load" class="app-login">
+
+        <NForm class="app-login__form" label-position="left" :model="user" :errors="errors">
 
             <NFormItem prop="email" :label="trans('liro-users::form.auth.email')">
-                <NInput v-model="user.email"></NInput>
+                <NInput v-model="user.email" />
             </NFormItem>
 
             <NFormItem prop="password" :label="trans('liro-users::form.auth.password')">
-                <NInput native-type="password" v-model="user.password"></NInput>
+                <NInput native-type="password" v-model="user.password" />
+            </NFormItem>
+
+            <NFormItem>
+                <NCheckbox v-model="user.remember">
+                    {{ trans('liro-users::form.auth.remember_me') }}
+                </NCheckbox>
             </NFormItem>
 
             <NFormItem>
                 <div class="grid grid--row grid--middle">
                     <div class="col col--left">
-                        <NCheckbox v-model="user.remember">
-                            {{ trans('liro-users::form.auth.remember_me') }}
-                        </NCheckbox>
-                    </div>
-                    <div class="col col--right">
                         <router-link to="/reset-password">
                             {{ trans('liro-users::form.auth.password_forget') }}
                         </router-link>
                     </div>
+                    <div class="col col--right">
+                        <NButton class="login__submit" type="primary" @click="authUser">
+                            {{ trans('liro-users::form.auth.login') }}
+                        </NButton>
+                    </div>
                 </div>
-
-            </NFormItem>
-
-            <NFormItem>
-                <NButton class="login__submit" type="primary" @click="authUser">
-                    {{ trans('liro-users::form.auth.login') }}
-                </NButton>
             </NFormItem>
 
         </NForm>
-    </div>
+
+    </NLoader>
 </template>
 <script>
 
     export default {
 
-        name: 'liro-users-auth-login',
+        name: 'app-login',
 
         data ()
         {
@@ -54,20 +55,26 @@
 
         methods: {
 
-            authUser ()
+            authUser()
             {
-                this.Ajax.call(['auth-login', 'auth'], true, this.user)
+                let options = {
+                    onLoad: () => this.load = true,
+                    onDone: () => this.load = false
+                };
+
+                this.Ajax.call(['auth-login', 'auth'], true, this.user, options)
                     .then(this.authUserDone, this.authUserError);
             },
 
-            authUserDone (res)
+            authUserDone(res)
             {
                 this.$router.push({ path: '/' });
             },
 
-            authUserError (res)
+            authUserError(res)
             {
-                this.errors = Obj.get(res, 'data.errors', {});
+                console.log(res);
+                this.errors = this.Obj.get(res, 'data.errors', {});
             }
 
         }

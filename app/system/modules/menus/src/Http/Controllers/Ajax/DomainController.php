@@ -3,10 +3,10 @@
 namespace Liro\Menus\Controllers\Ajax;
 
 use Liro\Extension\Menus\Models\Domain;
-use Liro\Menus\Requests\TypeStoreRequest;
-use Liro\Menus\Requests\TypeUpdateRequest;
+use Liro\Menus\Requests\DomainStoreRequest;
+use Liro\Menus\Requests\DomainUpdateRequest;
 
-class TypeController extends \Liro\System\Http\Controller
+class DomainController extends \Liro\System\Http\Controller
 {
 
     public function index(Domain $type)
@@ -19,7 +19,7 @@ class TypeController extends \Liro\System\Http\Controller
         return response()->json($type, 200);
     }
 
-    public function store(TypeStoreRequest $request, Domain $type)
+    public function store(DomainStoreRequest $request, Domain $type)
     {
         $response = $type->create(
             $request->all()
@@ -28,7 +28,7 @@ class TypeController extends \Liro\System\Http\Controller
         return response()->json($response, 201);
     }
 
-    public function update(TypeUpdateRequest $request, Domain $type)
+    public function update(DomainUpdateRequest $request, Domain $type)
     {
         $type->update(
             $request->all()

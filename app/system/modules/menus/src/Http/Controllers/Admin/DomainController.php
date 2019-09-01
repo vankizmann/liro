@@ -5,7 +5,7 @@ namespace Liro\Menus\Controllers\Admin;
 use Liro\System\Http\Controller;
 use Liro\Extension\Menus\Models\Domain;
 
-class TypeController extends Controller
+class DomainController extends Controller
 {
 
     public function __construct()

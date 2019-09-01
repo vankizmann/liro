@@ -23,7 +23,9 @@ export class Auth
     {
         let policies = Auth.user('policy_modules', []);
 
-        policies = Arr.concat(policies, ['app-*']);
+        policies = Arr.concat(policies, [
+            'app-*'
+        ]);
 
         policies = policies.filter((policy) => {
 
@@ -32,8 +34,6 @@ export class Auth
 
             return key.match(regex);
         });
-
-        console.log(key, policies);
 
         return policies.length !== 0 || key === '';
     }

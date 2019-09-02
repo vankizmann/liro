@@ -303,53 +303,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     name: 'liro-users-user-index',
 
     data: function data() {
-        var data = {};
-
-        data.apis = {
-            'index': ['user-index']
+        var queries = {
+            indexQuery: ['user-index'],
+            deleteQuery: ['user-delete']
         };
 
-        data.columns = {
-
-            selection: {
-                prop: 'id', type: 'selection', align: 'center', fixedWidth: 45
-            },
-
-            id: {
-                prop: 'id', type: 'string', sort: true, filter: true, label: this.trans('liro-users::form.user.id')
-            },
-
-            state: {
-                prop: 'state', type: 'boolean', sort: true, filter: true, label: this.trans('liro-users::form.user.state')
-            },
-
-            email: {
-                prop: 'email', type: 'string', sort: true, filter: true, label: this.trans('liro-users::form.user.email')
-            }
-
-        };
-
-        return data;
+        return { queries: queries };
     },
 
 
     methods: {
-        gotoEdit: function gotoEdit(_ref) {
-            var row = _ref.row;
-
+        getEditRoute: function getEditRoute(row) {
             var params = {
                 user: row.id
             };
 
-            this.$router.push({
+            return {
                 name: 'liro-users-user-edit', params: params
-            });
+            };
         }
     }
 
@@ -587,7 +586,7 @@ var render = function() {
                     "NButton",
                     {
                       staticClass: "login__submit",
-                      attrs: { type: "primary" },
+                      attrs: { type: "primary", round: "" },
                       on: { click: _vm.authUser }
                     },
                     [
@@ -651,14 +650,79 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "app-data-table",
-    { attrs: { apis: _vm.apis }, on: { "row-dblclick": _vm.gotoEdit } },
-    _vm._l(_vm.columns, function(column, key) {
-      return _c(
-        "n-table-column",
-        _vm._b({ key: key }, "n-table-column", column, false)
-      )
-    }),
+    "n-datatable",
+    _vm._b(
+      { attrs: { "search-columns": ["email", "name"] } },
+      "n-datatable",
+      _vm.queries,
+      false
+    ),
+    [
+      _c("n-table-column", {
+        attrs: {
+          type: "selection",
+          label: _vm.trans("form.table.selection"),
+          align: "center",
+          "fixed-width": 45
+        }
+      }),
+      _vm._v(" "),
+      _c("n-table-column", {
+        attrs: {
+          prop: "name",
+          type: "string",
+          label: _vm.trans("liro-users::form.user.name"),
+          "default-width": 200,
+          sort: true,
+          filter: true
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function(ref) {
+              var row = ref.row
+              return _c(
+                "router-link",
+                { attrs: { to: _vm.getEditRoute(row) } },
+                [_vm._v("\n            " + _vm._s(row.name) + "\n        ")]
+              )
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c("n-table-column", {
+        attrs: {
+          prop: "email",
+          type: "string",
+          label: _vm.trans("liro-users::form.user.email"),
+          "default-width": 200,
+          sort: true,
+          filter: true
+        }
+      }),
+      _vm._v(" "),
+      _c("n-table-column", {
+        attrs: {
+          prop: "state",
+          type: "boolean",
+          label: _vm.trans("liro-users::form.user.state"),
+          "default-width": 50,
+          sort: true,
+          filter: true
+        }
+      }),
+      _vm._v(" "),
+      _c("n-table-column", {
+        attrs: {
+          prop: "id",
+          type: "boolean",
+          label: _vm.trans("liro-users::form.user.id"),
+          "default-width": 50,
+          sort: true
+        }
+      })
+    ],
     1
   )
 }

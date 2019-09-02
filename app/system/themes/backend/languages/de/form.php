@@ -4,6 +4,10 @@ return [
 
     'error' => 'Oops, ein Fehler',
 
+    'table' => [
+        'selection' => 'Auswahl'
+    ],
+
     'modal' => [
         'ok'            => 'Ok',
         'cancel'        => 'Abbrechen'

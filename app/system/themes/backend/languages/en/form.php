@@ -2,6 +2,10 @@
 
 return [
 
+    'table' => [
+        'selection' => 'Selection'
+    ],
+
     'toolbar' => [
         'save'          => 'Save',
         'close'         => 'Close',

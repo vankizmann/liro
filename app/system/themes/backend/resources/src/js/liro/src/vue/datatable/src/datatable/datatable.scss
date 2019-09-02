@@ -1,0 +1,22 @@
+@import "~nanojs/src/vue/root/vars";
+
+.n-datatable {
+    background: $--color-white;
+    border-radius: $radius-medium;
+    box-shadow: 0 1px 3px rgba($color-black, 0.05);
+}
+
+.n-datatable .n-table,
+.n-datatable .n-table-wrapper {
+    border: 0;
+}
+
+.n-datatable__header {
+    padding: 15px 25px;
+    border-bottom: 1px solid $--color-gray-10;
+}
+
+.n-datatable__footer {
+    padding: 15px 25px;
+    border-top: 1px solid $--color-gray-10;
+}

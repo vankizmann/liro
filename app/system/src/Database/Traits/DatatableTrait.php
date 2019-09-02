@@ -75,14 +75,18 @@ trait DatatableTrait
             $query->where($filter['property'], $operator, $value);
         }
 
-        $paginatePage = (int) Input::get('paginate.page', 1);
-        $paginateLimit = (int) Input::get('paginate.limit', 25);
+        $page = (int) Input::get('paginate.page', 1);
+        $limit = (int) Input::get('paginate.limit', 25);
 
-        if ( $paginatePage > ceil($query->count() / $paginateLimit) ) {
-            $paginatePage = 1;
+        if ( $page > ceil(($total = $query->count()) / $limit) ) {
+            $page = 1;
         }
 
-        return $query->paginate($paginateLimit, ['*'], 'page', $paginatePage);
+        $data = $query->offset(($page - 1) * $limit)->limit($limit)->get();
+
+        return [
+            'page' => $page, 'limit' => $limit, 'total' => $total, 'data' => $data
+        ];
     }
 
 

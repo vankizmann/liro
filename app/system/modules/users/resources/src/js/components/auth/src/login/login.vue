@@ -25,7 +25,7 @@
                         </router-link>
                     </div>
                     <div class="col col--right">
-                        <NButton class="login__submit" type="primary" @click="authUser">
+                        <NButton class="login__submit" type="primary" @click="authUser" round>
                             {{ trans('liro-users::form.auth.login') }}
                         </NButton>
                     </div>

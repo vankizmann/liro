@@ -3,6 +3,7 @@
 namespace Liro\System\Cms\Abstracts;
 
 use ArrayAccess;
+use Illuminate\Support\Arr;
 
 abstract class DataAbstract implements ArrayAccess
 {
@@ -10,22 +11,22 @@ abstract class DataAbstract implements ArrayAccess
 
     public function __exists($key)
     {
-        return array_has($this->data, $key);
+        return Arr::has($this->data, $key);
     }
 
     public function __get($key)
     {
-        return array_get($this->data, $key);
+        return Arr::get($this->data, $key);
     }
 
     public function __set($key, $value)
     {
-        return array_set($this->data, $key, $value);
+        return Arr::set($this->data, $key, $value);
     }
 
     public function __unset($key)
     {
-        return array_forget($this->data, $key);
+        Arr::forget($this->data, $key);
     }
 
     public function offsetExists($key)
@@ -50,17 +51,17 @@ abstract class DataAbstract implements ArrayAccess
 
     public function get($key, $fallback = null)
     {
-        return array_get($this->data, $key, $fallback);
+        return Arr::get($this->data, $key, $fallback);
     }
 
     public function set($key, $value)
     {
-        return array_set($this->data, $key, $value);
+        return Arr::set($this->data, $key, $value);
     }
 
     public function has($key)
     {
-        return array_has($this->data, $key);
+        return Arr::has($this->data, $key);
     }
 
 }

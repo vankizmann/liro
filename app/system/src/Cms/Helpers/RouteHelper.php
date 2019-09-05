@@ -2,6 +2,7 @@
 
 namespace Liro\System\Cms\Helpers;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
 
 class RouteHelper
@@ -128,11 +129,11 @@ class RouteHelper
 
     public static function isVue($menuOrRoute)
     {
-        if ( array_get($menuOrRoute, 'config.vue', false) ) {
+        if ( Arr::get($menuOrRoute, 'config.vue', false) ) {
             return true;
         }
 
-        return array_get($menuOrRoute, 'domain.config.vue', false);
+        return Arr::get($menuOrRoute, 'domain.config.vue', false);
     }
 
 }

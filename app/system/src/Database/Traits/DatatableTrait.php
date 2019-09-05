@@ -2,7 +2,7 @@
 
 namespace Liro\System\Database\Traits;
 
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 
 trait DatatableTrait
 {
@@ -10,12 +10,12 @@ trait DatatableTrait
     public function scopeDatatable($query)
     {
         $query->orderBy(
-            Input::get('sort.prop', 'id'), Input::get('sort.dir', 'desc')
+            Request::input('sort.prop', 'id'), Request::input('sort.dir', 'desc')
         );
 
         $search = [
-            'query' => Input::get('search.query', ''),
-            'columns' => Input::get('search.columns', ['id']),
+            'query' => Request::input('search.query', ''),
+            'columns' => Request::input('search.columns', ['id']),
         ];
 
         if ( $search['query'] !== '' ) {
@@ -26,7 +26,7 @@ trait DatatableTrait
             });
         }
 
-        foreach ( Input::get('filter', []) as $key => $filter ) {
+        foreach ( Request::input('filter', []) as $key => $filter ) {
 
             if ( empty($filter['value']) ) {
                 continue;
@@ -75,8 +75,8 @@ trait DatatableTrait
             $query->where($filter['property'], $operator, $value);
         }
 
-        $page = (int) Input::get('paginate.page', 1);
-        $limit = (int) Input::get('paginate.limit', 25);
+        $page = (int) Request::input('paginate.page', 1);
+        $limit = (int) Request::input('paginate.limit', 25);
 
         if ( $page > ceil(($total = $query->count()) / $limit) ) {
             $page = 1;

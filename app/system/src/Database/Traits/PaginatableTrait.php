@@ -2,7 +2,7 @@
 
 namespace Liro\System\Database\Traits;
 
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 
 trait PaginatableTrait
 {
@@ -13,7 +13,7 @@ trait PaginatableTrait
 
     public function getPerPage()
     {
-        $pageSize = Input::get('limit', 25);
+        $pageSize = Request::input('limit', 25);
 
         return $this->perPage = (int) min($pageSize, $this->pageSizeLimit);
     }

@@ -5,20 +5,18 @@
     "keywords": ["cms", "laravel"],
     "license": "MIT",
     "require": {
-        "php": ">=7.1.1",
+        "php": ">=7.2.0",
         "ext-json": "*",
-        "ankitjain28may/prettysize": "^1.0",
         "fideloper/proxy": "~4.0",
         "funkjedi/composer-include-files": "^1.0",
         "intervention/image": "^2.4",
         "kalnoy/nestedset": "v4.x-dev",
         "laracasts/presenter": "^0.2.1",
-        "laravel/framework": "5.6.*",
+        "laravel/framework": "~6.0.0",
         "laravel/tinker": "~1.0",
         "marcj/topsort": "^1.1",
-        "spatie/laravel-collection-macros": "^4.0",
-        "symfony/class-loader": "~3.4",
-        "tightenco/ziggy": "^0.6.7"
+        "spatie/laravel-collection-macros": "^6.0",
+        "symfony/class-loader": "~3.4"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

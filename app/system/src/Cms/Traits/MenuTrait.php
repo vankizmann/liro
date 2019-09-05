@@ -2,6 +2,8 @@
 
 namespace Liro\System\Cms\Traits;
 
+use Illuminate\Support\Arr;
+
 trait MenuTrait
 {
     public $menu = null;
@@ -19,7 +21,7 @@ trait MenuTrait
     public function getMenuAttr($attribute, $fallback = null)
     {
         return $this->menu === null ? $fallback :
-            array_get($this->menu, $attribute, $fallback);
+            Arr::get($this->menu, $attribute, $fallback);
     }
 
 }

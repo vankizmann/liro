@@ -2,6 +2,8 @@
 
 namespace Liro\System\Cms\Traits;
 
+use Illuminate\Support\Arr;
+
 trait DomainTrait
 {
     public $domain = null;
@@ -15,7 +17,7 @@ trait DomainTrait
     public function getDomain($attribute = null, $fallback = null)
     {
         if ( $this->domain && $attribute !== null ) {
-            return array_get($this->domain, $attribute, $fallback);
+            return Arr::get($this->domain, $attribute, $fallback);
         }
 
         return $this->domain;
@@ -29,7 +31,7 @@ trait DomainTrait
     public function getDomainAttr($attribute, $fallback = null)
     {
         return $this->domain === null ? $fallback :
-            array_get($this->domain, $attribute, $fallback);
+            Arr::get($this->domain, $attribute, $fallback);
     }
 
     public function getLogin()
@@ -45,7 +47,7 @@ trait DomainTrait
     public function getLoginAttr($attribute, $fallback = null)
     {
         return $this->login === null ? $fallback :
-            array_get($this->login, $attribute, $fallback);
+            Arr::get($this->login, $attribute, $fallback);
     }
 
 }

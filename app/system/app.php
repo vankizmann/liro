@@ -74,6 +74,13 @@ $app->register(\Liro\System\Providers\WebServiceProvider::class);
 |
 */
 
+//$app->instance('path.config', $app->basePath('app/config'));
+//$app->instance('path.storage', $app->basePath('storage'));
+
+if ( $app->runningInConsole() ) {
+    return $app;
+}
+
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(

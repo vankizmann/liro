@@ -29,22 +29,22 @@ class Application extends \Illuminate\Foundation\Application
 
     public function getCachedServicesPath()
     {
-        return $this->storagePath('cache/services.php');
+        return $this->storagePath('framework/app/services.php');
     }
 
     public function getCachedPackagesPath()
     {
-        return $this->storagePath('cache/packages.php');
+        return $this->storagePath('framework/app/packages.php');
     }
 
     public function getCachedConfigPath()
     {
-        return $this->storagePath('cache/config.php');
+        return $this->storagePath('framework/app/config.php');
     }
 
     public function getCachedRoutesPath()
     {
-        return $this->storagePath('cache/routes.php');
+        return $this->storagePath('framework/app/routes.php');
     }
 
     public function path($path = '')
@@ -74,7 +74,7 @@ class Application extends \Illuminate\Foundation\Application
 
     public function storagePath($path = '')
     {
-        return str_join('/', $this->basePath, 'tmp', $path);
+        return str_join('/', $this->basePath, 'storage', $path);
     }
 
 }

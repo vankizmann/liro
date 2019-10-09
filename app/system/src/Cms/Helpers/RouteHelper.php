@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\App;
 
 class RouteHelper
 {
+    public static function getRequestUri()
+    {
+        return isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+    }
 
     public static function makeResourceName($name)
     {
@@ -99,7 +103,7 @@ class RouteHelper
 
     public static function getRoute()
     {
-        return preg_replace('/\?(.*?)$/', '', $_SERVER['REQUEST_URI']);
+        return preg_replace('/\?(.*?)$/', '', self::getRequestUri());
     }
 
     public static function getFullRoute()

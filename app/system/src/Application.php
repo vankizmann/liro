@@ -27,6 +27,11 @@ class Application extends \Illuminate\Foundation\Application
         parent::__construct($basePath);
     }
 
+    public function routesAreCached()
+    {
+        return false;
+    }
+
     public function getCachedServicesPath()
     {
         return $this->storagePath('framework/app/services.php');
@@ -45,6 +50,11 @@ class Application extends \Illuminate\Foundation\Application
     public function getCachedRoutesPath()
     {
         return $this->storagePath('framework/app/routes.php');
+    }
+
+    public function getCachedEventsPath()
+    {
+        return $this->storagePath('framework/app/events.php');
     }
 
     public function path($path = '')
@@ -75,6 +85,11 @@ class Application extends \Illuminate\Foundation\Application
     public function storagePath($path = '')
     {
         return str_join('/', $this->basePath, 'storage', $path);
+    }
+
+    public function bootstrapPath($path = '')
+    {
+        return str_join('/', $this->basePath, 'app/system', $path);
     }
 
 }

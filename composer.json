@@ -1,0 +1,52 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": ["cms", "laravel"],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.2.0",
+        "ext-json": "*",
+        "fideloper/proxy": "~4.0",
+        "funkjedi/composer-include-files": "^1.0",
+        "intervention/image": "^2.4",
+        "kalnoy/nestedset": "v4.x-dev",
+        "laracasts/presenter": "^0.2.1",
+        "laravel/framework": "~6.0.0",
+        "laravel/tinker": "~1.0",
+        "marcj/topsort": "^1.1",
+        "spatie/laravel-collection-macros": "^6.0",
+        "symfony/class-loader": "~3.4"
+    },
+    "require-dev": {
+        "filp/whoops": "~2.0",
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "~1.0",
+        "nunomaduro/collision": "~2.0",
+        "phpunit/phpunit": "~7.0",
+        "symfony/thanks": "^1.0"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url":  "https://github.com/vankizmann/laravel-nestedset.git"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Liro\\System\\": "app/"
+        }
+    },
+    "extra": {
+        "include_files": [
+            "app/functions.php"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

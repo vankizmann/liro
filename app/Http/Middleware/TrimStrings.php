@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\System\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 
@@ -12,6 +12,7 @@ class TrimStrings extends Middleware
      * @var array
      */
     protected $except = [
-        'password', 'password_confirmation',
+        'password',
+        'password_confirmation',
     ];
 }

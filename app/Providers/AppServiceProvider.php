@@ -1,11 +1,8 @@
 <?php
 
-namespace Liro\System\Providers;
+namespace App\Providers;
 
-use Composer\Autoload\ClassLoader;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('autoloader', ClassLoader::class);
+        //
     }
 
     /**
@@ -26,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(255);
+        //
     }
-
 }

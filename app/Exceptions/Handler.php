@@ -1,10 +1,11 @@
 <?php
 
-namespace Liro\System\Exceptions;
+namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
-class Handler extends \Illuminate\Foundation\Exceptions\Handler
+class Handler extends ExceptionHandler
 {
     /**
      * A list of the exception types that are not reported.
@@ -28,15 +29,12 @@ class Handler extends \Illuminate\Foundation\Exceptions\Handler
     /**
      * Report or log an exception.
      *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
-     * @param \Exception  $exception
-     * @throws \Exception
-     * @return mixed
+     * @param  \Exception  $exception
+     * @return void
      */
     public function report(Exception $exception)
     {
-        return parent::report($exception);
+        parent::report($exception);
     }
 
     /**
@@ -48,28 +46,6 @@ class Handler extends \Illuminate\Foundation\Exceptions\Handler
      */
     public function render($request, Exception $exception)
     {
-        $statusCode = method_exists($exception, 'getStatusCode') ?
-            $exception->getStatusCode() : 0;
-
-        if ( $exception->getCode() === 403 || $statusCode === 403 ) {
-            return response()->view("layouts/error", [
-                'statusCode' => $statusCode, 'exception' => $exception
-            ], 403);
-        }
-
-        if ( $exception->getCode() === 404 || $statusCode === 404 ) {
-            return response()->view("layouts/error", [
-                'statusCode' => $statusCode, 'exception' => $exception
-            ], 404);
-        }
-
-        if ( config('app.debug') == true ) {
-            return parent::render($request, $exception);
-        }
-
-        return response()->view("layouts/error", [
-            'statusCode' => $statusCode, 'exception' => $exception
-        ], 500);
+        return parent::render($request, $exception);
     }
-
 }

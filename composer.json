@@ -17,7 +17,12 @@
         "marcj/topsort": "^1.1",
         "spatie/laravel-collection-macros": "^6.0",
         "symfony/class-loader": "~3.4",
-        "liro/web": "*"
+        "liro/support": "*",
+        "liro/web": "*",
+        "liro/assets": "*",
+        "liro/menu": "*",
+        "liro/user": "*",
+        "liro/module": "*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -34,7 +39,27 @@
         },
         {
             "type": "path",
-            "url": "packages/liro/web"
+            "url": "packages/Liro/Support"
+        },
+        {
+            "type": "path",
+            "url": "packages/Liro/Web"
+        },
+        {
+            "type": "path",
+            "url": "packages/Liro/Assets"
+        },
+        {
+            "type": "path",
+            "url": "packages/Liro/Menu"
+        },
+        {
+            "type": "path",
+            "url": "packages/Liro/User"
+        },
+        {
+            "type": "path",
+            "url": "packages/Liro/Module"
         }
     ],
     "autoload": {
@@ -43,13 +68,9 @@
         }
     },
     "extra": {
-        "include_files": [
-        ]
-    },
-    "config": {
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "optimize-autoloader": true
+        "laravel": {
+            "dont-discover": ["*"]
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

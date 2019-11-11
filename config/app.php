@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Liro\Web\Providers\WebServiceProvider::class,
+        Liro\Web\WebServiceProvider::class,
 
         /*
          * Application Service Providers...

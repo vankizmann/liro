@@ -2,9 +2,9 @@
 
 namespace Liro\Web;
 
-class WebService
+class WebManager
 {
-    use DomainTrait, LoadedTrait, LocalesTrait, ProtocolTrait;
+    use DomainTrait, LocalesTrait, ProtocolTrait;
 
     protected $app;
 
@@ -12,4 +12,10 @@ class WebService
     {
         $this->app = $app;
     }
+
+    public function boot()
+    {
+        //
+    }
+
 }

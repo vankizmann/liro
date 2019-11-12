@@ -4,7 +4,7 @@ namespace Liro\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class User extends Facade
+class Media extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,7 +13,7 @@ class User extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'web.user';
+        return 'web.media';
     }
 
 }

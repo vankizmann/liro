@@ -13,7 +13,7 @@ class Web extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'web.container';
+        return 'web.manager';
     }
 
 }

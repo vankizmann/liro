@@ -17,20 +17,8 @@ class WebServiceProvider extends ServiceProvider
             __DIR__.'/../config/web.php', 'web'
         );
 
-        $this->loadMigrationsFrom(
-            __DIR__.'/../database/migrations'
-        );
-
-        $this->app->extend('translator', function ($service, $app) {
-            return new \Liro\Support\Translation\Translator($app['translation.loader'], $app['config']['app.locale']);
-        });
-
-        $this->app->extend('url', function ($service, $app) {
-            return new \Liro\Support\Routing\UrlGenerator($app['routes'], $app['request']);
-        });
-
-        $this->app->singleton('web.container', function($app) {
-            return new WebService($app);
+        $this->app->singleton('web.manager', function($app) {
+            return new WebManager($app);
         });
 
         foreach ( $this->app['config']['web.providers'] as $ref ) {

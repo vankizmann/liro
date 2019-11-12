@@ -2,30 +2,9 @@
 
 namespace Liro\Support;
 
-use Liro\Support\Application\LoadedTrait;
-use Liro\Support\Application\LocalesTrait;
-use Liro\Support\Application\DomainTrait;
-use Liro\Support\Application\ProtocolTrait;
-
 class Application extends \Illuminate\Foundation\Application
 {
-    use LoadedTrait, ProtocolTrait, DomainTrait, LocalesTrait;
-
     protected $namespace = 'App\\';
-
-    public function __construct(?string $basePath = null)
-    {
-        if ( ! $this->runningInConsole() ) {
-
-            // TODO: Comment
-            $this->setProtocol($_SERVER['SERVER_PROTOCOL']);
-
-            // TODO: Comment
-            $this->setDomain($_SERVER['HTTP_HOST']);
-        }
-
-        parent::__construct($basePath);
-    }
 
     public function routesAreCached()
     {
@@ -34,27 +13,27 @@ class Application extends \Illuminate\Foundation\Application
 
     public function getCachedServicesPath()
     {
-        return $this->storagePath('framework/app/services.php');
+        return $this->bootstrapPath('cache/services.php');
     }
 
     public function getCachedPackagesPath()
     {
-        return $this->storagePath('framework/app/packages.php');
+        return $this->bootstrapPath('cache/packages.php');
     }
 
     public function getCachedConfigPath()
     {
-        return $this->storagePath('framework/app/config.php');
+        return $this->bootstrapPath('cache/config.php');
     }
 
     public function getCachedRoutesPath()
     {
-        return $this->storagePath('framework/app/routes.php');
+        return $this->bootstrapPath('cache/routes.php');
     }
 
     public function getCachedEventsPath()
     {
-        return $this->storagePath('framework/app/events.php');
+        return $this->bootstrapPath('cache/events.php');
     }
 
     public function path($path = '')

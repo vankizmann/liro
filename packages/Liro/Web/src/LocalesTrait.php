@@ -14,7 +14,7 @@ trait LocalesTrait
 
     public function getLocale()
     {
-        return $this->locale ?: 'en';
+        return $this->locale ?: $this->app['config']['app.locale'];
     }
 
     public function setLocales($locales)

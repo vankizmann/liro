@@ -41,6 +41,19 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->extend('url', function () use ($app) {
+    return new \Liro\Support\Routing\UrlGenerator(
+        $app['routes'], $app['request']
+    );
+});
+
+$app->extend('translator', function  () use ($app) {
+    return new \Liro\Support\Translation\Translator(
+        $app['translation.loader'], $app['config']['app.locale']
+    );
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

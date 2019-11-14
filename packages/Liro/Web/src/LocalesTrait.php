@@ -24,7 +24,7 @@ trait LocalesTrait
 
     public function getLocales()
     {
-        return $this->locales ?: [];
+        return $this->locales ?: [$this->locale];
     }
 
 

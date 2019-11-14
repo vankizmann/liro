@@ -4,7 +4,7 @@ namespace Liro\Web;
 
 trait ProtocolTrait
 {
-    protected $protocol;
+    protected $protocol = 'http';
 
     public function setProtocol($protocol)
     {

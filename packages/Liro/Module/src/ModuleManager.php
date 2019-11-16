@@ -36,7 +36,7 @@ class ModuleManager
             $this->loaded[$module->name] = $module;
         }
 
-        dd($this->loaded);
+//        dd($this->loaded);
     }
 
 }

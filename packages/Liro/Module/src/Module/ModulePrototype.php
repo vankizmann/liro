@@ -17,7 +17,7 @@ class ModulePrototype extends DataAbstract implements ModuleInterface
 
     public function boot()
     {
-        $data = include str_join('/', $this->path, 'index.php');
+        $data = include str_join('/', $this->path, 'module.php');
 
         if ( empty($data['name']) ) {
             throw new \Exception("Parameter name missing in '$this->path'");

@@ -3,24 +3,26 @@
 return [
 
     'paths' => [
-        '/modules/*/*/index.php', '/themes/*/*/index.php'
+        '/public/packages/*/*/module.php',
     ],
 
     'loaders' => [
-        Liro\Support\Loaders\AutoloadLoader::class,
-        Liro\Support\Loaders\MigrationLoader::class,
-        Liro\Support\Loaders\ViewLoader::class,
-        Liro\Support\Loaders\TranslationLoader::class,
-        Liro\Support\Loaders\EventLoader::class,
-        Liro\Support\Loaders\MiddlewareLoader::class,
-        Liro\Support\Loaders\AssetsLoader::class,
-        Liro\Support\Loaders\MenuLoader::class,
+        Liro\Module\Loaders\AutoloadLoader::class,
+        Liro\Module\Loaders\MigrationLoader::class,
+        Liro\Module\Loaders\EventLoader::class,
+        Liro\Module\Loaders\MiddlewareLoader::class,
+        Liro\Module\Loaders\ProviderLoader::class,
+//        Liro\Module\Loaders\ViewLoader::class,
+//        Liro\Module\Loaders\TranslationLoader::class,
+//        Liro\Module\Loaders\AssetsLoader::class,
+//        Liro\Module\Loaders\MenuLoader::class,
     ],
 
     'modules' => [
-        'liro/fields' => Liro\Fields\FieldsModule::class,
-        'liro/fields' => Liro\Fields\FieldsModule::class,
-        'liro/fields' => Liro\Fields\FieldsModule::class,
+        'web-dashboard'
+//        'liro/fields' => Liro\Fields\FieldsModule::class,
+//        'liro/fields' => Liro\Fields\FieldsModule::class,
+//        'liro/fields' => Liro\Fields\FieldsModule::class,
     ],
 
 ];

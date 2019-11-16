@@ -3,6 +3,7 @@
 namespace Liro\Web;
 
 use Illuminate\Support\ServiceProvider;
+use Composer\Autoload\ClassLoader;
 
 class WebServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,10 @@ class WebServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/web.php', 'web'
         );
+
+        $this->app->singleton('web.autoload', function($app) {
+            return new ClassLoader();
+        });
 
         $this->app->singleton('web.manager', function($app) {
             return new WebManager($app);

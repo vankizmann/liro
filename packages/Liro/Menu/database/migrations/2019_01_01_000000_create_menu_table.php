@@ -10,7 +10,8 @@ class CreateMenuTable extends Migration
     {
         Schema::create('menus', function(Blueprint $table) {
 
-            $table->uuid('id');
+            $table->uuid('id')
+                ->nullable();
 
             $table->integer('state')
                 ->default(0);
@@ -24,7 +25,7 @@ class CreateMenuTable extends Migration
             $table->string('slug')
                 ->nullable();
 
-            $table->string('module')
+            $table->string('package')
                 ->nullable();
 
             $table->string('query')

@@ -1,5 +1,7 @@
 <?php
 
+use function foo\func;
+
 if ( ! function_exists('dc') ) {
 
     function dc()
@@ -82,6 +84,15 @@ if ( ! function_exists('secure_asset') ) {
         }
 
         return app('cms.assets')->file($path, true);
+    }
+
+}
+
+if ( ! function_exists('uuid') ) {
+
+    function uuid ()
+    {
+        return Illuminate\Support\Str::uuid()->toString();
     }
 
 }

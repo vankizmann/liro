@@ -25,6 +25,10 @@
         "psr-4": {
             "Liro\\Support\\": "src/"
         },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
         "files": [
             "src/functions.php"
         ]

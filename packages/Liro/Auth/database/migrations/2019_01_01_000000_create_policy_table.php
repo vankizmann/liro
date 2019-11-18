@@ -10,7 +10,7 @@ class CreatePolicyTable extends Migration
     {
         Schema::create('policies', function(Blueprint $table) {
 
-            $table->uuid('id');
+            $table->uuid('uuid');
 
             $table->string('title')
                 ->default('');

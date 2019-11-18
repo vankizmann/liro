@@ -10,7 +10,7 @@ class CreateModuleTable extends Migration
     {
         Schema::create('modules', function(Blueprint $table) {
 
-            $table->uuid('id');
+            $table->uuid('uuid');
 
             $table->integer('state')
                 ->default(0);

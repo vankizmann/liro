@@ -29,7 +29,11 @@
     "autoload-dev": {
         "psr-4": {
             "Liro\\Auth\\Test\\": "tests/"
-        }
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ]
     },
     "scripts": {
         "test": "vendor/bin/phpunit"

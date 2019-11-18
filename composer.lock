@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6aa0d1c16ebc97bb4cae6aab01452652",
+    "content-hash": "239f2492a783c7bd7cfb4500cd7e8955",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -379,56 +379,6 @@
                 "trusted proxy"
             ],
             "time": "2019-09-03T16:45:42+00:00"
-        },
-        {
-            "name": "goldspecdigital/laravel-eloquent-uuid",
-            "version": "v6.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/goldspecdigital/laravel-eloquent-uuid.git",
-                "reference": "3406ad2de819b74d78f30054d62cc108dd2a37e4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/goldspecdigital/laravel-eloquent-uuid/zipball/3406ad2de819b74d78f30054d62cc108dd2a37e4",
-                "reference": "3406ad2de819b74d78f30054d62cc108dd2a37e4",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^6.0",
-                "php": "^7.2"
-            },
-            "require-dev": {
-                "ext-pdo": "*",
-                "friendsofphp/php-cs-fixer": "^2.15",
-                "orchestra/testbench": "^4.0",
-                "phpunit/phpunit": "^8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "GoldSpecDigital\\LaravelEloquentUUID\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matthew Inamdar",
-                    "email": "matt@goldspecdigital.com"
-                }
-            ],
-            "description": "A simple drop-in solution for providing UUID support for the IDs of your Eloquent models.",
-            "homepage": "https://github.com/goldspecdigital/laravel-eloquent-uuid",
-            "keywords": [
-                "eloquent",
-                "laravel",
-                "php",
-                "uuid"
-            ],
-            "time": "2019-10-09T12:32:17+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -958,7 +908,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Assets",
-                "reference": "fbfa33c95b431bfc775eed319439c2c8c53b68a3"
+                "reference": "387e4d8185bb9b588dae73e92aa3851d6e734bc8"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -977,7 +927,11 @@
             "autoload": {
                 "psr-4": {
                     "Liro\\Assets\\": "src/"
-                }
+                },
+                "classmap": [
+                    "database/seeds",
+                    "database/factories"
+                ]
             },
             "autoload-dev": {
                 "psr-4": {
@@ -1012,7 +966,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Auth",
-                "reference": "34a980c05bfe20b99d799bc3989fb56d410d00f3"
+                "reference": "666ef6f70b00aa457e6df4b1497f3068cb2cb3f4"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1036,7 +990,11 @@
             "autoload-dev": {
                 "psr-4": {
                     "Liro\\Auth\\Test\\": "tests/"
-                }
+                },
+                "classmap": [
+                    "database/seeds",
+                    "database/factories"
+                ]
             },
             "scripts": {
                 "test": [
@@ -1066,7 +1024,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Media",
-                "reference": "d4af24f7fa62fe266c254e0069412c227cc0d642"
+                "reference": "3996957ee1bec6196c13ca2b14a3f8499f569ca5"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1085,7 +1043,11 @@
             "autoload": {
                 "psr-4": {
                     "Liro\\Media\\": "src/"
-                }
+                },
+                "classmap": [
+                    "database/seeds",
+                    "database/factories"
+                ]
             },
             "autoload-dev": {
                 "psr-4": {
@@ -1120,7 +1082,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Menu",
-                "reference": "99240e977639277da476540afa32d9824154a49c"
+                "reference": "d7adc40c29dce44dfa2607f4ce42ae8a0d62dd96"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1139,7 +1101,11 @@
             "autoload": {
                 "psr-4": {
                     "Liro\\Menu\\": "src/"
-                }
+                },
+                "classmap": [
+                    "database/seeds",
+                    "database/factories"
+                ]
             },
             "autoload-dev": {
                 "psr-4": {
@@ -1174,7 +1140,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Module",
-                "reference": "38fe39ecfdff751bb35c1a8281f6e29add48f9b0"
+                "reference": "44ceff273ee06c15af332ee79cda3d4e6681db8b"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1193,7 +1159,11 @@
             "autoload": {
                 "psr-4": {
                     "Liro\\Module\\": "src/"
-                }
+                },
+                "classmap": [
+                    "database/seeds",
+                    "database/factories"
+                ]
             },
             "autoload-dev": {
                 "psr-4": {
@@ -1228,7 +1198,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Support",
-                "reference": "4fd3c3c28d05f988bf70004f83e62e158f3c058d"
+                "reference": "0c8dd28671fa1b750aa480ddb282c5ab43d0f469"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1248,6 +1218,10 @@
                 "psr-4": {
                     "Liro\\Support\\": "src/"
                 },
+                "classmap": [
+                    "database/seeds",
+                    "database/factories"
+                ],
                 "files": [
                     "src/functions.php"
                 ]
@@ -1285,7 +1259,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Web",
-                "reference": "3bc9cfa928a394b49c1c2bd2b0d1ea86c2d3ea88"
+                "reference": "017465c7e00187d993030318617c5439db519a97"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1304,7 +1278,11 @@
             "autoload": {
                 "psr-4": {
                     "Liro\\Web\\": "src/"
-                }
+                },
+                "classmap": [
+                    "database/seeds",
+                    "database/factories"
+                ]
             },
             "autoload-dev": {
                 "psr-4": {

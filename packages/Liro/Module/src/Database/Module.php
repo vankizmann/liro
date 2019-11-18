@@ -16,14 +16,16 @@ class Module extends ModelPrototype
     ];
 
     protected $attributes = [
+        'uuid'      => null,
         'state'     => null,
-        'extension' => null,
+        'package'   => null,
         'guard'     => null,
     ];
 
     protected $casts = [
+        'id'        => 'uuid',
         'state'     => 'integer',
-        'extension' => 'string',
+        'package'   => 'string',
         'guard'     => 'integer',
     ];
 

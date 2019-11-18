@@ -24,7 +24,11 @@
     "autoload": {
         "psr-4": {
             "Liro\\Menu\\": "src/"
-        }
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

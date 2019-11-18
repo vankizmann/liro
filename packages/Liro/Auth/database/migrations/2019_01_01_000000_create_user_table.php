@@ -10,7 +10,7 @@ class CreateUserTable extends Migration
     {
         Schema::create('users', function(Blueprint $table) {
 
-            $table->uuid('id');
+            $table->uuid('uuid');
 
             $table->integer('state')
                 ->default(0);

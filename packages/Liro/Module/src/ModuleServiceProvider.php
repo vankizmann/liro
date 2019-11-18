@@ -3,6 +3,7 @@
 namespace Liro\Module;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class ModuleServiceProvider extends ServiceProvider
 {

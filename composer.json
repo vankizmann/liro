@@ -19,8 +19,7 @@
         "liro/menu": "*",
         "liro/module": "*",
         "liro/support": "*",
-        "liro/web": "*",
-        "goldspecdigital/laravel-eloquent-uuid": "^v6.0"
+        "liro/web": "*"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
@@ -66,7 +65,11 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ]
     },
     "extra": {
         "laravel": {

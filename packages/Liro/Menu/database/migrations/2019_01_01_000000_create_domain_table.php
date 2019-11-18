@@ -10,7 +10,7 @@ class CreateDomainTable extends Migration
     {
         Schema::create('domains', function(Blueprint $table) {
 
-            $table->uuid('id');
+            $table->uuid('uuid');
 
             $table->integer('state')
                 ->default(0);

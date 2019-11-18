@@ -17,6 +17,10 @@ class MenuServiceProvider extends ServiceProvider
             throw new \Exception('Web Manager not initialized.');
         }
 
+        $this->loadMigrationsFrom([
+            __DIR__.'/../database/migrations'
+        ]);
+
         $this->app->singleton('web.menu', function($app) {
             return new MenuManager($app);
         });

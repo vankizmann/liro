@@ -1,10 +1,10 @@
 <?php
 
-namespace Liro\Module;
+namespace Liro\Auth;
 
 use Illuminate\Support\ServiceProvider;
 
-class ModuleServiceProvider extends ServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -17,17 +17,17 @@ class ModuleServiceProvider extends ServiceProvider
             throw new \Exception('Web Manager not initialized.');
         }
 
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/module.php', 'module'
-        );
+//        $this->mergeConfigFrom(
+//            __DIR__.'/../config/module.php', 'module'
+//        );
 
         $this->loadMigrationsFrom([
             __DIR__.'/../database/migrations'
         ]);
 
-        $this->app->singleton('web.module', function($app) {
-            return new ModuleManager($app);
-        });
+//        $this->app->singleton('web.module', function($app) {
+//            return new AuthManager($app);
+//        });
     }
 
     /**
@@ -37,11 +37,11 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/../config/web.php' => config_path('web.php'),
-        ]);
-
-        $this->app['web.module']->boot();
+//        $this->publishes([
+//            __DIR__.'/../config/web.php' => config_path('web.php'),
+//        ]);
+//
+//        $this->app['web.module']->boot();
     }
 
 }

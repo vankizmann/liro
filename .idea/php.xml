@@ -100,6 +100,8 @@
       <path value="$PROJECT_DIR$/vendor/facade/ignition-contracts" />
       <path value="$PROJECT_DIR$/vendor/facade/flare-client-php" />
       <path value="$PROJECT_DIR$/vendor/liro/media" />
+      <path value="$PROJECT_DIR$/vendor/liro/auth" />
+      <path value="$PROJECT_DIR$/vendor/goldspecdigital/laravel-eloquent-uuid" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

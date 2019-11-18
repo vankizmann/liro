@@ -13,12 +13,14 @@
         "laravel/tinker": "^1.0",
         "marcj/topsort": "^1.1",
         "symfony/class-loader": "~3.4",
-        "liro/support": "*",
-        "liro/web": "*",
         "liro/assets": "*",
+        "liro/auth": "*",
         "liro/media": "*",
         "liro/menu": "*",
-        "liro/module": "*"
+        "liro/module": "*",
+        "liro/support": "*",
+        "liro/web": "*",
+        "goldspecdigital/laravel-eloquent-uuid": "^v6.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
@@ -43,6 +45,10 @@
         {
             "type": "path",
             "url": "packages/Liro/Assets"
+        },
+        {
+            "type": "path",
+            "url": "packages/Liro/Auth"
         },
         {
             "type": "path",

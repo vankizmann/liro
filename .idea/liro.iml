@@ -17,6 +17,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/fideloper/proxy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/filp/whoops" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/goldspecdigital/laravel-eloquent-uuid" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/psr7" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image" />
@@ -26,6 +27,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/tinker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/liro/assets" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/liro/auth" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/liro/media" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/liro/menu" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/liro/module" />

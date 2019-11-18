@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "631c82c78b5839d85b200462d08f8c61",
+    "content-hash": "6aa0d1c16ebc97bb4cae6aab01452652",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -379,6 +379,56 @@
                 "trusted proxy"
             ],
             "time": "2019-09-03T16:45:42+00:00"
+        },
+        {
+            "name": "goldspecdigital/laravel-eloquent-uuid",
+            "version": "v6.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/goldspecdigital/laravel-eloquent-uuid.git",
+                "reference": "3406ad2de819b74d78f30054d62cc108dd2a37e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/goldspecdigital/laravel-eloquent-uuid/zipball/3406ad2de819b74d78f30054d62cc108dd2a37e4",
+                "reference": "3406ad2de819b74d78f30054d62cc108dd2a37e4",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "ext-pdo": "*",
+                "friendsofphp/php-cs-fixer": "^2.15",
+                "orchestra/testbench": "^4.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GoldSpecDigital\\LaravelEloquentUUID\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthew Inamdar",
+                    "email": "matt@goldspecdigital.com"
+                }
+            ],
+            "description": "A simple drop-in solution for providing UUID support for the IDs of your Eloquent models.",
+            "homepage": "https://github.com/goldspecdigital/laravel-eloquent-uuid",
+            "keywords": [
+                "eloquent",
+                "laravel",
+                "php",
+                "uuid"
+            ],
+            "time": "2019-10-09T12:32:17+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -954,6 +1004,60 @@
             "keywords": [
                 "liro",
                 "liro-assets"
+            ]
+        },
+        {
+            "name": "liro/auth",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "packages/Liro/Auth",
+                "reference": "34a980c05bfe20b99d799bc3989fb56d410d00f3"
+            },
+            "require": {
+                "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.5.3|~3.6.0|~3.7.0|~3.8.0|^4.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Liro\\Auth\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Liro\\Auth\\Test\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eduard Kizmann",
+                    "email": "kizmann@liro-cms.com",
+                    "homepage": "https://liro-cms.com"
+                }
+            ],
+            "description": "Description",
+            "homepage": "https://github.com/vankizmann/liro-auth",
+            "keywords": [
+                "liro",
+                "liro-auth"
             ]
         },
         {

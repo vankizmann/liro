@@ -16,5 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('test', function () {
+    dd(\App\Database\Menu::roots()->first()->get()->toHierarchy()->toArray());
     return view('test');
 });

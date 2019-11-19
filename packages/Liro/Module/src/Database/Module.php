@@ -12,7 +12,7 @@ class Module extends ModelPrototype
     protected $table = 'modules';
 
     protected $guarded = [
-        'id',
+        'uuid',
     ];
 
     protected $attributes = [

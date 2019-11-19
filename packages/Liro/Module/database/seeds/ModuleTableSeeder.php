@@ -46,6 +46,7 @@ class ModuleTableSeeder extends Seeder
 //            'state'     => 1,
 //            'package'   => 'liro-test'
 //        ]);
+
     }
 
 }

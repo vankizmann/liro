@@ -6,11 +6,13 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateModuleTable extends Migration
 {
+
     public function up()
     {
         Schema::create('modules', function(Blueprint $table) {
 
-            $table->uuid('uuid');
+            $table->uuid('uuid')
+                ->primary();
 
             $table->integer('state')
                 ->default(0);

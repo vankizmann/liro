@@ -2,6 +2,9 @@
 
 namespace Liro\Module;
 
+use Liro\Module\Module\ModulePrototype;
+use App\Database\Module;
+
 class ModuleManager
 {
     protected $app;
@@ -18,16 +21,19 @@ class ModuleManager
 
     public function boot()
     {
-
         $this->configs = array_reduce(config('module.paths', []), function($merge, $path) {
             return array_merge($merge, glob(app()->basePath() . $path));
         }, []);
 
         foreach ( $this->configs as $config ) {
-            $this->modules[] = app()->make(Module\ModulePrototype::class, ['path' => $config]);
+            $this->modules[] = app()->make(ModulePrototype::class, ['path' => $config]);
         }
 
         foreach ( $this->modules as $module ) {
+
+            if ( Module::enabled()->where('package', $module->name)->count() === 0 ) {
+                continue;
+            }
 
             foreach ( config('module.loaders') as $loader ) {
                 $module = app()->make($loader)->load($module);

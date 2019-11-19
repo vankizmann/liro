@@ -10,8 +10,8 @@ class CreateMenuTable extends Migration
     {
         Schema::create('menus', function(Blueprint $table) {
 
-            $table->uuid('id')
-                ->nullable();
+            $table->uuid('uuid')
+                ->primary();
 
             $table->integer('state')
                 ->default(0);
@@ -19,29 +19,38 @@ class CreateMenuTable extends Migration
             $table->integer('hide')
                 ->default(0);
 
+            $table->string('type')
+                ->nullable();
+
+            $table->string('extend')
+                ->nullable();
+
+            $table->string('layout')
+                ->nullable();
+
             $table->string('title')
                 ->default('');
 
             $table->string('slug')
                 ->nullable();
 
-            $table->string('package')
-                ->nullable();
-
-            $table->string('query')
-                ->nullable();
-
-            $table->string('layout')
-                ->nullable();
-
-            $table->string('locale')
+            $table->string('matrix')
                 ->nullable();
 
             $table->integer('guard')
                 ->nullable();
 
-            $table->integer('domain_id')
-                ->default(0);
+            $table->uuid('parent_id')
+                ->nullable();
+
+            $table->integer('left')
+                ->nullable();
+
+            $table->integer('right')
+                ->nullable();
+
+            $table->integer('depth')
+                ->nullable();
 
             $table->timestamps();
         });

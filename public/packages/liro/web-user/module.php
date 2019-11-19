@@ -2,17 +2,17 @@
 
 return [
 
-    'name'          => 'liro/web-users',
+    'name'          => 'liro/web-user',
     'version'       => '1.0.0',
     'type'          => 'package',
 
     'routes' => [
 
-        'ajax@web-users::user' => [
+        'ajax@web-user::user' => [
             Liro\Web\User\Http\Controllers\UserController::class
         ],
 
-        'http@web-users::user' => [
+        'http@web-user::user' => [
             Liro\Web\User\Http\Connectors\UserConnector::class
         ],
 

@@ -2,13 +2,13 @@
 
 namespace Liro\Menu\Database;
 
+use Liro\Support\Database\Model;
+use Liro\Support\Database\Traits\State;
 use Baum\NestedSet\Node;
 
-use Liro\Support\Database\ModelPrototype;
-
-class Menu extends ModelPrototype
+class Menu extends Model
 {
-    use Node;
+    use Node, State;
 
     protected $table = 'menus';
 

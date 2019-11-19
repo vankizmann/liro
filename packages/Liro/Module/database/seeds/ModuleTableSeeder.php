@@ -11,14 +11,14 @@ class ModuleTableSeeder extends Seeder
 
         Module::create([
             'uuid'      => uuid(),
-            'state'     => 0,
-            'package'   => 'liro/web-theme-fe'
+            'state'     => 1,
+            'package'   => 'liro/web-menu'
         ]);
 
         Module::create([
             'uuid'      => uuid(),
-            'state'     => 0,
-            'package'   => 'liro/web-theme-be'
+            'state'     => 1,
+            'package'   => 'liro/web-user'
         ]);
 //
 //        Module::create([

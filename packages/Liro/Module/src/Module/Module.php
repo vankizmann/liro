@@ -4,7 +4,7 @@ namespace Liro\Module\Module;
 
 use Liro\Support\Abstracts\DataAbstract;
 
-class ModulePrototype extends DataAbstract implements ModuleInterface
+class Module extends DataAbstract implements ModuleInterface
 {
 
     public $path;

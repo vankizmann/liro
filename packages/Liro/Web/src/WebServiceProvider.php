@@ -48,6 +48,8 @@ class WebServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/web.php' => config_path('web.php'),
         ]);
+
+        $this->app['web.manager']->boot();
     }
 
 }

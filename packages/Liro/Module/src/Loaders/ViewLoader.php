@@ -2,13 +2,13 @@
 
 namespace Liro\Module\Loaders;
 
-use Liro\Module\Module\ModulePrototype;
+use Liro\Module\Module\Module;
 use Illuminate\Support\Facades\View;
 
 class ViewLoader implements LoaderInterface
 {
 
-    public function load(ModulePrototype $module)
+    public function load(Module $module)
     {
         $path = str_join('/', $module->path, 'views');
 

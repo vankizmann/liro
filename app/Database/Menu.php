@@ -2,7 +2,7 @@
 
 namespace App\Database;
 
-use \Liro\Menu\Database\Menu as MenuModel;
+use Liro\Menu\Database\Menu as MenuModel;
 
 class Menu extends MenuModel
 {

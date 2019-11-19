@@ -2,12 +2,12 @@
 
 namespace Liro\Module\Loaders;
 
-use Liro\Module\Module\ModulePrototype;
+use Liro\Module\Module\Module;
 
 class TranslationLoader implements LoaderInterface
 {
 
-    public function load(ModulePrototype $module)
+    public function load(Module $module)
     {
         $path = str_join('/', $module->path, 'languages');
 

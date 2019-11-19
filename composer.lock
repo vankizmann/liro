@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62be6da3cffffbe7bd8d3bb62c5fdce7",
+    "content-hash": "9aaf34b0317173a96a2845b1ff966e74",
     "packages": [
         {
             "name": "baum/baum",
@@ -672,16 +672,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.5.1",
+            "version": "v6.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "e47180500498cf8aa2a8ffb59a3b4daa007fa13d"
+                "reference": "cca8906654e72d7bb118c3c18bb55e74c109a766"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/e47180500498cf8aa2a8ffb59a3b4daa007fa13d",
-                "reference": "e47180500498cf8aa2a8ffb59a3b4daa007fa13d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/cca8906654e72d7bb118c3c18bb55e74c109a766",
+                "reference": "cca8906654e72d7bb118c3c18bb55e74c109a766",
                 "shasum": ""
             },
             "require": {
@@ -814,7 +814,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-11-12T15:20:18+00:00"
+            "time": "2019-11-19T14:52:01+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -969,8 +969,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Assets",
-                "reference": "387e4d8185bb9b588dae73e92aa3851d6e734bc8",
-                "shasum": null
+                "reference": "387e4d8185bb9b588dae73e92aa3851d6e734bc8"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1028,8 +1027,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Auth",
-                "reference": "666ef6f70b00aa457e6df4b1497f3068cb2cb3f4",
-                "shasum": null
+                "reference": "666ef6f70b00aa457e6df4b1497f3068cb2cb3f4"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1205,8 +1203,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Module",
-                "reference": "44ceff273ee06c15af332ee79cda3d4e6681db8b",
-                "shasum": null
+                "reference": "44ceff273ee06c15af332ee79cda3d4e6681db8b"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1264,11 +1261,9 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Support",
-                "reference": "1811bc10331cb7938c7aa17641ecfb59c9123f49"
+                "reference": "c14a7467142ed2c0de6a32f671ccaf0f4b4c860f"
             },
             "require": {
-                "baum/baum": "^2.0.0",
-                "ext-json": "*",
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
                 "marcj/topsort": "^1.1",
                 "php": "^7.2"
@@ -5698,7 +5693,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "ext-json": "*"
     },
     "platform-dev": []
 }

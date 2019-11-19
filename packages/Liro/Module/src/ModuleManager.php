@@ -2,7 +2,6 @@
 
 namespace Liro\Module;
 
-use Liro\Module\Module\ModulePrototype;
 use App\Database\Module;
 
 class ModuleManager
@@ -26,7 +25,7 @@ class ModuleManager
         }, []);
 
         foreach ( $this->configs as $config ) {
-            $this->modules[] = app()->make(ModulePrototype::class, ['path' => $config]);
+            $this->modules[] = app()->make(config('module.use'), ['path' => $config]);
         }
 
         foreach ( $this->modules as $module ) {
@@ -42,7 +41,7 @@ class ModuleManager
             $this->loaded[$module->name] = $module;
         }
 
-//        dd($this->loaded);
+
     }
 
 }

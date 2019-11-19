@@ -2,10 +2,10 @@
 
 namespace Liro\Module\Database;
 
-use Liro\Support\Database\ModelPrototype;
+use Liro\Support\Database\Model;
 use Liro\Support\Database\Traits\State;
 
-class Module extends ModelPrototype
+class Module extends Model
 {
     use State;
 
@@ -23,7 +23,7 @@ class Module extends ModelPrototype
     ];
 
     protected $casts = [
-        'id'        => 'uuid',
+        'uuid'      => 'uuid',
         'state'     => 'integer',
         'package'   => 'string',
         'guard'     => 'integer',

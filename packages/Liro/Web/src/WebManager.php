@@ -15,7 +15,7 @@ class WebManager
 
     public function boot()
     {
-        //
+        $this->app['events']->dispatch('web.manager@booted', $this->app);
     }
 
 }

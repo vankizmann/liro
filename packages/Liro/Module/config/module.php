@@ -2,6 +2,8 @@
 
 return [
 
+    'use' => Liro\Module\Module\Module::class,
+
     'paths' => [
         '/public/packages/*/*/module.php',
     ],
@@ -15,14 +17,7 @@ return [
 //        Liro\Module\Loaders\ViewLoader::class,
 //        Liro\Module\Loaders\TranslationLoader::class,
 //        Liro\Module\Loaders\AssetsLoader::class,
-//        Liro\Module\Loaders\MenuLoader::class,
-    ],
-
-    'modules' => [
-        'web-dashboard'
-//        'liro/fields' => Liro\Fields\FieldsModule::class,
-//        'liro/fields' => Liro\Fields\FieldsModule::class,
-//        'liro/fields' => Liro\Fields\FieldsModule::class,
-    ],
+        Liro\Module\Loaders\RouteLoader::class,
+    ]
 
 ];

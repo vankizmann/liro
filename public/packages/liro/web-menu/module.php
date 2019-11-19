@@ -6,18 +6,18 @@ return [
     'version'       => '1.0.0',
     'type'          => 'package',
 
-    'menus' => [
+    'routes' => [
 
-        'global@web-menu::http.domain.index' => [
-            'Liro\Web\Menu\Router\Http@domain'
+        'http@web-menu::domain' => [
+            Liro\Web\Menu\Http\Connectors\DomainConnector::class
         ],
 
-        'global@web-menu::http.menu.index' => [
-            'Liro\Web\Menu\Router\Http@menu'
+        'http@web-menu::menu' => [
+            Liro\Web\Menu\Http\Connectors\MenuConnector::class
         ],
 
-        'global@web-menu::http.redirect.index' => [
-            'Liro\Web\Menu\Router\Http@redirect'
+        'http@web-menu::redirect' => [
+            Liro\Web\Menu\Http\Connectors\RedirectConnector::class
         ],
 
     ],

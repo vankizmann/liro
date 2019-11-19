@@ -27,6 +27,7 @@ class MenuServiceProvider extends ServiceProvider
         $this->app->singleton('web.menu', function($app) {
             return new MenuManager($app);
         });
+
     }
 
     /**

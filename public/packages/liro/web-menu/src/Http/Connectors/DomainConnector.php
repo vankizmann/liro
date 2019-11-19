@@ -1,19 +1,23 @@
 <?php
 
-namespace Liro\Menu\Routing;
+namespace Liro\Web\Menu\Http\Connectors;
 
+use Liro\Menu\Routing\Connector;
 use App\Database\Menu;
 
-interface ConnectorInterface
+class DomainConnector extends Connector
 {
     /**
      * Provide router options.
      *
      * @param \App\Database\Menu $menu
      * @param array $options
-     * @return array|bool
+     * @return bool
      */
-    public function route(Menu $menu, $options);
+    public function route(Menu $menu, $options)
+    {
+        return false;
+    }
 
     /**
      * Provide data for view.
@@ -21,7 +25,10 @@ interface ConnectorInterface
      * @param \App\Database\Menu $menu
      * @return array|bool
      */
-    public function provide(Menu $menu);
+    public function provide(Menu $menu)
+    {
+        return false;
+    }
 
     /**
      * Collect data for menu rendering.
@@ -29,5 +36,8 @@ interface ConnectorInterface
      * @param \App\Database\Menu $menu
      * @return array|bool
      */
-    public function collect(Menu $menu);
+    public function collect(Menu $menu)
+    {
+        return false;
+    }
 }

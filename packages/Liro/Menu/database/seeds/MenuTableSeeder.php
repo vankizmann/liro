@@ -10,17 +10,17 @@ class MenuTableSeeder extends Seeder
     {
         Menu::create([
             'uuid'      => $root = uuid(),
-            'type'      => 'web-menu::http.domain.index',
+            'type'      => 'web-menu::domain',
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'liro-cms.com',
-            'slug'      => ':domain/:locale',
+            'slug'      => 'localhost/:locale',
             'parent_id' => null,
         ]);
 
         Menu::create([
             'uuid'      => $dashboard = uuid(),
-            'type'      => 'web-dashboard::http.dashboard.index',
+            'type'      => 'web-dashboard::menu',
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'Dashboard',
@@ -31,7 +31,7 @@ class MenuTableSeeder extends Seeder
 
         Menu::create([
             'uuid'      => $page = uuid(),
-            'type'      => 'web-page::http.page.index',
+            'type'      => 'web-menu::redirect',
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'Page',
@@ -42,7 +42,7 @@ class MenuTableSeeder extends Seeder
 
         Menu::create([
             'uuid'      => $test = uuid(),
-            'type'      => 'web-page::http.page.index',
+            'type'      => 'web-menu::redirect',
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'Test',

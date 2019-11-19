@@ -2,12 +2,12 @@
 
 namespace Liro\Module\Loaders;
 
-use Liro\Module\Module\ModulePrototype;
+use Liro\Module\Module\Module;
 
 class MiddlewareLoader implements LoaderInterface
 {
 
-    public function load(ModulePrototype $module)
+    public function load(Module $module)
     {
         foreach ($module->get('middleware', []) as $name => $handler) {
             app('router')->aliasMiddleware($name, $handler);

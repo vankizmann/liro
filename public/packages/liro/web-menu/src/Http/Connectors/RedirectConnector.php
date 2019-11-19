@@ -1,21 +1,28 @@
 <?php
 
-namespace Liro\Menu\Routing;
+namespace Liro\Web\Menu\Http\Connectors;
 
+use Illuminate\Support\Facades\Route;
+use Liro\Menu\Routing\Connector;
 use App\Database\Menu;
 
-class Connector implements ConnectorInterface
+class RedirectConnector extends Connector
 {
     /**
      * Provide router options.
      *
      * @param \App\Database\Menu $menu
      * @param array $options
-     * @return array|bool
+     * @return void
      */
     public function route(Menu $menu, $options)
     {
-        return false;
+        $options['uses'] = function () use ($menu, $options) {
+            dd($menu, $options);
+            return redirect('https://google.com', 302);
+        };
+
+        Route::get($options['route'], $options);
     }
 
     /**

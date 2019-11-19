@@ -2,7 +2,7 @@
 
 namespace Liro\Module\Loaders;
 
-use Liro\Module\Module\ModulePrototype;
+use Liro\Module\Module\Module;
 
 class AssetsLoader implements LoaderInterface
 {
@@ -10,10 +10,10 @@ class AssetsLoader implements LoaderInterface
     /**
      * Load some stuff.
      *
-     * @param \Liro\Module\Module\ModulePrototype $module
-     * @return \Liro\Module\Module\ModulePrototype
+     * @param \Liro\Module\Module\Module $module
+     * @return \Liro\Module\Module\Module
      */
-    public function load(ModulePrototype $module)
+    public function load(Module $module)
     {
         $manifest = str_join('/', $module->path, 'mix-manifest.json');
 

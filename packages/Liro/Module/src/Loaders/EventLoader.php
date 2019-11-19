@@ -2,12 +2,12 @@
 
 namespace Liro\Module\Loaders;
 
-use Liro\Module\Module\ModulePrototype;
+use Liro\Module\Module\Module;
 
 class EventLoader implements LoaderInterface
 {
 
-    public function load(ModulePrototype $module)
+    public function load(Module $module)
     {
         foreach ($module->get('events', []) as $event => $handler) {
             app('events')->listen($event, $handler);

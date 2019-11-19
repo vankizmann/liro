@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\Support\Http;
+namespace Liro\Support\Routing;
 
 use Illuminate\Support\Arr;
 use Liro\Support\Facades\Web;

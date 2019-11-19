@@ -908,7 +908,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Assets",
-                "reference": "387e4d8185bb9b588dae73e92aa3851d6e734bc8"
+                "reference": "387e4d8185bb9b588dae73e92aa3851d6e734bc8",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -966,7 +967,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Auth",
-                "reference": "666ef6f70b00aa457e6df4b1497f3068cb2cb3f4"
+                "reference": "666ef6f70b00aa457e6df4b1497f3068cb2cb3f4",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1024,7 +1026,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Media",
-                "reference": "3996957ee1bec6196c13ca2b14a3f8499f569ca5"
+                "reference": "3996957ee1bec6196c13ca2b14a3f8499f569ca5",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1082,7 +1085,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Menu",
-                "reference": "d7adc40c29dce44dfa2607f4ce42ae8a0d62dd96"
+                "reference": "d7adc40c29dce44dfa2607f4ce42ae8a0d62dd96",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1140,7 +1144,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Module",
-                "reference": "44ceff273ee06c15af332ee79cda3d4e6681db8b"
+                "reference": "44ceff273ee06c15af332ee79cda3d4e6681db8b",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1198,7 +1203,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Support",
-                "reference": "0c8dd28671fa1b750aa480ddb282c5ab43d0f469"
+                "reference": "0c8dd28671fa1b750aa480ddb282c5ab43d0f469",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1259,7 +1265,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Web",
-                "reference": "017465c7e00187d993030318617c5439db519a97"
+                "reference": "017465c7e00187d993030318617c5439db519a97",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -3698,16 +3705,16 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.1.2",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "04c0bbd1881942f59e27877bac3b29ba57519666"
+                "reference": "5a1bfe4425974d17addeefce737d66a4c921a8df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/04c0bbd1881942f59e27877bac3b29ba57519666",
-                "reference": "04c0bbd1881942f59e27877bac3b29ba57519666",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/5a1bfe4425974d17addeefce737d66a4c921a8df",
+                "reference": "5a1bfe4425974d17addeefce737d66a4c921a8df",
                 "shasum": ""
             },
             "require": {
@@ -3748,7 +3755,7 @@
                 "flare",
                 "reporting"
             ],
-            "time": "2019-11-08T11:11:17+00:00"
+            "time": "2019-11-19T08:42:39+00:00"
         },
         {
             "name": "facade/ignition",

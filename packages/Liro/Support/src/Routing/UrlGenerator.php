@@ -2,7 +2,7 @@
 
 namespace Liro\Support\Routing;
 
-use Liro\Support\Http\RouteHelper;
+use Liro\Support\Routing\RouteHelper;
 
 class UrlGenerator extends \Illuminate\Routing\UrlGenerator
 {

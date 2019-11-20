@@ -2,7 +2,7 @@
 
 return [
 
-    'name'          => 'liro/web-dashboard',
+    'name'          => 'web-dashboard',
     'version'       => '1.0.0',
     'type'          => 'package',
 

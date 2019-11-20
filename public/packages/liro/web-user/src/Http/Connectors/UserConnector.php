@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\Web\User\Connectors;
+namespace Liro\Web\User\Http\Connectors;
 
 use Liro\Menu\Routing\Connector;
 use App\Database\Menu;

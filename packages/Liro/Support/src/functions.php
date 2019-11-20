@@ -1,33 +1,10 @@
 <?php
 
-use function foo\func;
+if ( ! function_exists('uuid') ) {
 
-if ( ! function_exists('dc') ) {
-
-    function dc()
+    function uuid ()
     {
-        $arguments = [];
-
-        foreach ( func_get_args() as $argument ) {
-            array_push($arguments, $argument, get_class_methods($argument));
-        }
-
-        dump(...$arguments);
-    }
-
-}
-
-if ( ! function_exists('ddc') ) {
-
-    function ddc()
-    {
-        $arguments = [];
-
-        foreach ( func_get_args() as $argument ) {
-            array_push($arguments, $argument, get_class_methods($argument));
-        }
-
-        dump(...$arguments); die();
+        return Illuminate\Support\Str::uuid()->toString();
     }
 
 }
@@ -58,41 +35,6 @@ if ( ! function_exists('str_join') ) {
         }
 
         return implode($glue, array_filter($args));
-    }
-
-}
-
-if ( ! function_exists('asset') ) {
-
-    function asset($path = null, $secure = null)
-    {
-        if ( $path === null ) {
-            return app('cms.assets');
-        }
-
-        return app('cms.assets')->file($path, $secure);
-    }
-
-}
-
-if ( ! function_exists('secure_asset') ) {
-
-    function secure_asset($path = null)
-    {
-        if ( $path === null ) {
-            return app('cms.assets');
-        }
-
-        return app('cms.assets')->file($path, true);
-    }
-
-}
-
-if ( ! function_exists('uuid') ) {
-
-    function uuid ()
-    {
-        return Illuminate\Support\Str::uuid()->toString();
     }
 
 }

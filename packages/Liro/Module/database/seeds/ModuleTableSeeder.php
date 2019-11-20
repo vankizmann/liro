@@ -12,25 +12,27 @@ class ModuleTableSeeder extends Seeder
         Module::create([
             'uuid'      => uuid(),
             'state'     => 1,
-            'package'   => 'liro/web-menu'
+            'package'   => 'web-menu'
         ]);
 
         Module::create([
             'uuid'      => uuid(),
             'state'     => 1,
-            'package'   => 'liro/web-user'
+            'package'   => 'web-user'
         ]);
-//
-//        Module::create([
-//            'state'     => 1,
-//            'package'   => 'liro-menus'
-//        ]);
-//
+
         Module::create([
             'uuid'      => uuid(),
             'state'     => 1,
-            'package'   => 'liro/web-dashboard'
+            'package'   => 'web-page'
         ]);
+
+        Module::create([
+            'uuid'      => uuid(),
+            'state'     => 1,
+            'package'   => 'web-language'
+        ]);
+
 //
 //        Module::create([
 //            'state'     => 1,

@@ -7,10 +7,19 @@ use Liro\Support\Routing\RouteHelper;
 
 class MenuManager
 {
+    /**
+     * @var \Liro\Support\Application
+     */
     protected $app;
 
+    /**
+     * @var array
+     */
     public $http = [];
 
+    /**
+     * @var array
+     */
     public $ajax = [];
 
     /**

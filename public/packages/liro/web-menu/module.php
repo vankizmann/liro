@@ -2,7 +2,7 @@
 
 return [
 
-    'name'          => 'liro/web-menu',
+    'name'          => 'web-menu',
     'version'       => '1.0.0',
     'type'          => 'package',
 

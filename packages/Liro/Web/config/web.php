@@ -3,6 +3,7 @@
 return [
 
     'providers' => [
+        Liro\Support\SupportServiceProvider::class,
         Liro\Module\ModuleServiceProvider::class,
         Liro\Assets\AssetsServiceProvider::class,
         Liro\Auth\AuthServiceProvider::class,

@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\Web\User\Controllers;
+namespace Liro\Web\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 

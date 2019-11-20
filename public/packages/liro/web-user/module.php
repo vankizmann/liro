@@ -2,7 +2,7 @@
 
 return [
 
-    'name'          => 'liro/web-user',
+    'name'          => 'web-user',
     'version'       => '1.0.0',
     'type'          => 'package',
 

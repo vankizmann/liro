@@ -2,7 +2,9 @@
 
 namespace Liro\Web;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 use Composer\Autoload\ClassLoader;
 
 class WebServiceProvider extends ServiceProvider
@@ -31,7 +33,7 @@ class WebServiceProvider extends ServiceProvider
         }
 
         // Get AliasLoader instance
-        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+        $loader = AliasLoader::getInstance();
 
         foreach ( $this->app['config']['web.alias'] as $alias => $ref ) {
             $loader->alias($alias, $ref);

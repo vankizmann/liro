@@ -2,7 +2,7 @@
 
 namespace Liro\Support\Routing;
 
-use Liro\Support\Routing\RouteHelper;
+use Liro\Support\Facades\Assets;
 
 class UrlGenerator extends \Illuminate\Routing\UrlGenerator
 {
@@ -19,6 +19,18 @@ class UrlGenerator extends \Illuminate\Routing\UrlGenerator
     {
         $name = RouteHelper::prefixLocale($name);
         return parent::route($name, $parameters, $absolute);
+    }
+
+    /**
+     * Generate the URL to an application asset.
+     *
+     * @param  string  $path
+     * @param  bool|null  $secure
+     * @return string
+     */
+    public function asset($path, $secure = null)
+    {
+        return Assets::file($path, $secure);
     }
 
 }

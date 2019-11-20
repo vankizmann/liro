@@ -6,7 +6,6 @@ use Liro\Module\Module\Module;
 
 class AssetsLoader implements LoaderInterface
 {
-
     /**
      * Load some stuff.
      *

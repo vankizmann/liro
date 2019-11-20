@@ -3,6 +3,7 @@
 namespace Liro\Menu;
 
 use Baum\BaumServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class MenuServiceProvider extends ServiceProvider
@@ -27,7 +28,6 @@ class MenuServiceProvider extends ServiceProvider
         $this->app->singleton('web.menu', function($app) {
             return new MenuManager($app);
         });
-
     }
 
     /**

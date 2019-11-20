@@ -14,41 +14,30 @@ class MenuTableSeeder extends Seeder
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'liro-cms.com',
-            'slug'      => 'localhost/:locale',
+            'slug'      => ':domain/:locale',
             'parent_id' => null,
         ]);
 
         Menu::create([
-            'uuid'      => $dashboard = uuid(),
-            'type'      => 'web-dashboard::menu',
+            'uuid'      => $home = uuid(),
+            'type'      => 'web-page::page',
             'state'     => 1,
             'hide'      => 0,
-            'title'     => 'Dashboard',
+            'title'     => 'Home',
             'slug'      => '/',
             'matrix'    => 1,
             'parent_id' => $root,
         ]);
 
         Menu::create([
-            'uuid'      => $page = uuid(),
-            'type'      => 'web-menu::redirect',
+            'uuid'      => $demo = uuid(),
+            'type'      => 'web-page::page',
             'state'     => 1,
             'hide'      => 0,
-            'title'     => 'Page',
-            'slug'      => '/page',
+            'title'     => 'Demo',
+            'slug'      => '/demo',
             'matrix'    => 1,
             'parent_id' => $root,
-        ]);
-
-        Menu::create([
-            'uuid'      => $test = uuid(),
-            'type'      => 'web-menu::redirect',
-            'state'     => 1,
-            'hide'      => 0,
-            'title'     => 'Test',
-            'slug'      => '/test',
-            'matrix'    => 3,
-            'parent_id' => $page,
         ]);
     }
 

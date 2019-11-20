@@ -17,6 +17,14 @@ class AssetsServiceProvider extends ServiceProvider
             throw new \Exception('Web Manager not initialized.');
         }
 
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/assets.php', 'assets'
+        );
+
+        $this->loadMigrationsFrom([
+            __DIR__.'/../database/migrations'
+        ]);
+
         $this->app->singleton('web.assets', function($app) {
             return new AssetsManager($app);
         });
@@ -29,6 +37,10 @@ class AssetsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../config/assets.php' => config_path('assets.php'),
+        ]);
+
         $this->app['web.assets']->boot();
     }
 

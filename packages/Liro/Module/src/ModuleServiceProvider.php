@@ -2,8 +2,8 @@
 
 namespace Liro\Module;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -39,7 +39,7 @@ class ModuleServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/web.php' => config_path('web.php'),
+            __DIR__.'/../config/module.php' => config_path('module.php'),
         ]);
 
         $this->app['web.module']->boot();

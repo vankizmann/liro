@@ -11,11 +11,17 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('test', function () {
-    dd(\App\Database\Menu::roots()->first()->get()->toHierarchy()->toArray());
-    return view('test');
+
+    app('web.assets')->script('web-foobar1', 'web-page::foobar1.js', ['web-foobar3']);
+    app('web.assets')->script('web-foobar2', 'web-page::foobar2.js');
+    app('web.assets')->script('web-foobar3', 'web-page::foobar3.js');
+
+    return dd(app('web.assets')->output(), asset('web-page::foobar1.js'));
 });

@@ -70,7 +70,8 @@ class Menu extends Model
     public function getRouteAttribute()
     {
         if ( ! $this->parent ) {
-            return app('web.manager')->getProtocol() . '://' . $this->attributes['slug'];
+            return app('web.manager')->getProtocol() .
+                '://' . $this->attributes['slug'];
         }
 
         return str_join('/', $this->parent->route,

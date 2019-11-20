@@ -38,6 +38,7 @@ class WebServiceProvider extends ServiceProvider
         foreach ( $this->app['config']['web.alias'] as $alias => $ref ) {
             $loader->alias($alias, $ref);
         }
+
     }
 
     /**

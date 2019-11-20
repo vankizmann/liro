@@ -4,6 +4,7 @@ namespace Liro\Module;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use App\Database\Module;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -41,6 +42,10 @@ class ModuleServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/module.php' => config_path('module.php'),
         ]);
+
+        if ( ! Schema::hasTable((new Module)->getTable()) ) {
+            return;
+        }
 
         $this->app['web.module']->boot();
     }

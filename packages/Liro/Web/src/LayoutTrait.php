@@ -8,7 +8,7 @@ trait LayoutTrait
 
     public function getLayout()
     {
-        return $this->layout ?: 'welcome';
+        return $this->layout;
     }
 
     public function setLayout($layout)

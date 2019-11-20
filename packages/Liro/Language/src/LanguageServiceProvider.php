@@ -1,13 +1,12 @@
 <?php
 
-namespace Liro\Menu;
+namespace Liro\Language;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Baum\BaumServiceProvider;
-use App\Database\Menu;
+use App\Database\Language;
 
-class MenuServiceProvider extends ServiceProvider
+class LanguageServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -20,14 +19,12 @@ class MenuServiceProvider extends ServiceProvider
             throw new \Exception('Web Manager not initialized.');
         }
 
-        $this->app->register(BaumServiceProvider::class);
-
         $this->loadMigrationsFrom([
             __DIR__.'/../database/migrations'
         ]);
 
-        $this->app->singleton('web.menu', function($app) {
-            return new MenuManager($app);
+        $this->app->singleton('web.language', function ($app) {
+            return new LanguageManager($app);
         });
     }
 
@@ -38,11 +35,11 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ( ! Schema::hasTable(with(new Menu)->getTable()) ) {
+        if ( ! Schema::hasTable((new Language)->getTable()) ) {
             return;
         }
 
-        $this->app['web.menu']->boot();
+        $this->app['web.language']->boot();
     }
 
 }

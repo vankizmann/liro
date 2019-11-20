@@ -6,6 +6,7 @@ return [
         Liro\Support\SupportServiceProvider::class,
         Liro\Module\ModuleServiceProvider::class,
         Liro\Assets\AssetsServiceProvider::class,
+        Liro\Language\LanguageServiceProvider::class,
         Liro\Auth\AuthServiceProvider::class,
         Liro\Menu\MenuServiceProvider::class,
         Liro\Media\MediaServiceProvider::class,

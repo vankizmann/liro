@@ -1,15 +1,14 @@
 <?php
 
-namespace Liro\Web\Page\Http\Connectors;
+namespace Liro\Web\Menu\Http\Connectors;
 
 use Illuminate\Support\Facades\Route;
 use Liro\Menu\Routing\Connector;
 use Liro\Support\Routing\RouteHelper;
 use App\Database\Menu;
 
-class PageConnector extends Connector
+class VueConnector extends Connector
 {
-    use \Illuminate\Support\Traits\Macroable;
     /**
      * Provide router options.
      *
@@ -19,15 +18,21 @@ class PageConnector extends Connector
      */
     public function route(Menu $menu, $options)
     {
+        if ( ! empty($menu->depth) ) {
+            return;
+        }
+
+        $options['route'] = str_join('/', $options['route'], '{path?}');
+
         if ( RouteHelper::isOptionsRoute($options) ) {
             app('web.menu')->setMenu($menu);
         }
 
         $options['uses'] = function () use ($menu, $options) {
-            return view('web-page::page', ['menu' => $menu]);
+            return view('web-menu::vue/default');
         };
 
-        Route::get($options['route'], $options);
+        Route::get($options['route'], $options)->where(['path' => '.*']);
     }
 
     /**

@@ -8,11 +8,19 @@ trait Castable
     protected function setCastAttribute($key, $value)
     {
         if ( $this->getCastType($key) === 'object' && is_object($value) ) {
-            return json_encode($value);
+            return json_encode($value, true);
+        }
+
+        if ( $this->getCastType($key) === 'object' && is_array($value) ) {
+            return json_encode($value, true);
+        }
+
+        if ( $this->getCastType($key) === 'array' && is_object($value) ) {
+            return json_encode($value, true);
         }
 
         if ( $this->getCastType($key) === 'array' && is_array($value) ) {
-            return json_encode($value);
+            return json_encode($value, true);
         }
 
         if ( $this->getCastType($key) === 'params' && is_object($value) ) {
@@ -21,6 +29,10 @@ trait Castable
 
         if ( $this->getCastType($key) === 'params' && is_array($value) ) {
             return http_build_query($value);
+        }
+
+        if ( $this->getCastType($key) === 'uuid' && is_null($value) ) {
+            return uuid();
         }
 
         return $value;

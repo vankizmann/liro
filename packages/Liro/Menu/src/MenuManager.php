@@ -23,6 +23,11 @@ class MenuManager
     public $ajax = [];
 
     /**
+     * @var null \App\Database\Menu
+     */
+    public $activeMenu = null;
+
+    /**
      * MenuManager constructor.
      *
      * @param $app
@@ -39,10 +44,13 @@ class MenuManager
      */
     public function boot()
     {
-        Menu::enabled()->get()->each([$this, 'resolveMenu']);
+        Menu::enabled()->orderBy('left', 'desc')->get()
+            ->each([$this, 'resolveMenuRoute']);
+
+        $this->app['events']->dispatch('booted: web.menu', $this->app);
     }
 
-    public function resolveMenu($menu)
+    public function resolveMenuRoute($menu)
     {
         $config = $this->getHttpRoute($menu->type);
 
@@ -105,6 +113,23 @@ class MenuManager
     {
         return isset($this->ajax[$type]) ?
             $this->ajax[$type] : null;
+    }
+
+    public function setMenu($menu)
+    {
+        $this->activeMenu = $menu;
+    }
+
+    public function getMenu($key = null, $fallback = null)
+    {
+        return ! $key || ! $this->activeMenu ? $this->activeMenu :
+            $this->activeMenu->__get($key, $fallback);
+    }
+
+    public function getDomain($key = null, $fallback = null)
+    {
+        return ! $key || ! $this->activeMenu ? $this->activeMenu->getRoot() :
+            $this->activeMenu->getRoot()->__get($key, $fallback);
     }
 
 }

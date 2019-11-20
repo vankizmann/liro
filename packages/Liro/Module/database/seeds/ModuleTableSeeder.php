@@ -33,6 +33,12 @@ class ModuleTableSeeder extends Seeder
             'package'   => 'web-language'
         ]);
 
+        Module::create([
+            'uuid'      => uuid(),
+            'state'     => 1,
+            'package'   => 'web-backend'
+        ]);
+
 //
 //        Module::create([
 //            'state'     => 1,

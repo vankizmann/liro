@@ -98,7 +98,7 @@ class RouteHelper
 
     public static function getHost()
     {
-        return App::getProtocol() . '://' . App::getDomain();
+        return app('web.manager')->getProtocol() . '://' . app('web.manager')->getDomain();
     }
 
     public static function getRoute()
@@ -111,24 +111,28 @@ class RouteHelper
         return self::getHost() . self::getRoute();
     }
 
-    public static function isLikeRoute($route, $compare = null)
-    {
-        $route = self::replaceAll($route);
-
-        $route = preg_quote($route, '/');
-        $route = preg_replace('/\\\{[^\/]+\\\}/', '[^\/]+', $route);
-
-        return preg_match('/^' . $route . '\/?/', $compare ?: self::getFullRoute());
-    }
-
     public static function isRoute($route, $compare = null)
     {
         $route = self::replaceAll($route);
 
-        $route = preg_quote($route, '/');
-        $route = preg_replace('/\\\{[^\/]+\\\}/', '[^\/]+', $route);
+        $route = preg_replace_callback('/\\\\\/\\\{[^\/]+\\\}/', function ($splits) {
+            return preg_match('/\?/', $splits[0]) ? '(.*)?' : '(.*)';
+        }, preg_quote($route, '/'));
 
-        return preg_match('/^' . $route . '\/?$/', $compare ?: self::getFullRoute());
+        return preg_match('/^' . $route . '\/?$/',
+            $compare ?: self::getFullRoute());
+    }
+
+    public static function isOptionsRoute($options, $compare = null)
+    {
+        $options += [
+            'domain' => self::getHost()
+        ];
+
+        $route = app('web.manager')->getProtocol() . '://' .
+            str_join('/', $options['domain'], $options['route']);
+
+        return self::isRoute($route, $compare);
     }
 
     public static function isVue($menuOrRoute)

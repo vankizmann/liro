@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 class Model extends BaseModel
 {
     use Traits\Castable, Traits\Paginatable;
+
     /**
      * The primary key for the model.
      *

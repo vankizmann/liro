@@ -2,8 +2,6 @@
 
 namespace Liro\Support\Routing;
 
-use Liro\Support\Facades\Assets;
-
 class UrlGenerator extends \Illuminate\Routing\UrlGenerator
 {
 
@@ -30,7 +28,7 @@ class UrlGenerator extends \Illuminate\Routing\UrlGenerator
      */
     public function asset($path, $secure = null)
     {
-        return Assets::file($path, $secure);
+        return app('web.assets')->file($path, $secure);
     }
 
 }

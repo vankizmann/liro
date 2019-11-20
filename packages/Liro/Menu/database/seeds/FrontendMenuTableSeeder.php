@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Database\Menu;
 
-class MenuTableSeeder extends Seeder
+class FrontendMenuTableSeeder extends Seeder
 {
 
     public function run()
@@ -11,6 +11,7 @@ class MenuTableSeeder extends Seeder
         Menu::create([
             'uuid'      => $root = uuid(),
             'type'      => 'web-menu::domain',
+            'layout'    => 'layout',
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'liro-cms.com',
@@ -21,6 +22,7 @@ class MenuTableSeeder extends Seeder
         Menu::create([
             'uuid'      => $home = uuid(),
             'type'      => 'web-page::page',
+            'layout'    => null,
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'Home',
@@ -32,6 +34,7 @@ class MenuTableSeeder extends Seeder
         Menu::create([
             'uuid'      => $demo = uuid(),
             'type'      => 'web-page::page',
+            'layout'    => 'demo',
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'Demo',

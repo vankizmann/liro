@@ -12,6 +12,7 @@
         "laravel/tinker": "^1.0",
         "liro/assets": "*",
         "liro/auth": "*",
+        "liro/language": "*",
         "liro/media": "*",
         "liro/menu": "*",
         "liro/module": "*",
@@ -27,24 +28,16 @@
     },
     "repositories": [
         {
-            "type": "git",
-            "url": "https://github.com/vankizmann/laravel-nestedset.git"
-        },
-        {
-            "type": "path",
-            "url": "packages/Liro/Support"
-        },
-        {
-            "type": "path",
-            "url": "packages/Liro/Web"
-        },
-        {
             "type": "path",
             "url": "packages/Liro/Assets"
         },
         {
             "type": "path",
             "url": "packages/Liro/Auth"
+        },
+        {
+            "type": "path",
+            "url": "packages/Liro/Language"
         },
         {
             "type": "path",
@@ -57,6 +50,14 @@
         {
             "type": "path",
             "url": "packages/Liro/Module"
+        },
+        {
+            "type": "path",
+            "url": "packages/Liro/Support"
+        },
+        {
+            "type": "path",
+            "url": "packages/Liro/Web"
         }
     ],
     "autoload": {

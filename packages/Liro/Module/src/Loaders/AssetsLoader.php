@@ -30,7 +30,7 @@ class AssetsLoader implements LoaderInterface
         }
 
         app('web.assets')->addNamespace($module->name,
-            str_join('/', $module->path, 'resources'));
+            str_join('/', $module->path, 'public'));
 
         return $module;
     }

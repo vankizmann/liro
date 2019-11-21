@@ -2,7 +2,9 @@
 
 namespace Liro\Auth;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use App\Database\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -17,17 +19,13 @@ class AuthServiceProvider extends ServiceProvider
             throw new \Exception('Web Manager not initialized.');
         }
 
-//        $this->mergeConfigFrom(
-//            __DIR__.'/../config/module.php', 'module'
-//        );
-
         $this->loadMigrationsFrom([
             __DIR__.'/../database/migrations'
         ]);
 
-//        $this->app->singleton('web.module', function($app) {
-//            return new AuthManager($app);
-//        });
+        $this->app->singleton('web.auth', function($app) {
+            return new AuthManager($app);
+        });
     }
 
     /**
@@ -37,11 +35,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        $this->publishes([
-//            __DIR__.'/../config/web.php' => config_path('web.php'),
-//        ]);
-//
-//        $this->app['web.module']->boot();
+        if ( ! Schema::hasTable(with(new User)->getTable()) ) {
+            return;
+        }
+
+        $this->app['web.auth']->boot();
     }
 
 }

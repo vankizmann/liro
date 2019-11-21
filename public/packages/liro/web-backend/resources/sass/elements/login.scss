@@ -1,0 +1,11 @@
+@import "~nanojs/src/vue/root/vars";
+
+.app-login {
+    width: 100%;
+    max-width: 420px;
+    margin: auto;
+}
+
+.app-login .n-form-item:last-child {
+    margin-bottom: 0;
+}

@@ -5,7 +5,7 @@ return [
     'use' => Liro\Module\Module\Module::class,
 
     'paths' => [
-        '/public/packages/*/*/module.php',
+        '/storage/web/*/module.php',
     ],
 
     'loaders' => [

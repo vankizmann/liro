@@ -29,8 +29,13 @@ class AssetsLoader implements LoaderInterface
             }
         }
 
-        app('web.assets')->addNamespace($module->name,
-            str_join('/', $module->path, 'public'));
+        $publicPath = public_path("web/{$module->name}");
+
+        if ( ! file_exists($publicPath) && file_exists("{$module->path}/public") ) {
+            app()->make('files')->link("{$module->path}/public", $publicPath);
+        }
+
+        app('web.assets')->addNamespace($module->name, $publicPath);
 
         return $module;
     }

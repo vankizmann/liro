@@ -53,7 +53,6 @@ $app->extend('translator', function  () use ($app) {
     );
 });
 
-
 /*
 |--------------------------------------------------------------------------
 | Return The Application

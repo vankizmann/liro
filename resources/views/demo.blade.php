@@ -20,6 +20,8 @@
             margin: 80px auto;
         }
     </style>
+
+    <script src="{{ Storage::url('index.js') }}"></script>
 </head>
 <body>
 <div class="container">

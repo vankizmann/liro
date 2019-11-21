@@ -47,6 +47,12 @@ class MenuManager
         Menu::enabled()->orderBy('left', 'desc')->get()
             ->each([$this, 'resolveMenuRoute']);
 
+        foreach ( $this->ajax as $controller ) {
+
+            dd(app()->make($controller));
+
+        }
+
         $this->app['events']->dispatch('booted: web.menu', $this->app);
     }
 

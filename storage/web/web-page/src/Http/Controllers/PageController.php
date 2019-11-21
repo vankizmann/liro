@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
+
     public function index()
     {
+        dd('hi!');
         return [];
     }
 }

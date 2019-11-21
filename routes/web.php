@@ -19,9 +19,9 @@ Route::get('/', function () {
 
 Route::get('test', function () {
 
-    dd(app('router'));
+//    dd(app('router'));
 
-    dd(app('web.language')->getLocales(), app()->getLocale());
+//    dd(app('web.language')->getLocales(), app()->getLocale());
 
     app('web.assets')->script('web-foobar1', 'web-page::foobar1.js', ['web-foobar3']);
     app('web.assets')->script('web-foobar2', 'web-page::foobar2.js');

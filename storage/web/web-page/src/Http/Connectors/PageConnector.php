@@ -2,20 +2,18 @@
 
 namespace Liro\Web\Page\Http\Connectors;
 
-use Illuminate\Support\Facades\Route;
 use Liro\Menu\Routing\Connector;
 use Liro\Support\Routing\RouteHelper;
 use App\Database\Menu;
 
 class PageConnector extends Connector
 {
-    use \Illuminate\Support\Traits\Macroable;
     /**
      * Provide router options.
      *
      * @param \App\Database\Menu $menu
      * @param array $options
-     * @return void
+     * @return array
      */
     public function route(Menu $menu, $options)
     {
@@ -23,11 +21,14 @@ class PageConnector extends Connector
             app('web.menu')->setMenu($menu);
         }
 
-        $options['uses'] = function () use ($menu, $options) {
-            return view('web-page::page', ['menu' => $menu]);
+        $options['uses'] = function () use ($menu) {
+            dd(route('web-page::page.index'));
+            return view('web-page::page');
         };
 
-        Route::get($options['route'], $options);
+        app('router')->any($options['route'], $options);
+
+        return $options;
     }
 
     /**
@@ -38,7 +39,7 @@ class PageConnector extends Connector
      */
     public function provide(Menu $menu)
     {
-        return false;
+        return view('web-page::page');
     }
 
     /**

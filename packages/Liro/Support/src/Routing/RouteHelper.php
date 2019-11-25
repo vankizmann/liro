@@ -19,11 +19,15 @@ class RouteHelper
 
     public static function makeLocalizedName($name, $locale = '', $prefix = '')
     {
+        $prefix = str_replace('::', '.', $prefix);
+
         return str_join('.', $locale, $prefix, ...explode('.', $name));
     }
 
     public static function makeLocalizedRoute($name, $locale = '', $prefix = '')
     {
+        $prefix = str_replace('::', '/', $prefix);
+
         return str_join('/', $locale, $prefix, ...explode('.', $name));
     }
 
@@ -88,7 +92,7 @@ class RouteHelper
             return $name;
         }
 
-        return App::getLocale() . '.' . $name;
+        return app('web.manager')->getLocale() . '.' . $name;
     }
 
     public static function removeLocale($name)

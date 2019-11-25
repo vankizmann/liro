@@ -1,1 +1,0 @@
-/Users/eddy/Documents/GitHub/liro/storage/web/web-menu/public/index.js

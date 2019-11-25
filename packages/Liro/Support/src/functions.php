@@ -38,3 +38,12 @@ if ( ! function_exists('str_join') ) {
     }
 
 }
+
+if ( ! function_exists('array_keys_reduce') ) {
+
+    function array_keys_reduce($input, $function, $inital = null)
+    {
+       return array_reduce(array_keys($input), $function, $inital);
+    }
+
+}

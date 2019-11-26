@@ -1,4 +1,5 @@
 /vendor
+/public/web
 .idea
 .DS_Store
 .env

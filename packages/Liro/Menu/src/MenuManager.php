@@ -37,7 +37,12 @@ class MenuManager
     ];
 
     /**
-     * @var null \App\Database\Menu
+     * @var string
+     */
+    public $modulePrefix = 'module';
+
+    /**
+     * @var \App\Database\Menu
      */
     public $activeMenu = null;
 
@@ -52,50 +57,58 @@ class MenuManager
     }
 
     /**
-     * Register menus and bind
+     * Register menus and bind.
      *
      * @return void
      */
     public function boot()
     {
+        foreach ( $this->app['web.language']->getLocales() as $locale ) {
+
+            foreach ( array_keys($this->ajax) as $alias ) {
+                $this->registerControllerRoutes($alias, $locale);
+            }
+
+        }
+
         Menu::enabled()->orderBy('left', 'desc')->get()
             ->each([$this, 'resolveMenuRoute']);
 
-        $routes = array_keys_reduce($this->ajax, function($merge, $alias) {
-
-            $routes = $this->collectControllerRoutes(
-                reset($this->ajax[$alias]), $alias
-            );
-
-            $routes = array_map(function ($options) use ($alias) {
-
-                $options['as'] = RouteHelper::makeLocalizedName(
-                    $options['route'], 'en', $alias
-                );
-
-                return $options;
-
-            }, $routes);
-
-            return array_merge($merge, $routes);
-
-        }, []);
-
-
-
-        dump($routes); die();
-
-//        dd($this->app['router']);
 
         $this->app['events']->dispatch('booted: web.menu', $this->app);
     }
 
+    protected function registerControllerRoutes($alias, $locale)
+    {
+        $routes = $this->collectControllerRoutes(
+            reset($this->ajax[$alias])
+        );
 
+        foreach ( $routes as $options ) {
 
+            $prefixName = str_join('.', $this->modulePrefix, $alias);
 
+            $name = RouteHelper::makeLocalizedName(
+                $options['route'], $locale, $prefixName);
 
+            $prefixPath = str_join('/', $this->modulePrefix, $alias);
 
-    protected function collectControllerRoutes($controller, $alias = null)
+            $path = RouteHelper::makeLocalizedRoute(
+                $options['route'], $locale, $prefixPath);
+
+            // Append params to route.
+            $path = str_join('/', $path, ...$options['params']);
+
+            $this->app['router']->{$options['method']}(
+                $path, array_merge(['as' => $name], $options)
+            );
+
+        }
+
+        return $routes;
+    }
+
+    protected function collectControllerRoutes($controller)
     {
         $reflector = new \ReflectionClass($controller);
 
@@ -103,7 +116,7 @@ class MenuManager
             \ReflectionMethod::IS_PUBLIC
         );
 
-        $methods = array_map(function ($method) use ($controller, $alias) {
+        $methods = array_map(function ($method) use ($controller) {
 
             $options = $this->getRoutedMethod($method);
 
@@ -130,27 +143,30 @@ class MenuManager
             return null;
         }
 
-        $options['method'] = strtolower(array_shift($splits));
+        foreach ( $splits as $index => $split ) {
+            $splits[$index] = strtolower($split);
+        }
+
+        $options['method'] = array_shift($splits);
 
         if ( ! in_array($options['method'], $this->allowedMethods) ) {
             return null;
         }
 
-        $actionName = strtolower(array_pop($splits));
+        $actionName = array_pop($splits);
 
         if ( ! in_array($actionName, $this->allowedActions) ) {
             return null;
         }
 
-        $options['route'] = array_reduce($splits, function ($merge, $split) {
-            return str_join('-', $merge, strtolower($split));
-        }, '');
+        $params = [];
 
-        $params = array_map([$this, 'getBindableParam'],
-            $method->getParameters());
+        foreach ( $method->getParameters() as $param ) {
+            $params[] = $this->getBindableParam($param);
+        }
 
         $options = array_merge($options, [
-            'params' => array_filter($params)
+            'route' => str_join('-', ...$splits), 'params' => array_filter($params)
         ]);
 
         return $options;
@@ -168,7 +184,7 @@ class MenuManager
         $paramType = $param->getType();
 
         if ( empty($paramType) ) {
-            return $param->name;
+            return "{{$param->name}}";
         }
 
         // Get param class.
@@ -185,7 +201,7 @@ class MenuManager
             return null;
         }
 
-        return $param->name;
+        return "{{$param->name}}";
     }
 
 

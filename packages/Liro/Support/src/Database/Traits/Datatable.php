@@ -9,13 +9,15 @@ trait Datatable
 
     public function scopeDatatable($query)
     {
+        $key = $query->getModel()->getKeyName();
+
         $query->orderBy(
-            Request::input('sort.prop', 'id'), Request::input('sort.dir', 'desc')
+            Request::input('sort.prop', $key), Request::input('sort.dir', 'desc')
         );
 
         $search = [
             'query' => Request::input('search.query', ''),
-            'columns' => Request::input('search.columns', ['id']),
+            'columns' => Request::input('search.columns', [$key]),
         ];
 
         if ( $search['query'] !== '' ) {

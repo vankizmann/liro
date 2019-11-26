@@ -14,7 +14,7 @@ class PageController extends Controller
 
     public function getIndexRoute()
     {
-        $modules = Module::enabled()->get();
+        $modules = Module::enabled()->datatable();
 
         return response()->json($modules);
     }

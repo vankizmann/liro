@@ -22,8 +22,7 @@ class PageConnector extends Connector
         }
 
         $options['uses'] = function () use ($menu) {
-            dd(route('web-page::page.index'));
-            return view('web-page::page');
+            return view('web-page::page', ['menu' => $menu]);
         };
 
         app('router')->any($options['route'], $options);

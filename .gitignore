@@ -1,4 +1,5 @@
 /vendor
+/public/storage
 /public/web
 .idea
 .DS_Store

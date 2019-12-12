@@ -31296,8 +31296,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 
 
-
-var registerMenuRoute = function registerMenuRoute(menu) {
+var vueRoutes = [];
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.Arr.recursive(window._menus || [], 'children', function (menu) {
   var component = vue__WEBPACK_IMPORTED_MODULE_0___default.a.Obj.get(menu, 'extend.component');
   var route = {
     path: "/".concat(menu.slug),
@@ -31315,13 +31315,12 @@ var registerMenuRoute = function registerMenuRoute(menu) {
     });
   };
 
-  return route;
-};
-
+  vueRoutes.push(route);
+});
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   base: window.basePath,
   mode: 'history',
-  routes: vue__WEBPACK_IMPORTED_MODULE_0___default.a.Arr.each(window._menus || [], registerMenuRoute)
+  routes: vueRoutes
 }));
 
 /***/ }),

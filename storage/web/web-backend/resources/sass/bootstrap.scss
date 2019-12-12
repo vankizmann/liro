@@ -9,7 +9,6 @@
 @import "./mixins/grid";
 @import "./mixins/space";
 
-body {
-    background: #eee;
-    color: #222;
+* {
+    outline: none !important;
 }

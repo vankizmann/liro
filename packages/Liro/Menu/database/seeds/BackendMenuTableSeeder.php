@@ -44,6 +44,19 @@ class BackendMenuTableSeeder extends Seeder
             'matrix'    => 1,
             'parent_id' => $root,
         ]);
+
+        Menu::create([
+            'uuid'      => uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['component' => 'WebMenuIndex'],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Test',
+            'slug'      => '/test',
+            'matrix'    => 1,
+            'parent_id' => $demo,
+        ]);
     }
 
 }

@@ -116,7 +116,7 @@ class AssetsManager
 
     public function getMenus()
     {
-        return app('web.menu')->getDomain()->descendants()->get()->toJson();
+        return app('web.menu')->getDomain()->descendants()->get()->toHierarchy()->values()->toJson();
     }
 
     public function output($names = null)

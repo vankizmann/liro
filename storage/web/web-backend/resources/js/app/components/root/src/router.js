@@ -1,7 +1,9 @@
 import Vue from "vue";
 import VueRouter from 'vue-router';
 
-let registerMenuRoute = (menu) => {
+let vueRoutes = [];
+
+Vue.Arr.recursive(window._menus || [], 'children', (menu) => {
 
     let component = Vue.Obj.get(menu, 'extend.component');
 
@@ -15,9 +17,9 @@ let registerMenuRoute = (menu) => {
         });
     };
 
-    return route;
-};
+    vueRoutes.push(route);
+});
 
 export default new VueRouter({
-    base: window.basePath, mode: 'history', routes: Vue.Arr.each(window._menus || [], registerMenuRoute)
+    base: window.basePath, mode: 'history', routes: vueRoutes
 })

@@ -10,7 +10,7 @@ class CreateLanguageTable extends Migration
     {
         Schema::create('languages', function(Blueprint $table) {
 
-            $table->uuid('uuid')
+            $table->uuid('id')
                 ->primary();
 
             $table->integer('state')

@@ -9,11 +9,11 @@ class Role extends Model
     protected $table = 'roles';
 
     protected $guarded = [
-        'uuid',
+        'id',
     ];
 
     protected $attributes = [
-        'uuid'        => null,
+        'id'          => null,
         'title'       => null,
         'description' => null,
         'access'      => null,
@@ -21,7 +21,7 @@ class Role extends Model
     ];
 
     protected $casts = [
-        'uuid'        => 'uuid',
+        'id'          => 'uuid',
         'title'       => 'string',
         'description' => 'string',
         'access'      => 'string',

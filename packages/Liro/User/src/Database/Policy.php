@@ -9,11 +9,11 @@ class Policy extends Model
     protected $table = 'policies';
 
     protected $guarded = [
-        'uuid',
+        'id',
     ];
 
     protected $attributes = [
-        'uuid'   => null,
+        'id'     => null,
         'title'  => null,
         'class'  => null,
         'method' => null,
@@ -21,7 +21,7 @@ class Policy extends Model
     ];
 
     protected $casts = [
-        'uuid'   => 'uuid',
+        'id'     => 'uuid',
         'title'  => 'string',
         'class'  => 'string',
         'method' => 'string',

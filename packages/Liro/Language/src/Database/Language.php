@@ -12,18 +12,18 @@ class Language extends Model
     protected $table = 'languages';
 
     protected $guarded = [
-        'uuid'
+        'id'
     ];
 
     protected $attributes = [
-        'uuid'          => null,
+        'id'            => null,
         'state'         => null,
         'title'         => null,
         'locale'        => null
     ];
 
     protected $casts = [
-        'uuid'          => 'uuid',
+        'id'            => 'uuid',
         'state'         => 'integer',
         'title'         => 'string',
         'locale'        => 'string'

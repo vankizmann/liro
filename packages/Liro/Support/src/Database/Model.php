@@ -9,13 +9,6 @@ class Model extends BaseModel
     use Traits\Castable, Traits\Paginatable, Traits\Datatable;
 
     /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'uuid';
-
-    /**
      * The "type" of the primary key ID.
      *
      * @var string

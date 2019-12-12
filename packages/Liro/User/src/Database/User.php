@@ -10,14 +10,7 @@ use Liro\Support\Database\Traits\Paginatable;
 
 class User extends Model
 {
-    use Castable, Paginatable, Datatable, Traits\DepthGuarded;
-
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'uuid';
+    use Castable, Paginatable, Datatable;
 
     /**
      * The "type" of the primary key ID.
@@ -36,7 +29,7 @@ class User extends Model
     protected $table = 'users';
 
     protected $guarded = [
-        'uuid',
+        'id',
     ];
 
     protected $hidden = [
@@ -48,7 +41,7 @@ class User extends Model
     ];
 
     protected $attributes = [
-        'uuid'    => null,
+        'id'      => null,
         'state'    => null,
         'name'     => null,
         'email'    => null,
@@ -57,24 +50,13 @@ class User extends Model
     ];
 
     protected $casts = [
-        'uuid'     => 'uuid',
+        'id'       => 'uuid',
         'state'    => 'integer',
         'name'     => 'string',
         'email'    => 'string',
         'password' => 'string',
         'guard'    => 'integer',
     ];
-
-    public function skipGuardedBuilder($query)
-    {
-        $userId = app('web.user')->getUser('uuid', null);
-
-        if ($userId !== null) {
-            $query->orWhere('uuid', $userId);
-        }
-
-        return $query;
-    }
 
     public function roles()
     {
@@ -110,7 +92,7 @@ class User extends Model
 
     public function getRoleIdsAttribute()
     {
-        return $this->roles()->get()->pluck('uuid')->flatten(1);
+        return $this->roles()->get()->pluck('id')->flatten(1);
     }
 
     public function setRoleIdsAttribute($value)

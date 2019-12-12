@@ -9,7 +9,7 @@ class FrontendMenuTableSeeder extends Seeder
     public function run()
     {
         Menu::create([
-            'uuid'      => $root = uuid(),
+            'id'        => $root = uuid(),
             'type'      => 'web-menu::domain',
             'layout'    => 'layout',
             'state'     => 1,
@@ -20,7 +20,7 @@ class FrontendMenuTableSeeder extends Seeder
         ]);
 
         Menu::create([
-            'uuid'      => $home = uuid(),
+            'id'        => $home = uuid(),
             'type'      => 'web-page::page',
             'layout'    => null,
             'state'     => 1,
@@ -32,7 +32,7 @@ class FrontendMenuTableSeeder extends Seeder
         ]);
 
         Menu::create([
-            'uuid'      => $demo = uuid(),
+            'id'        => $demo = uuid(),
             'type'      => 'web-page::page',
             'layout'    => 'demo',
             'state'     => 1,
@@ -44,7 +44,7 @@ class FrontendMenuTableSeeder extends Seeder
         ]);
 
         Menu::create([
-            'uuid'      => uuid(),
+            'id'        => uuid(),
             'type'      => 'web-menu::redirect',
             'layout'    => null,
             'extend'    => ['url' => 'http://wieistmeineip.de'],

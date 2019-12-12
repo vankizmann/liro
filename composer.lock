@@ -969,8 +969,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Assets",
-                "reference": "387e4d8185bb9b588dae73e92aa3851d6e734bc8",
-                "shasum": null
+                "reference": "387e4d8185bb9b588dae73e92aa3851d6e734bc8"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1028,8 +1027,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Language",
-                "reference": "a002cd3fda01933cdca7b5fd2d8b871714ac2828",
-                "shasum": null
+                "reference": "a002cd3fda01933cdca7b5fd2d8b871714ac2828"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1087,8 +1085,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Media",
-                "reference": "5e1b9259afbbf261c06462d1e72b2cb2f2137d97",
-                "shasum": null
+                "reference": "5e1b9259afbbf261c06462d1e72b2cb2f2137d97"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1147,8 +1144,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Menu",
-                "reference": "de8adb5564580cd0f7eaa6f12af0cc16a365ae25",
-                "shasum": null
+                "reference": "de8adb5564580cd0f7eaa6f12af0cc16a365ae25"
             },
             "require": {
                 "baum/baum": "^2.0.0",
@@ -1207,8 +1203,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Module",
-                "reference": "44ceff273ee06c15af332ee79cda3d4e6681db8b",
-                "shasum": null
+                "reference": "44ceff273ee06c15af332ee79cda3d4e6681db8b"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1266,8 +1261,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Support",
-                "reference": "c14a7467142ed2c0de6a32f671ccaf0f4b4c860f",
-                "shasum": null
+                "reference": "c14a7467142ed2c0de6a32f671ccaf0f4b4c860f"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1329,8 +1323,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/User",
-                "reference": "eaae75c7cbe620927bea0f56b79130897eca42ad",
-                "shasum": null
+                "reference": "eaae75c7cbe620927bea0f56b79130897eca42ad"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1388,8 +1381,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Web",
-                "reference": "5f2d7535ea8ac929c7687a779768d6b846f06679",
-                "shasum": null
+                "reference": "5f2d7535ea8ac929c7687a779768d6b846f06679"
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",

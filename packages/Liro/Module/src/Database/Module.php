@@ -12,18 +12,18 @@ class Module extends Model
     protected $table = 'modules';
 
     protected $guarded = [
-        'uuid',
+        'id',
     ];
 
     protected $attributes = [
-        'uuid'      => null,
+        'id'        => null,
         'state'     => null,
         'package'   => null,
         'guard'     => null,
     ];
 
     protected $casts = [
-        'uuid'      => 'uuid',
+        'id'        => 'uuid',
         'state'     => 'integer',
         'package'   => 'string',
         'guard'     => 'integer',

@@ -10,7 +10,7 @@ class RoleTableSeeder extends Seeder
     public function run(\Faker\Generator $faker)
     {
         $admin = Role::create([
-            'uuid'        => uuid(),
+            'id'          => uuid(),
             'title'       => 'Administrator',
             'description' => 'A description for administrator',
             'access'      => 'admin',
@@ -20,7 +20,7 @@ class RoleTableSeeder extends Seeder
         $admin->policies()->attach(Policy::all());
 
         $manager = Role::create([
-            'uuid'        => uuid(),
+            'id'          => uuid(),
             'title'       => 'Manager',
             'description' => 'A description for manager',
             'access'      => 'manager',
@@ -31,7 +31,7 @@ class RoleTableSeeder extends Seeder
 
         foreach ( array_fill(0, 10, 0) as $role ) {
             Role::create([
-                'uuid'        => uuid(),
+                'id'          => uuid(),
                 'title'       => $faker->name,
                 'description' => '',
                 'access'      => $faker->name,

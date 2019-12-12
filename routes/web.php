@@ -29,9 +29,11 @@ Route::get('test', function () {
 //        Auth::login(User::first());
 //    });
 
-
-    dump(app('web.user')->getUser());
-    return;
+//    dd(Auth::guest());
+//
+//
+    dd(app('web.user')->getUser(), app('web.user')->isGuarded());
+    return view('demo');
 
     app('web.assets')->script('web-foobar1', 'web-page::foobar1.js', ['web-foobar3']);
     app('web.assets')->script('web-foobar2', 'web-page::foobar2.js');

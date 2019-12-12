@@ -19,7 +19,7 @@ class GuardScope implements Scope
                 ->getPolicyDepth($modelClass);
 
             $userId = app('web.user')
-                ->getUser('uuid', null);
+                ->getUser('id', null);
 
             $builder->where(function ($query) use ($model, $guardDepth, $userId) {
 

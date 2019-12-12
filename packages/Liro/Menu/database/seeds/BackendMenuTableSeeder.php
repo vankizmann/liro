@@ -9,7 +9,7 @@ class BackendMenuTableSeeder extends Seeder
     public function run()
     {
         Menu::create([
-            'uuid'      => $root = uuid(),
+            'id'        => $root = uuid(),
             'type'      => 'web-menu::vue',
             'layout'    => 'web-backend::default',
             'state'     => 1,
@@ -20,7 +20,7 @@ class BackendMenuTableSeeder extends Seeder
         ]);
 
         Menu::create([
-            'uuid'      => $home = uuid(),
+            'id'        => $home = uuid(),
             'type'      => 'web-menu::vue',
             'extend'    => ['component' => 'WebDashboardIndex'],
             'layout'    => null,
@@ -33,7 +33,7 @@ class BackendMenuTableSeeder extends Seeder
         ]);
 
         Menu::create([
-            'uuid'      => $demo = uuid(),
+            'id'        => $demo = uuid(),
             'type'      => 'web-menu::vue',
             'extend'    => ['component' => 'WebMenuIndex'],
             'layout'    => null,
@@ -46,7 +46,7 @@ class BackendMenuTableSeeder extends Seeder
         ]);
 
         Menu::create([
-            'uuid'      => uuid(),
+            'id'        => uuid(),
             'type'      => 'web-menu::vue',
             'extend'    => ['component' => 'WebMenuIndex'],
             'layout'    => null,

@@ -41,6 +41,12 @@ class UserManager
      */
     public function boot()
     {
+//        $groups = $this->app['router']->getMiddlewareGroups();
+//
+//        $this->app['router']->middlewareGroup('web', array_merge([
+//            Http\Middleware\EnableGuardedMode::class
+//        ], $groups['web']));
+
         $this->app['events']->dispatch('booted: web.user', $this->app);
     }
 

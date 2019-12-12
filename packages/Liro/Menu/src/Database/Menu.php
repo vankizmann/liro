@@ -13,7 +13,7 @@ class Menu extends Model
     protected $table = 'menus';
 
     protected $guarded = [
-        'uuid'
+        'id'
     ];
 
     protected $fields = [
@@ -29,7 +29,7 @@ class Menu extends Model
     ];
 
     protected $attributes = [
-        'uuid'          => null,
+        'id'            => null,
         'state'         => null,
         'hide'          => null,
         'type'          => null,
@@ -41,7 +41,7 @@ class Menu extends Model
     ];
 
     protected $casts = [
-        'uuid'          => 'uuid',
+        'id'            => 'uuid',
         'state'         => 'integer',
         'hide'          => 'integer',
         'type'          => 'string',

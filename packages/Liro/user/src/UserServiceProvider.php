@@ -1,12 +1,11 @@
 <?php
 
-namespace Liro\Auth;
+namespace Liro\User;
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use App\Database\User;
+use Liro\Support\Application\AppHelper;
 
-class AuthServiceProvider extends ServiceProvider
+class UserServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -23,8 +22,8 @@ class AuthServiceProvider extends ServiceProvider
             __DIR__.'/../database/migrations'
         ]);
 
-        $this->app->singleton('web.auth', function($app) {
-            return new AuthManager($app);
+        $this->app->singleton('web.user', function($app) {
+            return new UserManager($app);
         });
     }
 
@@ -35,11 +34,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ( ! Schema::hasTable(with(new User)->getTable()) ) {
+        if ( AppHelper::commandIsActive('migrate') ) {
             return;
         }
 
-        $this->app['web.auth']->boot();
+        $this->app['web.user']->boot();
     }
 
 }

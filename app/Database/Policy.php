@@ -2,9 +2,9 @@
 
 namespace App\Database;
 
-use \Liro\Auth\Database\Policy as PolicyModel;
+use Liro\User\Database\Policy as Model;
 
-class Policy extends PolicyModel
+class Policy extends Model
 {
     //
 }

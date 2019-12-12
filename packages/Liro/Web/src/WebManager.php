@@ -11,6 +11,8 @@ class WebManager
     public function __construct($app)
     {
         $this->app = $app;
+
+        $this->app['events']->dispatch('registered: web.manager', $this->app);
     }
 
     public function boot()

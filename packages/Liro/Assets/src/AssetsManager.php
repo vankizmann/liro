@@ -45,6 +45,8 @@ class AssetsManager
     public function __construct($app)
     {
         $this->app = $app;
+
+        $this->app['events']->dispatch('registered: web.assets', $this->app);
     }
 
     /**
@@ -57,6 +59,8 @@ class AssetsManager
         foreach ( config('assets.compilers', []) as $key => $compiler ) {
             $this->compilers[$key] = $this->app->make($compiler);
         }
+
+        $this->app['events']->dispatch('booted: web.assets', $this->app);
     }
 
     public function addNamespace($namespace, $hint)
@@ -116,7 +120,8 @@ class AssetsManager
 
     public function getMenus()
     {
-        return app('web.menu')->getDomain()->descendants()->get()->toHierarchy()->values()->toJson();
+        return app('web.menu')->getDomain()->descendants()->get()
+            ->toHierarchy()->values()->toJson();
     }
 
     public function output($names = null)

@@ -1,10 +1,10 @@
 {
-    "name": "liro/auth",
+    "name": "liro/user",
     "description": "Description",
     "keywords": [
-        "liro", "liro-auth"
+        "liro", "liro-user"
     ],
-    "homepage": "https://github.com/vankizmann/liro-auth",
+    "homepage": "https://github.com/vankizmann/liro-user",
     "license": "MIT",
     "authors": [
         {
@@ -23,17 +23,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Liro\\Auth\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Liro\\Auth\\Test\\": "tests/"
+            "Liro\\User\\": "src/"
         },
         "classmap": [
             "database/seeds",
             "database/factories"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Liro\\User\\Test\\": "tests/"
+        }
     },
     "scripts": {
         "test": "vendor/bin/phpunit"

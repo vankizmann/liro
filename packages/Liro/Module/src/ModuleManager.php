@@ -16,6 +16,8 @@ class ModuleManager
     public function __construct($app)
     {
         $this->app = $app;
+
+        $this->app['events']->dispatch('registered: web.module', $this->app);
     }
 
     public function boot()

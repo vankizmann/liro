@@ -2,9 +2,9 @@
 
 namespace App\Database;
 
-use Liro\Language\Database\Language as LanguageModel;
+use Liro\Language\Database\Language as Model;
 
-class Language extends LanguageModel
+class Language extends Model
 {
     //
 }

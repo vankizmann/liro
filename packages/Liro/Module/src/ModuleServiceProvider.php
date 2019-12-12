@@ -2,8 +2,8 @@
 
 namespace Liro\Module;
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Liro\Support\Application\AppHelper;
 use App\Database\Module;
 
 class ModuleServiceProvider extends ServiceProvider
@@ -43,7 +43,7 @@ class ModuleServiceProvider extends ServiceProvider
             __DIR__.'/../config/module.php' => config_path('module.php'),
         ]);
 
-        if ( ! Schema::hasTable((new Module)->getTable()) ) {
+        if ( ! AppHelper::modelTableExists(Module::class) ) {
             return;
         }
 

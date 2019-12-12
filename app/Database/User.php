@@ -2,9 +2,9 @@
 
 namespace App\Database;
 
-use \Liro\Auth\Database\User as UserModel;
+use Liro\User\Database\User as Model;
 
-class User extends UserModel
+class User extends Model
 {
     //
 }

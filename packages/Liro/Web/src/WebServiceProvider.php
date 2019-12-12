@@ -38,6 +38,9 @@ class WebServiceProvider extends ServiceProvider
             $loader->alias($alias, $ref);
         }
 
+        $this->app['events']->listen('registered: web.menu',
+            'Liro\Web\Listeners\WebEventSubscriber@registeredWebMenu');
+
         $this->app['events']->listen('booted: web.menu',
             'Liro\Web\Listeners\WebEventSubscriber@bootedWebMenu');
     }

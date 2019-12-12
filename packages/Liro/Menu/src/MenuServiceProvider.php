@@ -2,9 +2,9 @@
 
 namespace Liro\Menu;
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Baum\BaumServiceProvider;
+use Liro\Support\Application\AppHelper;
 use App\Database\Menu;
 
 class MenuServiceProvider extends ServiceProvider
@@ -38,7 +38,7 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ( ! Schema::hasTable(with(new Menu)->getTable()) ) {
+        if ( AppHelper::commandIsActive('migrate') || ! AppHelper::modelTableExists(Menu::class) ) {
             return;
         }
 

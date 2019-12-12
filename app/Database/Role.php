@@ -2,9 +2,9 @@
 
 namespace App\Database;
 
-use \Liro\Auth\Database\Role as RoleModel;
+use Liro\User\Database\Role as Model;
 
-class Role extends RoleModel
+class Role extends Model
 {
     //
 }

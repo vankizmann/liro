@@ -7,7 +7,7 @@ return [
         Liro\Language\LanguageServiceProvider::class,
         Liro\Module\ModuleServiceProvider::class,
         Liro\Assets\AssetsServiceProvider::class,
-        Liro\Auth\AuthServiceProvider::class,
+        Liro\User\UserServiceProvider::class,
         Liro\Menu\MenuServiceProvider::class,
         Liro\Media\MediaServiceProvider::class,
     ],

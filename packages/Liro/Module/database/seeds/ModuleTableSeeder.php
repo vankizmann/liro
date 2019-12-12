@@ -36,6 +36,12 @@ class ModuleTableSeeder extends Seeder
         Module::create([
             'uuid'      => uuid(),
             'state'     => 1,
+            'package'   => 'web-dashboard'
+        ]);
+
+        Module::create([
+            'uuid'      => uuid(),
+            'state'     => 1,
             'package'   => 'web-backend'
         ]);
 

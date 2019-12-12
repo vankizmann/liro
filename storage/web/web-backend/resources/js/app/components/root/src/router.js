@@ -1,51 +1,23 @@
 import Vue from "vue";
 import VueRouter from 'vue-router';
 
-let menus = Vue.Obj.get(window, '_menus', []), routes = [];
+let registerMenuRoute = (menu) => {
 
-Vue.Arr.each(menus, function (menu) {
-
-    let component = Vue.Obj.get(menu, 'module', null);
-
-    if ( Vue.Any.isEmpty(component) && ! Vue.Obj.has(menu, 'query.redirect') ) {
-        return;
-    }
-
-    let error = () => {
-        Vue.Notify(Vue.trans('vue.module.missing', menu), 'danger');
-    };
+    let component = Vue.Obj.get(menu, 'extend.component');
 
     let route = {
-        path: Vue.Obj.get(menu, 'slug'), props: true, meta: menu
+        path: `/${menu.slug}`, props: true, meta: { menu }
     };
 
-    if ( Vue.Obj.has(menu, 'query.redirect') ) {
-        route.redirect = {
-            name: Vue.Obj.get(menu, 'query.redirect')
-        };
-    }
+    route.component = () => {
+        return new Promise((resolve, reject) => {
+            Vue.Extension.get(component, () => resolve(Vue.component(component)), reject);
+        });
+    };
 
-    if ( ! Vue.Obj.has(route, 'redirect') ) {
-        route.component = (done) => {
-            Vue.Extension.import(component, done, error)
-        };
-    }
-
-    if ( Vue.Obj.has(route, 'component') ) {
-        route.name = component;
-    }
-
-    routes.push(route);
-});
-
-let error = {
-    name: 'app-error', path: '*', component: Vue.component('app-error'), meta: {
-        title: 'Not Found'
-    }
+    return route;
 };
 
-routes.push(error);
-
 export default new VueRouter({
-    base: Vue.Obj.get(window, 'basePath', '/'), mode: 'history', routes: routes
+    base: window.basePath, mode: 'history', routes: Vue.Arr.each(window._menus || [], registerMenuRoute)
 })

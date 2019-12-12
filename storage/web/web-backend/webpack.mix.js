@@ -32,7 +32,7 @@ mix.setResourceRoot(
 
 mix.copyDirectory(
     'node_modules/@fortawesome/fontawesome-free/webfonts',
-    'resources/dist/webfonts',
+    'public/webfonts',
 );
 
 /**
@@ -40,11 +40,8 @@ mix.copyDirectory(
  */
 
 mix.js(
-    'resources/src/js/bootstrap.js',
-    'resources/dist/js/index.js',
-    {
-        // JS options
-    }
+    'resources/js/bootstrap.js',
+    'public/js/index.js'
 ).version();
 
 /**
@@ -52,9 +49,7 @@ mix.js(
  */
 
 mix.sass(
-    'resources/src/sass/bootstrap.scss',
-    'resources/dist/css/index.css',
-    {
-        precision: 3
-    }
+    'resources/sass/bootstrap.scss',
+    'public/css/index.css',
+    { precision: 3 }
 ).version();

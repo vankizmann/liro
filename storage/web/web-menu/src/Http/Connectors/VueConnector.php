@@ -2,7 +2,6 @@
 
 namespace Liro\Web\Menu\Http\Connectors;
 
-use Illuminate\Support\Facades\Route;
 use Liro\Menu\Routing\Connector;
 use Liro\Support\Routing\RouteHelper;
 use App\Database\Menu;
@@ -29,10 +28,15 @@ class VueConnector extends Connector
         }
 
         $options['uses'] = function () use ($menu, $options) {
-            return view('web-menu::vue/default');
+
+            $basePath = RouteHelper::extractRoute($menu->getRoot()->route);
+
+            return view('web-menu::vue/default', [
+                'basePath' => $basePath, 'menu' => $menu, 'domain' => $menu->getRoot()
+            ]);
         };
 
-        Route::get($options['route'], $options)->where(['path' => '.*']);
+        app('router')->get($options['route'], $options)->where(['path' => '.*']);
     }
 
     /**

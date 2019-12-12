@@ -22,7 +22,7 @@ class BackendMenuTableSeeder extends Seeder
         Menu::create([
             'uuid'      => $home = uuid(),
             'type'      => 'web-menu::vue',
-            'extend'    => ['component' => 'WebUserIndex'],
+            'extend'    => ['component' => 'WebPageIndex'],
             'layout'    => null,
             'state'     => 1,
             'hide'      => 0,

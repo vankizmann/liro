@@ -69,11 +69,11 @@ class MenuManager
                 $this->registerControllerRoutes($alias, $locale);
             }
 
+            foreach ( Menu::enabled()->orderBy('left', 'desc')->get() as $menu ) {
+                $this->registerMenuRoute($menu, $locale);
+            }
+
         }
-
-        Menu::enabled()->orderBy('left', 'desc')->get()
-            ->each([$this, 'resolveMenuRoute']);
-
 
         $this->app['events']->dispatch('booted: web.menu', $this->app);
     }
@@ -125,7 +125,7 @@ class MenuManager
             }
 
             $options = array_merge($options, [
-                'uses' => "{$controller}@{$method->name}"
+                'uses' => "{$controller}@{$method->name}", 'middleware' => 'web'
             ]);
 
             return $options;
@@ -204,38 +204,7 @@ class MenuManager
         return "{{$param->name}}";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function resolveMenuRoute($menu)
+    public function registerMenuRoute($menu, $locale)
     {
         $config = $this->getHttpRoute($menu->type);
 
@@ -243,33 +212,29 @@ class MenuManager
             return;
         }
 
-        // Get all locales from app
-        $locales = $this->app['web.manager']->getLocales();
-
         if ( ! preg_match('/({locale}|:locale)/', $menu->route) ) {
-            $locales = RouteHelper::findLocales($menu->route);
+            $locale = RouteHelper::findLocales($menu->route);
         }
 
-        foreach ( $locales ?: (array) $this->app->getLocale() as $locale ) {
+        // Replace domain in route
+        $domain = RouteHelper::replaceDomain(
+            RouteHelper::extractDomain($menu->route)
+        );
 
-            // Replace domain in route
-            $domain = RouteHelper::replaceDomain(
-                RouteHelper::extractDomain($menu->route)
-            );
+        // Replace domain in route
+        $route = RouteHelper::replaceLocale(
+            RouteHelper::extractRoute($menu->route), $locale
+        );
 
-            // Replace domain in route
-            $route = RouteHelper::replaceLocale(
-                RouteHelper::extractRoute($menu->route), $locale
-            );
+        $options = [
+            'locale' => $locale, 'domain' => $domain, 'route' => $route, 'middleware' => ['web']
+        ];
 
-            $options = [
-                'domain' => $domain, 'route' => $route, 'middleware' => ['web']
-            ];
-
-            $this->app->make(...$config)->route($menu, $options);
-        }
-
+        $this->app->make(...$config)->route($menu, $options);
     }
+
+
+
 
     public function registerRoute($key, $options)
     {

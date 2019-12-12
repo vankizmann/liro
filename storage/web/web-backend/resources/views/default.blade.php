@@ -9,17 +9,30 @@
 
     @php
         app('web.assets')->script(
-            'bootstrap', '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.js'
+            'script', 'web-backend::js/index.js'
         );
 
         app('web.assets')->style(
-            'bootstrap', '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css'
+            'style', 'web-backend::css/index.css'
         );
     @endphp
+
+    <script>
+        window.basePath = '{{ $basePath }}';
+    </script>
+
+    <script>
+        {!! 'window._imports = ' . app('web.assets')->getImports() . ';' !!}
+    </script>
+
+    <script>
+        {!! 'window._menus = ' . app('web.assets')->getMenus() . ';' !!}
+    </script>
 
     {!! app('web.assets')->output('style') !!}
 </head>
 <body>
     <div id="app"></div>
+    {!! app('web.assets')->output('script') !!}
 </body>
 </html>

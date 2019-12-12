@@ -12,11 +12,11 @@ class DomainConnector extends Connector
      *
      * @param \App\Database\Menu $menu
      * @param array $options
-     * @return bool
+     * @return void
      */
     public function route(Menu $menu, $options)
     {
-        return false;
+        //
     }
 
     /**

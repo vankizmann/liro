@@ -31,6 +31,13 @@ class AssetsManager
     public $manifests = [];
 
     /**
+     * Extensions store.
+     *
+     * @var array
+     */
+    public $extensions = [];
+
+    /**
      * AssetsManager constructor.
      *
      * @param $app
@@ -64,6 +71,25 @@ class AssetsManager
         $this->manifests[$source] = $target;
     }
 
+    public function addExtension($extension, $imports)
+    {
+        $options = [];
+
+        foreach ( $imports as $import ) {
+
+            if ( preg_match('/\.css/', $import) ) {
+                $options['styles'][] = $this->file($import);
+            }
+
+            if ( preg_match('/\.js/', $import) ) {
+                $options['scripts'][] = $this->file($import);
+            }
+
+        }
+
+        $this->extensions[$extension] = $options;
+    }
+
     public function file($link, $secure = null)
     {
         foreach ( $this->manifests as $source => $target ) {
@@ -81,6 +107,16 @@ class AssetsManager
         }
 
         return $link;
+    }
+
+    public function getImports()
+    {
+        return json_encode($this->extensions);
+    }
+
+    public function getMenus()
+    {
+        return app('web.menu')->getDomain()->descendants()->get()->toJson();
     }
 
     public function output($names = null)

@@ -10,26 +10,26 @@ return [
         'Liro\\Web\\Menu\\' => 'src/'
     ],
 
-    'vue' => [
+    'extensions' => [
 
         'WebMenuTree' => [
-            'web-menu::dist/js/web-menu.js',
-            'web-menu::dist/css/web-menu.css'
+            'web-menu::js/web-menu.js',
+            'web-menu::css/web-menu.css'
         ],
 
         'WebMenuIndex' => [
-            'web-menu::dist/js/web-menu.js',
-            'web-menu::dist/css/web-menu.css'
+            'web-menu::js/web-menu.js',
+            'web-menu::css/web-menu.css'
         ],
 
         'WebMenuEdit' => [
-            'web-menu::dist/js/web-menu.js',
-            'web-menu::dist/css/web-menu.css'
+            'web-menu::js/web-menu.js',
+            'web-menu::css/web-menu.css'
         ],
 
         'WebMenuShow' => [
-            'web-menu::dist/js/web-menu.js',
-            'web-menu::dist/css/web-menu.css'
+            'web-menu::js/web-menu.js',
+            'web-menu::css/web-menu.css'
         ]
 
     ],

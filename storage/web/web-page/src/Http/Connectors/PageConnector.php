@@ -13,7 +13,7 @@ class PageConnector extends Connector
      *
      * @param \App\Database\Menu $menu
      * @param array $options
-     * @return array
+     * @return void
      */
     public function route(Menu $menu, $options)
     {
@@ -22,12 +22,12 @@ class PageConnector extends Connector
         }
 
         $options['uses'] = function () use ($menu) {
-            return view('web-page::page', ['menu' => $menu]);
+            return view('web-page::page', [
+                'menu' => $menu, 'domain' => $menu->getRoot()
+            ]);
         };
 
         app('router')->any($options['route'], $options);
-
-        return $options;
     }
 
     /**

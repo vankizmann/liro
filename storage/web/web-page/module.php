@@ -10,21 +10,21 @@ return [
         'Liro\\Web\\Page\\' => 'src/'
     ],
 
-    'vue' => [
+    'extensions' => [
 
         'WebPageIndex' => [
-            'web-page::dist/js/web-page.js',
-            'web-page::dist/css/web-page.css'
+            'web-page::js/web-page.js',
+            'web-page::css/web-page.css'
         ],
 
         'WebPageEdit' => [
-            'web-page::dist/js/web-page.js',
-            'web-page::dist/css/web-page.css'
+            'web-page::js/web-page.js',
+            'web-page::css/web-page.css'
         ],
 
         'WebPageShow' => [
-            'web-page::dist/js/web-page.js',
-            'web-page::dist/css/web-page.css'
+            'web-page::js/web-page.js',
+            'web-page::css/web-page.css'
         ]
 
     ],

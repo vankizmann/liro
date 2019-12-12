@@ -42,6 +42,20 @@ class FrontendMenuTableSeeder extends Seeder
             'matrix'    => 1,
             'parent_id' => $root,
         ]);
+
+        Menu::create([
+            'uuid'      => uuid(),
+            'type'      => 'web-menu::redirect',
+            'layout'    => null,
+            'extend'    => ['url' => 'http://wieistmeineip.de'],
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Home',
+            'slug'      => '/redirect',
+            'matrix'    => 1,
+            'parent_id' => $root,
+        ]);
+
     }
 
 }

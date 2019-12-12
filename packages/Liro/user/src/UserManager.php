@@ -41,10 +41,6 @@ class UserManager
      */
     public function boot()
     {
-        $this->activeUser = $this->unguarded(function () {
-            return Auth::user();
-        });
-
         $this->app['events']->dispatch('booted: web.user', $this->app);
     }
 
@@ -88,9 +84,12 @@ class UserManager
         return $result;
     }
 
-    public function getUser($attribute, $fallback = null)
+    public function getUser($attribute = null, $fallback = null)
     {
-        return data_get($this->activeUser, $attribute, $fallback);
+        $user = $this->activeUser ?: Auth::user();
+
+        return $attribute === null ? $user :
+            data_get($user, $attribute, $fallback);
     }
 
     public function setUser($user)

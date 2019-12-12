@@ -25,14 +25,12 @@ Route::get('test', function () {
 //    dd(app('web.language')->getLocales(), app()->getLocale());
 
 
-    app('web.user')->unguarded(function () {
-        dd(Auth::login(User::first()));
-    });
-
-//    app('web.user')->setUser(Auth::user());
+//    app('web.user')->unguarded(function () {
+//        Auth::login(User::first());
+//    });
 
 
-    dump(app('web.user'));
+    dump(app('web.user')->getUser());
     return;
 
     app('web.assets')->script('web-foobar1', 'web-page::foobar1.js', ['web-foobar3']);

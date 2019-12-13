@@ -1,11 +1,12 @@
 import Vue from "vue";
+import Axios from "axios";
 
-axios.defaults.headers.common = {
+Axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
 
 // Add a request interceptor
-axios.interceptors.request.use(
+Axios.interceptors.request.use(
     (config) => {
 
         Vue.Obj.get(config, 'onLoad', () => {})();
@@ -23,7 +24,7 @@ axios.interceptors.request.use(
 );
 
 // Add a response interceptor
-axios.interceptors.response.use(
+Axios.interceptors.response.use(
     (response) => {
 
         Vue.Obj.get(response.config, 'onDone', () => {})();

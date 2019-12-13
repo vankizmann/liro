@@ -10,7 +10,7 @@ return [
         'Liro\\Web\\Menu\\' => 'src/'
     ],
 
-    'extensions' => [
+    'imports' => [
 
         'WebMenuTree' => [
             'web-menu::js/web-menu.js',

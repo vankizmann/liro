@@ -969,7 +969,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Assets",
-                "reference": "387e4d8185bb9b588dae73e92aa3851d6e734bc8"
+                "reference": "387e4d8185bb9b588dae73e92aa3851d6e734bc8",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1027,7 +1028,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Language",
-                "reference": "a002cd3fda01933cdca7b5fd2d8b871714ac2828"
+                "reference": "a002cd3fda01933cdca7b5fd2d8b871714ac2828",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1085,7 +1087,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Media",
-                "reference": "5e1b9259afbbf261c06462d1e72b2cb2f2137d97"
+                "reference": "5e1b9259afbbf261c06462d1e72b2cb2f2137d97",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1144,7 +1147,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Menu",
-                "reference": "de8adb5564580cd0f7eaa6f12af0cc16a365ae25"
+                "reference": "de8adb5564580cd0f7eaa6f12af0cc16a365ae25",
+                "shasum": null
             },
             "require": {
                 "baum/baum": "^2.0.0",
@@ -1203,7 +1207,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Module",
-                "reference": "44ceff273ee06c15af332ee79cda3d4e6681db8b"
+                "reference": "44ceff273ee06c15af332ee79cda3d4e6681db8b",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1261,7 +1266,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Support",
-                "reference": "c14a7467142ed2c0de6a32f671ccaf0f4b4c860f"
+                "reference": "c14a7467142ed2c0de6a32f671ccaf0f4b4c860f",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1323,7 +1329,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/User",
-                "reference": "eaae75c7cbe620927bea0f56b79130897eca42ad"
+                "reference": "eaae75c7cbe620927bea0f56b79130897eca42ad",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1381,7 +1388,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Web",
-                "reference": "5f2d7535ea8ac929c7687a779768d6b846f06679"
+                "reference": "5f2d7535ea8ac929c7687a779768d6b846f06679",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1792,28 +1800,29 @@
         },
         {
             "name": "phpoption/phpoption",
-            "version": "1.6.1",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/php-option.git",
-                "reference": "a8593bf5176bf3d3f2966942c530be19b44ec87c"
+                "reference": "318ad673ba36e53e10ca510aec1c54b4f2a5f2ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/a8593bf5176bf3d3f2966942c530be19b44ec87c",
-                "reference": "a8593bf5176bf3d3f2966942c530be19b44ec87c",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/318ad673ba36e53e10ca510aec1c54b4f2a5f2ae",
+                "reference": "318ad673ba36e53e10ca510aec1c54b4f2a5f2ae",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.5.9 || ^7.0"
             },
             "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.3",
                 "phpunit/phpunit": "^4.8.35 || ^5.0 || ^6.0 || ^7.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
@@ -1842,7 +1851,7 @@
                 "php",
                 "type"
             ],
-            "time": "2019-12-11T13:45:14+00:00"
+            "time": "2019-12-13T00:10:22+00:00"
         },
         {
             "name": "psr/container",
@@ -5047,16 +5056,16 @@
         },
         {
             "name": "scrivo/highlight.php",
-            "version": "v9.15.10.0",
+            "version": "v9.16.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scrivo/highlight.php.git",
-                "reference": "9ad3adb4456dc91196327498dbbce6aa1ba1239e"
+                "reference": "e1f92b62790f489a0986be860aefacb3c9f0a3d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/9ad3adb4456dc91196327498dbbce6aa1ba1239e",
-                "reference": "9ad3adb4456dc91196327498dbbce6aa1ba1239e",
+                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/e1f92b62790f489a0986be860aefacb3c9f0a3d3",
+                "reference": "e1f92b62790f489a0986be860aefacb3c9f0a3d3",
                 "shasum": ""
             },
             "require": {
@@ -5066,7 +5075,8 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8|^5.7",
-                "symfony/finder": "^2.8"
+                "symfony/finder": "^3.4",
+                "symfony/var-dumper": "^3.4"
             },
             "suggest": {
                 "ext-dom": "Needed to make use of the features in the utilities namespace"
@@ -5094,7 +5104,7 @@
                 {
                     "name": "Vladimir Jimenez",
                     "homepage": "https://allejo.io",
-                    "role": "Contributor"
+                    "role": "Maintainer"
                 },
                 {
                     "name": "Martin Folkers",
@@ -5110,7 +5120,7 @@
                 "highlight.php",
                 "syntax"
             ],
-            "time": "2019-08-27T04:27:48+00:00"
+            "time": "2019-12-13T02:58:38+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

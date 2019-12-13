@@ -14,7 +14,7 @@ return [
         Liro\Web\Dashboard\DashboardServiceProvider::class
     ],
 
-    'extensions' => [
+    'imports' => [
 
         'WebDashboardIndex' => [
             'web-dashboard::js/web-dashboard.js',

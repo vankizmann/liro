@@ -10,7 +10,7 @@ return [
         'Liro\\Web\\Page\\' => 'src/'
     ],
 
-    'extensions' => [
+    'imports' => [
 
         'WebPageIndex' => [
             'web-page::js/web-page.js',

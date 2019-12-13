@@ -16,8 +16,36 @@ class BackendMenuTableSeeder extends Seeder
             'hide'      => 0,
             'title'     => 'liro-cms.com',
             'slug'      => ':domain/:locale/backend',
-            'guard'     => 1,
+            'guard'     => 0,
             'parent_id' => null,
+        ]);
+
+        Menu::create([
+            'id'        => $login = uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['component' => 'WebAuthLogin'],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Login',
+            'slug'      => '/login',
+            'matrix'    => 1,
+            'guard'     => 0,
+            'parent_id' => $root,
+        ]);
+
+        Menu::create([
+            'id'        => $login = uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['component' => 'WebAuthLogout'],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Logout',
+            'slug'      => '/logout',
+            'matrix'    => 1,
+            'guard'     => 0,
+            'parent_id' => $root,
         ]);
 
         Menu::create([

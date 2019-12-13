@@ -7,9 +7,9 @@ window.axios = Axios;
 import Nano from 'nano-js';
 window.Nano = Nano;
 
-require('./app/index');
+require('./app');
 
-Nano.Dom.ready(() => {
-    console.log('web-backend ready.', window.Menu);
-});
+if ( console && console.log ) {
+    console.log('web-backend ready.');
+}
 

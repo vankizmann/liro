@@ -8,11 +8,22 @@ class ModuleTableSeeder extends Seeder
 
     public function run()
     {
+        Module::create([
+            'id'        => uuid(),
+            'state'     => 1,
+            'package'   => 'web-language'
+        ]);
 
         Module::create([
             'id'        => uuid(),
             'state'     => 1,
             'package'   => 'web-menu'
+        ]);
+
+        Module::create([
+            'id'        => uuid(),
+            'state'     => 1,
+            'package'   => 'web-auth'
         ]);
 
         Module::create([
@@ -24,19 +35,13 @@ class ModuleTableSeeder extends Seeder
         Module::create([
             'id'        => uuid(),
             'state'     => 1,
-            'package'   => 'web-page'
-        ]);
-
-        Module::create([
-            'id'        => uuid(),
-            'state'     => 1,
-            'package'   => 'web-language'
-        ]);
-
-        Module::create([
-            'id'        => uuid(),
-            'state'     => 1,
             'package'   => 'web-dashboard'
+        ]);
+
+        Module::create([
+            'id'        => uuid(),
+            'state'     => 1,
+            'package'   => 'web-page'
         ]);
 
         Module::create([

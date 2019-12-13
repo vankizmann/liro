@@ -15,88 +15,74 @@ class PolicyTableSeeder extends Seeder
 
         Policy::create([
             'id'     => uuid(),
-            'title'  => 'Access system modules',
-            'module' => 'liro-system-*',
+            'title'  => 'Access vue dashbaord',
+            'module' => 'WebDashboard*',
         ]);
 
         Policy::create([
             'id'     => uuid(),
-            'title'  => 'Access user modules',
-            'module' => 'liro-users-*',
+            'title'  => 'Access vue user',
+            'module' => 'WebUser*',
         ]);
 
         Policy::create([
             'id'     => uuid(),
-            'title'  => 'Access menus modules',
-            'module' => 'liro-menus-*',
+            'title'  => 'Access vue menus',
+            'module' => 'WebMenu*',
         ]);
 
         Policy::create([
             'id'     => uuid(),
-            'title'  => 'Access pages modules',
-            'module' => 'liro-pages-*',
+            'title'  => 'Access vue pages',
+            'module' => 'WebPage*',
+        ]);
+
+        Policy::create([
+            'id'    => uuid(),
+            'title' => 'Access admin menus',
+            'class' => \App\Database\Menu::class,
+            'depth' => 1,
+        ]);
+
+        Policy::create([
+            'id'    => uuid(),
+            'title' => 'Access manager menus',
+            'class' => \App\Database\Menu::class,
+            'depth' => 2,
+        ]);
+
+        Policy::create([
+            'id'    => uuid(),
+            'title' => 'Access admin users',
+            'class' => \App\Database\User::class,
+            'depth' => 1,
+        ]);
+
+        Policy::create([
+            'id'    => uuid(),
+            'title' => 'Access manager users',
+            'class' => \App\Database\User::class,
+            'depth' => 2,
         ]);
 
         Policy::create([
             'id'     => uuid(),
-            'title'  => 'Access admin menus',
-            'class'  => \App\Database\Menu::class,
-            'depth'  => 1,
-        ]);
-
-        Policy::create([
-            'id'     => uuid(),
-            'title'  => 'Access manager menus',
-            'class'  => \App\Database\Menu::class,
-            'depth'  => 2,
-        ]);
-
-        Policy::create([
-            'id'     => uuid(),
-            'title'  => 'Access admin users',
-            'class'  => \App\Database\User::class,
-            'depth'  => 1,
-        ]);
-
-        Policy::create([
-            'id'     => uuid(),
-            'title'  => 'Access manager users',
-            'class'  => \App\Database\User::class,
-            'depth'  => 2,
-        ]);
-
-        Policy::create([
-            'id'     => uuid(),
-            'title'  => 'Allow all methods in admin dashboard controller',
-            'class'  => \Liro\Extension\System\Http\Controllers\Admin\DashboardController::class,
+            'title'  => 'Allow all methods in dashboard controller',
+            'class'  => \Liro\Web\Dashboard\Http\Controllers\DashboardController::class,
             'method' => '*',
         ]);
 
         Policy::create([
             'id'     => uuid(),
-            'title'  => 'Allow all methods in admin users controller',
-            'class'  => \Liro\Extension\Users\Http\Controllers\Admin\UserController::class,
+            'title'  => 'Allow all methods in users controller',
+            'class'  => \Liro\Web\Dashboard\Http\Controllers\UserController::class,
             'method' => '*',
         ]);
 
         Policy::create([
             'id'     => uuid(),
-            'title'  => 'Allow all methods in ajax users controller',
-            'class'  => \Liro\Extension\Users\Http\Controllers\Ajax\UserController::class,
-            'method' => '*',
-        ]);
-
-        Policy::create([
-            'id'     => uuid(),
-            'title'  => 'Allow all methods in admin roles controller',
-            'class'  => \Liro\Extension\Users\Http\Controllers\Admin\RoleController::class,
-            'method' => '*',
-        ]);
-
-        Policy::create([
-            'id'     => uuid(),
-            'title'  => 'Allow all methods in ajax roles controller',
-            'class'  => \Liro\Extension\Users\Http\Controllers\Ajax\RoleController::class,
+            'title'  => 'Allow all methods in roles controller',
+            'class'  => \Liro\Web\Dashboard\Http\Controllers\RoleController::class,
             'method' => '*',
         ]);
 

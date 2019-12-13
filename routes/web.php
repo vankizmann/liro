@@ -11,6 +11,7 @@
 |
 */
 
+use App\Database\Menu;
 use App\Database\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,13 +27,11 @@ Route::get('test', function () {
 
 
 //    app('web.user')->unguarded(function () {
-//        Auth::login(User::first());
+        Auth::login(App\Database\User::first(), true);
 //    });
 
-//    dd(Auth::guest());
-//
-//
-    dd(app('web.user')->getUser(), app('web.user')->isGuarded());
+//    dd(app('web.user')->getUser(), app('web.user')->getPolicyDepth(Menu::class));
+
     return view('demo');
 
     app('web.assets')->script('web-foobar1', 'web-page::foobar1.js', ['web-foobar3']);

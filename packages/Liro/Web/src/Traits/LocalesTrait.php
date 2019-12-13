@@ -1,6 +1,6 @@
 <?php
 
-namespace Liro\Web;
+namespace Liro\Web\Traits;
 
 trait LocalesTrait
 {

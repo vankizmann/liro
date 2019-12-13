@@ -2,6 +2,7 @@
 
 namespace Liro\User\Database\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
 use Liro\User\Database\Scopes\GuardScope;
 
 /**
@@ -14,7 +15,7 @@ trait DepthGuarded
     /**
      * @var bool $useGuard
      */
-    protected $useDepthGuard = true;
+    protected $useDepthGuard = false;
 
     /**
      * @var string $guardColumn
@@ -28,8 +29,7 @@ trait DepthGuarded
 
     public function getUseDepthGuard()
     {
-        return app('web.user')->isGuarded() &&
-            $this->useDepthGuard;
+        return $this->useDepthGuard;
     }
 
     public function getDepthGuardColumn()
@@ -49,16 +49,16 @@ trait DepthGuarded
         return $this;
     }
 
-//    public function scopeWithoutDepthGuard(Builder $builder)
-//    {
-//        $model = $builder->getModel()->disableDepthGuard();
-//        return $builder->setModel($model);
-//    }
-//
-//    public function scopeWithDepthGuard(Builder $builder)
-//    {
-//        $model = $builder->getModel()->enableDepthGuard();
-//        return $builder->setModel($model);
-//    }
+    public function scopeWithoutDepthGuard(Builder $builder)
+    {
+        $model = $builder->getModel()->disableDepthGuard();
+        return $builder->setModel($model);
+    }
+
+    public function scopeWithDepthGuard(Builder $builder)
+    {
+        $model = $builder->getModel()->enableDepthGuard();
+        return $builder->setModel($model);
+    }
 
 }

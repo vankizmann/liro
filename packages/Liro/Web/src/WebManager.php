@@ -4,7 +4,7 @@ namespace Liro\Web;
 
 class WebManager
 {
-    use DomainTrait, LocalesTrait, ProtocolTrait, LayoutTrait;
+    use Traits\DomainTrait, Traits\LocalesTrait, Traits\ProtocolTrait, Traits\LayoutTrait;
 
     protected $app;
 

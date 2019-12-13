@@ -39,15 +39,29 @@ class PolicyTableSeeder extends Seeder
 
         Policy::create([
             'id'     => uuid(),
+            'title'  => 'Access admin menus',
+            'class'  => \App\Database\Menu::class,
+            'depth'  => 1,
+        ]);
+
+        Policy::create([
+            'id'     => uuid(),
+            'title'  => 'Access manager menus',
+            'class'  => \App\Database\Menu::class,
+            'depth'  => 2,
+        ]);
+
+        Policy::create([
+            'id'     => uuid(),
             'title'  => 'Access admin users',
-            'class'  => \Liro\Extension\Users\Models\User::class,
+            'class'  => \App\Database\User::class,
             'depth'  => 1,
         ]);
 
         Policy::create([
             'id'     => uuid(),
             'title'  => 'Access manager users',
-            'class'  => \Liro\Extension\Users\Models\User::class,
+            'class'  => \App\Database\User::class,
             'depth'  => 2,
         ]);
 

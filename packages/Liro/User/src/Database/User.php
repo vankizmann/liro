@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Hash;
 use Liro\Support\Database\Traits\Castable;
 use Liro\Support\Database\Traits\Datatable;
 use Liro\Support\Database\Traits\Paginatable;
+use Liro\Support\Database\Traits\State;
 
 class User extends Model
 {
-    use Castable, Paginatable, Datatable;
+    use Castable, Paginatable, Datatable, State;
 
     /**
      * The "type" of the primary key ID.
@@ -106,11 +107,5 @@ class User extends Model
     {
         return;
     }
-
-    public function toVue()
-    {
-        return $this->append(['policy_modules']);
-    }
-
 
 }

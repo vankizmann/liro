@@ -16,6 +16,7 @@ class BackendMenuTableSeeder extends Seeder
             'hide'      => 0,
             'title'     => 'liro-cms.com',
             'slug'      => ':domain/:locale/backend',
+            'guard'     => 1,
             'parent_id' => null,
         ]);
 
@@ -29,6 +30,7 @@ class BackendMenuTableSeeder extends Seeder
             'title'     => 'Home',
             'slug'      => '/',
             'matrix'    => 1,
+            'guard'     => 1,
             'parent_id' => $root,
         ]);
 
@@ -42,6 +44,7 @@ class BackendMenuTableSeeder extends Seeder
             'title'     => 'Demo',
             'slug'      => '/demo',
             'matrix'    => 1,
+            'guard'     => 1,
             'parent_id' => $root,
         ]);
 
@@ -55,6 +58,7 @@ class BackendMenuTableSeeder extends Seeder
             'title'     => 'Test',
             'slug'      => '/test',
             'matrix'    => 1,
+            'guard'     => 1,
             'parent_id' => $demo,
         ]);
     }

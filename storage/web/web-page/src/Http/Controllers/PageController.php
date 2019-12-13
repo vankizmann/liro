@@ -2,7 +2,7 @@
 
 namespace Liro\Web\Page\Http\Controllers;
 
-use App\Database\Module;
+use App\Database\Menu;
 use App\Http\Controllers\Controller;
 
 class PageController extends Controller
@@ -14,33 +14,37 @@ class PageController extends Controller
 
     public function getIndexRoute()
     {
-        $modules = Module::enabled()->datatable();
+        $menus = Menu::withDepthGuard()->enabled()->datatable();
 
-        return response()->json($modules);
+        return response()->json($menus);
     }
 
     public function getCreateRoute()
     {
-        $module = new Module;
+        $menu = new Menu;
 
-        return response()->json($module);
+        return response()->json($menu);
     }
 
     public function postStoreRoute()
     {
-        $module = new Module;
+        $menu = new Menu;
 
-        return response()->json($module);
+        return response()->json($menu);
     }
 
-    public function getShowRoute(Module $module)
+    public function getShowRoute($id)
     {
-        return response()->json($module);
+        $menu = Menu::withDepthGuard()->findOrFail($id);
+
+        return response()->json($menu);
     }
 
-    public function postEditRoute(Module $module)
+    public function postEditRoute($id)
     {
-        return response()->json($module);
+        $menu = Menu::withDepthGuard()->findOrFail($id);
+
+        return response()->json($menu);
     }
 
 }

@@ -36,6 +36,10 @@ return [
 
     'routes' => [
 
+        'ajax@web-menu::menu' => [
+            Liro\Web\Menu\Http\Controllers\MenuController::class
+        ],
+
         'http@web-menu::domain' => [
             Liro\Web\Menu\Http\Connectors\DomainConnector::class
         ],

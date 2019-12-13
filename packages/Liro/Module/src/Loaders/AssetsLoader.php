@@ -22,8 +22,8 @@ class AssetsLoader implements LoaderInterface
 
             foreach ( json_decode($manifestBody) as $source => $target) {
 
-                $source = $module->name . '::' . ltrim($source, '/');
-                $target = $module->name . '::' . ltrim($target, '/');
+                $source = $module->name . '::' . preg_replace('#/public/#', '', $source);
+                $target = $module->name . '::' . preg_replace('#/public/#', '', $target);
 
                 app('web.assets')->addManifest($source, $target);
             }

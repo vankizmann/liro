@@ -3,7 +3,6 @@
 namespace Liro\User;
 
 use Illuminate\Support\Facades\Auth;
-use App\Database\User;
 
 class UserManager
 {
@@ -20,7 +19,7 @@ class UserManager
     /**
      * @var bool
      */
-    protected $guardState = true;
+    protected $guardState = false;
 
     /**
      * UserManager constructor.
@@ -41,12 +40,6 @@ class UserManager
      */
     public function boot()
     {
-//        $groups = $this->app['router']->getMiddlewareGroups();
-//
-//        $this->app['router']->middlewareGroup('web', array_merge([
-//            Http\Middleware\EnableGuardedMode::class
-//        ], $groups['web']));
-
         $this->app['events']->dispatch('booted: web.user', $this->app);
     }
 
@@ -105,8 +98,8 @@ class UserManager
 
     public function getPolicyDepth($class, $fallback = 10000)
     {
-        if ( $this->activeUser !== null ) {
-            return $this->activeUser->getPolicyDepth($class);
+        if ( $this->getUser() !== null ) {
+            return $this->getUser()->getPolicyDepth($class);
         }
 
         return $fallback;
@@ -114,8 +107,8 @@ class UserManager
 
     public function hasPolicyAction($class, $action, $fallback = false)
     {
-        if ( $this->activeUser !== null ) {
-            return $this->activeUser->hasPolicyAction($class, $action);
+        if ( $this->getUser() !== null ) {
+            return $this->getUser()->hasPolicyAction($class, $action);
         }
 
         return $fallback;

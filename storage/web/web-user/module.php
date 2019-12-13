@@ -31,10 +31,10 @@ return [
 
     'routes' => [
 
-//        'ajax2@web-user::user' => [
-//            Liro\Web\User\Http\Controllers\AjaxUserController::class,
-//        ],
-//
+        'ajax@web-user::user' => [
+            Liro\Web\User\Http\Controllers\UserController::class,
+        ],
+
 //        'http2@web-user::user' => [
 //            Liro\Web\User\Http\Connectors\HttpUserConnector::class
 //        ],

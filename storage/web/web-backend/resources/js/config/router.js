@@ -8,7 +8,7 @@ Vue.Arr.recursive(window._menus || [], 'children', (menu) => {
     let component = Vue.Obj.get(menu, 'extend.component');
 
     let route = {
-        path: `/${menu.slug}`, props: true, meta: { menu }
+        path: `/${menu.slug}`, name: menu.id, props: true, meta: { menu }
     };
 
     route.component = () => {

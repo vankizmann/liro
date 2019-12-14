@@ -41,7 +41,7 @@ class VueConnector extends Connector
             ]);
         };
 
-        app('router')->get($options['route'], $options)->where(['path' => '.*']);
+        app('router')->get($options['route'], $options)->where(['path' => '.*'])->middleware('web');
     }
 
     /**

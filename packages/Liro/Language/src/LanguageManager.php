@@ -52,9 +52,12 @@ class LanguageManager
         // Get http language
         $http = @$_SERVER['HTTP_ACCEPT_LANGUAGE'] ?: '';
 
-        preg_match_all('/(?<=,)[a-z]{2}(?=;)/', $http, $accepted, PREG_PATTERN_ORDER);
+        preg_match_all('/((?<=,)[a-z]{2}(?=;)|^[a-z]{2}(?=-|,))/',
+            $http, $accepted, PREG_PATTERN_ORDER);
 
-        if ( $locale = collect($this->locales)->intersect($accepted[0])->first() ) {
+        $accepted = array_filter(reset($accepted));
+
+        if ( $locale = collect($this->locales)->intersect($accepted)->last() ) {
             $this->locale = $locale;
         }
 

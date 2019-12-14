@@ -28,6 +28,10 @@ return [
             Liro\Web\Auth\Http\Controllers\AuthController::class,
         ],
 
+        'http@web-auth::login' => [
+            Liro\Web\Auth\Http\Connectors\LoginConnector::class,
+        ],
+
     ],
 
 ];

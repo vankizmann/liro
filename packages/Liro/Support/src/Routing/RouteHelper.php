@@ -65,7 +65,10 @@ class RouteHelper
 
     public static function replaceDomain($route, $domain = null)
     {
-        return preg_replace('/({domain}|:domain)/', $domain ?: Web::getDomain(), $route);
+        $route =  preg_replace('/({http}|:http)/', $domain ?: Web::getProtocol(), $route);
+        $route =  preg_replace('/({domain}|:domain)/', $domain ?: Web::getDomain(), $route);
+
+        return $route;
     }
 
     public static function replaceLocale($route, $locale = null)
@@ -95,9 +98,12 @@ class RouteHelper
         return app('web.manager')->getLocale() . '.' . $name;
     }
 
-    public static function removeLocale($name)
+    public static function removeLocale($route)
     {
-        return preg_replace('/^[a-z]{2}\./', '', $name);
+        $route = preg_replace('/^[a-z]{2}\./', '', $route);
+        $route = preg_replace('/^[a-z]{2}\//', '', $route);
+
+        return $route;
     }
 
     public static function getHost()

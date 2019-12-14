@@ -127,7 +127,7 @@ class MenuManager
             }
 
             $options = array_merge($options, [
-                'uses' => "{$controller}@{$method->name}", 'middleware' => 'web'
+                'uses' => "{$controller}@{$method->name}"
             ]);
 
             return $options;
@@ -229,7 +229,7 @@ class MenuManager
         );
 
         $options = [
-            'locale' => $locale, 'domain' => $domain, 'route' => $route, 'middleware' => ['web']
+            'locale' => $locale, 'domain' => $domain, 'route' => $route, 'menu' => $menu
         ];
 
         $this->app->make(...$config)->route($menu, $options);

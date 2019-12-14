@@ -1,4 +1,4 @@
-@extends(Web::getLayout())
+@extends(web()->getLayout())
 
 @section('content')
 <div>

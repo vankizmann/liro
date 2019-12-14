@@ -105,6 +105,14 @@ class UserManager
         return $fallback;
     }
 
+    public function canPolicyDepth($model)
+    {
+        $className = get_class($model);
+
+        return $model->guard >= $this->getPolicyDepth($className) ||
+            $model->guard === 0;
+    }
+
     public function hasPolicyAction($class, $action, $fallback = false)
     {
         if ( $this->getUser() !== null ) {

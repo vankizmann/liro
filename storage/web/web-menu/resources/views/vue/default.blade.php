@@ -1,1 +1,1 @@
-@include(Web::getLayout())
+@include(web()->getLayout())

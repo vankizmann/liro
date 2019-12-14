@@ -38,7 +38,7 @@ class AssetsLoader implements LoaderInterface
         app('web.assets')->addNamespace($module->name, $publicPath);
 
         foreach ( $module->get('imports', []) as $extension => $imports ) {
-            app('web.assets')->addExtension($extension, $imports);
+            app('web.assets')->export($extension, $imports);
         }
 
         return $module;

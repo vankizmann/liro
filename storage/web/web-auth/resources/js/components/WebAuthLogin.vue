@@ -35,9 +35,12 @@
 
             loginAction()
             {
-                this.$http.post('module.web-auth.auth.login', this.form).then((res) => {
-                    console.log('User logged in: ' + res.data.name);
-                });
+                let route = this.Route.get('module.web-auth.auth.login');
+
+                this.$http.post(route, this.form)
+                    .then((res) => {
+                        console.log('User logged in: ' + res.data.name);
+                    });
             }
 
         }

@@ -72,7 +72,7 @@ class BackendMenuTableSeeder extends Seeder
             'title'     => 'Demo',
             'slug'      => '/demo',
             'matrix'    => 1,
-            'guard'     => 1,
+            'guard'     => 0,
             'parent_id' => $root,
         ]);
 

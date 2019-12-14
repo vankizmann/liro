@@ -2,6 +2,10 @@
 
 namespace Liro\Assets;
 
+use Liro\Assets\Compilers\ScriptCompiler;
+use Liro\Assets\Compilers\StyleCompiler;
+use Liro\Assets\Compilers\ExportCompiler;
+
 class AssetsManager
 {
     /**
@@ -46,6 +50,10 @@ class AssetsManager
     {
         $this->app = $app;
 
+        foreach (config('assets.compilers', []) as $key => $compiler) {
+            $this->compilers[$key] = $this->app->make($compiler);
+        }
+
         $this->app['events']->dispatch('registered: web.assets', $this->app);
     }
 
@@ -56,10 +64,6 @@ class AssetsManager
      */
     public function boot()
     {
-        foreach ( config('assets.compilers', []) as $key => $compiler ) {
-            $this->compilers[$key] = $this->app->make($compiler);
-        }
-
         $this->app['events']->dispatch('booted: web.assets', $this->app);
     }
 
@@ -79,7 +83,7 @@ class AssetsManager
     {
         $options = [];
 
-        foreach ( $imports as $import ) {
+        foreach ($imports as $import) {
 
             if ( preg_match('/\.css/', $import) ) {
                 $options['styles'][] = $this->file($import);
@@ -96,12 +100,12 @@ class AssetsManager
 
     public function file($link, $secure = null)
     {
-        foreach ( $this->manifests as $source => $target ) {
+        foreach ($this->manifests as $source => $target) {
             $link = preg_replace('/^' . preg_quote($source, '/') . '$/',
                 $target, $link);
         }
 
-        foreach ( $this->namespaces as $namespace => $hint ) {
+        foreach ($this->namespaces as $namespace => $hint) {
             $link = preg_replace('/^' . preg_quote($namespace, '/') . '::\/?/',
                 rtrim($hint, '/') . '/', $link);
         }
@@ -132,7 +136,7 @@ class AssetsManager
             $names = array_keys($this->compilers);
         }
 
-        foreach ( (array) $names as $name ) {
+        foreach ((array)$names as $name) {
             $assets[] = $this->compilers[$name]->render();
         }
 

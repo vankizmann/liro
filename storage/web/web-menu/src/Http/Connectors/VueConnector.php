@@ -2,6 +2,7 @@
 
 namespace Liro\Web\Menu\Http\Connectors;
 
+use Illuminate\Validation\UnauthorizedException;
 use Liro\Menu\Routing\Connector;
 use Liro\Support\Routing\RouteHelper;
 use App\Database\Menu;
@@ -28,6 +29,10 @@ class VueConnector extends Connector
         }
 
         $options['uses'] = function () use ($menu, $options) {
+
+            if ( ! app('web.user')->canPolicyDepth($menu) ) {
+                abort(404);
+            }
 
             $basePath = RouteHelper::extractRoute($menu->getRoot()->route);
 

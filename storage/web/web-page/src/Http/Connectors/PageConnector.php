@@ -21,13 +21,9 @@ class PageConnector extends Connector
             app('web.menu')->setMenu($menu);
         }
 
-        $options['uses'] = function () use ($menu) {
-            return view('web-page::page', [
-                'menu' => $menu, 'domain' => $menu->getRoot()
-            ]);
-        };
-
-        app('router')->any($options['route'], $options);
+        app('router')->any($options['route'], array_merge($options, [
+            'uses' => 'Liro\Web\Page\Http\Controllers\PageViewController@anyPageRoute'
+        ]));
     }
 
     /**
@@ -38,7 +34,7 @@ class PageConnector extends Connector
      */
     public function provide(Menu $menu)
     {
-        return view('web-page::page');
+        return false;
     }
 
     /**
@@ -51,4 +47,5 @@ class PageConnector extends Connector
     {
         return false;
     }
+
 }

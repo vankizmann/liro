@@ -3,6 +3,7 @@
 namespace Liro\Web\Auth\Http\Connectors;
 
 use Liro\Menu\Routing\Connector;
+use Liro\Support\Routing\RouteHelper;
 use App\Database\Menu;
 
 class LoginConnector extends Connector
@@ -11,22 +12,22 @@ class LoginConnector extends Connector
      * Provide router options.
      *
      * @param \App\Database\Menu $menu
-     * @return array|bool
+     * @param array $options
+     * @return void
      */
-    public function route(Menu $menu)
+    public function route(Menu $menu, $options)
     {
-        return false;
-    }
+        if ( RouteHelper::isOptionsRoute($options) ) {
+            app('web.menu')->setMenu($menu);
+        }
 
-    /**
-     * Provide data for view.
-     *
-     * @param \App\Database\Menu $menu
-     * @return array|bool
-     */
-    public function provide(Menu $menu)
-    {
-        return false;
+        app('router')->get($options['route'], array_merge($options, [
+            'uses' => 'Liro\Web\Auth\Http\Controllers\AuthViewController@getLoginRoute'
+        ]));
+
+        app('router')->post($options['route'], array_merge($options, [
+            'uses' => 'Liro\Web\Auth\Http\Controllers\AuthViewController@postLoginRoute'
+        ]));
     }
 
     /**

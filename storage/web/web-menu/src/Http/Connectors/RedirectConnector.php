@@ -21,6 +21,11 @@ class RedirectConnector extends Connector
         }
 
         $options['uses'] = function () use ($menu, $options) {
+
+            if ( ! app('web.user')->canPolicyDepth($menu) ) {
+                abort(404);
+            }
+
             return redirect($menu->extend->url, 302);
         };
 

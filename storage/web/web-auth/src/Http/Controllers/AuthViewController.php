@@ -4,14 +4,22 @@ namespace Liro\Web\Auth\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Liro\Menu\Routing\Traits\DiscoverMenu;
 
-class AuthController extends Controller
+class AuthViewController extends Controller
 {
+    use DiscoverMenu;
+
     public function __construct()
     {
         parent::__construct();
 
         $this->middleware(['web']);
+    }
+
+    public function getLoginRoute()
+    {
+        return view('web-auth::login');
     }
 
     public function postLoginRoute()
@@ -21,23 +29,10 @@ class AuthController extends Controller
         ]);
 
         if ( ! Auth::attempt($data) ) {
-            abort(401, trans('Invalid email or password.'));
+            request()->session()->flash('error', trans('Invalid email or password.'));
         }
 
-        return response()->json(Auth::user());
-    }
-
-    public function postLogoutRoute()
-    {
-        $user = Auth::user();
-
-        if ( empty($user) ) {
-            abort(401, trans('User already logged out.'));
-        }
-
-        Auth::logout();
-
-        return response()->json($user);
+        return view('web-auth::login');
     }
 
 }

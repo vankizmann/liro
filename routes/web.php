@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('test', function () {
 
 
-//    dd(app('web.language')->getLocales(), app()->getLocale());
+    dd(app('router'));
 
 
 //    app('web.user')->unguarded(function () {

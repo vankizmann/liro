@@ -21,15 +21,7 @@
         window.basePath = '{{ $basePath }}';
     </script>
 
-    <script>
-        {!! 'window._imports = ' . app('web.assets')->getImports() . ';' !!}
-    </script>
-
-    <script>
-        {!! 'window._menus = ' . app('web.assets')->getMenus() . ';' !!}
-    </script>
-
-    {!! app('web.assets')->output('style') !!}
+    {!! app('web.assets')->output(['export', 'style']) !!}
 </head>
 <body>
     <div id="app"></div>

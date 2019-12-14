@@ -42,7 +42,7 @@ class User extends Model
     ];
 
     protected $attributes = [
-        'id'      => null,
+        'id'       => null,
         'state'    => null,
         'name'     => null,
         'email'    => null,

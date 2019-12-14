@@ -9,6 +9,7 @@ class ModuleManager
     protected $app;
 
     public $modules = [];
+
     public $configs = [];
 
     public $loaded = [];
@@ -43,7 +44,12 @@ class ModuleManager
             $this->loaded[$module->name] = $module;
         }
 
+        $this->app['events']->dispatch('booted: web.module', $this->app);
+    }
 
+    public function getLoaded()
+    {
+        return $this->loaded;
     }
 
 }

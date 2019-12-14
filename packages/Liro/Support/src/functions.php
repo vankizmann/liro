@@ -1,5 +1,17 @@
 <?php
 
+if ( ! function_exists('web') ) {
+
+    /**
+     * @return \Liro\Web\WebManager
+     */
+    function web ()
+    {
+        return app('web.manager');
+    }
+
+}
+
 if ( ! function_exists('uuid') ) {
 
     function uuid ()

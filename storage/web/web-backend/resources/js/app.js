@@ -15,9 +15,8 @@ Vue.$http = Vue.prototype.$http = Axios;
 
 require('./config/axios');
 
-let WebBackendRoot = require("./component/WebBackendRoot").default;
-Vue.component(WebBackendRoot.name, WebBackendRoot);
-
 Nano.Dom.ready(() => {
-    window.App = new Vue(Vue.component(WebBackendRoot.name)).$mount('#app');
+    window.App = new Vue(
+        require("./component/WebBackendRoot").default
+    ).$mount('#app');
 });

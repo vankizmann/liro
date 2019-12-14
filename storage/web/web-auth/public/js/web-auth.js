@@ -127,8 +127,47 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     loginAction: function loginAction() {
-      this.$http.post('module.web-auth.auth.login', this.form).then(function (res) {
+      var route = this.Route.get('module.web-auth.auth.login');
+      this.$http.post(route, this.form).then(function (res) {
         console.log('User logged in: ' + res.data.name);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WebAuthLogout.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/WebAuthLogout.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'WebAuthLogout',
+  methods: {
+    logoutAction: function logoutAction() {
+      var route = this.Route.get('module.web-auth.auth.logout');
+      this.$http.post(route, this.form).then(function (res) {
+        console.log('User logged out: ' + res.data.name);
       });
     }
   }
@@ -215,6 +254,63 @@ var render = function() {
                 "NButton",
                 { attrs: { type: "primary", "native-type": "submit" } },
                 [_vm._v(_vm._s(_vm.trans("Sign in")))]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WebAuthLogout.vue?vue&type=template&id=fc454f2a&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/WebAuthLogout.vue?vue&type=template&id=fc454f2a& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "web-auth__logout" },
+    [
+      _c(
+        "NForm",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.logoutAction($event)
+            }
+          }
+        },
+        [
+          _c("NFormItem", [_c("p", [_vm._v(_vm._s(_vm.trans("Bye bye :)")))])]),
+          _vm._v(" "),
+          _c(
+            "NFormItem",
+            [
+              _c(
+                "NButton",
+                { attrs: { type: "primary", "native-type": "submit" } },
+                [_vm._v(_vm._s(_vm.trans("Sign out")))]
               )
             ],
             1
@@ -352,9 +448,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "vue");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_WebAuthLogin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/WebAuthLogin */ "./resources/js/components/WebAuthLogin.vue");
+/* harmony import */ var _components_WebAuthLogout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/WebAuthLogout */ "./resources/js/components/WebAuthLogout.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(_components_WebAuthLogin__WEBPACK_IMPORTED_MODULE_1__["default"].name, _components_WebAuthLogin__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(_components_WebAuthLogout__WEBPACK_IMPORTED_MODULE_2__["default"].name, _components_WebAuthLogout__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 if (console && console.log) {
   console.log('web-auth ready.');
@@ -431,6 +530,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/WebAuthLogout.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/WebAuthLogout.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _WebAuthLogout_vue_vue_type_template_id_fc454f2a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WebAuthLogout.vue?vue&type=template&id=fc454f2a& */ "./resources/js/components/WebAuthLogout.vue?vue&type=template&id=fc454f2a&");
+/* harmony import */ var _WebAuthLogout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WebAuthLogout.vue?vue&type=script&lang=js& */ "./resources/js/components/WebAuthLogout.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _WebAuthLogout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _WebAuthLogout_vue_vue_type_template_id_fc454f2a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _WebAuthLogout_vue_vue_type_template_id_fc454f2a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/WebAuthLogout.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/WebAuthLogout.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/WebAuthLogout.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WebAuthLogout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./WebAuthLogout.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WebAuthLogout.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WebAuthLogout_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/WebAuthLogout.vue?vue&type=template&id=fc454f2a&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/WebAuthLogout.vue?vue&type=template&id=fc454f2a& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WebAuthLogout_vue_vue_type_template_id_fc454f2a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./WebAuthLogout.vue?vue&type=template&id=fc454f2a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WebAuthLogout.vue?vue&type=template&id=fc454f2a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WebAuthLogout_vue_vue_type_template_id_fc454f2a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WebAuthLogout_vue_vue_type_template_id_fc454f2a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/bootstrap.scss":
 /*!***************************************!*\
   !*** ./resources/sass/bootstrap.scss ***!
@@ -449,8 +617,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-auth/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-auth/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-auth/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-auth/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

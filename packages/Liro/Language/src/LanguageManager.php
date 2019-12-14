@@ -46,12 +46,15 @@ class LanguageManager
         $this->locales = Language::enabled()->orderBy('locale')
             ->pluck('locale')->toArray();
 
+        // Set base language
+        $this->locale = reset($this->locales);
+
         // Get http language
         $http = @$_SERVER['HTTP_ACCEPT_LANGUAGE'] ?: '';
 
-        preg_match('/(?<=,)[a-z]+(?=;)/', $http, $accepted);
+        preg_match_all('/(?<=,)[a-z]{2}(?=;)/', $http, $accepted, PREG_PATTERN_ORDER);
 
-        if ( $locale = collect($this->locales)->intersect($accepted)->first() ) {
+        if ( $locale = collect($this->locales)->intersect($accepted[0])->first() ) {
             $this->locale = $locale;
         }
 
@@ -62,6 +65,10 @@ class LanguageManager
         }
 
         $this->app->setLocale($this->locale);
+
+        $this->app['events']->listen('web.language: setLocale', function ($locale) {
+            $this->app->setLocale($locale);
+        });
 
         $this->app['events']->dispatch('web.language: booted', $this->app);
     }

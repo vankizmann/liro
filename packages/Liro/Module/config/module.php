@@ -16,8 +16,8 @@ return [
         Liro\Module\Loaders\ProviderLoader::class,
         Liro\Module\Loaders\ViewLoader::class,
         Liro\Module\Loaders\TranslationLoader::class,
-        Liro\Module\Loaders\AssetsLoader::class,
         Liro\Module\Loaders\RouteLoader::class,
+        Liro\Module\Loaders\AssetsLoader::class,
     ]
 
 ];

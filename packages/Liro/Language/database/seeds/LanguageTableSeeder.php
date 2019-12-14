@@ -10,7 +10,7 @@ class LanguageTableSeeder extends Seeder
     {
         Language::create([
             'id'        => uuid(),
-            'state'     => 1,
+            'state'     => 0,
             'title'     => 'English',
             'locale'    => 'en'
         ]);

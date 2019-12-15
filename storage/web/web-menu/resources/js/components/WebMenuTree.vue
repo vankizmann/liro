@@ -1,6 +1,6 @@
 <template>
     <NLoader class="web-menu__tree" :visible="load">
-        <NDraggableTree :items="menus">
+        <NDraggableTree :items="menus" :cascade.sync="cascade">
             <div class="web-menu__tree-item" slot-scope="prop">
                 {{ prop.value.title }}
             </div>
@@ -14,7 +14,7 @@
 
         data()
         {
-            return { menus: [], load: true };
+            return { menus: [], cascade: [], load: true };
         },
 
         mounted()

@@ -133,6 +133,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       menus: [],
+      cascade: [],
       load: true
     };
   },
@@ -221,7 +222,12 @@ var render = function() {
     { staticClass: "web-menu__tree", attrs: { visible: _vm.load } },
     [
       _c("NDraggableTree", {
-        attrs: { items: _vm.menus },
+        attrs: { items: _vm.menus, cascade: _vm.cascade },
+        on: {
+          "update:cascade": function($event) {
+            _vm.cascade = $event
+          }
+        },
         scopedSlots: _vm._u([
           {
             key: "default",

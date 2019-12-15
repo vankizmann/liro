@@ -30,7 +30,7 @@
 
 .web-backend__tree .n-draggable__item {
     color: $--color-gray-60;
-    padding: 3px 0;
+    padding-top: 1px;
 }
 
 .web-backend__tree .n-draggable__item:hover,
@@ -39,12 +39,24 @@
 }
 
 .web-backend__tree .n-draggable__item .n-draggable-tree-item {
-    border-radius: 500px;
+    border-radius: $radius-small;
     transition: background 0.13s;
 }
 
-.web-backend__tree .n-draggable__item.n-draggable--dragover .n-draggable-tree-item {
+.web-backend__tree .n-draggable__item.n-draggable--dragover .n-draggable-tree-item,
+.web-backend__tree .n-draggable__item.n-draggable--selected .n-draggable-tree-item {
     background: $--color-black-light;
 }
 
+.web-backend__tree .n-draggable__item.n-draggable--selected .n-draggable-tree-item {
+    transition: background 0.13s 0.26s;
+}
+
+.web-backend__tree .n-draggable__item.n-draggable--dragover.n-draggable--selected .n-draggable-tree-item {
+    opacity: 0.5;
+}
+
+.web-backend__tree .n-draggable-tree-item.n-draggable-tree-item--selected > .n-draggable-tree-item__body {
+    color: $--color-white;
+}
 

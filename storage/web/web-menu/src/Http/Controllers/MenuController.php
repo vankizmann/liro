@@ -12,6 +12,14 @@ class MenuController extends Controller
         $this->middleware(['web']);
     }
 
+    public function getTreeRoute()
+    {
+        $menus = Menu::withDepthGuard()->enabled()->get()
+            ->toHierarchy()->values();
+
+        return response()->json($menus);
+    }
+
     public function getIndexRoute()
     {
         $menus = Menu::withDepthGuard()->enabled()->datatable();

@@ -1,0 +1,42 @@
+<template>
+    <NLoader class="web-menu__tree" :visible="load">
+        <NDraggableTree :items="menus">
+            <div class="web-menu__tree-item" slot-scope="prop">
+                {{ prop.value.title }}
+            </div>
+        </NDraggableTree>
+    </NLoader>
+</template>
+<script>
+    export default {
+
+        name: 'WebMenuTree',
+
+        data()
+        {
+            return { menus: [], load: true };
+        },
+
+        mounted()
+        {
+            this.fetchMenus();
+        },
+
+        methods: {
+
+            fetchMenus()
+            {
+                let route = this.Route.get('module.web-menu.menu.tree');
+
+                let options = {
+                    onLoad: () => this.load = true,
+                    onDone: () => this.load = false
+                };
+
+                this.$http.get(route, options)
+                    .then(res => this.menus = res.data)
+            }
+
+        }
+    }
+</script>

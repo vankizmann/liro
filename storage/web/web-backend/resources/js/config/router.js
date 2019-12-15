@@ -12,9 +12,7 @@ Vue.Arr.recursive(window._menus || [], 'children', (menu) => {
     };
 
     route.component = () => {
-        return new Promise((resolve, reject) => {
-            Vue.Extension.get(component, () => resolve(Vue.component(component)), reject);
-        });
+        return Vue.Extension.promise(component, () => Vue.component(component));
     };
 
     vueRoutes.push(route);

@@ -3,18 +3,28 @@
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/solid";
 
+$color-white:           #ffffff;
+$color-black:           #282841;
+
+$color-primary:         #2877fa;
+$color-secondary:       #2877fa;
+
+$color-success:         #39c992;
+$color-warning:         #ffac2f;
+$color-danger:          #fd2f51;
+$color-info:            #62686d;
+
+$color-background:      #f4f6fa;
+
 @import "~nano-ui/src/index";
 
 @import "./mixins/media";
 @import "./mixins/grid";
 @import "./mixins/space";
 
+@import "./layout/default";
+@import "./layout/root";
+
 * {
     outline: none !important;
-}
-
-.web-backend__root {
-    padding: 0 20px;
-    margin: 40px auto;
-    max-width: 768px;
 }

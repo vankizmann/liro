@@ -13,23 +13,19 @@ return [
     'imports' => [
 
         'WebMenuTree' => [
-            'web-menu::js/web-menu.js',
-            'web-menu::css/web-menu.css'
+            'web-menu::js/web-menu.js'
         ],
 
         'WebMenuIndex' => [
-            'web-menu::js/web-menu.js',
-            'web-menu::css/web-menu.css'
+            'web-menu::js/web-menu.js'
         ],
 
         'WebMenuEdit' => [
-            'web-menu::js/web-menu.js',
-            'web-menu::css/web-menu.css'
+            'web-menu::js/web-menu.js'
         ],
 
         'WebMenuShow' => [
-            'web-menu::js/web-menu.js',
-            'web-menu::css/web-menu.css'
+            'web-menu::js/web-menu.js'
         ]
 
     ],

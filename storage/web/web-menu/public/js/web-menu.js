@@ -104,6 +104,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebMenuIndex'
 });
@@ -179,16 +188,25 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "web-menu-index" },
+    { key: _vm.$route.name, staticClass: "web-menu-index" },
     [
+      _c("WebBackendTitle", [
+        _vm._v("\n        Last updated at bla bla.\n    ")
+      ]),
+      _vm._v(" "),
       _c(
-        "NSelect",
-        { attrs: { multiple: true } },
-        _vm._l(_vm.Arr.make(8), function(item) {
-          return _c("NSelectOption", { key: item, attrs: { value: item } }, [
-            _vm._v("\n            " + _vm._s("Foobar - " + item) + "\n        ")
-          ])
-        }),
+        "NTabs",
+        [
+          _c("NTabsItem", { attrs: { label: _vm.trans("Start") } }, [
+            _vm._v("\n            Foo\n        ")
+          ]),
+          _vm._v(" "),
+          _c(
+            "NTabsItem",
+            { attrs: { label: _vm.trans("Test"), name: "test" } },
+            [_vm._v("\n            Bar\n        ")]
+          )
+        ],
         1
       )
     ],
@@ -540,8 +558,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/eddy/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/eddy/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

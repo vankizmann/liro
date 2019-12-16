@@ -1,0 +1,29 @@
+@import "~nano-ui/src/root/vars";
+
+.web-backend__header {
+    z-index: 1000;
+    position: relative;
+    background: $--color-white;
+    padding: 0 50px;
+    border-bottom: 1px solid $--color-gray-05;
+}
+
+.web-backend__header > .grid {
+    height: 80px;
+}
+
+.web-backend__header ul li a {
+    display: inline-block;
+    padding: 20px 10px;
+    color: $--color-gray-40;
+    font-weight: 500;
+    transition: color 0.12s;
+}
+
+.web-backend__header ul li a:hover {
+    color: $--color-gray-60;
+}
+
+.web-backend__header ul li.link--active a {
+    color: $--color-black;
+}

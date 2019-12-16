@@ -8,8 +8,12 @@ class BackendMenuTableSeeder extends Seeder
 
     public function run()
     {
+        $routes = collect([
+            'root' => uuid(), 'dashboard' => uuid(), 'menu' => uuid(), 'page' => uuid(), 'user' => uuid()
+        ]);
+
         Menu::create([
-            'id'        => $root = uuid(),
+            'id'        => $routes['root'],
             'type'      => 'web-menu::vue',
             'layout'    => 'web-backend::default',
             'state'     => 1,
@@ -21,8 +25,9 @@ class BackendMenuTableSeeder extends Seeder
         ]);
 
         Menu::create([
-            'id'        => $login = uuid(),
+            'id'        => uuid(),
             'type'      => 'web-menu::vue',
+            'icon'      => 'web-auth::img/icon-auth.svg',
             'extend'    => ['component' => 'WebAuthLogin'],
             'layout'    => null,
             'state'     => 1,
@@ -31,12 +36,13 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/login',
             'matrix'    => 1,
             'guard'     => 0,
-            'parent_id' => $root,
+            'parent_id' => $routes['root'],
         ]);
 
         Menu::create([
-            'id'        => $login = uuid(),
+            'id'        => uuid(),
             'type'      => 'web-menu::vue',
+            'icon'      => 'web-auth::img/icon-auth.svg',
             'extend'    => ['component' => 'WebAuthLogout'],
             'layout'    => null,
             'state'     => 1,
@@ -45,49 +51,165 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/logout',
             'matrix'    => 1,
             'guard'     => 0,
-            'parent_id' => $root,
+            'parent_id' => $routes['root'],
         ]);
 
         Menu::create([
-            'id'        => $home = uuid(),
+            'id'        => $tmp = uuid(),
             'type'      => 'web-menu::vue',
-            'extend'    => ['component' => 'WebDashboardIndex'],
+            'extend'    => ['redirect' => $routes['dashboard']],
             'layout'    => null,
             'state'     => 1,
-            'hide'      => 0,
+            'hide'      => 1,
             'title'     => 'Home',
             'slug'      => '/',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $root,
+            'parent_id' => $routes['root'],
         ]);
 
         Menu::create([
-            'id'        => $demo = uuid(),
+            'id'        => $routes['dashboard'],
             'type'      => 'web-menu::vue',
-            'extend'    => ['component' => 'WebMenuIndex'],
+            'icon'      => 'web-dashboard::img/icon-dashboard.svg',
+            'extend'    => ['component' => 'WebDashboardIndex'],
             'layout'    => null,
             'state'     => 1,
             'hide'      => 0,
-            'title'     => 'Demo',
-            'slug'      => '/demo',
+            'title'     => 'Dashboard',
+            'slug'      => '/dashboard',
             'matrix'    => 1,
             'guard'     => 0,
-            'parent_id' => $root,
+            'parent_id' => $routes['root'],
         ]);
 
         Menu::create([
             'id'        => uuid(),
             'type'      => 'web-menu::vue',
+            'extend'    => ['redirect' => $routes['menu']],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Menus',
+            'slug'      => '/menus',
+            'matrix'    => 1,
+            'guard'     => 0,
+            'parent_id' => $routes['dashboard'],
+        ]);
+
+        Menu::create([
+            'id'        => uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['redirect' => $routes['page']],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Pages',
+            'slug'      => '/pages',
+            'matrix'    => 1,
+            'guard'     => 0,
+            'parent_id' => $routes['dashboard'],
+        ]);
+
+        Menu::create([
+            'id'        => uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['redirect' => $routes['user']],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Users',
+            'slug'      => '/users',
+            'matrix'    => 1,
+            'guard'     => 0,
+            'parent_id' => $routes['dashboard'],
+        ]);
+
+        Menu::create([
+            'id'        => $routes['menu'],
+            'type'      => 'web-menu::vue',
+            'icon'      => 'web-menu::img/icon-menu.svg',
             'extend'    => ['component' => 'WebMenuIndex'],
             'layout'    => null,
             'state'     => 1,
             'hide'      => 0,
-            'title'     => 'Test',
-            'slug'      => '/test',
+            'title'     => 'Menus',
+            'slug'      => '/menus',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $demo,
+            'parent_id' => $routes['root'],
+        ]);
+
+        Menu::create([
+            'id'        => $tmp = uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['redirect' =>  $routes['menu']],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Menus',
+            'slug'      => '/menus',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $routes['menu'],
+        ]);
+
+        Menu::create([
+            'id'        => $routes['page'],
+            'type'      => 'web-menu::vue',
+            'icon'      => 'web-page::img/icon-page.svg',
+            'extend'    => ['component' => 'WebPageIndex'],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Pages',
+            'slug'      => '/pages',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $routes['root'],
+        ]);
+
+        Menu::create([
+            'id'        => $tmp = uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['redirect' =>  $routes['page']],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Pages',
+            'slug'      => '/pages',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $routes['page'],
+        ]);
+
+        Menu::create([
+            'id'        => $routes['user'],
+            'type'      => 'web-menu::vue',
+            'icon'      => 'web-user::img/icon-user.svg',
+            'extend'    => ['component' => 'WebUserIndex'],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Users',
+            'slug'      => '/users',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $routes['root'],
+        ]);
+
+        Menu::create([
+            'id'        => $tmp = uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['redirect' =>  $routes['user']],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Users',
+            'slug'      => '/users',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $routes['user'],
         ]);
     }
 

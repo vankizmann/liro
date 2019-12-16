@@ -13,18 +13,15 @@ return [
     'imports' => [
 
         'WebPageIndex' => [
-            'web-page::js/web-page.js',
-            'web-page::css/web-page.css'
+            'web-page::js/web-page.js'
         ],
 
         'WebPageEdit' => [
-            'web-page::js/web-page.js',
-            'web-page::css/web-page.css'
+            'web-page::js/web-page.js'
         ],
 
         'WebPageShow' => [
-            'web-page::js/web-page.js',
-            'web-page::css/web-page.css'
+            'web-page::js/web-page.js'
         ]
 
     ],

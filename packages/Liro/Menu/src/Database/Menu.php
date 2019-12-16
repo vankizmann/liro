@@ -33,6 +33,7 @@ class Menu extends Model
         'state'         => null,
         'hide'          => null,
         'type'          => null,
+        'icon'          => null,
         'extend'        => null,
         'layout'        => null,
         'title'         => null,
@@ -45,6 +46,7 @@ class Menu extends Model
         'state'         => 'integer',
         'hide'          => 'integer',
         'type'          => 'string',
+        'icon'          => 'string',
         'extend'        => 'object',
         'layout'        => 'string',
         'title'         => 'string',
@@ -86,6 +88,11 @@ class Menu extends Model
 
         return $this->attributes['layout'] ?:
             $this->parent->layout;
+    }
+
+    public function getIconAttribute()
+    {
+        return app('web.assets')->file($this->attributes['icon']);
     }
 
 //

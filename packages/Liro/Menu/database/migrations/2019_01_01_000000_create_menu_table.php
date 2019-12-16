@@ -22,6 +22,9 @@ class CreateMenuTable extends Migration
             $table->string('type')
                 ->nullable();
 
+            $table->string('icon')
+                ->nullable();
+
             $table->string('extend')
                 ->nullable();
 

@@ -1,0 +1,15 @@
+@import "~nano-ui/src/root/vars";
+
+.web-backend__title {
+    padding: 35px 50px 40px;
+    background: $--color-white;
+    box-shadow: 0 0 4px rgba($color-black, 0.1);
+}
+
+.web-backend__title-text {
+    color: $--color-primary;
+}
+
+.web-backend__title-info {
+    color: $--color-gray-60;
+}

@@ -1,10 +1,10 @@
 <template>
     <div class="web-dashboard-index">
-        <NSelect :multiple="true">
-            <NSelectOption v-for="item in Arr.make(8)" :key="item" :value="item">
-                {{ `Foobar - ${item}` }}
-            </NSelectOption>
-        </NSelect>
+
+        <WebBackendTitle :key="$route.name">
+            Welcome back!
+        </WebBackendTitle>
+
     </div>
 </template>
 <script>

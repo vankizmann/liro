@@ -1,21 +1,34 @@
 <template>
     <div class="web-backend__root grid grid--row">
         <div class="web-backend__menu col--flex-0">
-            <ul>
-                <WebBackendMenu v-for="menu in menus" :key="menu.id" :value="menu" />
+            <ul class="grid grid--col grid--10">
+                <WebBackendMainmenu v-for="route in mainmenu" :key="route.name" :value="route" />
             </ul>
         </div>
         <div class="web-backend__tree col--flex-0">
             <WebBackendTree />
         </div>
-        <div class="web-backend__body col--flex-1">
-            <router-view />
+        <div class="web-backend__frame col--flex-1">
+            <div class="web-backend__header full-height-child">
+                <div class="grid grid--row grid--middle">
+                    <div class="col--auto col--left">
+                        <ul class="grid grid--row grid--10">
+                            <WebBackendSubmenu v-for="route in submenu" :key="route.name" :value="route" />
+                        </ul>
+                    </div>
+                    <div class="col--auto col--right">
+                        <WebBackendUser />
+                    </div>
+                </div>
+            </div>
+            <div class="web-backend__body full-height-child">
+                <RouterView />
+            </div>
         </div>
     </div>
 </template>
 <script>
     import Vue from "vue";
-    import WebBackendMenu from "./WebBackendMenu";
 
     export default {
 
@@ -23,21 +36,38 @@
 
         computed: {
 
-            menus()
+            mainmenu()
             {
-                return this.Obj.get(window, '_menus', [])
-                    .filter(menu => menu.hide === 0);
+                let routes = this.Arr.each(this.$router.options.routes, (route) => {
+                    return this.Obj.get(route, 'meta.menu');
+                });
+
+                return this.Arr.filter(routes, (route) => {
+                    return this.Obj.get(route, 'hide', 1) === 0;
+                });
+            },
+
+            submenu()
+            {
+                let routes = this.Obj.get(this.$route.matched, '0.meta.menu.children', []);
+
+                return this.Arr.filter(routes, (route) => {
+                    return this.Obj.get(route, 'hide', 1) === 0;
+                });
             }
 
         },
 
         components: {
 
-            WebBackendMenu: WebBackendMenu,
-
             WebBackendTree()
             {
                 return Vue.Extension.promise('WebMenuTree', () => Vue.component('WebMenuTree'));
+            },
+
+            WebBackendUser()
+            {
+                return Vue.Extension.promise('WebAuthUser', () => Vue.component('WebAuthUser'));
             },
 
         },

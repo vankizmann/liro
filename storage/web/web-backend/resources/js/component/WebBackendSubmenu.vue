@@ -1,19 +1,16 @@
 <template>
     <RouterLink :to="{ name: value.id }" :exact="!value.slug" v-slot="{ href, navigate, isActive, isExactActive }">
-        <li :class="['link', isActive && 'link--active', isExactActive && 'link--exact-active']">
+        <li :class="['col--flex-0', 'link', (isActive || isRedirect) && 'link--active', isExactActive && 'link--exact-active']">
             <a :href="href" @click="navigate">
-                <span>{{ value.title }}</span>
+                {{ value.title }}
             </a>
-            <ul v-if="value.children && value.children.length">
-                <WebBackendMenu v-for="menu in menus" :key="menu.id" :value="menu" />
-            </ul>
         </li>
     </RouterLink>
 </template>
 <script>
     export default {
 
-        name: 'WebBackendMenu',
+        name: 'WebBackendSubmenu',
 
         props: {
 
@@ -25,9 +22,10 @@
 
         computed: {
 
-            menus()
+            isRedirect()
             {
-                return this.value.children.filter(menu => menu.hide === 0);
+                return this.Obj.get(this.value, 'extend.redirect')
+                    === this.$route.name;
             }
 
         }

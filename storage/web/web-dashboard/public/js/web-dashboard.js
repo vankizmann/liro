@@ -129,16 +129,9 @@ var render = function() {
     "div",
     { staticClass: "web-dashboard-index" },
     [
-      _c(
-        "NSelect",
-        { attrs: { multiple: true } },
-        _vm._l(_vm.Arr.make(8), function(item) {
-          return _c("NSelectOption", { key: item, attrs: { value: item } }, [
-            _vm._v("\n            " + _vm._s("Foobar - " + item) + "\n        ")
-          ])
-        }),
-        1
-      )
+      _c("WebBackendTitle", { key: _vm.$route.name }, [
+        _vm._v("\n        Welcome back!\n    ")
+      ])
     ],
     1
   )
@@ -366,8 +359,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-dashboard/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-dashboard/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-dashboard/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-dashboard/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

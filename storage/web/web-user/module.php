@@ -13,18 +13,15 @@ return [
     'vue' => [
 
         'WebUserIndex' => [
-            'web-user::js/web-user.js',
-            'web-user::css/web-user.css'
+            'web-user::js/web-user.js'
         ],
 
         'WebUserEdit' => [
-            'web-user::js/web-user.js',
-            'web-user::css/web-user.css'
+            'web-user::js/web-user.js'
         ],
 
         'WebUserShow' => [
-            'web-user::js/web-user.js',
-            'web-user::css/web-user.css'
+            'web-user::js/web-user.js'
         ]
 
     ],

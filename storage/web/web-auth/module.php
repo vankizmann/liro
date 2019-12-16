@@ -20,6 +20,10 @@ return [
             'web-auth::js/web-auth.js'
         ],
 
+        'WebAuthUser' => [
+            'web-auth::js/web-auth.js'
+        ],
+
     ],
 
     'routes' => [

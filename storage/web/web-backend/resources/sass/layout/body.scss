@@ -1,0 +1,10 @@
+@import "~nano-ui/src/root/vars";
+
+.web-backend__body .n-tabs__header {
+    background: $--color-white;
+}
+
+.web-backend__body .n-tabs__header-inner {
+    padding: 0 50px;
+    border-bottom: 1px solid $--color-gray-05;
+}

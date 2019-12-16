@@ -1,6 +1,83 @@
 @import "~nano-ui/src/root/vars";
 
+[v-cloak] {
+    display: none;
+}
+
+* {
+    outline: none !important;
+}
+
+html, body {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 15px;
+}
+
 body {
     font-family: 'Heebo', 'Helvetica', 'Arial', sans-serif;
-    font-size: 15px;
+    font-weight: 400;
+    color: $color-black;
+    background: $--color-background;
+}
+
+div, a {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: $--color-primary;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 3.2rem
+}
+
+h2 {
+    font-size: 2.4rem
+}
+
+h3 {
+    font-size: 1.8rem
+}
+
+h4 {
+    font-size: 1.3rem
+}
+
+h5 {
+    font-size: 1.0rem
+}
+
+h6 {
+    font-size: 0.9rem
+}
+
+p {
+    color: $--color-black;
+    font-size: 1.0rem;
+}
+
+th {
+    font-weight: normal;
+}
+
+.full-height {
+    position: relative;
+    min-height: 100%;
+}
+
+.full-height-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.full-height-child > * {
+    width: 100%;
+    flex: 1 0 auto;
 }

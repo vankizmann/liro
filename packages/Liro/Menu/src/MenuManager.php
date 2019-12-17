@@ -235,9 +235,6 @@ class MenuManager
         $this->app->make(...$config)->route($menu, $options);
     }
 
-
-
-
     public function registerRoute($key, $options)
     {
         $key = preg_replace('/^ajax@/', '', $key, -1, $matches);
@@ -282,6 +279,15 @@ class MenuManager
     {
         return ! $key || ! $this->activeMenu ? $this->activeMenu->getRoot() :
             $this->activeMenu->getRoot()->__get($key, $fallback);
+    }
+
+    public function getOptions($type, $fallback = [])
+    {
+        if ( ! isset($this->http[$type]) ) {
+            return $fallback;
+        }
+
+        return $this->app->make(...$this->http[$type])->options();
     }
 
 }

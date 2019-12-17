@@ -6776,6 +6776,22 @@ readers do not read off random characters that represent icons */
   font-weight: 900;
 }
 
+/*!
+ * Font Awesome Free 5.12.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+@font-face {
+  font-family: "Font Awesome 5 Brands";
+  font-style: normal;
+  font-weight: normal;
+  font-display: auto;
+  src: url("../webfonts/fa-brands-400.eot");
+  src: url("../webfonts/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("../webfonts/fa-brands-400.woff2") format("woff2"), url("../webfonts/fa-brands-400.woff") format("woff"), url("../webfonts/fa-brands-400.ttf") format("truetype"), url("../webfonts/fa-brands-400.svg#fontawesome") format("svg");
+}
+.fab {
+  font-family: "Font Awesome 5 Brands";
+}
+
 .n-notification__wrapper {
   z-index: 7000;
   position: fixed;
@@ -20360,7 +20376,7 @@ th {
 }
 
 .web-backend__tree .n-draggable__item {
-  color: #687083;
+  color: #828898;
   margin-top: 1px;
   border-radius: 1px;
   -webkit-transition: background 0.15s;
@@ -20382,18 +20398,27 @@ th {
   opacity: 0.5;
 }
 
+.web-backend__tree .n-draggable-tree-item > .n-draggable-tree-item__expand span {
+  color: #4f586f;
+}
+
 .web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain {
   font-size: 14px;
   line-height: 40px;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain span:first-child {
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain .web-title {
   font-size: 16px;
   color: #b4b7c1;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain span:not(:last-child) {
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain .web-count {
+  margin-left: 8px;
+}
+
+.web-backend__tree .web-menu__tree-item .web-icon {
   margin-right: 8px;
+  color: #4187fb;
 }
 
 .web-backend__header {
@@ -20411,8 +20436,7 @@ th {
 .web-backend__header ul li a {
   display: inline-block;
   padding: 20px 10px;
-  color: #9b9fad;
-  font-weight: 500;
+  color: #4f586f;
   -webkit-transition: color 0.12s;
   transition: color 0.12s;
 }
@@ -20492,6 +20516,14 @@ th {
   border-bottom: 1px solid #f2f3f5;
 }
 
-* {
-  outline: none !important;
+.fa, .fa[class^=fa-], .fa[class*=" fa-"] {
+  font-family: "Font Awesome 5 Pro", sans-serif;
+}
+
+.fad, [class^=fad-], [class*=fad-] {
+  font-family: "Font Awesome 5 Duotone", sans-serif;
+}
+
+.fab, [class^=fab-], [class*=fab-] {
+  font-family: "Font Awesome 5 Brands", sans-serif;
 }

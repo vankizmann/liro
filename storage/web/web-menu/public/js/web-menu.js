@@ -197,6 +197,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     childLength: function childLength() {
       return Math.abs(this.value.left - this.value.right) - 1;
+    },
+    typeIcon: function typeIcon() {
+      return this.Obj.get(this.value, 'options.icon');
     }
   },
   methods: {}
@@ -319,13 +322,17 @@ var render = function() {
       ]
     },
     [
-      _c("span", [_vm._v(_vm._s(_vm.value.title))]),
+      _c("span", { staticClass: "web-icon" }, [
+        _c("i", { class: _vm.typeIcon })
+      ]),
       _vm._v(" "),
-      _vm.isDomain
-        ? _c("span", [
-            _vm._v(_vm._s(_vm.choice(":count Entries", _vm.childLength)))
-          ])
-        : _vm._e()
+      _c("span", { staticClass: "web-title" }, [
+        _vm._v(_vm._s(_vm.value.title))
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "web-count" }, [
+        _vm._v(_vm._s(_vm.choice(":count Entries", _vm.childLength)))
+      ])
     ]
   )
 }
@@ -696,8 +703,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

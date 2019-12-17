@@ -20,6 +20,18 @@ class DomainConnector extends Connector
     }
 
     /**
+     * Provide options for backend.
+     *
+     * @return array
+     */
+    public function options()
+    {
+        return [
+            'icon' => 'fa fa-globe', 'component' => null
+        ];
+    }
+
+    /**
      * Provide data for view.
      *
      * @param \App\Database\Menu $menu

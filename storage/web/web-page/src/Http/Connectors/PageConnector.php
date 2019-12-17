@@ -27,6 +27,18 @@ class PageConnector extends Connector
     }
 
     /**
+     * Provide options for backend.
+     *
+     * @return array
+     */
+    public function options()
+    {
+        return [
+            'icon' => 'fa fa-file', 'component' => null
+        ];
+    }
+
+    /**
      * Provide data for view.
      *
      * @param \App\Database\Menu $menu

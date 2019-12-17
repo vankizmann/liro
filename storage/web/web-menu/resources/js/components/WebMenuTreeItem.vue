@@ -1,6 +1,6 @@
 <template>
     <div :class="['web-menu__tree-item', ! value.depth && 'web-menu__tree-item--domain']">
-        <span>{{ value.title }}</span> <span v-if="isDomain">{{ choice(':count Entries', childLength) }}</span>
+        <span class="web-icon"><i :class="typeIcon"></i></span> <span class="web-title">{{ value.title }}</span> <span class="web-count">{{ choice(':count Entries', childLength) }}</span>
     </div>
 </template>
 <script>
@@ -31,6 +31,12 @@
             {
                 return Math.abs(this.value.left -
                     this.value.right) - 1;
+            },
+
+            typeIcon()
+            {
+                return this.Obj.get(this.value,
+                    'options.icon');
             }
 
         },

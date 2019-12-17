@@ -21,7 +21,7 @@ class Menu extends Model
     ];
 
     protected $appends = [
-        'route'
+        'route', 'options'
     ];
 
     protected $hidden = [
@@ -93,6 +93,11 @@ class Menu extends Model
     public function getIconAttribute()
     {
         return app('web.assets')->file($this->attributes['icon']);
+    }
+
+    public function getOptionsAttribute()
+    {
+        return app('web.menu')->getOptions($this->attributes['type']);
     }
 
 //

@@ -2,6 +2,7 @@
 
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
 
 $color-white:           #ffffff;
 $color-black:           #181827;
@@ -55,6 +56,14 @@ $box-shadow: 0 0 4px rgba($color-black, 0.125);
 @import "./layout/title";
 @import "./layout/body";
 
-* {
-    outline: none !important;
+.fa, .fa[class^="fa-"], .fa[class*=" fa-"] {
+    font-family: "Font Awesome 5 Pro", sans-serif;
+}
+
+.fad, [class^="fad-"], [class*="fad-"] {
+    font-family: "Font Awesome 5 Duotone", sans-serif;
+}
+
+.fab, [class^="fab-"], [class*="fab-"] {
+    font-family: "Font Awesome 5 Brands", sans-serif;
 }

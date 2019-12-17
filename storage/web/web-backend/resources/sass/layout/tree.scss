@@ -17,7 +17,7 @@
 }
 
 .web-backend__tree .n-draggable__item {
-    color: $--color-gray-60;
+    color: $--color-gray-50;
     margin-top: 1px;
     border-radius: $radius-small;
     transition: background 0.15s;
@@ -37,16 +37,25 @@
     opacity: 0.5;
 }
 
+.web-backend__tree .n-draggable-tree-item > .n-draggable-tree-item__expand span {
+    color: $--color-gray-70;
+}
+
 .web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain {
     font-size: 14px;
     line-height: 40px;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain span:first-child {
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain .web-title {
     font-size: 16px;
     color: $--color-gray-30;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain span:not(:last-child) {
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain .web-count {
+    margin-left: 8px;
+}
+
+.web-backend__tree .web-menu__tree-item .web-icon {
     margin-right: 8px;
+    color: $--color-primary-light;
 }

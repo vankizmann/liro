@@ -20,39 +20,39 @@ class BackendMenuTableSeeder extends Seeder
             'hide'      => 0,
             'title'     => 'liro-cms.com',
             'slug'      => ':domain/:locale/backend',
-            'guard'     => 0,
+            'guard'     => 1,
             'parent_id' => null,
         ]);
 
-        Menu::create([
-            'id'        => uuid(),
-            'type'      => 'web-menu::vue',
-            'icon'      => 'web-auth::img/icon-auth.svg',
-            'extend'    => ['component' => 'WebAuthLogin'],
-            'layout'    => null,
-            'state'     => 1,
-            'hide'      => 1,
-            'title'     => 'Login',
-            'slug'      => '/login',
-            'matrix'    => 1,
-            'guard'     => 0,
-            'parent_id' => $routes['root'],
-        ]);
+//        Menu::create([
+//            'id'        => uuid(),
+//            'type'      => 'web-menu::vue',
+//            'icon'      => 'web-auth::img/icon-auth.svg',
+//            'extend'    => ['component' => 'WebAuthLogin'],
+//            'layout'    => null,
+//            'state'     => 1,
+//            'hide'      => 1,
+//            'title'     => 'Login',
+//            'slug'      => '/login',
+//            'matrix'    => 1,
+//            'guard'     => 0,
+//            'parent_id' => $routes['root'],
+//        ]);
 
-        Menu::create([
-            'id'        => uuid(),
-            'type'      => 'web-menu::vue',
-            'icon'      => 'web-auth::img/icon-auth.svg',
-            'extend'    => ['component' => 'WebAuthLogout'],
-            'layout'    => null,
-            'state'     => 1,
-            'hide'      => 1,
-            'title'     => 'Logout',
-            'slug'      => '/logout',
-            'matrix'    => 1,
-            'guard'     => 0,
-            'parent_id' => $routes['root'],
-        ]);
+//        Menu::create([
+//            'id'        => uuid(),
+//            'type'      => 'web-menu::vue',
+//            'icon'      => 'web-auth::img/icon-auth.svg',
+//            'extend'    => ['component' => 'WebAuthLogout'],
+//            'layout'    => null,
+//            'state'     => 1,
+//            'hide'      => 1,
+//            'title'     => 'Logout',
+//            'slug'      => '/logout',
+//            'matrix'    => 1,
+//            'guard'     => 0,
+//            'parent_id' => $routes['root'],
+//        ]);
 
         Menu::create([
             'id'        => $tmp = uuid(),
@@ -79,7 +79,7 @@ class BackendMenuTableSeeder extends Seeder
             'title'     => 'Dashboard',
             'slug'      => '/dashboard',
             'matrix'    => 1,
-            'guard'     => 0,
+            'guard'     => 1,
             'parent_id' => $routes['root'],
         ]);
 
@@ -93,7 +93,7 @@ class BackendMenuTableSeeder extends Seeder
             'title'     => 'Menus',
             'slug'      => '/menus',
             'matrix'    => 1,
-            'guard'     => 0,
+            'guard'     => 1,
             'parent_id' => $routes['dashboard'],
         ]);
 
@@ -107,7 +107,7 @@ class BackendMenuTableSeeder extends Seeder
             'title'     => 'Pages',
             'slug'      => '/pages',
             'matrix'    => 1,
-            'guard'     => 0,
+            'guard'     => 1,
             'parent_id' => $routes['dashboard'],
         ]);
 
@@ -121,7 +121,7 @@ class BackendMenuTableSeeder extends Seeder
             'title'     => 'Users',
             'slug'      => '/users',
             'matrix'    => 1,
-            'guard'     => 0,
+            'guard'     => 1,
             'parent_id' => $routes['dashboard'],
         ]);
 

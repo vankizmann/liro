@@ -5,6 +5,7 @@ namespace Liro\Web\Auth\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Liro\Menu\Routing\Traits\DiscoverMenu;
+use Liro\Web\Auth\Http\Requests\LoginRequest;
 
 class AuthViewController extends Controller
 {
@@ -22,17 +23,22 @@ class AuthViewController extends Controller
         return view('web-auth::login');
     }
 
-    public function postLoginRoute()
+    public function postLoginRoute(LoginRequest $request)
     {
-        $data = request()->only([
-            'email', 'password', 'remember'
+        $data = $request->only([
+            'email', 'password'
         ]);
 
         if ( ! Auth::attempt($data) ) {
-            request()->session()->flash('error', trans('Invalid email or password.'));
+            return back()->withInput()->with('error', trans('Invalid email or password.'));
         }
 
-        return view('web-auth::login');
+        return redirect('/:locale/backend');
+    }
+
+    public function getLogoutRoute()
+    {
+        return redirect('/');
     }
 
 }

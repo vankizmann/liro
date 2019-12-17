@@ -29,15 +29,9 @@ class AuthController extends Controller
 
     public function postLogoutRoute()
     {
-        $user = Auth::user();
-
-        if ( empty($user) ) {
-            abort(401, trans('User already logged out.'));
-        }
-
         Auth::logout();
 
-        return response()->json($user);
+        return response()->json(['redirect' => url('/')]);
     }
 
     public function getUserRoute()

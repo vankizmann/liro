@@ -7272,8 +7272,12 @@ readers do not read off random characters that represent icons */
   cursor: not-allowed;
 }
 
-.n-button.n-button--icon span:first-child {
+.n-button.n-button--icon .n-icon.n-icon--left {
   margin-right: 6.3px;
+}
+
+.n-button.n-button--icon .n-icon.n-icon--right {
+  margin-left: 6.3px;
 }
 
 .n-button.n-button--icon span:first-child:last-child {
@@ -20434,6 +20438,35 @@ th {
 
 .web-backend__header .web-auth__user-image img {
   display: block;
+}
+
+.web-backend__header .web-auth__user-button .n-button {
+  line-height: 42px;
+  padding: 0 10px;
+}
+
+.web-backend__header .n-popover.n-popover--account .n-popover__frame {
+  margin-top: 10px;
+  background: #ffffff;
+  box-shadow: 0 0 4px rgba(24, 24, 39, 0.125);
+}
+
+.web-backend__header .n-popover.n-popover--account .n-popover__footer {
+  padding: 8px 15px;
+  border-top: 1px solid #e6e7ea;
+}
+
+.web-backend__header .n-popover.n-popover--account .n-tabs__header {
+  margin-bottom: 0;
+}
+
+.web-backend__header .n-popover.n-popover--account .n-tabs__header-inner {
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.web-backend__header .n-popover.n-popover--account .n-tabs__tab-label span {
+  font-size: 14px;
 }
 
 .web-backend__title {

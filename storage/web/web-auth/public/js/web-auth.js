@@ -201,6 +201,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebAuthUser',
   data: function data() {
@@ -210,7 +234,9 @@ __webpack_require__.r(__webpack_exports__);
     };
     return {
       user: user,
-      load: true
+      load: true,
+      ready: false,
+      popover: false
     };
   },
   mounted: function mounted() {
@@ -232,6 +258,17 @@ __webpack_require__.r(__webpack_exports__);
       this.$http.get(route, options).then(function (res) {
         return _this.Data.set('auth', _this.user = res.data);
       });
+    },
+    callLogout: function callLogout() {
+      var _this2 = this;
+
+      var route = this.Route.get('module.web-auth.auth.logout');
+      this.$http.post(route, this.form).then(function (res) {
+        return _this2.Route["goto"](res.data.redirect);
+      });
+    },
+    callEdit: function callEdit() {
+      console.log('edit account');
     }
   }
 });
@@ -427,14 +464,134 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col--flex-1" }, [
-          _c("div", { staticClass: "web-auth__user-name" }, [
-            _vm._v(
-              "\n                " + _vm._s(_vm.user.name) + "\n            "
-            )
-          ])
+          _c(
+            "div",
+            {
+              staticClass: "web-auth__user-button",
+              attrs: { id: "auth-popover" }
+            },
+            [
+              _c(
+                "NButton",
+                {
+                  attrs: {
+                    type: "link",
+                    icon: "fa fa-angle-down",
+                    "icon-position": "right"
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.user.name) +
+                      "\n                "
+                  )
+                ]
+              )
+            ],
+            1
+          )
         ])
-      ])
-    ]
+      ]),
+      _vm._v(" "),
+      _c(
+        "NPopover",
+        {
+          attrs: {
+            selector: "#auth-popover",
+            trigger: "click",
+            type: "account",
+            position: "bottom-end",
+            width: 320
+          },
+          on: {
+            input: function($event) {
+              _vm.ready = true
+            }
+          }
+        },
+        [
+          _vm.ready
+            ? _c(
+                "NTabs",
+                [
+                  _c(
+                    "NTabsItem",
+                    {
+                      attrs: {
+                        label: _vm.trans("Notifications"),
+                        name: "notifications"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticStyle: {
+                            "text-align": "center",
+                            padding: "25px 20px"
+                          }
+                        },
+                        [_vm._v(_vm._s(_vm.trans("No notifications.")))]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "NTabsItem",
+                    { attrs: { label: _vm.trans("Tasks"), name: "tasks" } },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticStyle: {
+                            "text-align": "center",
+                            padding: "25px 20px"
+                          }
+                        },
+                        [_vm._v(_vm._s(_vm.trans("No tasks.")))]
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("template", { slot: "footer" }, [
+            _c("div", { staticClass: "grid grid--row grid--center grid--20" }, [
+              _c(
+                "div",
+                { staticClass: "col--flex-0" },
+                [
+                  _c(
+                    "NButton",
+                    { attrs: { type: "link" }, on: { click: _vm.callEdit } },
+                    [_vm._v(_vm._s(_vm.trans("Edit account")))]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col--flex-0" },
+                [
+                  _c(
+                    "NButton",
+                    { attrs: { type: "link" }, on: { click: _vm.callLogout } },
+                    [_vm._v(_vm._s(_vm.trans("Logout")))]
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ],
+        2
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -804,8 +961,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-auth/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-auth/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-auth/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-auth/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

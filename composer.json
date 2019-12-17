@@ -17,7 +17,8 @@
         "liro/menu": "*",
         "liro/module": "*",
         "liro/support": "*",
-        "liro/web": "*"
+        "liro/web": "*",
+        "laravelcollective/html": "^6.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

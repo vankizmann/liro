@@ -39,6 +39,8 @@ $color-info:            #62686d;
 
 $color-background:      #f4f6fa;
 
+$box-shadow: 0 0 4px rgba($color-black, 0.125);
+
 @import "~nano-ui/src/index";
 
 @import "./mixins/media";

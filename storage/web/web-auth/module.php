@@ -36,6 +36,10 @@ return [
             Liro\Web\Auth\Http\Connectors\LoginConnector::class,
         ],
 
+        'http@web-auth::logout' => [
+            Liro\Web\Auth\Http\Connectors\LogoutConnector::class,
+        ],
+
     ],
 
 ];

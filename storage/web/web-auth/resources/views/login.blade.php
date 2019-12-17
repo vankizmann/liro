@@ -1,22 +1,30 @@
-@extends(web()->getLayout())
+@extends( web()->getLayout() )
 
 @section('content')
-    <form method="POST" action="{{ url()->current() }}">
-        @csrf
+    {!! Form::open(['url' => url()->current()]) !!}
+
+        {!! Form::token() !!}
 
         <div class="form-group">
-            <label for="email">{{ trans('E-Mail-Address') }}</label>
-            <input id="email" type="text" value="{{ old('email') }}" placeholder="{{ trans('Please enter your email') }}" class="form-control">
+            {!! Form::label('email', 'E-Mail-Address') !!}
+            {!! Form::email('email', null, ['placeholder' => trans('Please enter your email'), 'class' => 'form-control']) !!}
+            @if ($errors->has('email'))
+                <span class="text-danger">{{ $errors->first('email') }}</span>
+            @endif
+        </div>
+
+
+        <div class="form-group">
+            {!! Form::label('password', 'Password') !!}
+            {!! Form::password('password', ['placeholder' => trans('Please enter your password'), 'class' => 'form-control']) !!}
+            @if ($errors->has('password'))
+                <span class="text-danger">{{ $errors->first('password') }}</span>
+            @endif
         </div>
 
         <div class="form-group">
-            <label for="email">{{ trans('Password') }}</label>
-            <input id="password" type="password" value="{{ old('password') }}" placeholder="{{ trans('Please enter your password') }}" class="form-control">
+            {!! Form::submit(trans('Sign in'), ['class' => 'btn btn-primary']) !!}
         </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">{{ trans('Sign in') }}</button>
-        </div>
-
-    </form>
+    {!! Form::close() !!}
 @endsection

@@ -6,22 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ app('web.menu')->getMenu('title') }}</title>
 
-    <style>
-        body {
-            font-family: 'Helvetica Neue', 'Arial', sans-serif;
-            color: #FFFFFF;
-            background: #BFD5E2;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            padding: 20px;
-            margin: 80px auto;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
+    @if( session()->has('error') )
+        <div class="error" style="color: red;">
+            {{ session()->get('error') }}
+        </div>
+    @endif
     <div class="container">
         @yield('content')
     </div>

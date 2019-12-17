@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c4f54522bb276e0cdfd663cb5108d8c9",
+    "content-hash": "70e0bd2208c235554d88999f7a8079ac",
     "packages": [
         {
             "name": "baum/baum",
@@ -880,6 +880,74 @@
             "time": "2019-08-07T15:10:45+00:00"
         },
         {
+            "name": "laravelcollective/html",
+            "version": "v6.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "bcc317d21a7e04eebcc81c4109fa84feaab63590"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/bcc317d21a7e04eebcc81c4109fa84feaab63590",
+                "reference": "bcc317d21a7e04eebcc81c4109fa84feaab63590",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "^6.0",
+                "illuminate/routing": "^6.0",
+                "illuminate/session": "^6.0",
+                "illuminate/support": "^6.0",
+                "illuminate/view": "^6.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "illuminate/database": "^6.0",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Collective\\Html\\HtmlServiceProvider"
+                    ],
+                    "aliases": {
+                        "Form": "Collective\\Html\\FormFacade",
+                        "Html": "Collective\\Html\\HtmlFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                },
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "https://laravelcollective.com",
+            "time": "2019-10-02T00:37:39+00:00"
+        },
+        {
             "name": "league/flysystem",
             "version": "1.0.61",
             "source": {
@@ -969,7 +1037,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Assets",
-                "reference": "387e4d8185bb9b588dae73e92aa3851d6e734bc8"
+                "reference": "387e4d8185bb9b588dae73e92aa3851d6e734bc8",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1027,7 +1096,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Language",
-                "reference": "a002cd3fda01933cdca7b5fd2d8b871714ac2828"
+                "reference": "a002cd3fda01933cdca7b5fd2d8b871714ac2828",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1085,7 +1155,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Media",
-                "reference": "5e1b9259afbbf261c06462d1e72b2cb2f2137d97"
+                "reference": "5e1b9259afbbf261c06462d1e72b2cb2f2137d97",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1144,7 +1215,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Menu",
-                "reference": "de8adb5564580cd0f7eaa6f12af0cc16a365ae25"
+                "reference": "de8adb5564580cd0f7eaa6f12af0cc16a365ae25",
+                "shasum": null
             },
             "require": {
                 "baum/baum": "^2.0.0",
@@ -1203,7 +1275,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Module",
-                "reference": "44ceff273ee06c15af332ee79cda3d4e6681db8b"
+                "reference": "44ceff273ee06c15af332ee79cda3d4e6681db8b",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1261,7 +1334,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Support",
-                "reference": "c14a7467142ed2c0de6a32f671ccaf0f4b4c860f"
+                "reference": "c14a7467142ed2c0de6a32f671ccaf0f4b4c860f",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1323,7 +1397,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/User",
-                "reference": "eaae75c7cbe620927bea0f56b79130897eca42ad"
+                "reference": "eaae75c7cbe620927bea0f56b79130897eca42ad",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -1381,7 +1456,8 @@
             "dist": {
                 "type": "path",
                 "url": "packages/Liro/Web",
-                "reference": "5f2d7535ea8ac929c7687a779768d6b846f06679"
+                "reference": "5f2d7535ea8ac929c7687a779768d6b846f06679",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.5.5|~5.6.0|~5.7.0|~5.8.0|^6.0",

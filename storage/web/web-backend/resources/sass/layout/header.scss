@@ -42,3 +42,31 @@
 .web-backend__header .web-auth__user-image img {
     display: block;
 }
+
+.web-backend__header .web-auth__user-button .n-button {
+    line-height: 42px;
+    padding: 0 10px;
+}
+
+.web-backend__header .n-popover.n-popover--account .n-popover__frame {
+    margin-top: 10px;
+    background: $--color-white;
+    box-shadow: $box-shadow;
+}
+
+.web-backend__header .n-popover.n-popover--account .n-popover__footer {
+    padding: 8px 15px;
+    border-top: 1px solid $--color-gray-10;
+}
+
+.web-backend__header .n-popover.n-popover--account .n-tabs__header {
+    margin-bottom: 0;
+}
+
+.web-backend__header .n-popover.n-popover--account .n-tabs__header-inner {
+    justify-content: center;
+}
+
+.web-backend__header .n-popover.n-popover--account .n-tabs__tab-label span {
+    font-size: 14px;
+}

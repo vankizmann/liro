@@ -10,7 +10,7 @@ return [
         'Liro\\Web\\User\\' => 'src/'
     ],
 
-    'vue' => [
+    'imports' => [
 
         'WebUserIndex' => [
             'web-user::js/web-user.js'

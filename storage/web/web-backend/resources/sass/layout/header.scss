@@ -27,3 +27,18 @@
 .web-backend__header ul li.link--active a {
     color: $--color-black;
 }
+
+.web-backend__header .web-auth__user-image,
+.web-backend__header .web-auth__user-image img {
+    width: 42px;
+    height: 42px;
+}
+
+.web-backend__header .web-auth__user-image {
+    overflow: hidden;
+    border-radius: 500px;
+}
+
+.web-backend__header .web-auth__user-image img {
+    display: block;
+}

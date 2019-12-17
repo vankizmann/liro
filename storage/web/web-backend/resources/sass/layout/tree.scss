@@ -4,11 +4,12 @@
     width: 360px;
     padding: 20px;
     background: $--color-black-light;
+    overflow-y: auto;
 }
 
 .web-backend__tree .web-menu__tree {
     position: relative;
-    height: 100%;
+    min-height: 100%;
 }
 
 .web-backend__tree .web-menu__tree:after {
@@ -17,32 +18,35 @@
 
 .web-backend__tree .n-draggable__item {
     color: $--color-gray-60;
-    padding-top: 1px;
+    margin-top: 1px;
+    border-radius: $radius-small;
+    transition: background 0.15s;
 }
 
 .web-backend__tree .n-draggable__item:hover,
 .web-backend__tree .n-draggable__item.n-draggable--dragover {
-    background: none;
+    background: $--color-black-lighter;
 }
 
-.web-backend__tree .n-draggable__item .n-draggable-tree-item {
-    border-radius: $radius-small;
-    transition: background 0.13s;
+.web-backend__tree .n-draggable__item.n-draggable--selected {
+    transition: background 0.15s 0.15s;
+    background: $--color-black-lighter;
 }
 
-.web-backend__tree .n-draggable__item.n-draggable--dragover .n-draggable-tree-item,
-.web-backend__tree .n-draggable__item.n-draggable--selected .n-draggable-tree-item {
-    background: $--color-black-light;
-}
-
-.web-backend__tree .n-draggable__item.n-draggable--selected .n-draggable-tree-item {
-    transition: background 0.13s 0.26s;
-}
-
-.web-backend__tree .n-draggable__item.n-draggable--dragover.n-draggable--selected .n-draggable-tree-item {
+.web-backend__tree .n-draggable__item.n-draggable--dragover.n-draggable--selected {
     opacity: 0.5;
 }
 
-.web-backend__tree .n-draggable-tree-item.n-draggable-tree-item--selected > .n-draggable-tree-item__body {
-    color: $--color-white;
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain {
+    font-size: 14px;
+    line-height: 40px;
+}
+
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain span:first-child {
+    font-size: 16px;
+    color: $--color-gray-30;
+}
+
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain span:not(:last-child) {
+    margin-right: 8px;
 }

@@ -40,4 +40,9 @@ class AuthController extends Controller
         return response()->json($user);
     }
 
+    public function getUserRoute()
+    {
+        return response()->json(Auth::user());
+    }
+
 }

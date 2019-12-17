@@ -189,8 +189,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'WebAuthUser'
+  name: 'WebAuthUser',
+  data: function data() {
+    var user = {
+      name: 'Anonymous',
+      email: 'user@email.com'
+    };
+    return {
+      user: user,
+      load: true
+    };
+  },
+  mounted: function mounted() {
+    this.fetchUser();
+  },
+  methods: {
+    fetchUser: function fetchUser() {
+      var _this = this;
+
+      var route = this.Route.get('module.web-auth.auth.user');
+      var options = {
+        onLoad: function onLoad() {
+          return _this.load = true;
+        },
+        onDone: function onDone() {
+          return _this.load = false;
+        }
+      };
+      this.$http.get(route, options).then(function (res) {
+        return _this.Data.set('auth', _this.user = res.data);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -364,9 +407,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "web-auth__user" }, [
-    _vm._v("\n    Greetz!\n")
-  ])
+  return _c(
+    "NLoader",
+    {
+      staticClass: "web-auth__user",
+      attrs: { visible: _vm.load, size: "small" }
+    },
+    [
+      _c("div", { staticClass: "grid grid--row grid--middle grid--10" }, [
+        _c("div", { staticClass: "col--flex-0" }, [
+          _c("div", { staticClass: "web-auth__user-image" }, [
+            _c("img", {
+              attrs: {
+                src: "//api.adorable.io/avatars/150/" + _vm.user.email,
+                alt: _vm.user.name
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col--flex-1" }, [
+          _c("div", { staticClass: "web-auth__user-name" }, [
+            _vm._v(
+              "\n                " + _vm._s(_vm.user.name) + "\n            "
+            )
+          ])
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -6992,6 +6992,8 @@ readers do not read off random characters that represent icons */
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
           flex-direction: row;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .n-draggable-tree-item > .n-draggable-tree-item__expand {
@@ -7005,7 +7007,7 @@ readers do not read off random characters that represent icons */
   -webkit-box-pack: center;
           justify-content: center;
   width: 34px;
-  height: 34px;
+  min-height: 34px;
 }
 
 .n-draggable-tree-item.n-draggable-tree-item--empty > .n-draggable-tree-item__expand {
@@ -7033,11 +7035,7 @@ readers do not read off random characters that represent icons */
   -webkit-box-pack: start;
           justify-content: flex-start;
   min-width: 0;
-  height: 34px;
-}
-
-.n-draggable-tree-item.n-draggable-tree-item--selected > .n-draggable-tree-item__body {
-  color: #2877fa;
+  min-height: 34px;
 }
 
 .n-loader {
@@ -7069,11 +7067,7 @@ readers do not read off random characters that represent icons */
   content: "\A0";
   z-index: 900;
   position: absolute;
-  top: calc(50% - 20px);
-  left: calc(50% - 20px);
   display: none;
-  width: 40px;
-  height: 40px;
   border-radius: 500px;
   border: 2px solid #2877fa;
   border-bottom-color: transparent;
@@ -7083,6 +7077,27 @@ readers do not read off random characters that represent icons */
 
 .n-loader.n-loader--active:before {
   display: block;
+}
+
+.n-loader.n-loader--default:before {
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  width: 40px;
+  height: 40px;
+}
+
+.n-loader.n-loader--small:before {
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+  width: 20px;
+  height: 20px;
+}
+
+.n-loader.n-loader--large:before {
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
 }
 
 .n-loader:after {
@@ -20328,11 +20343,12 @@ th {
   width: 360px;
   padding: 20px;
   background: #222237;
+  overflow-y: auto;
 }
 
 .web-backend__tree .web-menu__tree {
   position: relative;
-  height: 100%;
+  min-height: 100%;
 }
 
 .web-backend__tree .web-menu__tree:after {
@@ -20341,36 +20357,39 @@ th {
 
 .web-backend__tree .n-draggable__item {
   color: #687083;
-  padding-top: 1px;
+  margin-top: 1px;
+  border-radius: 1px;
+  -webkit-transition: background 0.15s;
+  transition: background 0.15s;
 }
 
 .web-backend__tree .n-draggable__item:hover,
 .web-backend__tree .n-draggable__item.n-draggable--dragover {
-  background: none;
+  background: #2b2b47;
 }
 
-.web-backend__tree .n-draggable__item .n-draggable-tree-item {
-  border-radius: 1px;
-  -webkit-transition: background 0.13s;
-  transition: background 0.13s;
+.web-backend__tree .n-draggable__item.n-draggable--selected {
+  -webkit-transition: background 0.15s 0.15s;
+  transition: background 0.15s 0.15s;
+  background: #2b2b47;
 }
 
-.web-backend__tree .n-draggable__item.n-draggable--dragover .n-draggable-tree-item,
-.web-backend__tree .n-draggable__item.n-draggable--selected .n-draggable-tree-item {
-  background: #222237;
-}
-
-.web-backend__tree .n-draggable__item.n-draggable--selected .n-draggable-tree-item {
-  -webkit-transition: background 0.13s 0.26s;
-  transition: background 0.13s 0.26s;
-}
-
-.web-backend__tree .n-draggable__item.n-draggable--dragover.n-draggable--selected .n-draggable-tree-item {
+.web-backend__tree .n-draggable__item.n-draggable--dragover.n-draggable--selected {
   opacity: 0.5;
 }
 
-.web-backend__tree .n-draggable-tree-item.n-draggable-tree-item--selected > .n-draggable-tree-item__body {
-  color: #ffffff;
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain {
+  font-size: 14px;
+  line-height: 40px;
+}
+
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain span:first-child {
+  font-size: 16px;
+  color: #b4b7c1;
+}
+
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain span:not(:last-child) {
+  margin-right: 8px;
 }
 
 .web-backend__header {
@@ -20400,6 +20419,21 @@ th {
 
 .web-backend__header ul li.link--active a {
   color: #181827;
+}
+
+.web-backend__header .web-auth__user-image,
+.web-backend__header .web-auth__user-image img {
+  width: 42px;
+  height: 42px;
+}
+
+.web-backend__header .web-auth__user-image {
+  overflow: hidden;
+  border-radius: 500px;
+}
+
+.web-backend__header .web-auth__user-image img {
+  display: block;
 }
 
 .web-backend__title {

@@ -1,8 +1,8 @@
 import Vue from "vue";
 
-import WebMenuIndex from "./components/WebMenuIndex";
-Vue.component(WebMenuIndex.name, WebMenuIndex);
+import WebUserIndex from "./components/WebUserIndex";
+Vue.component(WebUserIndex.name, WebUserIndex);
 
 if ( console && console.log ) {
-    console.log('web-menu ready.');
+    console.log('web-user ready.');
 }

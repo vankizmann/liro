@@ -7288,12 +7288,8 @@ readers do not read off random characters that represent icons */
   cursor: not-allowed;
 }
 
-.n-button.n-button--icon .n-icon.n-icon--left {
+.n-button.n-button--icon span:first-child {
   margin-right: 6.3px;
-}
-
-.n-button.n-button--icon .n-icon.n-icon--right {
-  margin-left: 6.3px;
 }
 
 .n-button.n-button--icon span:first-child:last-child {
@@ -20403,7 +20399,6 @@ th {
 }
 
 .web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain {
-  font-size: 14px;
   line-height: 40px;
 }
 
@@ -20412,7 +20407,8 @@ th {
   color: #b4b7c1;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain .web-count {
+.web-backend__tree .web-menu__tree-item .web-count {
+  font-size: 12px;
   margin-left: 8px;
 }
 

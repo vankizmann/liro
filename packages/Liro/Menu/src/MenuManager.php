@@ -25,6 +25,11 @@ class MenuManager
     /**
      * @var array
      */
+    public $connectors = [];
+
+    /**
+     * @var array
+     */
     public $allowedActions = [
         'action', 'route'
     ];
@@ -214,6 +219,10 @@ class MenuManager
             return;
         }
 
+        $connector = $this->app->make(
+            array_shift($config), array_merge(['menu' => $menu], $config)
+        );
+
         if ( ! preg_match('/({locale}|:locale)/', $menu->route) ) {
             $locale = RouteHelper::findLocales($menu->route);
         }
@@ -228,11 +237,17 @@ class MenuManager
             RouteHelper::extractRoute($menu->route), $locale
         );
 
+        if ( ! isset($this->connectors[$menu->type]) ) {
+            $this->connectors[$menu->type] = [];
+        }
+
+        $this->connectors[$menu->type][$menu->id] = $connector;
+
         $options = [
             'locale' => $locale, 'domain' => $domain, 'route' => $route, 'menu' => $menu
         ];
 
-        $this->app->make(...$config)->route($menu, $options);
+        $connector->route($menu, $options);
     }
 
     public function registerRoute($key, $options)
@@ -281,13 +296,31 @@ class MenuManager
             $this->activeMenu->getRoot()->__get($key, $fallback);
     }
 
-    public function getOptions($type, $fallback = [])
+    public function getConnector($type, $id = null, $fallback = null)
     {
-        if ( ! isset($this->http[$type]) ) {
+        if ( ! isset($this->connectors[$type]) ) {
             return $fallback;
         }
 
-        return $this->app->make(...$this->http[$type])->options();
+        return ! isset($this->connectors[$type][$id]) ?
+            $fallback : $this->connectors[$type][$id];
+    }
+
+    public function getConnectors($type, $fallback = null)
+    {
+        return ! isset($this->connectors[$type]) ?
+            $fallback : $this->connectors[$type];
+    }
+
+    public function getOptions($type, $id = null, $fallback = [])
+    {
+        $connector = $this->getConnector($type, $id);
+
+        if ( empty($connector) ) {
+            return $fallback;
+        }
+
+        return $this->getConnector($type, $id)->options();
     }
 
 }

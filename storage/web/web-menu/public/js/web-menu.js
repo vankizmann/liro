@@ -330,9 +330,11 @@ var render = function() {
         _vm._v(_vm._s(_vm.value.title))
       ]),
       _vm._v(" "),
-      _c("span", { staticClass: "web-count" }, [
-        _vm._v(_vm._s(_vm.choice(":count Entries", _vm.childLength)))
-      ])
+      _vm.isDomain
+        ? _c("span", { staticClass: "web-count" }, [
+            _vm._v(_vm._s(_vm.choice(":count Entries", _vm.childLength)))
+          ])
+        : _vm._e()
     ]
   )
 }
@@ -703,8 +705,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

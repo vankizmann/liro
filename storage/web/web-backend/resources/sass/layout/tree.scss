@@ -42,7 +42,6 @@
 }
 
 .web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain {
-    font-size: 14px;
     line-height: 40px;
 }
 
@@ -51,7 +50,8 @@
     color: $--color-gray-30;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain .web-count {
+.web-backend__tree .web-menu__tree-item .web-count {
+    font-size: 12px;
     margin-left: 8px;
 }
 

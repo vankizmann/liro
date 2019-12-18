@@ -1,6 +1,6 @@
 <template>
     <div :class="['web-menu__tree-item', ! value.depth && 'web-menu__tree-item--domain']">
-        <span class="web-icon"><i :class="typeIcon"></i></span> <span class="web-title">{{ value.title }}</span> <span class="web-count">{{ choice(':count Entries', childLength) }}</span>
+        <span class="web-icon"><i :class="typeIcon"></i></span> <span class="web-title">{{ value.title }}</span> <span v-if="isDomain" class="web-count">{{ choice(':count Entries', childLength) }}</span>
     </div>
 </template>
 <script>

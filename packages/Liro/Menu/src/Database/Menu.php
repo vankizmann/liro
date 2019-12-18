@@ -97,7 +97,8 @@ class Menu extends Model
 
     public function getOptionsAttribute()
     {
-        return app('web.menu')->getOptions($this->attributes['type']);
+        return app('web.menu')->getOptions($this->attributes['type'],
+            $this->attributes['id']);
     }
 
 //

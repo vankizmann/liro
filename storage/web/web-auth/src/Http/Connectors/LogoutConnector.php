@@ -27,6 +27,18 @@ class LogoutConnector extends Connector
     }
 
     /**
+     * Provide options for backend.
+     *
+     * @return array
+     */
+    public function options()
+    {
+        return [
+            'icon' => 'fa fa-user-lock', 'component' => null
+        ];
+    }
+
+    /**
      * Collect data for menu rendering.
      *
      * @param \App\Database\Menu $menu

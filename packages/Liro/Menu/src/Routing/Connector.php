@@ -7,6 +7,21 @@ use App\Database\Menu;
 class Connector implements ConnectorInterface
 {
     /**
+     * @var \App\Database\Menu
+     */
+    public $menu;
+
+    /**
+     * Connector constructor.
+     *
+     * @param \App\Database\Menu $menu
+     */
+    public function __construct(Menu $menu)
+    {
+        $this->menu = $menu;
+    }
+
+    /**
      * Provide router options.
      *
      * @param \App\Database\Menu $menu

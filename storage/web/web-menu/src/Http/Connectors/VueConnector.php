@@ -52,7 +52,7 @@ class VueConnector extends Connector
     public function options()
     {
         return [
-            'icon' => 'fab fa-vuejs', 'component' => null
+            'icon' => 'fab fa-vuejs', 'component' => null, 'route' => url($this->menu->route)
         ];
     }
 

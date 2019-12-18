@@ -37,8 +37,16 @@ class LoginConnector extends Connector
      */
     public function options()
     {
-        return [
+        $menu = [
             'icon' => 'fa fa-user-lock', 'component' => null
+        ];
+
+        $module = [
+            'icon' => asset('web-auth::img/web-auth.svg')
+        ];
+
+        return [
+            'menu' => $menu, 'module' => $module
         ];
     }
 

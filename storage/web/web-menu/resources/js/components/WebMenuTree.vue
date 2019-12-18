@@ -1,6 +1,6 @@
 <template>
     <NLoader class="web-menu__tree" :visible="load">
-        <NDraggableTree :items="menus" :cascade.sync="cascade" use="WebMenuTreeItem" />
+        <NDraggableTree :items="menus" :cascade.sync="cascade" use="WebMenuTreeItem" use-after="WebMenuTreeContext" />
     </NLoader>
 </template>
 <script>

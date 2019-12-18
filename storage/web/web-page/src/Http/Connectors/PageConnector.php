@@ -2,6 +2,7 @@
 
 namespace Liro\Web\Page\Http\Connectors;
 
+use Illuminate\Support\Arr;
 use Liro\Menu\Routing\Connector;
 use Liro\Support\Routing\RouteHelper;
 use App\Database\Menu;
@@ -33,8 +34,20 @@ class PageConnector extends Connector
      */
     public function options()
     {
-        return [
+        $menu = [
             'icon' => 'fa fa-file', 'component' => null
+        ];
+
+        $connector = app('web.menu')->findConnector(function ($connector) {
+            return Arr::get((array) $connector->menu->extend, 'component') === 'WebMenuEdit';
+        });
+
+        $module = [
+            'edit' => $connector ? $connector->menu->id : null
+        ];
+
+        return [
+            'menu' => $menu, 'module' => $module
         ];
     }
 

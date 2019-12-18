@@ -7288,8 +7288,12 @@ readers do not read off random characters that represent icons */
   cursor: not-allowed;
 }
 
-.n-button.n-button--icon span:first-child {
+.n-button.n-button--icon .n-icon.n-icon--left {
   margin-right: 6.3px;
+}
+
+.n-button.n-button--icon .n-icon.n-icon--right {
+  margin-left: 6.3px;
 }
 
 .n-button.n-button--icon span:first-child:last-child {
@@ -20398,22 +20402,25 @@ th {
   color: #4f586f;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain {
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--root {
   line-height: 40px;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain .web-title {
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--root .web-title {
   font-size: 16px;
   color: #b4b7c1;
 }
 
 .web-backend__tree .web-menu__tree-item .web-count {
   font-size: 12px;
-  margin-left: 8px;
+  margin-left: 6px;
 }
 
 .web-backend__tree .web-menu__tree-item .web-icon {
-  margin-right: 8px;
+  display: inline-block;
+  width: 24px;
+  margin-right: 6px;
+  text-align: center;
   color: #4187fb;
 }
 

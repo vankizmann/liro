@@ -20,6 +20,26 @@ class MenuConnector extends Connector
     }
 
     /**
+     * Provide options for backend.
+     *
+     * @return array
+     */
+    public function options()
+    {
+        $menu = [
+            'icon' => 'fa fa-globe', 'component' => null
+        ];
+
+        $module = [
+            'icon' => asset('web-menu::img/web-menu.svg')
+        ];
+
+        return [
+            'menu' => $menu, 'module' => $module
+        ];
+    }
+
+    /**
      * Provide data for view.
      *
      * @param \App\Database\Menu $menu

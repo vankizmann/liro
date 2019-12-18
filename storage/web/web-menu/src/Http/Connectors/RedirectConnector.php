@@ -39,8 +39,16 @@ class RedirectConnector extends Connector
      */
     public function options()
     {
-        return [
+        $menu = [
             'icon' => 'fa fa-link', 'component' => null
+        ];
+
+        $module = [
+            'icon' => asset('web-menu::img/web-menu.svg')
+        ];
+
+        return [
+            'menu' => $menu, 'module' => $module
         ];
     }
 

@@ -41,21 +41,24 @@
     color: $--color-gray-70;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain {
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--root {
     line-height: 40px;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--domain .web-title {
+.web-backend__tree .web-menu__tree-item.web-menu__tree-item--root .web-title {
     font-size: 16px;
     color: $--color-gray-30;
 }
 
 .web-backend__tree .web-menu__tree-item .web-count {
     font-size: 12px;
-    margin-left: 8px;
+    margin-left: 6px;
 }
 
 .web-backend__tree .web-menu__tree-item .web-icon {
-    margin-right: 8px;
+    display: inline-block;
+    width: 24px;
+    margin-right: 6px;
+    text-align: center;
     color: $--color-primary-light;
 }

@@ -3,6 +3,7 @@
 namespace Liro\Menu;
 
 use App\Database\Menu;
+use Illuminate\Support\Arr;
 use Liro\Support\Routing\RouteHelper;
 
 class MenuManager
@@ -321,6 +322,17 @@ class MenuManager
         }
 
         return $this->getConnector($type, $id)->options();
+    }
+
+    public function findConnector($callback, $fallback = false, $type = 'web-menu::vue')
+    {
+        if ( ! isset($this->connectors[$type]) ) {
+            return $fallback;
+        }
+
+        $result = array_filter($this->connectors[$type], $callback);
+
+        return reset($result) ?: $fallback;
     }
 
 }

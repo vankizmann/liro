@@ -40,8 +40,16 @@ class Connector implements ConnectorInterface
      */
     public function options()
     {
-        return [
+        $backend = [
             'icon' => 'fa fa-question', 'component' => null
+        ];
+
+        $module = [
+            'icon' => null
+        ];
+
+        return [
+            'backend' => $backend, 'module' => $module
         ];
     }
 

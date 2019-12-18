@@ -51,8 +51,16 @@ class VueConnector extends Connector
      */
     public function options()
     {
+        $menu = [
+            'icon' => 'fab fa-vuejs', 'component' => null
+        ];
+
+        $module = [
+            'icon' => asset('web-menu::img/web-menu.svg')
+        ];
+
         return [
-            'icon' => 'fab fa-vuejs', 'component' => null, 'route' => url($this->menu->route)
+            'menu' => $menu, 'module' => $module
         ];
     }
 

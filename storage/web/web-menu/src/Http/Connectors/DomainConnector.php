@@ -26,8 +26,16 @@ class DomainConnector extends Connector
      */
     public function options()
     {
-        return [
+        $menu = [
             'icon' => 'fa fa-globe', 'component' => null
+        ];
+
+        $module = [
+            'icon' => asset('web-menu::img/web-menu.svg')
+        ];
+
+        return [
+            'menu' => $menu, 'module' => $module
         ];
     }
 

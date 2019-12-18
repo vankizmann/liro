@@ -19,6 +19,9 @@ class CreateMenuTable extends Migration
             $table->integer('hide')
                 ->default(0);
 
+            $table->string('ident')
+                ->nullable();
+
             $table->string('type')
                 ->nullable();
 

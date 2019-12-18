@@ -35,19 +35,21 @@ class PageConnector extends Connector
     public function options()
     {
         $menu = [
-            'icon' => 'fa fa-file', 'component' => null
+            'icon' => 'fa fa-file', 'links' => []
         ];
 
-        $connector = app('web.menu')->findConnector(function ($connector) {
-            return Arr::get((array) $connector->menu->extend, 'component') === 'WebMenuEdit';
+        $connectors = app('web.menu')->findConnectors(function ($connector) {
+            return in_array(Arr::get((array) $connector->menu->extend, 'component'), [
+                'WebMenuIndex', 'WebPageIndex', 'WebMenuEdit'
+            ]);
         });
 
-        $module = [
-            'edit' => $connector ? $connector->menu->id : null
-        ];
+        foreach ( $connectors as $connector ) {
+            $menu['links'][] = ['id' => $connector->menu->id, 'text' => $connector->menu->title];
+        }
 
         return [
-            'menu' => $menu, 'module' => $module
+            'menu' => $menu
         ];
     }
 

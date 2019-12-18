@@ -38,21 +38,28 @@
 
             mainmenu()
             {
-                let routes = this.Arr.each(this.$router.options.routes, (route) => {
-                    return this.Obj.get(route, 'meta.menu');
+                let routes = this.$router.options.routes;
+
+                routes = this.Arr.filter(routes, (route) => {
+                    return ! this.Obj.get(route, 'meta.root');
                 });
 
-                return this.Arr.filter(routes, (route) => {
-                    return this.Obj.get(route, 'hide', 1) === 0;
+                routes = this.Arr.filter(routes, (route) => {
+                    return ! this.Obj.get(route, 'meta.menu.hide', 1);
+                });
+
+                return this.Arr.each(routes, (route) => {
+                    return this.Obj.get(route, 'meta.menu');
                 });
             },
 
             submenu()
             {
-                let routes = this.Obj.get(this.$route.matched, '0.meta.menu.children', []);
+                let routes = this.Obj.get(this.$route, 'meta.root.children',
+                    this.Obj.get(this.$route, 'meta.menu.children', []));
 
                 return this.Arr.filter(routes, (route) => {
-                    return this.Obj.get(route, 'hide', 1) === 0;
+                    return ! this.Obj.get(route, 'hide', 1);
                 });
             }
 
@@ -62,12 +69,14 @@
 
             WebBackendTree()
             {
-                return Vue.Extension.promise('WebMenuTree', () => Vue.component('WebMenuTree'));
+                return Vue.Extension.promise('WebMenuTree',
+                    () => Vue.component('WebMenuTree'));
             },
 
             WebBackendUser()
             {
-                return Vue.Extension.promise('WebAuthUser', () => Vue.component('WebAuthUser'));
+                return Vue.Extension.promise('WebAuthUser',
+                    () => Vue.component('WebAuthUser'));
             },
 
         },

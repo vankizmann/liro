@@ -1,9 +1,7 @@
 <template>
-    <NPopover trigger="context">
-        <div class="n-select__option">
-            <RouterLink :to="{ name: Obj.get(value, 'options.module.edit'), params: { id: value.id } }">
-                {{ trans('Edit item') }}
-            </RouterLink>
+    <NPopover type="select" trigger="context" :width="160">
+        <div v-for="link in Obj.get(value, 'options.menu.links')" class="n-select-option">
+            <RouterLink :to="{ name: link.id, params: value }">{{ link.text }}</RouterLink>
         </div>
     </NPopover>
 </template>

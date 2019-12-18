@@ -1,10 +1,14 @@
 import Vue from "vue";
 import VueRouter from 'vue-router';
 
-let resolveMenu = (menu) => {
+let vueRoutes = [];
+
+let resolveMenu = (menu, cascade) => {
+
+   let root = Vue.Arr.get(cascade, 0);
 
     let route = {
-        path: `/${menu.slug}`, name: menu.id, props: true, children: [], meta: { menu }
+        path: `/${menu.route}`, name: menu.id, meta: { root, menu }
     };
 
     let redirect = Vue.Obj.get(menu, 'extend.redirect');
@@ -23,14 +27,10 @@ let resolveMenu = (menu) => {
         };
     }
 
-    if ( ! Vue.Any.isEmpty(menu.children) ) {
-        route.children = Vue.Arr.each(menu.children, resolveMenu);
-    }
-
-    return route;
+    vueRoutes.push(route);
 };
 
-let vueRoutes = Vue.Arr.each(window._menus || [], resolveMenu);
+Vue.Arr.recursive(window._menus || [], 'children', resolveMenu);
 
 export default new VueRouter({
     base: window.basePath, mode: 'history', routes: vueRoutes

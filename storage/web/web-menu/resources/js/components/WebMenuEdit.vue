@@ -1,8 +1,8 @@
 <template>
-    <div class="web-menu-edit" :key="$route.name">
+    <div class="web-menu-edit">
 
         <WebBackendTitle>
-            Last updated at bla bla.
+            {{ $route.params }}
         </WebBackendTitle>
 
     </div>

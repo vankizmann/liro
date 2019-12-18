@@ -21,7 +21,7 @@ class Menu extends Model
     ];
 
     protected $appends = [
-        'route', 'options'
+        'route', 'path', 'options'
     ];
 
     protected $hidden = [
@@ -61,23 +61,28 @@ class Menu extends Model
 
     public function getSlugAttribute()
     {
-        if ( ! $this->parent ) {
-            return '';
-        }
-
-        return str_join('/', $this->parent->slug,
-            trim($this->attributes['slug'], '/'));
+        return trim($this->attributes['slug'], '/');
     }
 
     public function getRouteAttribute()
     {
         if ( ! $this->parent ) {
-            return app('web.manager')->getProtocol() .
-                '://' . $this->attributes['slug'];
+            return '';
         }
 
         return str_join('/', $this->parent->route,
-            trim($this->attributes['slug'], '/'));
+            $this->slug);
+    }
+
+    public function getPathAttribute()
+    {
+        if ( ! $this->parent ) {
+            return app('web.manager')->getProtocol() .
+                '://' . $this->slug;
+        }
+
+        return str_join('/', $this->parent->path,
+            $this->slug);
     }
 
     public function getLayoutAttribute()

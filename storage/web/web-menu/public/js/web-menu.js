@@ -207,8 +207,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebMenuTreeContext',
   props: {
@@ -290,10 +288,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { key: _vm.$route.name, staticClass: "web-menu-edit" },
+    { staticClass: "web-menu-edit" },
     [
       _c("WebBackendTitle", [
-        _vm._v("\n        Last updated at bla bla.\n    ")
+        _vm._v("\n        " + _vm._s(_vm.$route.params) + "\n    ")
       ])
     ],
     1
@@ -413,31 +411,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("NPopover", { attrs: { trigger: "context" } }, [
-    _c(
-      "div",
-      { staticClass: "n-select__option" },
-      [
-        _c(
-          "RouterLink",
-          {
-            attrs: {
-              to: {
-                name: _vm.Obj.get(_vm.value, "options.module.edit"),
-                params: { id: _vm.value.id }
-              }
-            }
-          },
-          [
-            _vm._v(
-              "\n            " + _vm._s(_vm.trans("Edit item")) + "\n        "
-            )
-          ]
-        )
-      ],
-      1
-    )
-  ])
+  return _c(
+    "NPopover",
+    { attrs: { type: "select", trigger: "context", width: 160 } },
+    _vm._l(_vm.Obj.get(_vm.value, "options.menu.links"), function(link) {
+      return _c(
+        "div",
+        { staticClass: "n-select-option" },
+        [
+          _c(
+            "RouterLink",
+            { attrs: { to: { name: link.id, params: _vm.value } } },
+            [_vm._v(_vm._s(link.text))]
+          )
+        ],
+        1
+      )
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1001,8 +993,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

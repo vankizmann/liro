@@ -34,7 +34,7 @@ class VueConnector extends Connector
                 abort(404);
             }
 
-            $basePath = RouteHelper::extractRoute($menu->getRoot()->route);
+            $basePath = RouteHelper::extractRoute($menu->getRoot()->path);
 
             return view('web-menu::vue/default', [
                 'basePath' => $basePath, 'menu' => $menu, 'domain' => $menu->getRoot()

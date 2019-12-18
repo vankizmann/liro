@@ -224,18 +224,18 @@ class MenuManager
             array_shift($config), array_merge(['menu' => $menu], $config)
         );
 
-        if ( ! preg_match('/({locale}|:locale)/', $menu->route) ) {
-            $locale = RouteHelper::findLocales($menu->route);
+        if ( ! preg_match('/({locale}|:locale)/', $menu->path) ) {
+            $locale = RouteHelper::findLocales($menu->path);
         }
 
         // Replace domain in route
         $domain = RouteHelper::replaceDomain(
-            RouteHelper::extractDomain($menu->route)
+            RouteHelper::extractDomain($menu->path)
         );
 
         // Replace domain in route
         $route = RouteHelper::replaceLocale(
-            RouteHelper::extractRoute($menu->route), $locale
+            RouteHelper::extractRoute($menu->path), $locale
         );
 
         if ( ! isset($this->connectors[$menu->type]) ) {
@@ -324,13 +324,20 @@ class MenuManager
         return $this->getConnector($type, $id)->options();
     }
 
-    public function findConnector($callback, $fallback = false, $type = 'web-menu::vue')
+    public function findConnectors($callback, $fallback = [], $type = 'web-menu::vue')
     {
         if ( ! isset($this->connectors[$type]) ) {
             return $fallback;
         }
 
         $result = array_filter($this->connectors[$type], $callback);
+
+        return $result ?: $fallback;
+    }
+
+    public function findConnector($callback, $fallback = null, $type = 'web-menu::vue')
+    {
+        $result = $this->findConnectors($callback, [], $type);
 
         return reset($result) ?: $fallback;
     }

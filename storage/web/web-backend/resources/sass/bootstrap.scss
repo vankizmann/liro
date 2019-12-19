@@ -44,9 +44,9 @@ $box-shadow: 0 0 4px rgba($color-black, 0.125);
 
 @import "~nano-ui/src/index";
 
-@import "./mixins/media";
-@import "./mixins/grid";
-@import "./mixins/space";
+@import "./mixins-new/media";
+@import "./mixins-new/grid";
+@import "./mixins-new/space";
 
 @import "./layout/default";
 @import "./layout/root";

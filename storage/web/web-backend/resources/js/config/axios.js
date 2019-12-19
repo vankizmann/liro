@@ -29,6 +29,10 @@ Axios.interceptors.response.use(
 
         Vue.Obj.get(response.config, 'onDone', () => {})();
 
+        if ( Vue.Obj.has(response, 'data.message') ) {
+            Vue.Notify(response.data.message, 'success');
+        }
+
         // Do something with response data
         return response;
     },

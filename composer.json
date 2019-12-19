@@ -18,7 +18,8 @@
         "liro/module": "*",
         "liro/support": "*",
         "liro/web": "*",
-        "laravelcollective/html": "^6.0"
+        "laravelcollective/html": "^6.0",
+        "caouecs/laravel-lang": "~4.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

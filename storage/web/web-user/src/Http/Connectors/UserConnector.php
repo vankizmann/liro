@@ -25,17 +25,27 @@ class UserConnector extends Connector
      */
     public function options()
     {
-        $menu = [
-            'icon' => 'fab fa-user', 'component' => null
+        $options = [
+            'icon' => 'fa fa-user', 'component' => null, 'links' => []
         ];
 
-        $module = [
-            'icon' => asset('web-user::img/web-user.svg')
-        ];
+        $connector = app('web.menu')->findConnector(function ($connector) {
+            return data_get($connector, 'menu.extend.component') === 'WebMenuEdit';
+        });
 
-        return [
-            'menu' => $menu, 'module' => $module
-        ];
+        if ( ! empty($connector) ) {
+            $options['links'][] = ['id' => $connector->menu->id, 'text' => $connector->menu->title];
+        }
+
+        $connector = app('web.menu')->findConnector(function ($connector) {
+            return data_get($connector, 'menu.extend.component') === 'WebUserEdit';
+        });
+
+        if ( ! empty($connector) ) {
+            $options['links'][] = ['id' => $connector->menu->id, 'text' => $connector->menu->title];
+        }
+
+        return $options;
     }
 
     /**

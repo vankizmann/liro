@@ -1,14 +1,14 @@
 <template>
-    <div class="web-menu-edit">
+    <div class="web-page-edit" :key="$route.name">
 
         <WebBackendTitle>
-            {{ $route.params }}
+            Welcome back!
         </WebBackendTitle>
 
     </div>
 </template>
 <script>
     export default {
-        name: 'WebMenuEdit'
+        name: 'WebPageEdit'
     }
 </script>

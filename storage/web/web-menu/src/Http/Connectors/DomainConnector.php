@@ -26,17 +26,19 @@ class DomainConnector extends Connector
      */
     public function options()
     {
-        $menu = [
-            'icon' => 'fa fa-globe', 'component' => null
+        $options = [
+            'icon' => 'fa fa-globe', 'component' => null, 'links' => []
         ];
 
-        $module = [
-            'icon' => asset('web-menu::img/web-menu.svg')
-        ];
+        $connector = app('web.menu')->findConnector(function ($connector) {
+            return data_get($connector, 'menu.extend.component') === 'WebMenuEdit';
+        });
 
-        return [
-            'menu' => $menu, 'module' => $module
-        ];
+        if ( ! empty($connector) ) {
+            $options['links'][] = ['id' => $connector->menu->id, 'text' => $connector->menu->title];
+        }
+
+        return $options;
     }
 
     /**

@@ -1,6 +1,6 @@
 <template>
     <NLoader class="web-menu__tree" :visible="load">
-        <NDraggableTree :items="menus" :cascade.sync="cascade" use="WebMenuTreeItem" use-after="WebMenuTreeContext" />
+        <NDraggableTree :items="menus" :cascade.sync="cascade" use="WebMenuTreeElement" use-after="WebMenuTreeContext" @move="moveEntity" />
     </NLoader>
 </template>
 <script>
@@ -15,12 +15,12 @@
 
         mounted()
         {
-            this.fetchMenus();
+            this.fetchEntities();
         },
 
         methods: {
 
-            fetchMenus()
+            fetchEntities()
             {
                 let route = this.Route.get('module.web-menu.menu.tree');
 
@@ -31,6 +31,11 @@
 
                 this.$http.get(route, options)
                     .then(res => this.menus = res.data)
+            },
+
+            moveEntity(...args)
+            {
+                console.log(...args); this.fetchEntities();
             }
 
         }

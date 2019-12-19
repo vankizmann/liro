@@ -4,6 +4,7 @@ namespace Liro\Web\Auth\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Liro\Web\Auth\Http\Requests\LoginRequest;
 
 class AuthController extends Controller
 {
@@ -14,10 +15,10 @@ class AuthController extends Controller
         $this->middleware(['web']);
     }
 
-    public function postLoginRoute()
+    public function postLoginRoute(LoginRequest $request)
     {
-        $data = request()->only([
-            'email', 'password', 'remember'
+        $data = $request->only([
+            'email', 'password'
         ]);
 
         if ( ! Auth::attempt($data) ) {

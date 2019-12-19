@@ -2,9 +2,8 @@
 
 namespace Liro\Web\Menu\Http\Connectors;
 
-use Illuminate\Validation\UnauthorizedException;
-use Liro\Menu\Routing\Connector;
 use Liro\Support\Routing\RouteHelper;
+use Liro\Menu\Routing\Connector;
 use App\Database\Menu;
 
 class VueConnector extends Connector
@@ -28,20 +27,9 @@ class VueConnector extends Connector
             app('web.menu')->setMenu($menu);
         }
 
-        $options['uses'] = function () use ($menu, $options) {
-
-            if ( ! app('web.user')->canPolicyDepth($menu) ) {
-                abort(404);
-            }
-
-            $basePath = RouteHelper::extractRoute($menu->getRoot()->path);
-
-            return view('web-menu::vue/default', [
-                'basePath' => $basePath, 'menu' => $menu, 'domain' => $menu->getRoot()
-            ]);
-        };
-
-        app('router')->get($options['route'], $options)->where(['path' => '.*'])->middleware('web');
+        app('router')->any($options['route'], array_merge($options, [
+            'uses' => 'Liro\Web\Menu\Http\Controllers\MenuViewController@anyVueRoute'
+        ]))->where(['path' => '.*']);
     }
 
     /**
@@ -51,17 +39,19 @@ class VueConnector extends Connector
      */
     public function options()
     {
-        $menu = [
-            'icon' => 'fab fa-vuejs', 'component' => null
+        $options = [
+            'icon' => 'fab fa-vuejs', 'component' => null, 'links' => []
         ];
 
-        $module = [
-            'icon' => asset('web-menu::img/web-menu.svg')
-        ];
+        $connector = app('web.menu')->findConnector(function ($connector) {
+            return data_get($connector, 'menu.extend.component') === 'WebMenuEdit';
+        });
 
-        return [
-            'menu' => $menu, 'module' => $module
-        ];
+        if ( ! empty($connector) ) {
+            $options['links'][] = ['id' => $connector->menu->id, 'text' => $connector->menu->title];
+        }
+
+        return $options;
     }
 
     /**

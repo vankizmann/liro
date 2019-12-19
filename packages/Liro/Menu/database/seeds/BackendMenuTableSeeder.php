@@ -87,6 +87,20 @@ class BackendMenuTableSeeder extends Seeder
         Menu::create([
             'id'        => uuid(),
             'type'      => 'web-menu::vue',
+            'extend'    => ['redirect' => $routes['dashboard']],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Dashboard',
+            'slug'      => '/dashboard',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $routes['dashboard'],
+        ]);
+
+        Menu::create([
+            'id'        => uuid(),
+            'type'      => 'web-menu::vue',
             'extend'    => ['redirect' => $routes['menu']],
             'layout'    => null,
             'state'     => 1,
@@ -196,6 +210,20 @@ class BackendMenuTableSeeder extends Seeder
             'matrix'    => 1,
             'guard'     => 1,
             'parent_id' => $routes['page'],
+        ]);
+
+        Menu::create([
+            'id'        => uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['component' =>  'WebPageEdit'],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 1,
+            'title'     => 'Edit page',
+            'slug'      => '/edit/:id',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $tmp,
         ]);
 
         Menu::create([

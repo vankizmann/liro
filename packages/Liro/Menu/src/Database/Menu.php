@@ -12,8 +12,8 @@ class Menu extends Model
 
     protected $table = 'menus';
 
-    protected $guarded = [
-        'id'
+    protected $fillable = [
+        'state', 'hide', 'type', 'icon', 'layout', 'title', 'slug', 'guard', 'extend'
     ];
 
     protected $fields = [
@@ -21,7 +21,7 @@ class Menu extends Model
     ];
 
     protected $appends = [
-        'route', 'path', 'options'
+        'route', 'path', 'icon_url', 'options'
     ];
 
     protected $hidden = [
@@ -34,10 +34,10 @@ class Menu extends Model
         'hide'          => null,
         'type'          => null,
         'icon'          => null,
-        'extend'        => null,
         'layout'        => null,
         'title'         => null,
         'slug'          => null,
+        'extend'        => null,
         'guard'         => null
     ];
 
@@ -47,10 +47,10 @@ class Menu extends Model
         'hide'          => 'integer',
         'type'          => 'string',
         'icon'          => 'string',
-        'extend'        => 'object',
         'layout'        => 'string',
         'title'         => 'string',
         'slug'          => 'string',
+        'extend'        => 'array',
         'guard'         => 'integer'
     ];
 
@@ -59,9 +59,10 @@ class Menu extends Model
 //        return ['domain_id'];
 //    }
 
-    public function getSlugAttribute()
+    public function getIconUrlAttribute()
     {
-        return trim($this->attributes['slug'], '/');
+        return preg_match('/^https?:\/\//', $this->attributes['icon']) ?
+            $this->attributes['icon'] : asset($this->attributes['icon']);
     }
 
     public function getRouteAttribute()
@@ -71,18 +72,18 @@ class Menu extends Model
         }
 
         return str_join('/', $this->parent->route,
-            $this->slug);
+            trim($this->attributes['slug'], '/'));
     }
 
     public function getPathAttribute()
     {
         if ( ! $this->parent ) {
             return app('web.manager')->getProtocol() .
-                '://' . $this->slug;
+                '://' . trim($this->attributes['slug'], '/');
         }
 
         return str_join('/', $this->parent->path,
-            $this->slug);
+            trim($this->attributes['slug'], '/'));
     }
 
     public function getLayoutAttribute()
@@ -93,11 +94,6 @@ class Menu extends Model
 
         return $this->attributes['layout'] ?:
             $this->parent->layout;
-    }
-
-    public function getIconAttribute()
-    {
-        return app('web.assets')->file($this->attributes['icon']);
     }
 
     public function getOptionsAttribute()

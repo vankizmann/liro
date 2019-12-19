@@ -14,7 +14,7 @@
 <script>
     export default {
 
-        name: 'WebMenuTreeItem',
+        name: 'WebMenuTreeElement',
 
         props: {
 
@@ -44,7 +44,7 @@
             typeIcon()
             {
                 return this.Obj.get(this.value,
-                    'options.menu.icon');
+                    'options.icon');
             }
 
         },

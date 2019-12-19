@@ -4,11 +4,14 @@ namespace Liro\Web\Menu\Http\Controllers;
 
 use App\Database\Menu;
 use App\Http\Controllers\Controller;
+use Liro\Web\Menu\Http\Requests\MenuUpdateRequest;
 
 class MenuController extends Controller
 {
     public function __construct()
     {
+        parent::__construct();
+
         $this->middleware(['web']);
     }
 
@@ -41,18 +44,26 @@ class MenuController extends Controller
         return response()->json($menu);
     }
 
-    public function getShowRoute($id)
+    public function getEditRoute($id)
     {
         $menu = Menu::withDepthGuard()->findOrFail($id);
 
-        return response()->json($menu);
+        return response()->json([
+            'data' => $menu->toArray()
+        ]);
     }
 
-    public function postEditRoute($id)
+    public function postUpdateRoute(MenuUpdateRequest $request, $id)
     {
-        $menu = Menu::withDepthGuard()->findOrFail($id);
+        $menu = Menu::withDepthGuard()
+            ->findOrFail($id);
 
-        return response()->json($menu);
+        $menu->fill($request->input())
+            ->save();
+
+        return response()->json([
+            'data' => $menu->toArray(), 'message' => trans('Menu has been updated!')
+        ]);
     }
 
 }

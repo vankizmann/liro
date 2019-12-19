@@ -2,6 +2,7 @@
 
 namespace Liro\Web\Menu\Http\Connectors;
 
+use Liro\Support\Routing\RouteHelper;
 use Liro\Menu\Routing\Connector;
 use App\Database\Menu;
 
@@ -16,20 +17,17 @@ class RedirectConnector extends Connector
      */
     public function route(Menu $menu, $options)
     {
-        if ( ! isset($menu->extend->url) ) {
+        if ( ! isset($menu->extend['url']) ) {
             return;
         }
 
-        $options['uses'] = function () use ($menu, $options) {
+        if ( RouteHelper::isOptionsRoute($options) ) {
+            app('web.menu')->setMenu($menu);
+        }
 
-            if ( ! app('web.user')->canPolicyDepth($menu) ) {
-                abort(404);
-            }
-
-            return redirect($menu->extend->url, 302);
-        };
-
-        app('router')->get($options['route'], $options);
+        app('router')->get($options['route'], array_merge($options, [
+            'uses' => 'Liro\Web\Menu\Http\Controllers\MenuViewController@getRedirectRoute'
+        ]));
     }
 
     /**
@@ -39,17 +37,19 @@ class RedirectConnector extends Connector
      */
     public function options()
     {
-        $menu = [
-            'icon' => 'fa fa-link', 'component' => null
+        $options = [
+            'icon' => 'fa fa-link', 'component' => null, 'links' => []
         ];
 
-        $module = [
-            'icon' => asset('web-menu::img/web-menu.svg')
-        ];
+        $connector = app('web.menu')->findConnector(function ($connector) {
+            return data_get($connector, 'menu.extend.component') === 'WebMenuEdit';
+        });
 
-        return [
-            'menu' => $menu, 'module' => $module
-        ];
+        if ( ! empty($connector) ) {
+            $options['links'][] = ['id' => $connector->menu->id, 'text' => $connector->menu->title];
+        }
+
+        return $options;
     }
 
     /**

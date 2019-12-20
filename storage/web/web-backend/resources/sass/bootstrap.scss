@@ -2,7 +2,7 @@ $color-white:           #ffffff;
 $color-black:           #181827;
 
 $color-light:           #ffffff;
-$color-dark:            #041031;
+$color-dark:            #212238;
 
 $color-gray-05:         mix($color-dark, $color-light, 0.05 * 100%);
 $color-gray-10:         mix($color-dark, $color-light, 0.10 * 100%);
@@ -24,15 +24,15 @@ $color-gray-85:         mix($color-dark, $color-light, 0.85 * 100%);
 $color-gray-90:         mix($color-dark, $color-light, 0.90 * 100%);
 $color-gray-95:         mix($color-dark, $color-light, 0.95 * 100%);
 
-$color-primary:         #2877fa;
-$color-secondary:       #2877fa;
+$color-primary:         #48AEF2;
+$color-secondary:       #48AEF2;
 
 $color-success:         #39c992;
 $color-warning:         #ffac2f;
 $color-danger:          #fd2f51;
 $color-info:            #62686d;
 
-$color-background:      #f4f6fa;
+$color-background:      #F4F7F6;
 
 $box-shadow: 0 0 4px rgba($color-black, 0.125);
 
@@ -58,7 +58,7 @@ $box-shadow: 0 0 4px rgba($color-black, 0.125);
 @import "./layout/body";
 
 .fa, .fa[class^="fa-"], .fa[class*=" fa-"] {
-    font-family: "Font Awesome 5 Pro", sans-serif;
+    font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free", sans-serif;
 }
 
 .fad, [class^="fad-"], [class*="fad-"] {

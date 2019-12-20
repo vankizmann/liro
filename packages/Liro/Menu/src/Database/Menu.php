@@ -93,7 +93,7 @@ class Menu extends Model
         }
 
         return $this->attributes['layout'] ?:
-            $this->parent->layout;
+            $this->parent->final_layout;
     }
 
     public function getOptionsAttribute()

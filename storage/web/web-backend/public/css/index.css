@@ -6859,7 +6859,7 @@ readers do not read off random characters that represent icons */
   transition: -webkit-transform 0.6s;
   transition: transform 0.6s;
   transition: transform 0.6s, -webkit-transform 0.6s;
-  border: 1px solid #e6e7ea;
+  border: 1px solid #e9e9eb;
   box-shadow: 0 1px 3px 1px rgba(24, 24, 39, 0.05);
 }
 
@@ -6889,7 +6889,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-notification.n-notification--primary .n-notification__icon {
-  color: #2877fa;
+  color: #48AEF2;
 }
 
 .n-notification.n-notification--success .n-notification__icon {
@@ -6932,15 +6932,15 @@ readers do not read off random characters that represent icons */
 }
 
 .n-draggable__item:hover {
-  background: #fdfdfe;
+  background: #fbfcfc;
 }
 
 .n-inverse .n-draggable__item:hover {
-  background: #2a3450;
+  background: #424356;
 }
 
 .n-draggable__item.n-draggable--dragover {
-  background: rgba(40, 119, 250, 0.15);
+  background: rgba(72, 174, 242, 0.15);
 }
 
 .n-draggable__empty {
@@ -6974,7 +6974,7 @@ readers do not read off random characters that represent icons */
   top: -99999px;
   left: -99999px;
   border-radius: 500px;
-  background: #2877fa;
+  background: #48AEF2;
 }
 
 .n-draggable__placeholder span {
@@ -6993,7 +6993,7 @@ readers do not read off random characters that represent icons */
   width: 100%;
   height: 1px;
   margin-top: -1px;
-  background: #2877fa;
+  background: #48AEF2;
 }
 
 .n-draggable-tree .n-draggable-tree {
@@ -7033,7 +7033,7 @@ readers do not read off random characters that represent icons */
 .n-draggable-tree-item > .n-draggable-tree-item__expand span {
   display: inline-block;
   font-size: 12px;
-  color: #9b9fad;
+  color: #a6a7af;
 }
 
 .n-draggable-tree-item.n-draggable-tree-item--expanded > .n-draggable-tree-item__expand span {
@@ -7085,7 +7085,7 @@ readers do not read off random characters that represent icons */
   position: absolute;
   display: none;
   border-radius: 500px;
-  border: 2px solid #2877fa;
+  border: 2px solid #48AEF2;
   border-bottom-color: transparent;
   -webkit-animation: n-spinner 1s linear infinite;
           animation: n-spinner 1s linear infinite;
@@ -7165,7 +7165,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-form-group.n-form-group--checkable .n-form-group__label:hover .n-form-group__label-text {
-  color: #2877fa;
+  color: #48AEF2;
 }
 
 .n-inverse .n-form-group__label .n-form-group__label-text {
@@ -7225,12 +7225,12 @@ readers do not read off random characters that represent icons */
 }
 
 .n-form-item__label label {
-  color: #687083;
+  color: #7a7a88;
   font-size: 14px;
 }
 
 .n-inverse .n-form-item__label label {
-  color: #9b9fad;
+  color: #a6a7af;
 }
 
 .n-form-item__error {
@@ -7258,9 +7258,9 @@ readers do not read off random characters that represent icons */
 .n-button:not(.n-button--link) {
   padding: 0 10.2px;
   height: 34px;
-  background: #e6e7ea;
+  background: #e9e9eb;
   font-size: 14px;
-  border: 1px solid #e6e7ea;
+  border: 1px solid #e9e9eb;
   border-radius: 2px;
   -webkit-transition: 0.15s background, 0.15s border, 0.15s color;
   transition: 0.15s background, 0.15s border, 0.15s color;
@@ -7279,8 +7279,8 @@ readers do not read off random characters that represent icons */
 
 .n-button:not(.n-button--link):hover,
 .n-button:not(.n-button--link):focus {
-  background: #d9dbe0;
-  border-color: #d9dbe0;
+  background: #dedee1;
+  border-color: #dedee1;
 }
 
 .n-button.n-button--disabled {
@@ -7334,20 +7334,20 @@ readers do not read off random characters that represent icons */
  * Input
  */
 .n-button.n-button--input {
-  color: #9b9fad;
+  color: #a6a7af;
   background: transparent;
   border-color: transparent;
 }
 
 .n-button.n-button--input:hover,
 .n-button.n-button--input:focus {
-  color: #4187fb;
+  color: #60b9f4;
   background: transparent;
   border-color: transparent;
 }
 
 .n-button.n-button--input:active {
-  color: #0f67f9;
+  color: #30a3f0;
   background: transparent;
   border-color: transparent;
 }
@@ -7355,7 +7355,7 @@ readers do not read off random characters that represent icons */
 .n-button.n-button--disabled.n-button--input:hover,
 .n-button.n-button--disabled.n-button--input:focus,
 .n-button.n-button--disabled.n-button--input:active {
-  color: #9b9fad;
+  color: #a6a7af;
 }
 
 /**
@@ -7363,14 +7363,14 @@ readers do not read off random characters that represent icons */
  */
 .n-button.n-button--link {
   font-size: 14px;
-  color: #2877fa;
+  color: #48AEF2;
   -webkit-transition: 0.15s color;
   transition: 0.15s color;
 }
 
 .n-button.n-button--link:hover,
 .n-button.n-button--link:focus {
-  color: #055bea;
+  color: #1899ef;
 }
 
 .n-button.n-button--small.n-button--link {
@@ -7384,7 +7384,7 @@ readers do not read off random characters that represent icons */
 .n-button.n-button--disabled.n-button--link,
 .n-button.n-button--disabled.n-button--link:hover,
 .n-button.n-button--disabled.n-button--link:focus {
-  color: #9b9fad;
+  color: #a6a7af;
 }
 
 /**
@@ -7392,49 +7392,49 @@ readers do not read off random characters that represent icons */
  */
 .n-button.n-button--primary {
   color: #ffffff;
-  background: #2877fa;
-  border-color: #2877fa;
+  background: #48AEF2;
+  border-color: #48AEF2;
 }
 
 .n-button.n-button--primary:hover,
 .n-button.n-button--primary:focus {
-  background: #4187fb;
-  border-color: #4187fb;
+  background: #60b9f4;
+  border-color: #60b9f4;
 }
 
 .n-button.n-button--primary:active {
-  background: #0f67f9;
-  border-color: #0f67f9;
+  background: #30a3f0;
+  border-color: #30a3f0;
 }
 
 .n-button.n-button--disabled.n-button--primary,
 .n-button.n-button--disabled.n-button--primary:hover,
 .n-button.n-button--disabled.n-button--primary:focus {
-  background: #2877fa;
-  border-color: #2877fa;
+  background: #48AEF2;
+  border-color: #48AEF2;
 }
 
 /**
  * Button primary outline
  */
 .n-button.n-button--outline.n-button--primary {
-  color: #2877fa;
-  background: rgba(40, 119, 250, 0.1);
-  border-color: rgba(40, 119, 250, 0.25);
+  color: #48AEF2;
+  background: rgba(72, 174, 242, 0.1);
+  border-color: rgba(72, 174, 242, 0.25);
 }
 
 .n-button.n-button--outline.n-button--primary:hover,
 .n-button.n-button--outline.n-button--primary:focus,
 .n-button.n-button--outline.n-button--primary:active {
-  background: rgba(40, 119, 250, 0.2);
-  border-color: rgba(40, 119, 250, 0.25);
+  background: rgba(72, 174, 242, 0.2);
+  border-color: rgba(72, 174, 242, 0.25);
 }
 
 .n-button.n-button--outline.n-button--disabled.n-button--primary,
 .n-button.n-button--outline.n-button--disabled.n-button--primary:hover,
 .n-button.n-button--outline.n-button--disabled.n-button--primary:focus {
-  background: rgba(40, 119, 250, 0.1);
-  border-color: rgba(40, 119, 250, 0.25);
+  background: rgba(72, 174, 242, 0.1);
+  border-color: rgba(72, 174, 242, 0.25);
 }
 
 /**
@@ -7443,25 +7443,25 @@ readers do not read off random characters that represent icons */
 .n-button.n-button--secondary {
   color: #181827;
   background: transparent;
-  border-color: #d9dbe0;
+  border-color: #dedee1;
 }
 
 .n-inverse .n-button.n-button--secondary {
   color: #ffffff;
   background: transparent;
-  border-color: #434c65;
+  border-color: #59596a;
 }
 
 .n-button.n-button--secondary:hover,
 .n-button.n-button--secondary:focus {
-  color: #2877fa;
-  background: rgba(40, 119, 250, 0.1);
-  border-color: #2877fa;
+  color: #48AEF2;
+  background: rgba(72, 174, 242, 0.1);
+  border-color: #48AEF2;
 }
 
 .n-button.n-button--secondary:active {
-  background: rgba(40, 119, 250, 0.15);
-  border-color: #0f67f9;
+  background: rgba(72, 174, 242, 0.15);
+  border-color: #30a3f0;
 }
 
 .n-button.n-button--disabled.n-button--secondary,
@@ -7469,7 +7469,7 @@ readers do not read off random characters that represent icons */
 .n-button.n-button--disabled.n-button--secondary:focus {
   color: #181827;
   background: transparent;
-  border-color: #d9dbe0;
+  border-color: #dedee1;
 }
 
 .n-inverse .n-button.n-button--disabled.n-button--secondary,
@@ -7477,7 +7477,7 @@ readers do not read off random characters that represent icons */
 .n-inverse .n-button.n-button--disabled.n-button--secondary:focus {
   color: #ffffff;
   background: transparent;
-  border-color: #434c65;
+  border-color: #59596a;
 }
 
 /**
@@ -7486,29 +7486,29 @@ readers do not read off random characters that represent icons */
 .n-button.n-button--outline.n-button--secondary {
   color: #181827;
   background: transparent;
-  border-color: rgba(130, 136, 152, 0.25);
+  border-color: rgba(144, 145, 156, 0.25);
 }
 
 .n-inverse .n-button.n-button--outline.n-button--secondary {
   color: #ffffff;
   background: rgba(24, 24, 39, 0.25);
-  border-color: rgba(130, 136, 152, 0.25);
+  border-color: rgba(144, 145, 156, 0.25);
 }
 
 .n-button.n-button--outline.n-button--secondary:hover,
 .n-button.n-button--outline.n-button--secondary:focus,
 .n-button.n-button--outline.n-button--secondary:active {
-  color: #2877fa;
-  background: rgba(40, 119, 250, 0.1);
-  border-color: rgba(40, 119, 250, 0.25);
+  color: #48AEF2;
+  background: rgba(72, 174, 242, 0.1);
+  border-color: rgba(72, 174, 242, 0.25);
 }
 
 .n-button.n-button--outline.n-button--disabled.n-button--secondary,
 .n-button.n-button--outline.n-button--disabled.n-button--secondary:hover,
 .n-button.n-button--outline.n-button--disabled.n-button--secondary:focus {
   color: #181827;
-  background: rgba(130, 136, 152, 0.25);
-  border-color: rgba(130, 136, 152, 0.25);
+  background: rgba(144, 145, 156, 0.25);
+  border-color: rgba(144, 145, 156, 0.25);
 }
 
 .n-inverse .n-button.n-button--outline.n-button--disabled.n-button--secondary,
@@ -7516,7 +7516,7 @@ readers do not read off random characters that represent icons */
 .n-inverse .n-button.n-button--outline.n-button--disabled.n-button--secondary:focus {
   color: #ffffff;
   background: rgba(24, 24, 39, 0.25);
-  border-color: rgba(130, 136, 152, 0.25);
+  border-color: rgba(144, 145, 156, 0.25);
 }
 
 /**
@@ -7782,7 +7782,7 @@ readers do not read off random characters that represent icons */
   background: #ffffff;
   font-size: 14px;
   color: #181827;
-  border: 1px solid #d9dbe0;
+  border: 1px solid #dedee1;
   border-radius: 1px;
   -webkit-transition: 0.15s border;
   transition: 0.15s border;
@@ -7794,14 +7794,14 @@ readers do not read off random characters that represent icons */
 }
 
 .n-inverse .n-input {
-  border-color: #36405a;
+  border-color: #4d4e60;
   background: #181827;
   color: #ffffff;
 }
 
 .n-input:hover,
 .n-input:focus {
-  border: 1px solid #2877fa;
+  border: 1px solid #48AEF2;
 }
 
 .n-input.n-input--small {
@@ -7838,21 +7838,21 @@ readers do not read off random characters that represent icons */
 
 .n-input.n-input--disabled {
   cursor: not-allowed;
-  background: #f2f3f5;
+  background: #f4f4f5;
 }
 
 .n-inverse .n-input.n-input--disabled {
-  background: #1d2846;
+  background: #37384c;
 }
 
 .n-input.n-input--disabled:hover,
 .n-input.n-input--disabled:focus {
-  border-color: #d9dbe0;
+  border-color: #dedee1;
 }
 
 .n-inverse .n-input.n-input--disabled:hover,
 .n-inverse .n-input.n-input--disabled:focus {
-  border-color: #36405a;
+  border-color: #4d4e60;
 }
 
 .n-input__wrapper .n-button__wrapper {
@@ -7876,7 +7876,7 @@ readers do not read off random characters that represent icons */
   min-height: 34px;
   background: #ffffff;
   font-size: 14px;
-  border: 1px solid #d9dbe0;
+  border: 1px solid #dedee1;
   border-radius: 1px;
   -webkit-transition: 0.15s border;
   transition: 0.15s border;
@@ -7884,7 +7884,7 @@ readers do not read off random characters that represent icons */
 
 .n-textarea:hover,
 .n-textarea:focus {
-  border: 1px solid #2877fa;
+  border: 1px solid #48AEF2;
 }
 
 .n-textarea.n-textarea--small {
@@ -7901,12 +7901,12 @@ readers do not read off random characters that represent icons */
 
 .n-textarea.n-textarea--disabled {
   cursor: not-allowed;
-  background: #f2f3f5;
+  background: #f4f4f5;
 }
 
 .n-textarea.n-textarea--disabled:hover,
 .n-textarea.n-textarea--disabled:focus {
-  border: 1px solid #d9dbe0;
+  border: 1px solid #dedee1;
 }
 
 .n-select__wrapper {
@@ -7954,21 +7954,21 @@ readers do not read off random characters that represent icons */
           align-items: center;
   background: #ffffff;
   color: #181827;
-  border: 1px solid #d9dbe0;
+  border: 1px solid #dedee1;
   border-radius: 1px;
   -webkit-transition: 0.15s border;
   transition: 0.15s border;
 }
 
 .n-inverse .n-select {
-  border-color: #36405a;
+  border-color: #4d4e60;
   background: #181827;
   color: #ffffff;
 }
 
 .n-select:hover,
 .n-select.n-popover--open {
-  border: 1px solid #2877fa;
+  border: 1px solid #48AEF2;
 }
 
 .n-select.n-select--default {
@@ -7992,14 +7992,14 @@ readers do not read off random characters that represent icons */
 .n-select.n-select--disabled,
 .n-select.n-select--disabled:hover {
   cursor: not-allowed;
-  background: #f2f3f5;
-  border-color: #d9dbe0;
+  background: #f4f4f5;
+  border-color: #dedee1;
 }
 
 .n-inverse .n-select.n-select--disabled,
 .n-inverse .n-select.n-select--disabled:hover {
-  background: #1d2846;
-  border-color: #36405a;
+  background: #37384c;
+  border-color: #4d4e60;
 }
 
 .n-select__label {
@@ -8062,13 +8062,13 @@ readers do not read off random characters that represent icons */
 }
 
 .n-select__item.n-select__item--multiple {
-  background: #e6e7ea;
+  background: #e9e9eb;
   padding: 3px 6px;
   border-radius: 1px;
 }
 
 .n-inverse .n-select__item.n-select__item--multiple {
-  background: #36405a;
+  background: #4d4e60;
 }
 
 .n-select.n-select--default .n-select__item.n-select__item--multiple {
@@ -8087,7 +8087,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-select__item i {
-  color: #828898;
+  color: #90919c;
   margin-left: 4px;
 }
 
@@ -8102,9 +8102,9 @@ readers do not read off random characters that represent icons */
           justify-content: center;
   width: 17px;
   height: 17px;
-  color: #828898;
+  color: #90919c;
   font-size: 9.31px;
-  background: #e6e7ea;
+  background: #e9e9eb;
   border-radius: 500px;
   -webkit-transition: color 0.3s, background 0.3s;
   transition: color 0.3s, background 0.3s;
@@ -8112,23 +8112,23 @@ readers do not read off random characters that represent icons */
 }
 
 .n-inverse .n-select__clear {
-  color: #828898;
-  background: #36405a;
+  color: #90919c;
+  background: #4d4e60;
 }
 
 .n-select__clear:hover {
-  color: #36405a;
-  background: #d9dbe0;
+  color: #4d4e60;
+  background: #dedee1;
 }
 
 .n-inverse .n-select__clear:hover {
-  color: #cdcfd6;
-  background: #434c65;
+  color: #d3d3d7;
+  background: #59596a;
 }
 
 .n-select__arrow {
   margin-left: auto;
-  color: #9b9fad;
+  color: #a6a7af;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
   -webkit-transition: -webkit-transform 0.6s;
@@ -8148,7 +8148,7 @@ readers do not read off random characters that represent icons */
   text-overflow: ellipsis;
   padding: 6px 12px;
   text-align: center;
-  color: #687083;
+  color: #7a7a88;
 }
 
 .n-select-option {
@@ -8161,19 +8161,19 @@ readers do not read off random characters that represent icons */
 
 .n-select-option.n-select-option--disabled {
   cursor: not-allowed;
-  color: #b4b7c1;
+  color: #bcbdc3;
 }
 
 .n-select-option:hover {
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .n-select-option.n-select-option--current {
-  background: rgba(40, 119, 250, 0.1);
+  background: rgba(72, 174, 242, 0.1);
 }
 
 .n-select-option.n-select-option--active {
-  color: #2877fa;
+  color: #48AEF2;
 }
 
 .n-cascader__wrapper {
@@ -8224,21 +8224,21 @@ readers do not read off random characters that represent icons */
           align-items: center;
   background: #ffffff;
   color: #181827;
-  border: 1px solid #d9dbe0;
+  border: 1px solid #dedee1;
   border-radius: 1px;
   -webkit-transition: 0.15s border;
   transition: 0.15s border;
 }
 
 .n-inverse .n-cascader {
-  border-color: #36405a;
+  border-color: #4d4e60;
   background: #181827;
   color: #ffffff;
 }
 
 .n-cascader:hover,
 .n-cascader.n-popover--open {
-  border: 1px solid #2877fa;
+  border: 1px solid #48AEF2;
 }
 
 .n-cascader.n-cascader--default {
@@ -8261,14 +8261,14 @@ readers do not read off random characters that represent icons */
 
 .n-cascader.n-cascader--disabled {
   cursor: not-allowed;
-  background: #f2f3f5;
-  border-color: #d9dbe0;
-  color: #828898;
+  background: #f4f4f5;
+  border-color: #dedee1;
+  color: #90919c;
 }
 
 .n-inverse .n-cascader.n-cascader--disabled {
-  background: #1d2846;
-  border-color: #36405a;
+  background: #37384c;
+  border-color: #4d4e60;
 }
 
 .n-cascader__label {
@@ -8284,7 +8284,7 @@ readers do not read off random characters that represent icons */
   -webkit-box-flex: 0;
           flex: 0 1 auto;
   display: inline-block;
-  color: #828898;
+  color: #90919c;
 }
 
 .n-cascader__item {
@@ -8294,11 +8294,11 @@ readers do not read off random characters that represent icons */
 .n-cascader__item:after {
   content: "/";
   margin: 0 8px;
-  color: #cdcfd6;
+  color: #d3d3d7;
 }
 
 .n-inverse .n-cascader__item:after {
-  color: #36405a;
+  color: #4d4e60;
 }
 
 .n-cascader__item:last-child:after {
@@ -8316,9 +8316,9 @@ readers do not read off random characters that represent icons */
           justify-content: center;
   width: 17px;
   height: 17px;
-  color: #828898;
+  color: #90919c;
   font-size: 9.31px;
-  background: #e6e7ea;
+  background: #e9e9eb;
   border-radius: 500px;
   -webkit-transition: color 0.3s, background 0.3s;
   transition: color 0.3s, background 0.3s;
@@ -8326,24 +8326,24 @@ readers do not read off random characters that represent icons */
 }
 
 .n-inverse .n-cascader__clear {
-  color: #828898;
-  background: #36405a;
+  color: #90919c;
+  background: #4d4e60;
 }
 
 .n-cascader__clear:hover {
-  color: #36405a;
-  background: #d9dbe0;
+  color: #4d4e60;
+  background: #dedee1;
 }
 
 .n-inverse .n-cascader__clear:hover {
-  color: #cdcfd6;
-  background: #434c65;
+  color: #d3d3d7;
+  background: #59596a;
 }
 
 .n-cascader__arrow {
   -webkit-box-flex: 0;
           flex: 0 0 auto;
-  color: #828898;
+  color: #90919c;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
   -webkit-transition: -webkit-transform 0.6s;
@@ -8364,7 +8364,7 @@ readers do not read off random characters that represent icons */
   text-overflow: ellipsis;
   padding: 6px 12px;
   text-align: center;
-  color: #687083;
+  color: #7a7a88;
 }
 
 .n-cascader__options {
@@ -8376,7 +8376,7 @@ readers do not read off random characters that represent icons */
           flex-direction: column;
   max-height: 280px;
   width: 200px;
-  border-left: 1px solid #e6e7ea;
+  border-left: 1px solid #e9e9eb;
 }
 
 .n-cascader__options:first-child {
@@ -8402,19 +8402,19 @@ readers do not read off random characters that represent icons */
 
 .n-cascader-option.n-cascader-option--disabled {
   cursor: not-allowed;
-  color: #b4b7c1;
+  color: #bcbdc3;
 }
 
 .n-cascader-option:hover {
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .n-cascader-option.n-cascader-option--current {
-  background: rgba(40, 119, 250, 0.1);
+  background: rgba(72, 174, 242, 0.1);
 }
 
 .n-cascader-option.n-cascader-option--active {
-  color: #2877fa;
+  color: #48AEF2;
 }
 
 .n-cascader-option__label {
@@ -8435,7 +8435,7 @@ readers do not read off random characters that represent icons */
 
 .n-cascader-option__arrow span {
   font-size: 12.25px;
-  color: #9b9fad;
+  color: #a6a7af;
 }
 
 .n-datepicker__wrapper {
@@ -8470,21 +8470,21 @@ readers do not read off random characters that represent icons */
           align-items: center;
   background: #ffffff;
   color: #181827;
-  border: 1px solid #d9dbe0;
+  border: 1px solid #dedee1;
   border-radius: 1px;
   -webkit-transition: 0.15s border;
   transition: 0.15s border;
 }
 
 .n-inverse .n-datepicker {
-  border-color: #36405a;
+  border-color: #4d4e60;
   background: #181827;
   color: #ffffff;
 }
 
 .n-datepicker:hover,
 .n-datepicker.n-popover--open {
-  border: 1px solid #2877fa;
+  border: 1px solid #48AEF2;
 }
 
 .n-datepicker.n-datepicker--default {
@@ -8520,14 +8520,14 @@ readers do not read off random characters that represent icons */
 .n-datepicker.n-datepicker--disabled,
 .n-datepicker.n-datepicker--disabled:hover {
   cursor: not-allowed;
-  background: #f2f3f5;
-  border-color: #d9dbe0;
+  background: #f4f4f5;
+  border-color: #dedee1;
 }
 
 .n-inverse .n-datepicker.n-datepicker--disabled,
 .n-inverse .n-datepicker.n-datepicker--disabled:hover {
-  background: #1d2846;
-  border-color: #36405a;
+  background: #37384c;
+  border-color: #4d4e60;
 }
 
 .n-datepicker .n-button__wrapper {
@@ -8539,13 +8539,13 @@ readers do not read off random characters that represent icons */
 .n-datepicker__icon {
   -webkit-box-flex: 0;
           flex: 0 0 auto;
-  color: #9b9fad;
+  color: #a6a7af;
 }
 
 .n-datepicker__seperator {
   -webkit-box-flex: 0;
           flex: 0 0 auto;
-  color: #828898;
+  color: #90919c;
 }
 
 .n-datepicker__input {
@@ -8582,7 +8582,7 @@ readers do not read off random characters that represent icons */
   -webkit-box-direction: normal;
           flex-direction: row;
   padding: 10px;
-  border-bottom: 1px solid #e6e7ea;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-datepicker__toolbar {
@@ -8619,7 +8619,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-datepicker__display .n-datepicker__month:hover {
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .n-datepicker__display .n-datepicker__year {
@@ -8630,7 +8630,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-datepicker__display .n-datepicker__year:hover {
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .n-datepicker__dateview .n-datepicker__legend {
@@ -8649,7 +8649,7 @@ readers do not read off random characters that represent icons */
 .n-datepicker__footer {
   padding: 10px;
   text-align: right;
-  border-top: 1px solid #e6e7ea;
+  border-top: 1px solid #e9e9eb;
 }
 
 .n-datepicker__dateview .n-datepicker__body {
@@ -8699,11 +8699,11 @@ readers do not read off random characters that represent icons */
   width: 35px;
   height: 35px;
   border-radius: 500px;
-  color: #828898;
+  color: #90919c;
 }
 
 .n-datepicker__body .n-datepicker__week .n-datepicker__day:hover span {
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .n-datepicker__body .n-datepicker__week .n-datepicker__day.n-datepicker__day--today span {
@@ -8717,12 +8717,12 @@ readers do not read off random characters that represent icons */
 .n-datepicker__body .n-datepicker__week .n-datepicker__day.n-datepicker__day--arrive span,
 .n-datepicker__body .n-datepicker__week .n-datepicker__day.n-datepicker__day--depart span,
 .n-datepicker__body .n-datepicker__week .n-datepicker__day.n-datepicker__day--between span {
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .n-datepicker__body .n-datepicker__week .n-datepicker__day.n-datepicker__day--selected span {
   color: #ffffff;
-  background: #2877fa;
+  background: #48AEF2;
 }
 
 .n-datepicker__body .n-datepicker__week .n-datepicker__day:not(:first-child):not(:last-child).n-datepicker__day--between {
@@ -8791,16 +8791,16 @@ readers do not read off random characters that represent icons */
 }
 
 .n-datepicker__body .n-datepicker__year .n-datepicker__month:hover span {
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .n-datepicker__body .n-datepicker__year .n-datepicker__month.n-datepicker__month--current span {
-  background: #e2e8f2;
+  background: #e5ecea;
 }
 
 .n-datepicker__body .n-datepicker__year .n-datepicker__month.n-datepicker__month--selected span {
   color: #ffffff;
-  background: #2877fa;
+  background: #48AEF2;
 }
 
 .n-datepicker__body .n-datepicker__decade {
@@ -8835,16 +8835,16 @@ readers do not read off random characters that represent icons */
 }
 
 .n-datepicker__body .n-datepicker__decade .n-datepicker__year:hover span {
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .n-datepicker__body .n-datepicker__decade .n-datepicker__year.n-datepicker__year--current span {
-  background: #e2e8f2;
+  background: #e5ecea;
 }
 
 .n-datepicker__body .n-datepicker__decade .n-datepicker__year.n-datepicker__year--selected span {
   color: #ffffff;
-  background: #2877fa;
+  background: #48AEF2;
 }
 
 .n-timepicker__wrapper {
@@ -8879,21 +8879,21 @@ readers do not read off random characters that represent icons */
           align-items: center;
   background: #ffffff;
   color: #181827;
-  border: 1px solid #d9dbe0;
+  border: 1px solid #dedee1;
   border-radius: 1px;
   -webkit-transition: 0.15s border;
   transition: 0.15s border;
 }
 
 .n-inverse .n-timepicker {
-  border-color: #36405a;
+  border-color: #4d4e60;
   background: #181827;
   color: #ffffff;
 }
 
 .n-timepicker:hover,
 .n-timepicker.n-popover--open {
-  border: 1px solid #2877fa;
+  border: 1px solid #48AEF2;
 }
 
 .n-timepicker.n-timepicker--default {
@@ -8929,14 +8929,14 @@ readers do not read off random characters that represent icons */
 .n-timepicker.n-timepicker--disabled,
 .n-timepicker.n-timepicker--disabled:hover {
   cursor: not-allowed;
-  background: #f2f3f5;
-  border-color: #d9dbe0;
+  background: #f4f4f5;
+  border-color: #dedee1;
 }
 
 .n-inverse .n-timepicker.n-timepicker--disabled,
 .n-inverse .n-timepicker.n-timepicker--disabled:hover {
-  background: #1d2846;
-  border-color: #36405a;
+  background: #37384c;
+  border-color: #4d4e60;
 }
 
 .n-timepicker .n-button__wrapper {
@@ -8948,13 +8948,13 @@ readers do not read off random characters that represent icons */
 .n-timepicker__icon {
   -webkit-box-flex: 0;
           flex: 0 0 auto;
-  color: #9b9fad;
+  color: #a6a7af;
 }
 
 .n-timepicker__seperator {
   -webkit-box-flex: 0;
           flex: 0 0 auto;
-  color: #828898;
+  color: #90919c;
 }
 
 .n-timepicker__input {
@@ -8991,7 +8991,7 @@ readers do not read off random characters that represent icons */
   -webkit-box-direction: normal;
           flex-direction: row;
   padding: 10px;
-  border-bottom: 1px solid #e6e7ea;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-timepicker__toolbar {
@@ -9026,7 +9026,7 @@ readers do not read off random characters that represent icons */
 .n-timepicker__footer {
   padding: 10px;
   text-align: right;
-  border-top: 1px solid #e6e7ea;
+  border-top: 1px solid #e9e9eb;
 }
 
 .n-timepicker__panel {
@@ -9041,7 +9041,7 @@ readers do not read off random characters that represent icons */
   min-height: 0;
   padding: 5px;
   overflow-y: auto;
-  border-right: 1px solid #e6e7ea;
+  border-right: 1px solid #e9e9eb;
 }
 
 .n-timepicker__panel:last-child {
@@ -9065,12 +9065,12 @@ readers do not read off random characters that represent icons */
 }
 
 .n-timepicker__panel .n-timepicker__item:hover span {
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .n-timepicker__panel .n-timepicker__item.n-timepicker__item--selected span {
   color: #ffffff;
-  background: #2877fa;
+  background: #48AEF2;
 }
 
 .n-transfer {
@@ -9121,7 +9121,7 @@ readers do not read off random characters that represent icons */
           flex-direction: column;
   width: 50%;
   height: 400px;
-  border: 1px solid #e6e7ea;
+  border: 1px solid #e9e9eb;
   border-radius: 2px;
 }
 
@@ -9139,7 +9139,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-inverse .n-transfer__pane {
-  border-color: #4f586f;
+  border-color: #646474;
 }
 
 .n-transfer__header {
@@ -9154,11 +9154,11 @@ readers do not read off random characters that represent icons */
           align-items: center;
   width: 100%;
   height: 48px;
-  border-bottom: 1px solid #e6e7ea;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-inverse .n-transfer__header {
-  border-bottom-color: #4f586f;
+  border-bottom-color: #646474;
 }
 
 .n-transfer__header .n-transfer__item {
@@ -9169,7 +9169,7 @@ readers do not read off random characters that represent icons */
   -webkit-box-flex: 0;
           flex: 0 0 auto;
   width: 100%;
-  border-bottom: 1px solid #e6e7ea;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-transfer__search .n-input {
@@ -9209,7 +9209,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-transfer__item-count {
-  color: #687083;
+  color: #7a7a88;
   margin-left: 8px;
 }
 
@@ -9222,7 +9222,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-inverse .n-transfer__item-count {
-  color: #9b9fad;
+  color: #a6a7af;
 }
 
 .n-file__wrapper {
@@ -9261,8 +9261,8 @@ readers do not read off random characters that represent icons */
   overflow-y: hidden;
   overflow-x: auto;
   border-radius: 2px;
-  border-left: 1px solid #e6e7ea;
-  border-right: 1px solid #e6e7ea;
+  border-left: 1px solid #e9e9eb;
+  border-right: 1px solid #e9e9eb;
 }
 
 .n-matrix-wrapper {
@@ -9273,8 +9273,8 @@ readers do not read off random characters that represent icons */
           flex-direction: column;
   min-width: 100%;
   overflow: hidden;
-  border-top: 1px solid #e6e7ea;
-  border-bottom: 1px solid #e6e7ea;
+  border-top: 1px solid #e9e9eb;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-matrix__resizer span {
@@ -9282,8 +9282,8 @@ readers do not read off random characters that represent icons */
   width: 0;
   height: 0;
   border: 4px solid transparent;
-  border-right-color: #e6e7ea;
-  border-bottom-color: #e6e7ea;
+  border-right-color: #e9e9eb;
+  border-bottom-color: #e9e9eb;
 }
 
 .n-matrix__head {
@@ -9297,13 +9297,13 @@ readers do not read off random characters that represent icons */
 
 .n-matrix__head .n-matrix__row {
   height: 48px;
-  border-bottom: 1px solid #e6e7ea;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-matrix__head .n-matrix__row > .n-matrix__column {
   padding: 0 10px;
-  color: #687083;
-  border-right: 1px solid #e6e7ea;
+  color: #7a7a88;
+  border-right: 1px solid #e9e9eb;
 }
 
 .n-matrix__head .n-matrix__row > .n-matrix__column:last-child {
@@ -9334,7 +9334,7 @@ readers do not read off random characters that represent icons */
   left: -50%;
   display: block;
   width: 200%;
-  border-bottom: 1px solid #e6e7ea;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-matrix__body .n-matrix__row:hover:after {
@@ -9346,12 +9346,12 @@ readers do not read off random characters that represent icons */
   display: block;
   width: 200%;
   height: 100%;
-  background: #fdfdfe;
+  background: #fbfcfc;
 }
 
 .n-matrix__body .n-matrix__row > .n-matrix__column {
   padding: 0 10px;
-  border-right: 1px solid #e6e7ea;
+  border-right: 1px solid #e9e9eb;
 }
 
 .n-matrix__body .n-matrix__row > .n-matrix__column:last-child {
@@ -9420,7 +9420,7 @@ readers do not read off random characters that represent icons */
   width: 25px;
   height: 25px;
   margin-right: 4px;
-  color: #9b9fad;
+  color: #a6a7af;
   -webkit-transition: -webkit-transform 0.15s;
   transition: -webkit-transform 0.15s;
   transition: transform 0.15s;
@@ -9511,7 +9511,7 @@ readers do not read off random characters that represent icons */
 
 .n-popover.n-popover--default > .n-popover__frame > .n-popover__header {
   padding: 9px 12px;
-  border-bottom: 1px solid #e6e7ea;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-popover.n-popover--select > .n-popover__frame > .n-popover__header {
@@ -9546,12 +9546,12 @@ readers do not read off random characters that represent icons */
 
 .n-popover.n-popover--default > .n-popover__frame > .n-popover__footer {
   padding: 9px 12px;
-  border-top: 1px solid #e6e7ea;
+  border-top: 1px solid #e9e9eb;
 }
 
 .n-popover.n-popover--select > .n-popover__frame > .n-popover__footer {
   padding: 3px 0;
-  border-top: 1px solid #e6e7ea;
+  border-top: 1px solid #e9e9eb;
 }
 
 .n-popover.n-popover--tooltip > .n-popover__frame > .n-popover__footer {
@@ -9567,7 +9567,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-popover-option:hover {
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .n-modal {
@@ -9682,7 +9682,7 @@ readers do not read off random characters that represent icons */
 
 .n-modal.n-modal--default .n-modal__header {
   padding: 14px 22px;
-  border-bottom: 1px solid #e6e7ea;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-modal.n-modal--closable .n-modal__header {
@@ -9706,7 +9706,7 @@ readers do not read off random characters that represent icons */
 
 .n-modal.n-modal--default .n-modal__footer {
   padding: 14px 22px;
-  border-top: 1px solid #e6e7ea;
+  border-top: 1px solid #e9e9eb;
 }
 
 .n-modal__close {
@@ -9728,13 +9728,13 @@ readers do not read off random characters that represent icons */
 
 .n-modal__close span {
   font-size: 18px;
-  color: #b4b7c1;
+  color: #bcbdc3;
   -webkit-transition: color 0.15s;
   transition: color 0.15s;
 }
 
 .n-modal__close:hover span {
-  color: #9b9fad;
+  color: #a6a7af;
 }
 
 .n-confirm {
@@ -9773,7 +9773,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-confirm.n-confirm--primary .n-confirm__icon {
-  color: #2877fa;
+  color: #48AEF2;
 }
 
 .n-confirm.n-confirm--success .n-confirm__icon {
@@ -9821,8 +9821,8 @@ readers do not read off random characters that represent icons */
   overflow-y: hidden;
   overflow-x: auto;
   border-radius: 2px;
-  border-left: 1px solid #e6e7ea;
-  border-right: 1px solid #e6e7ea;
+  border-left: 1px solid #e9e9eb;
+  border-right: 1px solid #e9e9eb;
 }
 
 .n-table .n-draggable {
@@ -9846,8 +9846,8 @@ readers do not read off random characters that represent icons */
           flex-direction: column;
   min-width: 100%;
   overflow: hidden;
-  border-top: 1px solid #e6e7ea;
-  border-bottom: 1px solid #e6e7ea;
+  border-top: 1px solid #e9e9eb;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-table__resizer {
@@ -9875,8 +9875,8 @@ readers do not read off random characters that represent icons */
   width: 0;
   height: 0;
   border: 4px solid transparent;
-  border-right-color: #e6e7ea;
-  border-bottom-color: #e6e7ea;
+  border-right-color: #e9e9eb;
+  border-bottom-color: #e9e9eb;
 }
 
 .n-table__head {
@@ -9894,7 +9894,7 @@ readers do not read off random characters that represent icons */
 
 .n-table__head .n-table__row {
   height: 48px;
-  border-bottom: 1px solid #e6e7ea;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-table.n-table--scroll.n-table--visible .n-table__head .n-table__row {
@@ -9903,8 +9903,8 @@ readers do not read off random characters that represent icons */
 
 .n-table__head .n-table__row > .n-table__column {
   padding: 0 10px;
-  color: #687083;
-  border-right: 1px solid #e6e7ea;
+  color: #7a7a88;
+  border-right: 1px solid #e9e9eb;
 }
 
 .n-table__head .n-table__row > .n-table__column:last-child {
@@ -9912,7 +9912,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-table.n-table--scroll.n-table--visible .n-table__head .n-table__column:last-child {
-  border-right: 1px solid #e6e7ea;
+  border-right: 1px solid #e9e9eb;
 }
 
 .n-table__body {
@@ -9932,11 +9932,11 @@ readers do not read off random characters that represent icons */
 
 .n-table__body .n-table__row {
   height: 40px;
-  border-bottom: 1px solid #e6e7ea;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-table__body .n-table__row.n-table__row--current {
-  background: #fdfdfe;
+  background: #fbfcfc;
 }
 
 .n-table__body .n-table__row > .n-table__column {
@@ -9972,7 +9972,7 @@ readers do not read off random characters that represent icons */
   display: block;
   width: 1px;
   height: 100%;
-  background: #e6e7ea;
+  background: #e9e9eb;
 }
 
 .n-table__row > .n-table__column.n-table__column--auto {
@@ -10146,20 +10146,20 @@ readers do not read off random characters that represent icons */
 
 .n-table-filter__sort span:before {
   margin-bottom: 1px;
-  border-bottom-color: #cdcfd6;
+  border-bottom-color: #d3d3d7;
 }
 
 .n-table-filter.n-table-filter--asc .n-table-filter__sort span:before {
-  border-bottom-color: #2877fa;
+  border-bottom-color: #48AEF2;
 }
 
 .n-table-filter__sort span:after {
   margin-top: 1px;
-  border-top-color: #cdcfd6;
+  border-top-color: #d3d3d7;
 }
 
 .n-table-filter.n-table-filter--desc .n-table-filter__sort span:after {
-  border-top-color: #2877fa;
+  border-top-color: #48AEF2;
 }
 
 .n-table-filter__label {
@@ -10192,7 +10192,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-table__column.n-table__column--filtered .n-table-filter__label {
-  color: #2877fa;
+  color: #48AEF2;
 }
 
 .n-table-filter__label span {
@@ -10215,7 +10215,7 @@ readers do not read off random characters that represent icons */
           align-items: center;
   width: 18px;
   height: 18px;
-  background-color: #f2f3f5;
+  background-color: #f4f4f5;
 }
 
 .n-popover-filter {
@@ -10238,7 +10238,7 @@ readers do not read off random characters that represent icons */
           flex-direction: row;
   -webkit-box-align: center;
           align-items: center;
-  color: #687083;
+  color: #7a7a88;
   font-size: 14px;
 }
 
@@ -10381,7 +10381,7 @@ readers do not read off random characters that represent icons */
           justify-content: center;
   -webkit-box-align: center;
           align-items: center;
-  border: 1px solid #d9dbe0;
+  border: 1px solid #dedee1;
   border-radius: 1px;
   width: 15px;
   height: 15px;
@@ -10393,23 +10393,23 @@ readers do not read off random characters that represent icons */
 }
 
 .n-inverse .n-checkbox .n-checkbox__checkbox {
-  border-color: #36405a;
+  border-color: #4d4e60;
   background: #181827;
 }
 
 .n-checkbox:hover .n-checkbox__checkbox {
-  border-color: #2877fa;
+  border-color: #48AEF2;
 }
 
 .n-checkbox.n-checkbox--disabled .n-checkbox__checkbox {
   cursor: not-allowed;
-  background: #f2f3f5;
-  border-color: #d9dbe0;
+  background: #f4f4f5;
+  border-color: #dedee1;
 }
 
 .n-inverse .n-checkbox.n-checkbox--disabled .n-checkbox__checkbox {
-  border-color: #36405a;
-  background: #1d2846;
+  border-color: #4d4e60;
+  background: #37384c;
 }
 
 .n-checkbox.n-checkbox--small .n-checkbox__checkbox {
@@ -10426,8 +10426,8 @@ readers do not read off random characters that represent icons */
 
 .n-checkbox.n-checkbox--intermediate .n-checkbox__checkbox,
 .n-checkbox.n-checkbox--checked .n-checkbox__checkbox {
-  border-color: #2877fa;
-  background: #2877fa;
+  border-color: #48AEF2;
+  background: #48AEF2;
 }
 
 .n-checkbox .n-checkbox__checkbox span {
@@ -10459,12 +10459,12 @@ readers do not read off random characters that represent icons */
 }
 
 .n-checkbox.n-checkbox--checked .n-checkbox__label {
-  color: #2877fa;
+  color: #48AEF2;
 }
 
 .n-checkbox.n-checkbox--disabled .n-checkbox__label {
   cursor: not-allowed;
-  color: #828898;
+  color: #90919c;
 }
 
 .n-checkbox-group {
@@ -10525,7 +10525,7 @@ readers do not read off random characters that represent icons */
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
           flex-direction: row;
-  border-bottom: 1px solid #e6e7ea;
+  border-bottom: 1px solid #e9e9eb;
 }
 
 .n-tabs__indicator {
@@ -10535,7 +10535,7 @@ readers do not read off random characters that represent icons */
   left: 0;
   width: 100%;
   height: 2px;
-  background: #2877fa;
+  background: #48AEF2;
   -webkit-transition: all ease 0.3s;
   transition: all ease 0.3s;
 }
@@ -10558,11 +10558,11 @@ readers do not read off random characters that represent icons */
 }
 
 .n-tabs__tab-icon span {
-  color: #b4b7c1;
+  color: #bcbdc3;
 }
 
 .n-tabs__tab.n-tabs__tab--current .n-tabs__tab-icon span {
-  color: #2877fa;
+  color: #48AEF2;
 }
 
 .n-tabs__tab-label span {
@@ -10570,7 +10570,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-tabs__tab.n-tabs__tab--current .n-tabs__tab-label span {
-  color: #2877fa;
+  color: #48AEF2;
 }
 
 .n-tabs__body {
@@ -10618,7 +10618,7 @@ readers do not read off random characters that represent icons */
 }
 
 .n-info-column__label {
-  color: #687083;
+  color: #7a7a88;
   margin-bottom: 2px;
   font-size: 14px;
 }
@@ -10665,7 +10665,7 @@ readers do not read off random characters that represent icons */
           align-items: center;
   width: 25px;
   height: 25px;
-  color: #a7abb7;
+  color: #b1b2b9;
   background: rgba(255, 255, 255, 0.5);
 }
 
@@ -10676,8 +10676,8 @@ readers do not read off random characters that represent icons */
   position: relative;
   width: 100%;
   font-size: 5vw;
-  background: #f4f6fa;
-  color: rgba(40, 119, 250, 0.5);
+  background: #F4F7F6;
+  color: rgba(72, 174, 242, 0.5);
   border-radius: 2px;
 }
 
@@ -10718,12 +10718,12 @@ readers do not read off random characters that represent icons */
   display: flex;
   width: 100%;
   height: 4px;
-  background: #e2e8f2;
+  background: #e5ecea;
 }
 
 .n-file-list-item__progress > span {
   height: 4px;
-  background: #2877fa;
+  background: #48AEF2;
 }
 
 .n-file-list-item.n-file-list-item--done .n-file-list-item__progress > span {
@@ -10777,7 +10777,7 @@ readers do not read off random characters that represent icons */
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 0 5px 15px;
-  color: #828898;
+  color: #90919c;
 }
 
 .grid {
@@ -22610,7 +22610,7 @@ body {
   font-family: "Heebo", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
   color: #181827;
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 div, a {
@@ -22619,7 +22619,7 @@ div, a {
 
 a {
   text-decoration: none;
-  color: #2877fa;
+  color: #48AEF2;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -22683,7 +22683,7 @@ th {
   max-width: 100%;
   height: 100vh;
   max-height: 100%;
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .web-backend__root .scrollbar {
@@ -22695,7 +22695,7 @@ th {
 .web-backend__login {
   width: 100vw;
   height: 100vh;
-  background: #f4f6fa;
+  background: #F4F7F6;
 }
 
 .web-backend__login-frame {
@@ -22724,18 +22724,18 @@ th {
 }
 
 .web-backend__menu li a {
-  background: #2877fa;
+  background: #48AEF2;
   border-radius: 5px;
   -webkit-transition: background 0.15s;
   transition: background 0.15s;
 }
 
 .web-backend__menu li a:hover {
-  background: rgba(40, 119, 250, 0.8);
+  background: rgba(72, 174, 242, 0.8);
 }
 
 .web-backend__menu li.link--active a {
-  background: #5a97fb;
+  background: #78c3f5;
 }
 
 .web-backend__tree {
@@ -22754,7 +22754,7 @@ th {
 }
 
 .web-backend__tree .n-draggable__item {
-  color: #828898;
+  color: #90919c;
   margin-top: 1px;
   border-radius: 1px;
   -webkit-transition: background 0.15s;
@@ -22777,7 +22777,7 @@ th {
 }
 
 .web-backend__tree .n-draggable-tree-item > .n-draggable-tree-item__expand span {
-  color: #4f586f;
+  color: #646474;
 }
 
 .web-backend__tree .web-menu__tree-item.web-menu__tree-item--root {
@@ -22786,7 +22786,7 @@ th {
 
 .web-backend__tree .web-menu__tree-item.web-menu__tree-item--root .web-title {
   font-size: 16px;
-  color: #b4b7c1;
+  color: #bcbdc3;
 }
 
 .web-backend__tree .web-menu__tree-item .web-count {
@@ -22799,7 +22799,7 @@ th {
   width: 24px;
   margin-right: 6px;
   text-align: center;
-  color: #4187fb;
+  color: #60b9f4;
 }
 
 .web-backend__header {
@@ -22807,7 +22807,7 @@ th {
   position: relative;
   background: #ffffff;
   padding: 0 50px;
-  border-bottom: 1px solid #f2f3f5;
+  border-bottom: 1px solid #f4f4f5;
 }
 
 .web-backend__header > .grid {
@@ -22817,13 +22817,13 @@ th {
 .web-backend__header ul li a {
   display: inline-block;
   padding: 20px 10px;
-  color: #4f586f;
+  color: #646474;
   -webkit-transition: color 0.12s;
   transition: color 0.12s;
 }
 
 .web-backend__header ul li a:hover {
-  color: #687083;
+  color: #7a7a88;
 }
 
 .web-backend__header ul li.link--active a {
@@ -22858,7 +22858,7 @@ th {
 
 .web-backend__header .n-popover.n-popover--account .n-popover__footer {
   padding: 8px 15px;
-  border-top: 1px solid #e6e7ea;
+  border-top: 1px solid #e9e9eb;
 }
 
 .web-backend__header .n-popover.n-popover--account .n-tabs__header {
@@ -22881,11 +22881,11 @@ th {
 }
 
 .web-backend__title-text {
-  color: #2877fa;
+  color: #48AEF2;
 }
 
 .web-backend__title-info {
-  color: #687083;
+  color: #7a7a88;
 }
 
 .web-backend__body .n-tabs__header {
@@ -22894,11 +22894,11 @@ th {
 
 .web-backend__body .n-tabs__header-inner {
   padding: 0 50px;
-  border-bottom: 1px solid #f2f3f5;
+  border-bottom: 1px solid #f4f4f5;
 }
 
 .fa, .fa[class^=fa-], .fa[class*=" fa-"] {
-  font-family: "Font Awesome 5 Pro", sans-serif;
+  font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free", sans-serif;
 }
 
 .fad, [class^=fad-], [class*=fad-] {

@@ -22692,6 +22692,21 @@ th {
   overflow-y: auto;
 }
 
+.web-backend__login {
+  width: 100vw;
+  height: 100vh;
+  background: #f4f6fa;
+}
+
+.web-backend__login-frame {
+  width: 100%;
+  max-width: 380px;
+  padding: 20px;
+  border-radius: 2px;
+  background: #ffffff;
+  box-shadow: 0 1px 6px rgba(24, 24, 39, 0.075);
+}
+
 .web-backend__menu {
   padding: 10px 5px;
   background: #181827;

@@ -1,9 +1,3 @@
-@import '~backpack.css';
-
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
-
 $color-white:           #ffffff;
 $color-black:           #181827;
 
@@ -42,6 +36,12 @@ $color-background:      #f4f6fa;
 
 $box-shadow: 0 0 4px rgba($color-black, 0.125);
 
+@import '~backpack.css';
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
 @import "~nano-ui/src/index";
 
 @import "./mixins-new/media";
@@ -50,6 +50,7 @@ $box-shadow: 0 0 4px rgba($color-black, 0.125);
 
 @import "./layout/default";
 @import "./layout/root";
+@import "./layout/login";
 @import "./layout/menu";
 @import "./layout/tree";
 @import "./layout/header";

@@ -9,8 +9,11 @@ class ViewLoader implements LoaderInterface
 
     public function load(Module $module)
     {
+        $basePath = str_join('/', $module->path,
+            'resources/views');
+
         app('view')->addNamespace($module->name,
-            str_join('/', $module->path, 'resources/views'));
+            $basePath);
 
         return $module;
     }

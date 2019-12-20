@@ -21,7 +21,7 @@ class Menu extends Model
     ];
 
     protected $appends = [
-        'route', 'path', 'icon_url', 'options'
+        'route', 'path', 'final_layout', 'icon_url', 'options'
     ];
 
     protected $hidden = [
@@ -86,7 +86,7 @@ class Menu extends Model
             trim($this->attributes['slug'], '/'));
     }
 
-    public function getLayoutAttribute()
+    public function getFinalLayoutAttribute()
     {
         if ( ! $this->parent ) {
             return $this->attributes['layout'];

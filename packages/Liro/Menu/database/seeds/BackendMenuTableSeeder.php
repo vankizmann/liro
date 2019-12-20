@@ -15,45 +15,41 @@ class BackendMenuTableSeeder extends Seeder
         Menu::create([
             'id'        => $routes['root'],
             'ident'     => 'web-backend',
-            'type'      => 'web-menu::vue',
+            'type'      => 'web-menu::domain',
             'layout'    => 'web-backend::default',
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'liro-cms.com',
             'slug'      => ':domain/:locale/backend',
-            'guard'     => 1,
+            'guard'     => 0,
             'parent_id' => null,
         ]);
 
-//        Menu::create([
-//            'id'        => uuid(),
-//            'type'      => 'web-menu::vue',
-//            'icon'      => 'web-auth::img/icon-auth.svg',
-//            'extend'    => ['component' => 'WebAuthLogin'],
-//            'layout'    => null,
-//            'state'     => 1,
-//            'hide'      => 1,
-//            'title'     => 'Login',
-//            'slug'      => '/login',
-//            'matrix'    => 1,
-//            'guard'     => 0,
-//            'parent_id' => $routes['root'],
-//        ]);
+        Menu::create([
+            'id'        => uuid(),
+            'type'      => 'web-auth::login',
+            'layout'    => 'web-backend::login',
+            'state'     => 1,
+            'hide'      => 1,
+            'title'     => 'Login',
+            'slug'      => '/login',
+            'matrix'    => 1,
+            'guard'     => 0,
+            'parent_id' => $routes['root'],
+        ]);
 
-//        Menu::create([
-//            'id'        => uuid(),
-//            'type'      => 'web-menu::vue',
-//            'icon'      => 'web-auth::img/icon-auth.svg',
-//            'extend'    => ['component' => 'WebAuthLogout'],
-//            'layout'    => null,
-//            'state'     => 1,
-//            'hide'      => 1,
-//            'title'     => 'Logout',
-//            'slug'      => '/logout',
-//            'matrix'    => 1,
-//            'guard'     => 0,
-//            'parent_id' => $routes['root'],
-//        ]);
+        Menu::create([
+            'id'        => uuid(),
+            'type'      => 'web-auth::logout',
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 1,
+            'title'     => 'Logout',
+            'slug'      => '/logout',
+            'matrix'    => 1,
+            'guard'     => 0,
+            'parent_id' => $routes['root'],
+        ]);
 
         Menu::create([
             'id'        => $tmp = uuid(),

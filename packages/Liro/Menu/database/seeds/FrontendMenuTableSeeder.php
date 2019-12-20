@@ -60,19 +60,6 @@ class FrontendMenuTableSeeder extends Seeder
         ]);
 
         Menu::create([
-            'id'        => $logout = uuid(),
-            'type'      => 'web-auth::logout',
-            'layout'    => null,
-            'state'     => 1,
-            'hide'      => 0,
-            'title'     => 'Logout',
-            'slug'      => '/logout',
-            'matrix'    => 1,
-            'guard'     => 0,
-            'parent_id' => $root,
-        ]);
-
-        Menu::create([
             'id'        => $demo = uuid(),
             'type'      => 'web-page::page',
             'layout'    => 'demo',

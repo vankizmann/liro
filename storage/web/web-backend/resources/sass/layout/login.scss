@@ -1,0 +1,16 @@
+@import "~nano-ui/src/root/vars";
+
+.web-backend__login {
+    width: 100vw;
+    height: 100vh;
+    background: $--color-background;
+}
+
+.web-backend__login-frame {
+    width: 100%;
+    max-width: 380px;
+    padding: 20px;
+    border-radius: $radius-medium;
+    background: $--color-white;
+    box-shadow: 0 1px 6px rgba($color-black, 0.075);
+}

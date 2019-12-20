@@ -77,7 +77,7 @@ class MenuManager
                 $this->registerControllerRoutes($alias, $locale);
             }
 
-            $menus = Menu::enabled()->orderBy('left', 'desc')->get();
+            $menus = Menu::enabled()->orderBy('left', 'asc')->get();
 
             foreach ( $menus as $menu ) {
                 $this->registerMenuRoute($menu, $locale);

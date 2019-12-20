@@ -29,10 +29,9 @@ class WebEventSubscriber
             $app['web.manager']->setDomain($_SERVER['HTTP_HOST']);
         }
 
-        $layout = $app['web.menu']
-            ->getMenu('layout', null);
-
-        $app['web.manager']->setLayout($layout);
+        $app['web.manager']->setLayout(
+            $app['web.menu']->getMenu('final_layout', null)
+        );
     }
 
 }

@@ -17,11 +17,7 @@ class VueConnector extends Connector
      */
     public function route(Menu $menu, $options)
     {
-        if ( ! empty($menu->depth) ) {
-            return;
-        }
-
-        $options['route'] = str_join('/', $options['route'], '{path?}');
+        $options['route'] = preg_replace('/:([^\/]+)/', '{$1}', $options['route']);
 
         if ( RouteHelper::isOptionsRoute($options) ) {
             app('web.menu')->setMenu($menu);
@@ -29,7 +25,7 @@ class VueConnector extends Connector
 
         app('router')->any($options['route'], array_merge($options, [
             'uses' => 'Liro\Web\Menu\Http\Controllers\MenuViewController@anyVueRoute'
-        ]))->where(['path' => '.*']);
+        ]));
     }
 
     /**

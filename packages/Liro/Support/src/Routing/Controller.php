@@ -6,6 +6,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
+    use Traits\ResolveLayout;
     /**
      * The array of trait initializers that will be called on each new instance.
      *

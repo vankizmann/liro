@@ -58,11 +58,10 @@ class MenuController extends Controller
         $menu = Menu::withDepthGuard()
             ->findOrFail($id);
 
-        $menu->fill($request->input())
-            ->save();
+        $menu->fill($request->input())->save();
 
         return response()->json([
-            'data' => $menu->toArray(), 'message' => trans('Menu has been updated!')
+            'data' => $menu, 'message' => trans('Menu has been updated!')
         ]);
     }
 

@@ -2,23 +2,47 @@
     <NLoader :visible="load" class="web-menu-edit col--flex-1">
 
         <WebBackendTitle>
-            {{ trans('Last updated at :updated', { updated }) }}
-        </WebBackendTitle>
 
-        <NButton @click="updateEntity">{{ trans('Save menu') }}</NButton>
+            <template slot="default">
+                {{ trans('Last updated at :updated', { updated }) }}
+            </template>
+
+            <template slot="action">
+                <div class="grid grid--row grid--10">
+
+                    <div class="col--auto">
+                        <NButton :outline="false" type="primary" icon="fa fa-check" @click="updateEntity">
+                            {{ trans('Apply') }}
+                        </NButton>
+                    </div>
+
+                    <div class="col--auto">
+                        <NButton :outline="true" type="danger" icon="fa fa-times">
+                            {{ trans('Delete') }}
+                        </NButton>
+                    </div>
+
+                </div>
+
+            </template>
+
+        </WebBackendTitle>
 
         <NForm :errors="errors">
 
             <NFormItem prop="state" :label="trans('Status')">
-                <NCheckbox :checked="Any.bool(entity.state)" @input="value => entity.state = Any.integer(value)">
-                    {{ trans('Activate menu item') }}
-                </NCheckbox>
+                <NSelect v-model="entity.state">
+                    <NSelectOption :value="1">{{ trans('Active') }}</NSelectOption>
+                    <NSelectOption :value="0">{{ trans('Inactive') }}</NSelectOption>
+                    <NSelectOption :value="2">{{ trans('Archived') }}</NSelectOption>
+                </NSelect>
             </NFormItem>
 
             <NFormItem prop="hide" :label="trans('Visiblity')">
-                <NCheckbox :checked="Any.bool(entity.hide)" :value="value => entity.state = Any.integer(value)">
-                    {{ trans('Hide menu item') }}
-                </NCheckbox>
+                <NSelect v-model="entity.hide">
+                    <NSelectOption :value="0">{{ trans('Visisble') }}</NSelectOption>
+                    <NSelectOption :value="1">{{ trans('Invisible') }}</NSelectOption>
+                </NSelect>
             </NFormItem>
 
             <NFormItem prop="layout" :label="trans('Layout')">

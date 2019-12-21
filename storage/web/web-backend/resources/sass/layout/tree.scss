@@ -1,63 +1,76 @@
 @import "~nano-ui/src/root/vars";
 
-.web-backend__tree {
+.web-backend-tree {
+    position: relative;
     width: 360px;
-    padding: 20px;
     background: $--color-black-light;
+    margin-right: 6px;
 }
 
-.web-backend__tree .web-menu__tree {
+.web-backend-tree .web-menu-tree {
     position: relative;
+    padding: 20px;
     min-height: 100%;
 }
 
-.web-backend__tree .web-menu__tree:after {
+.web-backend-tree .web-menu-tree:after {
     background: rgba($color-black-light, 0.6);
 }
 
-.web-backend__tree .n-draggable__item {
+.web-backend-tree .n-draggable__item {
     color: $--color-gray-50;
     margin-top: 1px;
     border-radius: $radius-small;
     transition: background 0.15s;
 }
 
-.web-backend__tree .n-draggable__item:hover,
-.web-backend__tree .n-draggable__item.n-draggable--dragover {
+.web-backend-tree .n-draggable__item:hover,
+.web-backend-tree .n-draggable__item.n-draggable--dragover {
     background: $--color-black-lighter;
 }
 
-.web-backend__tree .n-draggable__item.n-draggable--selected {
+.web-backend-tree .n-draggable__item.n-draggable--selected {
     transition: background 0.15s 0.15s;
     background: $--color-black-lighter;
 }
 
-.web-backend__tree .n-draggable__item.n-draggable--dragover.n-draggable--selected {
+.web-backend-tree .n-draggable__item.n-draggable--dragover.n-draggable--selected {
     opacity: 0.5;
 }
 
-.web-backend__tree .n-draggable-tree-item > .n-draggable-tree-item__expand span {
+.web-backend-tree .n-draggable-tree-item > .n-draggable-tree-item__expand span {
     color: $--color-gray-70;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--root {
+.web-backend-tree .web-menu-tree-item.web-menu-tree-item--root {
     line-height: 40px;
 }
 
-.web-backend__tree .web-menu__tree-item.web-menu__tree-item--root .web-title {
+.web-backend-tree .web-menu-tree-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.web-backend-tree .web-menu-tree-item.web-menu-tree-item--root .web-title {
     font-size: 16px;
     color: $--color-gray-30;
 }
 
-.web-backend__tree .web-menu__tree-item .web-count {
+.web-backend-tree .web-menu-tree-item .web-count {
+    display: none;
     font-size: 12px;
     margin-left: 6px;
 }
 
-.web-backend__tree .web-menu__tree-item .web-icon {
+.web-backend-tree .web-menu-tree-item.web-menu-tree-item--root .web-count {
+    display: inline-block;
+}
+
+.web-backend-tree .web-menu-tree-item .web-icon {
     display: inline-block;
     width: 24px;
     margin-right: 6px;
     text-align: center;
-    color: $--color-primary-light;
+    color: $--color-primary;
 }

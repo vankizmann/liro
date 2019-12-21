@@ -138,6 +138,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebMenuEdit',
   computed: {
@@ -237,6 +261,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -398,19 +427,78 @@ var render = function() {
     "NLoader",
     { staticClass: "web-menu-edit col--flex-1", attrs: { visible: _vm.load } },
     [
-      _c("WebBackendTitle", [
-        _vm._v(
-          "\n        " +
-            _vm._s(
-              _vm.trans("Last updated at :updated", { updated: _vm.updated })
-            ) +
-            "\n    "
-        )
-      ]),
-      _vm._v(" "),
-      _c("NButton", { on: { click: _vm.updateEntity } }, [
-        _vm._v(_vm._s(_vm.trans("Save menu")))
-      ]),
+      _c(
+        "WebBackendTitle",
+        [
+          _c("template", { slot: "default" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(
+                  _vm.trans("Last updated at :updated", {
+                    updated: _vm.updated
+                  })
+                ) +
+                "\n        "
+            )
+          ]),
+          _vm._v(" "),
+          _c("template", { slot: "action" }, [
+            _c("div", { staticClass: "grid grid--row grid--10" }, [
+              _c(
+                "div",
+                { staticClass: "col--auto" },
+                [
+                  _c(
+                    "NButton",
+                    {
+                      attrs: {
+                        outline: false,
+                        type: "primary",
+                        icon: "fa fa-check"
+                      },
+                      on: { click: _vm.updateEntity }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.trans("Apply")) +
+                          "\n                    "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col--auto" },
+                [
+                  _c(
+                    "NButton",
+                    {
+                      attrs: {
+                        outline: true,
+                        type: "danger",
+                        icon: "fa fa-times"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.trans("Delete")) +
+                          "\n                    "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ],
+        2
+      ),
       _vm._v(" "),
       _c(
         "NForm",
@@ -421,22 +509,30 @@ var render = function() {
             { attrs: { prop: "state", label: _vm.trans("Status") } },
             [
               _c(
-                "NCheckbox",
+                "NSelect",
                 {
-                  attrs: { checked: _vm.Any.bool(_vm.entity.state) },
-                  on: {
-                    input: function(value) {
-                      return (_vm.entity.state = _vm.Any.integer(value))
-                    }
+                  model: {
+                    value: _vm.entity.state,
+                    callback: function($$v) {
+                      _vm.$set(_vm.entity, "state", $$v)
+                    },
+                    expression: "entity.state"
                   }
                 },
                 [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.trans("Activate menu item")) +
-                      "\n            "
-                  )
-                ]
+                  _c("NSelectOption", { attrs: { value: 1 } }, [
+                    _vm._v(_vm._s(_vm.trans("Active")))
+                  ]),
+                  _vm._v(" "),
+                  _c("NSelectOption", { attrs: { value: 0 } }, [
+                    _vm._v(_vm._s(_vm.trans("Inactive")))
+                  ]),
+                  _vm._v(" "),
+                  _c("NSelectOption", { attrs: { value: 2 } }, [
+                    _vm._v(_vm._s(_vm.trans("Archived")))
+                  ])
+                ],
+                1
               )
             ],
             1
@@ -447,22 +543,26 @@ var render = function() {
             { attrs: { prop: "hide", label: _vm.trans("Visiblity") } },
             [
               _c(
-                "NCheckbox",
+                "NSelect",
                 {
-                  attrs: {
-                    checked: _vm.Any.bool(_vm.entity.hide),
-                    value: function(value) {
-                      return (_vm.entity.state = _vm.Any.integer(value))
-                    }
+                  model: {
+                    value: _vm.entity.hide,
+                    callback: function($$v) {
+                      _vm.$set(_vm.entity, "hide", $$v)
+                    },
+                    expression: "entity.hide"
                   }
                 },
                 [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.trans("Hide menu item")) +
-                      "\n            "
-                  )
-                ]
+                  _c("NSelectOption", { attrs: { value: 0 } }, [
+                    _vm._v(_vm._s(_vm.trans("Visisble")))
+                  ]),
+                  _vm._v(" "),
+                  _c("NSelectOption", { attrs: { value: 1 } }, [
+                    _vm._v(_vm._s(_vm.trans("Invisible")))
+                  ])
+                ],
+                1
               )
             ],
             1
@@ -615,24 +715,45 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "NLoader",
-    { staticClass: "web-menu__tree", attrs: { visible: _vm.load } },
+    { staticClass: "web-menu-tree", attrs: { visible: _vm.load } },
     [
-      _c("NDraggableTree", {
-        attrs: {
-          items: _vm.menus,
-          cascade: _vm.cascade,
-          use: "WebMenuTreeElement",
-          "use-after": "WebMenuTreeContext"
-        },
-        on: {
-          "update:cascade": function($event) {
-            _vm.cascade = $event
-          },
-          move: _vm.moveEntity
-        }
-      })
-    ],
-    1
+      _c(
+        "div",
+        { staticClass: "web-menu-tree__search" },
+        [
+          _c("NInput", {
+            attrs: {
+              round: true,
+              placeholder: _vm.trans("Search"),
+              icon: "fa fa-search"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "web-menu-tree__list" },
+        [
+          _c("NDraggableTree", {
+            attrs: {
+              items: _vm.menus,
+              cascade: _vm.cascade,
+              use: "WebMenuTreeElement",
+              "use-after": "WebMenuTreeContext"
+            },
+            on: {
+              "update:cascade": function($event) {
+                _vm.cascade = $event
+              },
+              move: _vm.moveEntity
+            }
+          })
+        ],
+        1
+      )
+    ]
   )
 }
 var staticRenderFns = []
@@ -716,8 +837,8 @@ var render = function() {
     "div",
     {
       class: [
-        "web-menu__tree-item",
-        !_vm.value.depth && "web-menu__tree-item--root"
+        "web-menu-tree-item",
+        !_vm.value.depth && "web-menu-tree-item--root"
       ]
     },
     [
@@ -729,15 +850,13 @@ var render = function() {
         _vm._v("\n        " + _vm._s(_vm.value.title) + "\n    ")
       ]),
       _vm._v(" "),
-      _vm.isDomain
-        ? _c("span", { staticClass: "web-count" }, [
-            _vm._v(
-              "\n        " +
-                _vm._s(_vm.choice(":count Entries", _vm.childLength)) +
-                "\n    "
-            )
-          ])
-        : _vm._e()
+      _c("span", { staticClass: "web-count" }, [
+        _vm._v(
+          "\n        " +
+            _vm._s(_vm.choice(":count Entries", _vm.childLength)) +
+            "\n    "
+        )
+      ])
     ]
   )
 }

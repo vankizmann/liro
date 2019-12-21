@@ -15,18 +15,9 @@ Vue.$http = Vue.prototype.$http = Axios;
 
 require('./config/axios');
 
+require('./component/menu/index');
+require('./component/helper/index');
+
 Nano.Dom.ready(() => {
-
-    let WebBackendTitle = require("./component/WebBackendTitle").default;
-    Vue.component(WebBackendTitle.name, WebBackendTitle);
-
-    let WebBackendMainmenu = require("./component/WebBackendMainmenu").default;
-    Vue.component(WebBackendMainmenu.name, WebBackendMainmenu);
-
-    let WebBackendSubmenu = require("./component/WebBackendSubmenu").default;
-    Vue.component(WebBackendSubmenu.name, WebBackendSubmenu);
-
-    window.App = new Vue(
-        require("./component/WebBackendRoot").default
-    ).$mount('#app');
+    window.App = new Vue(require('./layout/WebBackendRoot').default).$mount('#app');
 });

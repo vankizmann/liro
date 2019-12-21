@@ -1,6 +1,11 @@
 <template>
-    <NLoader class="web-menu__tree" :visible="load">
+    <NLoader class="web-menu-tree" :visible="load">
+        <div class="web-menu-tree__search">
+            <NInput :round="true" :placeholder="trans('Search')" icon="fa fa-search"/>
+        </div>
+        <div class="web-menu-tree__list">
         <NDraggableTree :items="menus" :cascade.sync="cascade" use="WebMenuTreeElement" use-after="WebMenuTreeContext" @move="moveEntity" />
+        </div>
     </NLoader>
 </template>
 <script>

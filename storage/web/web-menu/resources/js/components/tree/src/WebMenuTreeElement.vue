@@ -1,12 +1,12 @@
 <template>
-    <div :class="['web-menu__tree-item', ! value.depth && 'web-menu__tree-item--root']">
+    <div :class="['web-menu-tree-item', ! value.depth && 'web-menu-tree-item--root']">
         <span class="web-icon">
             <i :class="typeIcon"></i>
         </span>
         <span class="web-title">
             {{ value.title }}
         </span>
-        <span v-if="isDomain" class="web-count">
+        <span class="web-count">
             {{ choice(':count Entries', childLength) }}
         </span>
     </div>

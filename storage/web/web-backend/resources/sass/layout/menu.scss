@@ -1,31 +1,31 @@
 @import "~nano-ui/src/root/vars";
 
-.web-backend__menu {
+.web-backend-menu {
     padding: 10px 5px;
     background: $--color-black;
 }
 
-.web-backend__menu li {
+.web-backend-menu li {
     margin: 10px;
 }
 
-.web-backend__menu li a,
-.web-backend__menu li a img {
+.web-backend-menu li a,
+.web-backend-menu li a img {
     display: block;
     width: 48px;
     height: 48px;
 }
 
-.web-backend__menu li a {
+.web-backend-menu li a {
     background: $--color-primary;
     border-radius: 5px;
     transition: background 0.15s;
 }
 
-.web-backend__menu li a:hover {
+.web-backend-menu li a:hover {
     background: rgba($color-primary, 0.8);
 }
 
-.web-backend__menu li.link--active a {
+.web-backend-menu li.link--active a {
     background: $--color-primary-lighter;
 }

@@ -12,6 +12,14 @@
 
         props: {
 
+            ident: {
+                default()
+                {
+                    return null;
+                },
+                type: [String]
+            },
+
             minWidth: {
                 default()
                 {
@@ -60,12 +68,18 @@
 
             bindMove()
             {
+                let loop = 0;
+
                 let callback = (event) => {
+
+                    if ( loop++ === 1) {
+                        return;
+                    }
 
                     let left = this.Dom.find(this.$el).parent().offsetLeft();
 
                     let css = {
-                        width: (event.clientX - left) + 'px'
+                        width: (event.clientX - left - 2) + 'px'
                     };
 
                     if ( ! this.Any.isEmpty(this.minWidth) ) {

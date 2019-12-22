@@ -722,11 +722,7 @@ var render = function() {
         { staticClass: "web-menu-tree__search" },
         [
           _c("NInput", {
-            attrs: {
-              round: true,
-              placeholder: _vm.trans("Search"),
-              icon: "fa fa-search"
-            }
+            attrs: { placeholder: _vm.trans("Search"), icon: "fa fa-search" }
           })
         ],
         1

@@ -3,8 +3,7 @@
 .web-backend-tree {
     position: relative;
     width: 360px;
-    background: $--color-black-light;
-    margin-right: 6px;
+    background: $--color-background;
 }
 
 .web-backend-tree .web-menu-tree {
@@ -14,24 +13,24 @@
 }
 
 .web-backend-tree .web-menu-tree:after {
-    background: rgba($color-black-light, 0.6);
+    //background: rgba($color-background, 0.6);
 }
 
 .web-backend-tree .n-draggable__item {
-    color: $--color-gray-50;
+    //color: $--color-gray-50;
     margin-top: 1px;
-    border-radius: $radius-small;
+    border-radius: $radius-medium;
     transition: background 0.15s;
 }
 
 .web-backend-tree .n-draggable__item:hover,
 .web-backend-tree .n-draggable__item.n-draggable--dragover {
-    background: $--color-black-lighter;
+    //background: $--color-black-lighter;
 }
 
 .web-backend-tree .n-draggable__item.n-draggable--selected {
     transition: background 0.15s 0.15s;
-    background: $--color-black-lighter;
+    //background: $--color-black-lighter;
 }
 
 .web-backend-tree .n-draggable__item.n-draggable--dragover.n-draggable--selected {
@@ -39,7 +38,7 @@
 }
 
 .web-backend-tree .n-draggable-tree-item > .n-draggable-tree-item__expand span {
-    color: $--color-gray-70;
+    //color: $--color-gray-70;
 }
 
 .web-backend-tree .web-menu-tree-item.web-menu-tree-item--root {
@@ -54,7 +53,7 @@
 
 .web-backend-tree .web-menu-tree-item.web-menu-tree-item--root .web-title {
     font-size: 16px;
-    color: $--color-gray-30;
+    //color: $--color-gray-30;
 }
 
 .web-backend-tree .web-menu-tree-item .web-count {

@@ -1,7 +1,7 @@
 $color-white:           #ffffff;
 $color-black:           #181827;
 
-$color-light:           #ffffff;
+$color-light:           #F4F6FA;
 $color-dark:            #212238;
 
 $color-gray-05:         mix($color-dark, $color-light, 0.05 * 100%);
@@ -24,8 +24,8 @@ $color-gray-85:         mix($color-dark, $color-light, 0.85 * 100%);
 $color-gray-90:         mix($color-dark, $color-light, 0.90 * 100%);
 $color-gray-95:         mix($color-dark, $color-light, 0.95 * 100%);
 
-$color-primary:         #2B98FF;
-$color-secondary:       #2B98FF;
+$color-primary:         #4565f0;
+$color-secondary:       #4565f0;
 
 $color-success:         #15C478;
 $color-warning:         #FFA13D;
@@ -34,7 +34,18 @@ $color-info:            #62686d;
 
 $color-background:      #F4F6FA;
 
-$box-shadow: 0 0 4px rgba($color-black, 0.125);
+$box-shadow:            0 0 4px rgba($color-black, 0.125);
+
+$radius-small:          4px;
+$radius-medium:         5px;
+$radius-large:          6px;
+$radius-extended:       15px;
+
+$button-height:         40px;
+$input-height:          40px;
+$select-height:         40px;
+
+
 
 @import '~backpack.css';
 

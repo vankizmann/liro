@@ -722,7 +722,11 @@ var render = function() {
         { staticClass: "web-menu-tree__search" },
         [
           _c("NInput", {
-            attrs: { placeholder: _vm.trans("Search"), icon: "fa fa-search" }
+            attrs: {
+              round: true,
+              placeholder: _vm.trans("Search"),
+              icon: "fa fa-search"
+            }
           })
         ],
         1
@@ -1395,8 +1399,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/eddy/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/eddy/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

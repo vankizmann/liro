@@ -18,9 +18,11 @@
 
                 <div class="web-backend-header grid grid--row grid--middle col--flex-0">
                     <div class="col--auto col--left">
-                        <ul class="grid grid--row grid--10">
+                        <ul class="grid grid--row grid--10" v-if="false">
                             <WebBackendSubmenu v-for="route in submenu" :key="route.name" :value="route" />
                         </ul>
+                        <NButton type="primary">Speichern</NButton>
+                        <NButton type="secondary">Vorschau</NButton>
                     </div>
                     <div class="col--auto col--right">
                         <WebBackendUser />

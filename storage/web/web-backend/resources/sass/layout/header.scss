@@ -3,8 +3,8 @@
 .web-backend-header {
     z-index: 10;
     position: relative;
-    height: 80px;
-    padding: 0 40px;
+    height: 100px;
+    padding: 0 60px;
     background: $--color-white;
     border-bottom: 1px solid $--color-gray-05;
 }
@@ -52,7 +52,7 @@
 
 .web-backend-header .n-popover.n-popover--account .n-popover__footer {
     padding: 8px 15px;
-    border-top: 1px solid $--color-gray-10;
+    border-top: 1px solid $--color-gray-05;
 }
 
 .web-backend-header .n-popover.n-popover--account .n-tabs__header {

@@ -5,7 +5,23 @@ import Nano from "nano-js";
 Nano.install(Vue.prototype);
 
 import VueNano from 'nano-ui';
-Vue.use(VueNano);
+Vue.use(VueNano, {
+    checked:        'fa fa-check',
+    intermediate:   'fa fa-minus',
+    clock:          'fa fa-clock',
+    calendar:       'fa fa-calendar',
+    times:          'fa fa-times',
+    success:        'fa fa-check-circle',
+    warning:        'fa fa-exclamation-circle',
+    danger:         'fa fa-times-circle',
+    info:           'fa fa-info-circle',
+    angleUp:        'fa fa-angle-up',
+    angleRight:     'fa fa-angle-right',
+    angleDown:      'fa fa-angle-down',
+    angleLeft:      'fa fa-angle-left',
+    save:           'fa fa-check',
+    delete:         'fa fa-times'
+});
 
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);

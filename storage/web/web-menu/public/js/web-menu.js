@@ -454,7 +454,7 @@ var render = function() {
                       attrs: {
                         outline: false,
                         type: "primary",
-                        icon: "fa fa-check"
+                        icon: _vm.icons.save
                       },
                       on: { click: _vm.updateEntity }
                     },
@@ -480,7 +480,7 @@ var render = function() {
                       attrs: {
                         outline: true,
                         type: "danger",
-                        icon: "fa fa-times"
+                        icon: _vm.icons.delete
                       }
                     },
                     [
@@ -1399,8 +1399,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/eddy/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/eddy/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

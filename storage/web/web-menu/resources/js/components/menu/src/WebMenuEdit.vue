@@ -11,13 +11,13 @@
                 <div class="grid grid--row grid--10">
 
                     <div class="col--auto">
-                        <NButton :outline="false" type="primary" icon="fa fa-check" @click="updateEntity">
+                        <NButton :outline="false" type="primary" :icon="icons.save" @click="updateEntity">
                             {{ trans('Apply') }}
                         </NButton>
                     </div>
 
                     <div class="col--auto">
-                        <NButton :outline="true" type="danger" icon="fa fa-times">
+                        <NButton :outline="true" type="danger" :icon="icons.delete">
                             {{ trans('Delete') }}
                         </NButton>
                     </div>

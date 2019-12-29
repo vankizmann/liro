@@ -79,7 +79,7 @@
                     let left = this.Dom.find(this.$el).parent().offsetLeft();
 
                     let css = {
-                        width: (event.clientX - left - 2) + 'px'
+                        width: (event.clientX - left + 3) + 'px'
                     };
 
                     if ( ! this.Any.isEmpty(this.minWidth) ) {

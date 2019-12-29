@@ -1,9 +1,11 @@
 @import "~nano-ui/src/root/vars";
 
-.web-backend-body {
-    background: $--color-white;
+.web-backend-body .n-tabs__header-inner {
+    padding: 0 60px;
+    border-bottom: 1px solid $--color-gray-05;
+    overflow-y: auto;
 }
 
-.web-backend-body .n-tabs__header-inner {
-    border-bottom: 1px solid $--color-gray-05;
+.web-backend-body .n-tabs__body {
+    padding: 20px 60px;
 }

@@ -3,15 +3,12 @@
 .web-backend-header {
     z-index: 10;
     position: relative;
-    height: 100px;
+    height: 90px;
     padding: 0 60px;
-    background: $--color-white;
     border-bottom: 1px solid $--color-gray-05;
 }
 
 .web-backend-header ul li a {
-    display: inline-block;
-    padding: 20px 10px;
     color: $--color-gray-70;
     transition: color 0.12s;
 }

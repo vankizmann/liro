@@ -32,18 +32,19 @@ $color-warning:         #FFA13D;
 $color-danger:          #F4424B;
 $color-info:            #62686d;
 
-$color-background:      #F4F6FA;
+$color-background:      #F7F8F9;
 
 $box-shadow:            0 0 4px rgba($color-black, 0.125);
 
-$radius-small:          4px;
-$radius-medium:         5px;
-$radius-large:          6px;
+$radius-small:          2px;
+$radius-medium:         3px;
+$radius-large:          4px;
 $radius-extended:       15px;
 
-$button-height:         40px;
-$input-height:          40px;
-$select-height:         40px;
+$button-height:         38px;
+$button-ratio:          0.5;
+$input-height:          38px;
+$select-height:         38px;
 
 
 

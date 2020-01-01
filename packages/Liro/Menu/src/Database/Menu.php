@@ -5,6 +5,7 @@ namespace Liro\Menu\Database;
 use Baum\NestedSet\Node;
 use Liro\Support\Database\Model;
 use Liro\Support\Database\Traits\State;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Menu extends Model
 {

@@ -99,6 +99,17 @@ class ExportCompiler extends Compiler
             $locales = array_merge($locales, app('translator')->getLinesFlatten($module));
         }
 
+        $json = resource_path('lang/' . app()->getLocale() . '.json');
+
+        if ( file_exists($json) ) {
+
+            $jsonData = json_decode(
+                file_get_contents($json), JSON_OBJECT_AS_ARRAY
+            );
+
+            $locales = array_merge($locales, $jsonData);
+        }
+
         return json_encode($locales, JSON_FORCE_OBJECT);
     }
 

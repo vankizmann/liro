@@ -65,4 +65,15 @@ class MenuController extends Controller
         ]);
     }
 
+    public function postDeleteRoute()
+    {
+        foreach ( request()->input('ids', []) as $id ) {
+            Menu::findOrFail($id)->delete();
+        }
+
+        return response()->json([
+            'data' => [], 'message' => trans('Menus has been deleted!')
+        ]);
+    }
+
 }

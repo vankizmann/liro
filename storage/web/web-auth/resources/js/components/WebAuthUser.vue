@@ -19,10 +19,10 @@
         <NPopover selector="#auth-popover" trigger="click" type="account" position="bottom-end" :width="320" @input="ready = true">
             <NTabs v-if="ready">
                 <NTabsItem :label="trans('Notifications')" name="notifications">
-                    <div style="text-align: center; padding: 25px 20px;">{{ trans('No notifications.') }}</div>
+                    <div style="text-align: center; padding: 25px 20px;">{{ trans('No notifications') }}</div>
                 </NTabsItem>
                 <NTabsItem :label="trans('Tasks')" name="tasks">
-                    <div style="text-align: center; padding: 25px 20px;">{{ trans('No tasks.') }}</div>
+                    <div style="text-align: center; padding: 25px 20px;">{{ trans('No tasks') }}</div>
                 </NTabsItem>
             </NTabs>
             <template slot="footer">

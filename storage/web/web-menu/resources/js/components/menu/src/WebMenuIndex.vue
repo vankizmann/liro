@@ -17,10 +17,14 @@
                         </div>
 
                         <div class="col--auto">
-                            <NButton type="danger" :outline="true" :icon="icons.delete" :disabled="! selected.length" @click="deleteEntities">
-                                {{ choice('Delete (:count)', selected.length) }}
+                            <NButton type="danger" :outline="true" :icon="icons.delete" :disabled="! selected.length">
+                                {{ trans('Delete') }}
                             </NButton>
+                            <NConfirm type="danger" @confirm="deleteEntities">
+                                {{ choice('Do you want to delete :count items?', selected.length) }}
+                            </NConfirm>
                         </div>
+
 
                     </div>
 
@@ -28,7 +32,7 @@
             </div>
 
             <div class="web-body-item col--flex-fixed">
-                <NTable ref="table" :selected-keys.sync="selected" :items="request.data" :sort-prop="sort.prop" :sort-dir="sort.dir" :filter-props="Obj.values(filter)" :adapt-height="true" @sort="setSorting" @row-dblclick="navigate">
+                <NTable ref="table" unique-prop="id" :selected-keys.sync="selected" v-model="request.data" :sort-prop="sort.prop" :sort-dir="sort.dir" :filter-props="Obj.values(filter)" :adapt-height="true" @sort="setSorting" @row-dblclick="navigate">
 
                     <NTableColumn type="selection" :fixed-width="45" align="center" :label="trans('Selection')">
                         <!-- ID -->
@@ -165,6 +169,8 @@
 
             fetchEntities()
             {
+                this.selected = [];
+
                 let query = this.Obj.only(this.request, [
                     'page', 'limit'
                 ]);
@@ -182,12 +188,25 @@
                 };
 
                 this.$http.get(route, options)
-                    .then(this.doneEntities, this.errorEntities);
+                    .then(this.doneEntities).catch(this.errorEntities);
             },
 
             deleteEntities()
             {
+                let query = {
+                    ids: this.selected
+                };
 
+                let route = this.Route.get('module.web-menu.menu.delete',
+                    this.$route.params);
+
+                let options = {
+                    onLoad: () => this.load = true,
+                    onDone: () => this.load = false
+                };
+
+                this.$http.post(route, query, options)
+                    .then(this.fetchEntities).catch(this.errorEntities);
             }
 
         }

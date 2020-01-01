@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="web-backend-tree n-inverse scrollbar col--flex-none">
+            <div class="web-backend-tree n-inverse scrollbar col--flex-auto">
                 <WebBackendTree />
             </div>
 

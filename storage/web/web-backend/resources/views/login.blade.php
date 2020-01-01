@@ -19,16 +19,16 @@
         );
     @endphp
 
-    {!! app('web.assets')->output(['style']) !!}
+    {!! app('web.assets')->output(['export', 'style']) !!}
 </head>
 <body>
 
     <div id="app">
         <div class="web-backend-login grid grid--row">
-            <div class="web-backend-login__image col--1-2 grid grid--col grid--center grid--middle" v-cloak>
+            <div class="web-backend-login__image col--1-2 grid grid--col grid--center grid--middle">
                 <img src="{{ asset('web-backend::img/moshi.svg') }}" alt="{{ app('web.menu')->getMenu('title') }}">
             </div>
-            <div class="web-backend-login__frame col--1-2 grid grid--col grid--center grid--middle" v-cloak>
+            <div class="web-backend-login__frame col--1-2 grid grid--col grid--center grid--middle">
                 @yield('content')
             </div>
         </div>

@@ -7,7 +7,7 @@
             {{ value.title }}
         </span>
         <span class="web-count">
-            {{ choice(':count Entries', childLength) }}
+            {{ choice('No menus|:count menu|:count menus', childLength) }}
         </span>
     </div>
 </template>

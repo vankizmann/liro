@@ -6,7 +6,7 @@
     <div class="n-form-item">
 
         <div class="n-form-item__label">
-            {!! Form::label('email', 'E-Mail-Address') !!}
+            {!! Form::label('email', trans('E-Mail-Address')) !!}
         </div>
 
         <div class="n-form-item__input">
@@ -27,7 +27,7 @@
     <div class="n-form-item">
 
         <div class="n-form-item__label">
-            {!! Form::label('password', 'Password') !!}
+            {!! Form::label('password', trans('Password')) !!}
         </div>
 
         <div class="n-form-item__input">

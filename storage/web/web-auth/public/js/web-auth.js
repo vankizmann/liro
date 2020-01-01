@@ -532,7 +532,7 @@ var render = function() {
                             padding: "25px 20px"
                           }
                         },
-                        [_vm._v(_vm._s(_vm.trans("No notifications.")))]
+                        [_vm._v(_vm._s(_vm.trans("No notifications")))]
                       )
                     ]
                   ),
@@ -549,7 +549,7 @@ var render = function() {
                             padding: "25px 20px"
                           }
                         },
-                        [_vm._v(_vm._s(_vm.trans("No tasks.")))]
+                        [_vm._v(_vm._s(_vm.trans("No tasks")))]
                       )
                     ]
                   )

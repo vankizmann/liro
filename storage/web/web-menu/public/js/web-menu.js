@@ -291,6 +291,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebMenuIndex',
   data: function data() {
@@ -383,6 +387,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchEntities: function fetchEntities() {
       var _this2 = this;
 
+      this.selected = [];
       var query = this.Obj.only(this.request, ['page', 'limit']);
       this.Obj.assign(query, this.sort, {
         filter: this.filter
@@ -396,9 +401,25 @@ __webpack_require__.r(__webpack_exports__);
           return _this2.load = false;
         }
       };
-      this.$http.get(route, options).then(this.doneEntities, this.errorEntities);
+      this.$http.get(route, options).then(this.doneEntities)["catch"](this.errorEntities);
     },
-    deleteEntities: function deleteEntities() {}
+    deleteEntities: function deleteEntities() {
+      var _this3 = this;
+
+      var query = {
+        ids: this.selected
+      };
+      var route = this.Route.get('module.web-menu.menu.delete', this.$route.params);
+      var options = {
+        onLoad: function onLoad() {
+          return _this3.load = true;
+        },
+        onDone: function onDone() {
+          return _this3.load = false;
+        }
+      };
+      this.$http.post(route, query, options).then(this.fetchEntities)["catch"](this.errorEntities);
+    }
   }
 });
 
@@ -915,15 +936,29 @@ var render = function() {
                             outline: true,
                             icon: _vm.icons.delete,
                             disabled: !_vm.selected.length
-                          },
-                          on: { click: _vm.deleteEntities }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(_vm.trans("Delete")) +
+                              "\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "NConfirm",
+                        {
+                          attrs: { type: "danger" },
+                          on: { confirm: _vm.deleteEntities }
                         },
                         [
                           _vm._v(
                             "\n                            " +
                               _vm._s(
                                 _vm.choice(
-                                  "Delete (:count)",
+                                  "Do you want to delete :count items?",
                                   _vm.selected.length
                                 )
                               ) +
@@ -950,8 +985,8 @@ var render = function() {
               {
                 ref: "table",
                 attrs: {
+                  "unique-prop": "id",
                   "selected-keys": _vm.selected,
-                  items: _vm.request.data,
                   "sort-prop": _vm.sort.prop,
                   "sort-dir": _vm.sort.dir,
                   "filter-props": _vm.Obj.values(_vm.filter),
@@ -966,6 +1001,13 @@ var render = function() {
                   },
                   sort: _vm.setSorting,
                   "row-dblclick": _vm.navigate
+                },
+                model: {
+                  value: _vm.request.data,
+                  callback: function($$v) {
+                    _vm.$set(_vm.request, "data", $$v)
+                  },
+                  expression: "request.data"
                 }
               },
               [
@@ -1216,7 +1258,9 @@ var render = function() {
       _c("span", { staticClass: "web-count" }, [
         _vm._v(
           "\n        " +
-            _vm._s(_vm.choice(":count Entries", _vm.childLength)) +
+            _vm._s(
+              _vm.choice("No menus|:count menu|:count menus", _vm.childLength)
+            ) +
             "\n    "
         )
       ])

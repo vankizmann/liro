@@ -156,16 +156,30 @@ $--grid-gutters: (
         margin-left: auto;
     }
 
-    .col--flex-1#{$suffix} {
+    .col--flex-1#{$suffix},
+    .col--flex-1-0#{$suffix} {
         flex: 1 0 auto;
     }
 
-    .col--flex-0#{$suffix} {
+    .col--flex-0#{$suffix},
+    .col--flex-0-1#{$suffix}{
+        flex: 0 1 auto;
+    }
+
+    .col--flex-none#{$suffix},
+    .col--flex-0-0#{$suffix}{
         flex: 0 0 auto;
     }
 
-    .col--flex-auto#{$suffix} {
+    .col--flex-auto#{$suffix},
+    .col--flex-1-1#{$suffix} {
         flex: 1 1 auto;
+    }
+
+    .col--flex-fixed#{$suffix} {
+        flex: 1 1 auto;
+        min-height: 0;
+        max-height: 100%;
     }
 
     @for $i from 1 through 10 {

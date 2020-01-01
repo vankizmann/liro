@@ -22,10 +22,19 @@
     {!! app('web.assets')->output(['style']) !!}
 </head>
 <body>
-    <div class="web-backend__login grid grid--row grid--center grid--middle">
-        <div class="web-backend__login-frame col--auto">
-            @yield('content')
+
+    <div id="app">
+        <div class="web-backend-login grid grid--row">
+            <div class="web-backend-login__image col--1-2 grid grid--col grid--center grid--middle" v-cloak>
+                <img src="{{ asset('web-backend::img/moshi.svg') }}" alt="{{ app('web.menu')->getMenu('title') }}">
+            </div>
+            <div class="web-backend-login__frame col--1-2 grid grid--col grid--center grid--middle" v-cloak>
+                @yield('content')
+            </div>
         </div>
     </div>
+
+    {!! app('web.assets')->output('script') !!}
+
 </body>
 </html>

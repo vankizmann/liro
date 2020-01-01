@@ -49,6 +49,10 @@
             {
                 let callback = (event) => {
 
+                    if ( event.which !== 1 ) {
+                        return;
+                    }
+
                     event.preventDefault();
                     event.stopPropagation();
 

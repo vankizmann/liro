@@ -12,11 +12,11 @@ trait Datatable
         $key = $query->getModel()->getKeyName();
 
         $query->orderBy(
-            Request::input('sort.prop', $key), Request::input('sort.dir', 'desc')
+            Request::input('prop', $key), Request::input('dir', 'desc')
         );
 
         $search = [
-            'query' => Request::input('search.query', ''),
+            'query' => Request::input('search', ''),
             'columns' => Request::input('search.columns', [$key]),
         ];
 
@@ -77,8 +77,8 @@ trait Datatable
             $query->where($filter['property'], $operator, $value);
         }
 
-        $page = (int) Request::input('paginate.page', 1);
-        $limit = (int) Request::input('paginate.limit', 25);
+        $page = (int) Request::input('page', 1);
+        $limit = (int) Request::input('limit', 25);
 
         if ( $page > ceil(($total = $query->count()) / $limit) ) {
             $page = 1;

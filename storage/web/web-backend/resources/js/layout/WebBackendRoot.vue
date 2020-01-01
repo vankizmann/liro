@@ -7,13 +7,15 @@
         </div>
         <div class="web-backend-sidebar col--flex-none grid grid--col">
 
-            <div class="col--flex-0">
-                <div class="web-backend-logo">
-                    liro-cms.com
+            <div class="col--flex-none" v-if="false">
+                <div class="web-backend-logo grid grid--row grid--center grid--middle">
+                    <RouterLink to="/" v-html="require('!!raw-loader!../../img/moshi.svg')">
+                        <!-- Logo -->
+                    </RouterLink>
                 </div>
             </div>
 
-            <div class="web-backend-tree n-inverse scrollbar col--flex-auto">
+            <div class="web-backend-tree n-inverse scrollbar col--flex-none">
                 <WebBackendTree />
             </div>
 
@@ -21,7 +23,7 @@
         </div>
         <div class="web-backend-mainbar col--flex-auto grid grid--col">
 
-            <div class="web-backend-header grid grid--row grid--middle col--flex-0">
+            <div class="web-backend-header grid grid--row grid--middle col--flex-none">
                 <div class="col--auto col--left">
                     <ul class="grid grid--row grid--40">
                         <WebBackendSubmenu v-for="route in submenu" :key="route.name" :value="route" />
@@ -32,7 +34,7 @@
                 </div>
             </div>
 
-            <div class="web-backend-body scrollbar col--flex-auto">
+            <div ref="body" class="web-backend-body scrollbar col--flex-auto">
                 <RouterView :key="$route.fullPath" />
             </div>
 
@@ -73,6 +75,15 @@
                 return this.Arr.filter(routes, (route) => {
                     return ! this.Obj.get(route, 'hide', 1);
                 });
+            }
+
+        },
+
+        watch: {
+
+            $route()
+            {
+                this.$refs.body.scrollTop = 0;
             }
 
         },

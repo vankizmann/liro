@@ -1,16 +1,41 @@
 @import "~nano-ui/src/root/vars";
 
-.web-backend__login {
+.web-backend-login {
     width: 100vw;
     height: 100vh;
-    background: $--color-background;
+    background: linear-gradient(60deg, $color-primary-light 0%, $color-primary-dark 100%);
 }
 
-.web-backend__login-frame {
+.web-backend-login .n-form {
+    padding: 30px 60px;
+    min-width: 420px;
+}
+
+.web-backend-login__image {
+    position: relative;
+}
+
+.web-backend-login__image:after {
+    content: '\00a0';
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
     width: 100%;
-    max-width: 380px;
-    padding: 20px;
-    border-radius: $radius-medium;
+    height: 100%;
+    opacity: 0.2;
+    filter: grayscale(1);
+    background-position: center;
+    background-size: cover;
+    background-image: url('//images.pexels.com/photos/2085376/pexels-photo-2085376.jpeg?auto=compress');
+}
+
+.web-backend-login__image img {
+    z-index: 20;
+    position: relative;
+}
+
+.web-backend-login__frame {
     background: $--color-white;
-    box-shadow: 0 1px 6px rgba($color-black, 0.075);
 }

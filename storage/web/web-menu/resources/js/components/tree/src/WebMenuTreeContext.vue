@@ -5,6 +5,9 @@
                 {{ link.text }}
             </a>
         </template>
+        <a class="n-popover-option" href="javascript:void(0)" @click="goto()">
+            {{ trans('Edit menu') }}
+        </a>
     </NPopover>
 </template>
 <script>
@@ -30,8 +33,12 @@
 
         methods: {
 
-            goto(name)
+            goto(name = null)
             {
+                if ( this.Any.isEmpty(name) ) {
+                    name = this.Obj.get(this.value, 'connector.connect.edit')
+                }
+
                 let params = {
                     id: this.value.id
                 };

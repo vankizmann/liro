@@ -2,12 +2,14 @@
 
 namespace Liro\Menu;
 
-use App\Database\Menu;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Traits\Macroable;
 use Liro\Support\Routing\RouteHelper;
+use App\Database\Menu;
 
 class MenuManager
 {
+    use Macroable;
+
     /**
      * @var \Liro\Support\Application
      */
@@ -305,6 +307,10 @@ class MenuManager
             return $fallback;
         }
 
+        if ( $id === null ) {
+            return reset($this->connectors[$type]);
+        }
+
         return ! isset($this->connectors[$type][$id]) ?
             $fallback : $this->connectors[$type][$id];
     }
@@ -323,7 +329,7 @@ class MenuManager
             return $fallback;
         }
 
-        return $this->getConnector($type, $id)->options();
+        return $connector->options();
     }
 
     public function findConnectors($callback, $fallback = [], $type = 'web-menu::vue')

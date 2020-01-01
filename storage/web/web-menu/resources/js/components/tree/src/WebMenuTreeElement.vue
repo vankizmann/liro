@@ -1,5 +1,5 @@
 <template>
-    <div :class="['web-menu-tree-item', ! value.depth && 'web-menu-tree-item--root']">
+    <div :class="['web-menu-tree-item', ! value.depth && 'web-menu-tree-item--root']" @dblclick="navigate">
         <span class="web-icon">
             <i :class="typeIcon"></i>
         </span>
@@ -51,6 +51,16 @@
 
         methods: {
 
+            navigate()
+            {
+                let link = this.Obj.get(this.value, 'options.links.0.id');
+
+                if ( this.Any.isEmpty(link) ) {
+                    link = this.Obj.get(this.value, 'connector.connect.edit');
+                }
+
+                this.$router.push({ name: link, params: this.value });
+            }
 
         }
 

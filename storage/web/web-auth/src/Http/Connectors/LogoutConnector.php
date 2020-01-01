@@ -37,14 +37,6 @@ class LogoutConnector extends Connector
             'icon' => 'fa fa-user-lock', 'component' => null, 'links' => []
         ];
 
-        $connector = app('web.menu')->findConnector(function ($connector) {
-            return data_get($connector, 'menu.extend.component') === 'WebMenuEdit';
-        });
-
-        if ( ! empty($connector) ) {
-            $options['links'][] = ['id' => $connector->menu->id, 'text' => $connector->menu->title];
-        }
-
         return $options;
     }
 

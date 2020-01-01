@@ -72,12 +72,25 @@ th {
     min-height: 100%;
 }
 
-.full-height-child {
+.full-height--fixed {
+    height: 100%;
+}
+
+.full-height-child,
+.auto-height-child {
     display: flex;
     flex-direction: column;
 }
 
 .full-height-child > * {
     width: 100%;
-    flex: 1 0 auto;
+    min-height: 0 !important;
+    flex: 1 0 auto !important;
+}
+
+.auto-height-child > * {
+    width: 100%;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    flex: 1 1 auto !important;
 }

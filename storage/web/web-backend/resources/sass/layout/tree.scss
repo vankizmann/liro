@@ -44,9 +44,12 @@
 }
 
 .web-backend-tree .web-menu-tree-item {
+    min-height: 34px;
+    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    line-height: 34px;
 }
 
 .web-backend-tree .web-menu-tree-item.web-menu-tree-item--root .web-title {

@@ -10,6 +10,10 @@ return [
         'Liro\\Web\\Menu\\' => 'src/'
     ],
 
+    'providers' => [
+        \Liro\Web\Menu\MenuServiceProvider::class
+    ],
+
     'imports' => [
 
         'WebMenuTree' => [

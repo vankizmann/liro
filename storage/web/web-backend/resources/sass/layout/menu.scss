@@ -17,13 +17,12 @@
 }
 
 .web-backend-menu li a {
-    background: $--color-primary;
     border-radius: 5px;
     transition: background 0.15s;
 }
 
 .web-backend-menu li a:hover {
-    background: rgba($color-primary, 0.8);
+    background: rgba($--color-primary-lighter, 0.5);
 }
 
 .web-backend-menu li.link--active a {

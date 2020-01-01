@@ -39,12 +39,18 @@ class VueConnector extends Connector
             'icon' => 'fab fa-vuejs', 'component' => null, 'links' => []
         ];
 
-        $connector = app('web.menu')->findConnector(function ($connector) {
-            return data_get($connector, 'menu.extend.component') === 'WebMenuEdit';
-        });
+        $options['connect'] = [];
+
+        $connector = app('web.menu')->findVueConnector('WebMenuIndex');
 
         if ( ! empty($connector) ) {
-            $options['links'][] = ['id' => $connector->menu->id, 'text' => $connector->menu->title];
+            $options['connect']['index'] = $connector->menu->id;
+        }
+
+        $connector = app('web.menu')->findVueConnector('WebMenuEdit');
+
+        if ( ! empty($connector) ) {
+            $options['connect']['edit'] = $connector->menu->id;
         }
 
         return $options;

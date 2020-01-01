@@ -19,6 +19,7 @@ Vue.use(VueNano, {
     angleRight:     'fa fa-angle-right',
     angleDown:      'fa fa-angle-down',
     angleLeft:      'fa fa-angle-left',
+    create:         'fa fa-plus',
     save:           'fa fa-check',
     delete:         'fa fa-times'
 });
@@ -35,5 +36,12 @@ require('./component/menu/index');
 require('./component/helper/index');
 
 Nano.Dom.ready(() => {
-    window.App = new Vue(require('./layout/WebBackendRoot').default).$mount('#app');
+
+    let options = {};
+
+    if ( Nano.Dom.find('#app').attr('data-root') ) {
+        options = require('./layout/WebBackendRoot').default;
+    }
+
+    window.RootApp = new Vue(options).$mount('#app');
 });

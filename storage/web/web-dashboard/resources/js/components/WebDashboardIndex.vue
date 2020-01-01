@@ -1,9 +1,11 @@
 <template>
     <div class="web-dashboard-index">
 
-        <WebBackendTitle :key="$route.name">
-            Welcome back!
-        </WebBackendTitle>
+        <div class="web-body-item">
+            <WebBackendTitle :key="$route.name">
+                Welcome back!
+            </WebBackendTitle>
+        </div>
 
     </div>
 </template>

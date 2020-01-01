@@ -26,7 +26,11 @@
     {!! app('web.assets')->output(['export', 'style']) !!}
 </head>
 <body>
-    <div id="app"></div>
+
+    <div id="app" data-root="true">
+        <!-- Application -->
+    </div>
+
     {!! app('web.assets')->output('script') !!}
 </body>
 </html>

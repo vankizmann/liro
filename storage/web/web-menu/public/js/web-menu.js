@@ -162,6 +162,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebMenuEdit',
   computed: {
@@ -180,6 +181,11 @@ __webpack_require__.r(__webpack_exports__);
     this.fetchEntity();
   },
   methods: {
+    closeEntity: function closeEntity() {
+      this.$router.push({
+        name: this.Obj.get(this.entity, 'connector.connect.index')
+      });
+    },
     doneEntity: function doneEntity(res) {
       this.entity = this.Obj.get(res, 'data.data', {});
     },
@@ -246,8 +252,154 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'WebMenuIndex'
+  name: 'WebMenuIndex',
+  data: function data() {
+    var request = {
+      data: [],
+      page: 1,
+      limit: 50,
+      total: 0
+    };
+    var filter = [// Default filters
+    ];
+
+    if (this.Cookie.get('web-menu-index|filter')) {
+      filter = this.Str.objectify(this.Cookie.get('web-menu-index|filter'));
+    }
+
+    var sort = {
+      prop: 'id',
+      dir: 'desc'
+    };
+
+    if (this.Cookie.get('web-menu-index|sort')) {
+      sort = this.Str.objectify(this.Cookie.get('web-menu-index|sort'));
+    }
+
+    return {
+      request: request,
+      sort: sort,
+      filter: filter,
+      selected: [],
+      load: true
+    };
+  },
+  mounted: function mounted() {
+    this.$refs.table.$on('filter', this.Any.debounce(this.setFiltering, 300));
+
+    if (this.Data.has('web-menu-index')) {
+      return this.preloadEntities();
+    }
+
+    this.fetchEntities();
+  },
+  watch: {
+    request: function request() {
+      this.Data.set('web-menu-index', this.request);
+    },
+    sort: function sort() {
+      this.Cookie.set('web-menu-index|sort', this.Str.stringify(this.sort));
+    },
+    filter: function filter() {
+      this.Cookie.set('web-menu-index|filter', this.Str.stringify(this.filter));
+    }
+  },
+  methods: {
+    navigate: function navigate(_ref) {
+      var row = _ref.row;
+      var name = this.Obj.get(row, 'connector.connect.edit');
+      this.$router.push({
+        name: name,
+        params: row
+      });
+    },
+    setSorting: function setSorting(prop, dir) {
+      this.$set(this, 'sort', {
+        prop: prop,
+        dir: dir
+      });
+      this.fetchEntities();
+    },
+    setFiltering: function setFiltering(filter) {
+      var _this = this;
+
+      this.$set(this, 'filter', this.Arr.filter(filter, function (val) {
+        return !_this.Any.isEmpty(val.value);
+      }));
+      this.Any.debounce(function () {
+        return _this.fetchEntities();
+      }, 500)();
+    },
+    doneEntities: function doneEntities(res) {
+      this.request = this.Obj.get(res, 'data', []);
+    },
+    errorEntities: function errorEntities(res) {
+      this.errors = this.Obj.get(res, 'data.errors', {});
+    },
+    preloadEntities: function preloadEntities() {
+      this.request = this.Data.get('web-menu-index');
+      this.load = false;
+    },
+    fetchEntities: function fetchEntities() {
+      var _this2 = this;
+
+      var query = this.Obj.only(this.request, ['page', 'limit']);
+      this.Obj.assign(query, this.sort, {
+        filter: this.filter
+      });
+      var route = this.Route.get('module.web-menu.menu.index', this.$route.params, query);
+      var options = {
+        onLoad: function onLoad() {
+          return _this2.load = true;
+        },
+        onDone: function onDone() {
+          return _this2.load = false;
+        }
+      };
+      this.$http.get(route, options).then(this.doneEntities, this.errorEntities);
+    },
+    deleteEntities: function deleteEntities() {}
+  }
 });
 
 /***/ }),
@@ -330,6 +482,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebMenuTreeContext',
   props: {
@@ -342,8 +497,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {},
   methods: {
-    "goto": function goto(name) {
+    "goto": function goto() {
       var _this = this;
+
+      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+      if (this.Any.isEmpty(name)) {
+        name = this.Obj.get(this.value, 'connector.connect.edit');
+      }
 
       var params = {
         id: this.value.id
@@ -403,7 +564,20 @@ __webpack_require__.r(__webpack_exports__);
       return this.Obj.get(this.value, 'options.icon');
     }
   },
-  methods: {}
+  methods: {
+    navigate: function navigate() {
+      var link = this.Obj.get(this.value, 'options.links.0.id');
+
+      if (this.Any.isEmpty(link)) {
+        link = this.Obj.get(this.value, 'connector.connect.edit');
+      }
+
+      this.$router.push({
+        name: link,
+        params: this.value
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -425,221 +599,233 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "NLoader",
-    { staticClass: "web-menu-edit col--flex-1", attrs: { visible: _vm.load } },
+    { staticClass: "web-menu-edit full-height", attrs: { visible: _vm.load } },
     [
       _c(
-        "WebBackendTitle",
+        "div",
+        { staticClass: "web-body-item" },
         [
-          _c("template", { slot: "default" }, [
-            _vm._v(
-              "\n            " +
-                _vm._s(
-                  _vm.trans("Last updated at :updated", {
-                    updated: _vm.updated
-                  })
-                ) +
-                "\n        "
-            )
-          ]),
-          _vm._v(" "),
-          _c("template", { slot: "action" }, [
-            _c("div", { staticClass: "grid grid--row grid--10" }, [
+          _c(
+            "WebBackendTitle",
+            [
+              _c("template", { slot: "default" }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(
+                      _vm.trans("Last updated at :updated", {
+                        updated: _vm.updated
+                      })
+                    ) +
+                    "\n            "
+                )
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "col--auto" },
+                {
+                  staticClass: "grid grid--row grid--10",
+                  attrs: { slot: "action" },
+                  slot: "action"
+                },
                 [
                   _c(
-                    "NButton",
+                    "div",
+                    { staticClass: "col--auto" },
+                    [
+                      _c(
+                        "NButton",
+                        {
+                          attrs: { type: "primary", icon: _vm.icons.save },
+                          on: { click: _vm.updateEntity }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.trans("Apply")) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col--auto" },
+                    [
+                      _c(
+                        "NButton",
+                        {
+                          attrs: { type: "secondary", icon: _vm.icons.delete },
+                          on: { click: _vm.closeEntity }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.trans("Close")) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            ],
+            2
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "web-body-item" },
+        [
+          _c(
+            "NForm",
+            { attrs: { errors: _vm.errors } },
+            [
+              _c(
+                "NFormItem",
+                { attrs: { prop: "state", label: _vm.trans("Status") } },
+                [
+                  _c(
+                    "NSelect",
                     {
-                      attrs: {
-                        outline: false,
-                        type: "primary",
-                        icon: _vm.icons.save
-                      },
-                      on: { click: _vm.updateEntity }
+                      model: {
+                        value: _vm.entity.state,
+                        callback: function($$v) {
+                          _vm.$set(_vm.entity, "state", $$v)
+                        },
+                        expression: "entity.state"
+                      }
                     },
                     [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(_vm.trans("Apply")) +
-                          "\n                    "
-                      )
-                    ]
+                      _c("NSelectOption", { attrs: { value: 1 } }, [
+                        _vm._v(_vm._s(_vm.trans("Active")))
+                      ]),
+                      _vm._v(" "),
+                      _c("NSelectOption", { attrs: { value: 0 } }, [
+                        _vm._v(_vm._s(_vm.trans("Inactive")))
+                      ]),
+                      _vm._v(" "),
+                      _c("NSelectOption", { attrs: { value: 2 } }, [
+                        _vm._v(_vm._s(_vm.trans("Archived")))
+                      ])
+                    ],
+                    1
                   )
                 ],
                 1
               ),
               _vm._v(" "),
               _c(
-                "div",
-                { staticClass: "col--auto" },
+                "NFormItem",
+                { attrs: { prop: "hide", label: _vm.trans("Visiblity") } },
                 [
                   _c(
-                    "NButton",
+                    "NSelect",
                     {
-                      attrs: {
-                        outline: true,
-                        type: "danger",
-                        icon: _vm.icons.delete
+                      model: {
+                        value: _vm.entity.hide,
+                        callback: function($$v) {
+                          _vm.$set(_vm.entity, "hide", $$v)
+                        },
+                        expression: "entity.hide"
                       }
                     },
                     [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(_vm.trans("Delete")) +
-                          "\n                    "
-                      )
-                    ]
+                      _c("NSelectOption", { attrs: { value: 0 } }, [
+                        _vm._v(_vm._s(_vm.trans("Visisble")))
+                      ]),
+                      _vm._v(" "),
+                      _c("NSelectOption", { attrs: { value: 1 } }, [
+                        _vm._v(_vm._s(_vm.trans("Invisible")))
+                      ])
+                    ],
+                    1
                   )
                 ],
                 1
-              )
-            ])
-          ])
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "NForm",
-        { attrs: { errors: _vm.errors } },
-        [
-          _c(
-            "NFormItem",
-            { attrs: { prop: "state", label: _vm.trans("Status") } },
-            [
+              ),
+              _vm._v(" "),
               _c(
-                "NSelect",
-                {
-                  model: {
-                    value: _vm.entity.state,
-                    callback: function($$v) {
-                      _vm.$set(_vm.entity, "state", $$v)
-                    },
-                    expression: "entity.state"
-                  }
-                },
+                "NFormItem",
+                { attrs: { prop: "layout", label: _vm.trans("Layout") } },
                 [
-                  _c("NSelectOption", { attrs: { value: 1 } }, [
-                    _vm._v(_vm._s(_vm.trans("Active")))
-                  ]),
-                  _vm._v(" "),
-                  _c("NSelectOption", { attrs: { value: 0 } }, [
-                    _vm._v(_vm._s(_vm.trans("Inactive")))
-                  ]),
-                  _vm._v(" "),
-                  _c("NSelectOption", { attrs: { value: 2 } }, [
-                    _vm._v(_vm._s(_vm.trans("Archived")))
-                  ])
+                  _c("NInput", {
+                    model: {
+                      value: _vm.entity.layout,
+                      callback: function($$v) {
+                        _vm.$set(_vm.entity, "layout", $$v)
+                      },
+                      expression: "entity.layout"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "NFormItem",
+                { attrs: { prop: "icon", label: _vm.trans("Icon") } },
+                [
+                  _c("NInput", {
+                    model: {
+                      value: _vm.entity.icon,
+                      callback: function($$v) {
+                        _vm.$set(_vm.entity, "icon", $$v)
+                      },
+                      expression: "entity.icon"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "NFormItem",
+                { attrs: { prop: "title", label: _vm.trans("Title") } },
+                [
+                  _c("NInput", {
+                    model: {
+                      value: _vm.entity.title,
+                      callback: function($$v) {
+                        _vm.$set(_vm.entity, "title", $$v)
+                      },
+                      expression: "entity.title"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "NFormItem",
+                { attrs: { prop: "slug", label: _vm.trans("Slug") } },
+                [
+                  _c("NInput", {
+                    model: {
+                      value: _vm.entity.slug,
+                      callback: function($$v) {
+                        _vm.$set(_vm.entity, "slug", $$v)
+                      },
+                      expression: "entity.slug"
+                    }
+                  })
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "NFormItem",
-            { attrs: { prop: "hide", label: _vm.trans("Visiblity") } },
-            [
-              _c(
-                "NSelect",
-                {
-                  model: {
-                    value: _vm.entity.hide,
-                    callback: function($$v) {
-                      _vm.$set(_vm.entity, "hide", $$v)
-                    },
-                    expression: "entity.hide"
-                  }
-                },
-                [
-                  _c("NSelectOption", { attrs: { value: 0 } }, [
-                    _vm._v(_vm._s(_vm.trans("Visisble")))
-                  ]),
-                  _vm._v(" "),
-                  _c("NSelectOption", { attrs: { value: 1 } }, [
-                    _vm._v(_vm._s(_vm.trans("Invisible")))
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "NFormItem",
-            { attrs: { prop: "layout", label: _vm.trans("Layout") } },
-            [
-              _c("NInput", {
-                model: {
-                  value: _vm.entity.layout,
-                  callback: function($$v) {
-                    _vm.$set(_vm.entity, "layout", $$v)
-                  },
-                  expression: "entity.layout"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "NFormItem",
-            { attrs: { prop: "icon", label: _vm.trans("Icon") } },
-            [
-              _c("NInput", {
-                model: {
-                  value: _vm.entity.icon,
-                  callback: function($$v) {
-                    _vm.$set(_vm.entity, "icon", $$v)
-                  },
-                  expression: "entity.icon"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "NFormItem",
-            { attrs: { prop: "title", label: _vm.trans("Title") } },
-            [
-              _c("NInput", {
-                model: {
-                  value: _vm.entity.title,
-                  callback: function($$v) {
-                    _vm.$set(_vm.entity, "title", $$v)
-                  },
-                  expression: "entity.title"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "NFormItem",
-            { attrs: { prop: "slug", label: _vm.trans("Slug") } },
-            [
-              _c("NInput", {
-                model: {
-                  value: _vm.entity.slug,
-                  callback: function($$v) {
-                    _vm.$set(_vm.entity, "slug", $$v)
-                  },
-                  expression: "entity.slug"
-                }
-              })
             ],
             1
           )
         ],
         1
       )
-    ],
-    1
+    ]
   )
 }
 var staticRenderFns = []
@@ -665,30 +851,192 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { key: _vm.$route.name, staticClass: "web-menu-index" },
+    "NLoader",
+    {
+      staticClass:
+        "web-menu-index full-height full-height--fixed auto-height-child",
+      attrs: { visible: _vm.load }
+    },
     [
-      _c("WebBackendTitle", [
-        _vm._v("\n        Last updated at bla bla.\n    ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "NTabs",
-        [
-          _c("NTabsItem", { attrs: { label: _vm.trans("Start") } }, [
-            _vm._v("\n            Foo\n        ")
-          ]),
-          _vm._v(" "),
-          _c(
-            "NTabsItem",
-            { attrs: { label: _vm.trans("Test"), name: "test" } },
-            [_vm._v("\n            Bar\n        ")]
-          )
-        ],
-        1
-      )
-    ],
-    1
+      _c("div", { staticClass: "grid grid--col" }, [
+        _c(
+          "div",
+          { staticClass: "web-body-item col--flex-none" },
+          [
+            _c("WebBackendTitle", [
+              _vm._v(
+                "\n\n                " +
+                  _vm._s(
+                    _vm.trans(
+                      "An overview of all menu items registered in your webpage"
+                    )
+                  ) +
+                  "\n\n                "
+              ),
+              _c(
+                "div",
+                {
+                  staticClass: "grid grid--row grid--10",
+                  attrs: { slot: "action" },
+                  slot: "action"
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "col--auto" },
+                    [
+                      _c(
+                        "NButton",
+                        {
+                          attrs: { type: "primary", icon: _vm.icons.create },
+                          on: { click: _vm.deleteEntities }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(_vm.trans("Create")) +
+                              "\n                        "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col--auto" },
+                    [
+                      _c(
+                        "NButton",
+                        {
+                          attrs: {
+                            type: "danger",
+                            outline: true,
+                            icon: _vm.icons.delete,
+                            disabled: !_vm.selected.length
+                          },
+                          on: { click: _vm.deleteEntities }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(
+                                _vm.choice(
+                                  "Delete (:count)",
+                                  _vm.selected.length
+                                )
+                              ) +
+                              "\n                        "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "web-body-item col--flex-fixed" },
+          [
+            _c(
+              "NTable",
+              {
+                ref: "table",
+                attrs: {
+                  "selected-keys": _vm.selected,
+                  items: _vm.request.data,
+                  "sort-prop": _vm.sort.prop,
+                  "sort-dir": _vm.sort.dir,
+                  "filter-props": _vm.Obj.values(_vm.filter),
+                  "adapt-height": true
+                },
+                on: {
+                  "update:selectedKeys": function($event) {
+                    _vm.selected = $event
+                  },
+                  "update:selected-keys": function($event) {
+                    _vm.selected = $event
+                  },
+                  sort: _vm.setSorting,
+                  "row-dblclick": _vm.navigate
+                }
+              },
+              [
+                _c("NTableColumn", {
+                  attrs: {
+                    type: "selection",
+                    "fixed-width": 45,
+                    align: "center",
+                    label: _vm.trans("Selection")
+                  }
+                }),
+                _vm._v(" "),
+                _c("NTableColumn", {
+                  attrs: {
+                    prop: "title",
+                    sort: true,
+                    filter: true,
+                    label: _vm.trans("Title")
+                  }
+                }),
+                _vm._v(" "),
+                _c("NTableColumn", {
+                  attrs: {
+                    prop: "slug",
+                    sort: true,
+                    filter: true,
+                    label: _vm.trans("Slug")
+                  }
+                }),
+                _vm._v(" "),
+                _c("NTableColumn", {
+                  attrs: {
+                    prop: "type",
+                    sort: true,
+                    filter: true,
+                    label: _vm.trans("Type")
+                  }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "web-body-item col--flex--none" },
+          [
+            _c("NPaginator", {
+              attrs: {
+                page: _vm.request.page,
+                limit: _vm.request.limit,
+                total: _vm.request.total,
+                "limit-options": [50, 100, 500]
+              },
+              on: {
+                "update:page": function($event) {
+                  return _vm.$set(_vm.request, "page", $event)
+                },
+                "update:limit": function($event) {
+                  return _vm.$set(_vm.request, "limit", $event)
+                },
+                paginate: _vm.fetchEntities
+              }
+            })
+          ],
+          1
+        )
+      ])
+    ]
   )
 }
 var staticRenderFns = []
@@ -806,7 +1154,21 @@ var render = function() {
             [_vm._v("\n            " + _vm._s(link.text) + "\n        ")]
           )
         ]
-      })
+      }),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "n-popover-option",
+          attrs: { href: "javascript:void(0)" },
+          on: {
+            click: function($event) {
+              return _vm.goto()
+            }
+          }
+        },
+        [_vm._v("\n        " + _vm._s(_vm.trans("Edit menu")) + "\n    ")]
+      )
     ],
     2
   )
@@ -839,7 +1201,8 @@ var render = function() {
       class: [
         "web-menu-tree-item",
         !_vm.value.depth && "web-menu-tree-item--root"
-      ]
+      ],
+      on: { dblclick: _vm.navigate }
     },
     [
       _c("span", { staticClass: "web-icon" }, [

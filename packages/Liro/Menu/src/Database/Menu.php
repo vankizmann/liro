@@ -21,7 +21,7 @@ class Menu extends Model
     ];
 
     protected $appends = [
-        'route', 'path', 'final_layout', 'icon_url', 'options'
+        'connector', 'route', 'path', 'final_layout', 'icon_url', 'options'
     ];
 
     protected $hidden = [
@@ -94,6 +94,11 @@ class Menu extends Model
 
         return $this->attributes['layout'] ?:
             $this->parent->final_layout;
+    }
+
+    public function getConnectorAttribute()
+    {
+        return app('web.menu')->getOptions('web-menu::vue');
     }
 
     public function getOptionsAttribute()

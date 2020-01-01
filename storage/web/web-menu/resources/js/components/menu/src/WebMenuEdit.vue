@@ -1,34 +1,34 @@
 <template>
-    <NLoader :visible="load" class="web-menu-edit col--flex-1">
+    <NLoader :visible="load" class="web-menu-edit full-height">
 
-        <WebBackendTitle>
+        <div class="web-body-item">
+            <WebBackendTitle>
 
-            <template slot="default">
-                {{ trans('Last updated at :updated', { updated }) }}
-            </template>
+                <template slot="default">
+                    {{ trans('Last updated at :updated', { updated }) }}
+                </template>
 
-            <template slot="action">
-                <div class="grid grid--row grid--10">
+                <div class="grid grid--row grid--10" slot="action">
 
                     <div class="col--auto">
-                        <NButton :outline="false" type="primary" :icon="icons.save" @click="updateEntity">
+                        <NButton type="primary" :icon="icons.save" @click="updateEntity">
                             {{ trans('Apply') }}
                         </NButton>
                     </div>
 
                     <div class="col--auto">
-                        <NButton :outline="true" type="danger" :icon="icons.delete">
-                            {{ trans('Delete') }}
+                        <NButton type="secondary" :icon="icons.delete" @click="closeEntity">
+                            {{ trans('Close') }}
                         </NButton>
                     </div>
 
                 </div>
 
-            </template>
+            </WebBackendTitle>
+        </div>
 
-        </WebBackendTitle>
-
-        <NForm :errors="errors">
+        <div class="web-body-item">
+            <NForm :errors="errors">
 
             <NFormItem prop="state" :label="trans('Status')">
                 <NSelect v-model="entity.state">
@@ -61,7 +61,8 @@
                 <NInput v-model="entity.slug" />
             </NFormItem>
 
-        </NForm>
+            </NForm>
+        </div>
 
     </NLoader>
 </template>
@@ -90,6 +91,13 @@
         },
 
         methods: {
+
+            closeEntity()
+            {
+                this.$router.push({
+                    name: this.Obj.get(this.entity, 'connector.connect.index')
+                });
+            },
 
             doneEntity(res)
             {

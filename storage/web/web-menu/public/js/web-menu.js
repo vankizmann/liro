@@ -153,16 +153,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebMenuEdit',
   computed: {
@@ -187,6 +177,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     doneEntity: function doneEntity(res) {
+      if (!this.Any.isEmpty(this.entity)) {
+        this.Event.fire('menu.updated');
+      }
+
       this.entity = this.Obj.get(res, 'data.data', {});
     },
     errorEntity: function errorEntity(res) {
@@ -209,6 +203,7 @@ __webpack_require__.r(__webpack_exports__);
     updateEntity: function updateEntity() {
       var _this2 = this;
 
+      this.Data.unset('web-menu-index');
       var route = this.Route.get('module.web-menu.menu.update', this.$route.params);
       var options = {
         onLoad: function onLoad() {
@@ -295,6 +290,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebMenuIndex',
   data: function data() {
@@ -312,7 +331,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     var sort = {
-      prop: 'id',
+      prop: 'updated_at',
       dir: 'desc'
     };
 
@@ -320,16 +339,27 @@ __webpack_require__.r(__webpack_exports__);
       sort = this.Str.objectify(this.Cookie.get('web-menu-index|sort'));
     }
 
+    var states = [{
+      value: '1',
+      label: this.trans('Active')
+    }, {
+      value: '0',
+      label: this.trans('Inactive')
+    }, {
+      value: '2',
+      label: this.trans('Archived')
+    }];
     return {
       request: request,
       sort: sort,
       filter: filter,
+      states: states,
       selected: [],
       load: true
     };
   },
   mounted: function mounted() {
-    this.$refs.table.$on('filter', this.Any.debounce(this.setFiltering, 300));
+    this.$refs.table.$on('filter', this.Any.debounce(this.setFiltering, 600));
 
     if (this.Data.has('web-menu-index')) {
       return this.preloadEntities();
@@ -453,8 +483,11 @@ __webpack_require__.r(__webpack_exports__);
       load: true
     };
   },
+  beforeMount: function beforeMount() {
+    this.Event.bind('menu.updated', this.fetchEntities);
+  },
   mounted: function mounted() {
-    this.fetchEntities();
+    this.Event.fire('menu.updated');
   },
   methods: {
     fetchEntities: function fetchEntities() {
@@ -575,6 +608,31 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
+    classList: function classList() {
+      var classList = ['web-menu-tree-item'];
+
+      if (this.value.depth === 0) {
+        classList.push('web-menu-tree-item--root');
+      }
+
+      if (this.value.state === -1) {
+        classList.push('web-menu-tree-item--deleted');
+      }
+
+      if (this.value.state === 0) {
+        classList.push('web-menu-tree-item--disabled');
+      }
+
+      if (this.value.state === 1) {
+        classList.push('web-menu-tree-item--enabled');
+      }
+
+      if (this.value.state === 2) {
+        classList.push('web-menu-tree-item--archived');
+      }
+
+      return classList;
+    },
     isDomain: function isDomain() {
       return !this.value.depth;
     },
@@ -628,74 +686,39 @@ var render = function() {
         [
           _c(
             "WebBackendTitle",
+            {
+              attrs: {
+                info: _vm.trans("Last updated at :updated", {
+                  updated: _vm.updated
+                }),
+                goto: _vm.closeEntity
+              }
+            },
             [
-              _c("template", { slot: "default" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(
-                      _vm.trans("Last updated at :updated", {
-                        updated: _vm.updated
-                      })
-                    ) +
-                    "\n            "
+              _c("div", { staticClass: "grid grid--row grid--10" }, [
+                _c(
+                  "div",
+                  { staticClass: "col--auto" },
+                  [
+                    _c(
+                      "NButton",
+                      {
+                        attrs: { type: "primary", icon: _vm.icons.save },
+                        on: { click: _vm.updateEntity }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.trans("Apply")) +
+                            "\n                    "
+                        )
+                      ]
+                    )
+                  ],
+                  1
                 )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "grid grid--row grid--10",
-                  attrs: { slot: "action" },
-                  slot: "action"
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "col--auto" },
-                    [
-                      _c(
-                        "NButton",
-                        {
-                          attrs: { type: "primary", icon: _vm.icons.save },
-                          on: { click: _vm.updateEntity }
-                        },
-                        [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(_vm.trans("Apply")) +
-                              "\n                    "
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col--auto" },
-                    [
-                      _c(
-                        "NButton",
-                        {
-                          attrs: { type: "secondary", icon: _vm.icons.delete },
-                          on: { click: _vm.closeEntity }
-                        },
-                        [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(_vm.trans("Close")) +
-                              "\n                    "
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ]
-              )
-            ],
-            2
+              ])
+            ]
           )
         ],
         1
@@ -884,24 +907,17 @@ var render = function() {
           "div",
           { staticClass: "web-body-item col--flex-none" },
           [
-            _c("WebBackendTitle", [
-              _vm._v(
-                "\n\n                " +
-                  _vm._s(
-                    _vm.trans(
-                      "An overview of all menu items registered in your webpage"
-                    )
-                  ) +
-                  "\n\n                "
-              ),
-              _c(
-                "div",
-                {
-                  staticClass: "grid grid--row grid--10",
-                  attrs: { slot: "action" },
-                  slot: "action"
-                },
-                [
+            _c(
+              "WebBackendTitle",
+              {
+                attrs: {
+                  info: _vm.trans(
+                    "An overview of all menu items registered in your webpage"
+                  )
+                }
+              },
+              [
+                _c("div", { staticClass: "grid grid--row grid--10" }, [
                   _c(
                     "div",
                     { staticClass: "col--auto" },
@@ -910,7 +926,7 @@ var render = function() {
                         "NButton",
                         {
                           attrs: { type: "primary", icon: _vm.icons.create },
-                          on: { click: _vm.deleteEntities }
+                          on: { click: function($event) {} }
                         },
                         [
                           _vm._v(
@@ -928,50 +944,113 @@ var render = function() {
                     "div",
                     { staticClass: "col--auto" },
                     [
+                      _c("NButton", {
+                        attrs: {
+                          type: "secondary",
+                          square: true,
+                          icon: _vm.icons.action,
+                          disabled: !_vm.selected.length
+                        }
+                      }),
+                      _vm._v(" "),
                       _c(
-                        "NButton",
+                        "NPopover",
                         {
                           attrs: {
-                            type: "danger",
-                            outline: true,
-                            icon: _vm.icons.delete,
+                            type: "select",
+                            trigger: "click",
+                            position: "bottom-end",
+                            width: 220,
                             disabled: !_vm.selected.length
                           }
                         },
                         [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(_vm.trans("Delete")) +
-                              "\n                        "
+                          _c(
+                            "NButton",
+                            {
+                              staticClass: "n-popover-option",
+                              attrs: {
+                                type: "primary",
+                                link: true,
+                                icon: _vm.icons.delete
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.trans("Archive")) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "NConfirm",
+                            {
+                              attrs: { type: "primary" },
+                              on: { confirm: _vm.deleteEntities }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(
+                                    _vm.choice(
+                                      "Do you want to archive :count items?",
+                                      _vm.selected.length
+                                    )
+                                  ) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "NButton",
+                            {
+                              staticClass: "n-popover-option",
+                              attrs: {
+                                type: "danger",
+                                link: true,
+                                icon: _vm.icons.delete
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.trans("Delete")) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "NConfirm",
+                            {
+                              attrs: { type: "danger" },
+                              on: { confirm: _vm.deleteEntities }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(
+                                    _vm.choice(
+                                      "Do you want to delete :count items?",
+                                      _vm.selected.length
+                                    )
+                                  ) +
+                                  "\n                            "
+                              )
+                            ]
                           )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "NConfirm",
-                        {
-                          attrs: { type: "danger" },
-                          on: { confirm: _vm.deleteEntities }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(
-                                _vm.choice(
-                                  "Do you want to delete :count items?",
-                                  _vm.selected.length
-                                )
-                              ) +
-                              "\n                        "
-                          )
-                        ]
+                        ],
+                        1
                       )
                     ],
                     1
                   )
-                ]
-              )
-            ])
+                ])
+              ]
+            )
           ],
           1
         ),
@@ -1022,6 +1101,19 @@ var render = function() {
                 _vm._v(" "),
                 _c("NTableColumn", {
                   attrs: {
+                    prop: "state",
+                    type: "option",
+                    "options-label": "$value.label",
+                    "options-value": "$value.value",
+                    options: _vm.states,
+                    sort: true,
+                    filter: true,
+                    label: _vm.trans("State")
+                  }
+                }),
+                _vm._v(" "),
+                _c("NTableColumn", {
+                  attrs: {
                     prop: "title",
                     sort: true,
                     filter: true,
@@ -1044,6 +1136,24 @@ var render = function() {
                     sort: true,
                     filter: true,
                     label: _vm.trans("Type")
+                  }
+                }),
+                _vm._v(" "),
+                _c("NTableColumn", {
+                  attrs: {
+                    prop: "updated_at",
+                    type: "datetime",
+                    sort: true,
+                    label: _vm.trans("Updated")
+                  }
+                }),
+                _vm._v(" "),
+                _c("NTableColumn", {
+                  attrs: {
+                    prop: "created_at",
+                    type: "datetime",
+                    sort: true,
+                    label: _vm.trans("Created")
                   }
                 })
               ],
@@ -1237,35 +1347,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      class: [
-        "web-menu-tree-item",
-        !_vm.value.depth && "web-menu-tree-item--root"
-      ],
-      on: { dblclick: _vm.navigate }
-    },
-    [
-      _c("span", { staticClass: "web-icon" }, [
-        _c("i", { class: _vm.typeIcon })
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "web-title" }, [
-        _vm._v("\n        " + _vm._s(_vm.value.title) + "\n    ")
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "web-count" }, [
-        _vm._v(
-          "\n        " +
-            _vm._s(
-              _vm.choice("No menus|:count menu|:count menus", _vm.childLength)
-            ) +
-            "\n    "
-        )
-      ])
-    ]
-  )
+  return _c("div", { class: _vm.classList, on: { dblclick: _vm.navigate } }, [
+    _c("span", { staticClass: "web-icon" }, [_c("i", { class: _vm.typeIcon })]),
+    _vm._v(" "),
+    _c("span", { staticClass: "web-title" }, [
+      _vm._v("\n        " + _vm._s(_vm.value.title) + "\n    ")
+    ]),
+    _vm._v(" "),
+    _c("span", { staticClass: "web-count" }, [
+      _vm._v(
+        "\n        " +
+          _vm._s(
+            _vm.choice("No menus|:count menu|:count menus", _vm.childLength)
+          ) +
+          "\n    "
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1806,8 +1904,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

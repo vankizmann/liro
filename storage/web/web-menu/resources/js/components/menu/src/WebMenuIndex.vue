@@ -4,25 +4,37 @@
         <div class="grid grid--col">
 
             <div class="web-body-item col--flex-none">
-                <WebBackendTitle>
+                <WebBackendTitle :info="trans('An overview of all menu items registered in your webpage')">
 
-                    {{ trans('An overview of all menu items registered in your webpage') }}
-
-                    <div class="grid grid--row grid--10" slot="action">
+                    <div class="grid grid--row grid--10">
 
                         <div class="col--auto">
-                            <NButton type="primary" :icon="icons.create" @click="deleteEntities">
+                            <NButton type="primary" :icon="icons.create" @click="">
                                 {{ trans('Create') }}
                             </NButton>
                         </div>
 
                         <div class="col--auto">
-                            <NButton type="danger" :outline="true" :icon="icons.delete" :disabled="! selected.length">
-                                {{ trans('Delete') }}
+                            <NButton type="secondary" :square="true" :icon="icons.action" :disabled="! selected.length">
+                                <!-- Icon -->
                             </NButton>
-                            <NConfirm type="danger" @confirm="deleteEntities">
-                                {{ choice('Do you want to delete :count items?', selected.length) }}
-                            </NConfirm>
+                            <NPopover type="select" trigger="click" position="bottom-end" :width="220" :disabled="! selected.length">
+
+                                <NButton class="n-popover-option" type="primary" :link="true" :icon="icons.delete">
+                                    {{ trans('Archive') }}
+                                </NButton>
+                                <NConfirm type="primary" @confirm="deleteEntities">
+                                    {{ choice('Do you want to archive :count items?', selected.length) }}
+                                </NConfirm>
+
+                                <NButton class="n-popover-option" type="danger" :link="true" :icon="icons.delete">
+                                    {{ trans('Delete') }}
+                                </NButton>
+                                <NConfirm type="danger" @confirm="deleteEntities">
+                                    {{ choice('Do you want to delete :count items?', selected.length) }}
+                                </NConfirm>
+
+                            </NPopover>
                         </div>
 
 
@@ -38,6 +50,10 @@
                         <!-- ID -->
                     </NTableColumn>
 
+                    <NTableColumn prop="state" type="option" options-label="$value.label" options-value="$value.value" :options="states" :sort="true" :filter="true" :label="trans('State')">
+                        <!-- ID -->
+                    </NTableColumn>
+
                     <NTableColumn prop="title" :sort="true" :filter="true" :label="trans('Title')">
                         <!-- ID -->
                     </NTableColumn>
@@ -47,6 +63,14 @@
                     </NTableColumn>
 
                     <NTableColumn prop="type" :sort="true" :filter="true" :label="trans('Type')">
+                        <!-- ID -->
+                    </NTableColumn>
+
+                    <NTableColumn prop="updated_at" type="datetime" :sort="true" :label="trans('Updated')">
+                        <!-- ID -->
+                    </NTableColumn>
+
+                    <NTableColumn prop="created_at" type="datetime" :sort="true" :label="trans('Created')">
                         <!-- ID -->
                     </NTableColumn>
 
@@ -81,7 +105,7 @@
             }
 
             let sort = {
-                prop: 'id', dir: 'desc'
+                prop: 'updated_at', dir: 'desc'
             };
 
             if ( this.Cookie.get('web-menu-index|sort') ) {
@@ -90,13 +114,19 @@
                 );
             }
 
-            return { request, sort, filter, selected: [], load: true };
+            let states = [
+                { value: '1', label: this.trans('Active') },
+                { value: '0', label: this.trans('Inactive') },
+                { value: '2', label: this.trans('Archived') },
+            ];
+
+            return { request, sort, filter, states, selected: [], load: true };
         },
 
         mounted()
         {
             this.$refs.table.$on('filter',
-                this.Any.debounce(this.setFiltering, 300));
+                this.Any.debounce(this.setFiltering, 600));
 
             if ( this.Data.has('web-menu-index') ) {
                 return this.preloadEntities();

@@ -2,23 +2,13 @@
     <NLoader :visible="load" class="web-menu-edit full-height">
 
         <div class="web-body-item">
-            <WebBackendTitle>
+            <WebBackendTitle :info="trans('Last updated at :updated', { updated })" :goto="closeEntity">
 
-                <template slot="default">
-                    {{ trans('Last updated at :updated', { updated }) }}
-                </template>
-
-                <div class="grid grid--row grid--10" slot="action">
+                <div class="grid grid--row grid--10">
 
                     <div class="col--auto">
                         <NButton type="primary" :icon="icons.save" @click="updateEntity">
                             {{ trans('Apply') }}
-                        </NButton>
-                    </div>
-
-                    <div class="col--auto">
-                        <NButton type="secondary" :icon="icons.delete" @click="closeEntity">
-                            {{ trans('Close') }}
                         </NButton>
                     </div>
 
@@ -101,6 +91,10 @@
 
             doneEntity(res)
             {
+                if ( ! this.Any.isEmpty(this.entity) ) {
+                    this.Event.fire('menu.updated');
+                }
+
                 this.entity = this.Obj.get(res, 'data.data', {});
             },
 
@@ -125,6 +119,8 @@
 
             updateEntity()
             {
+                this.Data.unset('web-menu-index');
+
                 let route = this.Route.get('module.web-menu.menu.update',
                     this.$route.params);
 

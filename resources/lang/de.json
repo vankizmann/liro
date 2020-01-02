@@ -1,4 +1,10 @@
 {
+    "YYYY-MM-DD": "DD.MM.YYYY",
+    "YYYY-MM-DD hh:ii": "DD.MM.YYYY hh:ii",
+    "Please select": "Bitte auswählen",
+    "Active": "Aktiv",
+    "Inactive": "Inaktiv",
+    "Archived": "Archiviert",
     "Create": "Erstellen",
     "Delete": "Löschen",
     "Do you want to delete :count items?": "Möchtest du wirklich :count Einträge löschen?",

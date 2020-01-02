@@ -1,5 +1,5 @@
 <template>
-    <div :class="['web-menu-tree-item', ! value.depth && 'web-menu-tree-item--root']" @dblclick="navigate">
+    <div :class="classList" @dblclick="navigate">
         <span class="web-icon">
             <i :class="typeIcon"></i>
         </span>
@@ -29,6 +29,33 @@
         },
 
         computed: {
+
+            classList()
+            {
+                let classList = ['web-menu-tree-item'];
+
+                if ( this.value.depth === 0 ) {
+                    classList.push('web-menu-tree-item--root');
+                }
+
+                if ( this.value.state === -1 ) {
+                    classList.push('web-menu-tree-item--deleted');
+                }
+
+                if ( this.value.state === 0 ) {
+                    classList.push('web-menu-tree-item--disabled');
+                }
+
+                if ( this.value.state === 1 ) {
+                    classList.push('web-menu-tree-item--enabled');
+                }
+
+                if ( this.value.state === 2 ) {
+                    classList.push('web-menu-tree-item--archived');
+                }
+
+                return classList;
+            },
 
             isDomain()
             {

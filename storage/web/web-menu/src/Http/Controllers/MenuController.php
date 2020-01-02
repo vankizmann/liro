@@ -17,7 +17,7 @@ class MenuController extends Controller
 
     public function getTreeRoute()
     {
-        $menus = Menu::withDepthGuard()->enabled()->get()
+        $menus = Menu::withDepthGuard()->notArchived()->get()
             ->toHierarchy()->values();
 
         return response()->json($menus);
@@ -25,7 +25,8 @@ class MenuController extends Controller
 
     public function getIndexRoute()
     {
-        $menus = Menu::withDepthGuard()->enabled()->datatable();
+        $menus = Menu::withDepthGuard()
+            ->datatable();
 
         return response()->json($menus);
     }

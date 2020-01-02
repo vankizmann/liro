@@ -4,8 +4,39 @@
     padding: 35px 0 25px;
 }
 
+.web-backend-title__goto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.web-backend-title__goto:after {
+    content: '\00a0';
+    display: block;
+    width: 1px;
+    height: 40px;
+    margin: 0 15px 0 15px;
+    background: $--color-gray-10;
+}
+
+.web-backend-title__goto .n-icon {
+    font-size: 21px;
+    padding: 15px;
+    color: $--color-gray-30;
+    transition: color 0.2s;
+}
+
+.web-backend-title__goto .n-icon:hover {
+    color: $--color-primary;
+}
+
 .web-backend-title__text {
     color: $--color-primary;
+}
+
+.web-backend-title__text h2 {
+    font-size: 32px;
 }
 
 .web-backend-title__info {

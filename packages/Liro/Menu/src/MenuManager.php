@@ -79,7 +79,7 @@ class MenuManager
                 $this->registerControllerRoutes($alias, $locale);
             }
 
-            $menus = Menu::enabled()->orderBy('left', 'asc')->get();
+            $menus = Menu::orderBy('left', 'asc')->get();
 
             foreach ( $menus as $menu ) {
                 $this->registerMenuRoute($menu, $locale);
@@ -247,6 +247,10 @@ class MenuManager
         }
 
         $this->connectors[$menu->type][$menu->id] = $connector;
+
+        if ( data_get($menu, 'state', 0) !== 1 ) {
+            return;
+        }
 
         $options = [
             'locale' => $locale, 'domain' => $domain, 'route' => $route, 'menu' => $menu

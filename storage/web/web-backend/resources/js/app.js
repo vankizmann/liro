@@ -6,22 +6,27 @@ Nano.install(Vue.prototype);
 
 import VueNano from 'nano-ui';
 Vue.use(VueNano, {
-    checked:        'fa fa-check',
-    intermediate:   'fa fa-minus',
-    clock:          'fa fa-clock',
-    calendar:       'fa fa-calendar',
-    times:          'fa fa-times',
-    success:        'fa fa-check-circle',
-    warning:        'fa fa-exclamation-circle',
-    danger:         'fa fa-times-circle',
-    info:           'fa fa-info-circle',
-    angleUp:        'fa fa-angle-up',
-    angleRight:     'fa fa-angle-right',
-    angleDown:      'fa fa-angle-down',
-    angleLeft:      'fa fa-angle-left',
-    create:         'fa fa-plus',
-    save:           'fa fa-check',
-    delete:         'fa fa-times'
+    checked:        'far fa-check',
+    intermediate:   'far fa-minus',
+    clock:          'far fa-clock',
+    calendar:       'far fa-calendar',
+    times:          'far fa-times',
+    success:        'far fa-check-circle',
+    warning:        'far fa-exclamation-circle',
+    danger:         'far fa-times-circle',
+    info:           'far fa-info-circle',
+    angleUp:        'far fa-angle-up',
+    angleRight:     'far fa-angle-right',
+    angleDown:      'far fa-angle-down',
+    angleLeft:      'far fa-angle-left',
+    arrowUp:        'far fa-arrow-up',
+    arrowRight:     'far fa-arrow-right',
+    arrowDown:      'far fa-arrow-down',
+    arrowLeft:      'far fa-arrow-left',
+    create:         'far fa-plus',
+    save:           'far fa-check',
+    delete:         'far fa-times',
+    action:         'far fa-cog'
 });
 
 import VueRouter from 'vue-router';

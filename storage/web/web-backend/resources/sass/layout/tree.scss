@@ -57,6 +57,18 @@
     color: $--color-white;
 }
 
+.web-backend-tree .web-menu-tree-item.web-menu-tree-item--deleted .web-icon {
+    color: $--color-danger;
+}
+
+.web-backend-tree .web-menu-tree-item.web-menu-tree-item--disabled .web-icon {
+    color: $--color-danger;
+}
+
+.web-backend-tree .web-menu-tree-item.web-menu-tree-item--archived .web-icon {
+    color: $--color-warning;
+}
+
 .web-backend-tree .web-menu-tree-item .web-count {
     display: none;
     font-size: 12px;

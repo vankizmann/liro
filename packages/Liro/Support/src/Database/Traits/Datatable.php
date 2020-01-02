@@ -30,10 +30,6 @@ trait Datatable
 
         foreach ( Request::input('filter', []) as $key => $filter ) {
 
-            if ( empty($filter['value']) ) {
-                continue;
-            }
-
             $operator = '=';
 
             if ( $filter['operator'] === 'eq' ) {
@@ -53,11 +49,11 @@ trait Datatable
             }
 
             if ( $filter['operator'] === 'in' ) {
-                $operator = 'IN';
+                $operator = '=';
             }
 
             if ( $filter['operator'] === 'ni' ) {
-                $operator = 'NOT IN';
+                $operator = '!=';
             }
 
             $value = $filter['value'];
@@ -70,11 +66,18 @@ trait Datatable
                 $value = '%' . $filter['value'] . '%';
             }
 
-            if ( $filter['type'] === 'options' ) {
+            if ( $filter['type'] === 'option' ) {
                 $value = explode(',', $filter['value']);
             }
 
-            $query->where($filter['property'], $operator, $value);
+            $query->where(function ($query) use ($filter, $value, $operator) {
+
+                foreach ( (array) $value as $key => $option ) {
+                   $query->{! $key ? 'where' : 'orWhere'}($filter['property'], $operator, $option);
+                }
+
+            });
+
         }
 
         $page = (int) Request::input('page', 1);

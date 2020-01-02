@@ -18,9 +18,14 @@
             return { menus: [], cascade: [], load: true };
         },
 
+        beforeMount()
+        {
+            this.Event.bind('menu.updated', this.fetchEntities);
+        },
+
         mounted()
         {
-            this.fetchEntities();
+            this.Event.fire('menu.updated');
         },
 
         methods: {

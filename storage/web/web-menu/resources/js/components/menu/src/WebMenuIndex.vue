@@ -20,10 +20,24 @@
                             </NButton>
                             <NPopover type="select" trigger="click" position="bottom-end" :width="220" :disabled="! selected.length">
 
-                                <NButton class="n-popover-option" type="primary" :link="true" :icon="icons.delete">
-                                    {{ trans('Archive') }}
+                                <NButton class="n-popover-option" type="primary" :link="true" :icon="icons.activate">
+                                    {{ trans('Activate') }}
                                 </NButton>
                                 <NConfirm type="primary" @confirm="deleteEntities">
+                                    {{ choice('Do you want to activate :count items?', selected.length) }}
+                                </NConfirm>
+
+                                <NButton class="n-popover-option" type="warning" :link="true" :icon="icons.deactivate">
+                                    {{ trans('Deactivate') }}
+                                </NButton>
+                                <NConfirm type="warning" @confirm="deleteEntities">
+                                    {{ choice('Do you want to deactivate :count items?', selected.length) }}
+                                </NConfirm>
+
+                                <NButton class="n-popover-option" type="info" :link="true" :icon="icons.archive">
+                                    {{ trans('Archive') }}
+                                </NButton>
+                                <NConfirm type="info" @confirm="deleteEntities">
                                     {{ choice('Do you want to archive :count items?', selected.length) }}
                                 </NConfirm>
 

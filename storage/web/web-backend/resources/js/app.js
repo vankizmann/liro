@@ -25,8 +25,12 @@ Vue.use(VueNano, {
     arrowLeft:      'far fa-arrow-left',
     create:         'far fa-plus',
     save:           'far fa-check',
-    delete:         'far fa-times',
-    action:         'far fa-cog'
+    delete:         'far fa-trash',
+    archive:        'far fa-archive',
+    action:         'far fa-cog',
+    preview:        'far fa-link',
+    activate:       'far fa-check',
+    deactivate:     'far fa-times'
 });
 
 import VueRouter from 'vue-router';

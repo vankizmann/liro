@@ -7268,6 +7268,12 @@ readers do not read off random characters that represent icons */
 .n-button {
   -webkit-box-flex: 1;
           flex: 1 1 auto;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
   min-width: 0;
   white-space: nowrap;
 }
@@ -23810,6 +23816,14 @@ readers do not read off random characters that represent icons */
   display: none;
 }
 
+::-moz-selection {
+  background: rgba(228, 252, 91, 0.5);
+}
+
+::selection {
+  background: rgba(228, 252, 91, 0.5);
+}
+
 * {
   outline: none !important;
 }
@@ -24032,7 +24046,7 @@ th {
 }
 
 .web-backend-tree .n-draggable__item {
-  color: #8b8c99;
+  color: #b5b6c0;
   margin-top: 1px;
   border-radius: 3px;
   -webkit-transition: background 0.15s;
@@ -24064,7 +24078,15 @@ th {
 
 .web-backend-tree .web-menu-tree-item {
   min-height: 34px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+  -webkit-box-align: center;
+          align-items: center;
   width: 100%;
+  padding-right: 12px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -24074,6 +24096,10 @@ th {
 .web-backend-tree .web-menu-tree-item.web-menu-tree-item--root .web-title {
   font-size: 16px;
   color: #ffffff;
+}
+
+.web-backend-tree .web-menu-tree-item.web-menu-tree-item--hidden .web-title {
+  text-decoration: line-through;
 }
 
 .web-backend-tree .web-menu-tree-item.web-menu-tree-item--deleted .web-icon {
@@ -24090,8 +24116,8 @@ th {
 
 .web-backend-tree .web-menu-tree-item .web-count {
   display: none;
-  font-size: 12px;
-  margin-left: 6px;
+  font-size: 13px;
+  margin-left: 8px;
 }
 
 .web-backend-tree .web-menu-tree-item.web-menu-tree-item--root .web-count {
@@ -24102,9 +24128,18 @@ th {
 .web-backend-tree .web-menu-tree-item .web-icon {
   display: inline-block;
   width: 24px;
-  margin-right: 6px;
+  margin-right: 8px;
   text-align: center;
   color: #4565f0;
+}
+
+.web-backend-tree .web-menu-tree-item .web-preview {
+  margin-left: auto;
+}
+
+.web-backend-tree .web-menu-tree-item .web-preview a {
+  font-size: 14px;
+  color: #606272;
 }
 
 .web-backend-header {
@@ -24263,21 +24298,21 @@ th {
 }
 
 .fa, .fa[class^=fa-], .fa[class*=" fa-"] {
-  font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free", sans-serif !important;
-  font-weight: 500;
+  font-family: "Font Awesome 5 Free", sans-serif !important;
+  font-weight: 500 !important;
 }
 
 .far, .far[class^=fa-], .far[class*=" fa-"] {
-  font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free", sans-serif !important;
-  font-weight: 400;
+  font-family: "Font Awesome 5 Free", sans-serif !important;
+  font-weight: 400 !important;
 }
 
 .fad, .fad[class^=fa-], .fad[class*=fa-] {
-  font-family: "Font Awesome 5 Duotone", sans-serif;
+  font-family: "Font Awesome 5 Duotone", sans-serif !important;
   font-weight: 400;
 }
 
 .fab, .fad[class^=fa-], .fad[class*=fa-] {
-  font-family: "Font Awesome 5 Brands", sans-serif;
+  font-family: "Font Awesome 5 Brands", sans-serif !important;
   font-weight: 400;
 }

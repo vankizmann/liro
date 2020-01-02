@@ -41,6 +41,8 @@ class LoginConnector extends Connector
             'icon' => 'fa fa-user-lock', 'component' => null, 'links' => []
         ];
 
+        $options['preview'] = url($this->menu->path);
+
         return $options;
     }
 

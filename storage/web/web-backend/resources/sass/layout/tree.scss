@@ -15,7 +15,7 @@
 }
 
 .web-backend-tree .n-draggable__item {
-    color: $--color-gray-50;
+    color: $--color-gray-30;
     margin-top: 1px;
     border-radius: $radius-medium;
     transition: background 0.15s;
@@ -45,7 +45,11 @@
 
 .web-backend-tree .web-menu-tree-item {
     min-height: 34px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     width: 100%;
+    padding-right: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -55,6 +59,10 @@
 .web-backend-tree .web-menu-tree-item.web-menu-tree-item--root .web-title {
     font-size: 16px;
     color: $--color-white;
+}
+
+.web-backend-tree .web-menu-tree-item.web-menu-tree-item--hidden .web-title {
+    text-decoration: line-through;
 }
 
 .web-backend-tree .web-menu-tree-item.web-menu-tree-item--deleted .web-icon {
@@ -71,8 +79,8 @@
 
 .web-backend-tree .web-menu-tree-item .web-count {
     display: none;
-    font-size: 12px;
-    margin-left: 6px;
+    font-size: 13px;
+    margin-left: 8px;
 }
 
 .web-backend-tree .web-menu-tree-item.web-menu-tree-item--root .web-count {
@@ -83,7 +91,17 @@
 .web-backend-tree .web-menu-tree-item .web-icon {
     display: inline-block;
     width: 24px;
-    margin-right: 6px;
+    margin-right: 8px;
     text-align: center;
     color: $--color-primary;
 }
+
+.web-backend-tree .web-menu-tree-item .web-preview {
+    margin-left: auto;
+}
+
+.web-backend-tree .web-menu-tree-item .web-preview a {
+    font-size: 14px;
+    color: $--color-gray-70;
+}
+

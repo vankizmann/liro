@@ -1,5 +1,5 @@
 <template>
-    <NLoader :visible="load" class="web-menu-edit full-height">
+    <NLoader :visible="load" class="web-menu-edit">
 
         <div class="web-body-item">
             <WebBackendTitle :info="trans('Last updated at :updated', { updated })" :goto="closeEntity">

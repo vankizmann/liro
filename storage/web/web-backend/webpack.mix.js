@@ -30,10 +30,10 @@ mix.setResourceRoot(
  * Webfont files
  */
 
-mix.copyDirectory(
-    'node_modules/@fortawesome/fontawesome-free/webfonts',
-    'public/webfonts',
-);
+// mix.copyDirectory(
+//     'node_modules/@fortawesome/fontawesome-free/webfonts',
+//     'public/webfonts',
+// );
 
 /**
  * JS files

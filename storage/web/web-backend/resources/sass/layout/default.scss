@@ -4,6 +4,10 @@
     display: none;
 }
 
+::selection {
+    background: rgba(#E4FC5B, 0.5);
+}
+
 * {
     outline: none !important;
 }

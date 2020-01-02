@@ -97,7 +97,7 @@
                     this.Dom.find(this.$el).parent().css(css);
                 };
 
-                this.Dom.find(window).on('mousemove', callback,
+                this.Dom.find(window).on('mousemove', this.Any.throttle(callback, 10),
                     { _uid: this._uid });
             },
 

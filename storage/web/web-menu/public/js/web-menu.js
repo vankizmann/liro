@@ -314,6 +314,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebMenuIndex',
   data: function data() {
@@ -597,6 +611,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebMenuTreeElement',
   props: {
@@ -631,6 +648,14 @@ __webpack_require__.r(__webpack_exports__);
         classList.push('web-menu-tree-item--archived');
       }
 
+      if (this.value.hide === 0) {
+        classList.push('web-menu-tree-item--visible');
+      }
+
+      if (this.value.hide === 1) {
+        classList.push('web-menu-tree-item--hidden');
+      }
+
       return classList;
     },
     isDomain: function isDomain() {
@@ -641,6 +666,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     typeIcon: function typeIcon() {
       return this.Obj.get(this.value, 'options.icon');
+    },
+    previewLink: function previewLink() {
+      return this.Obj.get(this.value, 'options.preview');
     }
   },
   methods: {
@@ -678,7 +706,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "NLoader",
-    { staticClass: "web-menu-edit full-height", attrs: { visible: _vm.load } },
+    { staticClass: "web-menu-edit", attrs: { visible: _vm.load } },
     [
       _c(
         "div",
@@ -972,7 +1000,85 @@ var render = function() {
                               attrs: {
                                 type: "primary",
                                 link: true,
-                                icon: _vm.icons.delete
+                                icon: _vm.icons.activate
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.trans("Activate")) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "NConfirm",
+                            {
+                              attrs: { type: "primary" },
+                              on: { confirm: _vm.deleteEntities }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(
+                                    _vm.choice(
+                                      "Do you want to activate :count items?",
+                                      _vm.selected.length
+                                    )
+                                  ) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "NButton",
+                            {
+                              staticClass: "n-popover-option",
+                              attrs: {
+                                type: "warning",
+                                link: true,
+                                icon: _vm.icons.deactivate
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.trans("Deactivate")) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "NConfirm",
+                            {
+                              attrs: { type: "warning" },
+                              on: { confirm: _vm.deleteEntities }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(
+                                    _vm.choice(
+                                      "Do you want to deactivate :count items?",
+                                      _vm.selected.length
+                                    )
+                                  ) +
+                                  "\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "NButton",
+                            {
+                              staticClass: "n-popover-option",
+                              attrs: {
+                                type: "info",
+                                link: true,
+                                icon: _vm.icons.archive
                               }
                             },
                             [
@@ -987,7 +1093,7 @@ var render = function() {
                           _c(
                             "NConfirm",
                             {
-                              attrs: { type: "primary" },
+                              attrs: { type: "info" },
                               on: { confirm: _vm.deleteEntities }
                             },
                             [
@@ -1362,7 +1468,16 @@ var render = function() {
           ) +
           "\n    "
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _vm.previewLink
+      ? _c("span", { staticClass: "web-preview" }, [
+          _c("a", {
+            class: _vm.icons.preview,
+            attrs: { href: _vm.previewLink, target: "_blank" }
+          })
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -1904,8 +2019,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

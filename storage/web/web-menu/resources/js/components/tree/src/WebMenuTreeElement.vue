@@ -9,6 +9,9 @@
         <span class="web-count">
             {{ choice('No menus|:count menu|:count menus', childLength) }}
         </span>
+        <span class="web-preview" v-if="previewLink">
+            <a :class="icons.preview" :href="previewLink" target="_blank"></a>
+        </span>
     </div>
 </template>
 <script>
@@ -54,6 +57,14 @@
                     classList.push('web-menu-tree-item--archived');
                 }
 
+                if ( this.value.hide === 0 ) {
+                    classList.push('web-menu-tree-item--visible');
+                }
+
+                if ( this.value.hide === 1 ) {
+                    classList.push('web-menu-tree-item--hidden');
+                }
+
                 return classList;
             },
 
@@ -72,6 +83,12 @@
             {
                 return this.Obj.get(this.value,
                     'options.icon');
+            },
+
+            previewLink()
+            {
+                return this.Obj.get(this.value,
+                    'options.preview');
             }
 
         },

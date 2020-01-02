@@ -58,6 +58,8 @@ class PageConnector extends Connector
             $options['connect']['edit'] = $connector->menu->id;
         }
 
+        $options['preview'] = url($this->menu->path);
+
         return $options;
     }
 

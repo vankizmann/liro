@@ -13354,7 +13354,10 @@ var render = function() {
               [
                 _c("a", { attrs: { href: href }, on: { click: navigate } }, [
                   _c("img", {
-                    attrs: { src: _vm.value.icon_url, alt: _vm.value.title }
+                    attrs: {
+                      src: _vm.value.icon_url,
+                      alt: _vm.trans(_vm.value.title)
+                    }
                   })
                 ]),
                 _vm._v(" "),
@@ -13363,7 +13366,9 @@ var render = function() {
                   { attrs: { type: "tooltip", position: "right-center" } },
                   [
                     _vm._v(
-                      "\n            " + _vm._s(_vm.value.title) + "\n        "
+                      "\n            " +
+                        _vm._s(_vm.trans(_vm.value.title)) +
+                        "\n        "
                     )
                   ]
                 )
@@ -13422,7 +13427,9 @@ var render = function() {
               [
                 _c("a", { attrs: { href: href }, on: { click: navigate } }, [
                   _vm._v(
-                    "\n            " + _vm._s(_vm.value.title) + "\n        "
+                    "\n            " +
+                      _vm._s(_vm.trans(_vm.value.title)) +
+                      "\n        "
                   )
                 ])
               ]

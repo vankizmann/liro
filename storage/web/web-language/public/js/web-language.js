@@ -1055,7 +1055,7 @@ var render = function() {
                     sort: true,
                     filter: true,
                     label: _vm.trans("Locale"),
-                    "default-width": 200
+                    "default-width": 75
                   }
                 }),
                 _vm._v(" "),

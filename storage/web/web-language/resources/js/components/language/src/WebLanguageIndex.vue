@@ -75,7 +75,7 @@
                         <!-- Title -->
                     </NTableColumn>
 
-                    <NTableColumn prop="locale" :sort="true" :filter="true" :label="trans('Locale')" :default-width="200">
+                    <NTableColumn prop="locale" :sort="true" :filter="true" :label="trans('Locale')" :default-width="75">
                         <!-- Slug -->
                     </NTableColumn>
 

@@ -6,7 +6,7 @@
         {!! Form::token() !!}
 
         <div class="form-group">
-            {!! Form::label('email', 'E-Mail-Address') !!}
+            {!! Form::label('email', trans('E-Mail-Address')) !!}
             {!! Form::email('email', null, ['placeholder' => trans('Please enter your email'), 'class' => 'form-control']) !!}
             @if ($errors->has('email'))
                 <span class="text-danger">{{ $errors->first('email') }}</span>
@@ -15,7 +15,7 @@
 
 
         <div class="form-group">
-            {!! Form::label('password', 'Password') !!}
+            {!! Form::label('password', trans('Password')) !!}
             {!! Form::password('password', ['placeholder' => trans('Please enter your password'), 'class' => 'form-control']) !!}
             @if ($errors->has('password'))
                 <span class="text-danger">{{ $errors->first('password') }}</span>

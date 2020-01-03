@@ -37,8 +37,9 @@
             title: {
                 default()
                 {
-                    return this.Obj.get(this.$route,
-                        'meta.menu.title');
+                    return this.trans(
+                        this.Obj.get(this.$route, 'meta.menu.title')
+                    );
                 },
                 type: [String]
             },

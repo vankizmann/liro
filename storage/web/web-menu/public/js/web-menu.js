@@ -363,11 +363,19 @@ __webpack_require__.r(__webpack_exports__);
       value: '2',
       label: this.trans('Archived')
     }];
+    var hides = [{
+      value: '1',
+      label: this.trans('Visible')
+    }, {
+      value: '0',
+      label: this.trans('Invisible')
+    }];
     return {
       request: request,
       sort: sort,
       filter: filter,
       states: states,
+      hides: hides,
       selected: [],
       load: true
     };
@@ -376,7 +384,7 @@ __webpack_require__.r(__webpack_exports__);
     this.$refs.table.$on('filter', this.Any.debounce(this.setFiltering, 600));
 
     if (this.Data.has('web-menu-index')) {
-      return this.preloadEntities();
+      return this.Any.delay(this.preloadEntities);
     }
 
     this.fetchEntities();
@@ -447,13 +455,14 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.$http.get(route, options).then(this.doneEntities)["catch"](this.errorEntities);
     },
-    deleteEntities: function deleteEntities() {
+    modifyEntities: function modifyEntities(type) {
       var _this3 = this;
 
+      this.$refs.popover.close();
       var query = {
         ids: this.selected
       };
-      var route = this.Route.get('module.web-menu.menu.delete', this.$route.params);
+      var route = this.Route.get("module.web-menu.menu.".concat(type), this.$route.params);
       var options = {
         onLoad: function onLoad() {
           return _this3.load = true;
@@ -494,6 +503,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       menus: [],
       cascade: [],
+      search: '',
       load: true
     };
   },
@@ -501,13 +511,19 @@ __webpack_require__.r(__webpack_exports__);
     this.Event.bind('menu.updated', this.fetchEntities);
   },
   mounted: function mounted() {
+    this.$refs.input.$on('input', this.Any.debounce(this.fetchEntities, 500));
     this.Event.fire('menu.updated');
   },
   methods: {
+    clearSearch: function clearSearch() {
+      this.$refs.input.$emit('input', '');
+    },
     fetchEntities: function fetchEntities() {
       var _this = this;
 
-      var route = this.Route.get('module.web-menu.menu.tree');
+      var route = this.Route.get('module.web-menu.menu.tree', null, {
+        search: this.search
+      });
       var options = {
         onLoad: function onLoad() {
           return _this.load = true;
@@ -796,7 +812,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "NFormItem",
-                { attrs: { prop: "hide", label: _vm.trans("Visiblity") } },
+                { attrs: { prop: "hide", label: _vm.trans("Visibility") } },
                 [
                   _c(
                     "NSelect",
@@ -811,7 +827,7 @@ var render = function() {
                     },
                     [
                       _c("NSelectOption", { attrs: { value: 0 } }, [
-                        _vm._v(_vm._s(_vm.trans("Visisble")))
+                        _vm._v(_vm._s(_vm.trans("Visible")))
                       ]),
                       _vm._v(" "),
                       _c("NSelectOption", { attrs: { value: 1 } }, [
@@ -984,6 +1000,7 @@ var render = function() {
                       _c(
                         "NPopover",
                         {
+                          ref: "popover",
                           attrs: {
                             type: "select",
                             trigger: "click",
@@ -1016,7 +1033,11 @@ var render = function() {
                             "NConfirm",
                             {
                               attrs: { type: "primary" },
-                              on: { confirm: _vm.deleteEntities }
+                              on: {
+                                confirm: function($event) {
+                                  return _vm.modifyEntities("activate")
+                                }
+                              }
                             },
                             [
                               _vm._v(
@@ -1055,7 +1076,11 @@ var render = function() {
                             "NConfirm",
                             {
                               attrs: { type: "warning" },
-                              on: { confirm: _vm.deleteEntities }
+                              on: {
+                                confirm: function($event) {
+                                  return _vm.modifyEntities("deactivate")
+                                }
+                              }
                             },
                             [
                               _vm._v(
@@ -1094,7 +1119,11 @@ var render = function() {
                             "NConfirm",
                             {
                               attrs: { type: "info" },
-                              on: { confirm: _vm.deleteEntities }
+                              on: {
+                                confirm: function($event) {
+                                  return _vm.modifyEntities("archive")
+                                }
+                              }
                             },
                             [
                               _vm._v(
@@ -1133,7 +1162,11 @@ var render = function() {
                             "NConfirm",
                             {
                               attrs: { type: "danger" },
-                              on: { confirm: _vm.deleteEntities }
+                              on: {
+                                confirm: function($event) {
+                                  return _vm.modifyEntities("delete")
+                                }
+                              }
                             },
                             [
                               _vm._v(
@@ -1214,7 +1247,22 @@ var render = function() {
                     options: _vm.states,
                     sort: true,
                     filter: true,
-                    label: _vm.trans("State")
+                    label: _vm.trans("State"),
+                    "default-width": 75
+                  }
+                }),
+                _vm._v(" "),
+                _c("NTableColumn", {
+                  attrs: {
+                    prop: "hide",
+                    type: "option",
+                    "options-label": "$value.label",
+                    "options-value": "$value.value",
+                    options: _vm.hides,
+                    sort: true,
+                    filter: true,
+                    label: _vm.trans("Visibility"),
+                    "default-width": 75
                   }
                 }),
                 _vm._v(" "),
@@ -1223,7 +1271,8 @@ var render = function() {
                     prop: "title",
                     sort: true,
                     filter: true,
-                    label: _vm.trans("Title")
+                    label: _vm.trans("Title"),
+                    "default-width": 200
                   }
                 }),
                 _vm._v(" "),
@@ -1232,16 +1281,8 @@ var render = function() {
                     prop: "slug",
                     sort: true,
                     filter: true,
-                    label: _vm.trans("Slug")
-                  }
-                }),
-                _vm._v(" "),
-                _c("NTableColumn", {
-                  attrs: {
-                    prop: "type",
-                    sort: true,
-                    filter: true,
-                    label: _vm.trans("Type")
+                    label: _vm.trans("Slug"),
+                    "default-width": 200
                   }
                 }),
                 _vm._v(" "),
@@ -1250,7 +1291,9 @@ var render = function() {
                     prop: "updated_at",
                     type: "datetime",
                     sort: true,
-                    label: _vm.trans("Updated")
+                    filter: true,
+                    label: _vm.trans("Updated"),
+                    "default-width": 100
                   }
                 }),
                 _vm._v(" "),
@@ -1259,7 +1302,9 @@ var render = function() {
                     prop: "created_at",
                     type: "datetime",
                     sort: true,
-                    label: _vm.trans("Created")
+                    filter: true,
+                    label: _vm.trans("Created"),
+                    "default-width": 100
                   }
                 })
               ],
@@ -1328,10 +1373,20 @@ var render = function() {
         { staticClass: "web-menu-tree__search" },
         [
           _c("NInput", {
+            ref: "input",
             attrs: {
               round: true,
               placeholder: _vm.trans("Search"),
-              icon: "fa fa-search"
+              icon: _vm.icons.times,
+              "icon-disabled": !_vm.search
+            },
+            on: { "icon-click": _vm.clearSearch },
+            model: {
+              value: _vm.search,
+              callback: function($$v) {
+                _vm.search = $$v
+              },
+              expression: "search"
             }
           })
         ],

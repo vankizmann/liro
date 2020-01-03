@@ -1,9 +1,9 @@
 <template>
-    <NLoader :visible="load" class="web-menu-index full-height full-height--fixed auto-height-child">
+    <NLoader :visible="load" class="web-user-index full-height full-height--fixed auto-height-child">
         <div class="grid grid--col">
 
             <div class="web-body-item col--flex-none">
-                <WebBackendTitle :info="trans('An overview of all menu items registered in your webpage')">
+                <WebBackendTitle :info="trans('An overview of all users registered on your page')">
 
                     <div class="grid grid--row grid--10">
 
@@ -67,15 +67,11 @@
                         <!-- State -->
                     </NTableColumn>
 
-                    <NTableColumn prop="hide" type="option" options-label="$value.label" options-value="$value.value" :options="hides" :sort="true" :filter="true" :label="trans('Visibility')" :default-width="75">
-                        <!-- Hide -->
-                    </NTableColumn>
-
-                    <NTableColumn prop="title" :sort="true" :filter="true" :label="trans('Title')" :default-width="200">
+                    <NTableColumn prop="email" :sort="true" :filter="true" :label="trans('E-Mail-Address')" :default-width="200">
                         <!-- Title -->
                     </NTableColumn>
 
-                    <NTableColumn prop="slug" :sort="true" :filter="true" :label="trans('Slug')" :default-width="200">
+                    <NTableColumn prop="name" :sort="true" :filter="true" :label="trans('Name')" :default-width="200">
                         <!-- Slug -->
                     </NTableColumn>
 
@@ -100,7 +96,7 @@
 <script>
     export default {
 
-        name: 'WebMenuIndex',
+        name: 'WebUserIndex',
 
         data()
         {
@@ -112,9 +108,9 @@
                 // Default filters
             ];
 
-            if ( this.Cookie.get('web-menu-index|filter') ) {
+            if ( this.Cookie.get('web-user-index|filter') ) {
                 filter = this.Str.objectify(
-                    this.Cookie.get('web-menu-index|filter')
+                    this.Cookie.get('web-user-index|filter')
                 );
             }
 
@@ -122,9 +118,9 @@
                 prop: 'updated_at', dir: 'desc'
             };
 
-            if ( this.Cookie.get('web-menu-index|sort') ) {
+            if ( this.Cookie.get('web-user-index|sort') ) {
                 sort = this.Str.objectify(
-                    this.Cookie.get('web-menu-index|sort')
+                    this.Cookie.get('web-user-index|sort')
                 );
             }
 
@@ -147,7 +143,7 @@
             this.$refs.table.$on('filter',
                 this.Any.debounce(this.setFiltering, 600));
 
-            if ( this.Data.has('web-menu-index') ) {
+            if ( this.Data.has('web-user-index') ) {
                 return this.Any.delay(this.preloadEntities);
             }
 
@@ -158,18 +154,18 @@
 
             request()
             {
-                this.Data.set('web-menu-index', this.request);
+                this.Data.set('web-user-index', this.request);
             },
 
             sort()
             {
-                this.Cookie.set('web-menu-index|sort',
+                this.Cookie.set('web-user-index|sort',
                     this.Str.stringify(this.sort));
             },
 
             filter()
             {
-                this.Cookie.set('web-menu-index|filter',
+                this.Cookie.set('web-user-index|filter',
                     this.Str.stringify(this.filter));
             }
 
@@ -211,7 +207,7 @@
 
             preloadEntities()
             {
-                this.request = this.Data.get('web-menu-index');
+                this.request = this.Data.get('web-user-index');
 
                 this.load = false;
             },
@@ -228,7 +224,7 @@
                     filter: this.filter
                 });
 
-                let route = this.Route.get('module.web-menu.menu.index',
+                let route = this.Route.get('module.web-user.user.index',
                     this.$route.params, query);
 
                 let options = {
@@ -248,7 +244,7 @@
                     ids: this.selected
                 };
 
-                let route = this.Route.get(`module.web-menu.menu.${type}`,
+                let route = this.Route.get(`module.web-user.user.${type}`,
                     this.$route.params);
 
                 let options = {

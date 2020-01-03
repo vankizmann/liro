@@ -303,6 +303,20 @@ class BackendMenuTableSeeder extends Seeder
             'guard'     => 1,
             'parent_id' => $routes['language'],
         ]);
+
+        Menu::create([
+            'id'        =>  $tmp = uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['component' => 'WebTranslationIndex'],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Translations',
+            'slug'      => '/translations',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $routes['language'],
+        ]);
     }
 
 }

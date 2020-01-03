@@ -1,10 +1,10 @@
 <template>
     <NLoader class="web-menu-tree" :visible="load">
         <div class="web-menu-tree__search">
-            <NInput :round="true" :placeholder="trans('Search')" icon="fa fa-search"/>
+            <NInput ref="input" v-model="search" :round="true" :placeholder="trans('Search')" :icon="icons.times" :icon-disabled="!search" @icon-click="clearSearch" />
         </div>
         <div class="web-menu-tree__list">
-        <NDraggableTree :items="menus" :cascade.sync="cascade" use="WebMenuTreeElement" use-after="WebMenuTreeContext" @move="moveEntity" />
+            <NDraggableTree :items="menus" :cascade.sync="cascade" use="WebMenuTreeElement" use-after="WebMenuTreeContext" @move="moveEntity" />
         </div>
     </NLoader>
 </template>
@@ -15,7 +15,7 @@
 
         data()
         {
-            return { menus: [], cascade: [], load: true };
+            return { menus: [], cascade: [], search: '', load: true };
         },
 
         beforeMount()
@@ -25,14 +25,24 @@
 
         mounted()
         {
+            this.$refs.input.$on('input', this.Any.debounce(
+                this.fetchEntities, 500
+            ));
+
             this.Event.fire('menu.updated');
         },
 
         methods: {
 
+            clearSearch()
+            {
+                this.$refs.input.$emit('input', '');
+            },
+
             fetchEntities()
             {
-                let route = this.Route.get('module.web-menu.menu.tree');
+                let route = this.Route.get('module.web-menu.menu.tree',
+                    null, { search: this.search });
 
                 let options = {
                     onLoad: () => this.load = true,

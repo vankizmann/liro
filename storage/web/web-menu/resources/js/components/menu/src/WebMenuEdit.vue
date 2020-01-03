@@ -28,9 +28,9 @@
                 </NSelect>
             </NFormItem>
 
-            <NFormItem prop="hide" :label="trans('Visiblity')">
+            <NFormItem prop="hide" :label="trans('Visibility')">
                 <NSelect v-model="entity.hide">
-                    <NSelectOption :value="0">{{ trans('Visisble') }}</NSelectOption>
+                    <NSelectOption :value="0">{{ trans('Visible') }}</NSelectOption>
                     <NSelectOption :value="1">{{ trans('Invisible') }}</NSelectOption>
                 </NSelect>
             </NFormItem>

@@ -16,6 +16,9 @@ class CreateLanguageTable extends Migration
             $table->integer('state')
                 ->default(0);
 
+            $table->integer('hide')
+                ->default(0);
+
             $table->string('title')
                 ->default('');
 

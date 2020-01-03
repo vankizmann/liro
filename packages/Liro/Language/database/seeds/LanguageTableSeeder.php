@@ -11,6 +11,7 @@ class LanguageTableSeeder extends Seeder
         Language::create([
             'id'        => uuid(),
             'state'     => 1,
+            'hide'      => 1,
             'title'     => 'English',
             'locale'    => 'en'
         ]);
@@ -18,6 +19,7 @@ class LanguageTableSeeder extends Seeder
         Language::create([
             'id'        => uuid(),
             'state'     => 1,
+            'hide'      => 1,
             'title'     => 'German',
             'locale'    => 'de'
         ]);
@@ -25,6 +27,7 @@ class LanguageTableSeeder extends Seeder
         Language::create([
             'id'        => uuid(),
             'state'     => 1,
+            'hide'      => 1,
             'title'     => 'Danish',
             'locale'    => 'da'
         ]);
@@ -32,6 +35,7 @@ class LanguageTableSeeder extends Seeder
         Language::create([
             'id'        => uuid(),
             'state'     => 1,
+            'hide'      => 1,
             'title'     => 'Russian',
             'locale'    => 'ru'
         ]);

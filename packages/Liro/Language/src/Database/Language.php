@@ -18,6 +18,7 @@ class Language extends Model
     protected $attributes = [
         'id'            => null,
         'state'         => null,
+        'hide'          => null,
         'title'         => null,
         'locale'        => null
     ];
@@ -25,6 +26,7 @@ class Language extends Model
     protected $casts = [
         'id'            => 'uuid',
         'state'         => 'integer',
+        'hide'          => 'integer',
         'title'         => 'string',
         'locale'        => 'string'
     ];

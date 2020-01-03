@@ -17,7 +17,20 @@ class MenuController extends Controller
 
     public function getTreeRoute()
     {
-        $menus = Menu::withDepthGuard()->notArchived()->get()
+        $query = Menu::withDepthGuard()->notArchived();
+
+        if ( ! empty(request()->input('search')) ) {
+
+            $query = $query->where('title', 'LIKE',
+                '%' . request()->input('search') . '%');
+
+            foreach ( $query->get() as $menu ) {
+                $query->orWhereIn('id', $menu->getAncestors()->pluck('id'));
+            }
+
+        };
+
+        $menus = $query->get()
             ->toHierarchy()->values();
 
         return response()->json($menus);
@@ -66,10 +79,43 @@ class MenuController extends Controller
         ]);
     }
 
+    public function postActivateRoute()
+    {
+        foreach ( request()->input('ids', []) as $id ) {
+            Menu::findOrFail($id)->update(['state' => 1]);
+        }
+
+        return response()->json([
+            'data' => [], 'message' => trans('Menus has been activated!')
+        ]);
+    }
+
+    public function postDeactivateRoute()
+    {
+        foreach ( request()->input('ids', []) as $id ) {
+            Menu::findOrFail($id)->update(['state' => 0]);
+        }
+
+        return response()->json([
+            'data' => [], 'message' => trans('Menus has been deactivated!')
+        ]);
+    }
+
+    public function postArchiveRoute()
+    {
+        foreach ( request()->input('ids', []) as $id ) {
+            Menu::findOrFail($id)->update(['state' => 2]);
+        }
+
+        return response()->json([
+            'data' => [], 'message' => trans('Menus has been archived!')
+        ]);
+    }
+
     public function postDeleteRoute()
     {
         foreach ( request()->input('ids', []) as $id ) {
-            Menu::findOrFail($id)->delete();
+            Menu::findOrFail($id)->update(['state' => -1]);
         }
 
         return response()->json([

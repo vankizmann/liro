@@ -20,16 +20,16 @@ class UserTableSeeder extends Seeder
 
         $admin->roles()->attach(Role::first());
 
-        foreach ( array_fill(0, 10, 0) as $user ) {
-            User::create([
-                'id'       => uuid(),
-                'state'    => rand(0,1),
-                'name'     => $faker->name,
-                'email'    => $faker->unique()->safeEmail,
-                'password' => 'password',
-                'guard'    => rand(1,2),
-            ]);
-        }
+//        foreach ( array_fill(0, 100, 0) as $user ) {
+//            User::create([
+//                'id'       => uuid(),
+//                'state'    => rand(0,1),
+//                'name'     => $faker->name,
+//                'email'    => $faker->unique()->safeEmail,
+//                'password' => 'password',
+//                'guard'    => rand(1,2),
+//            ]);
+//        }
     }
 
 }

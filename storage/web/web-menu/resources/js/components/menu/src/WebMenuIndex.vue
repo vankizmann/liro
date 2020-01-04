@@ -135,8 +135,8 @@
             ];
 
             let hides = [
-                { value: '1', label: this.trans('Visible') },
-                { value: '0', label: this.trans('Invisible') },
+                { value: '0', label: this.trans('Visible') },
+                { value: '1', label: this.trans('Invisible') },
             ];
 
             return { request, sort, filter, states, hides, selected: [], load: true };
@@ -179,7 +179,7 @@
 
             navigate({ row })
             {
-                let name = this.Obj.get(row, 'connector.connect.edit');
+                let name = this.findRoute('WebMenuEdit');
 
                 this.$router.push({ name, params: row });
             },

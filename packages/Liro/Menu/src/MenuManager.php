@@ -354,4 +354,10 @@ class MenuManager
         return reset($result) ?: $fallback;
     }
 
+    public function findVueConnector($search) {
+        return app('web.menu')->findConnector(function ($connector) use ($search) {
+            return data_get($connector, 'menu.extend.component') === $search;
+        });
+    }
+
 }

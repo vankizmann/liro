@@ -13,11 +13,7 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        app('web.menu')->macro('findVueConnector', function ($search) {
-            return app('web.menu')->findConnector(function ($connector) use ($search) {
-                return data_get($connector, 'menu.extend.component') === $search;
-            });
-        });
+        //
     }
 
     /**
@@ -27,7 +23,7 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        //
     }
 
 }

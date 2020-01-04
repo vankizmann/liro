@@ -1,9 +1,9 @@
 <template>
-    <NLoader :visible="load" class="web-language-index full-height full-height--fixed auto-height-child">
+    <NLoader :visible="load" class="web-translation-index full-height full-height--fixed auto-height-child">
         <div class="grid grid--col">
 
             <div class="web-body-item col--flex-none">
-                <WebBackendTitle :info="trans('An overview of all language items registered in your webpage')">
+                <WebBackendTitle :info="trans('An overview of all translation items registered in your webpage')">
 
                     <div class="grid grid--row grid--10">
 
@@ -63,27 +63,19 @@
                         <!-- ID -->
                     </NTableColumn>
 
-                    <NTableColumn prop="state" type="option" options-label="$value.label" options-value="$value.value" :options="states" :sort="true" :filter="true" :label="trans('State')" :default-width="75">
-                        <!-- State -->
+                    <NTableColumn prop="source" :sort="true" :filter="true" :label="trans('Source')" :default-width="200">
+                        <!-- Source -->
                     </NTableColumn>
 
-                    <NTableColumn prop="hide" type="option" options-label="$value.label" options-value="$value.value" :options="hides" :sort="true" :filter="true" :label="trans('Visibility')" :default-width="75">
-                        <!-- Hide -->
-                    </NTableColumn>
-
-                    <NTableColumn prop="title" :sort="true" :filter="true" :label="trans('Title')" :default-width="200">
-                        <!-- Title -->
-                    </NTableColumn>
-
-                    <NTableColumn prop="locale" :sort="true" :filter="true" :label="trans('Locale')" :default-width="75">
-                        <!-- Slug -->
+                    <NTableColumn prop="target" :sort="true" :filter="true" :label="trans('Target')" :default-width="200">
+                        <!-- Target -->
                     </NTableColumn>
 
                     <NTableColumn prop="updated_at" type="datetime" :sort="true" :filter="true" :label="trans('Updated')" :default-width="100">
                         <!-- Updated at -->
                     </NTableColumn>
 
-                    <NTableColumn prop="created_at" type="datetime" :sort="true" :filter="true" :label="trans('Created')" :default-width="100">
+                    <NTableColumn prop="created_at" type="datetime" :sort="true" :filter="true" :label="trans('Created')" :default-width="100" :visible="false">
                         <!-- Created -->
                     </NTableColumn>
 
@@ -100,7 +92,7 @@
 <script>
     export default {
 
-        name: 'WebLanguageIndex',
+        name: 'WebTranslationIndex',
 
         data()
         {
@@ -112,9 +104,9 @@
                 // Default filters
             ];
 
-            if ( this.Cookie.get('web-language-index|filter') ) {
+            if ( this.Cookie.get('web-translation-index|filter') ) {
                 filter = this.Str.objectify(
-                    this.Cookie.get('web-language-index|filter')
+                    this.Cookie.get('web-translation-index|filter')
                 );
             }
 
@@ -122,9 +114,9 @@
                 prop: 'updated_at', dir: 'desc'
             };
 
-            if ( this.Cookie.get('web-language-index|sort') ) {
+            if ( this.Cookie.get('web-translation-index|sort') ) {
                 sort = this.Str.objectify(
-                    this.Cookie.get('web-language-index|sort')
+                    this.Cookie.get('web-translation-index|sort')
                 );
             }
 
@@ -135,8 +127,8 @@
             ];
 
             let hides = [
-                { value: '0', label: this.trans('Visible') },
-                { value: '1', label: this.trans('Invisible') },
+                { value: '1', label: this.trans('Visible') },
+                { value: '0', label: this.trans('Invisible') },
             ];
 
             return { request, sort, filter, states, hides, selected: [], load: true };
@@ -147,7 +139,7 @@
             this.$refs.table.$on('filter',
                 this.Any.debounce(this.setFiltering, 600));
 
-            if ( this.Data.has('web-language-index') ) {
+            if ( this.Data.has('web-translation-index') ) {
                 return this.Any.delay(this.preloadEntities);
             }
 
@@ -158,18 +150,18 @@
 
             request()
             {
-                this.Data.set('web-language-index', this.request);
+                this.Data.set('web-translation-index', this.request);
             },
 
             sort()
             {
-                this.Cookie.set('web-language-index|sort',
+                this.Cookie.set('web-translation-index|sort',
                     this.Str.stringify(this.sort));
             },
 
             filter()
             {
-                this.Cookie.set('web-language-index|filter',
+                this.Cookie.set('web-translation-index|filter',
                     this.Str.stringify(this.filter));
             }
 
@@ -179,7 +171,7 @@
 
             navigate({ row })
             {
-                let name = this.findRoute('WebLanguageEdit');
+                let name = this.findRoute('WebTranslationEdit');
 
                 this.$router.push({ name, params: row });
             },
@@ -211,7 +203,7 @@
 
             preloadEntities()
             {
-                this.request = this.Data.get('web-language-index');
+                this.request = this.Data.get('web-translation-index');
 
                 this.load = false;
             },
@@ -228,7 +220,7 @@
                     filter: this.filter
                 });
 
-                let route = this.Route.get('module.web-language.language.index',
+                let route = this.Route.get('module.web-language.translation.index',
                     this.$route.params, query);
 
                 let options = {
@@ -248,7 +240,7 @@
                     ids: this.selected
                 };
 
-                let route = this.Route.get(`module.web-language.language.${type}`,
+                let route = this.Route.get(`module.web-language.translation.${type}`,
                     this.$route.params);
 
                 let options = {

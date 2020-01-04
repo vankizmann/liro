@@ -20,36 +20,28 @@
         <div class="web-body-item">
             <NForm :errors="errors">
 
-            <NFormItem prop="state" :label="trans('Status')">
-                <NSelect v-model="entity.state">
-                    <NSelectOption :value="1">{{ trans('Active') }}</NSelectOption>
-                    <NSelectOption :value="0">{{ trans('Inactive') }}</NSelectOption>
-                    <NSelectOption :value="2">{{ trans('Archived') }}</NSelectOption>
-                </NSelect>
-            </NFormItem>
+                <NFormItem prop="state" :label="trans('Status')">
+                    <NSelect v-model="entity.state">
+                        <NSelectOption :value="1">{{ trans('Active') }}</NSelectOption>
+                        <NSelectOption :value="0">{{ trans('Inactive') }}</NSelectOption>
+                        <NSelectOption :value="2">{{ trans('Archived') }}</NSelectOption>
+                    </NSelect>
+                </NFormItem>
 
-            <NFormItem prop="hide" :label="trans('Visibility')">
-                <NSelect v-model="entity.hide">
-                    <NSelectOption :value="0">{{ trans('Visible') }}</NSelectOption>
-                    <NSelectOption :value="1">{{ trans('Invisible') }}</NSelectOption>
-                </NSelect>
-            </NFormItem>
+                <NFormItem prop="hide" :label="trans('Visibility')">
+                    <NSelect v-model="entity.hide">
+                        <NSelectOption :value="0">{{ trans('Visible') }}</NSelectOption>
+                        <NSelectOption :value="1">{{ trans('Invisible') }}</NSelectOption>
+                    </NSelect>
+                </NFormItem>
 
-            <NFormItem prop="layout" :label="trans('Layout')">
-                <NInput v-model="entity.layout" />
-            </NFormItem>
+                <NFormItem prop="title" :label="trans('Title')">
+                    <NInput v-model="entity.title" />
+                </NFormItem>
 
-            <NFormItem prop="icon" :label="trans('Icon')">
-                <NInput v-model="entity.icon" />
-            </NFormItem>
-
-            <NFormItem prop="title" :label="trans('Title')">
-                <NInput v-model="entity.title" />
-            </NFormItem>
-
-            <NFormItem prop="slug" :label="trans('Slug')">
-                <NInput v-model="entity.slug" />
-            </NFormItem>
+                <NFormItem prop="locale" :label="trans('Locale')">
+                    <NInput v-model="entity.locale" />
+                </NFormItem>
 
             </NForm>
         </div>
@@ -85,7 +77,7 @@
             closeEntity()
             {
                 this.$router.push({
-                    name: this.Obj.get(this.entity, 'connector.connect.index')
+                    name: this.findRoute('WebLanguageIndex')
                 });
             },
 

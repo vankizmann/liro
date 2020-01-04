@@ -3,13 +3,11 @@
 namespace Liro\Language\Database;
 
 use Liro\Support\Database\Model;
-use Liro\Support\Database\Traits\State;
 
-class Language extends Model
+class Translation extends Model
 {
-    use State;
 
-    protected $table = 'languages';
+    protected $table = 'translations';
 
     protected $guarded = [
         'id'
@@ -17,17 +15,14 @@ class Language extends Model
 
     protected $attributes = [
         'id'            => null,
-        'state'         => null,
-        'hide'          => null,
-        'title'         => null,
+        'source'        => null,
         'locale'        => null
     ];
 
     protected $casts = [
         'id'            => 'uuid',
-        'state'         => 'integer',
-        'hide'          => 'integer',
-        'title'         => 'string',
+        'source'        => 'string',
+        'target'        => 'string',
         'locale'        => 'string'
     ];
 

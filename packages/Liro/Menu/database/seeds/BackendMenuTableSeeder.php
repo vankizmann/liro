@@ -305,6 +305,20 @@ class BackendMenuTableSeeder extends Seeder
         ]);
 
         Menu::create([
+            'id'        => uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['component' =>  'WebLanguageEdit'],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 1,
+            'title'     => 'Edit language',
+            'slug'      => '/edit/:id',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $tmp,
+        ]);
+
+        Menu::create([
             'id'        =>  $tmp = uuid(),
             'type'      => 'web-menu::vue',
             'extend'    => ['component' => 'WebTranslationIndex'],
@@ -316,6 +330,20 @@ class BackendMenuTableSeeder extends Seeder
             'matrix'    => 1,
             'guard'     => 1,
             'parent_id' => $routes['language'],
+        ]);
+
+        Menu::create([
+            'id'        => uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['component' =>  'WebTranslationEdit'],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 1,
+            'title'     => 'Edit translation',
+            'slug'      => '/edit/:id',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $tmp,
         ]);
     }
 

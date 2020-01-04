@@ -1,5 +1,5 @@
 <template>
-    <NLoader :visible="load" class="web-menu-edit">
+    <NLoader :visible="load" class="web-translation-edit">
 
         <div class="web-body-item">
             <WebBackendTitle :info="trans('Last updated at :updated', { updated })" :goto="closeEntity">
@@ -59,7 +59,7 @@
 <script>
     export default {
 
-        name: 'WebMenuEdit',
+        name: 'WebTranslationEdit',
 
         computed: {
 
@@ -85,14 +85,14 @@
             closeEntity()
             {
                 this.$router.push({
-                    name: this.findRoute('WebMenuIndex')
+                    name: this.findRoute('WebTranslationIndex')
                 });
             },
 
             doneEntity(res)
             {
                 if ( ! this.Any.isEmpty(this.entity) ) {
-                    this.Event.fire('menu.updated');
+                    this.Event.fire('translation.updated');
                 }
 
                 this.entity = this.Obj.get(res, 'data.data', {});
@@ -105,7 +105,7 @@
 
             fetchEntity()
             {
-                let route = this.Route.get('module.web-menu.menu.edit',
+                let route = this.Route.get('module.web-translation.translation.edit',
                     this.$route.params);
 
                 let options = {
@@ -119,9 +119,9 @@
 
             updateEntity()
             {
-                this.Data.unset('web-menu-index');
+                this.Data.unset('web-translation-index');
 
-                let route = this.Route.get('module.web-menu.menu.update',
+                let route = this.Route.get('module.web-translation.translation.update',
                     this.$route.params);
 
                 let options = {

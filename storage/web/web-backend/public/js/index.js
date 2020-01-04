@@ -28642,7 +28642,7 @@ nano_js__WEBPACK_IMPORTED_MODULE_1___default.a.Dom.ready(function () {
     options = __webpack_require__(/*! ./layout/WebBackendRoot */ "./resources/js/layout/WebBackendRoot.vue")["default"];
   }
 
-  window.RootApp = new vue__WEBPACK_IMPORTED_MODULE_0___default.a(options).$mount('#app');
+  window.App = new vue__WEBPACK_IMPORTED_MODULE_0___default.a(options).$mount('#app');
 });
 
 /***/ }),
@@ -29096,6 +29096,14 @@ var resolveMenu = function resolveMenu(menu, cascade) {
 };
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.Arr.recursive(window._menus || [], 'children', resolveMenu);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.findRoute = function (search) {
+  var route = vue__WEBPACK_IMPORTED_MODULE_0___default.a.Arr.find(this.$router.options.routes, function (item) {
+    return vue__WEBPACK_IMPORTED_MODULE_0___default.a.Obj.get(item, 'meta.menu.extend.component') === search;
+  });
+  return this.Obj.get(route, 'name', null);
+};
+
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   base: window.basePath,
   mode: 'history',

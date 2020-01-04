@@ -173,7 +173,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     closeEntity: function closeEntity() {
       this.$router.push({
-        name: this.Obj.get(this.entity, 'connector.connect.index')
+        name: this.findRoute('WebMenuIndex')
       });
     },
     doneEntity: function doneEntity(res) {
@@ -364,10 +364,10 @@ __webpack_require__.r(__webpack_exports__);
       label: this.trans('Archived')
     }];
     var hides = [{
-      value: '1',
+      value: '0',
       label: this.trans('Visible')
     }, {
-      value: '0',
+      value: '1',
       label: this.trans('Invisible')
     }];
     return {
@@ -403,7 +403,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     navigate: function navigate(_ref) {
       var row = _ref.row;
-      var name = this.Obj.get(row, 'connector.connect.edit');
+      var name = this.findRoute('WebMenuEdit');
       this.$router.push({
         name: name,
         params: row

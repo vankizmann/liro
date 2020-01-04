@@ -32,6 +32,16 @@ let resolveMenu = (menu, cascade) => {
 
 Vue.Arr.recursive(window._menus || [], 'children', resolveMenu);
 
+Vue.prototype.findRoute = function (search) {
+
+    let route = Vue.Arr.find(this.$router.options.routes, (item) => {
+        return Vue.Obj.get(item, 'meta.menu.extend.component') === search;
+    });
+
+    return this.Obj.get(route, 'name', null);
+};
+
 export default new VueRouter({
     base: window.basePath, mode: 'history', routes: vueRoutes
-})
+});
+

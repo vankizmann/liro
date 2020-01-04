@@ -20,9 +20,13 @@ return [
             'web-language::js/web-language.js'
         ],
 
-        'WebLanguageShow' => [
+        'WebTranslationIndex' => [
             'web-language::js/web-language.js'
-        ]
+        ],
+
+        'WebTranslationEdit' => [
+            'web-language::js/web-language.js'
+        ],
 
     ],
 
@@ -30,6 +34,10 @@ return [
 
         'ajax@web-language::language' => [
             Liro\Web\Language\Http\Controllers\LanguageController::class
+        ],
+
+        'ajax@web-language::translation' => [
+            Liro\Web\Language\Http\Controllers\TranslationController::class
         ],
 
     ],

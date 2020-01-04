@@ -52,5 +52,5 @@ Nano.Dom.ready(() => {
         options = require('./layout/WebBackendRoot').default;
     }
 
-    window.RootApp = new Vue(options).$mount('#app');
+    window.App = new Vue(options).$mount('#app');
 });

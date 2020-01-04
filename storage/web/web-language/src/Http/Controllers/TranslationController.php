@@ -2,10 +2,11 @@
 
 namespace Liro\Web\Language\Http\Controllers;
 
-use App\Database\Language;
+use App\Database\Translation;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class LanguageController extends Controller
+class TranslationController extends Controller
 {
     public function __construct()
     {
@@ -16,28 +17,28 @@ class LanguageController extends Controller
 
     public function getIndexRoute()
     {
-        $menus = Language::datatable();
+        $menus = Translation::datatable();
 
         return response()->json($menus);
     }
 
     public function getCreateRoute()
     {
-        $menu = new Language;
+        $menu = new Translation;
 
         return response()->json($menu);
     }
 
     public function postStoreRoute()
     {
-        $menu = new Language;
+        $menu = new Translation;
 
         return response()->json($menu);
     }
 
     public function getEditRoute($id)
     {
-        $menu = Language::findOrFail($id);
+        $menu = Translation::findOrFail($id);
 
         return response()->json([
             'data' => $menu->toArray()
@@ -46,56 +47,56 @@ class LanguageController extends Controller
 
     public function postUpdateRoute(Request $request, $id)
     {
-        $menu = Language::findOrFail($id);
+        $menu = Translation::findOrFail($id);
 
         $menu->fill($request->input())->save();
 
         return response()->json([
-            'data' => $menu, 'message' => trans('Language has been updated!')
+            'data' => $menu, 'message' => trans('Translation has been updated!')
         ]);
     }
 
     public function postActivateRoute()
     {
         foreach ( request()->input('ids', []) as $id ) {
-            Language::findOrFail($id)->update(['state' => 1]);
+            Translation::findOrFail($id)->update(['state' => 1]);
         }
 
         return response()->json([
-            'data' => [], 'message' => trans('Languages has been activated!')
+            'data' => [], 'message' => trans('Translations has been activated!')
         ]);
     }
 
     public function postDeactivateRoute()
     {
         foreach ( request()->input('ids', []) as $id ) {
-            Language::findOrFail($id)->update(['state' => 0]);
+            Translation::findOrFail($id)->update(['state' => 0]);
         }
 
         return response()->json([
-            'data' => [], 'message' => trans('Languages has been deactivated!')
+            'data' => [], 'message' => trans('Translations has been deactivated!')
         ]);
     }
 
     public function postArchiveRoute()
     {
         foreach ( request()->input('ids', []) as $id ) {
-            Language::findOrFail($id)->update(['state' => 2]);
+            Translation::findOrFail($id)->update(['state' => 2]);
         }
 
         return response()->json([
-            'data' => [], 'message' => trans('Languages has been archived!')
+            'data' => [], 'message' => trans('Translations has been archived!')
         ]);
     }
 
     public function postDeleteRoute()
     {
         foreach ( request()->input('ids', []) as $id ) {
-            Language::findOrFail($id)->update(['state' => -1]);
+            Translation::findOrFail($id)->update(['state' => -1]);
         }
 
         return response()->json([
-            'data' => [], 'message' => trans('Languages has been deleted!')
+            'data' => [], 'message' => trans('Translations has been deleted!')
         ]);
     }
 

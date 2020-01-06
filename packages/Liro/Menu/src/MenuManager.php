@@ -73,7 +73,7 @@ class MenuManager
      */
     public function boot()
     {
-        foreach ( $this->app['web.language']->getLocales() as $locale ) {
+        foreach ( $this->app['web.manager']->getLocales() as $locale ) {
 
             foreach ( array_keys($this->ajax) as $alias ) {
                 $this->registerControllerRoutes($alias, $locale);
@@ -229,7 +229,7 @@ class MenuManager
         );
 
         if ( ! preg_match('/({locale}|:locale)/', $menu->path) ) {
-            $locale = RouteHelper::findLocales($menu->path);
+            $locale = RouteHelper::findLocale($menu->path);
         }
 
         // Replace domain in route

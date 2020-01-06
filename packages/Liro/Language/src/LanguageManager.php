@@ -12,6 +12,13 @@ class LanguageManager
     protected $app;
 
     /**
+     * Base locale.
+     *
+     * @var string
+     */
+    public $baseLocale = 'en';
+
+    /**
      * Locale store.
      *
      * @var string
@@ -42,6 +49,8 @@ class LanguageManager
      */
     public function boot()
     {
+        $this->baseLocale = config('app.locale');
+
         /* @var \Illuminate\Support\Collection $locales */
         $this->locales = Language::enabled()->orderBy('locale')
             ->pluck('locale')->toArray();
@@ -67,6 +76,10 @@ class LanguageManager
             $this->locale = $locale;
         }
 
+        if ( app()->runningInConsole() ) {
+            $this->locale = config('app.locale');
+        }
+
         $this->app->setLocale($this->locale);
 
         $this->app['events']->listen('web.language: setLocale', function ($locale) {
@@ -76,6 +89,17 @@ class LanguageManager
         $this->app['events']->dispatch('web.language: booted', $this->app);
     }
 
+    public function setBaseLocale($locale)
+    {
+        $this->app['events']->dispatch('web.language: setBaseLocale',
+            $this->baseLocale = $locale);
+    }
+
+    public function getBaseLocale()
+    {
+        return $this->baseLocale;
+    }
+
     public function getLocale()
     {
         return $this->locale;
@@ -83,7 +107,8 @@ class LanguageManager
 
     public function setLocale($locale)
     {
-        $this->app['events']->dispatch('web.language: setLocale', $this->locale = $locale);
+        $this->app['events']->dispatch('web.language: setLocale',
+            $this->locale = $locale);
     }
 
     public function getLocales()
@@ -93,7 +118,8 @@ class LanguageManager
 
     public function setLocales($locales)
     {
-        $this->app['events']->dispatch('web.language: setLocales', $this->locales = $locales);
+        $this->app['events']->dispatch('web.language: setLocales',
+            $this->locales = $locales);
     }
 
 }

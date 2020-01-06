@@ -28,7 +28,7 @@ class MenuController extends Controller
                 $query->orWhereIn('id', $menu->getAncestors()->pluck('id'));
             }
 
-        };
+        }
 
         $menus = $query->get()
             ->toHierarchy()->values();

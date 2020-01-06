@@ -33,7 +33,9 @@ class RouteHelper
 
     public static function findLocale($route, $glue = '/')
     {
-        return reset(self::findLocales($route, $glue));
+        $locales = self::findLocales($route, $glue);
+
+        return reset($locales);
     }
 
     public static function findLocales($route, $glue = '/')

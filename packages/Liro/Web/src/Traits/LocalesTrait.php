@@ -4,8 +4,8 @@ namespace Liro\Web\Traits;
 
 trait LocalesTrait
 {
-    protected $locale;
-    protected $locales;
+    protected $locale = null;
+    protected $locales = null;
 
     public function setLocale($locale)
     {
@@ -14,7 +14,7 @@ trait LocalesTrait
 
     public function getLocale()
     {
-        return $this->locale ?: $this->app['config']['app.locale'];
+        return $this->locale ?: config('app.locale');
     }
 
     public function setLocales($locales)

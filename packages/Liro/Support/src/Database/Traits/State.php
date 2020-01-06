@@ -4,7 +4,6 @@ namespace Liro\Support\Database\Traits;
 
 use Liro\Support\Database\Scopes\StateScope;
 
-
 trait State
 {
     /**

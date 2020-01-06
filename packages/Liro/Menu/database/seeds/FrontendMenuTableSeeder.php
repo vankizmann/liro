@@ -1,5 +1,6 @@
 <?php
 
+use App\Database\MenuLocale;
 use Illuminate\Database\Seeder;
 use App\Database\Menu;
 
@@ -9,7 +10,7 @@ class FrontendMenuTableSeeder extends Seeder
     public function run()
     {
         Menu::create([
-            'id'        => uuid(),
+            'id'        => $tmp = uuid(),
             'type'      => 'web-menu::redirect',
             'layout'    => null,
             'extend'    => ['url' => ':http://:domain/:locale'],
@@ -21,13 +22,22 @@ class FrontendMenuTableSeeder extends Seeder
             'parent_id' => null,
         ]);
 
+        MenuLocale::create([
+            'id'            => uuid(),
+            'locale'        => 'de',
+            'layout'        => null,
+            'title'         => 'Weiterleitung',
+            'slug'          => null,
+            'foreign_id'    => $tmp,
+        ]);
+
         Menu::create([
             'id'        => $root = uuid(),
             'type'      => 'web-menu::domain',
             'layout'    => 'layout',
             'state'     => 1,
             'hide'      => 0,
-            'title'     => 'Your Website',
+            'title'     => 'www.website.com',
             'slug'      => ':domain/:locale',
             'guard'     => 0,
             'parent_id' => null,
@@ -35,15 +45,34 @@ class FrontendMenuTableSeeder extends Seeder
 
         Menu::create([
             'id'        => $home = uuid(),
+            'ident'     => 'web-home',
             'type'      => 'web-page::page',
             'layout'    => null,
             'state'     => 1,
             'hide'      => 0,
-            'title'     => 'Home',
+            'title'     => 'Homepage',
             'slug'      => '/',
             'matrix'    => 1,
             'guard'     => 0,
             'parent_id' => $root,
+        ]);
+
+        MenuLocale::create([
+            'id'            => uuid(),
+            'locale'        => 'de',
+            'layout'        => null,
+            'title'         => 'Startseite',
+            'slug'          => null,
+            'foreign_id'    => $home,
+        ]);
+
+        MenuLocale::create([
+            'id'            => uuid(),
+            'locale'        => 'da',
+            'layout'        => null,
+            'title'         => 'Hjem',
+            'slug'          => null,
+            'foreign_id'    => $home,
         ]);
 
         Menu::create([

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Liro\Menu\Database\Menu;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('test', function () {
-    dd(app('router'));
+    app('web.language')->setLocale('ru');
+    global $test;
+    $test = true;
+
+    $menu = Menu::where('ident', 'web-home')->first()->fill(['title' => 'Foobar']);
+
+    dd(app()->getLocale(), $menu, $menu->save());
+    dd(Menu::with('translations')->first()->toArray());
 })->middleware('web');

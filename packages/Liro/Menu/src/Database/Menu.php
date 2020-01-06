@@ -5,10 +5,11 @@ namespace Liro\Menu\Database;
 use Baum\NestedSet\Node;
 use Liro\Support\Database\Model;
 use Liro\Support\Database\Traits\State;
+use Liro\Support\Database\Traits\Translatable;
 
 class Menu extends Model
 {
-    use Node, State;
+    use Node, State, Translatable;
 
     protected $table = 'menus';
 
@@ -26,6 +27,10 @@ class Menu extends Model
 
     protected $hidden = [
         'lft', 'rgt', 'parent_id'
+    ];
+
+    protected $localized = [
+        'layout', 'title', 'slug'
     ];
 
     protected $attributes = [
@@ -53,11 +58,6 @@ class Menu extends Model
         'extend'        => 'array',
         'guard'         => 'integer'
     ];
-
-//    protected function getScopeAttributes()
-//    {
-//        return ['domain_id'];
-//    }
 
     public function getIconUrlAttribute()
     {

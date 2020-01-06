@@ -28,7 +28,7 @@ class CreateTranslationTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('translation');
+        Schema::dropIfExists('translations');
     }
 
 }

@@ -148,7 +148,7 @@
                 this.Any.debounce(this.setFiltering, 600));
 
             if ( this.Data.has('web-menu-index') ) {
-                return this.Any.delay(this.preloadEntities);
+                return this.Any.delay(this.preloadEntities, 500);
             }
 
             this.fetchEntities();

@@ -384,7 +384,7 @@ __webpack_require__.r(__webpack_exports__);
     this.$refs.table.$on('filter', this.Any.debounce(this.setFiltering, 600));
 
     if (this.Data.has('web-menu-index')) {
-      return this.Any.delay(this.preloadEntities);
+      return this.Any.delay(this.preloadEntities, 500);
     }
 
     this.fetchEntities();
@@ -2074,8 +2074,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-menu/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

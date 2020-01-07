@@ -51,7 +51,7 @@
                     </NTableColumn>
 
                     <NTableColumn prop="updated_at" type="datetime" :sort="true" :filter="true" :label="trans('Updated')" :default-width="100">
-                        <!-- Updated at -->
+                        <!-- Updated -->
                     </NTableColumn>
 
                     <NTableColumn prop="created_at" type="datetime" :sort="true" :filter="true" :label="trans('Created')" :default-width="100" :visible="false">
@@ -91,10 +91,10 @@
                 paginate, sort, filter
             };
 
-            if ( this.Cookie.get('web-translation-index') ) {
-                this.Obj.assign(data, this.Str.objectify(
-                    this.Cookie.get('web-translation-index')
-                ));
+            let stored = this.Cookie.get(this.ctor('name'));
+
+            if ( stored ) {
+                this.Obj.assign(data, this.Str.objectify(stored));
             }
 
             let states = [
@@ -116,7 +116,7 @@
             this.$refs.table.$on('filter',
                 this.Any.debounce(this.setFiltering, 500));
 
-            if ( this.Data.has('web-translation-index') ) {
+            if ( this.ctor('preload', false) && this.Data.has(this.ctor('name')) ) {
                 return this.Any.delay(this.preloadEntities, 250);
             }
 
@@ -127,7 +127,7 @@
 
             entities()
             {
-                this.Data.set('web-translation-index', this.entities);
+                this.Data.set(this.ctor('name'), this.entities);
             },
 
             paginate()
@@ -136,7 +136,7 @@
                     'paginate', 'sort', 'filter'
                 ]);
 
-                this.Cookie.set('web-translation-index',
+                this.Cookie.set(this.ctor('name'),
                     this.Str.stringify(data));
             },
 
@@ -146,7 +146,7 @@
                     'paginate', 'sort', 'filter'
                 ]);
 
-                this.Cookie.set('web-translation-index',
+                this.Cookie.set(this.ctor('name'),
                     this.Str.stringify(data));
             },
 
@@ -156,7 +156,7 @@
                     'paginate', 'sort', 'filter'
                 ]);
 
-                this.Cookie.set('web-translation-index',
+                this.Cookie.set(this.ctor('name'),
                     this.Str.stringify(data));
             }
 
@@ -204,7 +204,7 @@
 
             preloadEntities()
             {
-                this.entities = this.Data.get('web-translation-index');
+                this.entities = this.Data.get(this.ctor('name'));
 
                 this.load = false;
             },

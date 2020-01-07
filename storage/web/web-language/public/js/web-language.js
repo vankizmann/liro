@@ -685,9 +685,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       sort: sort,
       filter: filter
     };
+    var stored = this.Cookie.get(this.ctor('name'));
 
-    if (this.Cookie.get('web-translation-index')) {
-      this.Obj.assign(data, this.Str.objectify(this.Cookie.get('web-translation-index')));
+    if (stored) {
+      this.Obj.assign(data, this.Str.objectify(stored));
     }
 
     var states = [{
@@ -718,7 +719,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.$refs.table.$on('filter', this.Any.debounce(this.setFiltering, 500));
 
-    if (this.Data.has('web-translation-index')) {
+    if (this.ctor('preload', false) && this.Data.has(this.ctor('name'))) {
       return this.Any.delay(this.preloadEntities, 250);
     }
 
@@ -726,19 +727,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   watch: {
     entities: function entities() {
-      this.Data.set('web-translation-index', this.entities);
+      this.Data.set(this.ctor('name'), this.entities);
     },
     paginate: function paginate() {
       var data = this.Obj.only(this, ['paginate', 'sort', 'filter']);
-      this.Cookie.set('web-translation-index', this.Str.stringify(data));
+      this.Cookie.set(this.ctor('name'), this.Str.stringify(data));
     },
     sort: function sort() {
       var data = this.Obj.only(this, ['paginate', 'sort', 'filter']);
-      this.Cookie.set('web-translation-index', this.Str.stringify(data));
+      this.Cookie.set(this.ctor('name'), this.Str.stringify(data));
     },
     filter: function filter() {
       var data = this.Obj.only(this, ['paginate', 'sort', 'filter']);
-      this.Cookie.set('web-translation-index', this.Str.stringify(data));
+      this.Cookie.set(this.ctor('name'), this.Str.stringify(data));
     }
   },
   methods: {
@@ -780,7 +781,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.errors = this.Obj.get(res, 'data.errors', {});
     },
     preloadEntities: function preloadEntities() {
-      this.entities = this.Data.get('web-translation-index');
+      this.entities = this.Data.get(this.ctor('name'));
       this.load = false;
     },
     fetchEntities: function fetchEntities() {
@@ -2121,11 +2122,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "vue");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _src_WebTranslationIndex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/WebTranslationIndex */ "./resources/js/components/translation/src/WebTranslationIndex.vue");
+/* harmony import */ var _src_WebTranslationIndex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/WebTranslationIndex */ "./resources/js/components/translation/src/WebTranslationIndex.vue");
 /* harmony import */ var _src_WebTranslationEdit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/WebTranslationEdit */ "./resources/js/components/translation/src/WebTranslationEdit.vue");
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(_src_WebTranslationIndex__WEBPACK_IMPORTED_MODULE_3__["default"].name, _src_WebTranslationIndex__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(_src_WebTranslationIndex__WEBPACK_IMPORTED_MODULE_1__["default"].name, _src_WebTranslationIndex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(_src_WebTranslationEdit__WEBPACK_IMPORTED_MODULE_2__["default"].name, _src_WebTranslationEdit__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
@@ -2287,8 +2288,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-language/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
-module.exports = __webpack_require__(/*! /Users/eduardkizmann/Documents/GitHub/liro/storage/web/web-language/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-language/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/ekizmann/Sites/liro/storage/web/web-language/resources/sass/bootstrap.scss */"./resources/sass/bootstrap.scss");
 
 
 /***/ }),

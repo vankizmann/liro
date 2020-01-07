@@ -3,6 +3,7 @@
 namespace Liro\Support\Database\Traits;
 
 use Illuminate\Support\Collection;
+use Liro\Support\Database\Eloquent\Builder;
 use Liro\Support\Database\Scopes\TranslateScope;
 
 trait Translatable
@@ -132,9 +133,11 @@ trait Translatable
                 continue;
             }
 
-            if ( $attributes[$key] !== $this->attributes[$key] ) {
-                $translation->setAttribute($key, $attributes[$key]);
+            if ( $attributes[$key] === $this->attributes[$key] ) {
+                $attributes[$key] = null;
             }
+
+            $translation->setAttribute($key, $attributes[$key]);
 
             unset($attributes[$key]);
         }
@@ -146,6 +149,11 @@ trait Translatable
         }
 
         return parent::fill($attributes);
+    }
+
+    public function newEloquentBuilder($query)
+    {
+        return new Builder($query);
     }
 
     public function getAttribute($key)
@@ -165,11 +173,11 @@ trait Translatable
     }
 
 
-    public function scopeLocalized($query, $locale)
+    public function localized($locale)
     {
         $this->forceLocale = $locale;
 
-        return $query;
+        return $this;
     }
 
 }

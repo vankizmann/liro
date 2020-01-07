@@ -20,36 +20,13 @@
         <div class="web-body-item">
             <NForm :errors="errors">
 
-            <NFormItem prop="state" :label="trans('Status')">
-                <NSelect v-model="entity.state">
-                    <NSelectOption :value="1">{{ trans('Active') }}</NSelectOption>
-                    <NSelectOption :value="0">{{ trans('Inactive') }}</NSelectOption>
-                    <NSelectOption :value="2">{{ trans('Archived') }}</NSelectOption>
-                </NSelect>
-            </NFormItem>
+                <NFormItem prop="source" :label="trans('Source')">
+                    <NTextarea v-model="entity.source" :auto-rows="true" />
+                </NFormItem>
 
-            <NFormItem prop="hide" :label="trans('Visibility')">
-                <NSelect v-model="entity.hide">
-                    <NSelectOption :value="0">{{ trans('Visible') }}</NSelectOption>
-                    <NSelectOption :value="1">{{ trans('Invisible') }}</NSelectOption>
-                </NSelect>
-            </NFormItem>
-
-            <NFormItem prop="layout" :label="trans('Layout')">
-                <NInput v-model="entity.layout" />
-            </NFormItem>
-
-            <NFormItem prop="icon" :label="trans('Icon')">
-                <NInput v-model="entity.icon" />
-            </NFormItem>
-
-            <NFormItem prop="title" :label="trans('Title')">
-                <NInput v-model="entity.title" />
-            </NFormItem>
-
-            <NFormItem prop="slug" :label="trans('Slug')">
-                <NInput v-model="entity.slug" />
-            </NFormItem>
+                <NFormItem prop="target" :label="trans('Target')">
+                    <NTextarea v-model="entity.target" :auto-rows="true" />
+                </NFormItem>
 
             </NForm>
         </div>
@@ -105,7 +82,7 @@
 
             fetchEntity()
             {
-                let route = this.Route.get('module.web-translation.translation.edit',
+                let route = this.Route.get('module.web-language.translation.edit',
                     this.$route.params);
 
                 let options = {
@@ -121,7 +98,7 @@
             {
                 this.Data.unset('web-translation-index');
 
-                let route = this.Route.get('module.web-translation.translation.update',
+                let route = this.Route.get('module.web-language.translation.update',
                     this.$route.params);
 
                 let options = {

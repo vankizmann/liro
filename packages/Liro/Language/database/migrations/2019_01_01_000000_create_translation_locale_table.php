@@ -4,28 +4,31 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTranslationTable extends Migration
+class CreateTranslationLocaleTable extends Migration
 {
     public function up()
     {
-        Schema::create('translations', function(Blueprint $table) {
+        Schema::create('translation_locales', function(Blueprint $table) {
 
             $table->uuid('id')
                 ->primary();
 
-            $table->string('source')
+            $table->uuid('foreign_id')
+                ->nullable();
+
+            $table->string('locale')
                 ->default('');
 
             $table->string('target')
-                ->default('');
-            
+                ->nullable();
+
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('translations');
+        Schema::dropIfExists('translation_locales');
     }
 
 }

@@ -82,7 +82,7 @@ class MenuManager
             $menus = Menu::orderBy('left', 'asc')->get();
 
             foreach ( $menus as $menu ) {
-                $this->registerMenuRoute($menu, $locale);
+                $this->registerMenuRoute($menu->localized($locale), $locale);
             }
 
         }

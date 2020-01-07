@@ -319,7 +319,7 @@ class BackendMenuTableSeeder extends Seeder
         ]);
 
         Menu::create([
-            'id'        =>  $tmp = uuid(),
+            'id'        => $tmp = uuid(),
             'type'      => 'web-menu::vue',
             'extend'    => ['component' => 'WebTranslationIndex'],
             'layout'    => null,

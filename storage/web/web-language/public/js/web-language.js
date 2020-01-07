@@ -373,10 +373,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.$refs.table.$on('filter', this.Any.debounce(this.setFiltering, 600));
+    this.$refs.table.$on('filter', this.Any.debounce(this.setFiltering, 500));
 
     if (this.Data.has('web-language-index')) {
-      return this.Any.delay(this.preloadEntities);
+      return this.Any.delay(this.preloadEntities, 250);
     }
 
     this.fetchEntities();
@@ -514,29 +514,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebTranslationEdit',
   computed: {
@@ -573,7 +550,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchEntity: function fetchEntity() {
       var _this = this;
 
-      var route = this.Route.get('module.web-translation.translation.edit', this.$route.params);
+      var route = this.Route.get('module.web-language.translation.edit', this.$route.params);
       var options = {
         onLoad: function onLoad() {
           return _this.load = true;
@@ -588,7 +565,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.Data.unset('web-translation-index');
-      var route = this.Route.get('module.web-translation.translation.update', this.$route.params);
+      var route = this.Route.get('module.web-language.translation.update', this.$route.params);
       var options = {
         onLoad: function onLoad() {
           return _this2.load = true;
@@ -613,27 +590,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -707,26 +669,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebTranslationIndex',
   data: function data() {
-    var request = {
-      data: [],
+    var paginate = {
       page: 1,
-      limit: 50,
-      total: 0
+      total: 0,
+      limit: 50
     };
     var filter = [// Default filters
     ];
-
-    if (this.Cookie.get('web-translation-index|filter')) {
-      filter = this.Str.objectify(this.Cookie.get('web-translation-index|filter'));
-    }
-
     var sort = {
       prop: 'updated_at',
       dir: 'desc'
     };
+    var data = {
+      paginate: paginate,
+      sort: sort,
+      filter: filter
+    };
 
-    if (this.Cookie.get('web-translation-index|sort')) {
-      sort = this.Str.objectify(this.Cookie.get('web-translation-index|sort'));
+    if (this.Cookie.get('web-translation-index')) {
+      this.Obj.assign(data, this.Str.objectify(this.Cookie.get('web-translation-index')));
     }
 
     var states = [{
@@ -746,34 +707,38 @@ __webpack_require__.r(__webpack_exports__);
       value: '0',
       label: this.trans('Invisible')
     }];
-    return {
-      request: request,
-      sort: sort,
-      filter: filter,
+    return _objectSpread({}, data, {
       states: states,
       hides: hides,
+      entities: [],
       selected: [],
       load: true
-    };
+    });
   },
   mounted: function mounted() {
-    this.$refs.table.$on('filter', this.Any.debounce(this.setFiltering, 600));
+    this.$refs.table.$on('filter', this.Any.debounce(this.setFiltering, 500));
 
     if (this.Data.has('web-translation-index')) {
-      return this.Any.delay(this.preloadEntities);
+      return this.Any.delay(this.preloadEntities, 250);
     }
 
     this.fetchEntities();
   },
   watch: {
-    request: function request() {
-      this.Data.set('web-translation-index', this.request);
+    entities: function entities() {
+      this.Data.set('web-translation-index', this.entities);
+    },
+    paginate: function paginate() {
+      var data = this.Obj.only(this, ['paginate', 'sort', 'filter']);
+      this.Cookie.set('web-translation-index', this.Str.stringify(data));
     },
     sort: function sort() {
-      this.Cookie.set('web-translation-index|sort', this.Str.stringify(this.sort));
+      var data = this.Obj.only(this, ['paginate', 'sort', 'filter']);
+      this.Cookie.set('web-translation-index', this.Str.stringify(data));
     },
     filter: function filter() {
-      this.Cookie.set('web-translation-index|filter', this.Str.stringify(this.filter));
+      var data = this.Obj.only(this, ['paginate', 'sort', 'filter']);
+      this.Cookie.set('web-translation-index', this.Str.stringify(data));
     }
   },
   methods: {
@@ -803,20 +768,26 @@ __webpack_require__.r(__webpack_exports__);
       }, 500)();
     },
     doneEntities: function doneEntities(res) {
-      this.request = this.Obj.get(res, 'data', []);
+      var request = this.Obj.get(res, 'data', []);
+      this.paginate = {
+        page: request.page,
+        total: request.total,
+        limit: request.limit
+      };
+      this.entities = this.Obj.get(res, 'data.data', []);
     },
     errorEntities: function errorEntities(res) {
       this.errors = this.Obj.get(res, 'data.errors', {});
     },
     preloadEntities: function preloadEntities() {
-      this.request = this.Data.get('web-translation-index');
+      this.entities = this.Data.get('web-translation-index');
       this.load = false;
     },
     fetchEntities: function fetchEntities() {
       var _this2 = this;
 
       this.selected = [];
-      var query = this.Obj.only(this.request, ['page', 'limit']);
+      var query = this.Obj.only(this.paginate, ['page', 'limit']);
       this.Obj.assign(query, this.sort, {
         filter: this.filter
       });
@@ -1537,79 +1508,16 @@ var render = function() {
             [
               _c(
                 "NFormItem",
-                { attrs: { prop: "state", label: _vm.trans("Status") } },
+                { attrs: { prop: "source", label: _vm.trans("Source") } },
                 [
-                  _c(
-                    "NSelect",
-                    {
-                      model: {
-                        value: _vm.entity.state,
-                        callback: function($$v) {
-                          _vm.$set(_vm.entity, "state", $$v)
-                        },
-                        expression: "entity.state"
-                      }
-                    },
-                    [
-                      _c("NSelectOption", { attrs: { value: 1 } }, [
-                        _vm._v(_vm._s(_vm.trans("Active")))
-                      ]),
-                      _vm._v(" "),
-                      _c("NSelectOption", { attrs: { value: 0 } }, [
-                        _vm._v(_vm._s(_vm.trans("Inactive")))
-                      ]),
-                      _vm._v(" "),
-                      _c("NSelectOption", { attrs: { value: 2 } }, [
-                        _vm._v(_vm._s(_vm.trans("Archived")))
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "NFormItem",
-                { attrs: { prop: "hide", label: _vm.trans("Visibility") } },
-                [
-                  _c(
-                    "NSelect",
-                    {
-                      model: {
-                        value: _vm.entity.hide,
-                        callback: function($$v) {
-                          _vm.$set(_vm.entity, "hide", $$v)
-                        },
-                        expression: "entity.hide"
-                      }
-                    },
-                    [
-                      _c("NSelectOption", { attrs: { value: 0 } }, [
-                        _vm._v(_vm._s(_vm.trans("Visible")))
-                      ]),
-                      _vm._v(" "),
-                      _c("NSelectOption", { attrs: { value: 1 } }, [
-                        _vm._v(_vm._s(_vm.trans("Invisible")))
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "NFormItem",
-                { attrs: { prop: "layout", label: _vm.trans("Layout") } },
-                [
-                  _c("NInput", {
+                  _c("NTextarea", {
+                    attrs: { "auto-rows": true },
                     model: {
-                      value: _vm.entity.layout,
+                      value: _vm.entity.source,
                       callback: function($$v) {
-                        _vm.$set(_vm.entity, "layout", $$v)
+                        _vm.$set(_vm.entity, "source", $$v)
                       },
-                      expression: "entity.layout"
+                      expression: "entity.source"
                     }
                   })
                 ],
@@ -1618,49 +1526,16 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "NFormItem",
-                { attrs: { prop: "icon", label: _vm.trans("Icon") } },
+                { attrs: { prop: "target", label: _vm.trans("Target") } },
                 [
-                  _c("NInput", {
+                  _c("NTextarea", {
+                    attrs: { "auto-rows": true },
                     model: {
-                      value: _vm.entity.icon,
+                      value: _vm.entity.target,
                       callback: function($$v) {
-                        _vm.$set(_vm.entity, "icon", $$v)
+                        _vm.$set(_vm.entity, "target", $$v)
                       },
-                      expression: "entity.icon"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "NFormItem",
-                { attrs: { prop: "title", label: _vm.trans("Title") } },
-                [
-                  _c("NInput", {
-                    model: {
-                      value: _vm.entity.title,
-                      callback: function($$v) {
-                        _vm.$set(_vm.entity, "title", $$v)
-                      },
-                      expression: "entity.title"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "NFormItem",
-                { attrs: { prop: "slug", label: _vm.trans("Slug") } },
-                [
-                  _c("NInput", {
-                    model: {
-                      value: _vm.entity.slug,
-                      callback: function($$v) {
-                        _vm.$set(_vm.entity, "slug", $$v)
-                      },
-                      expression: "entity.slug"
+                      expression: "entity.target"
                     }
                   })
                 ],
@@ -1774,135 +1649,6 @@ var render = function() {
                             {
                               staticClass: "n-popover-option",
                               attrs: {
-                                type: "primary",
-                                link: true,
-                                icon: _vm.icons.activate
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.trans("Activate")) +
-                                  "\n                            "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "NConfirm",
-                            {
-                              attrs: { type: "primary" },
-                              on: {
-                                confirm: function($event) {
-                                  return _vm.modifyEntities("activate")
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(
-                                    _vm.choice(
-                                      "Do you want to activate :count items?",
-                                      _vm.selected.length
-                                    )
-                                  ) +
-                                  "\n                            "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "NButton",
-                            {
-                              staticClass: "n-popover-option",
-                              attrs: {
-                                type: "warning",
-                                link: true,
-                                icon: _vm.icons.deactivate
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.trans("Deactivate")) +
-                                  "\n                            "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "NConfirm",
-                            {
-                              attrs: { type: "warning" },
-                              on: {
-                                confirm: function($event) {
-                                  return _vm.modifyEntities("deactivate")
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(
-                                    _vm.choice(
-                                      "Do you want to deactivate :count items?",
-                                      _vm.selected.length
-                                    )
-                                  ) +
-                                  "\n                            "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "NButton",
-                            {
-                              staticClass: "n-popover-option",
-                              attrs: {
-                                type: "info",
-                                link: true,
-                                icon: _vm.icons.archive
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.trans("Archive")) +
-                                  "\n                            "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "NConfirm",
-                            {
-                              attrs: { type: "info" },
-                              on: {
-                                confirm: function($event) {
-                                  return _vm.modifyEntities("archive")
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(
-                                    _vm.choice(
-                                      "Do you want to archive :count items?",
-                                      _vm.selected.length
-                                    )
-                                  ) +
-                                  "\n                            "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "NButton",
-                            {
-                              staticClass: "n-popover-option",
-                              attrs: {
                                 type: "danger",
                                 link: true,
                                 icon: _vm.icons.delete
@@ -1980,11 +1726,11 @@ var render = function() {
                   "row-dblclick": _vm.navigate
                 },
                 model: {
-                  value: _vm.request.data,
+                  value: _vm.entities,
                   callback: function($$v) {
-                    _vm.$set(_vm.request, "data", $$v)
+                    _vm.entities = $$v
                   },
-                  expression: "request.data"
+                  expression: "entities"
                 }
               },
               [
@@ -2052,17 +1798,17 @@ var render = function() {
           [
             _c("NPaginator", {
               attrs: {
-                page: _vm.request.page,
-                limit: _vm.request.limit,
-                total: _vm.request.total,
+                page: _vm.paginate.page,
+                limit: _vm.paginate.limit,
+                total: _vm.paginate.total,
                 "limit-options": [50, 100, 500]
               },
               on: {
                 "update:page": function($event) {
-                  return _vm.$set(_vm.request, "page", $event)
+                  return _vm.$set(_vm.paginate, "page", $event)
                 },
                 "update:limit": function($event) {
-                  return _vm.$set(_vm.request, "limit", $event)
+                  return _vm.$set(_vm.paginate, "limit", $event)
                 },
                 paginate: _vm.fetchEntities
               }

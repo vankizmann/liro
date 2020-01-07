@@ -19,27 +19,6 @@
                             </NButton>
                             <NPopover ref="popover" type="select" trigger="click" position="bottom-end" :width="220" :disabled="! selected.length">
 
-                                <NButton class="n-popover-option" type="primary" :link="true" :icon="icons.activate">
-                                    {{ trans('Activate') }}
-                                </NButton>
-                                <NConfirm type="primary" @confirm="modifyEntities('activate')">
-                                    {{ choice('Do you want to activate :count items?', selected.length) }}
-                                </NConfirm>
-
-                                <NButton class="n-popover-option" type="warning" :link="true" :icon="icons.deactivate">
-                                    {{ trans('Deactivate') }}
-                                </NButton>
-                                <NConfirm type="warning" @confirm="modifyEntities('deactivate')">
-                                    {{ choice('Do you want to deactivate :count items?', selected.length) }}
-                                </NConfirm>
-
-                                <NButton class="n-popover-option" type="info" :link="true" :icon="icons.archive">
-                                    {{ trans('Archive') }}
-                                </NButton>
-                                <NConfirm type="info" @confirm="modifyEntities('archive')">
-                                    {{ choice('Do you want to archive :count items?', selected.length) }}
-                                </NConfirm>
-
                                 <NButton class="n-popover-option" type="danger" :link="true" :icon="icons.delete">
                                     {{ trans('Delete') }}
                                 </NButton>
@@ -57,7 +36,7 @@
             </div>
 
             <div class="web-body-item col--flex-fixed">
-                <NTable ref="table" unique-prop="id" :selected-keys.sync="selected" v-model="request.data" :sort-prop="sort.prop" :sort-dir="sort.dir" :filter-props="Obj.values(filter)" :adapt-height="true" @sort="setSorting" @row-dblclick="navigate">
+                <NTable ref="table" unique-prop="id" :selected-keys.sync="selected" v-model="entities" :sort-prop="sort.prop" :sort-dir="sort.dir" :filter-props="Obj.values(filter)" :adapt-height="true" @sort="setSorting" @row-dblclick="navigate">
 
                     <NTableColumn type="selection" :fixed-width="45" align="center" :label="trans('Selection')">
                         <!-- ID -->
@@ -83,7 +62,7 @@
             </div>
 
             <div class="web-body-item col--flex--none">
-                <NPaginator :page.sync="request.page" :limit.sync="request.limit" :total="request.total" @paginate="fetchEntities" :limit-options="[50, 100, 500]" />
+                <NPaginator :page.sync="paginate.page" :limit.sync="paginate.limit" :total="paginate.total" @paginate="fetchEntities" :limit-options="[50, 100, 500]" />
             </div>
 
         </div>
@@ -96,28 +75,26 @@
 
         data()
         {
-            let request = {
-                data: [], page: 1, limit: 50, total: 0
+            let paginate = {
+                page: 1, total: 0, limit: 50
             };
 
             let filter = [
                 // Default filters
             ];
 
-            if ( this.Cookie.get('web-translation-index|filter') ) {
-                filter = this.Str.objectify(
-                    this.Cookie.get('web-translation-index|filter')
-                );
-            }
-
             let sort = {
                 prop: 'updated_at', dir: 'desc'
             };
 
-            if ( this.Cookie.get('web-translation-index|sort') ) {
-                sort = this.Str.objectify(
-                    this.Cookie.get('web-translation-index|sort')
-                );
+            let data = {
+                paginate, sort, filter
+            };
+
+            if ( this.Cookie.get('web-translation-index') ) {
+                this.Obj.assign(data, this.Str.objectify(
+                    this.Cookie.get('web-translation-index')
+                ));
             }
 
             let states = [
@@ -131,16 +108,16 @@
                 { value: '0', label: this.trans('Invisible') },
             ];
 
-            return { request, sort, filter, states, hides, selected: [], load: true };
+            return { ...data, states, hides, entities: [], selected: [], load: true };
         },
 
         mounted()
         {
             this.$refs.table.$on('filter',
-                this.Any.debounce(this.setFiltering, 600));
+                this.Any.debounce(this.setFiltering, 500));
 
             if ( this.Data.has('web-translation-index') ) {
-                return this.Any.delay(this.preloadEntities);
+                return this.Any.delay(this.preloadEntities, 250);
             }
 
             this.fetchEntities();
@@ -148,21 +125,39 @@
 
         watch: {
 
-            request()
+            entities()
             {
-                this.Data.set('web-translation-index', this.request);
+                this.Data.set('web-translation-index', this.entities);
+            },
+
+            paginate()
+            {
+                let data = this.Obj.only(this, [
+                    'paginate', 'sort', 'filter'
+                ]);
+
+                this.Cookie.set('web-translation-index',
+                    this.Str.stringify(data));
             },
 
             sort()
             {
-                this.Cookie.set('web-translation-index|sort',
-                    this.Str.stringify(this.sort));
+                let data = this.Obj.only(this, [
+                    'paginate', 'sort', 'filter'
+                ]);
+
+                this.Cookie.set('web-translation-index',
+                    this.Str.stringify(data));
             },
 
             filter()
             {
-                this.Cookie.set('web-translation-index|filter',
-                    this.Str.stringify(this.filter));
+                let data = this.Obj.only(this, [
+                    'paginate', 'sort', 'filter'
+                ]);
+
+                this.Cookie.set('web-translation-index',
+                    this.Str.stringify(data));
             }
 
         },
@@ -193,7 +188,13 @@
 
             doneEntities(res)
             {
-                this.request = this.Obj.get(res, 'data', []);
+                let request = this.Obj.get(res, 'data', []);
+
+                this.paginate = {
+                    page: request.page, total: request.total, limit: request.limit
+                };
+
+                this.entities = this.Obj.get(res, 'data.data', []);
             },
 
             errorEntities(res)
@@ -203,7 +204,7 @@
 
             preloadEntities()
             {
-                this.request = this.Data.get('web-translation-index');
+                this.entities = this.Data.get('web-translation-index');
 
                 this.load = false;
             },
@@ -212,7 +213,7 @@
             {
                 this.selected = [];
 
-                let query = this.Obj.only(this.request, [
+                let query = this.Obj.only(this.paginate, [
                     'page', 'limit'
                 ]);
 

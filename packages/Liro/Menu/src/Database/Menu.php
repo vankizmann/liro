@@ -72,27 +72,27 @@ class Menu extends Model
         }
 
         return str_join('/', $this->parent->route,
-            trim($this->attributes['slug'], '/'));
+            trim($this->slug, '/'));
     }
 
     public function getPathAttribute()
     {
         if ( ! $this->parent ) {
             return app('web.manager')->getProtocol() .
-                '://' . trim($this->attributes['slug'], '/');
+                '://' . trim($this->slug, '/');
         }
 
         return str_join('/', $this->parent->path,
-            trim($this->attributes['slug'], '/'));
+            trim($this->slug, '/'));
     }
 
     public function getFinalLayoutAttribute()
     {
         if ( ! $this->parent ) {
-            return $this->attributes['layout'];
+            return $this->layout;
         }
 
-        return $this->attributes['layout'] ?:
+        return $this->layout ?:
             $this->parent->final_layout;
     }
 
@@ -103,8 +103,7 @@ class Menu extends Model
 
     public function getOptionsAttribute()
     {
-        return app('web.menu')->getOptions($this->attributes['type'],
-            $this->attributes['id']);
+        return app('web.menu')->getOptions($this->type, $this->id);
     }
 
 //

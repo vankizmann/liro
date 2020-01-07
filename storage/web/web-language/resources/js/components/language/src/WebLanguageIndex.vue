@@ -145,10 +145,10 @@
         mounted()
         {
             this.$refs.table.$on('filter',
-                this.Any.debounce(this.setFiltering, 600));
+                this.Any.debounce(this.setFiltering, 500));
 
             if ( this.Data.has('web-language-index') ) {
-                return this.Any.delay(this.preloadEntities);
+                return this.Any.delay(this.preloadEntities, 250);
             }
 
             this.fetchEntities();

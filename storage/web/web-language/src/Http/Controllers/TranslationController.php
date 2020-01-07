@@ -56,43 +56,10 @@ class TranslationController extends Controller
         ]);
     }
 
-    public function postActivateRoute()
-    {
-        foreach ( request()->input('ids', []) as $id ) {
-            Translation::findOrFail($id)->update(['state' => 1]);
-        }
-
-        return response()->json([
-            'data' => [], 'message' => trans('Translations has been activated!')
-        ]);
-    }
-
-    public function postDeactivateRoute()
-    {
-        foreach ( request()->input('ids', []) as $id ) {
-            Translation::findOrFail($id)->update(['state' => 0]);
-        }
-
-        return response()->json([
-            'data' => [], 'message' => trans('Translations has been deactivated!')
-        ]);
-    }
-
-    public function postArchiveRoute()
-    {
-        foreach ( request()->input('ids', []) as $id ) {
-            Translation::findOrFail($id)->update(['state' => 2]);
-        }
-
-        return response()->json([
-            'data' => [], 'message' => trans('Translations has been archived!')
-        ]);
-    }
-
     public function postDeleteRoute()
     {
         foreach ( request()->input('ids', []) as $id ) {
-            Translation::findOrFail($id)->update(['state' => -1]);
+            Translation::findOrFail($id)->delete();
         }
 
         return response()->json([

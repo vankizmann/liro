@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
              RoleTableSeeder::class,
              UserTableSeeder::class,
              LanguageTableSeeder::class,
+             TranslationTableSeeder::class,
              FrontendMenuTableSeeder::class,
              BackendMenuTableSeeder::class,
          ]);

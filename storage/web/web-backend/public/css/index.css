@@ -9627,15 +9627,31 @@ readers do not read off random characters that represent icons */
 }
 
 .n-popover-option {
+  display: -webkit-box;
+  display: flex;
+  width: 100%;
   cursor: pointer;
-  display: block;
+}
+
+.n-popover-option:not(.n-button__wrapper),
+.n-popover-option.n-button__wrapper > .n-button.n-button--link {
   padding: 9px 12px;
   -webkit-transition: background 0.15s;
   transition: background 0.15s;
 }
 
-.n-popover-option:hover {
+.n-popover-option.n-button__wrapper > .n-button.n-button--link {
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+}
+
+.n-popover-option:not(.n-button__wrapper):hover,
+.n-popover-option.n-button__wrapper > .n-button.n-button--link:hover {
   background: #F7F8F9;
+}
+
+.n-popover-option.n-disabled {
+  background: transparent !important;
 }
 
 .n-modal {
@@ -23938,7 +23954,12 @@ th {
 .web-backend-sidebar {
   position: relative;
   width: 400px;
+  color: #ffffff;
   background: #181827;
+}
+
+.web-backend-sidebar .n-loader:after {
+  background: rgba(24, 24, 39, 0.6);
 }
 
 .web-backend-menu,
@@ -23951,13 +23972,8 @@ th {
 }
 
 .web-backend-mainbar {
+  color: #181827;
   background: #ffffff;
-}
-
-.web-backend-logo {
-  color: #ffffff;
-  height: 90px;
-  border-bottom: 1px solid #222237;
 }
 
 .web-backend-login {
@@ -24035,10 +24051,6 @@ th {
   position: relative;
   padding: 30px;
   min-height: 100%;
-}
-
-.web-backend-tree .web-menu-tree:after {
-  background: rgba(24, 24, 39, 0.6);
 }
 
 .web-backend-tree .web-menu-tree__search {

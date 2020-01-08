@@ -20,7 +20,14 @@
 
         beforeMount()
         {
-            this.Event.bind('menu.updated', this.fetchEntities);
+            this.Event.bind('updateMenu', this.fetchEntities, { _uid: this._uid });
+            this.Event.bind('setLocale', this.fetchEntities, { _uid: this._uid });
+        },
+
+        beforeDestroy()
+        {
+            this.Event.unbind('updateMenu', { _uid: this._uid });
+            this.Event.unbind('setLocale', { _uid: this._uid });
         },
 
         mounted()
@@ -29,7 +36,7 @@
                 this.fetchEntities, 500
             ));
 
-            this.Event.fire('menu.updated');
+            this.Event.fire('updateMenu');
         },
 
         methods: {
@@ -41,8 +48,16 @@
 
             fetchEntities()
             {
+                let query = {
+                    locale: this.$root.locale
+                };
+
+                if ( ! this.Any.isEmpty(this.search) ) {
+                    query.search = this.search;
+                }
+
                 let route = this.Route.get('module.web-menu.menu.tree',
-                    null, { search: this.search });
+                    null, query);
 
                 let options = {
                     onLoad: () => this.load = true,

@@ -1,4 +1,5 @@
 require('./components/language/index');
+require('./components/locale/index');
 require('./components/translation/index');
 
 if ( console && console.log ) {

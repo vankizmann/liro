@@ -17,7 +17,12 @@
 .web-backend-sidebar {
     position: relative;
     width: 400px;
+    color: $--color-white;
     background: $--color-black;
+}
+
+.web-backend-sidebar .n-loader:after {
+    background: rgba($color-black, 0.6);
 }
 
 .web-backend-menu,
@@ -30,11 +35,7 @@
 }
 
 .web-backend-mainbar {
+    color: $--color-black;
     background: $--color-white;
 }
 
-.web-backend-logo {
-    color: $--color-white;
-    height: 90px;
-    border-bottom: 1px solid $--color-black-light;
-}

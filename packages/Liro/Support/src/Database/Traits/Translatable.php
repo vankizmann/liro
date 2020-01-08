@@ -44,8 +44,8 @@ trait Translatable
 
     public function getLocale()
     {
-        return $this->forceLocale ?:
-            app()->getLocale();
+        return $this->forceLocale ?: request()->query('locale',
+            app()->getLocale());
     }
 
     public function getLocaleClass()
@@ -90,8 +90,8 @@ trait Translatable
     {
         $attributes = parent::attributesToArray();
 
-        if ( isset($attributes['locale']) ) {
-            $this->forceLocale = $attributes['locale'];
+        if ( isset($attributes['_locale']) ) {
+            $this->forceLocale = $attributes['_locale'];
         }
 
         $translation = $this->translations->firstWhere(
@@ -112,9 +112,11 @@ trait Translatable
 
     public function fill($attributes)
     {
-        if ( isset($attributes['locale']) ) {
-            $this->forceLocale = $attributes['locale'];
+        if ( isset($attributes['_locale']) ) {
+            $this->forceLocale = $attributes['_locale'];
         }
+
+        unset($attributes['_locale']);
 
         if ( app('web.language')->getBaseLocale() === $this->getLocale() ) {
             return parent::fill($attributes);
@@ -141,8 +143,6 @@ trait Translatable
 
             unset($attributes[$key]);
         }
-
-        unset($attributes['locale']);
 
         if ( ! $translation->exists ) {
             $this->translations->add($translation);

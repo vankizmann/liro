@@ -4,26 +4,26 @@ namespace Liro\Language\Database;
 
 use Liro\Support\Database\Model;
 
-class TranslationLocale extends Model
+class LanguageLocale extends Model
 {
-    protected $table = 'translation_locales';
+    protected $table = 'language_locales';
 
     protected $fillable = [
-        'id', 'foreign_id', 'locale', 'target'
+        'id', 'foreign_id', 'locale', 'title'
     ];
 
     protected $attributes = [
         'id'            => null,
         'foreign_id'    => null,
         'locale'        => null,
-        'target'        => null,
+        'title'         => null,
     ];
 
     protected $casts = [
         'id'            => 'uuid',
         'foreign_id'    => 'uuid',
         'locale'        => 'string',
-        'target'        => 'string',
+        'title'         => 'string',
     ];
 
 }

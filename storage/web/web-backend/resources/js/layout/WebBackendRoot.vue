@@ -15,6 +15,12 @@
                 </div>
             </div>
 
+            <div class="col--flex-none">
+                <div class="web-backend-locale">
+                    <WebBackendLocale />
+                </div>
+            </div>
+
             <div class="web-backend-tree n-inverse scrollbar col--flex-auto">
                 <WebBackendTree />
             </div>
@@ -79,6 +85,20 @@
 
         },
 
+        data()
+        {
+            let locale = this.Obj.get(document,
+                'documentElement.lang', 'en');
+
+            return { locale };
+        },
+
+        mounted()
+        {
+            this.Event.bind('setLocale',
+                (locale) => this.locale = locale, { _uid: this._uid });
+        },
+
         watch: {
 
             $route()
@@ -100,6 +120,12 @@
             {
                 return Vue.Extension.promise('WebAuthUser',
                     () => Vue.component('WebAuthUser'));
+            },
+
+            WebBackendLocale()
+            {
+                return Vue.Extension.promise('WebLanguageLocale',
+                    () => Vue.component('WebLanguageLocale'));
             },
 
         },

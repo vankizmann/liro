@@ -92,7 +92,7 @@
             doneEntity(res)
             {
                 if ( ! this.Any.isEmpty(this.entity) ) {
-                    this.Event.fire('menu.updated');
+                    this.Event.fire('updateMenu');
                 }
 
                 this.entity = this.Obj.get(res, 'data.data', {});

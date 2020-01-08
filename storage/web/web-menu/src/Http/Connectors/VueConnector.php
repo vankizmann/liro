@@ -53,6 +53,10 @@ class VueConnector extends Connector
             $options['connect']['edit'] = $connector->menu->id;
         }
 
+        if ( ! preg_match('/:id/i', $this->menu->path) ) {
+            $options['preview'] = url($this->menu->path);
+        }
+
         return $options;
     }
 

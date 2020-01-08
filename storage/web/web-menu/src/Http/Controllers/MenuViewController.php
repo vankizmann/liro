@@ -29,7 +29,11 @@ class MenuViewController extends Controller
     public function anyVueRoute()
     {
         if ( ! app('web.user')->canPolicyDepth($this->menu) ) {
-            abort(404);
+
+            $loginMenu = app('web.menu')->getDomain()
+                ->descendants()->where('type', 'web-auth::login')->first();
+
+            return redirect()->to($loginMenu->path);
         }
 
         $basePath = RouteHelper::extractRoute(

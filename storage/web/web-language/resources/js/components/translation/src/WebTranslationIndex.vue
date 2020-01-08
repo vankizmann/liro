@@ -111,6 +111,16 @@
             return { ...data, states, hides, entities: [], selected: [], load: true };
         },
 
+        beforeMount()
+        {
+            this.Event.bind('setLocale', this.fetchEntities, { _uid: this._uid});
+        },
+
+        beforeDestroy()
+        {
+            this.Event.unbind('setLocale', { _uid: this._uid});
+        },
+
         mounted()
         {
             this.$refs.table.$on('filter',
@@ -218,7 +228,7 @@
                 ]);
 
                 this.Obj.assign(query, this.sort, {
-                    filter: this.filter
+                    filter: this.filter, locale: this.$root.locale
                 });
 
                 let route = this.Route.get('module.web-language.translation.index',

@@ -178,7 +178,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     doneEntity: function doneEntity(res) {
       if (!this.Any.isEmpty(this.entity)) {
-        this.Event.fire('menu.updated');
+        this.Event.fire('updateMenu');
       }
 
       this.entity = this.Obj.get(res, 'data.data', {});
@@ -229,6 +229,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -331,26 +337,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebMenuIndex',
   data: function data() {
-    var request = {
-      data: [],
+    var paginate = {
       page: 1,
-      limit: 50,
-      total: 0
+      total: 0,
+      limit: 50
     };
     var filter = [// Default filters
     ];
-
-    if (this.Cookie.get('web-menu-index|filter')) {
-      filter = this.Str.objectify(this.Cookie.get('web-menu-index|filter'));
-    }
-
     var sort = {
       prop: 'updated_at',
       dir: 'desc'
     };
+    var data = {
+      paginate: paginate,
+      sort: sort,
+      filter: filter
+    };
+    var stored = this.Cookie.get(this.ctor('name'));
 
-    if (this.Cookie.get('web-menu-index|sort')) {
-      sort = this.Str.objectify(this.Cookie.get('web-menu-index|sort'));
+    if (stored) {
+      this.Obj.assign(data, this.Str.objectify(stored));
     }
 
     var states = [{
@@ -364,40 +370,54 @@ __webpack_require__.r(__webpack_exports__);
       label: this.trans('Archived')
     }];
     var hides = [{
-      value: '0',
+      value: '1',
       label: this.trans('Visible')
     }, {
-      value: '1',
+      value: '0',
       label: this.trans('Invisible')
     }];
-    return {
-      request: request,
-      sort: sort,
-      filter: filter,
+    return _objectSpread({}, data, {
       states: states,
       hides: hides,
+      entities: [],
       selected: [],
       load: true
-    };
+    });
+  },
+  beforeMount: function beforeMount() {
+    this.Event.bind('setLocale', this.fetchEntities, {
+      _uid: this._uid
+    });
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.Event.unbind('setLocale', {
+      _uid: this._uid
+    });
   },
   mounted: function mounted() {
     this.$refs.table.$on('filter', this.Any.debounce(this.setFiltering, 500));
 
-    if (this.Data.has('web-menu-index')) {
+    if (this.ctor('preload', false) && this.Data.has(this.ctor('name'))) {
       return this.Any.delay(this.preloadEntities, 250);
     }
 
     this.fetchEntities();
   },
   watch: {
-    request: function request() {
-      this.Data.set('web-menu-index', this.request);
+    entities: function entities() {
+      this.Data.set(this.ctor('name'), this.entities);
+    },
+    paginate: function paginate() {
+      var data = this.Obj.only(this, ['paginate', 'sort', 'filter']);
+      this.Cookie.set(this.ctor('name'), this.Str.stringify(data));
     },
     sort: function sort() {
-      this.Cookie.set('web-menu-index|sort', this.Str.stringify(this.sort));
+      var data = this.Obj.only(this, ['paginate', 'sort', 'filter']);
+      this.Cookie.set(this.ctor('name'), this.Str.stringify(data));
     },
     filter: function filter() {
-      this.Cookie.set('web-menu-index|filter', this.Str.stringify(this.filter));
+      var data = this.Obj.only(this, ['paginate', 'sort', 'filter']);
+      this.Cookie.set(this.ctor('name'), this.Str.stringify(data));
     }
   },
   methods: {
@@ -427,22 +447,29 @@ __webpack_require__.r(__webpack_exports__);
       }, 500)();
     },
     doneEntities: function doneEntities(res) {
-      this.request = this.Obj.get(res, 'data', []);
+      var request = this.Obj.get(res, 'data', []);
+      this.paginate = {
+        page: request.page,
+        total: request.total,
+        limit: request.limit
+      };
+      this.entities = this.Obj.get(res, 'data.data', []);
     },
     errorEntities: function errorEntities(res) {
       this.errors = this.Obj.get(res, 'data.errors', {});
     },
     preloadEntities: function preloadEntities() {
-      this.request = this.Data.get('web-menu-index');
+      this.entities = this.Data.get(this.ctor('name'));
       this.load = false;
     },
     fetchEntities: function fetchEntities() {
       var _this2 = this;
 
       this.selected = [];
-      var query = this.Obj.only(this.request, ['page', 'limit']);
+      var query = this.Obj.only(this.paginate, ['page', 'limit']);
       this.Obj.assign(query, this.sort, {
-        filter: this.filter
+        filter: this.filter,
+        locale: this.$root.locale
       });
       var route = this.Route.get('module.web-menu.menu.index', this.$route.params, query);
       var options = {
@@ -508,11 +535,24 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   beforeMount: function beforeMount() {
-    this.Event.bind('menu.updated', this.fetchEntities);
+    this.Event.bind('updateMenu', this.fetchEntities, {
+      _uid: this._uid
+    });
+    this.Event.bind('setLocale', this.fetchEntities, {
+      _uid: this._uid
+    });
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.Event.unbind('updateMenu', {
+      _uid: this._uid
+    });
+    this.Event.unbind('setLocale', {
+      _uid: this._uid
+    });
   },
   mounted: function mounted() {
     this.$refs.input.$on('input', this.Any.debounce(this.fetchEntities, 500));
-    this.Event.fire('menu.updated');
+    this.Event.fire('updateMenu');
   },
   methods: {
     clearSearch: function clearSearch() {
@@ -521,9 +561,15 @@ __webpack_require__.r(__webpack_exports__);
     fetchEntities: function fetchEntities() {
       var _this = this;
 
-      var route = this.Route.get('module.web-menu.menu.tree', null, {
-        search: this.search
-      });
+      var query = {
+        locale: this.$root.locale
+      };
+
+      if (!this.Any.isEmpty(this.search)) {
+        query.search = this.search;
+      }
+
+      var route = this.Route.get('module.web-menu.menu.tree', null, query);
       var options = {
         onLoad: function onLoad() {
           return _this.load = true;
@@ -1221,11 +1267,11 @@ var render = function() {
                   "row-dblclick": _vm.navigate
                 },
                 model: {
-                  value: _vm.request.data,
+                  value: _vm.entities,
                   callback: function($$v) {
-                    _vm.$set(_vm.request, "data", $$v)
+                    _vm.entities = $$v
                   },
-                  expression: "request.data"
+                  expression: "entities"
                 }
               },
               [
@@ -1320,17 +1366,17 @@ var render = function() {
           [
             _c("NPaginator", {
               attrs: {
-                page: _vm.request.page,
-                limit: _vm.request.limit,
-                total: _vm.request.total,
+                page: _vm.paginate.page,
+                limit: _vm.paginate.limit,
+                total: _vm.paginate.total,
                 "limit-options": [50, 100, 500]
               },
               on: {
                 "update:page": function($event) {
-                  return _vm.$set(_vm.request, "page", $event)
+                  return _vm.$set(_vm.paginate, "page", $event)
                 },
                 "update:limit": function($event) {
-                  return _vm.$set(_vm.request, "limit", $event)
+                  return _vm.$set(_vm.paginate, "limit", $event)
                 },
                 paginate: _vm.fetchEntities
               }

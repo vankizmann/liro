@@ -13,6 +13,19 @@ class BackendMenuTableSeeder extends Seeder
         ];
 
         Menu::create([
+            'id'        => uuid(),
+            'type'      => 'web-menu::redirect',
+            'layout'    => null,
+            'extend'    => ['url' => ':http://:domain/:locale/backend'],
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Redirect',
+            'slug'      => ':domain/backend',
+            'guard'     => 0,
+            'parent_id' => null,
+        ]);
+
+        Menu::create([
             'id'        => $routes['root'],
             'ident'     => 'web-backend',
             'type'      => 'web-menu::domain',
@@ -41,7 +54,7 @@ class BackendMenuTableSeeder extends Seeder
         Menu::create([
             'id'        => uuid(),
             'type'      => 'web-auth::logout',
-            'layout'    => null,
+            'layout'    => 'web-backend::login',
             'state'     => 1,
             'hide'      => 1,
             'title'     => 'Logout',
@@ -94,65 +107,6 @@ class BackendMenuTableSeeder extends Seeder
             'matrix'    => 1,
             'guard'     => 1,
             'parent_id' => $routes['dashboard'],
-        ]);
-
-        $routes['menu'] = uuid();
-
-        Menu::create([
-            'id'        => uuid(),
-            'type'      => 'web-menu::vue',
-            'extend'    => ['redirect' => $routes['menu']],
-            'layout'    => null,
-            'state'     => 1,
-            'hide'      => 0,
-            'title'     => 'Menus',
-            'slug'      => '/menus',
-            'matrix'    => 1,
-            'guard'     => 1,
-            'parent_id' => $routes['dashboard'],
-        ]);
-
-        Menu::create([
-            'id'        => $routes['menu'],
-            'type'      => 'web-menu::vue',
-            'icon'      => 'web-menu::img/icon-menu.svg',
-            'extend'    => ['component' => 'WebMenuIndex'],
-            'layout'    => null,
-            'state'     => 1,
-            'hide'      => 0,
-            'title'     => 'Menus',
-            'slug'      => '/menus',
-            'matrix'    => 1,
-            'guard'     => 1,
-            'parent_id' => $routes['root'],
-        ]);
-
-        Menu::create([
-            'id'        => $tmp = uuid(),
-            'type'      => 'web-menu::vue',
-            'extend'    => ['redirect' =>  $routes['menu']],
-            'layout'    => null,
-            'state'     => 1,
-            'hide'      => 0,
-            'title'     => 'Menus',
-            'slug'      => '/menus',
-            'matrix'    => 1,
-            'guard'     => 1,
-            'parent_id' => $routes['menu'],
-        ]);
-
-        Menu::create([
-            'id'        => uuid(),
-            'type'      => 'web-menu::vue',
-            'extend'    => ['component' =>  'WebMenuEdit'],
-            'layout'    => null,
-            'state'     => 1,
-            'hide'      => 1,
-            'title'     => 'Edit menu',
-            'slug'      => '/edit/:id',
-            'matrix'    => 1,
-            'guard'     => 1,
-            'parent_id' => $tmp,
         ]);
 
         $routes['page'] = uuid();
@@ -208,6 +162,34 @@ class BackendMenuTableSeeder extends Seeder
             'state'     => 1,
             'hide'      => 1,
             'title'     => 'Edit page',
+            'slug'      => '/edit/:id',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $tmp,
+        ]);
+
+        Menu::create([
+            'id'        => $tmp = uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['component' => 'WebMenuIndex'],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 0,
+            'title'     => 'Menus',
+            'slug'      => '/menus',
+            'matrix'    => 1,
+            'guard'     => 1,
+            'parent_id' => $routes['page'],
+        ]);
+
+        Menu::create([
+            'id'        => uuid(),
+            'type'      => 'web-menu::vue',
+            'extend'    => ['component' =>  'WebMenuEdit'],
+            'layout'    => null,
+            'state'     => 1,
+            'hide'      => 1,
+            'title'     => 'Edit menu',
             'slug'      => '/edit/:id',
             'matrix'    => 1,
             'guard'     => 1,

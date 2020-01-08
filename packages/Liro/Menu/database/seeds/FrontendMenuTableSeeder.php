@@ -24,11 +24,11 @@ class FrontendMenuTableSeeder extends Seeder
 
         MenuLocale::create([
             'id'            => uuid(),
-            'locale'        => 'de',
             'layout'        => null,
             'title'         => 'Weiterleitung',
             'slug'          => null,
             'foreign_id'    => $tmp,
+            'locale'        => 'de',
         ]);
 
         Menu::create([
@@ -59,20 +59,20 @@ class FrontendMenuTableSeeder extends Seeder
 
         MenuLocale::create([
             'id'            => uuid(),
-            'locale'        => 'de',
             'layout'        => null,
             'title'         => 'Startseite',
             'slug'          => null,
             'foreign_id'    => $home,
+            'locale'        => 'de',
         ]);
 
         MenuLocale::create([
             'id'            => uuid(),
-            'locale'        => 'da',
             'layout'        => null,
             'title'         => 'Hjem',
             'slug'          => null,
             'foreign_id'    => $home,
+            'locale'        => 'da',
         ]);
 
         Menu::create([

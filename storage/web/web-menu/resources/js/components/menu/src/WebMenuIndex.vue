@@ -57,7 +57,7 @@
             </div>
 
             <div class="web-body-item col--flex-fixed">
-                <NTable ref="table" unique-prop="id" :selected-keys.sync="selected" v-model="request.data" :sort-prop="sort.prop" :sort-dir="sort.dir" :filter-props="Obj.values(filter)" :adapt-height="true" @sort="setSorting" @row-dblclick="navigate">
+                <NTable ref="table" unique-prop="id" :selected-keys.sync="selected" v-model="entities" :sort-prop="sort.prop" :sort-dir="sort.dir" :filter-props="Obj.values(filter)" :adapt-height="true" @sort="setSorting" @row-dblclick="navigate">
 
                     <NTableColumn type="selection" :fixed-width="45" align="center" :label="trans('Selection')">
                         <!-- ID -->
@@ -91,7 +91,7 @@
             </div>
 
             <div class="web-body-item col--flex--none">
-                <NPaginator :page.sync="request.page" :limit.sync="request.limit" :total="request.total" @paginate="fetchEntities" :limit-options="[50, 100, 500]" />
+                <NPaginator :page.sync="paginate.page" :limit.sync="paginate.limit" :total="paginate.total" @paginate="fetchEntities" :limit-options="[50, 100, 500]" />
             </div>
 
         </div>
@@ -104,28 +104,26 @@
 
         data()
         {
-            let request = {
-                data: [], page: 1, limit: 50, total: 0
+            let paginate = {
+                page: 1, total: 0, limit: 50
             };
 
             let filter = [
                 // Default filters
             ];
 
-            if ( this.Cookie.get('web-menu-index|filter') ) {
-                filter = this.Str.objectify(
-                    this.Cookie.get('web-menu-index|filter')
-                );
-            }
-
             let sort = {
                 prop: 'updated_at', dir: 'desc'
             };
 
-            if ( this.Cookie.get('web-menu-index|sort') ) {
-                sort = this.Str.objectify(
-                    this.Cookie.get('web-menu-index|sort')
-                );
+            let data = {
+                paginate, sort, filter
+            };
+
+            let stored = this.Cookie.get(this.ctor('name'));
+
+            if ( stored ) {
+                this.Obj.assign(data, this.Str.objectify(stored));
             }
 
             let states = [
@@ -135,11 +133,21 @@
             ];
 
             let hides = [
-                { value: '0', label: this.trans('Visible') },
-                { value: '1', label: this.trans('Invisible') },
+                { value: '1', label: this.trans('Visible') },
+                { value: '0', label: this.trans('Invisible') },
             ];
 
-            return { request, sort, filter, states, hides, selected: [], load: true };
+            return { ...data, states, hides, entities: [], selected: [], load: true };
+        },
+
+        beforeMount()
+        {
+            this.Event.bind('setLocale', this.fetchEntities, { _uid: this._uid });
+        },
+
+        beforeDestroy()
+        {
+            this.Event.unbind('setLocale', { _uid: this._uid });
         },
 
         mounted()
@@ -147,7 +155,7 @@
             this.$refs.table.$on('filter',
                 this.Any.debounce(this.setFiltering, 500));
 
-            if ( this.Data.has('web-menu-index') ) {
+            if ( this.ctor('preload', false) && this.Data.has(this.ctor('name')) ) {
                 return this.Any.delay(this.preloadEntities, 250);
             }
 
@@ -156,21 +164,39 @@
 
         watch: {
 
-            request()
+            entities()
             {
-                this.Data.set('web-menu-index', this.request);
+                this.Data.set(this.ctor('name'), this.entities);
+            },
+
+            paginate()
+            {
+                let data = this.Obj.only(this, [
+                    'paginate', 'sort', 'filter'
+                ]);
+
+                this.Cookie.set(this.ctor('name'),
+                    this.Str.stringify(data));
             },
 
             sort()
             {
-                this.Cookie.set('web-menu-index|sort',
-                    this.Str.stringify(this.sort));
+                let data = this.Obj.only(this, [
+                    'paginate', 'sort', 'filter'
+                ]);
+
+                this.Cookie.set(this.ctor('name'),
+                    this.Str.stringify(data));
             },
 
             filter()
             {
-                this.Cookie.set('web-menu-index|filter',
-                    this.Str.stringify(this.filter));
+                let data = this.Obj.only(this, [
+                    'paginate', 'sort', 'filter'
+                ]);
+
+                this.Cookie.set(this.ctor('name'),
+                    this.Str.stringify(data));
             }
 
         },
@@ -201,7 +227,13 @@
 
             doneEntities(res)
             {
-                this.request = this.Obj.get(res, 'data', []);
+                let request = this.Obj.get(res, 'data', []);
+
+                this.paginate = {
+                    page: request.page, total: request.total, limit: request.limit
+                };
+
+                this.entities = this.Obj.get(res, 'data.data', []);
             },
 
             errorEntities(res)
@@ -211,7 +243,7 @@
 
             preloadEntities()
             {
-                this.request = this.Data.get('web-menu-index');
+                this.entities = this.Data.get(this.ctor('name'));
 
                 this.load = false;
             },
@@ -220,12 +252,12 @@
             {
                 this.selected = [];
 
-                let query = this.Obj.only(this.request, [
+                let query = this.Obj.only(this.paginate, [
                     'page', 'limit'
                 ]);
 
                 this.Obj.assign(query, this.sort, {
-                    filter: this.filter
+                    filter: this.filter, locale: this.$root.locale
                 });
 
                 let route = this.Route.get('module.web-menu.menu.index',

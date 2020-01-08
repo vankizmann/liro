@@ -15,7 +15,7 @@ use Liro\Menu\Database\Menu;
 */
 
 Route::get('test', function () {
-    app('web.language')->setLocale('ru');
+//    app('web.language')->setLocale('ru');
 
     $menu = (new Menu)->fill([
         '_locale' => 'da',

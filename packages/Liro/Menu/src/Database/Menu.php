@@ -33,6 +33,10 @@ class Menu extends Model
         'layout', 'title', 'slug'
     ];
 
+    protected $relationships = [
+        'parent', 'childs'
+    ];
+
     protected $attributes = [
         'id'            => null,
         'state'         => null,

@@ -9,7 +9,11 @@ class BackendMenuTableSeeder extends Seeder
     public function run()
     {
         $routes = [
-            'root' => uuid()
+             //
+        ];
+
+        $menus = [
+            //
         ];
 
         Menu::create([
@@ -25,7 +29,9 @@ class BackendMenuTableSeeder extends Seeder
             'parent_id' => null,
         ]);
 
-        Menu::create([
+        $routes['root'] = uuid();
+
+        $menus['root'] = Menu::create([
             'id'        => $routes['root'],
             'ident'     => 'web-backend',
             'type'      => 'web-menu::domain',
@@ -48,7 +54,7 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/login',
             'matrix'    => 1,
             'guard'     => 0,
-            'parent_id' => $routes['root'],
+            'parent'    => $menus['root'],
         ]);
 
         Menu::create([
@@ -61,13 +67,13 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/logout',
             'matrix'    => 1,
             'guard'     => 0,
-            'parent_id' => $routes['root'],
+            'parent'    => $menus['root'],
         ]);
 
         $routes['dashboard'] = uuid();
 
         Menu::create([
-            'id'        => $tmp = uuid(),
+            'id'        => uuid(),
             'type'      => 'web-menu::vue',
             'extend'    => ['redirect' => $routes['dashboard']],
             'layout'    => null,
@@ -77,10 +83,10 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['root'],
+            'parent'    => $menus['root'],
         ]);
 
-        Menu::create([
+        $menus['dashboard'] = Menu::create([
             'id'        => $routes['dashboard'],
             'type'      => 'web-menu::vue',
             'icon'      => 'web-dashboard::img/icon-dashboard.svg',
@@ -92,7 +98,7 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/dashboard',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['root'],
+            'parent'    => $menus['root'],
         ]);
 
         Menu::create([
@@ -106,7 +112,7 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/dashboard',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['dashboard'],
+            'parent'    => $menus['dashboard'],
         ]);
 
         $routes['page'] = uuid();
@@ -122,10 +128,10 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/pages',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['dashboard'],
+            'parent'    => $menus['dashboard'],
         ]);
 
-        Menu::create([
+        $menus['page'] = Menu::create([
             'id'        => $routes['page'],
             'type'      => 'web-menu::vue',
             'icon'      => 'web-page::img/icon-page.svg',
@@ -137,11 +143,11 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/pages',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['root'],
+            'parent'    => $menus['root'],
         ]);
 
-        Menu::create([
-            'id'        => $tmp = uuid(),
+        $tmp = Menu::create([
+            'id'        => uuid(),
             'type'      => 'web-menu::vue',
             'extend'    => ['redirect' =>  $routes['page']],
             'layout'    => null,
@@ -151,7 +157,7 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/pages',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['page'],
+            'parent'    => $menus['page'],
         ]);
 
         Menu::create([
@@ -165,11 +171,11 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/edit/:id',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $tmp,
+            'parent'    => $tmp,
         ]);
 
-        Menu::create([
-            'id'        => $tmp = uuid(),
+        $tmp = Menu::create([
+            'id'        => uuid(),
             'type'      => 'web-menu::vue',
             'extend'    => ['component' => 'WebMenuIndex'],
             'layout'    => null,
@@ -179,7 +185,7 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/menus',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['page'],
+            'parent'    => $menus['page'],
         ]);
 
         Menu::create([
@@ -193,7 +199,7 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/edit/:id',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $tmp,
+            'parent'    => $tmp,
         ]);
 
         $routes['user'] = uuid();
@@ -209,10 +215,10 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/users',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['dashboard'],
+            'parent'    => $menus['dashboard'],
         ]);
 
-        Menu::create([
+        $menus['user'] = Menu::create([
             'id'        => $routes['user'],
             'type'      => 'web-menu::vue',
             'icon'      => 'web-user::img/icon-user.svg',
@@ -224,11 +230,11 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/users',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['root'],
+            'parent'    => $menus['root'],
         ]);
 
-        Menu::create([
-            'id'        => $tmp = uuid(),
+        $tmp = Menu::create([
+            'id'        => uuid(),
             'type'      => 'web-menu::vue',
             'extend'    => ['redirect' =>  $routes['user']],
             'layout'    => null,
@@ -238,7 +244,7 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/users',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['user'],
+            'parent'    => $menus['user'],
         ]);
 
         $routes['language'] = uuid();
@@ -254,10 +260,10 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/language',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['dashboard'],
+            'parent'    => $menus['dashboard'],
         ]);
 
-        Menu::create([
+        $menus['language'] = Menu::create([
             'id'        => $routes['language'],
             'type'      => 'web-menu::vue',
             'icon'      => 'web-language::img/icon-language.svg',
@@ -269,11 +275,11 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/languages',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['root'],
+            'parent'    => $menus['root'],
         ]);
 
-        Menu::create([
-            'id'        => $tmp = uuid(),
+        $tmp = Menu::create([
+            'id'        => uuid(),
             'type'      => 'web-menu::vue',
             'extend'    => ['redirect' =>  $routes['language']],
             'layout'    => null,
@@ -297,11 +303,11 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/edit/:id',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $tmp,
+            'parent'    => $tmp,
         ]);
 
-        Menu::create([
-            'id'        => $tmp = uuid(),
+        $tmp = Menu::create([
+            'id'        => uuid(),
             'type'      => 'web-menu::vue',
             'extend'    => ['component' => 'WebTranslationIndex'],
             'layout'    => null,
@@ -311,7 +317,7 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/translations',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $routes['language'],
+            'parent'   => $menus['language'],
         ]);
 
         Menu::create([
@@ -325,7 +331,7 @@ class BackendMenuTableSeeder extends Seeder
             'slug'      => '/edit/:id',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $tmp,
+            'parent'    => $tmp,
         ]);
     }
 

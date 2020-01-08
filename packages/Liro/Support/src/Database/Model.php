@@ -13,7 +13,7 @@ class Model extends BaseModel
      *
      * @var string
      */
-    protected $keyType = 'string';
+    protected $keyType = 'uuid';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -21,5 +21,21 @@ class Model extends BaseModel
      * @var bool
      */
     public $incrementing = false;
+
+    public function forceSetAttribute($key, $value) {
+        static::unguarded(function () use ($key, $value) {
+            $this->setAttribute($key, $value);
+        });
+    }
+
+
+    public function fill($attributes)
+    {
+        if ( empty($this->attributes['id']) && ! empty($attributes['id']) ) {
+            $this->forceSetAttribute('id', $attributes['id']);
+        }
+
+        return parent::fill($attributes);
+    }
 
 }

@@ -16,11 +16,16 @@ use Liro\Menu\Database\Menu;
 
 Route::get('test', function () {
     app('web.language')->setLocale('ru');
-    global $test;
-    $test = true;
 
-    $menu = Menu::where('ident', 'web-home')->first()->fill(['title' => 'Foobar']);
+    $menu = (new Menu)->fill([
+        '_locale' => 'da',
+        'id'    => "a0ca2fab-cae6-438d-b75b-cf504810920f",
+        'type'  => 'web-test::test',
+        'title' => 'Foobar',
+        'slug'  => '/foobar',
+        'state' => 1,
+        'hide'  => 0,
+    ]);
 
-    dd(app()->getLocale(), $menu, $menu->save());
-    dd(Menu::with('translations')->first()->toArray());
+    dd(app()->getLocale(), $menu->save(), $menu);
 })->middleware('web');

@@ -27,17 +27,12 @@ class Builder extends BuilderPrototype
             return parent::where(...func_get_args());
         }
 
-        $locale = $this->model->getLocale();
-
-        if ( $locale === app('web.language')->getBaseLocale() ) {
-            return parent::where(...func_get_args());
-        }
-
         $arguments = func_get_args();
 
-        return parent::whereHas('translations', function($query) use ($arguments, $locale) {
-            $query->where('locale', $locale)->where(...$arguments);
-        });
+        return parent::where(...func_get_args())
+            ->orWhereHas('translations', function($query) use ($arguments) {
+                $query->where(...$arguments);
+            });
     }
 
 }

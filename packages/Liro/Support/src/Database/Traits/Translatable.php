@@ -90,6 +90,10 @@ trait Translatable
     {
         $attributes = parent::attributesToArray();
 
+        if ( ! $this->exists ) {
+            return $attributes;
+        }
+
         if ( isset($attributes['_locale']) ) {
             $this->forceLocale = $attributes['_locale'];
         }
@@ -117,6 +121,10 @@ trait Translatable
         }
 
         unset($attributes['_locale']);
+
+        if ( ! $this->exists ) {
+            return parent::fill($attributes);
+        }
 
         if ( app('web.language')->getBaseLocale() === $this->getLocale() ) {
             return parent::fill($attributes);

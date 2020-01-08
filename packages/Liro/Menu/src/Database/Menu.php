@@ -14,7 +14,7 @@ class Menu extends Model
     protected $table = 'menus';
 
     protected $fillable = [
-        'state', 'hide', 'type', 'icon', 'layout', 'title', 'slug', 'path', 'guard', 'extend'
+        'state', 'hide', 'type', 'icon', 'layout', 'title', 'slug', 'guard', 'extend'
     ];
 
     protected $fields = [
@@ -42,7 +42,6 @@ class Menu extends Model
         'layout'        => null,
         'title'         => null,
         'slug'          => null,
-        'path'          => null,
         'extend'        => null,
         'guard'         => null
     ];
@@ -56,7 +55,6 @@ class Menu extends Model
         'layout'        => 'string',
         'title'         => 'string',
         'slug'          => 'string',
-        'path'          => 'string',
         'extend'        => 'array',
         'guard'         => 'integer'
     ];
@@ -79,25 +77,13 @@ class Menu extends Model
 
     public function getPathAttribute()
     {
-        if ( ! empty($this->attributes['path']) ) {
-            return $this->attributes['path'];
-        }
-
-        if ( ! $this->parent()->count() ) {
+        if ( ! $this->parent ) {
             return app('web.manager')->getProtocol() .
                 '://' . trim($this->slug, '/');
         }
 
-        return str_join('/', $this->parent()->get()->pluck('path')->first(),
+        return str_join('/', $this->parent->path,
             trim($this->slug, '/'));
-    }
-
-    public function setPathAttribute($value)
-    {
-        $this->attributes['path'] = $value;
-
-        return $this->attributes['path'] =
-            $this->getPathAttribute();
     }
 
     public function getFinalLayoutAttribute()

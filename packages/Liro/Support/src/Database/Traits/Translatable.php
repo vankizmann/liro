@@ -177,8 +177,7 @@ trait Translatable
             $translation = $this->getNewTranslation();
         }
 
-        return data_get($translation, $key) ?:
-            data_get($this->attributes, $key);
+        return data_get($translation, $key) ?: $this->attributes[$key];
     }
 
 

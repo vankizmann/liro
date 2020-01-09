@@ -43,13 +43,13 @@ class RouteHelper
         return array_intersect(Web::getLocales(), explode($glue, $route));
     }
 
-    public static function extractDomain($route,  $locale = null)
+    public static function extractDomain($route, $locale = null)
     {
         if ( preg_match('/({domain}|:domain)/', $route) ) {
             $route = self::replaceDomain($route, $locale);
         }
 
-        preg_match('/^https?\:\/\/(.*?)\/(.*?)$/', $route, $match);
+        preg_match('/^:?https?\:\/\/(.*?)\/(.*?)$/', $route, $match);
 
         return count($match) === 3 ? $match[1] : $route;
     }
@@ -60,22 +60,31 @@ class RouteHelper
             $route = self::replaceLocale($route, $locale);
         }
 
-        preg_match('/^https?\:\/\/(.*?)\/(.*?)$/', $route, $match);
+        preg_match('/^:?https?\:\/\/(.*?)\/(.*?)$/', $route, $match);
 
         return count($match) === 3 ? $match[2] : '/';
     }
 
+    public static function replaceProtocol($route, $protocol = null)
+    {
+        $route =  preg_replace('/({http}|:http)/', $protocol ?:
+            app('web.manager')->getProtocol(), $route);
+
+        return $route;
+    }
+
     public static function replaceDomain($route, $domain = null)
     {
-        $route =  preg_replace('/({http}|:http)/', $domain ?: Web::getProtocol(), $route);
-        $route =  preg_replace('/({domain}|:domain)/', $domain ?: Web::getDomain(), $route);
+        $route =  preg_replace('/({domain}|:domain)/', $domain ?:
+            app('web.manager')->getDomain(), $route);
 
         return $route;
     }
 
     public static function replaceLocale($route, $locale = null)
     {
-        return preg_replace('/({locale}|:locale)/', $locale ?: Web::getLocale(), $route);
+        return preg_replace('/({locale}|:locale)/', $locale ?:
+            app('web.manager')->getLocale(), $route);
     }
 
 //    public static function getRoute($route)
@@ -83,8 +92,9 @@ class RouteHelper
 //        return self::replaceLocale(self::extractRoute($route));
 //    }
 
-    public static function replaceAll($route, $domain = null, $locale = null)
+    public static function replaceAll($route, $protocol = null, $domain = null, $locale = null)
     {
+        $route = self::replaceProtocol($route, $protocol);
         $route = self::replaceDomain($route, $domain);
         $route = self::replaceLocale($route, $locale);
 

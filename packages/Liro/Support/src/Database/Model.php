@@ -36,7 +36,6 @@ class Model extends BaseModel
         });
     }
 
-
     public function fill($attributes)
     {
         if ( empty($this->attributes['id']) && ! empty($attributes['id']) ) {

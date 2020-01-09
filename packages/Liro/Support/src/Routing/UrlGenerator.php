@@ -7,8 +7,7 @@ class UrlGenerator extends \Illuminate\Routing\UrlGenerator
 
     public function to($path, $extra = [], $secure = null)
     {
-        $path = RouteHelper::replaceDomain($path);
-        $path = RouteHelper::replaceLocale($path);
+        $path = RouteHelper::replaceAll($path);
 
         return parent::to($path, $extra, $secure);
     }

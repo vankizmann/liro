@@ -9,8 +9,8 @@ class FrontendMenuTableSeeder extends Seeder
 
     public function run()
     {
-        Menu::create([
-            'id'        => $tmp = uuid(),
+        $tmp = Menu::create([
+            'id'        => uuid(),
             'type'      => 'web-menu::redirect',
             'layout'    => null,
             'extend'    => ['url' => ':http://:domain/:locale'],
@@ -19,7 +19,6 @@ class FrontendMenuTableSeeder extends Seeder
             'title'     => 'Redirect',
             'slug'      => ':domain',
             'guard'     => 0,
-            'parent_id' => null,
         ]);
 
         MenuLocale::create([
@@ -27,12 +26,12 @@ class FrontendMenuTableSeeder extends Seeder
             'layout'        => null,
             'title'         => 'Weiterleitung',
             'slug'          => null,
-            'foreign_id'    => $tmp,
+            'foreign_id'    => $tmp->id,
             'locale'        => 'de',
         ]);
 
-        Menu::create([
-            'id'        => $root = uuid(),
+        $root = Menu::create([
+            'id'        => uuid(),
             'type'      => 'web-menu::domain',
             'layout'    => 'layout',
             'state'     => 1,
@@ -40,29 +39,28 @@ class FrontendMenuTableSeeder extends Seeder
             'title'     => 'www.website.com',
             'slug'      => ':domain/:locale',
             'guard'     => 0,
-            'parent_id' => null,
         ]);
 
-        Menu::create([
-            'id'        => $home = uuid(),
+        $home = Menu::create([
+            'id'        => uuid(),
             'ident'     => 'web-home',
             'type'      => 'web-page::page',
             'layout'    => null,
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'Homepage',
-            'slug'      => '/',
+            'slug'      => '/homepage',
             'matrix'    => 1,
             'guard'     => 0,
-            'parent_id' => $root,
+            'parent'    => $root,
         ]);
 
         MenuLocale::create([
             'id'            => uuid(),
             'layout'        => null,
             'title'         => 'Startseite',
-            'slug'          => null,
-            'foreign_id'    => $home,
+            'slug'          => '/startseite',
+            'foreign_id'    => $home->id,
             'locale'        => 'de',
         ]);
 
@@ -70,13 +68,13 @@ class FrontendMenuTableSeeder extends Seeder
             'id'            => uuid(),
             'layout'        => null,
             'title'         => 'Hjem',
-            'slug'          => null,
-            'foreign_id'    => $home,
+            'slug'          => '/hjem',
+            'foreign_id'    => $home->id,
             'locale'        => 'da',
         ]);
 
-        Menu::create([
-            'id'        => $login = uuid(),
+        $login = Menu::create([
+            'id'        => uuid(),
             'type'      => 'web-auth::login',
             'layout'    => null,
             'state'     => 1,
@@ -85,11 +83,11 @@ class FrontendMenuTableSeeder extends Seeder
             'slug'      => '/login',
             'matrix'    => 1,
             'guard'     => 0,
-            'parent_id' => $root,
+            'parent'    => $root,
         ]);
 
-        Menu::create([
-            'id'        => $demo = uuid(),
+        $demo = Menu::create([
+            'id'        => uuid(),
             'type'      => 'web-page::page',
             'layout'    => 'demo',
             'state'     => 1,
@@ -98,7 +96,7 @@ class FrontendMenuTableSeeder extends Seeder
             'slug'      => '/demo',
             'matrix'    => 1,
             'guard'     => 1,
-            'parent_id' => $root,
+            'parent'    => $root,
         ]);
 
         Menu::create([
@@ -112,7 +110,7 @@ class FrontendMenuTableSeeder extends Seeder
             'slug'      => '/redirect',
             'matrix'    => 1,
             'guard'     => 0,
-            'parent_id' => $root,
+            'parent'    => $root,
         ]);
 
     }

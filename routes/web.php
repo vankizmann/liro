@@ -17,15 +17,9 @@ use Liro\Menu\Database\Menu;
 Route::get('test', function () {
 //    app('web.language')->setLocale('ru');
 
-    $menu = (new Menu)->fill([
-        '_locale' => 'da',
-        'id'    => "a0ca2fab-cae6-438d-b75b-cf504810920f",
-        'type'  => 'web-test::test',
-        'title' => 'Foobar',
-        'slug'  => '/foobar',
-        'state' => 1,
-        'hide'  => 0,
+    $menu = (new Menu)->where('ident', 'web-backend')->first()->fill([
+        'slug'  => ':domain/:locale/system',
     ]);
 
-    dd(app()->getLocale(), $menu->save(), $menu);
+    dd($menu->save(), $menu);
 })->middleware('web');

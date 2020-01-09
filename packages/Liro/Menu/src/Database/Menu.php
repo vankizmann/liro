@@ -3,6 +3,7 @@
 namespace Liro\Menu\Database;
 
 use Baum\NestedSet\Node;
+use Illuminate\Support\Facades\DB;
 use Liro\Support\Database\Model;
 use Liro\Support\Database\Traits\State;
 use Liro\Support\Database\Traits\Translatable;
@@ -22,7 +23,7 @@ class Menu extends Model
     ];
 
     protected $appends = [
-        'connector', 'route', 'path', 'final_layout', 'icon_url', 'options'
+        'connector', 'final_layout', 'icon_url', 'options'
     ];
 
     protected $hidden = [
@@ -46,6 +47,8 @@ class Menu extends Model
         'layout'        => null,
         'title'         => null,
         'slug'          => null,
+        'route'         => null,
+        'path'          => null,
         'extend'        => null,
         'guard'         => null
     ];
@@ -59,9 +62,56 @@ class Menu extends Model
         'layout'        => 'string',
         'title'         => 'string',
         'slug'          => 'string',
+        'route'         => 'string',
+        'path'          => 'string',
         'extend'        => 'array',
         'guard'         => 'integer'
     ];
+
+    protected static function boot()
+    {
+        self::saving(function($query) {
+            $query->getModel()->setRouteAttribute();
+            $query->getModel()->setPathAttribute();
+        });
+
+        self::saved(function ($query) {
+
+            $model = $query->getModel();
+
+            if ( $model->original['route'] === null ) {
+                return;
+            }
+
+            $length = strlen($model->getRouteOriginal()) + 1;
+
+            $expression = DB::raw(
+                "CONCAT('{$model->getRouteAttribute()}', SUBSTRING(`menus`.`route`, {$length}, LENGTH(`menus`.`route`) + 1))"
+            );
+
+            $model->update(['route' => $expression]);
+        });
+
+        self::saved(function ($query) {
+
+            $model = $query->getModel();
+
+            if ( $model->original['path'] === null ) {
+                return;
+            }
+
+            $length = strlen($model->getPathOriginal()) + 1;
+
+            $expression = DB::raw(
+                "CONCAT('{$model->getPathAttribute()}', SUBSTRING(`menus`.`path`, {$length}, LENGTH(`menus`.`path`) + 1))"
+            );
+
+            $model->update(['path' => $expression]);
+        });
+
+
+        parent::boot();
+    }
 
     public function getIconUrlAttribute()
     {
@@ -69,25 +119,59 @@ class Menu extends Model
             $this->attributes['icon'] : asset($this->attributes['icon']);
     }
 
+    public function setSlugAttribute($value)
+    {
+        return $this->attributes['slug'] = '/' . trim($value, '/');
+    }
+
     public function getRouteAttribute()
     {
-        if ( ! $this->parent ) {
-            return '';
+        return str_join('/', $this->attributes['route'],
+            $this->parent ? ltrim($this->slug, '/') : null);
+    }
+
+    public function getRouteOriginal()
+    {
+        return str_join('/', $this->original['route'],
+            $this->parent ? ltrim($this->slug, '/') : null);
+    }
+
+    public function setRouteAttribute()
+    {
+        $route = '/';
+
+        if ( $this->parent ) {
+            $route = $this->parent->getRouteAttribute();
         }
 
-        return str_join('/', $this->parent->route,
-            trim($this->slug, '/'));
+        $this->attributes['route'] = '/' . ltrim($route, '/');
+
+        return $this->attributes['route'];
     }
 
     public function getPathAttribute()
     {
-        if ( ! $this->parent ) {
-            return app('web.manager')->getProtocol() .
-                '://' . trim($this->slug, '/');
+        return str_join('/', $this->attributes['path'],
+            $this->parent ? ltrim($this->slug, '/') : null);
+    }
+
+    public function getPathOriginal()
+    {
+        return str_join('/', $this->original['route'],
+            $this->parent ? ltrim($this->slug, '/') : null);
+    }
+
+    public function setPathAttribute()
+    {
+        $path = ':http://' . ltrim($this->slug, '/');
+
+        if ( $this->parent ) {
+            $path = $this->parent->getPathAttribute();
         }
 
-        return str_join('/', $this->parent->path,
-            trim($this->slug, '/'));
+        $this->attributes['path'] = ltrim($path, '/');
+
+        return $this->attributes['path'];
     }
 
     public function getFinalLayoutAttribute()

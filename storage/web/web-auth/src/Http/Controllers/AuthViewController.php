@@ -33,7 +33,7 @@ class AuthViewController extends Controller
             return back()->withInput()->with('error', trans('Invalid email or password.'));
         }
 
-        return redirect('/:locale/backend');
+        return redirect(app('web.menu')->getDomain('path'));
     }
 
     public function getLogoutRoute()

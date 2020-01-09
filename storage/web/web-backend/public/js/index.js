@@ -30617,7 +30617,7 @@ var vueRoutes = [];
 var resolveMenu = function resolveMenu(menu, cascade) {
   var root = vue__WEBPACK_IMPORTED_MODULE_0___default.a.Arr.get(cascade, 0);
   var route = {
-    path: "/".concat(menu.route),
+    path: menu.route,
     name: menu.id,
     meta: {
       root: root,

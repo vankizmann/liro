@@ -29,7 +29,7 @@ trait Translatable
      */
     public static function bootTranslatable()
     {
-        static::saved(function ($model) {
+        static::saving(function ($model) {
 
             foreach ( $model->translations as $translation ) {
                 $translation->save();
@@ -44,8 +44,7 @@ trait Translatable
 
     public function getLocale()
     {
-        return $this->forceLocale ?: request()->query('locale',
-            app()->getLocale());
+        return $this->forceLocale ?: request()->query('locale', app()->getLocale());
     }
 
     public function getLocaleClass()
@@ -53,10 +52,14 @@ trait Translatable
         return self::class . 'Locale';
     }
 
+    public function getLocaleInstance($data = [])
+    {
+        return app()->make($this->getLocaleClass(), [$data]);
+    }
+
     public function getLocalizedColumns()
     {
-        return isset($this->localized) ?
-            $this->localized : [];
+        return isset($this->localized) ? $this->localized : [];
     }
 
     public function translations()
@@ -64,46 +67,88 @@ trait Translatable
         return $this->hasMany($this->getLocaleClass(), 'foreign_id');
     }
 
-    public function getTranslationsAttribute()
+    public function isBaseLocale()
     {
-        if ( ! isset($this->relations['translations']) ) {
-            return new Collection;
+        return app('web.language')->getBaseLocale() === $this->getLocale();
+    }
+
+    public function getTranslation($locale = null)
+    {
+        $this->loadMissing('translations');
+
+        if ( empty($locale) ) {
+            $locale = $this->getLocale();
         }
 
-        if ( ! is_a($this->translationsBuffer, Collection::class) ) {
-            $this->translationsBuffer = $this->relations['translations'];
-        }
-
-        return $this->translationsBuffer;
+        return $this->translations->firstWhere('locale', $locale);
     }
 
     public function getNewTranslation($locale = null)
     {
-        $filled = [
-            'id' => uuid(), 'foreign_id' => $this->id, 'locale' => $locale ?: $this->getLocale()
+        $this->loadMissing('translations');
+
+        if ( empty($locale) ) {
+            $locale = $this->getLocale();
+        }
+
+        $data = [
+            'id' => uuid(), 'foreign_id' => $this->id, 'locale' => $locale
         ];
 
-        return app()->make($this->getLocaleClass())->fill($filled);
+        $translation = $this->getLocaleInstance()->fill($data);
+
+        $this->translations->add($translation);
+
+        return $translation;
+    }
+
+    public function getFirstOrNewTranslation($locale = null)
+    {
+        $this->loadMissing('translations');
+
+        if ( empty($locale) ) {
+            $locale = $this->getLocale();
+        }
+
+        $translation = $this->translations->firstWhere('locale', $locale);
+
+        if ( ! $translation ) {
+            $translation = $this->getNewTranslation($locale);
+        }
+
+        return $translation;
+    }
+
+    public function setLocalizedAttribute($key, $value)
+    {
+        if ( $this->isBaseLocale() || ! isset($this->attributes[$key]) ) {
+            return $this->attributes[$key] = $value;
+        }
+
+        $translation = $this->getFirstOrNewTranslation();
+
+        if ( $this->attributes[$key] === $value ) {
+            $value = null;
+        }
+
+        return $translation->setAttribute($key, $value);
     }
 
     public function attributesToArray()
     {
-        $attributes = parent::attributesToArray();
+        $this->loadMissing('translations');
 
-        if ( ! $this->exists ) {
-            return $attributes;
-        }
+        $attributes = parent::attributesToArray();
 
         if ( isset($attributes['_locale']) ) {
             $this->forceLocale = $attributes['_locale'];
         }
 
-        $translation = $this->translations->firstWhere(
-            'locale', $this->getLocale());
-
-        if ( ! $translation ) {
+        if ( ! $this->exists ) {
             return $attributes;
         }
+
+        $translation = $this->getFirstOrNewTranslation();
 
         foreach ( $this->getLocalizedColumns() as $key ) {
             if ( isset($attributes[$key]) ) {
@@ -122,20 +167,11 @@ trait Translatable
 
         unset($attributes['_locale']);
 
-        if ( ! $this->exists ) {
+        if ( empty($this->attributes['id']) || $this->isBaseLocale() ) {
             return parent::fill($attributes);
         }
 
-        if ( app('web.language')->getBaseLocale() === $this->getLocale() ) {
-            return parent::fill($attributes);
-        }
-
-        $translation = $this->translations->firstWhere(
-            'locale', $this->getLocale());
-
-        if ( ! $translation ) {
-            $translation = $this->getNewTranslation();
-        }
+        $translation = $this->getFirstOrNewTranslation();
 
         foreach ( $this->getLocalizedColumns() as $key ) {
 
@@ -152,10 +188,6 @@ trait Translatable
             unset($attributes[$key]);
         }
 
-        if ( ! $translation->exists ) {
-            $this->translations->add($translation);
-        }
-
         return parent::fill($attributes);
     }
 
@@ -166,27 +198,22 @@ trait Translatable
 
     public function getAttribute($key)
     {
+        $value = parent::getAttribute($key);
+
         if ( ! in_array($key, $this->getLocalizedColumns()) ) {
-            return parent::getAttribute($key);
+            return $value;
         }
 
-        $translation = $this->translations->firstWhere(
-            'locale', $this->getLocale());
-
-        if ( ! $translation ) {
-            $translation = $this->getNewTranslation();
-        }
-
-        return data_get($translation, $key) ?:
-            data_get($this->attributes, $key);
+        return data_get($this->getTranslation(), $key) ?: $value;
     }
 
-
-    public function localized($locale)
+    public function localize($locale)
     {
-        $this->forceLocale = $locale;
+        $clone = clone $this->load('translations');
 
-        return $this;
+        $clone->forceLocale = $locale;
+
+        return $clone;
     }
 
 }

@@ -8,7 +8,7 @@ let resolveMenu = (menu, cascade) => {
    let root = Vue.Arr.get(cascade, 0);
 
     let route = {
-        path: menu.route, name: menu.id, meta: { root, menu }
+        path: `${menu.route}`, name: menu.id, meta: { root, menu }
     };
 
     let redirect = Vue.Obj.get(menu, 'extend.redirect');

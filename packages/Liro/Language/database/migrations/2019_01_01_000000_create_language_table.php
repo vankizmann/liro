@@ -19,10 +19,13 @@ class CreateLanguageTable extends Migration
             $table->integer('hide')
                 ->default(0);
 
-            $table->string('title')
+            $table->string('label')
                 ->default('');
 
             $table->string('locale')
+                ->default('');
+
+            $table->string('country')
                 ->default('');
             
             $table->timestamps();

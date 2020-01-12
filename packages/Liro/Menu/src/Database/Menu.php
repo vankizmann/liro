@@ -15,7 +15,7 @@ class Menu extends Model
     protected $table = 'menus';
 
     protected $fillable = [
-        'state', 'hide', 'type', 'icon', 'layout', 'title', 'slug', 'guard', 'extend'
+        'state', 'hide', 'type', 'icon', 'layout', 'title', 'slug', 'route', 'path', 'guard', 'extend'
     ];
 
     protected $fields = [
@@ -31,7 +31,7 @@ class Menu extends Model
     ];
 
     protected $localized = [
-        'layout', 'title', 'slug'
+        'layout', 'title', 'slug', 'route', 'path'
     ];
 
     protected $relationships = [
@@ -79,6 +79,10 @@ class Menu extends Model
 
             $model = $query->getModel();
 
+            if ( app('web.language')->getBaseLocale() !== $model->getLocale() ) {
+                return;
+            }
+
             if ( $model->original['route'] === null ) {
                 return;
             }
@@ -95,6 +99,10 @@ class Menu extends Model
         self::saved(function ($query) {
 
             $model = $query->getModel();
+
+            if ( app('web.language')->getBaseLocale() !== $model->getLocale() ) {
+                return;
+            }
 
             if ( $model->original['path'] === null ) {
                 return;
@@ -119,21 +127,14 @@ class Menu extends Model
             $this->attributes['icon'] : asset($this->attributes['icon']);
     }
 
-    public function setSlugAttribute($value)
-    {
-        return $this->attributes['slug'] = '/' . trim($value, '/');
-    }
-
     public function getRouteAttribute()
     {
-        return str_join('/', $this->attributes['route'],
-            $this->parent ? ltrim($this->slug, '/') : null);
+        return $this->attributes['route'];
     }
 
     public function getRouteOriginal()
     {
-        return str_join('/', $this->original['route'],
-            $this->parent ? ltrim($this->slug, '/') : null);
+        return $this->original['route'];
     }
 
     public function setRouteAttribute()
@@ -141,37 +142,44 @@ class Menu extends Model
         $route = '/';
 
         if ( $this->parent ) {
-            $route = $this->parent->getRouteAttribute();
+            $route = str_join('/', $this->parent->getRouteAttribute(),
+                ltrim($this->slug, '/'));
         }
 
-        $this->attributes['route'] = '/' . ltrim($route, '/');
+        $route = '/' . ltrim($route, '/');
 
-        return $this->attributes['route'];
+        if ( $this->getRouteOriginal() && in_array('route', $this->localized) ) {
+            return $this->setLocalizedAttribute('route', $route);
+        }
+
+        return $this->attributes['route'] = $route;
     }
 
     public function getPathAttribute()
     {
-        return str_join('/', $this->attributes['path'],
-            $this->parent ? ltrim($this->slug, '/') : null);
+        return $this->attributes['path'];
     }
 
     public function getPathOriginal()
     {
-        return str_join('/', $this->original['route'],
-            $this->parent ? ltrim($this->slug, '/') : null);
+        return $this->original['route'];
     }
 
     public function setPathAttribute()
     {
-        $path = ':http://' . ltrim($this->slug, '/');
+        $path = '/';
 
         if ( $this->parent ) {
             $path = $this->parent->getPathAttribute();
         }
 
-        $this->attributes['path'] = ltrim($path, '/');
+        $pazj = str_join('/', ltrim($path, '/'), ltrim($this->slug, '/'));
 
-        return $this->attributes['path'];
+        if ( $this->getRouteOriginal() && in_array('path', $this->localized) ) {
+            return $this->setLocalizedAttribute('path', $path);
+        }
+
+        return $this->attributes['path'] = $pazj;
     }
 
     public function getFinalLayoutAttribute()

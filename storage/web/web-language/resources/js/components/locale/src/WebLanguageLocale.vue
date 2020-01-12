@@ -1,14 +1,23 @@
 <template>
     <NLoader :visible="load" size="small" class="web-language-locale">
 
-        <NButton :link="true" :icon="icons.angleDown" icon-position="right">
-            {{ activeLocale.title }}
-        </NButton>
+        <div class="grid grid--row">
+
+            <div class="col--flex-0">
+                <img :src="`//www.countryflags.io/${activeLocale.country}/flat/64.png`" alt="activeLocale.label">
+            </div>
+
+            <NButton class="col--flex-1" :link="true" :icon="icons.angleDown" icon-position="right">
+                {{ activeLocale.label }}
+            </NButton>
+
+        </div>
+
 
         <NPopover ref="popover" type="select" trigger="click" position="bottom-start" :width="120">
             <template v-for="(item, index) in locales">
                 <NButton :key="index" class="n-popover-option" :link="true" :disabled="locale === item.locale" @click="setLocale(item.locale)" >
-                    {{ item.title }}
+                    {{ item.label }}
                 </NButton>
             </template>
         </NPopover>
@@ -36,8 +45,11 @@
             let locale = this.Obj.get(document,
                 'documentElement.lang', 'en');
 
+            let country = this.Obj.get(document,
+                'documentElement.county', 'gb');
+
             let locales = [
-                { locale, title: this.trans('Loading') }
+                { locale, country, label: this.trans('Loading') }
             ];
 
             return { locales, locale, load: true, popover: false };

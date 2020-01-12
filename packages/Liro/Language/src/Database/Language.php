@@ -18,23 +18,25 @@ class Language extends Model
     ];
 
     protected $localized = [
-        'title'
+        'label'
     ];
 
     protected $attributes = [
         'id'            => null,
         'state'         => null,
         'hide'          => null,
-        'title'         => null,
-        'locale'        => null
+        'label'         => null,
+        'locale'        => null,
+        'country'       => null
     ];
 
     protected $casts = [
         'id'            => 'uuid',
         'state'         => 'integer',
         'hide'          => 'integer',
-        'title'         => 'string',
-        'locale'        => 'string'
+        'label'         => 'string',
+        'locale'        => 'string',
+        'country'       => 'string'
     ];
 
 }

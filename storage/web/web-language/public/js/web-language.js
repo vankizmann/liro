@@ -496,6 +496,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'WebLanguageLocale',
   computed: {
@@ -507,9 +516,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     var locale = this.Obj.get(document, 'documentElement.lang', 'en');
+    var country = this.Obj.get(document, 'documentElement.county', 'gb');
     var locales = [{
       locale: locale,
-      title: this.trans('Loading')
+      country: country,
+      label: this.trans('Loading')
     }];
     return {
       locales: locales,
@@ -1547,15 +1558,39 @@ var render = function() {
     },
     [
       _c(
-        "NButton",
-        {
-          attrs: {
-            link: true,
-            icon: _vm.icons.angleDown,
-            "icon-position": "right"
-          }
-        },
-        [_vm._v("\n        " + _vm._s(_vm.activeLocale.title) + "\n    ")]
+        "div",
+        { staticClass: "grid grid--row" },
+        [
+          _c("div", { staticClass: "col--flex-0" }, [
+            _c("img", {
+              attrs: {
+                src:
+                  "//www.countryflags.io/" +
+                  _vm.activeLocale.country +
+                  "/flat/64.png",
+                alt: "activeLocale.label"
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "NButton",
+            {
+              staticClass: "col--flex-1",
+              attrs: {
+                link: true,
+                icon: _vm.icons.angleDown,
+                "icon-position": "right"
+              }
+            },
+            [
+              _vm._v(
+                "\n            " + _vm._s(_vm.activeLocale.label) + "\n        "
+              )
+            ]
+          )
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
@@ -1586,7 +1621,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                " + _vm._s(item.title) + "\n            "
+                    "\n                " + _vm._s(item.label) + "\n            "
                   )
                 ]
               )

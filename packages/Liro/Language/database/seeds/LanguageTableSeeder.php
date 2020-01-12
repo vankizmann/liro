@@ -13,60 +13,64 @@ class LanguageTableSeeder extends Seeder
             'id'        => $tmp = uuid(),
             'state'     => 1,
             'hide'      => 0,
-            'title'     => 'English',
-            'locale'    => 'en'
+            'label'     => 'English',
+            'locale'    => 'en',
+            'country'   => 'gb'
         ]);
 
         LanguageLocale::create([
             'id'            => uuid(),
             'foreign_id'    => $tmp,
             'locale'        => 'de',
-            'title'         => 'Englisch'
+            'label'         => 'Englisch'
         ]);
 
         Language::create([
             'id'        => $tmp = uuid(),
             'state'     => 1,
             'hide'      => 0,
-            'title'     => 'German',
-            'locale'    => 'de'
+            'label'     => 'German',
+            'locale'    => 'de',
+            'country'   => 'de'
         ]);
 
         LanguageLocale::create([
             'id'            => uuid(),
             'foreign_id'    => $tmp,
             'locale'        => 'de',
-            'title'         => 'Deutsch'
+            'label'         => 'Deutsch'
         ]);
 
         Language::create([
             'id'        => $tmp = uuid(),
             'state'     => 1,
             'hide'      => 1,
-            'title'     => 'Danish',
-            'locale'    => 'da'
+            'label'     => 'Danish',
+            'locale'    => 'da',
+            'country'   => 'dk'
         ]);
 
         LanguageLocale::create([
             'id'            => uuid(),
             'foreign_id'    => $tmp,
             'locale'        => 'de',
-            'title'         => 'Dänisch'
+            'label'         => 'Dänisch'
         ]);
 
         Language::create([
             'id'        => $tmp = uuid(),
             'state'     => 1,
             'hide'      => 1,
-            'title'     => 'Russian',
-            'locale'    => 'ru'
+            'label'     => 'Russian',
+            'locale'    => 'ru',
+            'country'   => 'ru'
         ]);
 
         LanguageLocale::create([
             'id'            => uuid(),
             'foreign_id'    => $tmp,
             'locale'        => 'de',
-            'title'         => 'Russisch'
+            'label'         => 'Russisch'
         ]);
     }
 

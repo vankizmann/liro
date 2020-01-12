@@ -57,7 +57,7 @@ class RouteHelper
     public static function extractRoute($route, $locale = null)
     {
         if ( preg_match('/({locale}|:locale)/', $route) ) {
-            $route = self::replaceLocale($route, $locale);
+            $route = self::replaceLocale($route, $locale ?: app()->getLocale());
         }
 
         preg_match('/^:?https?\:\/\/(.*?)\/(.*?)$/', $route, $match);

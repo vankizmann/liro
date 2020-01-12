@@ -11,7 +11,7 @@ class TranslateScope implements Scope
 
     public function apply(Builder $builder, Model $model)
     {
-        return $builder->with('translations');
+        return $builder;
     }
 
 }

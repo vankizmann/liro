@@ -30,6 +30,23 @@ class Model extends BaseModel
      */
     protected $relationships = [];
 
+    protected static function boot()
+    {
+        self::creating(function ($model) {
+            if ( empty($model->attributes['id']) ) {
+                $model->forceSetAttribute('id', uuid());
+            }
+        });
+
+        self::saving(function ($model) {
+            if ( empty($model->attributes['id']) ) {
+                $model->forceSetAttribute('id', uuid());
+            }
+        });
+
+        parent::boot();
+    }
+
     public function forceSetAttribute($key, $value) {
         static::unguarded(function () use ($key, $value) {
             $this->setAttribute($key, $value);

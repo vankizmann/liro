@@ -2,6 +2,8 @@
 
 namespace Liro\Menu;
 
+use function foo\func;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Traits\Macroable;
 use Liro\Support\Routing\RouteHelper;
 use App\Database\Menu;
@@ -29,6 +31,13 @@ class MenuManager
      * @var array
      */
     public $connectors = [];
+
+    /**
+     * @var array
+     */
+    public $urlVars = [
+        ':id'
+    ];
 
     /**
      * @var array
@@ -79,12 +88,10 @@ class MenuManager
                 $this->registerControllerRoutes($alias, $locale);
             }
 
-            $menus = Menu::orderBy('left', 'asc')->get();
+        }
 
-            foreach ( $menus as $menu ) {
-                $this->registerMenuRoute($menu->localized($locale), $locale);
-            }
-
+        foreach ( $this->solveMenus() as $menu ) {
+            $this->registerMenuRoute($menu , app()->getLocale());
         }
 
         $this->app['events']->dispatch('booted: web.menu', $this->app);
@@ -216,6 +223,33 @@ class MenuManager
         return "{{$param->name}}";
     }
 
+    protected function solveMenus()
+    {
+        // Get protocol query
+        $queries[] = "REPLACE(%s, ':http', '" . app('web.manager')->getProtocol() . "')";
+
+        // Get domain query
+        $queries[] = "REPLACE(%s, ':domain', '" . app('web.manager')->getDomain() . "')";
+
+        // Get locale query
+        $queries[] = "REPLACE(%s, ':locale', '" . app('web.manager')->getLocale() . "')";
+
+        // Get locale query
+        foreach ( $this->urlVars as $var)
+            $queries[] = "REPLACE(%s, '{$var}', '.+')";
+
+        $rawQuery = "CONCAT('^', %s, '$')";
+
+        foreach ( $queries as $query) {
+            $rawQuery = sprintf($rawQuery, $query);
+        }
+
+        $url = rtrim(url()->current(), '/');
+
+        return Menu::whereRaw('? REGEXP ' . sprintf($rawQuery, '`path`'), $url)
+            ->get();
+    }
+
     public function registerMenuRoute($menu, $locale)
     {
         $config = $this->getHttpRoute($menu->type);
@@ -233,12 +267,12 @@ class MenuManager
         }
 
         // Replace domain in route
-        $domain = RouteHelper::replaceDomain(
+        $domain = RouteHelper::replaceAll(
             RouteHelper::extractDomain($menu->path)
         );
 
         // Replace domain in route
-        $route = RouteHelper::replaceLocale(
+        $route = RouteHelper::replaceAll(
             RouteHelper::extractRoute($menu->path), $locale
         );
 

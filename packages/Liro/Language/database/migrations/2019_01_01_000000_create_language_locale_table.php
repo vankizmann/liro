@@ -19,7 +19,7 @@ class CreateLanguageLocaleTable extends Migration
             $table->string('locale')
                 ->default('');
 
-            $table->string('title')
+            $table->string('label')
                 ->nullable();
 
             $table->timestamps();

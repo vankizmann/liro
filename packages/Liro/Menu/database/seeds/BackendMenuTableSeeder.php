@@ -24,7 +24,7 @@ class BackendMenuTableSeeder extends Seeder
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'Redirect',
-            'slug'      => ':domain/backend',
+            'slug'      => ':http://:domain/backend',
             'guard'     => 0,
             'parent_id' => null,
         ]);
@@ -39,7 +39,7 @@ class BackendMenuTableSeeder extends Seeder
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'liro-cms.com',
-            'slug'      => ':domain/:locale/backend',
+            'slug'      => ':http://:domain/:locale/backend',
             'guard'     => 0,
             'parent_id' => null,
         ]);

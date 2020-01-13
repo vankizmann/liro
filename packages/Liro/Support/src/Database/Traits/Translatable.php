@@ -35,8 +35,6 @@ trait Translatable
                 $translation->save();
             }
 
-            /* @var Translatable $model */
-            return $model;
         });
 
         static::addGlobalScope(new TranslateScope);
@@ -95,9 +93,9 @@ trait Translatable
             'id' => uuid(), 'foreign_id' => $this->id, 'locale' => $locale
         ];
 
-        $translation = $this->getLocaleInstance()->fill($data);
-
-        $this->translations->add($translation);
+        $this->translations->add(
+            $translation = $this->getLocaleInstance()->fill($data)
+        );
 
         return $translation;
     }
@@ -121,7 +119,7 @@ trait Translatable
 
     public function setLocalizedAttribute($key, $value)
     {
-        if ( $this->isBaseLocale() || ! isset($this->attributes[$key]) ) {
+        if ( ! $this->exists || $this->isBaseLocale() ) {
             return $this->attributes[$key] = $value;
         }
 
@@ -143,6 +141,8 @@ trait Translatable
         if ( isset($attributes['_locale']) ) {
             $this->forceLocale = $attributes['_locale'];
         }
+
+        unset($attributes['_locale']);
 
         if ( ! $this->exists ) {
             return $attributes;
@@ -167,7 +167,7 @@ trait Translatable
 
         unset($attributes['_locale']);
 
-        if ( empty($this->attributes['id']) || $this->isBaseLocale() ) {
+        if ( ! $this->exists || $this->isBaseLocale() ) {
             return parent::fill($attributes);
         }
 
@@ -207,8 +207,12 @@ trait Translatable
         return data_get($this->getTranslation(), $key) ?: $value;
     }
 
-    public function localize($locale)
+    public function localize($locale = null)
     {
+        if ( empty($locale) ) {
+            $locale = $this->getLocale();
+        }
+
         $clone = clone $this->load('translations');
 
         $clone->forceLocale = $locale;

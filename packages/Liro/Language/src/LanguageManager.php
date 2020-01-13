@@ -100,6 +100,11 @@ class LanguageManager
         return $this->baseLocale;
     }
 
+    public function isBaseLocale()
+    {
+        return $this->baseLocale === $this->locale;
+    }
+
     public function getLocale()
     {
         return $this->locale;

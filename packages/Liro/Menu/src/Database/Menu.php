@@ -73,13 +73,16 @@ class Menu extends Model
         self::saving(function($query) {
             $query->getModel()->setRouteAttribute();
             $query->getModel()->setPathAttribute();
+//            dd($query->getModel());
         });
 
         self::saved(function ($query) {
 
+            return;
+
             $model = $query->getModel();
 
-            if ( app('web.language')->getBaseLocale() !== $model->getLocale() ) {
+            if ( $model->isBaseLocale() ) {
                 return;
             }
 
@@ -98,9 +101,11 @@ class Menu extends Model
 
         self::saved(function ($query) {
 
+            return;
+
             $model = $query->getModel();
 
-            if ( app('web.language')->getBaseLocale() !== $model->getLocale() ) {
+            if ( $model->isBaseLocale() ) {
                 return;
             }
 
@@ -127,59 +132,47 @@ class Menu extends Model
             $this->attributes['icon'] : asset($this->attributes['icon']);
     }
 
-    public function getRouteAttribute()
-    {
-        return $this->attributes['route'];
-    }
-
-    public function getRouteOriginal()
-    {
-        return $this->original['route'];
-    }
-
     public function setRouteAttribute()
     {
+        $this->loadMissing('parent');
+
         $route = '/';
 
         if ( $this->parent ) {
-            $route = str_join('/', $this->parent->getRouteAttribute(),
+
+            $parent = $this->parent->localize($this->forceLocale);
+
+            $route = str_join('/', $parent->getAttribute('route'),
                 ltrim($this->slug, '/'));
         }
 
         $route = '/' . ltrim($route, '/');
 
-        if ( $this->getRouteOriginal() && in_array('route', $this->localized) ) {
+        if ( in_array('route', $this->localized) ) {
             return $this->setLocalizedAttribute('route', $route);
         }
 
-        return $this->attributes['route'] = $route;
-    }
-
-    public function getPathAttribute()
-    {
-        return $this->attributes['path'];
-    }
-
-    public function getPathOriginal()
-    {
-        return $this->original['route'];
+        return $this->setAttribute('route', $route);
     }
 
     public function setPathAttribute()
     {
+        $this->loadMissing('parent');
+
         $path = '/';
 
         if ( $this->parent ) {
-            $path = $this->parent->getPathAttribute();
+            $path = $this->parent->localize($this->forceLocale)
+                ->getAttribute('path');
         }
 
-        $pazj = str_join('/', ltrim($path, '/'), ltrim($this->slug, '/'));
+        $path = str_join('/', ltrim($path, '/'), ltrim($this->slug, '/'));
 
-        if ( $this->getRouteOriginal() && in_array('path', $this->localized) ) {
+        if ( in_array('path', $this->localized) ) {
             return $this->setLocalizedAttribute('path', $path);
         }
 
-        return $this->attributes['path'] = $pazj;
+        return $this->setAttribute('path', $path);
     }
 
     public function getFinalLayoutAttribute()

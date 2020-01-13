@@ -91,7 +91,7 @@ class MenuManager
         }
 
         foreach ( $this->solveMenus() as $menu ) {
-            $this->registerMenuRoute($menu , app()->getLocale());
+            $this->registerMenuRoute($menu->localize() , app()->getLocale());
         }
 
         $this->app['events']->dispatch('booted: web.menu', $this->app);
@@ -246,11 +246,19 @@ class MenuManager
 
         $url = rtrim(url()->current(), '/');
 
-        return Menu::whereRaw('? REGEXP ' . sprintf($rawQuery, '`path`'), $url)
-            ->get();
+        $query = Menu::whereRaw('? REGEXP ' . sprintf($rawQuery, '`path`'), $url);
+
+        if ( ! app('web.language')->isBaseLocale() ) {
+            $query->orWhereHas('translations', function ($query) use ($rawQuery, $url) {
+                return $query->where('locale', app()->getLocale())
+                    ->whereRaw('? REGEXP ' . sprintf($rawQuery, '`path`'), $url);
+            });
+        }
+
+        return $query->enabled()->get();
     }
 
-    public function registerMenuRoute($menu, $locale)
+    public function registerMenuRoute($menu)
     {
         $config = $this->getHttpRoute($menu->type);
 
@@ -262,10 +270,6 @@ class MenuManager
             array_shift($config), array_merge(['menu' => $menu], $config)
         );
 
-        if ( ! preg_match('/({locale}|:locale)/', $menu->path) ) {
-            $locale = RouteHelper::findLocale($menu->path);
-        }
-
         // Replace domain in route
         $domain = RouteHelper::replaceAll(
             RouteHelper::extractDomain($menu->path)
@@ -273,7 +277,7 @@ class MenuManager
 
         // Replace domain in route
         $route = RouteHelper::replaceAll(
-            RouteHelper::extractRoute($menu->path), $locale
+            RouteHelper::extractRoute($menu->path)
         );
 
         if ( ! isset($this->connectors[$menu->type]) ) {
@@ -282,12 +286,8 @@ class MenuManager
 
         $this->connectors[$menu->type][$menu->id] = $connector;
 
-        if ( data_get($menu, 'state', 0) !== 1 ) {
-            return;
-        }
-
         $options = [
-            'locale' => $locale, 'domain' => $domain, 'route' => $route, 'menu' => $menu
+            'domain' => $domain, 'route' => $route, 'menu' => $menu
         ];
 
         $connector->route($menu, $options);

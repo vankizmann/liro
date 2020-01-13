@@ -46,7 +46,7 @@ class FrontendMenuTableSeeder extends Seeder
             'state'     => 1,
             'hide'      => 0,
             'title'     => 'Homepage',
-            'slug'      => '/',
+            'slug'      => '/homepage',
             'matrix'    => 1,
             'guard'     => 0,
             'parent'    => $root,
@@ -54,12 +54,12 @@ class FrontendMenuTableSeeder extends Seeder
 
         $home->localize('de')->update([
             'title'         => 'Startseite',
-            'slug'          => '/'
+            'slug'          => '/startseite'
         ]);
 
         $home->localize('da')->update([
             'title'         => 'Hjem',
-            'slug'          => '/'
+            'slug'          => '/hjem'
         ]);
 
         $login = Menu::create([
@@ -88,21 +88,21 @@ class FrontendMenuTableSeeder extends Seeder
             'parent'    => $root,
         ]);
 
-        foreach ( range(0, 200) as $index ) {
-            Menu::create([
-                'id'     => uuid(),
-                'type'   => 'web-menu::redirect',
-                'layout' => null,
-                'extend' => ['url' => 'http://wieistmeineip.de'],
-                'state'  => 1,
-                'hide'   => 0,
-                'title'  => 'Home',
-                'slug'   => '/redirect' . $index,
-                'matrix' => 1,
-                'guard'  => 0,
-                'parent' => $root,
-            ]);
-        }
+//        foreach ( range(0, 200) as $index ) {
+//            Menu::create([
+//                'id'     => uuid(),
+//                'type'   => 'web-menu::redirect',
+//                'layout' => null,
+//                'extend' => ['url' => 'http://wieistmeineip.de'],
+//                'state'  => 1,
+//                'hide'   => 0,
+//                'title'  => 'Home',
+//                'slug'   => '/redirect' . $index,
+//                'matrix' => 1,
+//                'guard'  => 0,
+//                'parent' => $root,
+//            ]);
+//        }
 
     }
 

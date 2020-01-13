@@ -17,23 +17,28 @@ use Liro\Menu\Database\Menu;
 Route::get('test', function () {
 //    app('web.language')->setLocale('ru');
 
-//    $menu = Menu::create([
-//        'state' => 1,
-//        'hide'  => 0,
-//        'slug'  => ':domain/:locale/teeeeest',
-//        'title' => 'TTTEEEST'
-//    ]);
-//
-//    $menuLocale = $menu->localize('de')->fill([
-//        'slug'  => ':domain/:locale/beispiel',
-//        'title' => 'BEISPIEL'
-//    ]);
-//
-//    $menuLocale->save();
+    $parent = Menu::where('ident', 'web-backend')->first();
+
+    $menu = Menu::create([
+        'state' => 1,
+        'hide'  => 0,
+        'slug'  => '/teeeeest',
+        'title' => 'TTTEEEST',
+        'parent' => $parent
+    ]);
+
+    $menu->save();
+
+    $menuLocale = Menu::where('slug', '/teeeeest')->first()->localize('de')->fill([
+        'slug'  => '/beispiel',
+        'title' => 'BEISPIEL'
+    ]);
+
+    $menuLocale->save();
 
 //    dd((new Menu), $menu);
 
-    dd(app('router'));
+//    dd(app('router'));
 
-//    dd($menu, $menuLocale);
+    dd($menu, $menuLocale);
 })->middleware('web');

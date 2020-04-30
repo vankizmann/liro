@@ -19,7 +19,7 @@
     "collect.js": "^4.0.12",
     "cross-env": "^5.1",
     "fuzzy-search": "^2.0.1",
-    "jquery": "^3.2",
+    "jquery": "^3.5",
     "js-cookie": "^2.2.0",
     "laravel-mix": "^2.0",
     "lodash": "^4.17.4",

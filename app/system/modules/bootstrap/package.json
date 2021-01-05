@@ -13,7 +13,7 @@
   "devDependencies": {
     "@shopify/draggable": "shopify/draggable",
     "JSONStorage": "aheinze/JSONStorage#master",
-    "axios": "^0.18",
+    "axios": "^0.21",
     "browser-sync": "^2.23.6",
     "browser-sync-webpack-plugin": "^2.0.1",
     "collect.js": "^4.0.12",

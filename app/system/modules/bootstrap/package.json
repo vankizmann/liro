@@ -24,7 +24,7 @@
     "laravel-mix": "^2.0",
     "lodash": "^4.17.4",
     "portal-vue": "^1.3.0",
-    "qs": "^6.5.2",
+    "qs": "^6.5.3",
     "shift-js": "^0.2.1",
     "sortablejs": "^1.7.0",
     "uikit": "^3.0.0-rc.2",
